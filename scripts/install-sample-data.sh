@@ -20,6 +20,35 @@ ASSET_DIR="${SAMPLE_DATA_IMAGE_DIR:-}"
 IMAGE_ZIP="${SAMPLE_DATA_IMAGE_ZIP:-}"
 RELEASE_BASE_URL="${SAMPLE_DATA_RELEASE_BASE_URL:-https://github.com/EddieTYP/image-prompt-library/releases/download/sample-data-v1}"
 RELEASE_ASSET_NAME="${SAMPLE_DATA_RELEASE_ASSET_NAME:-image-prompt-library-sample-images-v1.zip}"
+EXPECTED_SHA256="${SAMPLE_DATA_IMAGE_ZIP_SHA256:-8a458f6c8c96079f40fbc46c689e7de0bd2eb464ee7f800f94f3ca60131d5035}"
+
+sha256_file() {
+  local file="$1"
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$file" | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 "$file" | awk '{print $1}'
+  else
+    echo "Neither sha256sum nor shasum is available for checksum verification" >&2
+    return 1
+  fi
+}
+
+verify_zip_checksum() {
+  local file="$1"
+  local expected="$2"
+  if [[ -z "$expected" ]]; then
+    return 0
+  fi
+  local actual
+  actual="$(sha256_file "$file")"
+  if [[ "$actual" != "$expected" ]]; then
+    echo "Sample image ZIP checksum mismatch: $file" >&2
+    echo "Expected: $expected" >&2
+    echo "Actual:   $actual" >&2
+    exit 1
+  fi
+}
 
 if [[ ! -f "$MANIFEST_PATH" ]]; then
   echo "Sample manifest not found: $MANIFEST_PATH" >&2
@@ -36,11 +65,15 @@ if [[ -z "$ASSET_DIR" ]]; then
       echo "Sample image ZIP not found: $IMAGE_ZIP" >&2
       exit 1
     fi
+    if [[ -n "${SAMPLE_DATA_IMAGE_ZIP_SHA256:-}" ]]; then
+      verify_zip_checksum "$IMAGE_ZIP" "$EXPECTED_SHA256"
+    fi
     unzip -q "$IMAGE_ZIP" -d "$ASSET_DIR"
   else
     IMAGE_ZIP="$WORK_DIR/$RELEASE_ASSET_NAME"
     echo "Downloading sample images from $RELEASE_BASE_URL/$RELEASE_ASSET_NAME"
     curl -fL "$RELEASE_BASE_URL/$RELEASE_ASSET_NAME" -o "$IMAGE_ZIP"
+    verify_zip_checksum "$IMAGE_ZIP" "$EXPECTED_SHA256"
     unzip -q "$IMAGE_ZIP" -d "$ASSET_DIR"
   fi
 fi

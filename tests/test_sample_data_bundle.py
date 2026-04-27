@@ -51,7 +51,10 @@ def test_sample_data_attribution_documents_third_party_license_boundary():
     assert "CC BY 4.0" in attribution
     assert "No additional restrictions" in attribution
     assert "The Image Prompt Library code license does not apply" in attribution
-    assert "GitHub Release asset" in readme
+    assert "sample-data-v1" in readme
+    assert "image-prompt-library-sample-images-v1.zip" in readme
+    assert "SHA256" in readme
+    assert "8a458f6c8c96079f40fbc46c689e7de0bd2eb464ee7f800f94f3ca60131d5035" in readme
     assert "./scripts/install-sample-data.sh en" in readme
 
 
@@ -102,6 +105,14 @@ def test_import_sample_bundle_loads_manifest_assets_and_is_idempotent(tmp_path: 
     assert "Original source URL" not in (detail.notes or "")
     assert "Original source file" not in (detail.notes or "")
     assert len(detail.notes or "") < 180
+
+
+def test_install_sample_data_script_verifies_release_zip_checksum():
+    installer = (ROOT / "scripts" / "install-sample-data.sh").read_text()
+
+    assert "EXPECTED_SHA256" in installer
+    assert "sha256sum" in installer or "shasum -a 256" in installer
+    assert "8a458f6c8c96079f40fbc46c689e7de0bd2eb464ee7f800f94f3ca60131d5035" in installer
 
 
 def test_install_sample_data_script_supports_local_zip_override(tmp_path: Path):

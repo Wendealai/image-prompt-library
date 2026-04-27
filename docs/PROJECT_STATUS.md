@@ -116,6 +116,7 @@ Recent preparation work includes:
 - added a GitHub Actions CI workflow for Python tests, local frontend build, and demo build
 - drafted `docs/releases/v0.1.0-alpha.md` as public-safe alpha release notes
 - verified a fresh clone setup/start/smoke-test path on a non-reserved port with Python 3.12, including empty-library onboarding and public sample-library installation
+- after public release, set the GitHub repo homepage to the read-only sandbox URL, polished README badges/release/demo affordances, drafted launch-post copy in the MacBook Downloads folder, verified unauthenticated public sample-data installation, and added SHA256 verification for the sample image ZIP
 - verified tests and frontend build before the latest public-alpha preparation commit
 
 ## Sample data notes

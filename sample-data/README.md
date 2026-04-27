@@ -10,7 +10,15 @@ Sample installer command:
 # or: ./scripts/install-sample-data.sh en
 ```
 
-The manifests in `sample-data/manifests/` are kept in git. The image files are distributed separately as the GitHub Release asset `sample-data-v1` / `image-prompt-library-sample-images-v1.zip`, so normal clones stay lightweight. While the repository remains private, the installer's unauthenticated `curl` download may return 404; re-test the command after switching the repository public.
+The manifests in `sample-data/manifests/` are kept in git. The image files are distributed separately as the `sample-data-v1` release asset `image-prompt-library-sample-images-v1.zip`, so normal clones stay lightweight.
+
+Release asset SHA256:
+
+```text
+8a458f6c8c96079f40fbc46c689e7de0bd2eb464ee7f800f94f3ca60131d5035
+```
+
+The installer verifies the downloaded ZIP against this checksum before import. To test a local ZIP override with checksum verification, pass `SAMPLE_DATA_IMAGE_ZIP_SHA256=<sha256>` together with `SAMPLE_DATA_IMAGE_ZIP=...`.
 
 For local QA without downloading from GitHub, point the installer at a local image ZIP:
 

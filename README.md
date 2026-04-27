@@ -1,5 +1,10 @@
 # Image Prompt Library
 
+[![CI](https://github.com/EddieTYP/image-prompt-library/actions/workflows/ci.yml/badge.svg)](https://github.com/EddieTYP/image-prompt-library/actions/workflows/ci.yml)
+[![GitHub Pages demo](https://github.com/EddieTYP/image-prompt-library/actions/workflows/pages.yml/badge.svg)](https://github.com/EddieTYP/image-prompt-library/actions/workflows/pages.yml)
+[![Release](https://img.shields.io/github/v/release/EddieTYP/image-prompt-library?include_prereleases&label=release)](https://github.com/EddieTYP/image-prompt-library/releases/tag/v0.1.0-alpha)
+[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue)](LICENSE)
+
 ChatGPT image generation has become good enough that the prompts are worth keeping. The problem is that once you start saving great outputs, screenshots, and variations, there still is not a simple private tool for managing image prompts like a real reference library.
 
 **Image Prompt Library** is a local-first web app for collecting generated images and the prompts behind them. When you create an image worth reusing, save it into your own self-hosted library, add the prompt, organize it into collections and tags, and search it later as a quick visual reference.
@@ -7,6 +12,8 @@ ChatGPT image generation has become good enough that the prompts are worth keepi
 Your library stays on your own machine: local SQLite, local image files, no accounts, no cloud sync, and no hosted database required.
 
 **Online sandbox:** <https://eddietyp.github.io/image-prompt-library/> — a read-only GitHub Pages demo using public sample prompts. The sandbox images are compressed for web preview; run the app locally to create your own private full library.
+
+**Alpha release:** <https://github.com/EddieTYP/image-prompt-library/releases/tag/v0.1.0-alpha>
 
 ![Image Prompt Library Cards view](docs/assets/screenshots/card-view-all.png)
 
@@ -157,9 +164,7 @@ If you want to see the app with example content, install the optional sample lib
 
 Then start the app and open <http://127.0.0.1:8000/>.
 
-The sample image ZIP is published as the `sample-data-v1` release asset. While this repository remains private, unauthenticated downloads through the installer may return 404; the same command should be re-tested after the repository is made public.
-
-The sample library is based on [`wuyoscar/gpt_image_2_skill`](https://github.com/wuyoscar/gpt_image_2_skill), licensed under **CC BY 4.0**. It is included only as demo/sample content; your own prompt library data remains private and is not part of the sample bundle.
+The installer downloads the sample image ZIP from the public `sample-data-v1` release and verifies its SHA256 checksum before import. The sample library is based on [`wuyoscar/gpt_image_2_skill`](https://github.com/wuyoscar/gpt_image_2_skill), licensed under **CC BY 4.0**. It is included only as demo/sample content; your own prompt library data remains private and is not part of the sample bundle.
 
 ## Backup
 
