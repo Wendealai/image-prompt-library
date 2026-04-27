@@ -32,11 +32,25 @@ export default function CardsView({
     );
   }
 
+  const leftColumnItems = items.filter((_, index) => index % 2 === 0);
+  const rightColumnItems = items.filter((_, index) => index % 2 === 1);
+  const renderCard = (item: ItemSummary) => (
+    <ItemCard key={item.id} t={t} item={item} onOpen={onOpen} onFavorite={onFavorite} onEdit={onEdit} onCopyPrompt={onCopyPrompt} showActions={showActions} />
+  );
+
   return (
-    <section className="cards-grid masonry-like">
-      {items.map(item => (
-        <ItemCard key={item.id} t={t} item={item} onOpen={onOpen} onFavorite={onFavorite} onEdit={onEdit} onCopyPrompt={onCopyPrompt} showActions={showActions} />
-      ))}
-    </section>
+    <>
+      <section className="cards-grid masonry-like desktop-cards-grid">
+        {items.map(renderCard)}
+      </section>
+      <section className="mobile-masonry-columns">
+        <div className="mobile-masonry-column">
+          {leftColumnItems.map(renderCard)}
+        </div>
+        <div className="mobile-masonry-column">
+          {rightColumnItems.map(renderCard)}
+        </div>
+      </section>
+    </>
   );
 }

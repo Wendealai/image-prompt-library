@@ -35,7 +35,7 @@ export function normalizeUiLanguage(value?: string | null): UiLanguage {
 
 const TRANSLATIONS: Record<UiLanguage, Record<TranslationKey, string>> = {
   zh_hant: {
-    filters: '篩選', searchAria: '搜尋所有 prompts', searchPlaceholder: '搜尋所有 prompts、標題、標籤…', config: '設定', referencesShown: '個參考顯示中', searchChip: '搜尋', collectionChip: 'Collection',
+    filters: '篩選', searchAria: '搜尋所有 prompts', searchPlaceholder: '搜尋所有 prompts、標題、標籤…', config: '設定', referencesShown: '個參考', searchChip: '搜尋', collectionChip: 'Collection',
     explore: 'Explore', cards: 'Cards', uiLanguage: '介面語言', promptCopyLanguage: 'Prompt 複製語言', promptCopyLanguageHelp: '複製時先使用偏好 prompt，其後使用英文，再其後使用任何可用 prompt。',
     globalThumbnails: '全域縮圖', globalThumbnailsHelp: 'Explore 全部 collection 的整體密度。', focusThumbnails: '焦點縮圖', focusThumbnailsHelp: '選取 collection 周圍最多顯示的真實縮圖數量。',
     calm: '寬鬆', balanced: '平衡', dense: '密集', compact: '精簡', gallery: '圖庫', full: '完整', libraryPath: 'Library 路徑', databasePath: 'Database 路徑',
@@ -55,7 +55,7 @@ const TRANSLATIONS: Record<UiLanguage, Record<TranslationKey, string>> = {
     onlineSandbox: 'Online sandbox', readOnlySampleLibrary: '唯讀 sample library', compressedForDemo: '示例圖片已為網頁 demo 壓縮。', runLocallyForPrivateLibrary: '請在本機運行以建立你的私人 prompt library。', viewOnGitHub: '在 GitHub 查看',
   },
   zh_hans: {
-    filters: '筛选', searchAria: '搜索所有 prompts', searchPlaceholder: '搜索所有 prompts、标题、标签…', config: '设置', referencesShown: '个参考显示中', searchChip: '搜索', collectionChip: 'Collection',
+    filters: '筛选', searchAria: '搜索所有 prompts', searchPlaceholder: '搜索所有 prompts、标题、标签…', config: '设置', referencesShown: '个参考', searchChip: '搜索', collectionChip: 'Collection',
     explore: 'Explore', cards: 'Cards', uiLanguage: '界面语言', promptCopyLanguage: 'Prompt 复制语言', promptCopyLanguageHelp: '复制时先使用偏好 prompt，然后使用英文，再然后使用任何可用 prompt。',
     globalThumbnails: '全局缩图', globalThumbnailsHelp: 'Explore 全部 collection 的整体密度。', focusThumbnails: '焦点缩图', focusThumbnailsHelp: '选中 collection 周围最多显示的真实缩图数量。',
     calm: '宽松', balanced: '平衡', dense: '密集', compact: '精简', gallery: '图库', full: '完整', libraryPath: 'Library 路径', databasePath: 'Database 路径',
@@ -75,7 +75,7 @@ const TRANSLATIONS: Record<UiLanguage, Record<TranslationKey, string>> = {
     onlineSandbox: 'Online sandbox', readOnlySampleLibrary: '只读 sample library', compressedForDemo: '示例图片已为网页 demo 压缩。', runLocallyForPrivateLibrary: '请在本机运行以建立你的私人 prompt library。', viewOnGitHub: '在 GitHub 查看',
   },
   en: {
-    filters: 'Filters', searchAria: 'Search all prompts', searchPlaceholder: 'Search all prompts, titles, tags…', config: 'Config', referencesShown: 'references shown', searchChip: 'Search', collectionChip: 'Collection',
+    filters: 'Filters', searchAria: 'Search all prompts', searchPlaceholder: 'Search all prompts, titles, tags…', config: 'Config', referencesShown: 'references', searchChip: 'Search', collectionChip: 'Collection',
     explore: 'Explore', cards: 'Cards', uiLanguage: 'UI language', promptCopyLanguage: 'Prompt copy language', promptCopyLanguageHelp: 'Copy uses your preferred prompt first, then English, then any available prompt.',
     globalThumbnails: 'Global thumbnails', globalThumbnailsHelp: 'Overall Explore density across all clusters.', focusThumbnails: 'Focus thumbnails', focusThumbnailsHelp: 'Maximum real thumbnails around the selected cluster.',
     calm: 'Calm', balanced: 'Balanced', dense: 'Dense', compact: 'Compact', gallery: 'Gallery', full: 'Full', libraryPath: 'Library path', databasePath: 'Database path',

@@ -443,7 +443,6 @@ export default function ExploreView({
   globalThumbnailBudget,
   focusThumbnailBudget,
   onFocusCluster,
-  onOpenClusterCards,
   onOpen,
   onAdd,
 }: {
@@ -456,7 +455,6 @@ export default function ExploreView({
   globalThumbnailBudget: number;
   focusThumbnailBudget: number;
   onFocusCluster: (c: ClusterRecord) => void;
-  onOpenClusterCards: (c: ClusterRecord) => void;
   onOpen: (id: string) => void;
   onAdd?: () => void;
 }) {
@@ -476,7 +474,6 @@ export default function ExploreView({
     () => buildConstellation(clusters, items, focusedClusterId, globalThumbnailBudget, focusThumbnailBudget),
     [clusters, items, focusedClusterId, globalThumbnailBudget, focusThumbnailBudget],
   );
-  const focusedCluster = constellation.find(cluster => cluster.id === focusedClusterId);
   const displayedClusters = useMemo(
     () => (focusedClusterId ? constellation.filter(cluster => !cluster.inactive) : constellation),
     [constellation, focusedClusterId],
@@ -517,7 +514,6 @@ export default function ExploreView({
   }
 
   const reset = () => { setScale(DEFAULT_SCALE); setOffset(DEFAULT_OFFSET); };
-  const handleOpenClusterCards = (cluster: ConstellationCluster) => onOpenClusterCards(cluster);
   const startGesture = (event: PointerEvent<HTMLElement>, tapTarget: TapTarget) => {
     try {
       event.currentTarget.setPointerCapture(event.pointerId);
@@ -581,13 +577,6 @@ export default function ExploreView({
         <button onClick={reset}><RotateCcw size={16} /> {t('resetView')}</button>
         <span>{focusedClusterId ? `${focusThumbnailBudget} ${t('focusThumbnailsVisible')}` : `${globalThumbnailBudget} ${t('thumbnailsVisible')}`}</span>
       </div>
-      {focusedCluster && (
-        <div className="constellation-focus-panel">
-          <strong>{focusedCluster.name}</strong>
-          <span>{focusedCluster.count} {t('referencesShown')} · {focusedCluster.nodes.length} {t('visible')}</span>
-          <button onClick={() => handleOpenClusterCards(focusedCluster)}>{t('cards')}</button>
-        </div>
-      )}
       <div
         ref={viewportRef}
         className="constellation-viewport"

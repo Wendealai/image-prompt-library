@@ -29,12 +29,13 @@ export default function TopBar({
   clusterName,
   clearCluster,
 }: Props) {
+  const hasActiveFilter = Boolean(clusterName);
   return (
     <header className="chrome">
       <nav className="nav-row" aria-label={t('primaryNavigation')}>
-        <button className="vista-button filter-button" onClick={onFilters}>
+        <button className={`vista-button filter-button${hasActiveFilter ? ' active' : ''}`} onClick={onFilters}>
           <Filter size={18} />
-          {t('filters')}
+          <span className="filter-label">{t('filters')}</span>
         </button>
 
         <label className="search toolbar-search" aria-label={t('searchAria')}>
@@ -47,17 +48,17 @@ export default function TopBar({
           />
         </label>
 
-        <div className="logo" aria-label={t('appHome')}>
+        <div className="logo mobile-brand" aria-label={t('appHome')}>
           <img className="logo-mark" src={headerLogo} alt="" aria-hidden="true" />
           <b>Image Prompt Library</b>
         </div>
 
-        <button className="iconbtn" onClick={onConfig} aria-label={t('config')}>
+        <button className="iconbtn config-button" onClick={onConfig} aria-label={t('config')}>
           <Settings size={19} />
         </button>
       </nav>
 
-      <div className="status-row">
+      <div className="status-row mobile-status-view-row">
         <div className="active-filter-strip" aria-label={t('currentFilters')}>
           <span className="template-count">{count} {t('referencesShown')}</span>
           {q && <span className="chip soft-chip">{t('searchChip')}: “{q}”</span>}

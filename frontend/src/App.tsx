@@ -17,6 +17,7 @@ import { DEFAULT_PROMPT_LANGUAGE, normalizePromptLanguage, resolvePromptText, ty
 
 const UI_LANGUAGE_STORAGE_KEY = 'image-prompt-library.ui_language';
 const PROMPT_LANGUAGE_STORAGE_KEY = 'image-prompt-library.preferred_prompt_language';
+const VIEW_STORAGE_KEY = 'image-prompt-library.view_mode.v2';
 const GLOBAL_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.global_thumbnail_budget';
 const FOCUS_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.focus_thumbnail_budget';
 
@@ -30,6 +31,14 @@ function loadUiLanguage(): UiLanguage {
   return normalizeUiLanguage(window.localStorage.getItem(UI_LANGUAGE_STORAGE_KEY));
 }
 
+function loadPreferredView(): ViewMode {
+  if (typeof window === 'undefined') return 'explore';
+  const savedView = window.localStorage.getItem(VIEW_STORAGE_KEY);
+  if (savedView === 'explore' || savedView === 'cards') return savedView;
+  const isMobileViewport = window.matchMedia('(max-width: 760px)').matches;
+  return isMobileViewport ? 'cards' : 'explore';
+}
+
 function loadNumberSetting(key: string, fallback: number, min: number, max: number) {
   if (typeof window === 'undefined') return fallback;
   const raw = Number(window.localStorage.getItem(key));
@@ -37,11 +46,17 @@ function loadNumberSetting(key: string, fallback: number, min: number, max: numb
   return Math.min(max, Math.max(min, Math.round(raw)));
 }
 
+function selectedCollectionNameSizeClass(name: string) {
+  if (name.length > 28) return 'is-very-long';
+  if (name.length > 16) return 'is-long';
+  return '';
+}
+
 export default function App() {
   const [q, setQ] = useState('');
   const debouncedQ = useDebouncedValue(q);
   const [clusterId, setClusterId] = useState<string>();
-  const [view, setView] = useState<ViewMode>('explore');
+  const [view, setView] = useState<ViewMode>(loadPreferredView);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [configOpen, setConfigOpen] = useState(false);
   const [clusters, setClusters] = useState<ClusterRecord[]>([]);
@@ -77,10 +92,9 @@ export default function App() {
     }
     return undefined;
   }, [dataScope.clusterId, pendingExploreUnfilterClusterId]);
-  const selectCluster = (c: ClusterRecord) => { setClusterId(c.id); setView('cards'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); };
-  const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); setView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
+  const selectCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('cards'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); };
+  const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
   const handleFilterSelect = (c: ClusterRecord) => { view === 'explore' ? focusCluster(c) : selectCluster(c); };
-  const openClusterAsCards = (c: ClusterRecord) => { setClusterId(c.id); setView('cards'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); };
   const clearCluster = () => {
     if (view === 'explore' && clusterId) {
       setPendingExploreUnfilterClusterId(clusterId);
@@ -97,6 +111,10 @@ export default function App() {
   const updateUiLanguage = (language: UiLanguage) => {
     setUiLanguage(language);
     window.localStorage.setItem(UI_LANGUAGE_STORAGE_KEY, language);
+  };
+  const updateView = (nextView: ViewMode) => {
+    setView(nextView);
+    window.localStorage.setItem(VIEW_STORAGE_KEY, nextView);
   };
   const updateGlobalThumbnailBudget = (budget: number) => {
     setGlobalThumbnailBudget(budget);
@@ -118,8 +136,9 @@ export default function App() {
   const openNewItemEditor = () => { setEditing(undefined); setEditorOpen(true); };
   const favorite = (id: string) => { api.favorite(id).then(saved).catch(() => undefined); };
   const editSummary = (item: { id: string }) => { api.item(item.id).then(full => { setEditing(full); setEditorOpen(true); }).catch(() => undefined); };
+  const showSelectedCollectionDock = Boolean(selectedCluster && !filtersOpen && !configOpen && !detailId && !editorOpen);
   return <div className={`app ${view === 'explore' ? 'explore-mode' : 'cards-mode'}`}>
-    <TopBar t={t} q={q} onQ={setQ} view={view} onView={setView} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} clusterName={selectedCluster?.name} clearCluster={clearCluster} />
+    <TopBar t={t} q={q} onQ={setQ} view={view} onView={updateView} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} clusterName={selectedCluster?.name} clearCluster={clearCluster} />
     {isDemoMode && (
       <div className="demo-banner" role="status">
         <strong>{t('onlineSandbox')}</strong>
@@ -137,9 +156,17 @@ export default function App() {
       {initialLoading && <div className="loading">{t('loading')}</div>}
       {error && <div className="error">{error}</div>}
       {view === 'explore'
-        ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpenClusterCards={openClusterAsCards} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
+        ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
         : <CardsView t={t} items={data.items} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
     </main>
+    {showSelectedCollectionDock && selectedCluster && (
+      <button className="selected-collection-dock" onClick={clearCluster} aria-label={`${t('collectionChip')}: ${selectedCluster.name}. ${t('close')}`}>
+        <span className="selected-collection-dot" aria-hidden="true" />
+        <span className={`selected-collection-name ${selectedCollectionNameSizeClass(selectedCluster.name)}`}>{selectedCluster.name}</span>
+        <span className="selected-collection-count">{data.total} {t('referencesShown')}</span>
+        <span className="selected-collection-clear" aria-hidden="true">×</span>
+      </button>
+    )}
     {!isDemoMode && <button className="fab" onClick={openNewItemEditor}><Plus/> {t('add')}</button>}
     <ItemDetailModal t={t} id={detailId} preferredLanguage={preferredLanguage} clusters={clusters} tags={tags} onClose={() => setDetailId(undefined)} onCopyPrompt={showCopyToast} onChanged={saved} onEdit={(item) => { setDetailId(undefined); setEditing(item); setEditorOpen(true); }} showMutations={!isDemoMode} />
     {toast && <div className={`toast copy-toast elegant-toast ${toast.tone}`} role="status"><span className="toast-icon">{toast.tone === 'success' ? <Check size={16} /> : <XCircle size={16} />}</span><span className="toast-title">{toast.title}</span></div>}

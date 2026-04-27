@@ -26,6 +26,140 @@ def test_topbar_is_toolbar_search_not_hero_or_keyboard_shortcut():
     assert "metaKey" not in app and "ctrlKey" not in app
 
 
+def test_mobile_has_real_viewport_meta_for_iphone_breakpoints():
+    index = (ROOT / "frontend" / "index.html").read_text()
+    assert 'name="viewport"' in index
+    assert "width=device-width" in index
+    assert "initial-scale=1" in index
+
+
+def test_mobile_defaults_to_cards_without_stale_pre_mobile_saved_view():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    assert "VIEW_STORAGE_KEY = 'image-prompt-library.view_mode.v2'" in app
+    assert "function loadPreferredView(): ViewMode" in app
+    assert "window.localStorage.getItem(VIEW_STORAGE_KEY)" in app
+    assert "window.matchMedia('(max-width: 760px)').matches" in app
+    assert "return isMobileViewport ? 'cards' : 'explore'" in app
+    assert "const [view, setView] = useState<ViewMode>(loadPreferredView)" in app
+    assert "const updateView = (nextView: ViewMode) => {" in app
+    assert "window.localStorage.setItem(VIEW_STORAGE_KEY, nextView)" in app
+    assert "onView={updateView}" in app
+
+
+def test_mobile_cards_use_touch_visible_two_column_masonry():
+    cards = (ROOT / "frontend" / "src" / "components" / "CardsView.tsx").read_text()
+    card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "desktop-cards-grid" in cards
+    assert "mobile-masonry-columns" in cards
+    assert "mobile-masonry-column" in cards
+    assert "leftColumnItems" in cards and "rightColumnItems" in cards
+    assert "items.filter((_, index) => index % 2 === 0)" in cards
+    assert "items.filter((_, index) => index % 2 === 1)" in cards
+    assert "action-label" in card
+    assert ".mobile-masonry-columns{display:none}" in compact_css
+    assert ".desktop-cards-grid{display:block}" in compact_css
+    assert ".desktop-cards-grid{display:none}" in compact_css
+    assert ".mobile-masonry-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));" in compact_css
+    assert "column-count:2" not in compact_css
+    assert "grid-template-columns:repeat(3" not in compact_css
+    assert ".mobile-masonry-columns.card-image-frame{min-height:0" in compact_css
+    assert ".mobile-masonry-columns.card-image-frame.has-reserved-ratio{aspect-ratio:auto!important}" in compact_css
+    assert ".mobile-masonry-columns.card-image-frameimg{width:100%;height:auto;object-fit:contain" in compact_css
+    assert ".item-card.card-actions{opacity:1;transform:none;flex-direction:row;" in compact_css
+    assert ".hover-action.action-label{display:none}" in compact_css
+
+
+def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
+    images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
+    assert "return image?.preview_path || image?.original_path || image?.thumb_path || ''" in images
+
+
+def test_cards_are_global_image_overlay_cards():
+    card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "<h3>{item.title}</h3>" in card
+    assert "item.cluster?.name" not in card
+    assert "item.source_name" not in card
+    assert "item.model" not in card
+    assert ".item-card{position:relative;" in compact_css
+    assert ".card-body{position:absolute;left:0;right:0;bottom:0;" in compact_css
+    assert "linear-gradient(transparent,rgba(33,25,34,.82))" in compact_css
+    assert ".card-bodyh3" in compact_css and "color:white" in compact_css
+    assert ".card-bodyp" not in compact_css
+
+
+def test_desktop_cards_are_wider_on_large_screens_for_seven_column_layout():
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "@media(min-width:1760px){:root{--card-min:260px}" in compact_css
+    assert "max-width:1920px" in compact_css
+
+
+def test_mobile_header_keeps_brand_centered_and_status_inline():
+    topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "mobile-brand" in topbar
+    assert "mobile-status-view-row" in topbar
+    assert topbar.index("filter-button") < topbar.index("toolbar-search") < topbar.index("mobile-brand") < topbar.index("config-button")
+    assert "{count} {t('referencesShown')}" in topbar
+    assert "references shown" not in (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    assert ".nav-row{display:grid;grid-template-columns:autominmax(340px,1fr)autoauto;" in compact_css
+    assert ".logo{grid-column:1/-1;justify-self:center;order:-1}" not in compact_css
+    assert ".nav-row{grid-template-columns:auto1frauto;" in compact_css
+    assert ".toolbar-search{grid-column:1/-1;order:4}" in compact_css
+    assert ".mobile-brand{justify-self:center" in compact_css
+    assert ".status-row{flex-direction:row;align-items:center;" in compact_css
+
+
+def test_mobile_selected_collection_uses_bottom_floating_dock_and_active_filter_state():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "selectedCollectionNameSizeClass" in app
+    assert "selected-collection-dock" in app
+    assert "selected-collection-name" in app
+    assert "selected-collection-count" in app
+    assert "is-long" in app and "is-very-long" in app
+    assert "!filtersOpen && !configOpen && !detailId && !editorOpen" in app
+    assert "hasActiveFilter" in topbar
+    assert "filter-button" in topbar and "' active'" in topbar
+    assert "filter-active-dot" not in topbar
+    assert "filter-active-count" not in topbar
+    assert ".filter-button.active" in css
+    assert ".filter-active-dot" not in css
+    assert ".filter-active-count" not in css
+    assert "@media(max-width:760px)" in css
+    assert ".active-filter-strip.active-filter{display:none}" in compact_css
+    assert ".selected-collection-dock{position:fixed;left:16px;right:16px;bottom:calc(16px+env(safe-area-inset-bottom));" in compact_css
+    assert ".selected-collection-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:clamp(14px,3.7vw,16px);" in compact_css
+    assert ".selected-collection-name.is-long{font-size:clamp(12.5px,3.25vw,14.5px)}" in compact_css
+    assert ".selected-collection-name.is-very-long{font-size:clamp(12px,3vw,13.5px)}" in compact_css
+    assert "@media(max-width:380px){.selected-collection-count{display:none}}" in compact_css
+    assert "main{padding:22px14px150px}" in compact_css
+
+
+def test_mobile_detail_modal_has_image_first_floating_controls():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "mobile-hero-actions" in detail
+    assert "mobile-hero-close" in detail
+    assert "mobile-hero-primary-actions" in detail
+    assert "aria-label={item.favorite ? t('saved') : t('favorite')}" in detail
+    assert "aria-label={t('edit')}" in detail
+    assert ".detail.modal{width:100vw;max-height:100dvh;" in compact_css
+    assert ".modal-hero{min-height:0;height:auto;" in compact_css
+    assert ".hero-image{width:100%;height:auto;max-height:none;object-fit:contain}" in compact_css
+    assert ".mobile-hero-actions{display:block}" in compact_css
+    assert ".mobile-hero-close{position:absolute;right:12px;top:calc(12px+env(safe-area-inset-top));" in compact_css
+    assert ".mobile-hero-primary-actions{position:absolute;right:12px;bottom:12px;" in compact_css
+
+
 def test_topbar_uses_attached_header_logo_branding():
     topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -77,18 +211,15 @@ def test_explore_is_thumbnail_constellation_with_configurable_budgets():
     assert ".cluster-orbit{" not in css
 
 
-def test_explore_focus_mode_stays_in_map_and_has_cards_cta():
+def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
-    assert "const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); setView('explore')" in app
-    assert "const openClusterAsCards = (c: ClusterRecord) => { setClusterId(c.id); setView('cards')" in app
-    assert "onOpenClusterCards={openClusterAsCards}" in app
+    assert "const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('explore')" in app
     assert "focusedClusterId" in explore
-    assert "t('cards')" in explore
-    assert "onOpenClusterCards(cluster)" in explore
-    assert "constellation-focus-panel" in explore
-    assert ".constellation-focus-panel" in css
+    assert "constellation-focus-panel" not in explore
+    assert ".constellation-focus-panel" not in css
+    assert "onOpenClusterCards" not in explore
     assert "centerFocusedCluster" in explore
 
 

@@ -212,6 +212,10 @@ export default function ItemDetailModal({
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
   const uniqueImages = dedupeImages(item?.images || []);
   const primaryImage = selectPrimaryImage(uniqueImages);
+  const toggleFavorite = () => {
+    if (!item) return;
+    api.favorite(item.id).then(updated => { setItem(updated); onChanged(); });
+  };
   const commitInlineUpdate = async (payload: Record<string, unknown>) => {
     if (!item) return;
     const updated = await api.updateItem(item.id, payload);
@@ -279,6 +283,21 @@ export default function ItemDetailModal({
                 ) : (
                   <div className="placeholder hero-image">{t('noImage')}</div>
                 )}
+                <div className="mobile-hero-actions" aria-label={t('itemActions')}>
+                  <button className="modal-icon-button mobile-hero-close" onClick={onClose} aria-label={t('close')}>
+                    <X size={20} />
+                  </button>
+                  {showMutations && (
+                    <span className="mobile-hero-primary-actions">
+                      <button className="modal-icon-button favorite-button" onClick={toggleFavorite} aria-label={item.favorite ? t('saved') : t('favorite')}>
+                        <Heart size={18} fill={item.favorite ? 'currentColor' : 'none'} />
+                      </button>
+                      <button className="modal-icon-button edit-button" onClick={() => onEdit(item)} aria-label={t('edit')}>
+                        <Pencil size={18} />
+                      </button>
+                    </span>
+                  )}
+                </div>
                 {uniqueImages.length > 1 && (
                   <div className="rail glass-rail">
                     {uniqueImages.map(img => (
@@ -291,7 +310,7 @@ export default function ItemDetailModal({
               <aside className="detail-side">
                 <div className="detail-side-actions">
                   <span className="detail-side-primary-actions">
-                    {showMutations && <button className="modal-icon-button favorite-button" onClick={() => api.favorite(item.id).then(updated => { setItem(updated); onChanged(); })} aria-label={item.favorite ? t('saved') : t('favorite')}>
+                    {showMutations && <button className="modal-icon-button favorite-button" onClick={toggleFavorite} aria-label={item.favorite ? t('saved') : t('favorite')}>
                       <Heart size={18} fill={item.favorite ? 'currentColor' : 'none'} />
                     </button>}
                     {showMutations && <button className="modal-icon-button edit-button" onClick={() => onEdit(item)} aria-label={t('edit')}>

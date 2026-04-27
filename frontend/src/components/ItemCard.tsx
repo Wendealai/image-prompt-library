@@ -56,12 +56,11 @@ export default function ItemCard({
       ) : <div className="placeholder">{t('noImage')}</div>}
       <div className="card-body">
         <h3>{item.title}</h3>
-        <p>{item.cluster?.name || t('unclustered')} · {item.source_name || item.model} {item.favorite && <Heart size={13} fill="currentColor" />}</p>
       </div>
       <div className="card-actions" aria-label={t('itemActions')}>
-        <button className="hover-action" onClick={copyPrompt}><Copy size={15} /> {t('copyPrompt')}</button>
-        {showActions && onFavorite && <button className="hover-action" onClick={favorite}><Heart size={15} fill={item.favorite ? 'currentColor' : 'none'} /> {t('favorite')}</button>}
-        {showActions && onEdit && <button className="hover-action" onClick={edit}><Pencil size={15} /> {t('edit')}</button>}
+        <button className="hover-action" onClick={copyPrompt}><Copy size={15} /> <span className="action-label">{t('copyPrompt')}</span></button>
+        {showActions && onFavorite && <button className="hover-action" onClick={favorite}><Heart size={15} fill={item.favorite ? 'currentColor' : 'none'} /> <span className="action-label">{t('favorite')}</span></button>}
+        {showActions && onEdit && <button className="hover-action" onClick={edit}><Pencil size={15} /> <span className="action-label">{t('edit')}</span></button>}
       </div>
     </article>
   );
