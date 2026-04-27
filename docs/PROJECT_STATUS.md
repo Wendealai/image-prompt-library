@@ -113,6 +113,9 @@ Recent preparation work includes:
 - added a GitHub Pages read-only online sandbox build using static JSON and compressed public sample images
 - added demo-mode guards that keep browsing/search/copy available while disabling Add/Edit/Favorite/tag/prompt mutations
 - added a compact demo-data export script for the public sample library and regression tests for the Pages workflow, demo disclosure, and generated static bundle
+- added a GitHub Actions CI workflow for Python tests, local frontend build, and demo build
+- drafted `docs/releases/v0.1.0-alpha.md` as public-safe alpha release notes
+- verified a fresh clone setup/start/smoke-test path on a non-reserved port with Python 3.12, including empty-library onboarding and public sample-library installation
 - verified tests and frontend build before the latest public-alpha preparation commit
 
 ## Sample data notes
@@ -151,7 +154,6 @@ Public-alpha follow-ups that remain useful:
 
 - retest unauthenticated sample installation immediately after the repository becomes public
 - add checksum verification or prominently document the sample image bundle checksum
-- add minimal GitHub Actions for tests and frontend build
 - enable private vulnerability reporting in GitHub settings if available
 - consider native Windows PowerShell scripts or Docker Compose for easier cross-platform setup
 - add export/import backup archive UI
