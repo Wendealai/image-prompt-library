@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5177",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 5177"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "6.0.1",
+    "vite": "8.0.10",
+    "typescript": "6.0.3",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "lucide-react": "1.11.0",
+    "@radix-ui/react-dialog": "1.1.15",
+    "@radix-ui/react-tabs": "1.1.13",
+    "tailwindcss": "4.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
+  }
+}
