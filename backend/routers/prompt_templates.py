@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException, Request
 
 from backend.repositories import ItemRepository
 from backend.schemas import PromptGenerationSessionRecord, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateRerollRequest
+from backend.services.prompt_workflow_failures import record_prompt_workflow_failure
 from backend.services.prompt_markup import PromptMarkupError, normalize_slot_values, render_marked_text, validate_marked_prompt
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
 
@@ -25,15 +26,28 @@ def _not_found(exc: KeyError):
     raise HTTPException(status_code=404, detail="Prompt template resource not found.") from exc
 
 
-def _handle_workflow_error(exc: Exception):
+def _handle_workflow_error(request: Request, exc: Exception, *, operation: str, context: dict | None = None):
     if isinstance(exc, PromptWorkflowUnavailable):
         raise HTTPException(status_code=503, detail="AI prompt workflow is not configured.") from exc
+    failure_id: str | None = None
+    headers: dict[str, str] | None = None
+    if isinstance(exc, (PromptWorkflowError, PromptMarkupError, ValueError)):
+        failure_id, _ = record_prompt_workflow_failure(
+            library_path=request.app.state.library_path,
+            operation=operation,
+            exc=exc,
+            context=context,
+        )
+        headers = {"X-Prompt-Workflow-Failure-Id": failure_id}
     if isinstance(exc, PromptWorkflowError):
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=502, detail=detail, headers=headers) from exc
     if isinstance(exc, PromptMarkupError):
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=400, detail=detail, headers=headers) from exc
     if isinstance(exc, ValueError):
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=400, detail=detail, headers=headers) from exc
     raise exc
 
 
@@ -62,6 +76,9 @@ def get_prompt_template(request: Request, item_id: str):
 @router.post("/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)
 def init_prompt_template(request: Request, item_id: str, payload: PromptTemplateInitRequest):
     repository = repo(request)
+    workflow_result = None
+    source_prompt = None
+    item = None
     try:
         item, source_prompt = _selected_source_prompt(repository, item_id, payload.language)
         workflow_result = initialize_prompt_template(
@@ -85,13 +102,29 @@ def init_prompt_template(request: Request, item_id: str, payload: PromptTemplate
         return repository.get_prompt_template_bundle(item.id)
     except KeyError as exc:
         _not_found(exc)
+    except HTTPException:
+        raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_init",
+            context={
+                "item_id": item_id,
+                "requested_language": payload.language,
+                "item": item.model_dump() if item else None,
+                "source_prompt": source_prompt.model_dump() if source_prompt else None,
+                "workflow_result": workflow_result,
+            },
+        )
 
 
 @router.post("/templates/{template_id}/generate", response_model=PromptGenerationSessionRecord)
 def generate_prompt_template_variant(request: Request, template_id: str, payload: PromptTemplateGenerateRequest):
     repository = repo(request)
+    template = None
+    workflow_result = None
+    slot_values = None
     try:
         template = repository.get_prompt_template_by_id(template_id)
         if template.status != "ready":
@@ -113,12 +146,28 @@ def generate_prompt_template_variant(request: Request, template_id: str, payload
     except HTTPException:
         raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_generate",
+            context={
+                "template_id": template_id,
+                "theme_keyword": payload.theme_keyword,
+                "template": template.model_dump() if template else None,
+                "workflow_result": workflow_result,
+                "slot_values": slot_values,
+            },
+        )
 
 
 @router.post("/generation-sessions/{session_id}/reroll", response_model=PromptGenerationSessionRecord)
 def reroll_prompt_template_variant(request: Request, session_id: str, payload: PromptTemplateRerollRequest):
     repository = repo(request)
+    session = None
+    template = None
+    workflow_result = None
+    slot_values = None
+    previous_variants = None
     try:
         session = repository.get_prompt_generation_session(session_id)
         template = repository.get_prompt_template_by_id(session.template_id)
@@ -141,7 +190,20 @@ def reroll_prompt_template_variant(request: Request, session_id: str, payload: P
     except HTTPException:
         raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_reroll",
+            context={
+                "session_id": session_id,
+                "rejected_variant_ids": payload.rejected_variant_ids,
+                "session": session.model_dump() if session else None,
+                "template": template.model_dump() if template else None,
+                "previous_variants": [variant.model_dump() for variant in previous_variants] if previous_variants is not None else None,
+                "workflow_result": workflow_result,
+                "slot_values": slot_values,
+            },
+        )
 
 
 @router.post("/prompt-variants/{variant_id}/accept", response_model=PromptGenerationSessionRecord)

@@ -51,3 +51,6 @@ GENERATE_WORKFLOW_ID=$GENERATE_ID
 IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-init
 IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-generate
 OUT
+
+# Restore source-controlled workflow JSON without embedding live secrets.
+env -u IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN -u IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER node "$N8N_DIR/build-workflows.mjs"

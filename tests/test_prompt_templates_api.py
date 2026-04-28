@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -5,6 +6,7 @@ from fastapi.testclient import TestClient
 from backend.main import create_app
 from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, ItemUpdate, PromptIn, PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
+from backend.services.prompt_workflows import PromptWorkflowError
 
 
 MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core" label="主体"]]a tiny ramen bar[[/slot]] with [[slot id="support_props" group="theme_core" label="配套元素"]]paper lanterns and wooden stools[[/slot]].'
@@ -127,3 +129,37 @@ def test_updating_prompts_marks_template_stale_and_clears_sessions(tmp_path: Pat
     assert bundle.template is not None
     assert bundle.template.status == 'stale'
     assert bundle.sessions == []
+
+
+def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+
+    def fake_init_prompt_template(**_kwargs):
+        raise PromptWorkflowError(
+            'Workflow request failed: {"message":"Error in workflow"}',
+            operation='template_init',
+            url='https://n8n.example/webhook/image-prompt-library-template-init',
+            request_payload={'item': {'id': item_id}, 'prompt': {'language': 'en'}},
+            response_status=500,
+            response_text='{"message":"Error in workflow"}',
+        )
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    response = client.post(f'/api/items/{item_id}/prompt-template/init', json={})
+    assert response.status_code == 502
+    failure_id = response.headers.get('x-prompt-workflow-failure-id')
+    assert failure_id
+    assert failure_id in response.json()['detail']
+
+    failure_path = tmp_path / 'library' / '_diagnostics' / 'prompt-workflow-failures' / f'{failure_id}.json'
+    assert failure_path.is_file()
+    sample = json.loads(failure_path.read_text(encoding='utf-8'))
+    assert sample['id'] == failure_id
+    assert sample['operation'] == 'template_init'
+    assert sample['error_class'] == 'PromptWorkflowError'
+    assert sample['workflow']['response_status'] == 500
+    assert sample['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-init'
