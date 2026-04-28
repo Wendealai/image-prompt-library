@@ -1,11 +1,11 @@
 const inputItems = $input.all();
-const expectedToken = String($env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN ?? '').trim();
+const expectedToken = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN ?? '').trim();
 
 if (!expectedToken) {
   return inputItems;
 }
 
-const configuredHeader = String($env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER ?? 'Authorization').trim() || 'Authorization';
+const configuredHeader = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER ?? 'X-Image-Prompt-Workflow-Token').trim() || 'X-Image-Prompt-Workflow-Token';
 const request = inputItems[0]?.json ?? {};
 const headers = request.headers && typeof request.headers === 'object' ? request.headers : {};
 const normalizedHeaders = Object.fromEntries(
