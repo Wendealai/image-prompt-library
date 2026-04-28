@@ -192,6 +192,12 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert "imageDetailViewerHint: 'Drag to inspect details, and use double-tap or pinch gestures to zoom in or out.'" in i18n
 
 
+def test_detail_modal_does_not_call_hooks_after_empty_id_guard():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    guard_index = detail.index("if (!id) return null;")
+    assert "useEffect(" not in detail[guard_index:]
+
+
 def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()

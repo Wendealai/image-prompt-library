@@ -224,9 +224,6 @@ export default function ItemDetailModal({
       .filter(tag => !existing.has(tag.name) && (!query || tag.name.toLowerCase().includes(query)))
       .slice(0, 8);
   }, [item, tags, tagQuery]);
-
-  if (!id) return null;
-
   const prompt = item?.prompts.find(promptRecord => promptRecord.language === lang);
   const resolvedPrompt = resolvePromptRecord(availablePromptRecords, lang, preferredLanguage);
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
@@ -241,6 +238,9 @@ export default function ItemDetailModal({
   useEffect(() => {
     imageViewerScaleRef.current = imageViewerScale;
   }, [imageViewerScale]);
+
+  if (!id) return null;
+
   const toggleFavorite = () => {
     if (!item) return;
     api.favorite(item.id).then(updated => { setItem(updated); onChanged(); });
