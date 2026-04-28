@@ -38,3 +38,22 @@ def test_prompt_template_workflows_include_auth_gate(filename: str, webhook_name
     assert workflow['connections'][auth_name]['main'][0][0]['node'] == prepare_name
     assert 'const expectedToken = "";' in auth_code
     assert 'X-Image-Prompt-Workflow-Token' in auth_code
+
+
+def test_prompt_template_init_workflow_uses_prompt_markers_and_cleanup_guard():
+    workflow = json.loads((N8N_DIR / 'prompt-template-init.workflow.json').read_text(encoding='utf-8'))
+    prepare_node = next(node for node in workflow['nodes'] if node['name'] == 'Prepare Prompt Template Init Payload')
+    format_node = next(node for node in workflow['nodes'] if node['name'] == 'Format Prompt Template Init Output')
+
+    prepare_code = prepare_node['parameters']['jsCode']
+    format_code = format_node['parameters']['jsCode']
+
+    assert '<<<IMAGE_PROMPT_BEGIN>>>' in prepare_code
+    assert '<<<IMAGE_PROMPT_END>>>' in prepare_code
+    assert 'Only the text between those markers belongs to the original prompt.' in prepare_code
+    assert 'Do not include the boundary markers or any follow-up instructions in markedText.' in prepare_code
+    assert 'Never nest one slot inside another slot.' in prepare_code
+    assert 'Never create overlapping slots.' in prepare_code
+    assert 'temperature: 0' in prepare_code
+    assert 'removePromptScaffolding' in format_code
+    assert 'Return JSON only\\.' in format_code
