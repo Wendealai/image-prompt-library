@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const defaultTokenHeader = 'X-Image-Prompt-Workflow-Token';
+const workflowToken = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN ?? '').trim();
+const workflowTokenHeader = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER ?? defaultTokenHeader).trim() || defaultTokenHeader;
 
 const asxsCredential = {
   openAiApi: {
@@ -51,9 +54,12 @@ function codeNode({ name, code, position }) {
 }
 
 function authNode({ name, position }) {
+  const template = read('prompt-template-auth-gate.js');
   return codeNode({
     name,
-    code: read('prompt-template-auth-gate.js'),
+    code: template
+      .replace('__WORKFLOW_TOKEN__', JSON.stringify(workflowToken))
+      .replace('__WORKFLOW_TOKEN_HEADER__', JSON.stringify(workflowTokenHeader)),
     position,
   });
 }

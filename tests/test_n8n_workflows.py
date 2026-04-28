@@ -30,7 +30,11 @@ N8N_DIR = ROOT / 'automation' / 'n8n'
 def test_prompt_template_workflows_include_auth_gate(filename: str, webhook_name: str, auth_name: str, prepare_name: str):
     workflow = json.loads((N8N_DIR / filename).read_text(encoding='utf-8'))
     node_names = {node['name'] for node in workflow['nodes']}
+    auth_node = next(node for node in workflow['nodes'] if node['name'] == auth_name)
+    auth_code = auth_node['parameters']['jsCode']
 
     assert auth_name in node_names
     assert workflow['connections'][webhook_name]['main'][0][0]['node'] == auth_name
     assert workflow['connections'][auth_name]['main'][0][0]['node'] == prepare_name
+    assert 'const expectedToken = "";' in auth_code
+    assert 'X-Image-Prompt-Workflow-Token' in auth_code
