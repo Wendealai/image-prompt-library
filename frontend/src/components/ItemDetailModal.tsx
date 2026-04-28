@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, ExternalLink, Heart, Pencil, Plus, X } from 'lucide-react';
+import { Check, Copy, ExternalLink, Heart, Minus, Pencil, Plus, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
+import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { imageDisplayPath, imageHeroPath, selectPrimaryImage } from '../utils/images';
@@ -12,6 +13,10 @@ const LANG_LABELS: Record<string, string> = {
   en: 'ENG',
 };
 const promptDisplayOrder = ['en', 'zh_hant', 'zh_hans'];
+const IMAGE_VIEWER_MIN_SCALE = 1;
+const IMAGE_VIEWER_MAX_SCALE = 4;
+const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;
+const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
 
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
@@ -25,6 +30,14 @@ function dedupeImages(images: ImageRecord[]) {
     seenImageKeys.add(key);
     return true;
   });
+}
+
+function clampImageViewerScale(scale: number) {
+  return Math.min(IMAGE_VIEWER_MAX_SCALE, Math.max(IMAGE_VIEWER_MIN_SCALE, Number(scale.toFixed(2))));
+}
+
+function measureTouchDistance(firstTouch: { clientX: number; clientY: number }, secondTouch: { clientX: number; clientY: number }) {
+  return Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
 }
 
 function resolvePromptRecord<T extends { language: string; text: string }>(
@@ -170,6 +183,13 @@ export default function ItemDetailModal({
   const [tagQuery, setTagQuery] = useState('');
   const [editingPromptLanguage, setEditingPromptLanguage] = useState<string>();
   const [promptDraft, setPromptDraft] = useState('');
+  const [selectedImageIdentity, setSelectedImageIdentity] = useState<string>();
+  const [imageViewerOpen, setImageViewerOpen] = useState(false);
+  const [imageViewerScale, setImageViewerScale] = useState(1);
+  const imageViewerScaleRef = useRef(1);
+  const imageViewerScrollRef = useRef<HTMLDivElement>(null);
+  const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
+  const lastViewerTapAtRef = useRef(0);
   const lastDefaultPromptKeyRef = useRef('');
 
   useEffect(() => { setLang(preferredLanguage); }, [preferredLanguage, id]);
@@ -212,6 +232,15 @@ export default function ItemDetailModal({
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
   const uniqueImages = dedupeImages(item?.images || []);
   const primaryImage = selectPrimaryImage(uniqueImages);
+  const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
+  useEffect(() => {
+    setSelectedImageIdentity(primaryImage ? getImageIdentity(primaryImage) : undefined);
+    setImageViewerOpen(false);
+    setImageViewerScale(1);
+  }, [item?.id, primaryImage?.id, primaryImage?.original_path, primaryImage?.preview_path, primaryImage?.thumb_path]);
+  useEffect(() => {
+    imageViewerScaleRef.current = imageViewerScale;
+  }, [imageViewerScale]);
   const toggleFavorite = () => {
     if (!item) return;
     api.favorite(item.id).then(updated => { setItem(updated); onChanged(); });
@@ -264,6 +293,77 @@ export default function ItemDetailModal({
     setAddingTag(false);
     setTagQuery('');
   };
+  const openImageViewer = () => {
+    if (!activeImage) return;
+    pinchGestureRef.current = null;
+    lastViewerTapAtRef.current = 0;
+    setImageViewerScale(1);
+    setImageViewerOpen(true);
+  };
+  const closeImageViewer = () => {
+    pinchGestureRef.current = null;
+    lastViewerTapAtRef.current = 0;
+    setImageViewerOpen(false);
+    setImageViewerScale(1);
+  };
+  const setImageViewerScaleAroundPoint = (nextScale: number, pointX?: number, pointY?: number) => {
+    const clampedScale = clampImageViewerScale(nextScale);
+    const scrollElement = imageViewerScrollRef.current;
+    if (!scrollElement || pointX === undefined || pointY === undefined) {
+      setImageViewerScale(clampedScale);
+      return;
+    }
+    const rect = scrollElement.getBoundingClientRect();
+    const offsetX = pointX - rect.left;
+    const offsetY = pointY - rect.top;
+    const anchorX = scrollElement.scrollLeft + offsetX;
+    const anchorY = scrollElement.scrollTop + offsetY;
+    const scaleRatio = clampedScale / imageViewerScaleRef.current;
+    setImageViewerScale(clampedScale);
+    requestAnimationFrame(() => {
+      const currentScrollElement = imageViewerScrollRef.current;
+      if (!currentScrollElement) return;
+      currentScrollElement.scrollLeft = Math.max(0, anchorX * scaleRatio - offsetX);
+      currentScrollElement.scrollTop = Math.max(0, anchorY * scaleRatio - offsetY);
+    });
+  };
+  const toggleImageViewerZoom = (pointX?: number, pointY?: number) => {
+    const nextScale = imageViewerScaleRef.current > 1.4 ? 1 : IMAGE_VIEWER_DOUBLE_TAP_SCALE;
+    setImageViewerScaleAroundPoint(nextScale, pointX, pointY);
+  };
+  const nudgeImageViewerScale = (delta: number) => {
+    setImageViewerScale(scale => clampImageViewerScale(scale + delta));
+  };
+  const handleImageViewerTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length === 2) {
+      pinchGestureRef.current = {
+        distance: measureTouchDistance(event.touches[0], event.touches[1]),
+        scale: imageViewerScaleRef.current,
+      };
+      return;
+    }
+    if (event.touches.length !== 1) return;
+    const now = Date.now();
+    if (now - lastViewerTapAtRef.current < IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS) {
+      event.preventDefault();
+      toggleImageViewerZoom(event.touches[0].clientX, event.touches[0].clientY);
+      lastViewerTapAtRef.current = 0;
+      return;
+    }
+    lastViewerTapAtRef.current = now;
+  };
+  const handleImageViewerTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length !== 2 || !pinchGestureRef.current) return;
+    event.preventDefault();
+    const distance = measureTouchDistance(event.touches[0], event.touches[1]);
+    const centerX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+    const centerY = (event.touches[0].clientY + event.touches[1].clientY) / 2;
+    const scaleRatio = distance / pinchGestureRef.current.distance;
+    setImageViewerScaleAroundPoint(pinchGestureRef.current.scale * scaleRatio, centerX, centerY);
+  };
+  const handleImageViewerTouchEnd = () => {
+    pinchGestureRef.current = null;
+  };
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -274,12 +374,14 @@ export default function ItemDetailModal({
           <div className="modal-content-enter" key={item.id}>
             <div className="detail-layout">
               <section className="modal-hero">
-                {primaryImage ? (
-                  <img
-                    className="hero-image"
-                    src={mediaUrl(imageHeroPath(primaryImage))}
-                    alt={item.title}
-                  />
+                {activeImage ? (
+                  <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
+                    <img
+                      className="hero-image"
+                      src={mediaUrl(imageHeroPath(activeImage))}
+                      alt={item.title}
+                    />
+                  </button>
                 ) : (
                   <div className="placeholder hero-image">{t('noImage')}</div>
                 )}
@@ -301,7 +403,15 @@ export default function ItemDetailModal({
                 {uniqueImages.length > 1 && (
                   <div className="rail glass-rail">
                     {uniqueImages.map(img => (
-                      <img key={getImageIdentity(img)} src={mediaUrl(imageDisplayPath(img))} alt="" />
+                      <button
+                        type="button"
+                        key={getImageIdentity(img)}
+                        className={`glass-rail-thumb ${getImageIdentity(img) === getImageIdentity(activeImage || img) ? 'active' : ''}`}
+                        onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
+                        aria-label={t('openImageDetailViewer')}
+                      >
+                        <img src={mediaUrl(imageDisplayPath(img))} alt="" />
+                      </button>
                     ))}
                   </div>
                 )}
@@ -402,6 +512,8 @@ export default function ItemDetailModal({
                   })()}
                 </div>
 
+                <PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />
+
                 <InlineEditableTextArea className="notes-inline-edit" value={item.notes || ''} placeholder={t('addNote')} onCommit={value => commitInlineUpdate({ notes: value.trim() || null })} editable={showMutations} />
 
                 <div className="tags detail-tags">
@@ -420,6 +532,48 @@ export default function ItemDetailModal({
                   ))}
                 </div>
               </aside>
+            </div>
+          </div>
+        )}
+        {imageViewerOpen && activeImage && (
+          <div className="detail-image-viewer" onClick={closeImageViewer}>
+            <div className="detail-image-viewer-panel" onClick={event => event.stopPropagation()}>
+              <div className="detail-image-viewer-head">
+                <div>
+                  <strong>{t('imageDetailViewer')}</strong>
+                  <span>{t('imageDetailViewerHint')}</span>
+                </div>
+                <button type="button" className="modal-icon-button" onClick={closeImageViewer} aria-label={t('close')}>
+                  <X size={18} />
+                </button>
+              </div>
+              <div className="detail-image-viewer-controls" aria-label={t('constellationControls')}>
+                <button type="button" className="modal-icon-button" onClick={() => nudgeImageViewerScale(-0.25)} aria-label={t('zoomOut')} disabled={imageViewerScale <= 1}>
+                  <Minus size={16} />
+                </button>
+                <span>{Math.round(imageViewerScale * 100)}%</span>
+                <button type="button" className="modal-icon-button" onClick={() => nudgeImageViewerScale(0.25)} aria-label={t('zoomIn')} disabled={imageViewerScale >= 4}>
+                  <Plus size={16} />
+                </button>
+                <button type="button" className="secondary detail-image-viewer-reset" onClick={() => setImageViewerScale(1)}>
+                  {t('resetView')}
+                </button>
+              </div>
+              <div
+                ref={imageViewerScrollRef}
+                className="detail-image-viewer-scroll"
+                tabIndex={0}
+                aria-label={t('imageDetailViewerHint')}
+                onDoubleClick={event => toggleImageViewerZoom(event.clientX, event.clientY)}
+                onTouchStart={handleImageViewerTouchStart}
+                onTouchMove={handleImageViewerTouchMove}
+                onTouchEnd={handleImageViewerTouchEnd}
+                onTouchCancel={handleImageViewerTouchEnd}
+              >
+                <div className="detail-image-viewer-stage" style={{ width: `${imageViewerScale * 100}%` }}>
+                  <img className="detail-image-viewer-image" src={mediaUrl(imageHeroPath(activeImage))} alt={item?.title || ''} />
+                </div>
+              </div>
             </div>
           </div>
         )}

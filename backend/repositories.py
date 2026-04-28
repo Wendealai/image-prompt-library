@@ -1,10 +1,10 @@
 from __future__ import annotations
-import re, uuid
+import json, re, uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptIn, PromptRecord, TagRecord
+from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
 from .services.text_normalize import to_traditional
 
 def now() -> str:
@@ -139,6 +139,7 @@ class ItemRepository:
                 for idx, prompt in enumerate(self._normalized_prompts(prompts)):
                     conn.execute("INSERT INTO prompts(id,item_id,language,text,is_primary,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
                         (new_id("prm"), item_id, prompt.language, prompt.text, int(prompt.is_primary or idx == 0), ts, ts))
+                self._mark_prompt_template_stale(conn, item_id)
             self.rebuild_search(conn, item_id)
             if ("cluster_id" in scalar and scalar["cluster_id"] != previous_cluster_id) or scalar.get("archived") == 1:
                 self.delete_empty_clusters(conn)
@@ -183,6 +184,68 @@ class ItemRepository:
     def _prompts(self, conn, item_id: str) -> list[PromptRecord]:
         return [PromptRecord(**dict(r)) for r in conn.execute("SELECT * FROM prompts WHERE item_id=? ORDER BY is_primary DESC, created_at", (item_id,)).fetchall()]
 
+    def _prompt_template(self, conn, item_id: str) -> PromptTemplateRecord | None:
+        row = conn.execute("SELECT * FROM prompt_templates WHERE item_id=?", (item_id,)).fetchone()
+        if not row:
+            return None
+        slots = [PromptTemplateSlot.model_validate(slot) for slot in json.loads(row["slots_json"] or "[]")]
+        return PromptTemplateRecord(
+            id=row["id"],
+            item_id=row["item_id"],
+            source_language=row["source_language"],
+            raw_text_snapshot=row["raw_text_snapshot"],
+            marked_text=row["marked_text"],
+            slots=slots,
+            status=row["status"],
+            analysis_confidence=row["analysis_confidence"],
+            analysis_notes=row["analysis_notes"],
+            created_at=row["created_at"],
+            updated_at=row["updated_at"],
+        )
+
+    def _prompt_generation_variants(self, conn, session_id: str) -> list[PromptGenerationVariantRecord]:
+        rows = conn.execute("SELECT * FROM prompt_generation_variants WHERE session_id=? ORDER BY iteration DESC", (session_id,)).fetchall()
+        return [
+            PromptGenerationVariantRecord(
+                id=row["id"],
+                session_id=row["session_id"],
+                iteration=row["iteration"],
+                rendered_text=row["rendered_text"],
+                slot_values=[PromptVariantValue.model_validate(value) for value in json.loads(row["slot_values_json"] or "[]")],
+                segments=[PromptRenderSegment.model_validate(segment) for segment in json.loads(row["segments_json"] or "[]")],
+                change_summary=row["change_summary"],
+                accepted=bool(row["accepted"]),
+                created_at=row["created_at"],
+            )
+            for row in rows
+        ]
+
+    def _prompt_generation_session(self, conn, row) -> PromptGenerationSessionRecord:
+        return PromptGenerationSessionRecord(
+            id=row["id"],
+            template_id=row["template_id"],
+            item_id=row["item_id"],
+            theme_keyword=row["theme_keyword"],
+            accepted_variant_id=row["accepted_variant_id"],
+            created_at=row["created_at"],
+            updated_at=row["updated_at"],
+            variants=self._prompt_generation_variants(conn, row["id"]),
+        )
+
+    def _prompt_generation_sessions(self, conn, template_id: str, limit: int = 6) -> list[PromptGenerationSessionRecord]:
+        rows = conn.execute(
+            "SELECT * FROM prompt_generation_sessions WHERE template_id=? ORDER BY updated_at DESC, created_at DESC LIMIT ?",
+            (template_id, limit),
+        ).fetchall()
+        return [self._prompt_generation_session(conn, row) for row in rows]
+
+    def _mark_prompt_template_stale(self, conn, item_id: str):
+        row = conn.execute("SELECT id FROM prompt_templates WHERE item_id=?", (item_id,)).fetchone()
+        if not row:
+            return
+        conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (row["id"],))
+        conn.execute("UPDATE prompt_templates SET status='stale', updated_at=? WHERE item_id=?", (now(), item_id))
+
     def _images(self, conn, item_id: str) -> list[ImageRecord]:
         return [ImageRecord(**dict(r)) for r in conn.execute("""SELECT * FROM images WHERE item_id=?
             ORDER BY CASE role WHEN 'result_image' THEN 0 ELSE 1 END, sort_order, created_at""", (item_id,)).fetchall()]
@@ -198,6 +261,146 @@ class ItemRepository:
             if not row: raise KeyError(item_id)
             summary = self._summary_from_row(conn, row)
             return ItemDetail(**summary.model_dump(), images=self._images(conn,item_id), notes=row["notes"], author=row["author"])
+
+    def get_primary_prompt(self, item_id: str) -> PromptRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM prompts WHERE item_id=? ORDER BY is_primary DESC, created_at LIMIT 1", (item_id,)).fetchone()
+            if row:
+                return PromptRecord(**dict(row))
+            item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
+            if not item_exists:
+                raise KeyError(item_id)
+            raise ValueError("Item does not have a usable prompt.")
+
+    def get_prompt_template_bundle(self, item_id: str, session_limit: int = 6) -> PromptTemplateBundle:
+        with connect(self.library_path) as conn:
+            item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
+            if not item_exists:
+                raise KeyError(item_id)
+            template = self._prompt_template(conn, item_id)
+            sessions = self._prompt_generation_sessions(conn, template.id, limit=session_limit) if template else []
+            return PromptTemplateBundle(template=template, sessions=sessions)
+
+    def get_prompt_template_by_id(self, template_id: str) -> PromptTemplateRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT item_id FROM prompt_templates WHERE id=?", (template_id,)).fetchone()
+            if not row:
+                raise KeyError(template_id)
+            template = self._prompt_template(conn, row["item_id"])
+            if template is None:
+                raise KeyError(template_id)
+            return template
+
+    def save_prompt_template(
+        self,
+        *,
+        item_id: str,
+        source_language: str,
+        raw_text_snapshot: str,
+        marked_text: str,
+        slots: list[PromptTemplateSlot],
+        status: str = "ready",
+        analysis_confidence: float | None = None,
+        analysis_notes: str | None = None,
+    ) -> PromptTemplateRecord:
+        with connect(self.library_path) as conn:
+            item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
+            if not item_exists:
+                raise KeyError(item_id)
+            existing = conn.execute("SELECT id, created_at FROM prompt_templates WHERE item_id=?", (item_id,)).fetchone()
+            template_id = existing["id"] if existing else new_id("tpl")
+            created_at = existing["created_at"] if existing else now()
+            updated_at = now()
+            slots_json = json.dumps([slot.model_dump() for slot in slots], ensure_ascii=False)
+            if existing:
+                conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (template_id,))
+                conn.execute(
+                    """UPDATE prompt_templates
+                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, analysis_confidence=?, analysis_notes=?, updated_at=?
+                    WHERE id=?""",
+                    (source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, updated_at, template_id),
+                )
+            else:
+                conn.execute(
+                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,analysis_confidence,analysis_notes,created_at,updated_at)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?)""",
+                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, created_at, updated_at),
+                )
+            conn.commit()
+        bundle = self.get_prompt_template_bundle(item_id)
+        if bundle.template is None:
+            raise KeyError(item_id)
+        return bundle.template
+
+    def create_prompt_generation_session(self, template_id: str, theme_keyword: str) -> PromptGenerationSessionRecord:
+        with connect(self.library_path) as conn:
+            template_row = conn.execute("SELECT item_id FROM prompt_templates WHERE id=?", (template_id,)).fetchone()
+            if not template_row:
+                raise KeyError(template_id)
+            session_id = new_id("ses")
+            ts = now()
+            conn.execute(
+                """INSERT INTO prompt_generation_sessions(id,template_id,item_id,theme_keyword,accepted_variant_id,created_at,updated_at)
+                VALUES(?,?,?,?,?,?,?)""",
+                (session_id, template_id, template_row["item_id"], theme_keyword, None, ts, ts),
+            )
+            conn.commit()
+        return self.get_prompt_generation_session(session_id)
+
+    def get_prompt_generation_session(self, session_id: str) -> PromptGenerationSessionRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM prompt_generation_sessions WHERE id=?", (session_id,)).fetchone()
+            if not row:
+                raise KeyError(session_id)
+            return self._prompt_generation_session(conn, row)
+
+    def add_prompt_generation_variant(
+        self,
+        session_id: str,
+        *,
+        rendered_text: str,
+        slot_values: list[PromptVariantValue],
+        segments: list[PromptRenderSegment],
+        change_summary: str | None = None,
+    ) -> PromptGenerationSessionRecord:
+        with connect(self.library_path) as conn:
+            session_row = conn.execute("SELECT id FROM prompt_generation_sessions WHERE id=?", (session_id,)).fetchone()
+            if not session_row:
+                raise KeyError(session_id)
+            iteration = conn.execute("SELECT COALESCE(MAX(iteration), 0) + 1 FROM prompt_generation_variants WHERE session_id=?", (session_id,)).fetchone()[0]
+            variant_id = new_id("var")
+            ts = now()
+            conn.execute(
+                """INSERT INTO prompt_generation_variants(id,session_id,iteration,rendered_text,slot_values_json,segments_json,change_summary,accepted,created_at)
+                VALUES(?,?,?,?,?,?,?,?,?)""",
+                (
+                    variant_id,
+                    session_id,
+                    iteration,
+                    rendered_text,
+                    json.dumps([value.model_dump() for value in slot_values], ensure_ascii=False),
+                    json.dumps([segment.model_dump() for segment in segments], ensure_ascii=False),
+                    change_summary,
+                    0,
+                    ts,
+                ),
+            )
+            conn.execute("UPDATE prompt_generation_sessions SET updated_at=? WHERE id=?", (ts, session_id))
+            conn.commit()
+        return self.get_prompt_generation_session(session_id)
+
+    def accept_prompt_generation_variant(self, variant_id: str) -> PromptGenerationSessionRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT session_id FROM prompt_generation_variants WHERE id=?", (variant_id,)).fetchone()
+            if not row:
+                raise KeyError(variant_id)
+            session_id = row["session_id"]
+            ts = now()
+            conn.execute("UPDATE prompt_generation_variants SET accepted=0 WHERE session_id=?", (session_id,))
+            conn.execute("UPDATE prompt_generation_variants SET accepted=1 WHERE id=?", (variant_id,))
+            conn.execute("UPDATE prompt_generation_sessions SET accepted_variant_id=?, updated_at=? WHERE id=?", (variant_id, ts, session_id))
+            conn.commit()
+        return self.get_prompt_generation_session(session_id)
 
     def list_items(self, q: str | None=None, cluster: str | None=None, tag: str | None=None, favorite: bool | None=None, archived: bool | None=False, sort: str="updated_desc", limit: int=100, offset: int=0) -> ItemList:
         where=[]; params=[]

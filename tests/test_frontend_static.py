@@ -150,18 +150,72 @@ def test_mobile_selected_collection_uses_bottom_floating_dock_and_active_filter_
 def test_mobile_detail_modal_has_image_first_floating_controls():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     compact_css = css.replace(" ", "")
     assert "mobile-hero-actions" in detail
     assert "mobile-hero-close" in detail
     assert "mobile-hero-primary-actions" in detail
+    assert "const [imageViewerOpen, setImageViewerOpen] = useState(false);" in detail
+    assert "const [imageViewerScale, setImageViewerScale] = useState(1);" in detail
+    assert "const imageViewerScaleRef = useRef(1);" in detail
+    assert "const imageViewerScrollRef = useRef<HTMLDivElement>(null);" in detail
+    assert "const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);" in detail
+    assert "className=\"hero-image-button\"" in detail
+    assert "className=\"detail-image-viewer\"" in detail
+    assert "className=\"detail-image-viewer-controls\"" in detail
+    assert "style={{ width: `${imageViewerScale * 100}%` }}" in detail
+    assert "const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;" in detail
+    assert "function clampImageViewerScale(scale: number)" in detail
+    assert "function measureTouchDistance(firstTouch: { clientX: number; clientY: number }, secondTouch: { clientX: number; clientY: number })" in detail
+    assert "setImageViewerScale(scale => clampImageViewerScale(scale + delta));" in detail
+    assert "onDoubleClick={event => toggleImageViewerZoom(event.clientX, event.clientY)}" in detail
+    assert "onTouchStart={handleImageViewerTouchStart}" in detail
+    assert "onTouchMove={handleImageViewerTouchMove}" in detail
+    assert "aria-label={t('openImageDetailViewer')}" in detail
     assert "aria-label={item.favorite ? t('saved') : t('favorite')}" in detail
     assert "aria-label={t('edit')}" in detail
     assert ".detail.modal{width:100vw;max-height:100dvh;" in compact_css
     assert ".modal-hero{min-height:0;height:auto;" in compact_css
+    assert ".hero-image-button{width:100%;height:100%;display:block;border:0;padding:0;background:transparent;cursor:zoom-in}" in compact_css
     assert ".hero-image{width:100%;height:auto;max-height:none;object-fit:contain}" in compact_css
     assert ".mobile-hero-actions{display:block}" in compact_css
     assert ".mobile-hero-close{position:absolute;right:12px;top:calc(12px+env(safe-area-inset-top));" in compact_css
     assert ".mobile-hero-primary-actions{position:absolute;right:12px;bottom:12px;" in compact_css
+    assert ".detail-image-viewer{position:absolute;inset:0;z-index:16;" in compact_css
+    assert ".detail-image-viewer-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}" in compact_css
+    assert ".detail-image-viewer-scroll{min-height:0;overflow:auto;" in compact_css
+    assert "touch-action:manipulation" in css
+    assert "-webkit-overflow-scrolling:touch" in css
+    assert "| 'openImageDetailViewer' | 'imageDetailViewer' | 'imageDetailViewerHint'" in i18n
+    assert "openImageDetailViewer: 'Open image detail viewer'" in i18n
+    assert "imageDetailViewer: 'Image detail viewer'" in i18n
+    assert "imageDetailViewerHint: 'Drag to inspect details, and use double-tap or pinch gestures to zoom in or out.'" in i18n
+
+
+def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
+    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "PromptTemplatePanel" in detail
+    assert "<PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />" in detail
+    assert "api.promptTemplate(itemId)" in panel
+    assert "api.initPromptTemplate(itemId)" in panel
+    assert "api.generatePromptVariant(template.id, nextKeyword)" in panel
+    assert "api.rerollPromptVariant(currentSession.id" in panel
+    assert "api.acceptPromptVariant(variant.id)" in panel
+    assert "promptTemplate: (itemId: string)" in client
+    assert "initPromptTemplate: (itemId: string, language?: string)" in client
+    assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
+    assert "rerollPromptVariant: (sessionId: string" in client
+    assert "acceptPromptVariant: (variantId: string)" in client
+    assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
+    assert "promptTemplateAcceptAndCopy" in i18n
+    assert ".prompt-remix-panel{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-preview{" in compact_css
+    assert ".prompt-remix-segment.is-changed{" in compact_css
 
 
 def test_topbar_uses_attached_header_logo_branding():

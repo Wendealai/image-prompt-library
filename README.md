@@ -137,6 +137,22 @@ BACKUP_DIR=./backups
 
 `IMAGE_PROMPT_LIBRARY_PATH` controls where your private database and images live. The default `./library` is repo-local and intentionally ignored by git. For long-term personal use, you may prefer a durable path such as `~/ImagePromptLibrary`.
 
+If you want the new AI prompt skeleton/rewrite flow, also configure the optional n8n webhook variables after importing the workflows in [`automation/n8n`](automation/n8n):
+
+```bash
+IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL=
+IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL=
+IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN=
+IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER=Authorization
+IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS=45
+```
+
+You can sync the bundled n8n workflows into your instance with:
+
+```bash
+./scripts/sync-n8n-prompt-workflows.sh
+```
+
 ## Data layout
 
 Runtime data lives under `IMAGE_PROMPT_LIBRARY_PATH`:

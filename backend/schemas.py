@@ -12,6 +12,65 @@ class PromptRecord(PromptIn):
     created_at: str
     updated_at: str
 
+class PromptTemplateSlot(BaseModel):
+    id: str
+    group: str = "content"
+    label: str
+    original_text: str
+    role: Optional[str] = None
+    instruction: Optional[str] = None
+
+class PromptTemplateRecord(BaseModel):
+    id: str
+    item_id: str
+    source_language: str
+    raw_text_snapshot: str
+    marked_text: str
+    slots: List[PromptTemplateSlot] = Field(default_factory=list)
+    status: str = "ready"
+    analysis_confidence: Optional[float] = None
+    analysis_notes: Optional[str] = None
+    created_at: str
+    updated_at: str
+
+class PromptVariantValue(BaseModel):
+    slot_id: str
+    text: str
+
+class PromptRenderSegment(BaseModel):
+    type: str
+    text: str
+    changed: bool = False
+    slot_id: Optional[str] = None
+    label: Optional[str] = None
+    group: Optional[str] = None
+    before: Optional[str] = None
+
+class PromptGenerationVariantRecord(BaseModel):
+    id: str
+    session_id: str
+    iteration: int
+    rendered_text: str
+    slot_values: List[PromptVariantValue] = Field(default_factory=list)
+    segments: List[PromptRenderSegment] = Field(default_factory=list)
+    change_summary: Optional[str] = None
+    accepted: bool = False
+    created_at: str
+
+class PromptGenerationSessionRecord(BaseModel):
+    id: str
+    template_id: str
+    item_id: str
+    theme_keyword: str
+    accepted_variant_id: Optional[str] = None
+    created_at: str
+    updated_at: str
+    variants: List[PromptGenerationVariantRecord] = Field(default_factory=list)
+
+class PromptTemplateBundle(BaseModel):
+    template: Optional[PromptTemplateRecord] = None
+    sessions: List[PromptGenerationSessionRecord] = Field(default_factory=list)
+
 class ImageRecord(BaseModel):
     id: str
     item_id: str
@@ -100,6 +159,16 @@ class ItemList(BaseModel):
     total: int
     limit: int
     offset: int
+
+class PromptTemplateInitRequest(BaseModel):
+    language: Optional[str] = None
+
+class PromptTemplateGenerateRequest(BaseModel):
+    theme_keyword: str
+    rejected_variant_ids: List[str] = Field(default_factory=list)
+
+class PromptTemplateRerollRequest(BaseModel):
+    rejected_variant_ids: List[str] = Field(default_factory=list)
 
 class ImportResult(BaseModel):
     id: str
