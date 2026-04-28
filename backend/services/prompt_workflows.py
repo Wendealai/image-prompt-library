@@ -12,6 +12,7 @@ GENERATE_URL_ENV = "IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL"
 TOKEN_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN"
 TOKEN_HEADER_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER"
 TIMEOUT_ENV = "IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS"
+DEFAULT_TOKEN_HEADER = "X-Image-Prompt-Workflow-Token"
 
 
 class PromptWorkflowUnavailable(RuntimeError):
@@ -33,7 +34,7 @@ def _workflow_headers() -> dict[str, str]:
     token = os.environ.get(TOKEN_ENV, "").strip()
     if not token:
         return {}
-    header_name = os.environ.get(TOKEN_HEADER_ENV, "Authorization").strip() or "Authorization"
+    header_name = os.environ.get(TOKEN_HEADER_ENV, DEFAULT_TOKEN_HEADER).strip() or DEFAULT_TOKEN_HEADER
     if header_name.lower() == "authorization":
         return {header_name: f"Bearer {token}"}
     return {header_name: token}

@@ -143,9 +143,11 @@ If you want the new AI prompt skeleton/rewrite flow, also configure the optional
 IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL=
 IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL=
 IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN=
-IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER=Authorization
+IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER=X-Image-Prompt-Workflow-Token
 IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS=45
 ```
+
+If you set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN`, export the same token before running `./scripts/sync-n8n-prompt-workflows.sh` so the auth gate is embedded into the synced n8n workflows.
 
 You can sync the bundled n8n workflows into your instance with:
 

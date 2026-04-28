@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const defaultTokenHeader = 'X-Image-Prompt-Workflow-Token';
+const workflowToken = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN ?? '').trim();
+const workflowTokenHeader = String(process.env.IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER ?? defaultTokenHeader).trim() || defaultTokenHeader;
 
 const asxsCredential = {
   openAiApi: {
@@ -50,6 +53,17 @@ function codeNode({ name, code, position }) {
   };
 }
 
+function authNode({ name, position }) {
+  const template = read('prompt-template-auth-gate.js');
+  return codeNode({
+    name,
+    code: template
+      .replace('__WORKFLOW_TOKEN__', JSON.stringify(workflowToken))
+      .replace('__WORKFLOW_TOKEN_HEADER__', JSON.stringify(workflowTokenHeader)),
+    position,
+  });
+}
+
 function httpNode({ name, position }) {
   return {
     id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
@@ -91,6 +105,7 @@ function makeConnections(sequence) {
 
 const initNodes = [
   webhookNode({ name: 'Webhook Prompt Template Init', pathName: 'image-prompt-library-template-init', position: [-640, 80] }),
+  authNode({ name: 'Authorize Prompt Template Init Request', position: [-500, 80] }),
   codeNode({ name: 'Prepare Prompt Template Init Payload', code: read('prompt-template-init.prepare.js'), position: [-360, 80] }),
   httpNode({ name: 'Call ASXS Responses For Template Init', position: [-60, 80] }),
   codeNode({ name: 'Format Prompt Template Init Output', code: read('prompt-template-init.format.js'), position: [240, 80] }),
@@ -98,6 +113,7 @@ const initNodes = [
 
 const generateNodes = [
   webhookNode({ name: 'Webhook Prompt Template Generate', pathName: 'image-prompt-library-template-generate', position: [-640, 80] }),
+  authNode({ name: 'Authorize Prompt Template Generate Request', position: [-500, 80] }),
   codeNode({ name: 'Prepare Prompt Template Generate Payload', code: read('prompt-template-generate.prepare.js'), position: [-360, 80] }),
   httpNode({ name: 'Call ASXS Responses For Template Generate', position: [-60, 80] }),
   codeNode({ name: 'Format Prompt Template Generate Output', code: read('prompt-template-generate.format.js'), position: [240, 80] }),

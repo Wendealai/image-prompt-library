@@ -19,6 +19,7 @@ dist/
 frontend/dist/
 .pages-artifact/
 .page-build/
+.codex
 *.egg-info/
 *.pyc
 .DS_Store

@@ -22,6 +22,19 @@
       "webhookId": "image-prompt-library-template-generate"
     },
     {
+      "id": "authorize_prompt_template_generate_request",
+      "name": "Authorize Prompt Template Generate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        80
+      ],
+      "parameters": {
+        "jsCode": "const inputItems = $input.all();\nconst expectedToken = \"\";\n\nif (!expectedToken) {\n  return inputItems;\n}\n\nconst configuredHeader = \"X-Image-Prompt-Workflow-Token\";\nconst request = inputItems[0]?.json ?? {};\nconst headers = request.headers && typeof request.headers === 'object' ? request.headers : {};\nconst normalizedHeaders = Object.fromEntries(\n  Object.entries(headers).map(([key, value]) => [key.toLowerCase(), Array.isArray(value) ? value[0] : value]),\n);\n\nconst receivedValue = normalizedHeaders[configuredHeader.toLowerCase()];\nconst receivedToken = typeof receivedValue === 'string' ? receivedValue.trim() : '';\nconst expectedHeaderValue = configuredHeader.toLowerCase() === 'authorization'\n  ? `Bearer ${expectedToken}`\n  : expectedToken;\n\nif (receivedToken !== expectedHeaderValue) {\n  throw new Error('Unauthorized');\n}\n\nreturn inputItems;\n"
+      }
+    },
+    {
       "id": "prepare_prompt_template_generate_payload",
       "name": "Prepare Prompt Template Generate Payload",
       "type": "n8n-nodes-base.code",
@@ -84,6 +97,17 @@
   ],
   "connections": {
     "Webhook Prompt Template Generate": {
+      "main": [
+        [
+          {
+            "node": "Authorize Prompt Template Generate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Authorize Prompt Template Generate Request": {
       "main": [
         [
           {

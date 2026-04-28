@@ -197,6 +197,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
     client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    prompt_template_utils = (ROOT / "frontend" / "src" / "utils" / "promptTemplate.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
     assert "PromptTemplatePanel" in detail
@@ -205,15 +206,63 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "api.initPromptTemplate(itemId)" in panel
     assert "api.generatePromptVariant(template.id, nextKeyword)" in panel
     assert "api.rerollPromptVariant(currentSession.id" in panel
-    assert "api.acceptPromptVariant(variant.id)" in panel
+    assert "buildSlotValueRecord" in panel
+    assert "renderMarkedPrompt(template.marked_text, editorValues)" in panel
+    assert "slotInputRefs = useRef<Record<string, HTMLTextAreaElement | null>>({})" in panel
+    assert "const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({})" in panel
+    assert "const applyDraftValues = useCallback((nextValues: Record<string, string>, nextVariantId: string) => {" in panel
+    assert "targetedSlotId" in panel
+    assert "handleJumpToSlot" in panel
+    assert "handleApplyVariantChanges" in panel
+    assert "promptTemplateReplaceAllSlots" in panel
+    assert "promptTemplateVariantReadyDraftPreserved" in panel
+    assert "promptTemplateManualEdits" in panel
+    assert "manualEditedSlotCount" in panel
+    assert "applyImpactCount" in panel
+    assert "replaceImpactCount" in panel
+    assert "setEditorValues(current => ({ ...current, [slotId]: text }))" in panel
+    assert "variant.segments" in panel
+    assert "promptTemplateAppliedChangedSlots" in panel
+    assert "promptTemplateApplyChangedSlots" in panel
+    assert "setFeedback({ tone: 'success', message: t('promptTemplateVariantReadyDraftPreserved') })" in panel
+    assert "}, [template?.id, template?.updated_at, loadEditorDraft]);" in panel
+    assert "latestVariant?.id, loadEditorDraft" not in panel
+    assert "target.scrollIntoView({ block: 'center', behavior: 'smooth' })" in panel
+    assert "target.focus({ preventScroll: true })" in panel
+    assert "prompt-remix-segment-button" in panel
+    assert "renderPreviewSegment(segment, `assembled-${index}`)" in panel
+    assert "prompt-remix-editor" in panel
+    assert "prompt-remix-original" in panel
+    assert "promptTemplateSlotEditor" in panel
+    assert "promptTemplateAssemble" in panel
+    assert "promptTemplateCopyFinal" in panel
+    assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
     assert "initPromptTemplate: (itemId: string, language?: string)" in client
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
-    assert "promptTemplateAcceptAndCopy" in i18n
+    assert "promptTemplateSlotEditor" in i18n
+    assert "promptTemplateReplaceAllSlots" in i18n
+    assert "promptTemplateApplyChangedSlots" in i18n
+    assert "promptTemplateAppliedChangedSlots" in i18n
+    assert "promptTemplateVariantReadyDraftPreserved" in i18n
+    assert "promptTemplateManualEdits" in i18n
+    assert "promptTemplateAssemble" in i18n
+    assert "promptTemplateCopyFinal" in i18n
+    assert "export function buildSlotValueRecord" in prompt_template_utils
+    assert "export function renderMarkedPrompt" in prompt_template_utils
     assert ".prompt-remix-panel{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-variant-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap}" in compact_css
+    assert ".prompt-remix-editor{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-editor-statuses{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}" in compact_css
+    assert ".prompt-remix-status.is-dirty{background:#fff2df;color:#9a5a12}" in compact_css
+    assert ".prompt-remix-editor-card.is-targeted{" in compact_css
+    assert ".prompt-remix-original{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-segment-button{border:0;padding:0;background:transparent;" in compact_css
+    assert ".prompt-remix-segment-button:focus-visible{outline:2pxsolidrgba(192,147,45,.52);outline-offset:2px}" in compact_css
+    assert ".prompt-remix-preview-final{max-height:280px;overflow:auto}" in compact_css
     assert ".prompt-remix-preview{" in compact_css
     assert ".prompt-remix-segment.is-changed{" in compact_css
 
