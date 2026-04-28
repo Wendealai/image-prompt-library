@@ -174,6 +174,24 @@ Then start the app and open <http://127.0.0.1:8000/>.
 
 The installer downloads the sample image ZIP from the public `sample-data-v1` release and verifies its SHA256 checksum before import. The sample library is based on [`wuyoscar/gpt_image_2_skill`](https://github.com/wuyoscar/gpt_image_2_skill), licensed under **CC BY 4.0**. It is included only as demo/sample content; your own prompt library data remains private and is not part of the sample bundle.
 
+### Import the public v0.1 demo cases
+
+If you want the exact cases shown in the archived GitHub Pages `v0.1` demo, import the bundled `demo-data` snapshot instead:
+
+```bash
+./scripts/import-demo-data.py
+```
+
+That command imports the repo-local `frontend/public/demo-data/` bundle, which matches <https://eddietyp.github.io/image-prompt-library/v0.1/demo-data/items.json>.
+
+To import directly from the public site instead of the local bundle:
+
+```bash
+./scripts/import-demo-data.py --public-v0.1
+```
+
+Both paths preserve the public demo attribution/source metadata while loading the cases into your private local `library/`.
+
 ## Backup
 
 Create a timestamped backup archive:

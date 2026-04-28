@@ -3,15 +3,78 @@ import os
 import subprocess
 import sys
 import zipfile
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from threading import Thread
 
 
 from PIL import Image
 
+from backend.services import import_demo_bundle as import_demo_bundle_module
 from backend.repositories import ItemRepository
+from backend.services.import_demo_bundle import import_demo_bundle
 from backend.services.import_sample_bundle import import_sample_bundle
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _write_demo_bundle(bundle_root: Path) -> None:
+    media_dir = bundle_root / "media"
+    media_dir.mkdir(parents=True)
+    Image.new("RGB", (24, 18), "green").save(media_dir / "fixture.webp", "WEBP")
+    (bundle_root / "items.json").write_text(json.dumps([{
+        "id": "itm_demo_fixture",
+        "title": "Demo fixture",
+        "slug": "demo-fixture",
+        "model": "Demo model",
+        "source_name": "fixture source",
+        "source_url": "https://example.test/demo",
+        "cluster": {"id": "clu_demo", "name": "Demo Cases", "description": None, "sort_order": 0, "count": 0, "preview_images": []},
+        "tags": [{"id": "tag_demo", "name": "sample", "kind": "general", "count": 0}],
+        "prompts": [{"language": "en", "text": "A green square", "is_primary": True}],
+        "prompt_snippet": "A green square",
+        "first_image": {
+            "id": "img_demo_fixture",
+            "item_id": "itm_demo_fixture",
+            "original_path": "demo-data/media/fixture.webp",
+            "thumb_path": "demo-data/media/fixture.webp",
+            "preview_path": "demo-data/media/fixture.webp",
+            "remote_url": None,
+            "width": 24,
+            "height": 18,
+            "file_sha256": None,
+            "role": "result_image",
+            "sort_order": 0,
+            "created_at": "2026-01-01T00:00:00+00:00",
+        },
+        "rating": 4,
+        "favorite": False,
+        "archived": False,
+        "updated_at": "2026-01-01T00:00:00+00:00",
+        "created_at": "2026-01-01T00:00:00+00:00",
+        "images": [{
+            "id": "img_demo_fixture",
+            "item_id": "itm_demo_fixture",
+            "original_path": "demo-data/media/fixture.webp",
+            "thumb_path": "demo-data/media/fixture.webp",
+            "preview_path": "demo-data/media/fixture.webp",
+            "remote_url": None,
+            "width": 24,
+            "height": 18,
+            "file_sha256": None,
+            "role": "result_image",
+            "sort_order": 0,
+            "created_at": "2026-01-01T00:00:00+00:00",
+        }],
+        "notes": "Fixture notes",
+        "author": "Fixture Author",
+    }]), encoding="utf-8")
+
+
+class _QuietHTTPRequestHandler(SimpleHTTPRequestHandler):
+    def log_message(self, format: str, *args) -> None:  # pragma: no cover - test noise only
+        pass
 
 
 def test_sample_data_manifests_are_localized_and_truthful():
@@ -107,6 +170,82 @@ def test_import_sample_bundle_loads_manifest_assets_and_is_idempotent(tmp_path: 
     assert len(detail.notes or "") < 180
 
 
+def test_import_demo_bundle_loads_local_demo_bundle_and_is_idempotent(tmp_path: Path):
+    bundle = tmp_path / "demo-data"
+    _write_demo_bundle(bundle)
+
+    first = import_demo_bundle(bundle, tmp_path / "library")
+    second = import_demo_bundle(bundle, tmp_path / "library")
+
+    assert first.item_count == 1
+    assert first.image_count == 1
+    assert second.item_count == 0
+    assert second.image_count == 0
+
+    repo = ItemRepository(tmp_path / "library")
+    items = repo.list_items(limit=10).items
+    assert len(items) == 1
+    assert items[0].cluster is not None
+    assert items[0].cluster.name == "Demo Cases"
+    detail = repo.get_item(items[0].id)
+    assert detail.first_image is not None
+    assert detail.prompts[0].language == "en"
+    assert detail.prompts[0].text == "A green square"
+    assert detail.notes == "Fixture notes"
+
+
+def test_import_demo_bundle_supports_remote_demo_bundle_url(tmp_path: Path):
+    site_root = tmp_path / "site"
+    bundle = site_root / "demo-data"
+    _write_demo_bundle(bundle)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(_QuietHTTPRequestHandler, directory=str(site_root)))
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        result = import_demo_bundle(f"http://127.0.0.1:{server.server_port}/demo-data", tmp_path / "library")
+    finally:
+        server.shutdown()
+        thread.join()
+        server.server_close()
+
+    assert result.item_count == 1
+    assert result.image_count == 1
+    detail = ItemRepository(tmp_path / "library").get_item("itm_demo_fixture")
+    assert detail.first_image is not None
+    assert detail.first_image.original_path.startswith("originals/")
+
+
+def test_import_demo_bundle_cli_public_flag_uses_public_bundle_url(tmp_path: Path, monkeypatch, capsys):
+    site_root = tmp_path / "site"
+    bundle = site_root / "demo-data"
+    _write_demo_bundle(bundle)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(_QuietHTTPRequestHandler, directory=str(site_root)))
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        monkeypatch.setattr(
+            import_demo_bundle_module,
+            "DEFAULT_PUBLIC_V0_1_BUNDLE_URL",
+            f"http://127.0.0.1:{server.server_port}/demo-data",
+        )
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            ["import-demo-data.py", "--public-v0.1", "--library", str(tmp_path / "library")],
+        )
+        import_demo_bundle_module.main()
+    finally:
+        server.shutdown()
+        thread.join()
+        server.server_close()
+
+    output = capsys.readouterr().out
+    assert '"item_count": 1' in output
+    assert '"image_count": 1' in output
+
+
 def test_install_sample_data_script_verifies_release_zip_checksum():
     installer = (ROOT / "scripts" / "install-sample-data.sh").read_text()
 
@@ -160,3 +299,13 @@ def test_install_sample_data_script_supports_local_zip_override(tmp_path: Path):
 
     assert "Imported 1 items" in result.stdout
     assert ItemRepository(library).list_items(limit=5).total == 1
+
+
+def test_import_demo_data_script_exposes_local_and_public_v0_1_bundle_options():
+    script = (ROOT / "scripts" / "import-demo-data.py").read_text()
+
+    assert "import_demo_bundle" in script
+    assert ".venv" in script
+    service = (ROOT / "backend" / "services" / "import_demo_bundle.py").read_text()
+    assert 'ROOT / "frontend" / "public" / "demo-data"' in service
+    assert "https://eddietyp.github.io/image-prompt-library/v0.1/demo-data" in service
