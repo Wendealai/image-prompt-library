@@ -1,0 +1,120 @@
+{
+  "name": "Image Prompt Library - Template Init",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "image-prompt-library-template-init_webhook",
+      "name": "Webhook Prompt Template Init",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        80
+      ],
+      "parameters": {
+        "path": "image-prompt-library-template-init",
+        "httpMethod": "POST",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "webhookId": "image-prompt-library-template-init"
+    },
+    {
+      "id": "prepare_prompt_template_init_payload",
+      "name": "Prepare Prompt Template Init Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        80
+      ],
+      "parameters": {
+        "jsCode": "const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;\nconst item = body.item && typeof body.item === 'object' ? body.item : {};\nconst prompt = body.prompt && typeof body.prompt === 'object' ? body.prompt : {};\n\nconst itemId = String(item.id ?? '').trim();\nconst title = String(item.title ?? '').trim();\nconst modelName = String(item.model ?? '').trim();\nconst sourceLanguage = String(prompt.language ?? body.sourceLanguage ?? '').trim() || 'original';\nconst rawText = String(prompt.text ?? body.rawText ?? '').trim();\nconst llmModel = String(body.model ?? 'gpt-5.4-mini').trim() || 'gpt-5.4-mini';\n\nif (!itemId) throw new Error('Missing item.id');\nif (!title) throw new Error('Missing item.title');\nif (!rawText) throw new Error('Missing prompt.text');\n\nconst systemPrompt = [\n  'You are a prompt skeleton analyst for an image prompt library.',\n  'Your job is to convert one existing prompt into a marked template for later AI-guided reuse.',\n  'A case is one semantic prompt only. Ignore translation concerns.',\n  'You must preserve the original prompt text exactly, character-for-character, except for wrapping editable regions with slot markers.',\n  'Never translate, reorder, summarize, or rewrite any fixed skeleton text.',\n  'Editable regions should cover the theme-dependent content that may need holistic coordinated rewriting later.',\n  'Use this exact marker syntax: [[slot id=\"...\" group=\"...\" label=\"...\" role=\"...\" instruction=\"...\"]]ORIGINAL TEXT[[/slot]].',\n  'Slot ids must be snake_case and unique.',\n  'Prefer a few meaningful slots over many tiny slots.',\n  'If changing one region would require related content to change too, keep them in the same conceptual group such as theme_core, supporting_copy, or surface_detail.',\n  'Return valid JSON only with keys markedText, confidence, notes, and sourceLanguage.',\n  'confidence must be a number between 0 and 1.',\n  'notes should briefly explain the skeleton/variable split.',\n  'markedText must render back to the exact original prompt when the slot markers are removed.',\n  'There must be at least one slot.'\n].join(' ');\n\nconst userPrompt = [\n  'Analyze this prompt and mark only the editable regions.',\n  `Item ID: ${itemId}`,\n  `Title: ${title}`,\n  `Model: ${modelName || 'unknown'}`,\n  `Source language: ${sourceLanguage}`,\n  'Original prompt:',\n  rawText,\n  '',\n  'Return JSON only.',\n].join('\\n');\n\nreturn [{\n  json: {\n    rawText,\n    sourceLanguage,\n    requestPayload: {\n      model: llmModel,\n      stream: true,\n      input: [\n        {\n          role: 'system',\n          content: [{ type: 'input_text', text: systemPrompt }],\n        },\n        {\n          role: 'user',\n          content: [{ type: 'input_text', text: userPrompt }],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_object',\n        },\n      },\n      max_output_tokens: 1400,\n    },\n  },\n}];\n"
+      }
+    },
+    {
+      "id": "call_asxs_responses_for_template_init",
+      "name": "Call ASXS Responses For Template Init",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -60,
+        80
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.asxs.top/v1/responses",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{$json.requestPayload}}",
+        "responseFormat": "string",
+        "options": {
+          "timeout": 120000
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi"
+      },
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "openAiApi": {
+          "id": "WwKQlbKl3pE8swBl",
+          "name": "ASXS"
+        }
+      }
+    },
+    {
+      "id": "format_prompt_template_init_output",
+      "name": "Format Prompt Template Init Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        80
+      ],
+      "parameters": {
+        "jsCode": "const source = $json;\n\nconst raw = typeof source.body === 'string'\n  ? source.body\n  : typeof source.data === 'string'\n    ? source.data\n    : typeof source === 'string'\n      ? source\n      : JSON.stringify(source);\n\nif (typeof source.statusCode === 'number' && source.statusCode >= 400) {\n  throw new Error(raw.slice(0, 2000));\n}\n\nconst safeParseLoose = (value) => {\n  if (typeof value !== 'string') return value;\n  const trimmed = value.trim();\n  if (!trimmed) return value;\n  const normalized = trimmed\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/i, '')\n    .trim();\n  if (!(normalized.startsWith('{') || normalized.startsWith('['))) return value;\n  try {\n    return JSON.parse(normalized);\n  } catch {\n    return value;\n  }\n};\n\nconst textCandidates = [];\nconst objectCandidates = [];\nconst seenText = new Set();\nlet deltaBuffer = '';\n\nconst pushText = (value) => {\n  if (typeof value !== 'string') return;\n  const text = value.trim();\n  if (!text || seenText.has(text)) return;\n  seenText.add(text);\n  textCandidates.push(text);\n};\n\nconst pushObject = (value) => {\n  if (!value || typeof value !== 'object') return;\n  objectCandidates.push(value);\n};\n\nconst walk = (node) => {\n  if (!node) return;\n  if (typeof node === 'string') {\n    const parsed = safeParseLoose(node);\n    if (parsed !== node) {\n      walk(parsed);\n      return;\n    }\n    pushText(node);\n    return;\n  }\n  if (Array.isArray(node)) {\n    node.forEach(walk);\n    return;\n  }\n  if (typeof node !== 'object') return;\n\n  pushObject(node);\n\n  const nodeType = typeof node.type === 'string' ? node.type : '';\n  const nodeEvent = typeof node.event === 'string' ? node.event : '';\n  if (typeof node.delta === 'string' && /output_text\\.delta$/i.test(nodeType || nodeEvent || '')) {\n    deltaBuffer += node.delta;\n  }\n  if (typeof node.text === 'string' && /output_text\\.done$/i.test(nodeType || nodeEvent || '')) {\n    pushText(node.text);\n  }\n  if (node.part && typeof node.part === 'object' && typeof node.part.text === 'string') {\n    pushText(node.part.text);\n  }\n  if (typeof node.output_text === 'string') {\n    pushText(node.output_text);\n  }\n  if (Array.isArray(node.output_text)) {\n    for (const chunk of node.output_text) {\n      if (typeof chunk === 'string') pushText(chunk);\n      else if (chunk && typeof chunk === 'object' && typeof chunk.text === 'string') pushText(chunk.text);\n    }\n  }\n\n  for (const [key, value] of Object.entries(node)) {\n    if (key === 'delta' || key === 'text' || key === 'output_text') continue;\n    walk(value);\n  }\n};\n\nconst normalized = raw.replace(/\\r\\n/g, '\\n').replace(/\\r/g, '\\n');\nconst blocks = normalized.split('\\n\\n').map((item) => item.trim()).filter(Boolean);\nlet parsedSse = false;\nfor (const block of blocks) {\n  const lines = block.split('\\n');\n  const dataLines = [];\n  let eventType = '';\n  for (const line of lines) {\n    const trimmed = line.trim();\n    if (!trimmed || trimmed.startsWith(':')) continue;\n    if (trimmed.startsWith('event:')) {\n      eventType = trimmed.slice(6).trim();\n      continue;\n    }\n    if (trimmed.startsWith('data:')) {\n      dataLines.push(trimmed.slice(5).trim());\n    }\n  }\n  if (dataLines.length === 0) continue;\n  parsedSse = true;\n  const merged = dataLines.join('\\n').trim();\n  if (!merged || merged === '[DONE]') continue;\n  try {\n    const payload = JSON.parse(merged);\n    if (eventType && (!payload.type || typeof payload.type !== 'string')) payload.type = eventType;\n    walk(payload);\n  } catch {\n    pushText(merged);\n  }\n}\n\nif (!parsedSse) walk(safeParseLoose(normalized));\nif (deltaBuffer.trim()) pushText(deltaBuffer);\n\nconst parsedTextObjects = textCandidates\n  .map((item) => safeParseLoose(item))\n  .filter((item) => item && typeof item === 'object');\nconst allObjects = [source, ...objectCandidates, ...parsedTextObjects].filter((item) => item && typeof item === 'object');\n\nconst readByPath = (payload, path) => {\n  let cursor = payload;\n  for (const segment of path) {\n    if (!cursor || typeof cursor !== 'object') return '';\n    cursor = cursor[segment];\n  }\n  return typeof cursor === 'string' ? cursor.trim() : cursor;\n};\n\nconst firstString = (paths) => {\n  for (const candidate of allObjects) {\n    for (const path of paths) {\n      const value = readByPath(candidate, path);\n      if (typeof value === 'string' && value.trim()) return value.trim();\n    }\n  }\n  return '';\n};\n\nconst firstNumber = (paths) => {\n  for (const candidate of allObjects) {\n    for (const path of paths) {\n      const value = readByPath(candidate, path);\n      if (typeof value === 'number' && Number.isFinite(value)) return value;\n      if (typeof value === 'string' && value.trim()) {\n        const parsed = Number(value);\n        if (Number.isFinite(parsed)) return parsed;\n      }\n    }\n  }\n  return null;\n};\n\nconst markedText = firstString([\n  ['markedText'],\n  ['marked_text'],\n  ['data', 'markedText'],\n  ['data', 'marked_text'],\n  ['result', 'markedText'],\n]);\n\nconst notes = firstString([\n  ['notes'],\n  ['summary'],\n  ['data', 'notes'],\n  ['data', 'summary'],\n  ['result', 'notes'],\n]);\n\nconst sourceLanguage = firstString([\n  ['sourceLanguage'],\n  ['source_language'],\n  ['data', 'sourceLanguage'],\n  ['result', 'sourceLanguage'],\n]) || $item(0).$node['Prepare Prompt Template Init Payload'].json.sourceLanguage;\n\nconst confidenceRaw = firstNumber([\n  ['confidence'],\n  ['data', 'confidence'],\n  ['result', 'confidence'],\n]);\nconst confidence = confidenceRaw === null ? null : Math.max(0, Math.min(1, confidenceRaw));\n\nif (!markedText) {\n  throw new Error('Workflow returned no markedText.');\n}\n\nconst stripSlotMarkup = (input) => input.replace(/\\[\\[slot[^\\]]*\\]\\](.*?)\\[\\[\\/slot\\]\\]/gs, '$1');\nconst rendered = stripSlotMarkup(markedText);\nconst rawText = $item(0).$node['Prepare Prompt Template Init Payload'].json.rawText;\nif (rendered !== rawText) {\n  throw new Error('markedText does not render back to the original prompt exactly.');\n}\nif (!/\\[\\[slot[^\\]]*\\]\\].*?\\[\\[\\/slot\\]\\]/s.test(markedText)) {\n  throw new Error('markedText must contain at least one slot marker.');\n}\n\nreturn [{\n  json: {\n    markedText,\n    confidence,\n    notes,\n    sourceLanguage,\n  },\n}];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Prompt Template Init": {
+      "main": [
+        [
+          {
+            "node": "Prepare Prompt Template Init Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Prompt Template Init Payload": {
+      "main": [
+        [
+          {
+            "node": "Call ASXS Responses For Template Init",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call ASXS Responses For Template Init": {
+      "main": [
+        [
+          {
+            "node": "Format Prompt Template Init Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
