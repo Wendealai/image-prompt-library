@@ -3,6 +3,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def compact(text: str) -> str:
+    return "".join(text.split())
+
+
 def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
@@ -265,6 +269,156 @@ def test_explore_has_lightweight_hover_preview_without_layout_mutation():
     assert "will-change:transform" in css
     assert "width:" not in css.split("@media (hover: hover) and (pointer: fine)", 1)[-1].split("}", 1)[0]
     assert "height:" not in css.split("@media (hover: hover) and (pointer: fine)", 1)[-1].split("}", 1)[0]
+
+
+def test_item_editor_supports_quick_capture_inputs():
+    modal = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = compact(css)
+
+    assert "function inferTitleFromFilename(filename: string): string | null" in modal
+    assert "const genericNames = new Set(['image', 'photo', 'picture', 'clipboard', 'pasted image', 'screenshot']);" in modal
+    assert "function imageFilesFromClipboard(clipboardData: DataTransfer | null | undefined): File[]" in modal
+    assert "window.addEventListener('paste', handlePaste);" in modal
+    assert "window.removeEventListener('paste', handlePaste)" in modal
+    assert "target.closest('textarea, input:not([type=\"file\"])')" in modal
+    assert "event.preventDefault();" in modal
+    assert "assignImageFile(role, clipboardImage);" in modal
+    assert "const role: UploadImageRole = !hasExistingResultImage && !resultFile" in modal
+    assert "onDragOver={onZoneDragOver('result_image')}" in modal
+    assert "onDrop={onZoneDrop('result_image')}" in modal
+    assert "onDragOver={onZoneDragOver('reference_image')}" in modal
+    assert "onDrop={onZoneDrop('reference_image')}" in modal
+    assert "className={`drop-zone ${missingRequiredImage ? 'required' : ''} ${resultDropActive ? 'drag-active' : ''}`}" in modal
+    assert "className={`drop-zone reference-drop-zone ${referenceDropActive ? 'drag-active' : ''}`}" in modal
+    assert "<span className=\"drop-zone-hint\">{t('imageCaptureHint')}</span>" in modal
+    assert "setSaveError(t('imageFileOnly'));" in modal
+    assert "if (suggestion) setTitle(suggestion);" in modal
+
+    assert "| 'imageCaptureHint' | 'imageFileOnly'" in i18n
+    assert "imageCaptureHint: '拖放、貼上，或點擊選擇圖片'" in i18n
+    assert "imageCaptureHint: '拖放、粘贴，或点击选择图片'" in i18n
+    assert "imageCaptureHint: 'Drop, paste, or click to choose an image'" in i18n
+    assert "imageFileOnly: '請選擇圖片檔案。'" in i18n
+    assert "imageFileOnly: '请选择图片文件。'" in i18n
+    assert "imageFileOnly: 'Please choose an image file.'" in i18n
+
+    assert ".drop-zone.drag-active{border-color:rgba(109,74,255,.52);background:#f5f1ff;" in compact_css
+    assert ".drop-zone.required.drag-active{border-color:#d66a49;background:#fff1e9;" in compact_css
+    assert ".drop-zone-hint{font-size:12px;font-weight:900;" in compact_css
+    assert ".form-error{margin:-4px18px16px;color:#9a3412;" in compact_css
+
+
+def test_item_editor_supports_prompt_intake_parser_panel():
+    modal = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
+    api_client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    intake = (ROOT / "frontend" / "src" / "utils" / "promptIntake.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = compact(css)
+
+    assert "import { parsePromptIntake, type PromptIntakeDraft } from '../utils/promptIntake';" in modal
+    assert "const [intakeUrl, setIntakeUrl] = useState(item?.source_url || '');" in modal
+    assert "const [intakeText, setIntakeText] = useState('');" in modal
+    assert "const [intakeFeedback, setIntakeFeedback]" in modal
+    assert "const [intakeLoading, setIntakeLoading] = useState(false);" in modal
+    assert "const [intakePreview, setIntakePreview] = useState<PromptIntakeDraft | null>(null);" in modal
+    assert "const [intakeImageCandidates, setIntakeImageCandidates] = useState<CaseIntakeImageCandidate[]>([]);" in modal
+    assert "const [selectedIntakeImageUrl, setSelectedIntakeImageUrl] = useState('');" in modal
+    assert "const [candidateImageLoadingUrl, setCandidateImageLoadingUrl] = useState('');" in modal
+    assert "const [failedIntakeImageUrls, setFailedIntakeImageUrls] = useState<string[]>([]);" in modal
+    assert "const applyIntakeDraft = (draft: PromptIntakeDraft) => {" in modal
+    assert "const buildPromptIntakePreview = (text = intakeText) => {" in modal
+    assert "const previewPromptIntake = (text = intakeText) => {" in modal
+    assert "const applyPromptIntake = (draft = intakePreview || buildPromptIntakePreview()) => {" in modal
+    assert "const importIntakeImageCandidate = async (candidate: CaseIntakeImageCandidate) => {" in modal
+    assert "const fetchPromptIntake = async () => {" in modal
+    assert "const fetched = await api.fetchCaseIntake(intakeUrl.trim());" in modal
+    assert "setIntakeUrl(fetched.final_url);" in modal
+    assert "setIntakeText(fetched.intake_text);" in modal
+    assert "const candidates = fetched.image_candidates?.length" in modal
+    assert "setIntakeImageCandidates(candidates);" in modal
+    assert "const draft = parsePromptIntake(fetched.intake_text);" in modal
+    assert "const imageFile = await api.fetchCaseIntakeImage(candidate.url);" in modal
+    assert "assignImageFile('reference_image', imageFile);" in modal
+    assert "setSelectedIntakeImageUrl(candidate.url);" in modal
+    assert "setIntakeFeedback({ tone: 'success', message: t('promptIntakePreviewReady') });" in modal
+    assert "setIntakeFeedback({ tone: 'success', message: t('promptIntakePreviewReadyWithImages') });" in modal
+    assert "setIntakeFeedback({ tone: 'success', message: t('promptIntakeImagesReady') });" in modal
+    assert "setIntakeFeedback({ tone: 'success', message: t('promptIntakeImageImported') });" in modal
+    assert "setIntakeFeedback({ tone: 'error', message: normalizeIntakeError(error) });" in modal
+    assert "setIntakeFeedback({ tone: 'error', message: t('promptIntakeEmpty') });" in modal
+    assert "setIntakeFeedback({ tone: 'error', message: t('promptIntakeNoMatch') });" in modal
+    assert "setIntakeFeedback({ tone: 'error', message: t('promptIntakeUrlEmpty') });" in modal
+    assert "setIntakeFeedback({ tone: 'success', message: t('promptIntakeApplied') });" in modal
+    assert "className=\"field prompt-field intake-field\"" in modal
+    assert "className=\"intake-url-row\"" in modal
+    assert "className=\"intake-textarea\"" in modal
+    assert "className=\"intake-preview\"" in modal
+    assert "className=\"intake-preview-grid\"" in modal
+    assert "className=\"intake-preview-card\"" in modal
+    assert "className=\"intake-image-candidates\"" in modal
+    assert "className=\"intake-image-candidate-grid\"" in modal
+    assert "className={`intake-image-candidate ${selectedIntakeImageUrl === candidate.url ? 'is-selected' : ''}`}" in modal
+    assert "src={caseIntakeImageUrl(candidate.url)}" in modal
+    assert "className=\"intake-image-fallback\"" in modal
+    assert "className=\"intake-actions\"" in modal
+    assert "className=\"intake-action-buttons\"" in modal
+    assert "className=\"intake-help\"" in modal
+    assert "className=\"secondary intake-fetch-button\"" in modal
+    assert "className=\"secondary intake-button\"" in modal
+    assert "className=\"secondary intake-apply-button\"" in modal
+    assert "className={`form-feedback ${intakeFeedback.tone}`}" in modal
+    assert "fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in api_client
+    assert "fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in api_client
+    assert "fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch'" in api_client
+    assert "export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;" in api_client
+    assert "fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url))" in api_client
+    assert "async function fileFromUrl(url: string, init?: RequestInit): Promise<File>" in api_client
+    assert "export interface CaseIntakeImageCandidate { url: string; source: string; alt?: string }" in types
+    assert "export interface CaseIntakeFetchResult { url: string; final_url: string; title?: string; description?: string; author?: string; image_url?: string; image_candidates?: CaseIntakeImageCandidate[]; intake_text: string }" in types
+    assert "export function parsePromptIntake(input: string): PromptIntakeDraft | null" in intake
+    assert "const INLINE_PATTERNS" in intake
+    assert "const HEADING_ALIASES" in intake
+    assert "extractHashtags" in intake
+    assert "inferPromptField" in intake
+
+    assert "| 'promptIntake' | 'promptIntakeHelp' | 'promptIntakePlaceholder' | 'promptIntakeUrlPlaceholder' | 'fetchPromptIntake' | 'promptIntakeFetching' | 'extractPromptDraft' | 'promptIntakeApplyDraft' | 'promptIntakePreview' | 'promptIntakePreviewHelp' | 'promptIntakePreviewReady' | 'promptIntakePreviewReadyWithImages' | 'promptIntakeImagesReady' | 'promptIntakeApplied' | 'promptIntakeAppliedWithImage' | 'promptIntakeAppliedImageSkipped' | 'promptIntakeImageImported' | 'promptIntakeImageImportFailed' | 'promptIntakeImageCandidates' | 'promptIntakeImageCandidatesHelp' | 'promptIntakeImageCandidateAlt' | 'promptIntakeImageImporting' | 'promptIntakeImageRecommended' | 'promptIntakeImageLoadFailed' | 'usePromptIntakeImage' | 'promptIntakeFieldsDetected' | 'promptIntakePromptLanguages' | 'promptIntakeFieldEmpty' | 'promptIntakeEmpty' | 'promptIntakeNoMatch' | 'promptIntakeUrlEmpty' | 'promptIntakeUrlInvalid' | 'promptIntakeFetchBlocked' | 'promptIntakeFetchFailed'" in i18n
+    assert "promptIntake: '案例導入'" in i18n
+    assert "promptIntake: '案例导入'" in i18n
+    assert "promptIntake: 'Case intake'" in i18n
+    assert "fetchPromptIntake: 'Fetch URL'" in i18n
+    assert "promptIntakePreview: 'Import preview'" in i18n
+    assert "promptIntakePreviewReady: 'The intake preview is ready to review and apply.'" in i18n
+    assert "promptIntakeImagesReady: 'The page was fetched. Choose a candidate image below.'" in i18n
+    assert "promptIntakeApplyDraft: 'Apply to form'" in i18n
+    assert "promptIntakeImageImported: 'The selected page image was imported as the reference image.'" in i18n
+    assert "promptIntakeImageCandidates: 'Candidate images'" in i18n
+    assert "usePromptIntakeImage: 'Use this image'" in i18n
+    assert "promptIntakeImageImportFailed: 'This candidate image could not be imported.'" in i18n
+    assert "promptIntakeImageLoadFailed: 'Thumbnail unavailable'" in i18n
+    assert "promptIntakeFetchBlocked: 'The case page could not be fetched. The source may block requests or be temporarily unavailable.'" in i18n
+    assert "promptIntakeUrlEmpty: 'Enter a case URL first.'" in i18n
+    assert "extractPromptDraft: 'Build preview'" in i18n
+    assert "promptIntakeNoMatch: 'No recognizable fields were found in the pasted text.'" in i18n
+
+    assert ".intake-field{grid-column:1/-1;padding:16px;border:1pxsolidvar(--border);" in compact_css
+    assert ".intake-url-row{display:grid;grid-template-columns:minmax(0,1fr)auto;gap:10px}" in compact_css
+    assert ".intake-fetch-button,.intake-button,.intake-apply-button{font-weight:850;flex:00auto}" in compact_css
+    assert ".intake-textarea{min-height:152px}" in compact_css
+    assert ".intake-actions{display:flex;align-items:flex-start;justify-content:space-between;" in compact_css
+    assert ".intake-action-buttons{display:flex;align-items:center;gap:10px;flex-wrap:wrap}" in compact_css
+    assert ".intake-preview{display:grid;gap:12px;padding:14px;" in compact_css
+    assert ".intake-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}" in compact_css
+    assert ".intake-image-candidates{display:grid;gap:10px;" in compact_css
+    assert ".intake-image-candidate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:10px}" in compact_css
+    assert ".intake-image-candidate.is-selected{border-color:#d4c59e;" in compact_css
+    assert ".intake-image-candidateimg,.intake-image-fallback{width:100%;aspect-ratio:4/3;border-radius:12px}" in compact_css
+    assert ".intake-help{margin:0;color:var(--muted);font-size:12px;" in compact_css
+    assert ".form-feedback.success{color:#166534}" in compact_css
+    assert ".form-feedback.error{color:#9a3412}" in compact_css
 
 
 def test_explore_has_static_repulsive_relaxation_and_tap_drag_threshold():

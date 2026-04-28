@@ -1,4 +1,4 @@
-import type { AppConfig, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, TagRecord, UploadImageRole } from '../types';
+import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -19,6 +19,14 @@ async function demoJson<T>(path: string): Promise<T> {
   const r = await fetch(demoUrl(path));
   if (!r.ok) throw new Error(await r.text());
   return r.json();
+}
+
+async function fileFromUrl(url: string, init?: RequestInit): Promise<File> {
+  const r = await fetch(API + url, init);
+  if (!r.ok) throw new Error(await r.text());
+  const blob = await r.blob();
+  const filename = r.headers.get('x-intake-filename') || 'reference-image';
+  return new File([blob], filename, { type: blob.type || 'image/png' });
 }
 
 let demoItemsCache: Promise<ItemSummary[]> | undefined;
@@ -68,6 +76,8 @@ export const mediaUrl = (path?: string) => {
   return `/media/${path}`;
 };
 
+export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;
+
 export const api = isDemoMode ? {
   health: () => Promise.resolve({ ok: true, version: 'demo' }),
   config: () => Promise.resolve<AppConfig>({ version: 'demo', library_path: 'GitHub Pages read-only sandbox', database_path: 'Static JSON bundle', preferred_prompt_language: 'en' }),
@@ -78,6 +88,8 @@ export const api = isDemoMode ? {
   deleteItem: (_id: string) => demoReadOnly(),
   favorite: (_id: string) => demoReadOnly(),
   uploadImage: (_id: string, _file: File, _role: UploadImageRole = 'result_image') => demoReadOnly(),
+  fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
+  fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   clusters: () => demoJson<ClusterRecord[]>('demo-data/clusters.json'),
   tags: () => demoJson<TagRecord[]>('demo-data/tags.json'),
 } : {
@@ -90,6 +102,8 @@ export const api = isDemoMode ? {
   deleteItem: (id: string) => json<ItemDetail>(`/api/items/${id}`, { method: 'DELETE' }),
   favorite: (id: string) => json<ItemDetail>(`/api/items/${id}/favorite`, { method: 'POST' }),
   uploadImage: (id: string, file: File, role: UploadImageRole = 'result_image') => { const fd = new FormData(); fd.set('file', file); fd.set('role', role); return json(`/api/items/${id}/images`, { method: 'POST', body: fd }); },
+  fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch', { method: 'POST', body: JSON.stringify({ url }) }),
+  fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url)),
   clusters: () => json<ClusterRecord[]>('/api/clusters'),
   tags: () => json<TagRecord[]>('/api/tags'),
 };

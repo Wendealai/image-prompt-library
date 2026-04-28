@@ -107,3 +107,21 @@ class ImportResult(BaseModel):
     image_count: int
     status: str
     log: str = ""
+
+class CaseIntakeFetchRequest(BaseModel):
+    url: str
+
+class CaseIntakeImageCandidate(BaseModel):
+    url: str
+    source: str
+    alt: Optional[str] = None
+
+class CaseIntakeFetchResult(BaseModel):
+    url: str
+    final_url: str
+    title: Optional[str] = None
+    description: Optional[str] = None
+    author: Optional[str] = None
+    image_url: Optional[str] = None
+    image_candidates: List[CaseIntakeImageCandidate] = Field(default_factory=list)
+    intake_text: str

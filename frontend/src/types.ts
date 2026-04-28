@@ -9,3 +9,5 @@ export interface ItemSummary { id: string; title: string; slug: string; model: s
 export interface ItemDetail extends ItemSummary { images: ImageRecord[]; notes?: string; author?: string }
 export interface ItemList { items: ItemSummary[]; total: number; limit: number; offset: number }
 export interface ItemCreate { title: string; cluster_name?: string; tags?: string[]; prompts: Array<{language: string; text: string; is_primary?: boolean}>; model?: string; source_name?: string; source_url?: string; author?: string; notes?: string }
+export interface CaseIntakeImageCandidate { url: string; source: string; alt?: string }
+export interface CaseIntakeFetchResult { url: string; final_url: string; title?: string; description?: string; author?: string; image_url?: string; image_candidates?: CaseIntakeImageCandidate[]; intake_text: string }
