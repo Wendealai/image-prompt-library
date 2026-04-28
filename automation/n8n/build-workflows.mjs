@@ -50,6 +50,14 @@ function codeNode({ name, code, position }) {
   };
 }
 
+function authNode({ name, position }) {
+  return codeNode({
+    name,
+    code: read('prompt-template-auth-gate.js'),
+    position,
+  });
+}
+
 function httpNode({ name, position }) {
   return {
     id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
@@ -91,6 +99,7 @@ function makeConnections(sequence) {
 
 const initNodes = [
   webhookNode({ name: 'Webhook Prompt Template Init', pathName: 'image-prompt-library-template-init', position: [-640, 80] }),
+  authNode({ name: 'Authorize Prompt Template Init Request', position: [-500, 80] }),
   codeNode({ name: 'Prepare Prompt Template Init Payload', code: read('prompt-template-init.prepare.js'), position: [-360, 80] }),
   httpNode({ name: 'Call ASXS Responses For Template Init', position: [-60, 80] }),
   codeNode({ name: 'Format Prompt Template Init Output', code: read('prompt-template-init.format.js'), position: [240, 80] }),
@@ -98,6 +107,7 @@ const initNodes = [
 
 const generateNodes = [
   webhookNode({ name: 'Webhook Prompt Template Generate', pathName: 'image-prompt-library-template-generate', position: [-640, 80] }),
+  authNode({ name: 'Authorize Prompt Template Generate Request', position: [-500, 80] }),
   codeNode({ name: 'Prepare Prompt Template Generate Payload', code: read('prompt-template-generate.prepare.js'), position: [-360, 80] }),
   httpNode({ name: 'Call ASXS Responses For Template Generate', position: [-60, 80] }),
   codeNode({ name: 'Format Prompt Template Generate Output', code: read('prompt-template-generate.format.js'), position: [240, 80] }),

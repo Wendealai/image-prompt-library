@@ -33,6 +33,16 @@ The backend expects these variables:
 
 - `IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL`
 - `IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL`
-- `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` (optional; only if you add workflow-side auth)
+- `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` (optional; set the same value on the app and the n8n service if you enable auth)
 - `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER` (optional; defaults to `Authorization`)
 - `IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS` (optional; defaults to `45`)
+
+## Optional Webhook Auth
+
+The generated workflows now include an auth gate node ahead of the AI call. Auth stays disabled until `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` is present in the n8n runtime environment.
+
+If you enable it:
+
+1. set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` on the app backend
+2. set the same `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` on the n8n service
+3. optionally set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER` on both sides if you do not want to use `Authorization`

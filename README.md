@@ -147,6 +147,8 @@ IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER=Authorization
 IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS=45
 ```
 
+If you set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN`, set the same token on the n8n service so the generated workflows can verify incoming webhook calls before invoking the model.
+
 You can sync the bundled n8n workflows into your instance with:
 
 ```bash
