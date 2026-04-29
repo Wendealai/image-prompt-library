@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Copy, RefreshCcw, Sparkles, Wand2 } from 'lucide-react';
+import { Copy, RefreshCcw, Sparkles } from 'lucide-react';
 import { api } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
@@ -52,7 +52,6 @@ export default function PromptTemplatePanel({
   const [loading, setLoading] = useState(true);
   const [themeKeyword, setThemeKeyword] = useState('');
   const [feedback, setFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
-  const [initializing, setInitializing] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [rerolling, setRerolling] = useState(false);
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
@@ -69,8 +68,7 @@ export default function PromptTemplatePanel({
       const nextBundle = await api.promptTemplate(itemId);
       setBundle(nextBundle);
       setFeedback(null);
-    } catch (error) {
-      setFeedback({ tone: 'error', message: extractErrorDetail(error) || t('promptTemplateUnavailable') });
+    } catch {
       setBundle({ sessions: [] });
     } finally {
       setLoading(false);
@@ -139,20 +137,6 @@ export default function PromptTemplatePanel({
       return count + (currentValue !== baseValue ? 1 : 0);
     }, 0);
   }, [draftBaseValues, editorValues, template]);
-
-  const handleInit = async () => {
-    setInitializing(true);
-    setFeedback(null);
-    try {
-      const nextBundle = await api.initPromptTemplate(itemId);
-      setBundle(nextBundle);
-      setFeedback({ tone: 'success', message: `${t('promptTemplateReady')} · ${nextBundle.template?.slots.length || 0} ${t('promptTemplateSlots')}` });
-    } catch (error) {
-      setFeedback({ tone: 'error', message: extractErrorDetail(error) || t('promptTemplateUnavailable') });
-    } finally {
-      setInitializing(false);
-    }
-  };
 
   const handleGenerate = async () => {
     if (!template) return;
@@ -260,6 +244,8 @@ export default function PromptTemplatePanel({
     );
   };
 
+  if (loading || !template) return null;
+
   return (
     <section className="prompt-remix-panel" aria-label={t('aiRewrite')}>
       <header className="prompt-remix-header">
@@ -267,20 +253,11 @@ export default function PromptTemplatePanel({
           <h3>{t('aiRewrite')}</h3>
           <p>{t('aiRewriteHelp')}</p>
         </div>
-        <button type="button" className="secondary prompt-remix-init" onClick={handleInit} disabled={initializing}>
-          <Wand2 size={15} />
-          <span>{initializing ? t('promptTemplateInitializing') : template ? t('promptTemplateReinit') : t('promptTemplateInit')}</span>
-        </button>
       </header>
 
       {feedback && <p className={`prompt-remix-feedback ${feedback.tone}`}>{feedback.message}</p>}
 
-      {loading ? (
-        <p className="prompt-remix-empty">{t('loading')}</p>
-      ) : !template ? (
-        <p className="prompt-remix-empty">{t('promptTemplateNoTemplate')}</p>
-      ) : (
-        <>
+      <>
           <div className="prompt-remix-meta-row">
             <span className={`prompt-remix-status is-${template.status}`}>{statusLabel(template.status, t)}</span>
             <span>{template.slots.length} {t('promptTemplateSlots')}</span>
@@ -446,7 +423,7 @@ export default function PromptTemplatePanel({
             </div>
             <div className="prompt-remix-actions">
               <button type="button" className="primary" onClick={handleAssemble}>
-                <Wand2 size={15} />
+                <Sparkles size={15} />
                 <span>{t('promptTemplateAssemble')}</span>
               </button>
               {assembledPreview && (
@@ -469,8 +446,7 @@ export default function PromptTemplatePanel({
 
           <label className="prompt-remix-label">{t('promptTemplateMarkedPrompt')}</label>
           <pre className="prompt-remix-marked-text">{template.marked_text}</pre>
-        </>
-      )}
+      </>
     </section>
   );
 }

@@ -209,7 +209,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "PromptTemplatePanel" in detail
     assert "<PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />" in detail
     assert "api.promptTemplate(itemId)" in panel
-    assert "api.initPromptTemplate(itemId)" in panel
+    assert "api.initPromptTemplate(itemId)" not in panel
     assert "api.generatePromptVariant(template.id, nextKeyword)" in panel
     assert "api.rerollPromptVariant(currentSession.id" in panel
     assert "buildSlotValueRecord" in panel
@@ -244,7 +244,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateCopyFinal" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
-    assert "initPromptTemplate: (itemId: string, language?: string)" in client
+    assert "adminInitPromptTemplate: (itemId: string, language?: string)" in client
+    assert "adminPromptTemplate: (itemId: string)" in client
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
@@ -258,19 +259,71 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in i18n
     assert "promptTemplateCopyFinal" in i18n
     assert "export function buildSlotValueRecord" in prompt_template_utils
-    assert "export function renderMarkedPrompt" in prompt_template_utils
-    assert ".prompt-remix-panel{display:flex;flex-direction:column;" in compact_css
-    assert ".prompt-remix-variant-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap}" in compact_css
-    assert ".prompt-remix-editor{display:flex;flex-direction:column;" in compact_css
-    assert ".prompt-remix-editor-statuses{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}" in compact_css
-    assert ".prompt-remix-status.is-dirty{background:#fff2df;color:#9a5a12}" in compact_css
-    assert ".prompt-remix-editor-card.is-targeted{" in compact_css
-    assert ".prompt-remix-original{display:flex;flex-direction:column;" in compact_css
-    assert ".prompt-remix-segment-button{border:0;padding:0;background:transparent;" in compact_css
-    assert ".prompt-remix-segment-button:focus-visible{outline:2pxsolidrgba(192,147,45,.52);outline-offset:2px}" in compact_css
-    assert ".prompt-remix-preview-final{max-height:280px;overflow:auto}" in compact_css
-    assert ".prompt-remix-preview{" in compact_css
-    assert ".prompt-remix-segment.is-changed{" in compact_css
+    assert "if (loading || !template) return null;" in panel
+    assert "prompt-remix-init" not in panel
+
+
+def test_admin_app_hosts_template_ops_and_review_surface():
+    admin = (ROOT / "frontend" / "src" / "AdminApp.tsx").read_text()
+    main = (ROOT / "frontend" / "src" / "main.tsx").read_text()
+    config = (ROOT / "frontend" / "src" / "components" / "ConfigPanel.tsx").read_text()
+    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "const normalizedPathname = basePath && basePath !== '/' && pathname.startsWith(basePath)" in main
+    assert "const isAdminRoute = normalizedPathname === '/admin' || normalizedPathname.startsWith('/admin/')" in main
+    assert "{isAdminRoute ? <AdminApp /> : <App />}" in main
+    assert "api.adminSession()" in admin
+    assert "api.adminLogin(password.trim())" in admin
+    assert "api.adminLogout()" in admin
+    assert "api.adminPromptTemplateOpsItems" in admin
+    assert "api.adminPromptTemplate(selectedItemId)" in admin
+    assert "api.adminInitPromptTemplate(itemId)" in admin
+    assert "api.adminBatchInitPromptTemplates" in admin
+    assert "api.adminApprovePromptTemplate" in admin
+    assert "api.adminRejectPromptTemplate" in admin
+    assert "api.adminPromptTemplateFailures" in admin
+    assert "api.adminPromptTemplateFailure" in admin
+    assert "templateOpsCenter" in admin
+    assert "adminPromptTemplates" in admin
+    assert "adminAuthTitle" in admin
+    assert "adminPasswordLabel" in admin
+    assert "templateReviewApprove" in admin
+    assert "templateReviewReject" in admin
+    assert "templateQueuePendingReview" in admin
+    assert "template-failure-layout" in admin
+    assert "template-failure-detail-section" in admin
+    assert "api.adminPromptTemplateOpsItems" not in config
+    assert "adminSession: () => json<AdminSessionRecord>" in client
+    assert "adminLogin: (password: string)" in client
+    assert "adminLogout: () => json<AdminSessionRecord>" in client
+    assert "adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {})" in client
+    assert "adminBatchInitPromptTemplates: (payload: PromptTemplateBatchInitRequest)" in client
+    assert "adminPromptTemplateFailures: (limit = 50)" in client
+    assert "adminPromptTemplateFailure: (failureId: string)" in client
+    assert "adminPromptTemplate: (itemId: string)" in client
+    assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
+    assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
+    assert "export interface PromptTemplateOpsItem" in types
+    assert "export interface PromptTemplateBatchInitResponse" in types
+    assert "export interface PromptTemplateReviewRequest" in types
+    assert "export interface AdminLoginRequest" in types
+    assert "export interface AdminSessionRecord" in types
+    assert "export interface PromptWorkflowFailureRecord" in types
+    assert "adminPromptTemplates" in i18n
+    assert "adminAuthTitle" in i18n
+    assert "adminPasswordLabel" in i18n
+    assert "templateQueuePendingReview" in i18n
+    assert "templateReviewApprove" in i18n
+    assert "templateReviewReject" in i18n
+    assert ".config-section-head{display:flex;align-items:flex-start;justify-content:space-between;" in compact_css
+    assert ".admin-shell{min-height:100vh;padding:30px;" in compact_css
+    assert ".admin-auth-card{width:min(480px,100%);display:grid;gap:14px;" in compact_css
+    assert ".admin-review-layout{display:grid;grid-template-columns:minmax(300px,.92fr)minmax(420px,1.08fr);" in compact_css
+    assert ".admin-template-review{display:grid;gap:12px;" in compact_css
+    assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
 
 
 def test_topbar_uses_attached_header_logo_branding():

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
 from .services.text_normalize import to_traditional
 
 def now() -> str:
@@ -197,6 +197,9 @@ class ItemRepository:
             marked_text=row["marked_text"],
             slots=slots,
             status=row["status"],
+            review_status=row["review_status"],
+            review_notes=row["review_notes"],
+            reviewed_at=row["reviewed_at"],
             analysis_confidence=row["analysis_confidence"],
             analysis_notes=row["analysis_notes"],
             created_at=row["created_at"],
@@ -244,7 +247,10 @@ class ItemRepository:
         if not row:
             return
         conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (row["id"],))
-        conn.execute("UPDATE prompt_templates SET status='stale', updated_at=? WHERE item_id=?", (now(), item_id))
+        conn.execute(
+            "UPDATE prompt_templates SET status='stale', review_status='pending_review', review_notes=NULL, reviewed_at=NULL, updated_at=? WHERE item_id=?",
+            (now(), item_id),
+        )
 
     def _images(self, conn, item_id: str) -> list[ImageRecord]:
         return [ImageRecord(**dict(r)) for r in conn.execute("""SELECT * FROM images WHERE item_id=?
@@ -272,12 +278,14 @@ class ItemRepository:
                 raise KeyError(item_id)
             raise ValueError("Item does not have a usable prompt.")
 
-    def get_prompt_template_bundle(self, item_id: str, session_limit: int = 6) -> PromptTemplateBundle:
+    def get_prompt_template_bundle(self, item_id: str, session_limit: int = 6, public_only: bool = False) -> PromptTemplateBundle:
         with connect(self.library_path) as conn:
             item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
             if not item_exists:
                 raise KeyError(item_id)
             template = self._prompt_template(conn, item_id)
+            if public_only and template and not (template.status == "ready" and template.review_status == "approved"):
+                template = None
             sessions = self._prompt_generation_sessions(conn, template.id, limit=session_limit) if template else []
             return PromptTemplateBundle(template=template, sessions=sessions)
 
@@ -291,6 +299,107 @@ class ItemRepository:
                 raise KeyError(template_id)
             return template
 
+    def _prompt_template_ops_status(self, row) -> str:
+        prompt_text = (row["prompt_text"] or "").strip()
+        if not prompt_text:
+            return "no_prompt"
+        if not row["template_id"]:
+            return "missing"
+        template_status = row["template_status"] or "missing"
+        raw_snapshot = row["template_raw_text_snapshot"] or ""
+        if template_status == "ready" and raw_snapshot != prompt_text:
+            return "stale"
+        return template_status
+
+    def _prompt_template_ops_item_from_row(self, row) -> PromptTemplateOpsItem:
+        status = self._prompt_template_ops_status(row)
+        slots_json = row["template_slots_json"] or "[]"
+        try:
+            slot_count = len(json.loads(slots_json))
+        except json.JSONDecodeError:
+            slot_count = 0
+        prompt_excerpt = (row["prompt_text"] or "").strip()[:160] or None
+        return PromptTemplateOpsItem(
+            item_id=row["item_id"],
+            title=row["title"],
+            model=row["model"],
+            status=status,
+            review_status=row["review_status"] or "pending_review",
+            can_initialize=status in {"missing", "stale", "failed"},
+            can_review=status == "ready",
+            published=status == "ready" and (row["review_status"] or "pending_review") == "approved",
+            prompt_language=row["prompt_language"],
+            prompt_updated_at=row["prompt_updated_at"],
+            prompt_excerpt=prompt_excerpt,
+            template_id=row["template_id"],
+            template_status=row["template_status"],
+            template_updated_at=row["template_updated_at"],
+            slot_count=slot_count,
+            analysis_confidence=row["analysis_confidence"],
+        )
+
+    def list_prompt_template_ops_items(
+        self,
+        *,
+        item_ids: list[str] | None = None,
+        statuses: list[str] | None = None,
+        limit: int = 100,
+    ) -> PromptTemplateOpsItemList:
+        status_filter = {value.strip() for value in (statuses or []) if value and value.strip()}
+        with connect(self.library_path) as conn:
+            where = ["i.archived=0"]
+            params: list[str] = []
+            if item_ids:
+                placeholders = ",".join("?" for _ in item_ids)
+                where.append(f"i.id IN ({placeholders})")
+                params.extend(item_ids)
+            rows = conn.execute(
+                f"""
+                SELECT
+                  i.id AS item_id,
+                  i.title,
+                  i.model,
+                  prompt.language AS prompt_language,
+                  prompt.text AS prompt_text,
+                  prompt.updated_at AS prompt_updated_at,
+                  pt.id AS template_id,
+                  pt.status AS template_status,
+                  pt.review_status AS review_status,
+                  pt.raw_text_snapshot AS template_raw_text_snapshot,
+                  pt.updated_at AS template_updated_at,
+                  pt.slots_json AS template_slots_json,
+                  pt.analysis_confidence AS analysis_confidence
+                FROM items i
+                LEFT JOIN prompts prompt
+                  ON prompt.id = (
+                    SELECT p2.id
+                    FROM prompts p2
+                    WHERE p2.item_id = i.id AND TRIM(p2.text) <> ''
+                    ORDER BY p2.is_primary DESC, p2.created_at
+                    LIMIT 1
+                  )
+                LEFT JOIN prompt_templates pt ON pt.item_id = i.id
+                WHERE {" AND ".join(where)}
+                ORDER BY i.updated_at DESC, i.created_at DESC
+                """,
+                params,
+            ).fetchall()
+        items = [self._prompt_template_ops_item_from_row(row) for row in rows]
+        status_counts: dict[str, int] = {}
+        for item in items:
+            status_counts[item.status] = status_counts.get(item.status, 0) + 1
+        if status_filter:
+            items = [item for item in items if item.status in status_filter]
+        status_order = {"missing": 0, "stale": 1, "failed": 2, "no_prompt": 3, "ready": 4}
+        items.sort(key=lambda item: (status_order.get(item.status, 99), item.title.lower()))
+        limited_items = items[:limit]
+        return PromptTemplateOpsItemList(
+            items=limited_items,
+            total=len(items),
+            limit=limit,
+            status_counts=status_counts,
+        )
+
     def save_prompt_template(
         self,
         *,
@@ -300,6 +409,9 @@ class ItemRepository:
         marked_text: str,
         slots: list[PromptTemplateSlot],
         status: str = "ready",
+        review_status: str = "pending_review",
+        review_notes: str | None = None,
+        reviewed_at: str | None = None,
         analysis_confidence: float | None = None,
         analysis_notes: str | None = None,
     ) -> PromptTemplateRecord:
@@ -316,20 +428,41 @@ class ItemRepository:
                 conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (template_id,))
                 conn.execute(
                     """UPDATE prompt_templates
-                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, analysis_confidence=?, analysis_notes=?, updated_at=?
+                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, review_status=?, review_notes=?, reviewed_at=?, analysis_confidence=?, analysis_notes=?, updated_at=?
                     WHERE id=?""",
-                    (source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, updated_at, template_id),
+                    (source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, updated_at, template_id),
                 )
             else:
                 conn.execute(
-                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,analysis_confidence,analysis_notes,created_at,updated_at)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?)""",
-                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, created_at, updated_at),
+                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,review_status,review_notes,reviewed_at,analysis_confidence,analysis_notes,created_at,updated_at)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, created_at, updated_at),
                 )
             conn.commit()
         bundle = self.get_prompt_template_bundle(item_id)
         if bundle.template is None:
             raise KeyError(item_id)
+        return bundle.template
+
+    def review_prompt_template(self, template_id: str, *, review_status: str, review_notes: str | None = None) -> PromptTemplateRecord:
+        if review_status not in {"approved", "rejected"}:
+            raise ValueError("Invalid prompt template review status.")
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT item_id, status FROM prompt_templates WHERE id=?", (template_id,)).fetchone()
+            if not row:
+                raise KeyError(template_id)
+            if row["status"] != "ready":
+                raise ValueError("Only ready templates can be reviewed.")
+            reviewed_at = now()
+            conn.execute(
+                "UPDATE prompt_templates SET review_status=?, review_notes=?, reviewed_at=?, updated_at=? WHERE id=?",
+                (review_status, review_notes, reviewed_at, reviewed_at, template_id),
+            )
+            conn.commit()
+            item_id = row["item_id"]
+        bundle = self.get_prompt_template_bundle(item_id)
+        if bundle.template is None:
+            raise KeyError(template_id)
         return bundle.template
 
     def create_prompt_generation_session(self, template_id: str, theme_keyword: str) -> PromptGenerationSessionRecord:

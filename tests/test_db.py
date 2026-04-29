@@ -19,6 +19,7 @@ def test_init_db_creates_required_tables(tmp_path: Path):
             "002_image_roles.sql",
             "003_image_role_check.sql",
             "004_prompt_templates.sql",
+            "005_prompt_template_review_states.sql",
         }
 
 

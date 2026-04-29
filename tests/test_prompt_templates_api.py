@@ -6,10 +6,12 @@ from fastapi.testclient import TestClient
 from backend.main import create_app
 from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, ItemUpdate, PromptIn, PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
+from backend.services.prompt_workflow_failures import record_prompt_workflow_failure
 from backend.services.prompt_workflows import PromptWorkflowError
 
 
 MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core" label="主体"]]a tiny ramen bar[[/slot]] with [[slot id="support_props" group="theme_core" label="配套元素"]]paper lanterns and wooden stools[[/slot]].'
+ADMIN_PASSWORD = 'zwyy0323'
 
 
 def _create_item(repo: ItemRepository) -> str:
@@ -18,6 +20,12 @@ def _create_item(repo: ItemRepository) -> str:
         prompts=[PromptIn(language='en', text='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.', is_primary=True)],
     ))
     return item.id
+
+
+def _admin_login(client: TestClient):
+    response = client.post('/api/admin/auth/login', json={'password': ADMIN_PASSWORD})
+    assert response.status_code == 200
+    assert response.json()['authenticated'] is True
 
 
 def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeypatch):
@@ -59,14 +67,30 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
     monkeypatch.setattr('backend.routers.prompt_templates.generate_prompt_variant', fake_generate_prompt_variant)
 
-    init_response = client.post(f'/api/items/{item_id}/prompt-template/init', json={})
+    _admin_login(client)
+
+    init_response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
     assert init_response.status_code == 200
     init_payload = init_response.json()
     assert init_payload['template']['status'] == 'ready'
+    assert init_payload['template']['review_status'] == 'pending_review'
     assert init_payload['template']['slots'][0]['id'] == 'main_subject'
     assert init_payload['template']['analysis_confidence'] == 0.91
 
     template_id = init_payload['template']['id']
+    public_before_review = client.get(f'/api/items/{item_id}/prompt-template')
+    assert public_before_review.status_code == 200
+    assert public_before_review.json()['template'] is None
+
+    admin_bundle = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert admin_bundle.status_code == 200
+    assert admin_bundle.json()['template']['review_status'] == 'pending_review'
+
+    approve_response = client.post(f'/api/admin/prompt-templates/{template_id}/approve', json={'review_notes': 'Looks good.'})
+    assert approve_response.status_code == 200
+    assert approve_response.json()['review_status'] == 'approved'
+    assert approve_response.json()['review_notes'] == 'Looks good.'
+
     generate_response = client.post(f'/api/templates/{template_id}/generate', json={'theme_keyword': 'retro music shop'})
     assert generate_response.status_code == 200
     session_payload = generate_response.json()
@@ -128,7 +152,46 @@ def test_updating_prompts_marks_template_stale_and_clears_sessions(tmp_path: Pat
     bundle = repo.get_prompt_template_bundle(item_id)
     assert bundle.template is not None
     assert bundle.template.status == 'stale'
+    assert bundle.template.review_status == 'pending_review'
     assert bundle.sessions == []
+
+
+def test_public_prompt_template_endpoint_only_returns_approved_templates(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+    template = repo.save_prompt_template(
+        item_id=item_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+        analysis_confidence=0.8,
+        analysis_notes='Stable',
+    )
+
+    hidden_response = client.get(f'/api/items/{item_id}/prompt-template')
+    assert hidden_response.status_code == 200
+    assert hidden_response.json()['template'] is None
+
+    repo.review_prompt_template(template.id, review_status='approved', review_notes='Ship it.')
+
+    visible_response = client.get(f'/api/items/{item_id}/prompt-template')
+    assert visible_response.status_code == 200
+    assert visible_response.json()['template']['review_status'] == 'approved'
+
+    _admin_login(client)
+
+    reject_response = client.post(f'/api/admin/prompt-templates/{template.id}/reject', json={'review_notes': 'Needs better slots.'})
+    assert reject_response.status_code == 200
+    assert reject_response.json()['review_status'] == 'rejected'
+
+    hidden_again = client.get(f'/api/items/{item_id}/prompt-template')
+    assert hidden_again.status_code == 200
+    assert hidden_again.json()['template'] is None
 
 
 def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path, monkeypatch):
@@ -149,7 +212,9 @@ def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path
 
     monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
 
-    response = client.post(f'/api/items/{item_id}/prompt-template/init', json={})
+    _admin_login(client)
+
+    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
     assert response.status_code == 502
     failure_id = response.headers.get('x-prompt-workflow-failure-id')
     assert failure_id
@@ -163,3 +228,212 @@ def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path
     assert sample['error_class'] == 'PromptWorkflowError'
     assert sample['workflow']['response_status'] == 500
     assert sample['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-init'
+
+
+def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+
+    missing_id = _create_item(repo)
+    ready_id = _create_item(repo)
+    stale_id = _create_item(repo)
+    no_prompt_id = repo.create_item(ItemCreate(
+        title='Blank Prompt Case',
+        prompts=[PromptIn(language='en', text='   ', is_primary=True)],
+    )).id
+
+    repo.save_prompt_template(
+        item_id=ready_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+            PromptTemplateSlot(id='support_props', group='theme_core', label='配套元素', original_text='paper lanterns and wooden stools'),
+        ],
+        analysis_confidence=0.93,
+        analysis_notes='Ready',
+    )
+    repo.save_prompt_template(
+        item_id=stale_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+        status='stale',
+    )
+
+    _admin_login(client)
+
+    response = client.get('/api/admin/prompt-templates/ops/items?limit=20')
+    assert response.status_code == 200
+    payload = response.json()
+    status_by_item = {item['item_id']: item['status'] for item in payload['items']}
+    assert status_by_item[missing_id] == 'missing'
+    assert status_by_item[ready_id] == 'ready'
+    assert status_by_item[stale_id] == 'stale'
+    assert status_by_item[no_prompt_id] == 'no_prompt'
+    assert payload['status_counts']['missing'] >= 1
+    assert payload['status_counts']['ready'] >= 1
+    assert payload['status_counts']['stale'] >= 1
+    assert payload['status_counts']['no_prompt'] >= 1
+
+    filtered = client.get('/api/admin/prompt-templates/ops/items?status=missing&status=stale&limit=20')
+    assert filtered.status_code == 200
+    filtered_statuses = {item['status'] for item in filtered.json()['items']}
+    assert filtered_statuses == {'missing', 'stale'}
+
+
+def test_prompt_template_batch_init_returns_initialized_failed_and_skipped(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+
+    success_id = _create_item(repo)
+    failure_id = _create_item(repo)
+    ready_id = _create_item(repo)
+    no_prompt_id = repo.create_item(ItemCreate(
+        title='No Prompt Available',
+        prompts=[PromptIn(language='en', text='', is_primary=True)],
+    )).id
+
+    repo.save_prompt_template(
+        item_id=ready_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+    )
+    repo.save_prompt_template(
+        item_id=failure_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+        status='stale',
+    )
+
+    def fake_init_prompt_template(**kwargs):
+        if kwargs['item_id'] == failure_id:
+            raise PromptWorkflowError(
+                'Workflow request failed: {"message":"bad item"}',
+                operation='template_init',
+                url='https://n8n.example/webhook/image-prompt-library-template-init',
+                request_payload={'item': {'id': failure_id}},
+                response_status=500,
+                response_text='{"message":"bad item"}',
+            )
+        return {
+            'marked_text': MARKED_TEXT,
+            'analysis_confidence': 0.88,
+            'analysis_notes': 'Batch ready.',
+            'source_language': 'en',
+        }
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post('/api/admin/prompt-templates/ops/batch-init', json={
+        'item_ids': [success_id, failure_id, ready_id, no_prompt_id],
+        'limit': 10,
+    })
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload['total_candidates'] == 4
+    assert payload['processed'] == 4
+    assert payload['initialized'] == 1
+    assert payload['failed'] == 1
+    assert payload['skipped'] == 2
+
+    results = {item['item_id']: item for item in payload['results']}
+    assert results[success_id]['result'] == 'initialized'
+    assert results[failure_id]['result'] == 'failed'
+    assert results[failure_id]['failure_id']
+    assert results[ready_id]['result'] == 'skipped'
+    assert results[no_prompt_id]['result'] == 'skipped'
+
+    failure_sample = tmp_path / 'library' / '_diagnostics' / 'prompt-workflow-failures' / f"{results[failure_id]['failure_id']}.json"
+    assert failure_sample.is_file()
+
+
+def test_prompt_template_failure_list_and_detail_endpoints(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+
+    failure_id, _ = record_prompt_workflow_failure(
+        library_path=tmp_path / 'library',
+        operation='template_generate',
+        exc=PromptWorkflowError(
+            'Workflow request failed: timeout',
+            operation='template_generate',
+            url='https://n8n.example/webhook/image-prompt-library-template-generate',
+            request_payload={'template': {'id': 'tpl_123'}},
+            response_status=502,
+            response_text='timeout',
+        ),
+        context={
+            'item_id': 'itm_123',
+            'template_id': 'tpl_123',
+            'theme_keyword': 'night market',
+        },
+    )
+
+    _admin_login(client)
+
+    list_response = client.get('/api/admin/prompt-template-failures?limit=10')
+    assert list_response.status_code == 200
+    failures = list_response.json()['failures']
+    assert failures[0]['id'] == failure_id
+    assert failures[0]['item_id'] == 'itm_123'
+    assert failures[0]['template_id'] == 'tpl_123'
+    assert failures[0]['theme_keyword'] == 'night market'
+    assert failures[0]['response_status'] == 502
+
+    detail_response = client.get(f'/api/admin/prompt-template-failures/{failure_id}')
+    assert detail_response.status_code == 200
+    detail = detail_response.json()
+    assert detail['id'] == failure_id
+    assert detail['context']['item_id'] == 'itm_123'
+    assert detail['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-generate'
+    assert 'PromptWorkflowError' in detail['traceback']
+
+
+def test_admin_auth_session_login_logout_and_protected_routes(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+
+    session_before = client.get('/api/admin/auth/session')
+    assert session_before.status_code == 200
+    assert session_before.json()['authenticated'] is False
+
+    protected_before = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_before.status_code == 401
+
+    invalid_login = client.post('/api/admin/auth/login', json={'password': 'wrong-password'})
+    assert invalid_login.status_code == 401
+
+    _admin_login(client)
+
+    session_after = client.get('/api/admin/auth/session')
+    assert session_after.status_code == 200
+    assert session_after.json()['authenticated'] is True
+
+    protected_after = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_after.status_code == 200
+
+    logout = client.post('/api/admin/auth/logout')
+    assert logout.status_code == 200
+    assert logout.json()['authenticated'] is False
+
+    protected_after_logout = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_after_logout.status_code == 401

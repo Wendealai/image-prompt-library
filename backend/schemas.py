@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Any, List, Optional
 from pydantic import BaseModel, Field, ConfigDict
 
 class PromptIn(BaseModel):
@@ -28,6 +28,9 @@ class PromptTemplateRecord(BaseModel):
     marked_text: str
     slots: List[PromptTemplateSlot] = Field(default_factory=list)
     status: str = "ready"
+    review_status: str = "pending_review"
+    review_notes: Optional[str] = None
+    reviewed_at: Optional[str] = None
     analysis_confidence: Optional[float] = None
     analysis_notes: Optional[str] = None
     created_at: str
@@ -70,6 +73,87 @@ class PromptGenerationSessionRecord(BaseModel):
 class PromptTemplateBundle(BaseModel):
     template: Optional[PromptTemplateRecord] = None
     sessions: List[PromptGenerationSessionRecord] = Field(default_factory=list)
+
+class PromptTemplateOpsItem(BaseModel):
+    item_id: str
+    title: str
+    model: str
+    status: str
+    review_status: str = "pending_review"
+    can_initialize: bool = False
+    can_review: bool = False
+    published: bool = False
+    prompt_language: Optional[str] = None
+    prompt_updated_at: Optional[str] = None
+    prompt_excerpt: Optional[str] = None
+    template_id: Optional[str] = None
+    template_status: Optional[str] = None
+    template_updated_at: Optional[str] = None
+    slot_count: int = 0
+    analysis_confidence: Optional[float] = None
+
+class PromptTemplateOpsItemList(BaseModel):
+    items: List[PromptTemplateOpsItem] = Field(default_factory=list)
+    total: int
+    limit: int
+    status_counts: dict[str, int] = Field(default_factory=dict)
+
+class PromptTemplateBatchInitRequest(BaseModel):
+    item_ids: List[str] = Field(default_factory=list)
+    statuses: List[str] = Field(default_factory=lambda: ["missing", "stale"])
+    limit: int = Field(default=24, ge=1, le=200)
+    force: bool = False
+    language: Optional[str] = None
+
+class PromptTemplateBatchInitResult(BaseModel):
+    item_id: str
+    title: str
+    result: str
+    detail: Optional[str] = None
+    failure_id: Optional[str] = None
+    template_id: Optional[str] = None
+    template_status: Optional[str] = None
+    slot_count: int = 0
+
+class PromptTemplateBatchInitResponse(BaseModel):
+    total_candidates: int
+    processed: int
+    initialized: int = 0
+    skipped: int = 0
+    failed: int = 0
+    results: List[PromptTemplateBatchInitResult] = Field(default_factory=list)
+
+class PromptWorkflowFailureSummary(BaseModel):
+    id: str
+    created_at: str
+    operation: str
+    error_class: str
+    error_message: str
+    item_id: Optional[str] = None
+    template_id: Optional[str] = None
+    session_id: Optional[str] = None
+    theme_keyword: Optional[str] = None
+    requested_language: Optional[str] = None
+    response_status: Optional[int] = None
+
+class PromptWorkflowFailureRecord(PromptWorkflowFailureSummary):
+    context: dict[str, Any] = Field(default_factory=dict)
+    workflow: Optional[dict[str, Any]] = None
+    traceback: Optional[str] = None
+
+class PromptWorkflowFailureList(BaseModel):
+    failures: List[PromptWorkflowFailureSummary] = Field(default_factory=list)
+    total: int
+    limit: int
+
+class PromptTemplateReviewRequest(BaseModel):
+    review_notes: Optional[str] = None
+
+class AdminLoginRequest(BaseModel):
+    password: str
+
+class AdminSessionRecord(BaseModel):
+    authenticated: bool = False
 
 class ImageRecord(BaseModel):
     id: str
