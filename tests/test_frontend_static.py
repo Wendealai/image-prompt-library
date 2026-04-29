@@ -244,7 +244,35 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in panel
     assert "promptTemplateCopyFinal" in panel
     assert "handleGenerateImage" in panel
-    assert "api.generateImageFromPrompt(itemId, promptText)" in panel
+    assert "imageGenerationState" in panel
+    assert "IMAGE_GENERATION_STAGE_DELAY_MS = 2200" in panel
+    assert "prompt-remix-image-config" in panel
+    assert "promptTemplateImageSettings" in panel
+    assert "promptTemplateImageAspectRatio" in panel
+    assert "promptTemplateImageResolution" in panel
+    assert "promptTemplateImageStyle" in panel
+    assert "promptTemplateImageCount" in panel
+    assert "promptTemplateImageQueued" in panel
+    assert "promptTemplateImageRendering" in panel
+    assert "promptTemplateImageRetry" in panel
+    assert "promptTemplateImageFocused" in panel
+    assert "IMAGE_GENERATION_PRESETS_STORAGE_KEY = 'image-prompt-library.image_generation_presets.v1'" in panel
+    assert "IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY = 'image-prompt-library.image_generation_recent_options.v1'" in panel
+    assert "prompt-remix-preset-section" in panel
+    assert "savedImagePresets" in panel
+    assert "recentImageGenerationOptions" in panel
+    assert "handleSaveImagePreset" in panel
+    assert "handleDeleteImagePreset" in panel
+    assert "handleApplyImagePreset" in panel
+    assert "promptTemplateImagePresets" in panel
+    assert "promptTemplateImagePresetDefault" in panel
+    assert "promptTemplateImagePresetRecent" in panel
+    assert "promptTemplateImagePresetNamePlaceholder" in panel
+    assert "promptTemplateImagePresetSave" in panel
+    assert "promptTemplateImagePresetSaved" in panel
+    assert "promptTemplateImagePresetDelete" in panel
+    assert "promptTemplateImagePresetNameRequired" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions)" in panel
     assert "promptTemplateGenerateImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
@@ -254,7 +282,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
-    assert "generateImageFromPrompt: (itemId: string, prompt: string)" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions)" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -266,6 +294,28 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateCopyFinal" in i18n
     assert "promptTemplateGenerateImage" in i18n
     assert "promptTemplateGeneratingImage" in i18n
+    assert "promptTemplateImageSettings" in i18n
+    assert "promptTemplateImageSettingsHelp" in i18n
+    assert "promptTemplateImageResolution" in i18n
+    assert "promptTemplateImageAspectRatio" in i18n
+    assert "promptTemplateImageStyle" in i18n
+    assert "promptTemplateImageCount" in i18n
+    assert "promptTemplateImageQueued" in i18n
+    assert "promptTemplateImageRendering" in i18n
+    assert "promptTemplateImageRetry" in i18n
+    assert "promptTemplateImageFocused" in i18n
+    assert "promptTemplateImagePresets" in i18n
+    assert "promptTemplateImagePresetsHelp" in i18n
+    assert "promptTemplateImagePresetDefault" in i18n
+    assert "promptTemplateImagePresetRecent" in i18n
+    assert "promptTemplateImagePresetNamePlaceholder" in i18n
+    assert "promptTemplateImagePresetSave" in i18n
+    assert "promptTemplateImagePresetSaved" in i18n
+    assert "promptTemplateImagePresetDelete" in i18n
+    assert "promptTemplateImagePresetNameRequired" in i18n
+    assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
+    assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
     assert "if (loading || !template) return null;" in panel
     assert "prompt-remix-init" not in panel

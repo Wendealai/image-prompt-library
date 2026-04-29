@@ -529,7 +529,14 @@ def _poll_job_until_done(http_client: httpx.Client, headers: dict[str, str], job
     )
 
 
-def _build_generate_payload(prompt: str, *, item_id: str | None = None, title: str | None = None) -> dict[str, Any]:
+def _build_generate_payload(
+    prompt: str,
+    *,
+    item_id: str | None = None,
+    title: str | None = None,
+    generation_options: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    normalized_generation = generation_options or {}
     payload: dict[str, Any] = {
         "requestId": str(uuid.uuid4()),
         "mode": "text-to-image",
@@ -541,13 +548,13 @@ def _build_generate_payload(prompt: str, *, item_id: str | None = None, title: s
         "negativePrompt": "",
         "stream": True,
         "generation": {
-            "resolution": os.environ.get(RESOLUTION_ENV, DEFAULT_RESOLUTION).strip() or DEFAULT_RESOLUTION,
-            "aspectRatio": os.environ.get(ASPECT_RATIO_ENV, DEFAULT_ASPECT_RATIO).strip() or DEFAULT_ASPECT_RATIO,
-            "imageCount": _int_env(IMAGE_COUNT_ENV, 1, minimum=1, maximum=4),
+            "resolution": str(normalized_generation.get("resolution") or os.environ.get(RESOLUTION_ENV, DEFAULT_RESOLUTION)).strip() or DEFAULT_RESOLUTION,
+            "aspectRatio": str(normalized_generation.get("aspect_ratio") or os.environ.get(ASPECT_RATIO_ENV, DEFAULT_ASPECT_RATIO)).strip() or DEFAULT_ASPECT_RATIO,
+            "imageCount": int(normalized_generation.get("image_count") or _int_env(IMAGE_COUNT_ENV, 1, minimum=1, maximum=4)),
             "quality": os.environ.get(QUALITY_ENV, DEFAULT_QUALITY).strip() or DEFAULT_QUALITY,
             "outputFormat": os.environ.get(OUTPUT_FORMAT_ENV, DEFAULT_OUTPUT_FORMAT).strip() or DEFAULT_OUTPUT_FORMAT,
             "background": os.environ.get(BACKGROUND_ENV, DEFAULT_BACKGROUND).strip() or DEFAULT_BACKGROUND,
-            "style": os.environ.get(STYLE_ENV, DEFAULT_STYLE).strip() or DEFAULT_STYLE,
+            "style": str(normalized_generation.get("style") or os.environ.get(STYLE_ENV, DEFAULT_STYLE)).strip() or DEFAULT_STYLE,
             "temperature": round(_generation_temperature(), 2),
             "seed": None,
             "strength": 1,
@@ -563,6 +570,7 @@ def generate_images_from_prompt(
     *,
     item_id: str | None = None,
     title: str | None = None,
+    generation_options: dict[str, Any] | None = None,
     client: httpx.Client | None = None,
 ) -> ImageGenerationResult:
     cleaned_prompt = prompt.strip()
@@ -570,7 +578,12 @@ def generate_images_from_prompt(
         raise ValueError("Prompt is required.")
 
     generate_url = _workflow_url(GENERATE_URL_ENV)
-    request_payload = _build_generate_payload(cleaned_prompt, item_id=item_id, title=title)
+    request_payload = _build_generate_payload(
+        cleaned_prompt,
+        item_id=item_id,
+        title=title,
+        generation_options=generation_options,
+    )
     headers = {"Content-Type": "application/json", **_workflow_headers()}
 
     owns_client = client is None

@@ -1,4 +1,4 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -129,7 +129,7 @@ export const api = isDemoMode ? {
   generatePromptVariant: (_templateId: string, _themeKeyword: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   rerollPromptVariant: (_sessionId: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
-  generateImageFromPrompt: (_itemId: string, _prompt: string) => demoAiUnavailable(),
+  generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions) => demoAiUnavailable(),
   adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),
   adminBatchInitPromptTemplates: (_payload: PromptTemplateBatchInitRequest) => demoAiUnavailable(),
   adminPromptTemplateFailures: (_limit = 50) => demoAiUnavailable(),
@@ -159,7 +159,7 @@ export const api = isDemoMode ? {
   generatePromptVariant: (templateId: string, themeKeyword: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/templates/${templateId}/generate`, { method: 'POST', body: JSON.stringify({ theme_keyword: themeKeyword, rejected_variant_ids: rejectedVariantIds }) }),
   rerollPromptVariant: (sessionId: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/generation-sessions/${sessionId}/reroll`, { method: 'POST', body: JSON.stringify({ rejected_variant_ids: rejectedVariantIds }) }),
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),
-  generateImageFromPrompt: (itemId: string, prompt: string) => json<PromptImageGenerationResponse>(`/api/items/${itemId}/generate-image`, { method: 'POST', body: JSON.stringify({ prompt }) }),
+  generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions) => json<PromptImageGenerationResponse>(`/api/items/${itemId}/generate-image`, { method: 'POST', body: JSON.stringify(generation ? { prompt, generation } : { prompt }) }),
   adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {}) => {
     const qs = new URLSearchParams();
     if (params.limit) qs.set('limit', String(params.limit));

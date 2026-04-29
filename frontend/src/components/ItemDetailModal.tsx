@@ -188,6 +188,7 @@ export default function ItemDetailModal({
   const [imageViewerScale, setImageViewerScale] = useState(1);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
   const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
   const lastViewerTapAtRef = useRef(0);
   const lastDefaultPromptKeyRef = useRef('');
@@ -377,7 +378,7 @@ export default function ItemDetailModal({
         ) : (
           <div className="modal-content-enter" key={item.id}>
             <div className="detail-layout">
-              <section className="modal-hero">
+              <section className="modal-hero" ref={heroSectionRef}>
                 {activeImage ? (
                   <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
                     <img
@@ -524,6 +525,7 @@ export default function ItemDetailModal({
                     setItem(result.item);
                     const newestImage = result.images[result.images.length - 1];
                     if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                    window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
                     onChanged();
                   }}
                 />

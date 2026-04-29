@@ -27,6 +27,11 @@ def test_generate_images_from_prompt_handles_sync_images(monkeypatch):
 
     def handler(request: httpx.Request) -> httpx.Response:
         assert request.url.path == "/webhook/img-generate-submit"
+        payload = request.content.decode("utf-8")
+        assert '"resolution":"2048x2048"' in payload
+        assert '"aspectRatio":"16:9"' in payload
+        assert '"imageCount":3' in payload
+        assert '"style":"editorial"' in payload
         return httpx.Response(
             200,
             json={
@@ -42,7 +47,16 @@ def test_generate_images_from_prompt_handles_sync_images(monkeypatch):
         )
 
     with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
-        result = generate_images_from_prompt("A cinematic studio poster", client=client)
+        result = generate_images_from_prompt(
+            "A cinematic studio poster",
+            generation_options={
+                "resolution": "2048x2048",
+                "aspect_ratio": "16:9",
+                "image_count": 3,
+                "style": "editorial",
+            },
+            client=client,
+        )
 
     assert result.status == "completed"
     assert result.job_id is None
@@ -93,10 +107,11 @@ def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monke
     repo = ItemRepository(library)
     item_id = _create_item(repo)
 
-    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, client=None):
+    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, generation_options=None, client=None):
         assert prompt == "A polished chrome poster"
         assert item_id is not None
         assert title == "Studio Poster"
+        assert generation_options is None
         return ImageGenerationResult(
             status="completed",
             job_id="job_saved",
@@ -122,6 +137,50 @@ def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monke
     assert stored_thumb.is_file()
 
 
+def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, monkeypatch):
+    library = tmp_path / "library"
+    app = create_app(library_path=library)
+    client = TestClient(app)
+    repo = ItemRepository(library)
+    item_id = _create_item(repo)
+
+    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, generation_options=None, client=None):
+        assert prompt == "A polished chrome poster"
+        assert item_id is not None
+        assert title == "Studio Poster"
+        assert generation_options == {
+            "resolution": "1536x1024",
+            "aspect_ratio": "3:2",
+            "image_count": 2,
+            "style": "illustration",
+        }
+        return ImageGenerationResult(
+            status="completed",
+            job_id="job_options",
+            output_text=None,
+            images=[GeneratedImageBinary(data=PNG_BYTES, mime_type="image/png", filename="generated.png")],
+        )
+
+    monkeypatch.setattr("backend.routers.prompt_templates.generate_images_from_prompt", fake_generate_images_from_prompt)
+
+    response = client.post(
+        f"/api/items/{item_id}/generate-image",
+        json={
+            "prompt": "A polished chrome poster",
+            "generation": {
+                "resolution": "1536x1024",
+                "aspect_ratio": "3:2",
+                "image_count": 2,
+                "style": "illustration",
+            },
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["job_id"] == "job_options"
+    assert len(payload["images"]) == 1
+
+
 def test_generate_image_endpoint_returns_503_when_workflow_is_unavailable(tmp_path: Path, monkeypatch):
     library = tmp_path / "library"
     app = create_app(library_path=library)
@@ -129,7 +188,8 @@ def test_generate_image_endpoint_returns_503_when_workflow_is_unavailable(tmp_pa
     repo = ItemRepository(library)
     item_id = _create_item(repo)
 
-    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, client=None):
+    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, generation_options=None, client=None):
+        assert generation_options is None
         raise ImageGenerationUnavailable("Missing webhook URL")
 
     monkeypatch.setattr("backend.routers.prompt_templates.generate_images_from_prompt", fake_generate_images_from_prompt)

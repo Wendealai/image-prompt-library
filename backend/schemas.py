@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
 from pydantic import BaseModel, Field, ConfigDict
 
 class PromptIn(BaseModel):
@@ -261,8 +261,15 @@ class PromptTemplateGenerateRequest(BaseModel):
 class PromptTemplateRerollRequest(BaseModel):
     rejected_variant_ids: List[str] = Field(default_factory=list)
 
+class PromptImageGenerateOptions(BaseModel):
+    resolution: Optional[Literal["1024x1024", "1536x1024", "1024x1536", "2048x2048", "4096x4096"]] = None
+    aspect_ratio: Optional[Literal["auto", "1:1", "4:3", "3:2", "16:9", "9:16"]] = None
+    image_count: Optional[int] = Field(default=None, ge=1, le=4)
+    style: Optional[Literal["auto", "cinematic", "editorial", "illustration", "photoreal", "fantasy art", "ink & wash"]] = None
+
 class PromptImageGenerateRequest(BaseModel):
     prompt: str
+    generation: Optional[PromptImageGenerateOptions] = None
 
 class ImportResult(BaseModel):
     id: str

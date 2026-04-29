@@ -3,13 +3,99 @@ import { Copy, RefreshCcw, Sparkles } from 'lucide-react';
 import { api } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
-import type { PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationResponse, PromptRenderSegment, PromptTemplateBundle } from '../types';
+import type { PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptRenderSegment, PromptTemplateBundle } from '../types';
 import type { Translator } from '../utils/i18n';
 
 type LocalPromptPreview = {
   renderedText: string;
   segments: PromptRenderSegment[];
 };
+
+type SavedImageGenerationPreset = {
+  id: string;
+  name: string;
+  options: Required<PromptImageGenerationOptions>;
+};
+
+type ImageGenerationPhase = 'idle' | 'queued' | 'rendering' | 'success' | 'error';
+
+type ImageGenerationState =
+  | { phase: 'idle' }
+  | { phase: 'queued' }
+  | { phase: 'rendering' }
+  | { phase: 'success'; imageCount: number }
+  | { phase: 'error'; message: string };
+
+const IMAGE_RESOLUTION_OPTIONS = ['1024x1024', '1536x1024', '1024x1536', '2048x2048', '4096x4096'] as const;
+const IMAGE_ASPECT_RATIO_OPTIONS = ['auto', '1:1', '4:3', '3:2', '16:9', '9:16'] as const;
+const IMAGE_STYLE_OPTIONS = ['auto', 'cinematic', 'editorial', 'illustration', 'photoreal', 'fantasy art', 'ink & wash'] as const;
+const IMAGE_GENERATION_STAGE_DELAY_MS = 2200;
+const IMAGE_GENERATION_PRESETS_STORAGE_KEY = 'image-prompt-library.image_generation_presets.v1';
+const IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY = 'image-prompt-library.image_generation_recent_options.v1';
+const IMAGE_GENERATION_PRESET_LIMIT = 6;
+const DEFAULT_IMAGE_GENERATION_OPTIONS: Required<PromptImageGenerationOptions> = {
+  resolution: '1024x1024',
+  aspect_ratio: '1:1',
+  image_count: 1,
+  style: 'auto',
+};
+
+function isAllowedValue<T extends readonly string[]>(value: unknown, allowedValues: T, fallback: string): string {
+  return typeof value === 'string' && allowedValues.includes(value as T[number]) ? value : fallback;
+}
+
+function normalizeImageGenerationOptions(value: unknown): Required<PromptImageGenerationOptions> {
+  const record = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+  const imageCount = typeof record.image_count === 'number' && Number.isFinite(record.image_count)
+    ? Math.max(1, Math.min(4, Math.round(record.image_count)))
+    : DEFAULT_IMAGE_GENERATION_OPTIONS.image_count;
+  return {
+    resolution: isAllowedValue(record.resolution, IMAGE_RESOLUTION_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.resolution),
+    aspect_ratio: isAllowedValue(record.aspect_ratio, IMAGE_ASPECT_RATIO_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.aspect_ratio),
+    image_count: imageCount,
+    style: isAllowedValue(record.style, IMAGE_STYLE_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.style),
+  };
+}
+
+function loadRecentImageGenerationOptions(): Required<PromptImageGenerationOptions> | null {
+  try {
+    const raw = window.localStorage.getItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY);
+    if (!raw) return null;
+    return normalizeImageGenerationOptions(JSON.parse(raw));
+  } catch {
+    return null;
+  }
+}
+
+function loadSavedImageGenerationPresets(): SavedImageGenerationPreset[] {
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(IMAGE_GENERATION_PRESETS_STORAGE_KEY) || '[]');
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map(entry => {
+        const record = entry && typeof entry === 'object' ? entry as Record<string, unknown> : null;
+        if (!record || typeof record.id !== 'string' || typeof record.name !== 'string') return null;
+        return {
+          id: record.id,
+          name: record.name.trim(),
+          options: normalizeImageGenerationOptions(record.options),
+        };
+      })
+      .filter((entry): entry is SavedImageGenerationPreset => Boolean(entry && entry.name));
+  } catch {
+    return [];
+  }
+}
+
+function sameImageGenerationOptions(
+  left: Required<PromptImageGenerationOptions>,
+  right: Required<PromptImageGenerationOptions>,
+) {
+  return left.resolution === right.resolution
+    && left.aspect_ratio === right.aspect_ratio
+    && left.image_count === right.image_count
+    && left.style === right.style;
+}
 
 function extractErrorDetail(error: unknown): string {
   if (!(error instanceof Error)) return '';
@@ -30,6 +116,14 @@ function statusLabel(status: string, t: Translator) {
   if (status === 'ready') return t('promptTemplateReady');
   if (status === 'stale') return t('promptTemplateStale');
   return status;
+}
+
+function imageGenerationStatusTone(phase: ImageGenerationPhase) {
+  if (phase === 'queued') return 'stale';
+  if (phase === 'rendering') return 'ready';
+  if (phase === 'success') return 'accepted';
+  if (phase === 'error') return 'failed';
+  return 'ready';
 }
 
 function replaceSession(bundle: PromptTemplateBundle | null, session: PromptGenerationSessionRecord): PromptTemplateBundle {
@@ -56,7 +150,11 @@ export default function PromptTemplatePanel({
   const [feedback, setFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const [generating, setGenerating] = useState(false);
   const [rerolling, setRerolling] = useState(false);
-  const [imageGenerating, setImageGenerating] = useState(false);
+  const [imageGenerationOptions, setImageGenerationOptions] = useState<Required<PromptImageGenerationOptions>>(() => loadRecentImageGenerationOptions() || DEFAULT_IMAGE_GENERATION_OPTIONS);
+  const [imageGenerationState, setImageGenerationState] = useState<ImageGenerationState>({ phase: 'idle' });
+  const [savedImagePresets, setSavedImagePresets] = useState<SavedImageGenerationPreset[]>(loadSavedImageGenerationPresets);
+  const [recentImageGenerationOptions, setRecentImageGenerationOptions] = useState<Required<PromptImageGenerationOptions> | null>(loadRecentImageGenerationOptions);
+  const [imagePresetName, setImagePresetName] = useState('');
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
   const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({});
   const [editingVariantId, setEditingVariantId] = useState('original');
@@ -64,6 +162,14 @@ export default function PromptTemplatePanel({
   const [targetedSlotId, setTargetedSlotId] = useState<string | null>(null);
   const slotInputRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
   const targetedSlotTimerRef = useRef<number | null>(null);
+  const imageGenerationTimerRef = useRef<number | null>(null);
+
+  const clearImageGenerationTimer = useCallback(() => {
+    if (imageGenerationTimerRef.current) {
+      window.clearTimeout(imageGenerationTimerRef.current);
+      imageGenerationTimerRef.current = null;
+    }
+  }, []);
 
   const loadBundle = useCallback(async () => {
     setLoading(true);
@@ -95,6 +201,7 @@ export default function PromptTemplatePanel({
     setDraftBaseValues(nextValues);
     setEditingVariantId(nextVariantId);
     setAssembledPreview(null);
+    setImageGenerationState({ phase: 'idle' });
   }, []);
 
   const loadEditorDraft = useCallback((variant?: PromptGenerationVariantRecord | null) => {
@@ -116,8 +223,9 @@ export default function PromptTemplatePanel({
   useEffect(() => {
     return () => {
       if (targetedSlotTimerRef.current) window.clearTimeout(targetedSlotTimerRef.current);
+      clearImageGenerationTimer();
     };
-  }, []);
+  }, [clearImageGenerationTimer]);
 
   const livePreview = useMemo(() => {
     if (!template) return null;
@@ -140,6 +248,39 @@ export default function PromptTemplatePanel({
       return count + (currentValue !== baseValue ? 1 : 0);
     }, 0);
   }, [draftBaseValues, editorValues, template]);
+
+  const imageGenerationBusy = imageGenerationState.phase === 'queued' || imageGenerationState.phase === 'rendering';
+  const hasRecentImagePreset = Boolean(recentImageGenerationOptions && !sameImageGenerationOptions(recentImageGenerationOptions, DEFAULT_IMAGE_GENERATION_OPTIONS));
+  const activePresetId = useMemo(() => {
+    const savedPreset = savedImagePresets.find(preset => sameImageGenerationOptions(preset.options, imageGenerationOptions));
+    if (savedPreset) return savedPreset.id;
+    if (sameImageGenerationOptions(imageGenerationOptions, DEFAULT_IMAGE_GENERATION_OPTIONS)) return 'default';
+    if (recentImageGenerationOptions && sameImageGenerationOptions(imageGenerationOptions, recentImageGenerationOptions)) return 'recent';
+    return null;
+  }, [imageGenerationOptions, recentImageGenerationOptions, savedImagePresets]);
+  const imageGenerationStatusText = useMemo(() => {
+    if (imageGenerationState.phase === 'queued') return t('promptTemplateImageQueued');
+    if (imageGenerationState.phase === 'rendering') return t('promptTemplateImageRendering');
+    if (imageGenerationState.phase === 'success') return `${t('promptTemplateImageReady')} · ${imageGenerationState.imageCount} · ${t('promptTemplateImageFocused')}`;
+    if (imageGenerationState.phase === 'error') return imageGenerationState.message;
+    return '';
+  }, [imageGenerationState, t]);
+  const imageGenerationButtonLabel = imageGenerationBusy
+    ? imageGenerationState.phase === 'queued'
+      ? t('promptTemplateImageQueued')
+      : t('promptTemplateGeneratingImage')
+    : imageGenerationState.phase === 'error'
+      ? t('promptTemplateImageRetry')
+      : t('promptTemplateGenerateImage');
+
+  useEffect(() => {
+    window.localStorage.setItem(IMAGE_GENERATION_PRESETS_STORAGE_KEY, JSON.stringify(savedImagePresets));
+  }, [savedImagePresets]);
+
+  const updateImageGenerationOptions = useCallback((nextOptions: Required<PromptImageGenerationOptions>) => {
+    setImageGenerationOptions(nextOptions);
+    setImageGenerationState({ phase: 'idle' });
+  }, []);
 
   const handleGenerate = async () => {
     if (!template) return;
@@ -179,6 +320,7 @@ export default function PromptTemplatePanel({
   const handleSlotChange = (slotId: string, text: string) => {
     setEditorValues(current => ({ ...current, [slotId]: text }));
     setAssembledPreview(null);
+    setImageGenerationState({ phase: 'idle' });
   };
 
   const handleResetSlot = (slotId: string) => {
@@ -186,11 +328,13 @@ export default function PromptTemplatePanel({
     if (!slot) return;
     setEditorValues(current => ({ ...current, [slotId]: slot.original_text }));
     setAssembledPreview(null);
+    setImageGenerationState({ phase: 'idle' });
   };
 
   const handleAssemble = () => {
     if (!livePreview) return;
     setAssembledPreview(livePreview);
+    setImageGenerationState({ phase: 'idle' });
   };
 
   const handleCopyFinal = async () => {
@@ -210,17 +354,54 @@ export default function PromptTemplatePanel({
       return;
     }
     if (!assembledPreview) setAssembledPreview(nextPreview);
-    setImageGenerating(true);
+    clearImageGenerationTimer();
+    setImageGenerationState({ phase: 'queued' });
+    imageGenerationTimerRef.current = window.setTimeout(() => {
+      setImageGenerationState(current => current.phase === 'queued' ? { phase: 'rendering' } : current);
+      imageGenerationTimerRef.current = null;
+    }, IMAGE_GENERATION_STAGE_DELAY_MS);
     setFeedback(null);
     try {
-      const result = await api.generateImageFromPrompt(itemId, promptText);
+      const result = await api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions);
+      clearImageGenerationTimer();
+      window.localStorage.setItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY, JSON.stringify(imageGenerationOptions));
+      setRecentImageGenerationOptions(imageGenerationOptions);
+      setImageGenerationState({ phase: 'success', imageCount: result.images.length });
       onImageGenerated?.(result);
-      setFeedback({ tone: 'success', message: t('promptTemplateImageReady') });
     } catch (error) {
-      setFeedback({ tone: 'error', message: extractErrorDetail(error) || t('promptTemplateImageUnavailable') });
-    } finally {
-      setImageGenerating(false);
+      clearImageGenerationTimer();
+      const message = extractErrorDetail(error) || t('promptTemplateImageUnavailable');
+      setImageGenerationState({ phase: 'error', message });
+      setFeedback({ tone: 'error', message });
     }
+  };
+
+  const handleApplyImagePreset = (options: Required<PromptImageGenerationOptions>) => {
+    if (imageGenerationBusy) return;
+    updateImageGenerationOptions(options);
+  };
+
+  const handleSaveImagePreset = () => {
+    const nextName = imagePresetName.trim();
+    if (!nextName) {
+      setFeedback({ tone: 'error', message: t('promptTemplateImagePresetNameRequired') });
+      return;
+    }
+    setSavedImagePresets(current => {
+      const nextPreset: SavedImageGenerationPreset = {
+        id: current.find(preset => preset.name.toLowerCase() === nextName.toLowerCase())?.id || `preset-${Date.now()}`,
+        name: nextName,
+        options: imageGenerationOptions,
+      };
+      const filtered = current.filter(preset => preset.id !== nextPreset.id && preset.name.toLowerCase() !== nextName.toLowerCase());
+      return [nextPreset, ...filtered].slice(0, IMAGE_GENERATION_PRESET_LIMIT);
+    });
+    setImagePresetName('');
+    setFeedback({ tone: 'success', message: `${t('promptTemplateImagePresetSaved')} · ${nextName}` });
+  };
+
+  const handleDeleteImagePreset = (presetId: string) => {
+    setSavedImagePresets(current => current.filter(preset => preset.id !== presetId));
   };
 
   const handleApplyVariantChanges = (variant: PromptGenerationVariantRecord) => {
@@ -445,14 +626,137 @@ export default function PromptTemplatePanel({
                 );
               })}
             </div>
+            <section className="prompt-remix-image-config" aria-label={t('promptTemplateImageSettings')}>
+              <div className="prompt-remix-image-config-head">
+                <div>
+                  <h4>{t('promptTemplateImageSettings')}</h4>
+                  <p>{t('promptTemplateImageSettingsHelp')}</p>
+                </div>
+                {imageGenerationState.phase !== 'idle' && (
+                  <span className={`prompt-remix-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
+                    {imageGenerationState.phase === 'success' ? t('promptTemplateImageReady') : imageGenerationStatusText}
+                  </span>
+                )}
+              </div>
+              <div className="prompt-remix-preset-section">
+                <div className="prompt-remix-preset-head">
+                  <strong>{t('promptTemplateImagePresets')}</strong>
+                  <span>{t('promptTemplateImagePresetsHelp')}</span>
+                </div>
+                <div className="prompt-remix-preset-list">
+                  <button
+                    type="button"
+                    className={`prompt-remix-preset-chip ${activePresetId === 'default' ? 'active' : ''}`}
+                    onClick={() => handleApplyImagePreset(DEFAULT_IMAGE_GENERATION_OPTIONS)}
+                    disabled={imageGenerationBusy}
+                  >
+                    <span>{t('promptTemplateImagePresetDefault')}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`prompt-remix-preset-chip ${activePresetId === 'recent' ? 'active' : ''}`}
+                    onClick={() => recentImageGenerationOptions && handleApplyImagePreset(recentImageGenerationOptions)}
+                    disabled={imageGenerationBusy || !hasRecentImagePreset}
+                  >
+                    <span>{t('promptTemplateImagePresetRecent')}</span>
+                  </button>
+                  {savedImagePresets.map(preset => (
+                    <span key={preset.id} className={`prompt-remix-preset-chip ${activePresetId === preset.id ? 'active' : ''}`}>
+                      <button type="button" onClick={() => handleApplyImagePreset(preset.options)} disabled={imageGenerationBusy}>
+                        <span>{preset.name}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="prompt-remix-preset-delete"
+                        onClick={() => handleDeleteImagePreset(preset.id)}
+                        aria-label={`${t('promptTemplateImagePresetDelete')} ${preset.name}`}
+                        disabled={imageGenerationBusy}
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+                <div className="prompt-remix-preset-form">
+                  <input
+                    className="prompt-remix-input"
+                    value={imagePresetName}
+                    onChange={event => setImagePresetName(event.target.value)}
+                    placeholder={t('promptTemplateImagePresetNamePlaceholder')}
+                    maxLength={32}
+                    disabled={imageGenerationBusy}
+                  />
+                  <button type="button" className="secondary" onClick={handleSaveImagePreset} disabled={imageGenerationBusy}>
+                    <span>{t('promptTemplateImagePresetSave')}</span>
+                  </button>
+                </div>
+              </div>
+              <div className="prompt-remix-image-config-grid">
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageAspectRatio')}</span>
+                  <select
+                    className="prompt-remix-select"
+                    value={imageGenerationOptions.aspect_ratio}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, aspect_ratio: event.target.value as Required<PromptImageGenerationOptions>['aspect_ratio'] })}
+                    disabled={imageGenerationBusy}
+                  >
+                    {IMAGE_ASPECT_RATIO_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageResolution')}</span>
+                  <select
+                    className="prompt-remix-select"
+                    value={imageGenerationOptions.resolution}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, resolution: event.target.value as Required<PromptImageGenerationOptions>['resolution'] })}
+                    disabled={imageGenerationBusy}
+                  >
+                    {IMAGE_RESOLUTION_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageStyle')}</span>
+                  <select
+                    className="prompt-remix-select"
+                    value={imageGenerationOptions.style}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, style: event.target.value as Required<PromptImageGenerationOptions>['style'] })}
+                    disabled={imageGenerationBusy}
+                  >
+                    {IMAGE_STYLE_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageCount')}</span>
+                  <select
+                    className="prompt-remix-select"
+                    value={String(imageGenerationOptions.image_count)}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, image_count: Number(event.target.value) })}
+                    disabled={imageGenerationBusy}
+                  >
+                    {[1, 2, 3, 4].map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+              </div>
+              {imageGenerationState.phase !== 'idle' && (
+                <div className={`prompt-remix-image-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
+                  <p>{imageGenerationStatusText}</p>
+                  {imageGenerationState.phase === 'error' && (
+                    <button type="button" className="secondary" onClick={handleGenerateImage}>
+                      <RefreshCcw size={15} />
+                      <span>{t('promptTemplateImageRetry')}</span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </section>
             <div className="prompt-remix-actions">
               <button type="button" className="primary" onClick={handleAssemble}>
                 <Sparkles size={15} />
                 <span>{t('promptTemplateAssemble')}</span>
               </button>
-              <button type="button" className="primary" onClick={handleGenerateImage} disabled={imageGenerating}>
+              <button type="button" className="primary" onClick={handleGenerateImage} disabled={imageGenerationBusy}>
                 <Sparkles size={15} />
-                <span>{imageGenerating ? t('promptTemplateGeneratingImage') : t('promptTemplateGenerateImage')}</span>
+                <span>{imageGenerationButtonLabel}</span>
               </button>
               {assembledPreview && (
                 <button type="button" className="secondary" onClick={handleCopyFinal}>

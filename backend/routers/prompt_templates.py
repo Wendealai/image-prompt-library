@@ -126,7 +126,12 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
     repository = repo(request)
     try:
         item = repository.get_item(item_id)
-        result = generate_images_from_prompt(payload.prompt, item_id=item.id, title=item.title)
+        result = generate_images_from_prompt(
+            payload.prompt,
+            item_id=item.id,
+            title=item.title,
+            generation_options=payload.generation.model_dump(exclude_none=True) if payload.generation else None,
+        )
         created_images = []
         for generated in result.images:
             stored = store_image(request.app.state.library_path, generated.data, generated.filename)
