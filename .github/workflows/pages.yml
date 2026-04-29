@@ -42,16 +42,42 @@ jobs:
           mkdir -p .pages-artifact/${MOBILE_PREVIEW_PATH}
           cp -R frontend/dist/. .pages-artifact/${MOBILE_PREVIEW_PATH}/
       - name: Build archived v0.1 demo
+        id: legacy-demo
         run: |
           git fetch --tags origin
+          if ! git rev-parse --verify --quiet "${LEGACY_DEMO_REF}^{commit}"; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping archived demo because ${LEGACY_DEMO_REF} is unavailable."
+            exit 0
+          fi
+          echo "available=true" >> "$GITHUB_OUTPUT"
           git worktree add .page-build/${LEGACY_DEMO_PATH} ${LEGACY_DEMO_REF}
           cd .page-build/${LEGACY_DEMO_PATH}
           npm install
           VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build
       - name: Stage archived v0.1 demo
+        if: steps.legacy-demo.outputs.available == 'true'
         run: |
           mkdir -p .pages-artifact/${LEGACY_DEMO_PATH}
           cp -R .page-build/${LEGACY_DEMO_PATH}/frontend/dist/. .pages-artifact/${LEGACY_DEMO_PATH}/
+      - name: Write archived v0.1 fallback
+        if: steps.legacy-demo.outputs.available != 'true'
+        run: |
+          mkdir -p .pages-artifact/${LEGACY_DEMO_PATH}
+          cat > .pages-artifact/${LEGACY_DEMO_PATH}/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <meta http-equiv="refresh" content="0; url=../v0.2/" />
+              <title>Archived demo unavailable</title>
+            </head>
+            <body>
+              <p>The archived v0.1 demo is unavailable. Open <a href="../v0.2/">the current preview</a>.</p>
+            </body>
+          </html>
+          HTML
       - name: Write version chooser landing page
         run: |
           cat > .pages-artifact/index.html <<'HTML'
