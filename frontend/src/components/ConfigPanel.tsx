@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
-import { api } from '../api/client';
-import type { AppConfig } from '../types';
+import { Sparkles, X } from 'lucide-react';
+import { api, isDemoMode } from '../api/client';
+import type { AppConfig, PromptTemplateBulkInitResult } from '../types';
 import { UI_LANGUAGE_LABELS, type Translator, type UiLanguage } from '../utils/i18n';
 import { PROMPT_LANGUAGE_LABELS, type PromptLanguage } from '../utils/prompts';
 
@@ -13,6 +13,21 @@ const GLOBAL_BUDGET_STEP = 5;
 const FOCUS_BUDGET_MIN = 24;
 const FOCUS_BUDGET_MAX = 100;
 const FOCUS_BUDGET_STEP = 4;
+
+function extractErrorDetail(error: unknown): string {
+  if (!(error instanceof Error)) return '';
+  let message = error.message.trim();
+  if (!message) return '';
+  try {
+    const parsed = JSON.parse(message);
+    if (parsed && typeof parsed === 'object' && 'detail' in parsed && parsed.detail) {
+      message = String(parsed.detail).trim();
+    }
+  } catch {
+    // Keep raw error text when the payload is not JSON.
+  }
+  return message;
+}
 
 export default function ConfigPanel({
   open,
@@ -40,10 +55,27 @@ export default function ConfigPanel({
   onFocusThumbnailBudget: (budget: number) => void;
 }) {
   const [cfg, setCfg] = useState<AppConfig>();
+  const [bulkRunning, setBulkRunning] = useState(false);
+  const [bulkResult, setBulkResult] = useState<PromptTemplateBulkInitResult>();
+  const [bulkError, setBulkError] = useState('');
 
   useEffect(() => {
     if (open) api.config().then(setCfg).catch(() => undefined);
   }, [open]);
+
+  const runMissingPromptTemplates = async () => {
+    setBulkRunning(true);
+    setBulkError('');
+    setBulkResult(undefined);
+    try {
+      const result = await api.bulkInitPromptTemplates({ mode: 'missing', limit: 500 });
+      setBulkResult(result);
+    } catch (error) {
+      setBulkError(extractErrorDetail(error) || t('promptTemplateBulkUnavailable'));
+    } finally {
+      setBulkRunning(false);
+    }
+  };
 
   return (
     <aside className={`config drawer ${open ? 'open' : ''}`}>
@@ -117,6 +149,22 @@ export default function ConfigPanel({
           onChange={event => onFocusThumbnailBudget(Number(event.currentTarget.value))}
         />
         <div className="range-ticks"><span>{t('compact')}</span><span>{t('gallery')}</span><span>{t('full')}</span></div>
+      </section>
+
+      <section className="setting-group">
+        <h3>{t('promptTemplateBulk')}</h3>
+        <p className="muted">{t('promptTemplateBulkHelp')}</p>
+        <button className="primary setting-action" onClick={runMissingPromptTemplates} disabled={bulkRunning || isDemoMode}>
+          <Sparkles size={16} />
+          <span>{bulkRunning ? t('promptTemplateBulkRunning') : t('promptTemplateBulkRunMissing')}</span>
+        </button>
+        {bulkResult && (
+          <p className={`setting-feedback ${bulkResult.failed_count ? 'error' : 'success'}`}>
+            {t('promptTemplateBulkResult')}: {bulkResult.processed_count}/{bulkResult.total_candidates}
+            {bulkResult.failed_count ? ` · ${t('promptTemplateBulkFailed')}: ${bulkResult.failed_count}` : ''}
+          </p>
+        )}
+        {bulkError && <p className="setting-feedback error">{bulkError}</p>}
       </section>
 
       <p>{t('libraryPath')}: <code>{cfg?.library_path}</code></p>

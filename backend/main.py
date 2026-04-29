@@ -7,6 +7,13 @@ from .db import get_db_path, init_db
 from .routers import clusters, images, intake, items, prompt_templates, tags
 
 DEFAULT_FRONTEND_DIST_PATH = Path(__file__).resolve().parents[1] / "frontend" / "dist"
+IMAGE_MEDIA_TYPES = {
+    ".gif": "image/gif",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".webp": "image/webp",
+}
 
 
 def create_app(library_path: Path | str | None = None, frontend_dist_path: Path | str | None = None) -> FastAPI:
@@ -44,7 +51,7 @@ def create_app(library_path: Path | str | None = None, frontend_dist_path: Path 
             raise HTTPException(status_code=404) from exc
         if not candidate.is_file():
             raise HTTPException(status_code=404)
-        return FileResponse(candidate)
+        return FileResponse(candidate, media_type=IMAGE_MEDIA_TYPES.get(candidate.suffix.lower()))
 
     def serve_frontend_path(frontend_path: str = ""):
         if frontend_path == "api" or frontend_path.startswith("api/"):

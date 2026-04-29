@@ -218,6 +218,12 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert ".prompt-remix-segment.is-changed{" in compact_css
 
 
+def test_detail_modal_calls_all_hooks_before_closed_state_return():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    assert detail.index("useEffect(() => {\n    imageViewerScaleRef.current = imageViewerScale;") < detail.index("if (!id) return null;")
+    assert detail.index("useEffect(() => {\n    setSelectedImageIdentity") < detail.index("if (!id) return null;")
+
+
 def test_topbar_uses_attached_header_logo_branding():
     topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()

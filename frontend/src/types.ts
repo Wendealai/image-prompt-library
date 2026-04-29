@@ -8,6 +8,10 @@ export interface PromptGenerationVariantRecord { id: string; session_id: string;
 export interface PromptGenerationSessionRecord { id: string; template_id: string; item_id: string; theme_keyword: string; accepted_variant_id?: string; created_at: string; updated_at: string; variants: PromptGenerationVariantRecord[] }
 export interface PromptTemplateRecord { id: string; item_id: string; source_language: string; raw_text_snapshot: string; marked_text: string; slots: PromptTemplateSlot[]; status: string; analysis_confidence?: number; analysis_notes?: string; created_at: string; updated_at: string }
 export interface PromptTemplateBundle { template?: PromptTemplateRecord; sessions: PromptGenerationSessionRecord[] }
+export type PromptTemplateBulkInitMode = 'missing' | 'stale' | 'all';
+export interface PromptTemplateBulkInitRequest { mode?: PromptTemplateBulkInitMode; language?: string; limit?: number; dry_run?: boolean }
+export interface PromptTemplateBulkInitItemResult { item_id: string; title: string; status: string; template_id?: string; slot_count: number; detail?: string }
+export interface PromptTemplateBulkInitResult { mode: PromptTemplateBulkInitMode; dry_run: boolean; total_candidates: number; processed_count: number; skipped_count: number; failed_count: number; results: PromptTemplateBulkInitItemResult[] }
 export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; role?: UploadImageRole }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }

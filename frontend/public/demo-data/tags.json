@@ -1,80 +1,428 @@
 [
   {
-    "id": "tag_20c12a5f91c7419a",
+    "id": "tag_fa04fca8167a4f09",
+    "name": "3d_map",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_465abcb5f0854e67",
+    "name": "aidavid125",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7cd58eee5bdb433b",
+    "name": "annotation",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d32646157b254cec",
     "name": "architecture-interiors",
     "kind": "general",
     "count": 7
   },
   {
-    "id": "tag_d4008beb95264c84",
+    "id": "tag_403b325dcf7041cd",
     "name": "art-illustration",
     "kind": "general",
     "count": 16
   },
   {
-    "id": "tag_f9018835f4444f36",
+    "id": "tag_2f4363e4db164ece",
+    "name": "awesome_gpt_image_2",
+    "kind": "general",
+    "count": 52
+  },
+  {
+    "id": "tag_7131f78d9b154ee0",
+    "name": "awesome_gpt_image_2_part_2",
+    "kind": "general",
+    "count": 52
+  },
+  {
+    "id": "tag_31807869305749a6",
+    "name": "blueprint",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cd8d49414f60490c",
+    "name": "brand-logo",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_0602150ffd7c4b24",
+    "name": "characters",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_8b1bbd3be3674c14",
     "name": "characters-anime",
     "kind": "general",
     "count": 26
   },
   {
-    "id": "tag_6897eea187bf4e91",
+    "id": "tag_469f61ee75e24b37",
+    "name": "chatgpt",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_e73ed728ed954690",
     "name": "cinematic-storytelling",
     "kind": "general",
     "count": 16
   },
   {
-    "id": "tag_b4824f79b4b54f6f",
+    "id": "tag_b889e7e827654c80",
+    "name": "comic_illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_06eef2deb94d4977",
+    "name": "context_aware_text",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_dde29302ecbb41d3",
+    "name": "country_variable",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8a74926503d94f48",
+    "name": "cross_section",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_66f318244ac145f4",
+    "name": "cuisine_adaptive_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8a1363d2ce5a4296",
+    "name": "cutaway",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4989621f47594070",
     "name": "design-typography",
     "kind": "general",
     "count": 23
   },
   {
-    "id": "tag_3a8fd45a03504c45",
+    "id": "tag_473e99d6b72f4596",
+    "name": "editorial_cover",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_47db5c80ce874fab",
     "name": "education-infographics",
     "kind": "general",
     "count": 16
   },
   {
-    "id": "tag_43dad4db86c2476c",
+    "id": "tag_a8ebb19ff82f495a",
     "name": "fashion-lifestyle",
     "kind": "general",
     "count": 9
   },
   {
-    "id": "tag_d0d97c2aee414faf",
+    "id": "tag_8b19b0dc7f7049ee",
+    "name": "fashion_portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_ca0a781505894ffa",
+    "name": "formula_prompt",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9145e62200134e39",
     "name": "full_catalog",
     "kind": "general",
     "count": 162
   },
   {
-    "id": "tag_120ada9d335c46de",
+    "id": "tag_c7dbc498763b4931",
+    "name": "gadgetify",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4b5e832377564cd4",
+    "name": "gpt_image_2",
+    "kind": "general",
+    "count": 5
+  },
+  {
+    "id": "tag_ac321b865cbb447c",
     "name": "gpt_image_2_skill",
     "kind": "general",
     "count": 162
   },
   {
-    "id": "tag_b23d6ea3393e4005",
+    "id": "tag_24d4260705e0486e",
+    "name": "hand_drawn_doodles",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_98ea93f829dc4045",
+    "name": "health_guardrails",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_463d306847434c56",
+    "name": "historical-classical",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_753aa1728044497d",
+    "name": "hooeem",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_220ea6f55d2946b7",
+    "name": "illustration-art",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_2f22d8a49db34610",
+    "name": "image_editing",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_008372d23259438c",
+    "name": "infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c71b52f0032a43ad",
+    "name": "infographic-visualization",
+    "kind": "general",
+    "count": 12
+  },
+  {
+    "id": "tag_14f51eb85a6d49bb",
+    "name": "ink_wash",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f9f604ff981147ad",
+    "name": "macro_calculator",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_771ef6199f8d499f",
+    "name": "magazine_cover",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6057463e86274d45",
+    "name": "meal_planning",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6116bec9090448c7",
+    "name": "midjourney_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0034e49bb80d49a9",
+    "name": "naiknelofar788",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_424c0390cfb9466d",
+    "name": "nano_banana_pro",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4598abb963aa43e7",
+    "name": "nutrition",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8abab4d8f3a640d2",
+    "name": "object_variable",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f797e393b5914d70",
+    "name": "oggii_0",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_98ddfb15f1fe4901",
+    "name": "oriental_aesthetic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1d91f02b0b5e4d57",
+    "name": "personalized_recipe",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_5ad60b83265b441e",
     "name": "photo-real-world",
     "kind": "general",
     "count": 10
   },
   {
-    "id": "tag_e25e01e50059483d",
-    "name": "sample",
+    "id": "tag_ce0a6188b63340c5",
+    "name": "photo_overlay",
     "kind": "general",
-    "count": 162
+    "count": 1
   },
   {
-    "id": "tag_0a7785767ea14c2a",
+    "id": "tag_af505da42a2040e1",
+    "name": "photography-realism",
+    "kind": "general",
+    "count": 11
+  },
+  {
+    "id": "tag_1aca6991ea924e01",
+    "name": "poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b18cd35e78d0425b",
+    "name": "poster-typography",
+    "kind": "general",
+    "count": 7
+  },
+  {
+    "id": "tag_4717188292034092",
+    "name": "poster_typography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9b62e240ca754fd2",
+    "name": "product-ecommerce",
+    "kind": "general",
+    "count": 6
+  },
+  {
+    "id": "tag_1835a91235b04479",
+    "name": "recipe_infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_883b23a76b7248fa",
+    "name": "route_map",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2f361c9914634a73",
+    "name": "sample",
+    "kind": "general",
+    "count": 214
+  },
+  {
+    "id": "tag_0939053b28184516",
+    "name": "scene-narrative",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_b54063bc0f2f4bb1",
+    "name": "social_media_ready",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f4797a2f951b4659",
+    "name": "table_driven_prompt",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d324db160f12421f",
+    "name": "tapnow",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_90507f3fdaa94438",
+    "name": "techiebysa",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1cb228de13924cce",
     "name": "technical-research",
     "kind": "general",
     "count": 31
   },
   {
-    "id": "tag_b23a548f7c404e89",
+    "id": "tag_7388911a20a449d7",
+    "name": "technical_diagram",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2ffc54be94484c49",
+    "name": "travel_guide",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9d0ba307c58b4751",
+    "name": "travel_infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1fbf1cb8c4144aac",
     "name": "ui-brand-product",
     "kind": "general",
     "count": 8
+  },
+  {
+    "id": "tag_3883e7e5ddee4584",
+    "name": "ui-interface",
+    "kind": "general",
+    "count": 4
+  },
+  {
+    "id": "tag_1ae9a1bbda8f4ec8",
+    "name": "x_import",
+    "kind": "general",
+    "count": 6
   }
 ]

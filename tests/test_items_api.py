@@ -107,6 +107,21 @@ def test_media_route_does_not_expose_database(tmp_path):
     assert c.get("/media/db.sqlite").status_code == 404
 
 
+def test_media_route_serves_webp_with_image_mime_type(tmp_path):
+    c = client(tmp_path)
+    created = c.post("/api/items", json=create_payload()).json()
+    c.post(
+        f"/api/items/{created['id']}/images",
+        data={"role": "result_image"},
+        files={"file": ("result.png", png_bytes(), "image/png")},
+    )
+    detail = c.get(f"/api/items/{created['id']}").json()
+    response = c.get(f"/media/{detail['first_image']['thumb_path']}")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("image/webp")
+
+
 def test_media_route_does_not_follow_allowed_dir_symlink_to_database(tmp_path):
     c = client(tmp_path)
     c.post("/api/items", json=create_payload())

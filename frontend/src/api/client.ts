@@ -1,4 +1,4 @@
-import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptTemplateBundle, TagRecord, UploadImageRole } from '../types';
+import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -96,6 +96,7 @@ export const api = isDemoMode ? {
   fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   promptTemplate: (_itemId: string) => demoAiUnavailable(),
   initPromptTemplate: (_itemId: string, _language?: string) => demoAiUnavailable(),
+  bulkInitPromptTemplates: (_payload: PromptTemplateBulkInitRequest = {}) => demoAiUnavailable(),
   generatePromptVariant: (_templateId: string, _themeKeyword: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   rerollPromptVariant: (_sessionId: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
@@ -115,6 +116,7 @@ export const api = isDemoMode ? {
   fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url)),
   promptTemplate: (itemId: string) => json<PromptTemplateBundle>(`/api/items/${itemId}/prompt-template`),
   initPromptTemplate: (itemId: string, language?: string) => json<PromptTemplateBundle>(`/api/items/${itemId}/prompt-template/init`, { method: 'POST', body: JSON.stringify(language ? { language } : {}) }),
+  bulkInitPromptTemplates: (payload: PromptTemplateBulkInitRequest = {}) => json<PromptTemplateBulkInitResult>('/api/prompt-templates/bulk-init', { method: 'POST', body: JSON.stringify(payload) }),
   generatePromptVariant: (templateId: string, themeKeyword: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/templates/${templateId}/generate`, { method: 'POST', body: JSON.stringify({ theme_keyword: themeKeyword, rejected_variant_ids: rejectedVariantIds }) }),
   rerollPromptVariant: (sessionId: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/generation-sessions/${sessionId}/reroll`, { method: 'POST', body: JSON.stringify({ rejected_variant_ids: rejectedVariantIds }) }),
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),

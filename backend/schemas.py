@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Literal, Optional
 from pydantic import BaseModel, Field, ConfigDict
 
 class PromptIn(BaseModel):
@@ -70,6 +70,29 @@ class PromptGenerationSessionRecord(BaseModel):
 class PromptTemplateBundle(BaseModel):
     template: Optional[PromptTemplateRecord] = None
     sessions: List[PromptGenerationSessionRecord] = Field(default_factory=list)
+
+class PromptTemplateBulkInitRequest(BaseModel):
+    mode: Literal["missing", "stale", "all"] = "missing"
+    language: Optional[str] = None
+    limit: int = Field(default=100, ge=1, le=500)
+    dry_run: bool = False
+
+class PromptTemplateBulkInitItemResult(BaseModel):
+    item_id: str
+    title: str
+    status: str
+    template_id: Optional[str] = None
+    slot_count: int = 0
+    detail: Optional[str] = None
+
+class PromptTemplateBulkInitResult(BaseModel):
+    mode: str
+    dry_run: bool
+    total_candidates: int
+    processed_count: int = 0
+    skipped_count: int = 0
+    failed_count: int = 0
+    results: List[PromptTemplateBulkInitItemResult] = Field(default_factory=list)
 
 class ImageRecord(BaseModel):
     id: str

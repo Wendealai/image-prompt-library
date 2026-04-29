@@ -281,6 +281,43 @@ class ItemRepository:
             sessions = self._prompt_generation_sessions(conn, template.id, limit=session_limit) if template else []
             return PromptTemplateBundle(template=template, sessions=sessions)
 
+    def _prompt_template_init_candidate_clause(self, mode: str) -> str:
+        if mode == "missing":
+            return "pt.id IS NULL"
+        if mode == "stale":
+            return "pt.status='stale'"
+        if mode == "all":
+            return "1=1"
+        raise ValueError(f"Unsupported prompt template init mode: {mode}")
+
+    def count_prompt_template_init_candidates(self, mode: str = "missing") -> int:
+        mode_clause = self._prompt_template_init_candidate_clause(mode)
+        with connect(self.library_path) as conn:
+            return conn.execute(
+                f"""SELECT COUNT(*)
+                FROM items i
+                LEFT JOIN prompt_templates pt ON pt.item_id=i.id
+                WHERE i.archived=0
+                  AND EXISTS (SELECT 1 FROM prompts p WHERE p.item_id=i.id AND TRIM(p.text) <> '')
+                  AND {mode_clause}"""
+            ).fetchone()[0]
+
+    def list_prompt_template_init_candidates(self, mode: str = "missing", limit: int = 100) -> list[dict[str, str | None]]:
+        mode_clause = self._prompt_template_init_candidate_clause(mode)
+        with connect(self.library_path) as conn:
+            rows = conn.execute(
+                f"""SELECT i.id item_id, i.title, pt.id template_id, pt.status template_status
+                FROM items i
+                LEFT JOIN prompt_templates pt ON pt.item_id=i.id
+                WHERE i.archived=0
+                  AND EXISTS (SELECT 1 FROM prompts p WHERE p.item_id=i.id AND TRIM(p.text) <> '')
+                  AND {mode_clause}
+                ORDER BY i.updated_at ASC, i.created_at ASC
+                LIMIT ?""",
+                (limit,),
+            ).fetchall()
+            return [dict(row) for row in rows]
+
     def get_prompt_template_by_id(self, template_id: str) -> PromptTemplateRecord:
         with connect(self.library_path) as conn:
             row = conn.execute("SELECT item_id FROM prompt_templates WHERE id=?", (template_id,)).fetchone()
