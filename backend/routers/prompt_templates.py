@@ -3,8 +3,10 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query, Request
 
 from backend.admin_auth import require_admin
-from backend.repositories import ItemRepository
-from backend.schemas import PromptGenerationSessionRecord, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.repositories import ItemRepository, StoredImageInput
+from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.services.image_generation import ImageGenerationError, ImageGenerationUnavailable, generate_images_from_prompt
+from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
 from backend.services.prompt_markup import PromptMarkupError, normalize_slot_values, render_marked_text, validate_marked_prompt
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
@@ -25,6 +27,10 @@ def _normalize_theme_keyword(raw_value: str) -> str:
 
 def _not_found(exc: KeyError):
     raise HTTPException(status_code=404, detail="Prompt template resource not found.") from exc
+
+
+def _item_not_found(exc: KeyError):
+    raise HTTPException(status_code=404, detail="Item not found.") from exc
 
 
 def _record_workflow_failure_sample(request: Request, exc: Exception, *, operation: str, context: dict | None = None) -> str | None:
@@ -113,6 +119,45 @@ def get_admin_prompt_template(request: Request, item_id: str):
         return repo(request).get_prompt_template_bundle(item_id)
     except KeyError as exc:
         _not_found(exc)
+
+
+@router.post("/items/{item_id}/generate-image", response_model=PromptImageGenerationResponse)
+def generate_image_from_prompt(request: Request, item_id: str, payload: PromptImageGenerateRequest):
+    repository = repo(request)
+    try:
+        item = repository.get_item(item_id)
+        result = generate_images_from_prompt(payload.prompt, item_id=item.id, title=item.title)
+        created_images = []
+        for generated in result.images:
+            stored = store_image(request.app.state.library_path, generated.data, generated.filename)
+            created_images.append(repository.add_image(
+                item.id,
+                StoredImageInput(
+                    original_path=stored.original_path,
+                    thumb_path=stored.thumb_path,
+                    preview_path=stored.preview_path,
+                    remote_url=generated.remote_url,
+                    width=stored.width,
+                    height=stored.height,
+                    file_sha256=stored.file_sha256,
+                    role="result_image",
+                ),
+            ))
+        return PromptImageGenerationResponse(
+            status=result.status or "completed",
+            prompt=payload.prompt.strip(),
+            job_id=result.job_id,
+            images=created_images,
+            item=repository.get_item(item_id),
+        )
+    except KeyError as exc:
+        _item_not_found(exc)
+    except ImageGenerationUnavailable as exc:
+        raise HTTPException(status_code=503, detail="AI image generation workflow is not configured.") from exc
+    except ImageGenerationError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.post("/admin/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)

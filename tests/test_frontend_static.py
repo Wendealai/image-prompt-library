@@ -207,7 +207,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
     assert "PromptTemplatePanel" in detail
-    assert "<PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />" in detail
+    assert "<PromptTemplatePanel" in detail
+    assert "onImageGenerated={result => {" in detail
     assert "api.promptTemplate(itemId)" in panel
     assert "api.initPromptTemplate(itemId)" not in panel
     assert "api.generatePromptVariant(template.id, nextKeyword)" in panel
@@ -242,6 +243,10 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateSlotEditor" in panel
     assert "promptTemplateAssemble" in panel
     assert "promptTemplateCopyFinal" in panel
+    assert "handleGenerateImage" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText)" in panel
+    assert "promptTemplateGenerateImage" in panel
+    assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
     assert "adminInitPromptTemplate: (itemId: string, language?: string)" in client
@@ -249,6 +254,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string)" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -258,6 +264,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateManualEdits" in i18n
     assert "promptTemplateAssemble" in i18n
     assert "promptTemplateCopyFinal" in i18n
+    assert "promptTemplateGenerateImage" in i18n
+    assert "promptTemplateGeneratingImage" in i18n
     assert "export function buildSlotValueRecord" in prompt_template_utils
     assert "if (loading || !template) return null;" in panel
     assert "prompt-remix-init" not in panel

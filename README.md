@@ -149,6 +149,31 @@ IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS=45
 
 If you set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN`, export the same token before running `./scripts/sync-n8n-prompt-workflows.sh` so the auth gate is embedded into the synced n8n workflows.
 
+If you also want the public prompt panel to generate images directly from the finalized prompt, configure the image-generation webhooks as well:
+
+```bash
+IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL=
+IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL=
+IMAGE_PROMPT_LIBRARY_IMAGE_WORKFLOW_TOKEN=
+IMAGE_PROMPT_LIBRARY_IMAGE_WORKFLOW_TOKEN_HEADER=X-N8N-Token
+IMAGE_PROMPT_LIBRARY_IMAGE_TIMEOUT_SECONDS=60
+IMAGE_PROMPT_LIBRARY_IMAGE_POLL_INTERVAL_SECONDS=2
+IMAGE_PROMPT_LIBRARY_IMAGE_POLL_TIMEOUT_SECONDS=150
+IMAGE_PROMPT_LIBRARY_IMAGE_PROVIDER=openai
+IMAGE_PROMPT_LIBRARY_IMAGE_MODEL=gpt-5.4-mini
+IMAGE_PROMPT_LIBRARY_IMAGE_TOOL_MODEL=gpt-image-2
+IMAGE_PROMPT_LIBRARY_IMAGE_RESOLUTION=1024x1024
+IMAGE_PROMPT_LIBRARY_IMAGE_ASPECT_RATIO=1:1
+IMAGE_PROMPT_LIBRARY_IMAGE_QUALITY=high
+IMAGE_PROMPT_LIBRARY_IMAGE_OUTPUT_FORMAT=png
+IMAGE_PROMPT_LIBRARY_IMAGE_BACKGROUND=auto
+IMAGE_PROMPT_LIBRARY_IMAGE_STYLE=auto
+IMAGE_PROMPT_LIBRARY_IMAGE_TEMPERATURE=0.7
+IMAGE_PROMPT_LIBRARY_IMAGE_COUNT=1
+```
+
+The app accepts both sync image responses and `jobId` + polling mode from the existing `img-generate-submit` / `img-job-status` n8n workflows. Generated images are downloaded back into `IMAGE_PROMPT_LIBRARY_PATH` and attached to the current case automatically.
+
 You can sync the bundled n8n workflows into your instance with:
 
 ```bash

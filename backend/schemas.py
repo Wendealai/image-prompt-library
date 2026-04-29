@@ -238,6 +238,13 @@ class ItemDetail(ItemSummary):
     notes: Optional[str] = None
     author: Optional[str] = None
 
+class PromptImageGenerationResponse(BaseModel):
+    status: str = "completed"
+    prompt: str
+    job_id: Optional[str] = None
+    images: List[ImageRecord] = Field(default_factory=list)
+    item: ItemDetail
+
 class ItemList(BaseModel):
     items: List[ItemSummary]
     total: int
@@ -253,6 +260,9 @@ class PromptTemplateGenerateRequest(BaseModel):
 
 class PromptTemplateRerollRequest(BaseModel):
     rejected_variant_ids: List[str] = Field(default_factory=list)
+
+class PromptImageGenerateRequest(BaseModel):
+    prompt: str
 
 class ImportResult(BaseModel):
     id: str

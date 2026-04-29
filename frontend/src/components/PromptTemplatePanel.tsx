@@ -3,7 +3,7 @@ import { Copy, RefreshCcw, Sparkles } from 'lucide-react';
 import { api } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
-import type { PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptRenderSegment, PromptTemplateBundle } from '../types';
+import type { PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationResponse, PromptRenderSegment, PromptTemplateBundle } from '../types';
 import type { Translator } from '../utils/i18n';
 
 type LocalPromptPreview = {
@@ -43,10 +43,12 @@ export default function PromptTemplatePanel({
   itemId,
   t,
   onCopyResult,
+  onImageGenerated,
 }: {
   itemId: string;
   t: Translator;
   onCopyResult: (success: boolean) => void;
+  onImageGenerated?: (result: PromptImageGenerationResponse) => void;
 }) {
   const [bundle, setBundle] = useState<PromptTemplateBundle | null>(null);
   const [loading, setLoading] = useState(true);
@@ -54,6 +56,7 @@ export default function PromptTemplatePanel({
   const [feedback, setFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const [generating, setGenerating] = useState(false);
   const [rerolling, setRerolling] = useState(false);
+  const [imageGenerating, setImageGenerating] = useState(false);
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
   const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({});
   const [editingVariantId, setEditingVariantId] = useState('original');
@@ -197,6 +200,27 @@ export default function PromptTemplatePanel({
     const copied = await copyTextToClipboard(nextPreview.renderedText);
     onCopyResult(copied);
     if (!copied) setFeedback({ tone: 'error', message: t('copyFailed') });
+  };
+
+  const handleGenerateImage = async () => {
+    const nextPreview = assembledPreview || livePreview;
+    const promptText = nextPreview?.renderedText.trim() || '';
+    if (!promptText) {
+      setFeedback({ tone: 'error', message: t('promptTemplateFinalPromptRequired') });
+      return;
+    }
+    if (!assembledPreview) setAssembledPreview(nextPreview);
+    setImageGenerating(true);
+    setFeedback(null);
+    try {
+      const result = await api.generateImageFromPrompt(itemId, promptText);
+      onImageGenerated?.(result);
+      setFeedback({ tone: 'success', message: t('promptTemplateImageReady') });
+    } catch (error) {
+      setFeedback({ tone: 'error', message: extractErrorDetail(error) || t('promptTemplateImageUnavailable') });
+    } finally {
+      setImageGenerating(false);
+    }
   };
 
   const handleApplyVariantChanges = (variant: PromptGenerationVariantRecord) => {
@@ -425,6 +449,10 @@ export default function PromptTemplatePanel({
               <button type="button" className="primary" onClick={handleAssemble}>
                 <Sparkles size={15} />
                 <span>{t('promptTemplateAssemble')}</span>
+              </button>
+              <button type="button" className="primary" onClick={handleGenerateImage} disabled={imageGenerating}>
+                <Sparkles size={15} />
+                <span>{imageGenerating ? t('promptTemplateGeneratingImage') : t('promptTemplateGenerateImage')}</span>
               </button>
               {assembledPreview && (
                 <button type="button" className="secondary" onClick={handleCopyFinal}>

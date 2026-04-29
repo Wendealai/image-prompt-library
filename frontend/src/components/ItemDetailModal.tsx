@@ -227,14 +227,18 @@ export default function ItemDetailModal({
   const prompt = item?.prompts.find(promptRecord => promptRecord.language === lang);
   const resolvedPrompt = resolvePromptRecord(availablePromptRecords, lang, preferredLanguage);
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
-  const uniqueImages = dedupeImages(item?.images || []);
+  const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
   useEffect(() => {
-    setSelectedImageIdentity(primaryImage ? getImageIdentity(primaryImage) : undefined);
+    const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
+    setSelectedImageIdentity(current => {
+      if (current && availableImageIdentities.has(current)) return current;
+      return primaryImage ? getImageIdentity(primaryImage) : undefined;
+    });
     setImageViewerOpen(false);
     setImageViewerScale(1);
-  }, [item?.id, primaryImage?.id, primaryImage?.original_path, primaryImage?.preview_path, primaryImage?.thumb_path]);
+  }, [item?.id, uniqueImages, primaryImage?.id, primaryImage?.original_path, primaryImage?.preview_path, primaryImage?.thumb_path]);
   useEffect(() => {
     imageViewerScaleRef.current = imageViewerScale;
   }, [imageViewerScale]);
@@ -512,7 +516,17 @@ export default function ItemDetailModal({
                   })()}
                 </div>
 
-                <PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />
+                <PromptTemplatePanel
+                  itemId={item.id}
+                  t={t}
+                  onCopyResult={onCopyPrompt}
+                  onImageGenerated={result => {
+                    setItem(result.item);
+                    const newestImage = result.images[result.images.length - 1];
+                    if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                    onChanged();
+                  }}
+                />
 
                 <InlineEditableTextArea className="notes-inline-edit" value={item.notes || ''} placeholder={t('addNote')} onCommit={value => commitInlineUpdate({ notes: value.trim() || null })} editable={showMutations} />
 
