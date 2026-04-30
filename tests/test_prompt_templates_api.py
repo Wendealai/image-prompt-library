@@ -16,6 +16,9 @@ MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core"
 def _create_item(repo: ItemRepository) -> str:
     item = repo.create_item(ItemCreate(
         title='Midnight Noodles',
+        source_url='https://example.test/midnight-noodles',
+        author='Fixture Author',
+        notes='Fixture notes',
         prompts=[PromptIn(language='en', text='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.', is_primary=True)],
     ))
     return item.id
@@ -41,7 +44,10 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     item_id = _create_item(repo)
 
     def fake_init_prompt_template(**kwargs):
-        assert kwargs['item_id'] == item_id
+        assert kwargs['item'].id == item_id
+        assert kwargs['item'].source_url == 'https://example.test/midnight-noodles'
+        assert kwargs['item'].author == 'Fixture Author'
+        assert kwargs['item'].notes == 'Fixture notes'
         assert kwargs['source_language'] == 'en'
         return {
             'marked_text': MARKED_TEXT,
@@ -68,6 +74,9 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     ])
 
     def fake_generate_prompt_variant(**kwargs):
+        assert kwargs['item'].id == item_id
+        assert kwargs['item'].title == 'Midnight Noodles'
+        assert kwargs['item'].source_url == 'https://example.test/midnight-noodles'
         return next(responses)
 
     monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
@@ -115,6 +124,7 @@ def test_prompt_template_init_prefers_simplified_source_when_traditional_is_auto
     ))
 
     def fake_init_prompt_template(**kwargs):
+        assert kwargs['item'].id == item.id
         assert kwargs['source_language'] == 'zh_hans'
         return {
             'marked_text': _mark_first_word(kwargs['raw_text']),
@@ -191,7 +201,7 @@ def test_bulk_prompt_template_init_processes_missing_templates_only(tmp_path: Pa
     initialized_ids: list[str] = []
 
     def fake_init_prompt_template(**kwargs):
-        initialized_ids.append(kwargs['item_id'])
+        initialized_ids.append(kwargs['item'].id)
         return {
             'marked_text': _mark_first_word(kwargs['raw_text']),
             'analysis_confidence': 0.93,

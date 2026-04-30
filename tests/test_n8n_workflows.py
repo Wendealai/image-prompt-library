@@ -38,3 +38,45 @@ def test_prompt_template_workflows_include_auth_gate(filename: str, webhook_name
     assert workflow['connections'][auth_name]['main'][0][0]['node'] == prepare_name
     assert 'const expectedToken = "";' in auth_code
     assert 'X-Image-Prompt-Workflow-Token' in auth_code
+
+
+@pytest.mark.parametrize(
+    ('filename', 'prepare_name', 'required_snippets'),
+    [
+        (
+            'prompt-template-init.workflow.json',
+            'Prepare Prompt Template Init Payload',
+            [
+                'defaultImportSkillUrl',
+                'Default import skill URL:',
+                'Apply the synced default import skill URL above as background import guidance.',
+                'Source URL:',
+                'Author:',
+                'Item notes:',
+            ],
+        ),
+        (
+            'prompt-template-generate.workflow.json',
+            'Prepare Prompt Template Generate Payload',
+            [
+                'defaultImportSkillUrl',
+                'Default import skill URL:',
+                'Apply the synced default import skill URL above as background rewrite guidance.',
+                'Source URL:',
+                'Author:',
+                'Item notes:',
+            ],
+        ),
+    ],
+)
+def test_prompt_template_workflows_include_default_import_skill_context(
+    filename: str,
+    prepare_name: str,
+    required_snippets: list[str],
+):
+    workflow = json.loads((N8N_DIR / filename).read_text(encoding='utf-8'))
+    prepare_node = next(node for node in workflow['nodes'] if node['name'] == prepare_name)
+    prepare_code = prepare_node['parameters']['jsCode']
+
+    for snippet in required_snippets:
+        assert snippet in prepare_code

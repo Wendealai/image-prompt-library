@@ -5,7 +5,8 @@ from typing import Any
 
 import httpx
 
-from backend.schemas import PromptGenerationVariantRecord, PromptTemplateRecord
+from backend.config import default_link_import_skill_url
+from backend.schemas import ItemDetail, PromptGenerationVariantRecord, PromptTemplateRecord
 
 INIT_URL_ENV = "IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL"
 GENERATE_URL_ENV = "IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL"
@@ -68,13 +69,27 @@ def _post_json(url: str, payload: dict[str, Any]) -> dict[str, Any]:
     return payload
 
 
-def initialize_prompt_template(*, item_id: str, title: str, model: str, source_language: str, raw_text: str) -> dict[str, Any]:
+def _item_payload(item: ItemDetail) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "id": item.id,
+        "title": item.title,
+        "model": item.model,
+    }
+    if item.source_url:
+        payload["sourceUrl"] = item.source_url
+    if item.author:
+        payload["author"] = item.author
+    if item.notes:
+        payload["notes"] = item.notes
+    default_skill_url = default_link_import_skill_url()
+    if default_skill_url:
+        payload["defaultImportSkillUrl"] = default_skill_url
+    return payload
+
+
+def initialize_prompt_template(*, item: ItemDetail, source_language: str, raw_text: str) -> dict[str, Any]:
     payload = {
-        "item": {
-            "id": item_id,
-            "title": title,
-            "model": model,
-        },
+        "item": _item_payload(item),
         "prompt": {
             "language": source_language,
             "text": raw_text,
@@ -92,8 +107,15 @@ def initialize_prompt_template(*, item_id: str, title: str, model: str, source_l
     }
 
 
-def generate_prompt_variant(*, template: PromptTemplateRecord, theme_keyword: str, previous_variants: list[PromptGenerationVariantRecord]) -> dict[str, Any]:
+def generate_prompt_variant(
+    *,
+    template: PromptTemplateRecord,
+    item: ItemDetail,
+    theme_keyword: str,
+    previous_variants: list[PromptGenerationVariantRecord],
+) -> dict[str, Any]:
     payload = {
+        "item": _item_payload(item),
         "template": {
             "id": template.id,
             "itemId": template.item_id,

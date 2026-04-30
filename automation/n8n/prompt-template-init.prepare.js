@@ -5,6 +5,10 @@ const prompt = body.prompt && typeof body.prompt === 'object' ? body.prompt : {}
 const itemId = String(item.id ?? '').trim();
 const title = String(item.title ?? '').trim();
 const modelName = String(item.model ?? '').trim();
+const sourceUrl = String(item.sourceUrl ?? item.source_url ?? '').trim();
+const author = String(item.author ?? '').trim();
+const itemNotes = String(item.notes ?? '').trim();
+const defaultImportSkillUrl = String(item.defaultImportSkillUrl ?? item.default_import_skill_url ?? '').trim();
 const sourceLanguage = String(prompt.language ?? body.sourceLanguage ?? '').trim() || 'original';
 const rawText = String(prompt.text ?? body.rawText ?? '').trim();
 const llmModel = String(body.model ?? 'gpt-5.4-mini').trim() || 'gpt-5.4-mini';
@@ -24,6 +28,7 @@ const systemPrompt = [
   'Slot ids must be snake_case and unique.',
   'Prefer a few meaningful slots over many tiny slots.',
   'If changing one region would require related content to change too, keep them in the same conceptual group such as theme_core, supporting_copy, or surface_detail.',
+  'If a default import skill URL is provided in the user context, treat it as synced import guidance for deciding what is fixed skeleton versus editable content.',
   'Return valid JSON only with keys markedText, confidence, notes, and sourceLanguage.',
   'confidence must be a number between 0 and 1.',
   'notes should briefly explain the skeleton/variable split.',
@@ -37,11 +42,16 @@ const userPrompt = [
   `Title: ${title}`,
   `Model: ${modelName || 'unknown'}`,
   `Source language: ${sourceLanguage}`,
+  sourceUrl ? `Source URL: ${sourceUrl}` : '',
+  author ? `Author: ${author}` : '',
+  itemNotes ? `Item notes:\n${itemNotes}` : '',
+  defaultImportSkillUrl ? `Default import skill URL: ${defaultImportSkillUrl}` : '',
+  defaultImportSkillUrl ? 'Apply the synced default import skill URL above as background import guidance.' : '',
   'Original prompt:',
   rawText,
   '',
   'Return JSON only.',
-].join('\n');
+].filter(Boolean).join('\n');
 
 return [{
   json: {

@@ -69,9 +69,7 @@ def _selected_source_prompt(repository: ItemRepository, item_id: str, language: 
 def _initialize_template_for_item(repository: ItemRepository, item_id: str, language: str | None) -> PromptTemplateRecord:
     item, source_prompt = _selected_source_prompt(repository, item_id, language)
     workflow_result = initialize_prompt_template(
-        item_id=item.id,
-        title=item.title,
-        model=item.model,
+        item=item,
         source_language=source_prompt.language,
         raw_text=source_prompt.text,
     )
@@ -254,10 +252,11 @@ def generate_prompt_template_variant(request: Request, template_id: str, payload
     repository = repo(request)
     try:
         template = repository.get_prompt_template_by_id(template_id)
+        item = repository.get_item(template.item_id)
         if template.status != "ready":
             raise HTTPException(status_code=409, detail="The prompt template must be re-initialized before generating variants.")
         theme_keyword = _normalize_theme_keyword(payload.theme_keyword)
-        workflow_result = generate_prompt_variant(template=template, theme_keyword=theme_keyword, previous_variants=[])
+        workflow_result = generate_prompt_variant(template=template, item=item, theme_keyword=theme_keyword, previous_variants=[])
         slot_values = normalize_slot_values(workflow_result["slot_values"], template.slots)
         rendered_text, segments = render_marked_text(template.marked_text, slot_values)
         session = repository.create_prompt_generation_session(template_id, theme_keyword)
@@ -282,11 +281,12 @@ def reroll_prompt_template_variant(request: Request, session_id: str, payload: P
     try:
         session = repository.get_prompt_generation_session(session_id)
         template = repository.get_prompt_template_by_id(session.template_id)
+        item = repository.get_item(template.item_id)
         if template.status != "ready":
             raise HTTPException(status_code=409, detail="The prompt template must be re-initialized before generating variants.")
         rejected_ids = {variant_id for variant_id in payload.rejected_variant_ids if variant_id}
         previous_variants = [variant for variant in session.variants if not rejected_ids or variant.id in rejected_ids]
-        workflow_result = generate_prompt_variant(template=template, theme_keyword=session.theme_keyword, previous_variants=previous_variants)
+        workflow_result = generate_prompt_variant(template=template, item=item, theme_keyword=session.theme_keyword, previous_variants=previous_variants)
         slot_values = normalize_slot_values(workflow_result["slot_values"], template.slots)
         rendered_text, segments = render_marked_text(template.marked_text, slot_values)
         return repository.add_prompt_generation_variant(

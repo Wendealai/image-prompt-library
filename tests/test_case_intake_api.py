@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from io import BytesIO
 from PIL import Image
 
+from backend.config import default_link_import_skill_url
 from backend.main import create_app
 from backend.schemas import CaseIntakeFetchResult
 from backend.services.case_intake import FetchedCaseImage, fetch_case_image_from_url, fetch_case_intake_from_url
@@ -53,9 +54,58 @@ def test_fetch_case_intake_from_url_extracts_structured_html():
     assert "Title: Glass Teahouse Hero" in result.intake_text
     assert "Source URL: https://example.test/case" in result.intake_text
     assert "Notes:\nCampaign landing page visual." in result.intake_text
+    assert f"Default import skill: {default_link_import_skill_url()}" in result.intake_text
     assert "English Prompt" in result.intake_text
     assert "A dreamy glass teahouse hero shot with soft morning mist." in result.intake_text
     assert "Tags\nglass, mist, cinematic" in result.intake_text
+
+
+def test_fetch_case_intake_from_x_status_uses_syndication():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.host == "cdn.syndication.twimg.com"
+        assert request.url.params["id"] == "2049444356395008000"
+        payload = {
+            "__typename": "Tweet",
+            "id_str": "2049444356395008000",
+            "text": (
+                "Prompt share: Naive folk art\n\n"
+                "💬Prompt:\n"
+                "A naive folk art painting of [subject], surrounded by symbolic plants, stars, "
+                "and decorative borders. Flat perspective, hand-painted textures, joyful storytelling, "
+                "earthy [color1] and bright [color2] tones, rustic and expressive https://t.co/cVUEoWXxTh"
+            ),
+            "user": {
+                "name": "Amira Zairi",
+                "screen_name": "azed_ai",
+            },
+            "photos": [
+                {"url": "https://pbs.twimg.com/media/example-01.jpg"},
+                {"url": "https://pbs.twimg.com/media/example-02.jpg"},
+            ],
+        }
+        return httpx.Response(200, json=payload, request=request)
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        result = fetch_case_intake_from_url("https://x.com/azed_ai/status/2049444356395008000?s=20", client=client)
+
+    assert result.url == "https://x.com/azed_ai/status/2049444356395008000?s=20"
+    assert result.final_url == "https://x.com/azed_ai/status/2049444356395008000"
+    assert result.title == "Naive folk art"
+    assert result.description is None
+    assert result.author == "Amira Zairi (@azed_ai)"
+    assert result.image_url == "https://pbs.twimg.com/media/example-01.jpg"
+    assert [candidate.url for candidate in result.image_candidates] == [
+        "https://pbs.twimg.com/media/example-01.jpg",
+        "https://pbs.twimg.com/media/example-02.jpg",
+    ]
+    assert [candidate.source for candidate in result.image_candidates] == ["tweet_photo", "tweet_photo"]
+    assert "Title: Naive folk art" in result.intake_text
+    assert "Source URL: https://x.com/azed_ai/status/2049444356395008000" in result.intake_text
+    assert "Author: Amira Zairi (@azed_ai)" in result.intake_text
+    assert f"Default import skill: {default_link_import_skill_url()}" in result.intake_text
+    assert "English Prompt:" in result.intake_text
+    assert "A naive folk art painting of [subject]" in result.intake_text
+    assert "https://t.co/" not in result.intake_text
 
 
 def test_case_intake_fetch_endpoint_returns_service_payload(tmp_path, monkeypatch):
