@@ -1,5 +1,1533 @@
 [
   {
+    "id": "itm_9ee1985941fd42ea",
+    "title": "新中式极简东方海报模板提示词",
+    "slug": "x-liyue-ai-2049762522404995276",
+    "model": "GPT Image 2",
+    "source_name": "X / 李岳",
+    "source_url": "https://x.com/liyue_ai/status/2049762522404995276?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7ad502ef06bf4e38",
+        "name": "ink_style",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_94beaddcdb40493f",
+        "name": "minimalist_layout",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c747d9515b46446e",
+        "name": "neo_chinese_aesthetic",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c43415d7ba024d0b",
+        "name": "oriental_editorial",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "你是一個高端東方美學視覺生成系統，目標是爲人物、意象、器物、城市或抽象主題生成新中式極簡東方海報。\n\n一、整體視覺方向\n生成一張 9:16 豎版新中式高級海報，整體風格爲：\n極簡（minimal）\n剋制（restrained）\n留白（negative space）\n東方意境（oriental poetic atmosphere）\n高端商業視覺（luxury oriental editorial）\n\n背景採用：\n宣紙白（#F5F0E6）或極淺暖白漸變\n可帶極輕微紙張肌理（rice paper texture, subtle）\n保持大面積留白（不少於40%）\n\n整體視覺需具備：\n高級感、呼吸感、東方韻律、視覺張力\n\n二、核心設計原則\n主體必須爲畫面視覺中心（視覺佔比 40%–65%）\n構圖優先使用：\nS 型流動構圖（S-curve composition）\n對角線構圖（diagonal flow）\n\n畫面“少即是多”，拒絕信息堆疊\n不使用現代 UI 卡片、邊框、信息圖結構\n所有元素需“自然生長”，避免拼貼感\n強調氣韻，而非單純寫實\n\n風格關鍵詞：\n新中式（Neo-Chinese aesthetics）\n水墨融合（ink + modern rendering）\n東方商業插畫（oriental luxury illustration）\n詩意敘事（poetic storytelling）\n\n三、畫面結構\n\n1. 頂部標題區（左上或沿構圖走勢）\n主標題（中文）： {主題名稱}\n副標題（短句）： {一句具有東方意境的表達}\n細橫線（極細，淺灰或淡墨）\n英文/拼音（可選）： {拼音或英文表達}\n\n排版要求：\n不居中堆疊\n順應構圖走勢（隨 S 曲線或對角線排布）\n留白充足\n\n2. 主體視覺（中部）\n生成一個具有東方審美表達的核心主體：\n{主體內容：人物 / 花 / 城市 / 山水 / 器物 / 抽象意象}\n\n要求：\n具有真實質感 + 藝術提煉（寫實 × 意境）\n材質可信（絲綢 / 石 / 水 / 霧 / 金屬 / 宣紙）\n光影爲：\n電影級側逆光（cinematic side/back lighting）\n體積光（volumetric light）\n柔和輪廓光（rim light）\n\n可加入元素（必須剋制）：\n雲氣 / 水紋 / 金線 / 飄帶 / 花瓣 / 霧氣\n禁止複雜背景\n允許極簡承託物（如石、舟、水面、枝）\n\n3. 視覺輔助結構\n意境型點綴結構（非信息塊）\n可選 2–4 個“輕量表達元素”：\n例如：\n印章（硃紅，極簡）\n小字題注（單行或雙行）\n細線圖形（山形 / 水紋 / 圓弧）\n抽象符號（如金線流動）\n\n要求：\n不規則分佈\n不可對齊成 UI 模塊\n必須“像畫的一部分”\n\n4. 底部留白區\n底部只保留一句總結（極剋制）：\n{一句具有東方哲思或詩性的表達}\n\n風格：\n灰色小字\n字距略寬\n居中或偏側\n不可搶視覺\n\n四、字體與排版\n主標題：\n宋體 / 仿宋 / 高級黑體\n大字號，低字距，穩重\n\n副標題：\n淺灰\n中等字號\n字距略松\n\n英文：\n極簡無襯線（Helvetica / 思源黑體風格）\n\n整體原則：\n排版“呼吸感優先”\n不密集、不對齊過度\n\n五、色彩規範\n主背景：\n宣紙白 / 米白 / 極淺暖灰\n\n主色：\n墨黑 / 深灰\n\n點綴色（僅少量使用）：\n鎏金（金色細線）\n硃砂紅（印章）\n青綠（山水）\n靛藍 / 松石綠\n\n原則：\n低飽和 + 局部提亮\n避免大面積純色塊\n\n六、圖像質量要求\n8K / 超清細節\n真實材質表現（physically accurate materials）\n無塑料感、無低質貼圖\n無畸形結構\n邊緣乾淨\n\n強調：\n氣韻 > 細節堆疊\n剋制 > 炫技\n\n七、禁止項\n不要：\n❌ 卡片 / 圓角 / 信息圖排版\n❌ 複雜背景\n❌ 大面積漸變炫光\n❌ 廉價國潮紋樣\n❌ 過度金色堆疊\n❌ 文案過多\n❌ 主體過小\n\n---\n主題名稱：林黛玉",
+        "is_primary": true,
+        "id": "prm_69a30e06b77d4d8e",
+        "item_id": "itm_9ee1985941fd42ea",
+        "created_at": "2026-04-30T12:34:08.539473+00:00",
+        "updated_at": "2026-04-30T12:34:08.539473+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "你是一个高端东方美学视觉生成系统，目标是为人物、意象、器物、城市或抽象主题生成新中式极简东方海报。\n\n一、整体视觉方向\n生成一张 9:16 竖版新中式高级海报，整体风格为：\n极简（minimal）\n克制（restrained）\n留白（negative space）\n东方意境（oriental poetic atmosphere）\n高端商业视觉（luxury oriental editorial）\n\n背景采用：\n宣纸白（#F5F0E6）或极浅暖白渐变\n可带极轻微纸张肌理（rice paper texture, subtle）\n保持大面积留白（不少于40%）\n\n整体视觉需具备：\n高级感、呼吸感、东方韵律、视觉张力\n\n二、核心设计原则\n主体必须为画面视觉中心（视觉占比 40%–65%）\n构图优先使用：\nS 型流动构图（S-curve composition）\n对角线构图（diagonal flow）\n\n画面“少即是多”，拒绝信息堆叠\n不使用现代 UI 卡片、边框、信息图结构\n所有元素需“自然生长”，避免拼贴感\n强调气韵，而非单纯写实\n\n风格关键词：\n新中式（Neo-Chinese aesthetics）\n水墨融合（ink + modern rendering）\n东方商业插画（oriental luxury illustration）\n诗意叙事（poetic storytelling）\n\n三、画面结构\n\n1. 顶部标题区（左上或沿构图走势）\n主标题（中文）： {主题名称}\n副标题（短句）： {一句具有东方意境的表达}\n细横线（极细，浅灰或淡墨）\n英文/拼音（可选）： {拼音或英文表达}\n\n排版要求：\n不居中堆叠\n顺应构图走势（随 S 曲线或对角线排布）\n留白充足\n\n2. 主体视觉（中部）\n生成一个具有东方审美表达的核心主体：\n{主体内容：人物 / 花 / 城市 / 山水 / 器物 / 抽象意象}\n\n要求：\n具有真实质感 + 艺术提炼（写实 × 意境）\n材质可信（丝绸 / 石 / 水 / 雾 / 金属 / 宣纸）\n光影为：\n电影级侧逆光（cinematic side/back lighting）\n体积光（volumetric light）\n柔和轮廓光（rim light）\n\n可加入元素（必须克制）：\n云气 / 水纹 / 金线 / 飘带 / 花瓣 / 雾气\n禁止复杂背景\n允许极简承托物（如石、舟、水面、枝）\n\n3. 视觉辅助结构\n意境型点缀结构（非信息块）\n可选 2–4 个“轻量表达元素”：\n例如：\n印章（朱红，极简）\n小字题注（单行或双行）\n细线图形（山形 / 水纹 / 圆弧）\n抽象符号（如金线流动）\n\n要求：\n不规则分布\n不可对齐成 UI 模块\n必须“像画的一部分”\n\n4. 底部留白区\n底部只保留一句总结（极克制）：\n{一句具有东方哲思或诗性的表达}\n\n风格：\n灰色小字\n字距略宽\n居中或偏侧\n不可抢视觉\n\n四、字体与排版\n主标题：\n宋体 / 仿宋 / 高级黑体\n大字号，低字距，稳重\n\n副标题：\n浅灰\n中等字号\n字距略松\n\n英文：\n极简无衬线（Helvetica / 思源黑体风格）\n\n整体原则：\n排版“呼吸感优先”\n不密集、不对齐过度\n\n五、色彩规范\n主背景：\n宣纸白 / 米白 / 极浅暖灰\n\n主色：\n墨黑 / 深灰\n\n点缀色（仅少量使用）：\n鎏金（金色细线）\n朱砂红（印章）\n青绿（山水）\n靛蓝 / 松石绿\n\n原则：\n低饱和 + 局部提亮\n避免大面积纯色块\n\n六、图像质量要求\n8K / 超清细节\n真实材质表现（physically accurate materials）\n无塑料感、无低质贴图\n无畸形结构\n边缘干净\n\n强调：\n气韵 > 细节堆叠\n克制 > 炫技\n\n七、禁止项\n不要：\n❌ 卡片 / 圆角 / 信息图排版\n❌ 复杂背景\n❌ 大面积渐变炫光\n❌ 廉价国潮纹样\n❌ 过度金色堆叠\n❌ 文案过多\n❌ 主体过小\n\n---\n主题名称：林黛玉",
+        "is_primary": false,
+        "id": "prm_d9b1931608de4833",
+        "item_id": "itm_9ee1985941fd42ea",
+        "created_at": "2026-04-30T12:34:08.539473+00:00",
+        "updated_at": "2026-04-30T12:34:08.539473+00:00"
+      }
+    ],
+    "prompt_snippet": "你是一個高端東方美學視覺生成系統，目標是爲人物、意象、器物、城市或抽象主題生成新中式極簡東方海報。\n\n一、整體視覺方向\n生成一張 9:16 豎版新中式高級海報，整體風格爲：\n極簡（minimal）\n剋制（restrained）\n留白（negative space）\n東方意境（oriental poetic atmosphere）\n高端商業視覺（luxury oriental editorial）\n\n背景採用：\n宣紙白（#F5F0E6）或",
+    "first_image": {
+      "id": "img_2596ba2ac5154687",
+      "item_id": "itm_9ee1985941fd42ea",
+      "original_path": "demo-data/media/img_2596ba2ac5154687.webp",
+      "thumb_path": "demo-data/media/img_2596ba2ac5154687.webp",
+      "preview_path": "demo-data/media/img_2596ba2ac5154687.webp",
+      "remote_url": null,
+      "width": 788,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:34:09.337981+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:34:08.539473+00:00",
+    "created_at": "2026-04-30T12:34:08.539473+00:00",
+    "images": [
+      {
+        "id": "img_2596ba2ac5154687",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_2596ba2ac5154687.webp",
+        "thumb_path": "demo-data/media/img_2596ba2ac5154687.webp",
+        "preview_path": "demo-data/media/img_2596ba2ac5154687.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:34:09.337981+00:00"
+      },
+      {
+        "id": "img_380fa303ac9b4607",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_380fa303ac9b4607.webp",
+        "thumb_path": "demo-data/media/img_380fa303ac9b4607.webp",
+        "preview_path": "demo-data/media/img_380fa303ac9b4607.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:34:10.151561+00:00"
+      },
+      {
+        "id": "img_da91a06bb6ad4dcd",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_da91a06bb6ad4dcd.webp",
+        "thumb_path": "demo-data/media/img_da91a06bb6ad4dcd.webp",
+        "preview_path": "demo-data/media/img_da91a06bb6ad4dcd.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:34:10.831899+00:00"
+      },
+      {
+        "id": "img_484c0521630c4c37",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_484c0521630c4c37.webp",
+        "thumb_path": "demo-data/media/img_484c0521630c4c37.webp",
+        "preview_path": "demo-data/media/img_484c0521630c4c37.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:34:11.744803+00:00"
+      },
+      {
+        "id": "img_a291fa30a9484a09",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_a291fa30a9484a09.webp",
+        "thumb_path": "demo-data/media/img_a291fa30a9484a09.webp",
+        "preview_path": "demo-data/media/img_a291fa30a9484a09.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 4,
+        "created_at": "2026-04-30T12:34:12.686026+00:00"
+      },
+      {
+        "id": "img_13dd24ce7094475a",
+        "item_id": "itm_9ee1985941fd42ea",
+        "original_path": "demo-data/media/img_13dd24ce7094475a.webp",
+        "thumb_path": "demo-data/media/img_13dd24ce7094475a.webp",
+        "preview_path": "demo-data/media/img_13dd24ce7094475a.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 5,
+        "created_at": "2026-04-30T12:34:13.957695+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the author reply shown in the search-indexed TwStalker mirror of 李岳 (@liyue_ai), cross-checked against the linked X post chain: current post 2049762522404995276 says prompt is in the original post, original post 2048676465856987231 says the long prompt is in comments, and seed post 2048441785387721072 describes the same neo-Chinese aesthetic template. Preserve attribution to 李岳 (@liyue_ai).",
+    "author": "李岳 (@liyue_ai)"
+  },
+  {
+    "id": "itm_e4c781409f7d4ed9",
+    "title": "Premium real estate poster prompt",
+    "slug": "x-dheepanratnam-2049788843964993901",
+    "model": "GPT Image 2",
+    "source_name": "X / Dheepan Ratnam",
+    "source_url": "https://x.com/Dheepanratnam/status/2049788843964993901?s=20",
+    "cluster": {
+      "id": "clu_f229d30b885d43af",
+      "name": "Architecture & Interiors",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_425e3453358d4482",
+        "name": "architecture",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f4e7105a241a4a55",
+        "name": "interior_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fce5b9b4ab264517",
+        "name": "luxury_listing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d5e33b78552f44f5",
+        "name": "real_estate",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a premium real estate poster for [PROPERTY TYPE] in [CITY/NEIGHBORHOOD], hero exterior or interior shot, golden hour lighting, clean listing layout, key features, price placeholder, luxury brokerage typography, elegant cream background.",
+        "is_primary": true,
+        "id": "prm_df4887c2f9d14b8b",
+        "item_id": "itm_e4c781409f7d4ed9",
+        "created_at": "2026-04-30T12:13:23.488604+00:00",
+        "updated_at": "2026-04-30T12:13:23.488604+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a premium real estate poster for [PROPERTY TYPE] in [CITY/NEIGHBORHOOD], hero exterior or interior shot, golden hour lighting, clean listing layout, key features, price placeholder, luxury brokerage typography, el",
+    "first_image": {
+      "id": "img_90495e66679e4dfc",
+      "item_id": "itm_e4c781409f7d4ed9",
+      "original_path": "demo-data/media/img_90495e66679e4dfc.webp",
+      "thumb_path": "demo-data/media/img_90495e66679e4dfc.webp",
+      "preview_path": "demo-data/media/img_90495e66679e4dfc.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:13:24.379725+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:13:23.488604+00:00",
+    "created_at": "2026-04-30T12:13:23.488604+00:00",
+    "images": [
+      {
+        "id": "img_90495e66679e4dfc",
+        "item_id": "itm_e4c781409f7d4ed9",
+        "original_path": "demo-data/media/img_90495e66679e4dfc.webp",
+        "thumb_path": "demo-data/media/img_90495e66679e4dfc.webp",
+        "preview_path": "demo-data/media/img_90495e66679e4dfc.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:13:24.379725+00:00"
+      },
+      {
+        "id": "img_f4d38936370d4b50",
+        "item_id": "itm_e4c781409f7d4ed9",
+        "original_path": "demo-data/media/img_f4d38936370d4b50.webp",
+        "thumb_path": "demo-data/media/img_f4d38936370d4b50.webp",
+        "preview_path": "demo-data/media/img_f4d38936370d4b50.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:13:25.134610+00:00"
+      },
+      {
+        "id": "img_50ff2bb381e2482e",
+        "item_id": "itm_e4c781409f7d4ed9",
+        "original_path": "demo-data/media/img_50ff2bb381e2482e.webp",
+        "thumb_path": "demo-data/media/img_50ff2bb381e2482e.webp",
+        "preview_path": "demo-data/media/img_50ff2bb381e2482e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:13:25.770738+00:00"
+      },
+      {
+        "id": "img_ac7d8b5e6dbd422a",
+        "item_id": "itm_e4c781409f7d4ed9",
+        "original_path": "demo-data/media/img_ac7d8b5e6dbd422a.webp",
+        "thumb_path": "demo-data/media/img_ac7d8b5e6dbd422a.webp",
+        "preview_path": "demo-data/media/img_ac7d8b5e6dbd422a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:13:26.425149+00:00"
+      }
+    ],
+    "notes": "Prompt and four result images extracted from the linked X source on 2026-04-30. The source post mentions additional prompts/variations in replies, but only this complete main prompt was reliably available via public mirrors. Preserve attribution to Dheepan Ratnam (@Dheepanratnam).",
+    "author": "Dheepan Ratnam (@Dheepanratnam)"
+  },
+  {
+    "id": "itm_4e888f91d6c44ad0",
+    "title": "抽象几何线条概念视觉海报提示词",
+    "slug": "x-xiaoxiaodong01-2049760967421255985",
+    "model": "GPT Image 2",
+    "source_name": "X Article / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2049760967421255985?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_3063b92d2e0e4893",
+        "name": "abstract_line_art",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f66b2eca2f514cf5",
+        "name": "self_media",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、可被閱讀”的圖像結構。\n\n最終效果應具備：\n高級審美\n強視覺識別度\n抽象但有邏輯\n詩意但不空洞\n可解釋但不直白\n適合封面、海報、文章頭圖、視頻封面、插畫封面等多種用途\n\n一、核心任務\n\n請圍繞用戶輸入的【主題文字 / 文案大意 / 使用場景 / 風格要求 / 比例要求】，自動完成以下過程：\n\n1. 先理解主題\n不是直接把文字放上去，而是先分析：\n- 主題的表層含義\n- 情緒氣質\n- 內在張力\n- 語義關係\n- 抽象結構\n- 可轉譯的視覺隱喻\n\n2. 再決定視覺表達方式\n根據主題內容，自動選擇最適合的圖形語言、線條氣質、結構方式、色彩策略、裝飾系統與版面節奏。\n\n3. 讓背景“回應主題”\n背景不應只是空泛的線條紋樣，而應成爲主題意義的延伸。\n抽象圖形、路徑、節點、結構、流動、碰撞、裂變、聚合、迴路、波紋、網格、粒子、層疊形態等，都應服務於主題表達。\n\n二、視覺表達原則\n\n1. 主題驅動\n所有圖形都必須圍繞主題生成，不能是隨機裝飾。\n畫面應讓人感受到：\n“這些圖形像是在解釋這個標題 / 這個概念 / 這段文本。”\n\n2. 線條氣質必須智能變化\n不要每次都使用同一種線條。\n線條語言應根據主題自動判斷，例如：\n\n- 若主題偏理性、系統、科技、秩序：\n  使用更剋制、精密、參數化、幾何化、網格化、模塊化的線條與結構。\n\n- 若主題偏感性、記憶、詩意、情緒、哲思：\n  使用更柔和、流動、呼吸感強、帶有韻律的線條與抽象圖形。\n\n- 若主題偏衝突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、斷裂、扭曲、偏移、交錯、壓迫感更強的線條和結構。\n\n- 若主題偏生長、生命、自然、潛意識、玄學、神祕感：\n  可採用生物形態、脈絡、羽化、能量場、波紋、神經網絡般的線條系統，帶有“抽象可解釋”的神祕意味。\n\n- 若主題偏手作感、插畫感、作者性表達：\n  可使用更鬆動、手繪、試探性、富有筆觸感的線條和圖形語言。\n\n3. 圖形語言必須具有層次\n畫面中的線條和圖形建議至少分爲以下層級，並可根據主題決定是否全部啓用：\n\n- 主視覺層：\n  最核心、最強識別度的圖形結構，用來承載主題的核心視覺隱喻。\n\n- 輔助結構層：\n  用於連接、引導、擴展主題的次級圖形，如路徑、節點、弧線、網格、迴路、參數曲線、輪廓波紋等。\n\n- 氛圍裝飾層：\n  用於增強高級感與完整度的細節元素，如邊注、符號、刻度、微小圖標、點陣、座標感圖形、角標、邊框、短標籤、微型排版等。\n\n- 質感層：\n  可根據需要加入微弱紙感、輕顆粒、薄霧、印刷肌理、透明疊影、淡淡投影、輕層疊結構等，提升畫面層次。\n\n三、圖片裝飾與應用系統\n\n爲了讓它更適合轉化爲封面、海報或其他視覺形式，畫面四周可以 intelligently 加入適量裝飾系統，但必須與主題統一，不可爲了裝飾而裝飾。\n\n可選裝飾包括但不限於：\n- 角標\n- 邊線\n- 微型文字標籤\n- 小型幾何圖標\n- 豎排邊注\n- 頂部或底部導航式短詞\n- 座標線\n- 十字準星\n- 圓點與節點\n- 符號化刻度\n- 網格分區\n- 檔案編號\n- 展陳式標籤\n- 章節短句\n- 小型輔助說明\n\n這些裝飾應滿足以下要求：\n1. 有秩序感\n2. 不喧賓奪主\n3. 有助於提升“設計完成度”\n4. 適合在手機端查看\n5. 能增強它作爲封面或海報的適配性\n\n如果用戶要求極簡，則減少這些裝飾，僅保留必要的結構輔助元素。\n\n四、風格靈活性系統\n\n整體視覺風格不能固定死板，而應具備高度適配能力。\n可根據主題自動選擇以下方向之一，或進行合理融合：\n\n1. 理性幾何風\n關鍵詞：\n剋制、清晰、參數化、模塊化、網格感、結構化、現代、理智、秩序感\n\n2. 光學抽象風\n關鍵詞：\n黑白或高對比、波紋、錯覺、重複、同心、放射、干涉、視覺震盪、實驗設計感\n\n3. 生物形態抽象風\n關鍵詞：\n流動、脈絡、細胞、羽化、共振、包裹、生長、演化、生命感、潛意識感\n\n4. 手繪線稿風\n關鍵詞：\n自由、鬆動、作者性、草圖感、試探性筆觸、柔韌、詩意、帶有輕微不規則美感\n\n5. 觀念海報風\n關鍵詞：\n圖文一體、設計展氣質、思想性、哲學感、文化感、封面感、展覽級排版\n\n請根據主題自動判斷最適合的風格組合，而不是每次機械套用同一種視覺模板。\n\n五、配色系統\n\n顏色必須支持高度自定義，並且默認情況下要能智能響應主題。\n\n1. 用戶若指定顏色：\n必須優先遵循用戶要求。\n\n2. 用戶若未指定顏色：\n請根據主題自動選擇最合適的配色邏輯，例如：\n- 黑白極簡\n- 冷白灰\n- 米白紙感\n- 深底淺線\n- 淺底深線\n- 低飽和莫蘭迪\n- 高對比概念色\n- 單色系延展\n- 雙主色碰撞\n- 少量強調色點綴\n\n3. 配色策略要求：\n- 不要廉價\n- 不要髒亂\n- 不要俗豔\n- 要有高級感和統一性\n- 能服務主題氛圍\n- 能兼顧手機端可讀性\n\n4. 背景深淺可靈活變化：\n可根據主題使用淺底、深底、紙感底、霧感底、純色底、微紋理底。\n不要默認固定爲某一種背景。\n\n六、標題與文字系統\n\n1. 主標題必須清晰可讀，是整張圖的重要識別核心。\n2. 標題應與背景圖形形成呼應，不可孤立懸浮。\n3. 可以根據需要加入：\n- 副標題\n- 英文輔助標題\n- 短句標語\n- 關鍵詞標籤\n- 微型概念說明\n- 展覽式編號文字\n- 結構標籤\n但文字不能過多，不要變成文章頁。\n4. 文案與圖形應是一體化關係，而非“文字在上，背景在後”的割裂關係。\n\n七、構圖與版式要求\n\n畫面應具備清晰的視覺層級、呼吸感與強識別度。\n可根據主題自動選擇適合的結構，如：\n- 中心聚合式\n- 邊緣擴散式\n- 對稱平衡式\n- 非對稱張力式\n- 中軸儀式感\n- 迴路漩渦式\n- 路徑推進式\n- 節點網絡式\n- 模塊拼接式\n- 畫面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有節奏\n4. 有疏密變化\n5. 有視覺起點與終點\n6. 適合手機端快速識別\n7. 也適合作爲高完成度單張視覺作品\n\n八、用途適配\n\n整張圖應能靈活適配以下用途：\n- 視頻封面圖\n- 文章封面圖\n- 插畫封面\n- 海報設計\n- 專題頭圖\n- 概念視覺頁\n- 設計感社交媒體封面\n\n因此在生成時，請自動兼顧：\n- 縮略圖可識別性\n- 手機端觀看清晰度\n- 標題醒目程度\n- 版面完整度\n- 視覺記憶點\n\n九、避免事項\n\n請避免以下問題：\n- 背景圖形只是隨機線條，和主題無關\n- 圖形過度花哨但無法解釋主題\n- 裝飾過多導致雜亂\n- 風格廉價、模板化、社媒感過強\n- 文字排版普通、缺乏設計感\n- 線條語言單一、每次都一樣\n- 配色僵化，不能響應主題\n- 只有抽象，沒有信息結構\n- 只有設計感，沒有情緒與語義\n\n十、最終目標\n\n最終輸出應是一張：\n能夠把用戶輸入內容轉化爲詩意抽象幾何視覺語言的高完成度作品。\n\n它應具備：\n強概念性\n強設計感\n強整體性\n主題響應性強\n可解釋性強\n風格可靈活變化\n適合實際應用\n並且在視覺上既有藝術性，也有“可以被使用”的完成度。\n\n請在最後根據用戶輸入自動生成畫面。\n\n用戶的輸入： （你都可以刪掉，自由發揮）\n主題文字：\n補充文案：\n使用場景：\n圖片比例：\n整體風格傾向：\n配色要求：\n背景深淺要求：\n是否需要四周裝飾：\n是否需要層次感增強：\n其他特殊要求：",
+        "is_primary": true,
+        "id": "prm_888a606d278c4820",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "created_at": "2026-04-30T12:08:40.161282+00:00",
+        "updated_at": "2026-04-30T12:08:40.161282+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "请创作一张高完成度的「抽象几何线条概念视觉 / Abstract Linear Concept Artwork」。\n\n这不是普通文字海报，不是简单给标题配一个背景，也不是随意堆叠抽象图形。\n你要生成的是一张能够将“用户输入的主题文字或文案大意”转化为视觉语言的高质量设计作品。\n\n整张图的核心逻辑是：\n通过线条、几何、结构、插画化图形、参数化形态、光学感图案、手绘痕迹或其他抽象视觉元素，把用户输入的主题内容转译成一种“可被感受、可被解释、可被阅读”的图像结构。\n\n最终效果应具备：\n高级审美\n强视觉识别度\n抽象但有逻辑\n诗意但不空洞\n可解释但不直白\n适合封面、海报、文章头图、视频封面、插画封面等多种用途\n\n一、核心任务\n\n请围绕用户输入的【主题文字 / 文案大意 / 使用场景 / 风格要求 / 比例要求】，自动完成以下过程：\n\n1. 先理解主题\n不是直接把文字放上去，而是先分析：\n- 主题的表层含义\n- 情绪气质\n- 内在张力\n- 语义关系\n- 抽象结构\n- 可转译的视觉隐喻\n\n2. 再决定视觉表达方式\n根据主题内容，自动选择最适合的图形语言、线条气质、结构方式、色彩策略、装饰系统与版面节奏。\n\n3. 让背景“回应主题”\n背景不应只是空泛的线条纹样，而应成为主题意义的延伸。\n抽象图形、路径、节点、结构、流动、碰撞、裂变、聚合、回路、波纹、网格、粒子、层叠形态等，都应服务于主题表达。\n\n二、视觉表达原则\n\n1. 主题驱动\n所有图形都必须围绕主题生成，不能是随机装饰。\n画面应让人感受到：\n“这些图形像是在解释这个标题 / 这个概念 / 这段文本。”\n\n2. 线条气质必须智能变化\n不要每次都使用同一种线条。\n线条语言应根据主题自动判断，例如：\n\n- 若主题偏理性、系统、科技、秩序：\n  使用更克制、精密、参数化、几何化、网格化、模块化的线条与结构。\n\n- 若主题偏感性、记忆、诗意、情绪、哲思：\n  使用更柔和、流动、呼吸感强、带有韵律的线条与抽象图形。\n\n- 若主题偏冲突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、断裂、扭曲、偏移、交错、压迫感更强的线条和结构。\n\n- 若主题偏生长、生命、自然、潜意识、玄学、神秘感：\n  可采用生物形态、脉络、羽化、能量场、波纹、神经网络般的线条系统，带有“抽象可解释”的神秘意味。\n\n- 若主题偏手作感、插画感、作者性表达：\n  可使用更松动、手绘、试探性、富有笔触感的线条和图形语言。\n\n3. 图形语言必须具有层次\n画面中的线条和图形建议至少分为以下层级，并可根据主题决定是否全部启用：\n\n- 主视觉层：\n  最核心、最强识别度的图形结构，用来承载主题的核心视觉隐喻。\n\n- 辅助结构层：\n  用于连接、引导、扩展主题的次级图形，如路径、节点、弧线、网格、回路、参数曲线、轮廓波纹等。\n\n- 氛围装饰层：\n  用于增强高级感与完整度的细节元素，如边注、符号、刻度、微小图标、点阵、坐标感图形、角标、边框、短标签、微型排版等。\n\n- 质感层：\n  可根据需要加入微弱纸感、轻颗粒、薄雾、印刷肌理、透明叠影、淡淡投影、轻层叠结构等，提升画面层次。\n\n三、图片装饰与应用系统\n\n为了让它更适合转化为封面、海报或其他视觉形式，画面四周可以 intelligently 加入适量装饰系统，但必须与主题统一，不可为了装饰而装饰。\n\n可选装饰包括但不限于：\n- 角标\n- 边线\n- 微型文字标签\n- 小型几何图标\n- 竖排边注\n- 顶部或底部导航式短词\n- 坐标线\n- 十字准星\n- 圆点与节点\n- 符号化刻度\n- 网格分区\n- 档案编号\n- 展陈式标签\n- 章节短句\n- 小型辅助说明\n\n这些装饰应满足以下要求：\n1. 有秩序感\n2. 不喧宾夺主\n3. 有助于提升“设计完成度”\n4. 适合在手机端查看\n5. 能增强它作为封面或海报的适配性\n\n如果用户要求极简，则减少这些装饰，仅保留必要的结构辅助元素。\n\n四、风格灵活性系统\n\n整体视觉风格不能固定死板，而应具备高度适配能力。\n可根据主题自动选择以下方向之一，或进行合理融合：\n\n1. 理性几何风\n关键词：\n克制、清晰、参数化、模块化、网格感、结构化、现代、理智、秩序感\n\n2. 光学抽象风\n关键词：\n黑白或高对比、波纹、错觉、重复、同心、放射、干涉、视觉震荡、实验设计感\n\n3. 生物形态抽象风\n关键词：\n流动、脉络、细胞、羽化、共振、包裹、生长、演化、生命感、潜意识感\n\n4. 手绘线稿风\n关键词：\n自由、松动、作者性、草图感、试探性笔触、柔韧、诗意、带有轻微不规则美感\n\n5. 观念海报风\n关键词：\n图文一体、设计展气质、思想性、哲学感、文化感、封面感、展览级排版\n\n请根据主题自动判断最适合的风格组合，而不是每次机械套用同一种视觉模板。\n\n五、配色系统\n\n颜色必须支持高度自定义，并且默认情况下要能智能响应主题。\n\n1. 用户若指定颜色：\n必须优先遵循用户要求。\n\n2. 用户若未指定颜色：\n请根据主题自动选择最合适的配色逻辑，例如：\n- 黑白极简\n- 冷白灰\n- 米白纸感\n- 深底浅线\n- 浅底深线\n- 低饱和莫兰迪\n- 高对比概念色\n- 单色系延展\n- 双主色碰撞\n- 少量强调色点缀\n\n3. 配色策略要求：\n- 不要廉价\n- 不要脏乱\n- 不要俗艳\n- 要有高级感和统一性\n- 能服务主题氛围\n- 能兼顾手机端可读性\n\n4. 背景深浅可灵活变化：\n可根据主题使用浅底、深底、纸感底、雾感底、纯色底、微纹理底。\n不要默认固定为某一种背景。\n\n六、标题与文字系统\n\n1. 主标题必须清晰可读，是整张图的重要识别核心。\n2. 标题应与背景图形形成呼应，不可孤立悬浮。\n3. 可以根据需要加入：\n- 副标题\n- 英文辅助标题\n- 短句标语\n- 关键词标签\n- 微型概念说明\n- 展览式编号文字\n- 结构标签\n但文字不能过多，不要变成文章页。\n4. 文案与图形应是一体化关系，而非“文字在上，背景在后”的割裂关系。\n\n七、构图与版式要求\n\n画面应具备清晰的视觉层级、呼吸感与强识别度。\n可根据主题自动选择适合的结构，如：\n- 中心聚合式\n- 边缘扩散式\n- 对称平衡式\n- 非对称张力式\n- 中轴仪式感\n- 回路漩涡式\n- 路径推进式\n- 节点网络式\n- 模块拼接式\n- 画面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有节奏\n4. 有疏密变化\n5. 有视觉起点与终点\n6. 适合手机端快速识别\n7. 也适合作为高完成度单张视觉作品\n\n八、用途适配\n\n整张图应能灵活适配以下用途：\n- 视频封面图\n- 文章封面图\n- 插画封面\n- 海报设计\n- 专题头图\n- 概念视觉页\n- 设计感社交媒体封面\n\n因此在生成时，请自动兼顾：\n- 缩略图可识别性\n- 手机端观看清晰度\n- 标题醒目程度\n- 版面完整度\n- 视觉记忆点\n\n九、避免事项\n\n请避免以下问题：\n- 背景图形只是随机线条，和主题无关\n- 图形过度花哨但无法解释主题\n- 装饰过多导致杂乱\n- 风格廉价、模板化、社媒感过强\n- 文字排版普通、缺乏设计感\n- 线条语言单一、每次都一样\n- 配色僵化，不能响应主题\n- 只有抽象，没有信息结构\n- 只有设计感，没有情绪与语义\n\n十、最终目标\n\n最终输出应是一张：\n能够把用户输入内容转化为诗意抽象几何视觉语言的高完成度作品。\n\n它应具备：\n强概念性\n强设计感\n强整体性\n主题响应性强\n可解释性强\n风格可灵活变化\n适合实际应用\n并且在视觉上既有艺术性，也有“可以被使用”的完成度。\n\n请在最后根据用户输入自动生成画面。\n\n用户的输入： （你都可以删掉，自由发挥）\n主题文字：\n补充文案：\n使用场景：\n图片比例：\n整体风格倾向：\n配色要求：\n背景深浅要求：\n是否需要四周装饰：\n是否需要层次感增强：\n其他特殊要求：",
+        "is_primary": false,
+        "id": "prm_acbde2e6ad2f476b",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "created_at": "2026-04-30T12:08:40.161282+00:00",
+        "updated_at": "2026-04-30T12:08:40.161282+00:00"
+      }
+    ],
+    "prompt_snippet": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、",
+    "first_image": {
+      "id": "img_8b2cb01beb484c0e",
+      "item_id": "itm_4e888f91d6c44ad0",
+      "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:08:41.707063+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:08:40.161282+00:00",
+    "created_at": "2026-04-30T12:08:40.161282+00:00",
+    "images": [
+      {
+        "id": "img_8b2cb01beb484c0e",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:08:41.707063+00:00"
+      },
+      {
+        "id": "img_815ad68850d44ef9",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "thumb_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "preview_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:08:42.945370+00:00"
+      },
+      {
+        "id": "img_b637d1b6a2db44ac",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "thumb_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "preview_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:08:43.974741+00:00"
+      },
+      {
+        "id": "img_67ad4302bb924334",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "thumb_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "preview_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:08:45.012472+00:00"
+      },
+      {
+        "id": "img_a78d388ae1fa4d5c",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "thumb_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "preview_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 4,
+        "created_at": "2026-04-30T12:08:46.256770+00:00"
+      },
+      {
+        "id": "img_43b1f62a51cb45ff",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "thumb_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "preview_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 5,
+        "created_at": "2026-04-30T12:08:47.051839+00:00"
+      },
+      {
+        "id": "img_49fd1dc69c77429d",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "thumb_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "preview_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 6,
+        "created_at": "2026-04-30T12:08:47.951685+00:00"
+      },
+      {
+        "id": "img_ad78725997494714",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ad78725997494714.webp",
+        "thumb_path": "demo-data/media/img_ad78725997494714.webp",
+        "preview_path": "demo-data/media/img_ad78725997494714.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 7,
+        "created_at": "2026-04-30T12:08:49.520911+00:00"
+      },
+      {
+        "id": "img_2bebb5d6c4ff4dd8",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "thumb_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "preview_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 450,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 8,
+        "created_at": "2026-04-30T12:08:50.459296+00:00"
+      },
+      {
+        "id": "img_ff696bd4595f4761",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "thumb_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "preview_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 300,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 9,
+        "created_at": "2026-04-30T12:08:51.349787+00:00"
+      },
+      {
+        "id": "img_48b9cdad722c4f10",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "thumb_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "preview_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 10,
+        "created_at": "2026-04-30T12:08:52.619025+00:00"
+      },
+      {
+        "id": "img_458d711b39444f2a",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "thumb_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "preview_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 11,
+        "created_at": "2026-04-30T12:08:53.613573+00:00"
+      },
+      {
+        "id": "img_ec82f16d25574e0d",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "thumb_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "preview_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 12,
+        "created_at": "2026-04-30T12:08:54.779838+00:00"
+      },
+      {
+        "id": "img_7b826235ca894af2",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "thumb_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "preview_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 13,
+        "created_at": "2026-04-30T12:08:55.587656+00:00"
+      }
+    ],
+    "notes": "Prompt and article result images extracted from the linked X Article on 2026-04-30. Article title: GPT2: 线条的艺术 x 超强提示词 x 海报 x 封面 x 自媒体运营标配. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)"
+  },
+  {
+    "id": "itm_261a6a3ea5464baa",
+    "title": "Emotional hand-drawn cafe photo annotation prompt",
+    "slug": "x-ciri-ai-2049790216630878239",
+    "model": "GPT Image 2",
+    "source_name": "X / Ciri",
+    "source_url": "https://x.com/Ciri_ai/status/2049790216630878239?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_56b54e8e9e1442d5",
+        "name": "cafe_lifestyle",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_44e0336c56b044f8",
+        "name": "hand_drawn_notes",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_146550c1d33c40f1",
+        "name": "photo_annotation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Use the uploaded photo as the main base image.\n\nBased on the coffee, drinks, desserts, plates, props, table setting, and overall composition shown in the image, create an aesthetic and emotional result that naturally reflects the real elements in the photo. Do not add any people. Stay true to the actual types of food and drinks, their arrangement, and the atmosphere captured in the original image.\n\nThen, carefully observe each element in the photo and add hand-drawn style annotations that match each subject:\n\nUse white pen-style sketch lines with a rough, slightly uneven, hand-drawn feel\n\nInclude object outlines, arrows, and dotted lines to guide visual flow\n\nAdd short handwritten English notes in a casual, introspective, emotional tone\n\nFor drinks: describe taste, temperature, and mood\n\nFor desserts: describe texture and flavor\n\nFor the space: describe the ambiance\n\nInclude a short overall summary of the scene\n\nSubtly incorporate small details like steam, sparkles, hearts, or tiny emotive symbols\n\nMaintain a clean, spacious layout with an Instagram story or magazine memo-like aesthetic\n\nThe final result should look like an emotionally styled version of the original photo, without forcing in any elements that don’t naturally belong to it",
+        "is_primary": true,
+        "id": "prm_3d5fa2e1f5024253",
+        "item_id": "itm_261a6a3ea5464baa",
+        "created_at": "2026-04-30T12:02:47.717395+00:00",
+        "updated_at": "2026-04-30T12:02:47.717395+00:00"
+      }
+    ],
+    "prompt_snippet": "Use the uploaded photo as the main base image.\n\nBased on the coffee, drinks, desserts, plates, props, table setting, and overall composition shown in the image, create an aesthetic and emotional result that naturally ref",
+    "first_image": {
+      "id": "img_190e3ca8cf1f419b",
+      "item_id": "itm_261a6a3ea5464baa",
+      "original_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+      "thumb_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+      "preview_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:51.412580+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:47.717395+00:00",
+    "created_at": "2026-04-30T12:02:47.717395+00:00",
+    "images": [
+      {
+        "id": "img_190e3ca8cf1f419b",
+        "item_id": "itm_261a6a3ea5464baa",
+        "original_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+        "thumb_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+        "preview_path": "demo-data/media/img_190e3ca8cf1f419b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:51.412580+00:00"
+      },
+      {
+        "id": "img_b38b57c0ed844c65",
+        "item_id": "itm_261a6a3ea5464baa",
+        "original_path": "demo-data/media/img_b38b57c0ed844c65.webp",
+        "thumb_path": "demo-data/media/img_b38b57c0ed844c65.webp",
+        "preview_path": "demo-data/media/img_b38b57c0ed844c65.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:02:53.597644+00:00"
+      },
+      {
+        "id": "img_9e8f5c733ddd4860",
+        "item_id": "itm_261a6a3ea5464baa",
+        "original_path": "demo-data/media/img_9e8f5c733ddd4860.webp",
+        "thumb_path": "demo-data/media/img_9e8f5c733ddd4860.webp",
+        "preview_path": "demo-data/media/img_9e8f5c733ddd4860.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:02:56.971803+00:00"
+      },
+      {
+        "id": "img_83b2b3f03b044307",
+        "item_id": "itm_261a6a3ea5464baa",
+        "original_path": "demo-data/media/img_83b2b3f03b044307.webp",
+        "thumb_path": "demo-data/media/img_83b2b3f03b044307.webp",
+        "preview_path": "demo-data/media/img_83b2b3f03b044307.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:02:59.816583+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Ciri (@Ciri_ai).",
+    "author": "Ciri (@Ciri_ai)"
+  },
+  {
+    "id": "itm_ac9de3817e8e4608",
+    "title": "正式商务档案头像海报提示词",
+    "slug": "x-qisi-ai-2049779470144552976",
+    "model": "Image generation prompt",
+    "source_name": "X / 骑司Chase",
+    "source_url": "https://x.com/qisi_ai/status/2049779470144552976?s=20",
+    "cluster": {
+      "id": "clu_5132aee9772647f3",
+      "name": "摄影与写实",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_f1b3c640fa5145fd",
+        "name": "business_portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_60b488427ee24bf3",
+        "name": "profile_avatar",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "請基於我上傳的人像照片生成一張正式商務檔案頭像海報。保留人物真實身份特徵、五官比例、臉型基礎和整體氣質，不要改變人物身份。\n\n可以適度優化面部輪廓，使臉部線條更清晰、自然、上鏡；平滑皮膚質感，減少瑕疵、暗沉和膚色不均，但不要過度磨皮，保留真實皮膚細節和自然光影。\n\n請根據人物臉型設計一款匹配的商務髮型。髮型應乾淨利落、成熟專業、適合正式場合，髮絲自然、有層次，不誇張。請爲人物搭配正式商務穿搭，例如深色西裝外套、白色或淺色襯衫，可搭配領帶。整體造型應高級、簡潔、專業、可信賴。\n\n畫面爲正面半身肖像，人物居中，直視鏡頭，表情自然自信。背景爲純白色素色背景，光線柔和均勻，類似專業證件照、企業頭像攝影或大學官網個人檔案照。整體風格乾淨、正式、商務、高清寫實攝影質感，方形比例 1:1。\n\n畫面下方預留簡潔信息欄，並添加現代簡潔排版文字：\n姓名：[小泉柚奈]\n身份/職位：[高級平面設計]\n專業/部門/機構：[國際設計院]\n\n重要文字規則：\n如果用戶輸入的姓名、身份、職位、專業、部門、機構或其他需要顯示在圖片上的文字是中文或其他語言，請先將這些內容翻譯成自然、準確、正式的英文，再放入圖片中。除非用戶明確要求保留中文，否則圖片中不要顯示中文文字。\n\n排版要求：\n第一行姓名使用深藍色粗體大字號英文文字；第二行和第三行使用黑色常規字號英文文字。整體排版參考大學官網個人檔案、學術會議人物介紹卡片或專業商務頭像海報風格。",
+        "is_primary": true,
+        "id": "prm_4390d7b8d99e424e",
+        "item_id": "itm_ac9de3817e8e4608",
+        "created_at": "2026-04-30T12:02:43.958671+00:00",
+        "updated_at": "2026-04-30T12:02:43.958671+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "请基于我上传的人像照片生成一张正式商务档案头像海报。保留人物真实身份特征、五官比例、脸型基础和整体气质，不要改变人物身份。\n\n可以适度优化面部轮廓，使脸部线条更清晰、自然、上镜；平滑皮肤质感，减少瑕疵、暗沉和肤色不均，但不要过度磨皮，保留真实皮肤细节和自然光影。\n\n请根据人物脸型设计一款匹配的商务发型。发型应干净利落、成熟专业、适合正式场合，发丝自然、有层次，不夸张。请为人物搭配正式商务穿搭，例如深色西装外套、白色或浅色衬衫，可搭配领带。整体造型应高级、简洁、专业、可信赖。\n\n画面为正面半身肖像，人物居中，直视镜头，表情自然自信。背景为纯白色素色背景，光线柔和均匀，类似专业证件照、企业头像摄影或大学官网个人档案照。整体风格干净、正式、商务、高清写实摄影质感，方形比例 1:1。\n\n画面下方预留简洁信息栏，并添加现代简洁排版文字：\n姓名：[小泉柚奈]\n身份/职位：[高级平面设计]\n专业/部门/机构：[国际设计院]\n\n重要文字规则：\n如果用户输入的姓名、身份、职位、专业、部门、机构或其他需要显示在图片上的文字是中文或其他语言，请先将这些内容翻译成自然、准确、正式的英文，再放入图片中。除非用户明确要求保留中文，否则图片中不要显示中文文字。\n\n排版要求：\n第一行姓名使用深蓝色粗体大字号英文文字；第二行和第三行使用黑色常规字号英文文字。整体排版参考大学官网个人档案、学术会议人物介绍卡片或专业商务头像海报风格。",
+        "is_primary": false,
+        "id": "prm_12affe6aed464d47",
+        "item_id": "itm_ac9de3817e8e4608",
+        "created_at": "2026-04-30T12:02:43.958671+00:00",
+        "updated_at": "2026-04-30T12:02:43.958671+00:00"
+      }
+    ],
+    "prompt_snippet": "請基於我上傳的人像照片生成一張正式商務檔案頭像海報。保留人物真實身份特徵、五官比例、臉型基礎和整體氣質，不要改變人物身份。\n\n可以適度優化面部輪廓，使臉部線條更清晰、自然、上鏡；平滑皮膚質感，減少瑕疵、暗沉和膚色不均，但不要過度磨皮，保留真實皮膚細節和自然光影。\n\n請根據人物臉型設計一款匹配的商務髮型。髮型應乾淨利落、成熟專業、適合正式場合，髮絲自然、有層次，不誇張。請爲人物搭配正式商務穿搭，例如深色西裝外套、白色或淺色襯衫，可搭配領帶",
+    "first_image": {
+      "id": "img_507c71bd7d5940bf",
+      "item_id": "itm_ac9de3817e8e4608",
+      "original_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+      "thumb_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+      "preview_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:47.687926+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:43.958671+00:00",
+    "created_at": "2026-04-30T12:02:43.958671+00:00",
+    "images": [
+      {
+        "id": "img_507c71bd7d5940bf",
+        "item_id": "itm_ac9de3817e8e4608",
+        "original_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+        "thumb_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+        "preview_path": "demo-data/media/img_507c71bd7d5940bf.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:47.687926+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to 骑司Chase (@qisi_ai).",
+    "author": "骑司Chase (@qisi_ai)"
+  },
+  {
+    "id": "itm_2c6bfdb7d4c049d0",
+    "title": "Limited-edition scientist collectible toy launch visual",
+    "slug": "x-gdgtify-2049766203392921897",
+    "model": "GPT Image 2",
+    "source_name": "X / Gadgetify",
+    "source_url": "https://x.com/Gdgtify/status/2049766203392921897?s=20",
+    "cluster": {
+      "id": "clu_18134e8691e84ee0",
+      "name": "商品与电商",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_6294c2e677a84aac",
+        "name": "collectible_toy",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3f73bbbcf3ce46f3",
+        "name": "ecommerce",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2037c7934fa84636",
+        "name": "product_launch",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "2x2 grid, do this for 4 famous scientists in history: Design a collector-grade launch visual for [TOY / FIGURE / DESIGNER OBJECT] shown in pristine hero form along with interchangeable accessories, alternate expressions, packaging design, scale references, sticker details, rarity indicators, and close-up material highlights. The object should feel like a luxury drop, somewhere between art toy culture and elite product branding.  Accessory Layout: Arrange [ACCESSORY 1], [ACCESSORY 2], [ALT VERSION], [PACKAGING FEATURE], and [LIMITED EDITION DETAIL] around the figure in carefully staged clusters. Everything should feel desirable, neat, and “unboxable.”  Visual Style: Hype-culture collectible reveal meets premium e-commerce launch campaign. Clean, glossy, tactile, designer-toy sophistication with a playful but expensive sensibility.  Composition Guidelines: Hero figure remains dominant. Accessories should be balanced and elegantly spaced. Packaging should be visible but not steal the scene. The entire image should feel like a product collectors would screenshot instantly.  Lighting & Background: Soft commercial lighting with subtle specular highlights, polished background in [BACKGROUND STYLE], crisp shadows, premium color separation, ultra-sharp details, no watermark.",
+        "is_primary": true,
+        "id": "prm_061b1de97c1a4479",
+        "item_id": "itm_2c6bfdb7d4c049d0",
+        "created_at": "2026-04-30T12:02:40.579676+00:00",
+        "updated_at": "2026-04-30T12:02:40.579676+00:00"
+      }
+    ],
+    "prompt_snippet": "2x2 grid, do this for 4 famous scientists in history: Design a collector-grade launch visual for [TOY / FIGURE / DESIGNER OBJECT] shown in pristine hero form along with interchangeable accessories, alternate expressions,",
+    "first_image": {
+      "id": "img_380e9dc64deb4122",
+      "item_id": "itm_2c6bfdb7d4c049d0",
+      "original_path": "demo-data/media/img_380e9dc64deb4122.webp",
+      "thumb_path": "demo-data/media/img_380e9dc64deb4122.webp",
+      "preview_path": "demo-data/media/img_380e9dc64deb4122.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:43.889688+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:40.579676+00:00",
+    "created_at": "2026-04-30T12:02:40.579676+00:00",
+    "images": [
+      {
+        "id": "img_380e9dc64deb4122",
+        "item_id": "itm_2c6bfdb7d4c049d0",
+        "original_path": "demo-data/media/img_380e9dc64deb4122.webp",
+        "thumb_path": "demo-data/media/img_380e9dc64deb4122.webp",
+        "preview_path": "demo-data/media/img_380e9dc64deb4122.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:43.889688+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Gadgetify (@Gdgtify).",
+    "author": "Gadgetify (@Gdgtify)"
+  },
+  {
+    "id": "itm_b154545ffcc945fc",
+    "title": "Hyper-realistic split-screen aging portrait effect",
+    "slug": "x-ozayrr-irl-2049715815910441053",
+    "model": "Google Gemini Nano Banana Pro",
+    "source_name": "X / Ozair AI",
+    "source_url": "https://x.com/Ozayrr_irl/status/2049715815910441053?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_daf43bdbfdae411f",
+        "name": "aging_effect",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_424c0390cfb9466d",
+        "name": "nano_banana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_039fd0031585432b",
+        "name": "split_screen",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "\"A hyper-realistic, cinematic vertical split-screen portrait. The right side shows a high-resolution, sharp photograph of [Subject Name] in their youth with smooth skin and vibrant features. The left side shows the same person as an elderly individual, with deep wrinkles, age spots, and graying hair, perfectly aligned at the center. 8k resolution, detailed skin pores, dramatic studio lighting, neutral background, shot on 85mm lens.\"\nKey Elements for this Style:\nComposition: Terms like \"vertical split-screen\" or \"bisected portrait\" ensure the half-and-half look.\nAlignment: Using the phrase \"perfectly aligned at the center\" helps the AI match the eyes and facial structure across both halves.\nTexture: Including \"detailed skin pores,\" \"hyper-realistic,\" and \"8k\" is essential for the gritty, high-definition look seen in the reference.\"",
+        "is_primary": true,
+        "id": "prm_7971c2ea9f3942c5",
+        "item_id": "itm_b154545ffcc945fc",
+        "created_at": "2026-04-30T12:02:33.423074+00:00",
+        "updated_at": "2026-04-30T12:02:33.423074+00:00"
+      }
+    ],
+    "prompt_snippet": "\"A hyper-realistic, cinematic vertical split-screen portrait. The right side shows a high-resolution, sharp photograph of [Subject Name] in their youth with smooth skin and vibrant features. The left side shows the same ",
+    "first_image": {
+      "id": "img_c0beea1267e54e35",
+      "item_id": "itm_b154545ffcc945fc",
+      "original_path": "demo-data/media/img_c0beea1267e54e35.webp",
+      "thumb_path": "demo-data/media/img_c0beea1267e54e35.webp",
+      "preview_path": "demo-data/media/img_c0beea1267e54e35.webp",
+      "remote_url": null,
+      "width": 699,
+      "height": 1024,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:34.090203+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:33.423074+00:00",
+    "created_at": "2026-04-30T12:02:33.423074+00:00",
+    "images": [
+      {
+        "id": "img_c0beea1267e54e35",
+        "item_id": "itm_b154545ffcc945fc",
+        "original_path": "demo-data/media/img_c0beea1267e54e35.webp",
+        "thumb_path": "demo-data/media/img_c0beea1267e54e35.webp",
+        "preview_path": "demo-data/media/img_c0beea1267e54e35.webp",
+        "remote_url": null,
+        "width": 699,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:34.090203+00:00"
+      },
+      {
+        "id": "img_cf9a80ed34c54efd",
+        "item_id": "itm_b154545ffcc945fc",
+        "original_path": "demo-data/media/img_cf9a80ed34c54efd.webp",
+        "thumb_path": "demo-data/media/img_cf9a80ed34c54efd.webp",
+        "preview_path": "demo-data/media/img_cf9a80ed34c54efd.webp",
+        "remote_url": null,
+        "width": 699,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:02:35.039373+00:00"
+      },
+      {
+        "id": "img_1a3f65ec115645d9",
+        "item_id": "itm_b154545ffcc945fc",
+        "original_path": "demo-data/media/img_1a3f65ec115645d9.webp",
+        "thumb_path": "demo-data/media/img_1a3f65ec115645d9.webp",
+        "preview_path": "demo-data/media/img_1a3f65ec115645d9.webp",
+        "remote_url": null,
+        "width": 699,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:02:38.098501+00:00"
+      },
+      {
+        "id": "img_0e3a3d8eb5c745fa",
+        "item_id": "itm_b154545ffcc945fc",
+        "original_path": "demo-data/media/img_0e3a3d8eb5c745fa.webp",
+        "thumb_path": "demo-data/media/img_0e3a3d8eb5c745fa.webp",
+        "preview_path": "demo-data/media/img_0e3a3d8eb5c745fa.webp",
+        "remote_url": null,
+        "width": 699,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:02:40.559007+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Ozair AI (@Ozayrr_irl).",
+    "author": "Ozair AI (@Ozayrr_irl)"
+  },
+  {
+    "id": "itm_2022009058d246ca",
+    "title": "Photoreal fashion hero portrait with 4x4 expression grid",
+    "slug": "x-astronomerozge1-2049551055445246305",
+    "model": "Nano Banana 2",
+    "source_name": "X / Özge Döner",
+    "source_url": "https://x.com/astronomerozge1/status/2049551055445246305?s=20",
+    "cluster": {
+      "id": "clu_75e060027e63479f",
+      "name": "Fashion, Beauty & Lifestyle",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_3ce9443de7e64e03",
+        "name": "expression_grid",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_41137f2cc7fd4bf4",
+        "name": "fashion_editorial",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_731bf8e7e6ed4ca3",
+        "name": "json_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3d7b37fb79b84a99",
+        "name": "nano_banana",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "{\n  \"generation_request\": {\n    \"meta_data\": {\n      \"task_type\": \"hero_plus_expression_grid_editorial\",\n      \"style\": \"ultra_photoreal_clean_studio_fashion\",\n      \"version\": \"v4.0_HERO_GRID_LAYOUT\"\n    },\n    \"input\": {\n      \"mode\": \"image_to_image\",\n      \"reference_image_usage\": \"maximum\",\n      \"preserve_identity\": \"strict_lock\",\n      \"notes\": \"Use the uploaded woman as the exact identity. Same face, same proportions across all frames. No identity drift.\"\n    },\n    \"output_settings\": {\n      \"aspect_ratio\": \"3:2\",\n      \"resolution\": \"ultra_high\",\n      \"layout\": {\n        \"type\": \"split_composition\",\n        \"left\": \"large hero portrait\",\n        \"right\": \"4x4 mini grid\",\n        \"gutter\": \"thin\"\n      },\n      \"no_text\": true\n    },\n    \"scene\": {\n      \"environment\": \"clean white or light gray studio backdrop\",\n      \"lighting\": {\n        \"setup\": \"soft studio fashion lighting\",\n        \"key\": \"soft frontal light\",\n        \"fill\": \"balanced fill\",\n        \"shadow\": \"minimal soft shadow\",\n        \"consistency\": \"uniform across all panels\"\n      }\n    },\n    \"subject\": {\n      \"identity\": \"same exact woman everywhere\",\n      \"hair\": \"long natural loose hair, soft volume\",\n      \"makeup\": \"natural minimal editorial\",\n      \"skin\": \"realistic texture, no smoothing\",\n      \"outfit\": \"white or light crop t-shirt, slightly loose fit, paired with blue denim shorts\",\n      \"body\": \"natural slim proportions, realistic anatomy\"\n    },\n    \"composition\": {\n      \"left_hero\": {\n        \"pose\": \"mid-body portrait, slightly angled stance, hands raised in a playful gesture (inviting or teasing)\",\n        \"expression\": \"confident playful smile\",\n        \"framing\": \"dominant large frame\"\n      },\n      \"right_grid\": {\n        \"type\": \"4x4 expressions\",\n        \"variation\": \"same framing, only expressions and hand gestures change\"\n      }\n    },\n    \"expression_grid\": {\n      \"1\": \"neutral look\",\n      \"2\": \"soft smile\",\n      \"3\": \"big laugh\",\n      \"4\": \"tongue out\",\n      \"5\": \"hair touch pose\",\n      \"6\": \"hands behind head relaxed\",\n      \"7\": \"playful wink\",\n      \"8\": \"shy smile\",\n      \"9\": \"looking sideways\",\n      \"10\": \"open mouth laugh\",\n      \"11\": \"hand on cheek\",\n      \"12\": \"slight pout\",\n      \"13\": \"arms crossed playful\",\n      \"14\": \"surprised face\",\n      \"15\": \"soft dreamy look\",\n      \"16\": \"confident smirk\"\n    },\n    \"hands_control\": {\n      \"priority\": \"very_high\",\n      \"rules\": [\n        \"correct finger anatomy\",\n        \"natural gestures\",\n        \"no distortion\"\n      ]\n    },\n    \"camera\": {\n      \"type\": \"Sony A1\",\n      \"lens\": \"50mm\",\n      \"framing\": \"consistent portrait framing\",\n      \"focus\": \"eyes sharp\"\n    },\n    \"rendering\": {\n      \"quality\": \"ultra photorealistic\",\n      \"details\": \"fabric texture, skin pores, denim texture\",\n      \"color\": \"neutral fashion tones\",\n      \"contrast\": \"soft editorial\",\n      \"negative_prompt\": [\n        \"identity drift\",\n        \"different face\",\n        \"plastic skin\",\n        \"extra fingers\",\n        \"warped hands\",\n        \"AI look\",\n        \"blur\",\n        \"text\",\n        \"watermark\"\n      ]\n    }\n  }\n}",
+        "is_primary": true,
+        "id": "prm_097f332abd3749bc",
+        "item_id": "itm_2022009058d246ca",
+        "created_at": "2026-04-30T12:02:32.547216+00:00",
+        "updated_at": "2026-04-30T12:02:32.547216+00:00"
+      }
+    ],
+    "prompt_snippet": "{\n  \"generation_request\": {\n    \"meta_data\": {\n      \"task_type\": \"hero_plus_expression_grid_editorial\",\n      \"style\": \"ultra_photoreal_clean_studio_fashion\",\n      \"version\": \"v4.0_HERO_GRID_LAYOUT\"\n    },\n    \"input\":",
+    "first_image": {
+      "id": "img_77052d36b3054997",
+      "item_id": "itm_2022009058d246ca",
+      "original_path": "demo-data/media/img_77052d36b3054997.webp",
+      "thumb_path": "demo-data/media/img_77052d36b3054997.webp",
+      "preview_path": "demo-data/media/img_77052d36b3054997.webp",
+      "remote_url": null,
+      "width": 670,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:33.409852+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:32.547216+00:00",
+    "created_at": "2026-04-30T12:02:32.547216+00:00",
+    "images": [
+      {
+        "id": "img_77052d36b3054997",
+        "item_id": "itm_2022009058d246ca",
+        "original_path": "demo-data/media/img_77052d36b3054997.webp",
+        "thumb_path": "demo-data/media/img_77052d36b3054997.webp",
+        "preview_path": "demo-data/media/img_77052d36b3054997.webp",
+        "remote_url": null,
+        "width": 670,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:33.409852+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Özge Döner (@astronomerozge1).",
+    "author": "Özge Döner (@astronomerozge1)"
+  },
+  {
+    "id": "itm_63f385dcfb194951",
+    "title": "Monochrome pencil sketch portrait JSON prompt",
+    "slug": "x-minahil42298354-2049748611341111576",
+    "model": "GPT Image 2",
+    "source_name": "X / Minahil",
+    "source_url": "https://x.com/Minahil42298354/status/2049748611341111576?s=20",
+    "cluster": {
+      "id": "clu_d28c1c2bd13b4016",
+      "name": "插画与艺术",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_731bf8e7e6ed4ca3",
+        "name": "json_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8dd7b91312594edd",
+        "name": "pencil_sketch",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "{\n  \"subject\": \"Young woman with a gentle smile resting her chin on her hand\",\n  \"hair_style\": \"High messy bun with wispy loose strands\",\n  \"clothing\": \"Ribbed knit cozy sweater\",\n  \"medium\": \"Pencil sketch, graphite on paper\",\n  \"art_style\": [\"Hand-drawn\", \"Fine line art\", \"Soft realistic shading\"],\n  \"color_palette\": \"Monochrome, greyscale\",\n  \"lighting\": \"Soft natural lighting, subtle shadows\",\n  \"technical_details\": \"8k resolution, highly detailed eyes, textured paper background, visible pencil strokes\"\n}",
+        "is_primary": true,
+        "id": "prm_ae99667a191f4135",
+        "item_id": "itm_63f385dcfb194951",
+        "created_at": "2026-04-30T12:02:31.054497+00:00",
+        "updated_at": "2026-04-30T12:02:31.054497+00:00"
+      }
+    ],
+    "prompt_snippet": "{\n  \"subject\": \"Young woman with a gentle smile resting her chin on her hand\",\n  \"hair_style\": \"High messy bun with wispy loose strands\",\n  \"clothing\": \"Ribbed knit cozy sweater\",\n  \"medium\": \"Pencil sketch, graphite on ",
+    "first_image": {
+      "id": "img_a0e254ff24bb420f",
+      "item_id": "itm_63f385dcfb194951",
+      "original_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+      "thumb_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+      "preview_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1158,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:32.532020+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:31.054497+00:00",
+    "created_at": "2026-04-30T12:02:31.054497+00:00",
+    "images": [
+      {
+        "id": "img_a0e254ff24bb420f",
+        "item_id": "itm_63f385dcfb194951",
+        "original_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+        "thumb_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+        "preview_path": "demo-data/media/img_a0e254ff24bb420f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1158,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:32.532020+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Minahil (@Minahil42298354).",
+    "author": "Minahil (@Minahil42298354)"
+  },
+  {
+    "id": "itm_9ffcd94c89684711",
+    "title": "Playful oversized-head 3D cartoon boy and girl character prompts",
+    "slug": "x-taaruk-2049766167120871887",
+    "model": "GPT Image 2",
+    "source_name": "X / Taaruk",
+    "source_url": "https://x.com/Taaruk_/status/2049766167120871887?s=20",
+    "cluster": {
+      "id": "clu_65c21e993fcd4973",
+      "name": "人物与角色",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_2c1a7c0dbc894c90",
+        "name": "3d_cartoon",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7d8a927d3dea44b3",
+        "name": "character_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_02fff36af6be4896",
+        "name": "pixar_style",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "1 (Boy – Blue Background)\nPrompt:\nA cute stylized cartoon boy with an oversized head and small body, standing with hands behind his back, leaning slightly forward while making a playful funny face with tongue out. He has messy brown hair, expressive eyes, and a mischievous smile. He is wearing a navy blue t-shirt, blue jeans, and casual sneakers.\nBackground is a soft pastel blue with floating playful elements like rockets, planets, stars, and small toy cars scattered around in a clean pattern. Studio lighting, soft shadows under feet, vibrant colors, smooth 3D cartoon style, Pixar-like character design, ultra-detailed skin texture, high resolution, centered composition.\n\nPrompt 2 (Girl – Pink Background)\nPrompt:\nA cute stylized cartoon girl with an oversized head and small body, standing with hands behind her back, leaning forward and making a playful funny face with her tongue out. She has two braided pigtails, soft facial features, and a cheerful expression. She is wearing a pink t-shirt, denim shorts, and pink sneakers.\nBackground is a soft pastel pink with scattered cute flower patterns in a minimal, aesthetic layout. Bright studio lighting, soft shadows, vibrant pastel tones, smooth 3D cartoon rendering, Pixar-inspired character design, ultra-detailed, centered full-body composition.",
+        "is_primary": true,
+        "id": "prm_45362da15eee4384",
+        "item_id": "itm_9ffcd94c89684711",
+        "created_at": "2026-04-30T12:02:29.008098+00:00",
+        "updated_at": "2026-04-30T12:02:29.008098+00:00"
+      }
+    ],
+    "prompt_snippet": "1 (Boy – Blue Background)\nPrompt:\nA cute stylized cartoon boy with an oversized head and small body, standing with hands behind his back, leaning slightly forward while making a playful funny face with tongue out. He has",
+    "first_image": {
+      "id": "img_007605cb0b984aed",
+      "item_id": "itm_9ffcd94c89684711",
+      "original_path": "demo-data/media/img_007605cb0b984aed.webp",
+      "thumb_path": "demo-data/media/img_007605cb0b984aed.webp",
+      "preview_path": "demo-data/media/img_007605cb0b984aed.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:30.040740+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:29.008098+00:00",
+    "created_at": "2026-04-30T12:02:29.008098+00:00",
+    "images": [
+      {
+        "id": "img_007605cb0b984aed",
+        "item_id": "itm_9ffcd94c89684711",
+        "original_path": "demo-data/media/img_007605cb0b984aed.webp",
+        "thumb_path": "demo-data/media/img_007605cb0b984aed.webp",
+        "preview_path": "demo-data/media/img_007605cb0b984aed.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:30.040740+00:00"
+      },
+      {
+        "id": "img_1b2b1ce68e754013",
+        "item_id": "itm_9ffcd94c89684711",
+        "original_path": "demo-data/media/img_1b2b1ce68e754013.webp",
+        "thumb_path": "demo-data/media/img_1b2b1ce68e754013.webp",
+        "preview_path": "demo-data/media/img_1b2b1ce68e754013.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:02:31.043300+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Taaruk (@Taaruk_).",
+    "author": "Taaruk (@Taaruk_)"
+  },
+  {
+    "id": "itm_63819a37a6144407",
+    "title": "3x4 kawaii mood sticker pack with consistent girl character",
+    "slug": "x-noor-ul-ain43-2049712100843598111",
+    "model": "GPT Image 2",
+    "source_name": "X / Noor 🌸",
+    "source_url": "https://x.com/Noor_ul_ain43/status/2049712100843598111?s=20",
+    "cluster": {
+      "id": "clu_65c21e993fcd4973",
+      "name": "人物与角色",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_c86fceb8f5d54e59",
+        "name": "character_consistency",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2220ce2776be4c64",
+        "name": "kawaii",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_674ac97ee0ca4179",
+        "name": "sticker_pack",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a 3x4 grid of cute kawaii sticker illustrations featuring the same girl with short wavy black hair, soft makeup, freckles, and gold hoop earrings, wearing a black turtleneck and beige coat. Keep her facial features consistent across all stickers.\n\nEach sticker should show a different emotion or activity in a soft pastel, glossy cartoon style similar to chibi/anime stickers, with white sticker borders and colorful rounded text labels.\n\nInclude these expressions and poses:\n\n1. Holding coffee – “Cute!”\n2. Winking and peace sign – “Cute!”\n3. Rubbing eye – “Sleepy”\n4. Resting face on hand – “Sad”\n5. Arms up excited – “Happy!”\n6. Puffy cheeks angry – “Angry!”\n7. Wearing heart sunglasses – “Love”\n8. Hugging a cat with headphones – “Cozy Day!”\n9. Holding paintbrush – “Let’s Paint!”\n10. Bored expression – “Bored…”\n11. Holding palette/art – “Creative!”\n12. Dancing pose – “Dance!”\n\nStyle details:\n\n- Soft warm color palette (peach, pink, yellow tones)\n- Blushy cheeks, sparkles, hearts, flowers\n- Smooth clean lineart, semi-realistic anime face\n- Glossy sticker effect with shadow\n- Cute playful fonts matching each mood\n- High detail, vibrant, aesthetic, Instagram sticker pack style",
+        "is_primary": true,
+        "id": "prm_88d2ca3adec34be0",
+        "item_id": "itm_63819a37a6144407",
+        "created_at": "2026-04-30T12:02:27.457117+00:00",
+        "updated_at": "2026-04-30T12:02:27.457117+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a 3x4 grid of cute kawaii sticker illustrations featuring the same girl with short wavy black hair, soft makeup, freckles, and gold hoop earrings, wearing a black turtleneck and beige coat. Keep her facial feature",
+    "first_image": {
+      "id": "img_90b604f4ceea4c9d",
+      "item_id": "itm_63819a37a6144407",
+      "original_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+      "thumb_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+      "preview_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:02:28.825113+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T12:02:27.457117+00:00",
+    "created_at": "2026-04-30T12:02:27.457117+00:00",
+    "images": [
+      {
+        "id": "img_90b604f4ceea4c9d",
+        "item_id": "itm_63819a37a6144407",
+        "original_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+        "thumb_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+        "preview_path": "demo-data/media/img_90b604f4ceea4c9d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:02:28.825113+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X source on 2026-04-30. Preserve attribution to Noor 🌸 (@Noor_ul_ain43).",
+    "author": "Noor 🌸 (@Noor_ul_ain43)"
+  },
+  {
     "id": "itm_c275b2cc15bc4f51",
     "title": "NutriChef personalized macro recipe infographic prompt",
     "slug": "x-hooeem-2049255092256207034",

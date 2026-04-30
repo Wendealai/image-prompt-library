@@ -4,12 +4,12 @@
     "name": "Architecture & Interiors",
     "description": null,
     "sort_order": 0,
-    "count": 7,
+    "count": 8,
     "preview_images": [
+      "demo-data/media/img_90495e66679e4dfc.webp",
       "demo-data/media/img_2484f9060c8e4a94.webp",
       "demo-data/media/img_9cf16a0879164464.webp",
-      "demo-data/media/img_5310d541c1af41de.webp",
-      "demo-data/media/img_8a65be93f5b34867.webp"
+      "demo-data/media/img_5310d541c1af41de.webp"
     ]
   },
   {
@@ -82,12 +82,12 @@
     "name": "Fashion, Beauty & Lifestyle",
     "description": null,
     "sort_order": 0,
-    "count": 9,
+    "count": 10,
     "preview_images": [
+      "demo-data/media/img_77052d36b3054997.webp",
       "demo-data/media/img_1ab3c1faab204892.webp",
       "demo-data/media/img_d9b70e1c2eda4747.webp",
-      "demo-data/media/img_251fb69582f940a6.webp",
-      "demo-data/media/img_ccfe2872c96c4c7c.webp"
+      "demo-data/media/img_251fb69582f940a6.webp"
     ]
   },
   {
@@ -147,11 +147,12 @@
     "name": "人物与角色",
     "description": null,
     "sort_order": 0,
-    "count": 3,
+    "count": 5,
     "preview_images": [
+      "demo-data/media/img_007605cb0b984aed.webp",
+      "demo-data/media/img_90b604f4ceea4c9d.webp",
       "demo-data/media/img_8ff0dcf31c09444c.webp",
-      "demo-data/media/img_8b3565812212466b.webp",
-      "demo-data/media/img_9e7e312554f14ce4.webp"
+      "demo-data/media/img_8b3565812212466b.webp"
     ]
   },
   {
@@ -192,12 +193,12 @@
     "name": "商品与电商",
     "description": null,
     "sort_order": 0,
-    "count": 6,
+    "count": 7,
     "preview_images": [
+      "demo-data/media/img_380e9dc64deb4122.webp",
       "demo-data/media/img_2590ec55cbab493e.webp",
       "demo-data/media/img_46fab76bb8ac4a9f.webp",
-      "demo-data/media/img_5ca8aa7efab145cb.webp",
-      "demo-data/media/img_d9045d3d001e4646.webp"
+      "demo-data/media/img_5ca8aa7efab145cb.webp"
     ]
   },
   {
@@ -205,8 +206,10 @@
     "name": "图像编辑与再创作",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_190e3ca8cf1f419b.webp",
+      "demo-data/media/img_c0beea1267e54e35.webp",
       "demo-data/media/img_e903e47448884c10.webp"
     ]
   },
@@ -239,8 +242,9 @@
     "name": "插画与艺术",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_a0e254ff24bb420f.webp",
       "demo-data/media/img_bd23b980424143c1.webp",
       "demo-data/media/img_d6607b8d9f70426a.webp"
     ]
@@ -250,12 +254,12 @@
     "name": "摄影与写实",
     "description": null,
     "sort_order": 0,
-    "count": 11,
+    "count": 12,
     "preview_images": [
+      "demo-data/media/img_507c71bd7d5940bf.webp",
       "demo-data/media/img_1a8533b525364baf.webp",
       "demo-data/media/img_475b2d9495e64b39.webp",
-      "demo-data/media/img_d27eec761294486e.webp",
-      "demo-data/media/img_861ac55f503c4c84.webp"
+      "demo-data/media/img_d27eec761294486e.webp"
     ]
   },
   {
@@ -263,12 +267,12 @@
     "name": "海报与排版",
     "description": null,
     "sort_order": 0,
-    "count": 8,
+    "count": 10,
     "preview_images": [
+      "demo-data/media/img_2596ba2ac5154687.webp",
+      "demo-data/media/img_8b2cb01beb484c0e.webp",
       "demo-data/media/img_5148b0cc7408484a.webp",
-      "demo-data/media/img_3778c21057e142ad.webp",
-      "demo-data/media/img_5df0ae27e7754037.webp",
-      "demo-data/media/img_94936ea827ab408b.webp"
+      "demo-data/media/img_3778c21057e142ad.webp"
     ]
   }
 ]

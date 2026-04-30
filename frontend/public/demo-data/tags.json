@@ -1,7 +1,25 @@
 [
   {
+    "id": "tag_2c1a7c0dbc894c90",
+    "name": "3d_cartoon",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_fa04fca8167a4f09",
     "name": "3d_map",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3063b92d2e0e4893",
+    "name": "abstract_line_art",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_daf43bdbfdae411f",
+    "name": "aging_effect",
     "kind": "general",
     "count": 1
   },
@@ -14,6 +32,12 @@
   {
     "id": "tag_7cd58eee5bdb433b",
     "name": "annotation",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_425e3453358d4482",
+    "name": "architecture",
     "kind": "general",
     "count": 1
   },
@@ -54,6 +78,30 @@
     "count": 2
   },
   {
+    "id": "tag_f1b3c640fa5145fd",
+    "name": "business_portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_56b54e8e9e1442d5",
+    "name": "cafe_lifestyle",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c86fceb8f5d54e59",
+    "name": "character_consistency",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7d8a927d3dea44b3",
+    "name": "character_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_0602150ffd7c4b24",
     "name": "characters",
     "kind": "general",
@@ -72,10 +120,22 @@
     "count": 3
   },
   {
+    "id": "tag_d551346423b24dd1",
+    "name": "chinese_prompt",
+    "kind": "general",
+    "count": 3
+  },
+  {
     "id": "tag_e73ed728ed954690",
     "name": "cinematic-storytelling",
     "kind": "general",
     "count": 16
+  },
+  {
+    "id": "tag_6294c2e677a84aac",
+    "name": "collectible_toy",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_b889e7e827654c80",
@@ -92,6 +152,12 @@
   {
     "id": "tag_dde29302ecbb41d3",
     "name": "country_variable",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_be147f93f9134457",
+    "name": "cover_design",
     "kind": "general",
     "count": 1
   },
@@ -120,6 +186,12 @@
     "count": 23
   },
   {
+    "id": "tag_3f73bbbcf3ce46f3",
+    "name": "ecommerce",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_473e99d6b72f4596",
     "name": "editorial_cover",
     "kind": "general",
@@ -132,10 +204,22 @@
     "count": 16
   },
   {
+    "id": "tag_3ce9443de7e64e03",
+    "name": "expression_grid",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_a8ebb19ff82f495a",
     "name": "fashion-lifestyle",
     "kind": "general",
     "count": 9
+  },
+  {
+    "id": "tag_41137f2cc7fd4bf4",
+    "name": "fashion_editorial",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_8b19b0dc7f7049ee",
@@ -165,7 +249,7 @@
     "id": "tag_4b5e832377564cd4",
     "name": "gpt_image_2",
     "kind": "general",
-    "count": 5
+    "count": 13
   },
   {
     "id": "tag_ac321b865cbb447c",
@@ -176,6 +260,12 @@
   {
     "id": "tag_24d4260705e0486e",
     "name": "hand_drawn_doodles",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_44e0336c56b044f8",
+    "name": "hand_drawn_notes",
     "kind": "general",
     "count": 1
   },
@@ -222,8 +312,38 @@
     "count": 12
   },
   {
+    "id": "tag_7ad502ef06bf4e38",
+    "name": "ink_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_14f51eb85a6d49bb",
     "name": "ink_wash",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f4e7105a241a4a55",
+    "name": "interior_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_731bf8e7e6ed4ca3",
+    "name": "json_prompt",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_2220ce2776be4c64",
+    "name": "kawaii",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_fce5b9b4ab264517",
+    "name": "luxury_listing",
     "kind": "general",
     "count": 1
   },
@@ -252,14 +372,32 @@
     "count": 1
   },
   {
+    "id": "tag_94beaddcdb40493f",
+    "name": "minimalist_layout",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_0034e49bb80d49a9",
     "name": "naiknelofar788",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_3d7b37fb79b84a99",
+    "name": "nano_banana",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_424c0390cfb9466d",
     "name": "nano_banana_pro",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_c747d9515b46446e",
+    "name": "neo_chinese_aesthetic",
     "kind": "general",
     "count": 1
   },
@@ -288,6 +426,18 @@
     "count": 1
   },
   {
+    "id": "tag_c43415d7ba024d0b",
+    "name": "oriental_editorial",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8dd7b91312594edd",
+    "name": "pencil_sketch",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1d91f02b0b5e4d57",
     "name": "personalized_recipe",
     "kind": "general",
@@ -298,6 +448,18 @@
     "name": "photo-real-world",
     "kind": "general",
     "count": 10
+  },
+  {
+    "id": "tag_146550c1d33c40f1",
+    "name": "photo_annotation",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a44bc4483b284e5f",
+    "name": "photo_editing",
+    "kind": "general",
+    "count": 2
   },
   {
     "id": "tag_ce0a6188b63340c5",
@@ -312,6 +474,18 @@
     "count": 11
   },
   {
+    "id": "tag_02fff36af6be4896",
+    "name": "pixar_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c4aab56ffa4348a7",
+    "name": "portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1aca6991ea924e01",
     "name": "poster",
     "kind": "general",
@@ -324,6 +498,12 @@
     "count": 7
   },
   {
+    "id": "tag_e0dfb007b8074ed6",
+    "name": "poster_design",
+    "kind": "general",
+    "count": 3
+  },
+  {
     "id": "tag_4717188292034092",
     "name": "poster_typography",
     "kind": "general",
@@ -334,6 +514,24 @@
     "name": "product-ecommerce",
     "kind": "general",
     "count": 6
+  },
+  {
+    "id": "tag_2037c7934fa84636",
+    "name": "product_launch",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_60b488427ee24bf3",
+    "name": "profile_avatar",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d5e33b78552f44f5",
+    "name": "real_estate",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_1835a91235b04479",
@@ -360,8 +558,26 @@
     "count": 2
   },
   {
+    "id": "tag_f66b2eca2f514cf5",
+    "name": "self_media",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_b54063bc0f2f4bb1",
     "name": "social_media_ready",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_039fd0031585432b",
+    "name": "split_screen",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_674ac97ee0ca4179",
+    "name": "sticker_pack",
     "kind": "general",
     "count": 1
   },
@@ -423,6 +639,6 @@
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
-    "count": 6
+    "count": 17
   }
 ]
