@@ -3,10 +3,16 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
+from pathlib import Path
 from typing import Any
 
 import httpx
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from backend.schemas import NanobananaArticleImagesRequest, NanobananaImageRequest
 from backend.services.nanobanana import TOKEN_ENV, base_url, request_article_images, wait_for_article_images
