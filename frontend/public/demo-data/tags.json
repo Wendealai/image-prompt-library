@@ -12,6 +12,12 @@
     "count": 1
   },
   {
+    "id": "tag_fc50c584ccd44ee2",
+    "name": "3d_post_frame",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_3063b92d2e0e4893",
     "name": "abstract_line_art",
     "kind": "general",
@@ -32,6 +38,12 @@
   {
     "id": "tag_7cd58eee5bdb433b",
     "name": "annotation",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4d71d2c944224197",
+    "name": "appetizing_food",
     "kind": "general",
     "count": 1
   },
@@ -57,7 +69,13 @@
     "id": "tag_2f4363e4db164ece",
     "name": "awesome_gpt_image_2",
     "kind": "general",
-    "count": 52
+    "count": 216
+  },
+  {
+    "id": "tag_dffb167ec84c44ff",
+    "name": "awesome_gpt_image_2_part_1",
+    "kind": "general",
+    "count": 164
   },
   {
     "id": "tag_7131f78d9b154ee0",
@@ -75,7 +93,7 @@
     "id": "tag_cd8d49414f60490c",
     "name": "brand-logo",
     "kind": "general",
-    "count": 2
+    "count": 12
   },
   {
     "id": "tag_f1b3c640fa5145fd",
@@ -86,6 +104,12 @@
   {
     "id": "tag_56b54e8e9e1442d5",
     "name": "cafe_lifestyle",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f24648a40fa0477e",
+    "name": "cat_illustration",
     "kind": "general",
     "count": 1
   },
@@ -105,7 +129,7 @@
     "id": "tag_0602150ffd7c4b24",
     "name": "characters",
     "kind": "general",
-    "count": 3
+    "count": 8
   },
   {
     "id": "tag_8b1bbd3be3674c14",
@@ -120,6 +144,12 @@
     "count": 3
   },
   {
+    "id": "tag_2a2e7e28e8b14db9",
+    "name": "chatgpt_image",
+    "kind": "general",
+    "count": 4
+  },
+  {
     "id": "tag_d551346423b24dd1",
     "name": "chinese_prompt",
     "kind": "general",
@@ -130,6 +160,18 @@
     "name": "cinematic-storytelling",
     "kind": "general",
     "count": 16
+  },
+  {
+    "id": "tag_663964ffbf1f460b",
+    "name": "city_street",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a6d2beff55074e29",
+    "name": "close_up_photography",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_6294c2e677a84aac",
@@ -162,6 +204,12 @@
     "count": 1
   },
   {
+    "id": "tag_6aafecb2bce14bbc",
+    "name": "crayon_texture",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8a74926503d94f48",
     "name": "cross_section",
     "kind": "general",
@@ -186,8 +234,20 @@
     "count": 23
   },
   {
+    "id": "tag_be58f2e129184183",
+    "name": "double_exposure",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_3f73bbbcf3ce46f3",
     "name": "ecommerce",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_97b1db47d1c04c7b",
+    "name": "editorial_collage",
     "kind": "general",
     "count": 1
   },
@@ -198,14 +258,32 @@
     "count": 1
   },
   {
+    "id": "tag_3872d1fdf22b4e3e",
+    "name": "editorial_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_47db5c80ce874fab",
     "name": "education-infographics",
     "kind": "general",
     "count": 16
   },
   {
+    "id": "tag_a2b1e60a6bf44c84",
+    "name": "exploded_view",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_3ce9443de7e64e03",
     "name": "expression_grid",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f169b3e409774be5",
+    "name": "fashion",
     "kind": "general",
     "count": 1
   },
@@ -224,6 +302,12 @@
   {
     "id": "tag_8b19b0dc7f7049ee",
     "name": "fashion_portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b2fa44f592fa4db7",
+    "name": "food_photography",
     "kind": "general",
     "count": 1
   },
@@ -249,13 +333,25 @@
     "id": "tag_4b5e832377564cd4",
     "name": "gpt_image_2",
     "kind": "general",
-    "count": 13
+    "count": 17
   },
   {
     "id": "tag_ac321b865cbb447c",
     "name": "gpt_image_2_skill",
     "kind": "general",
     "count": 162
+  },
+  {
+    "id": "tag_3d75d2a103f6464a",
+    "name": "graduation_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_ef98664715ce415b",
+    "name": "hand_drawn_annotation",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_24d4260705e0486e",
@@ -270,8 +366,26 @@
     "count": 1
   },
   {
+    "id": "tag_1ae85bfac47b4aa9",
+    "name": "hand_drawn_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e242c576c3cf40ef",
+    "name": "handheld_card",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_98ea93f829dc4045",
     "name": "health_guardrails",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4cd7c8fa1e104361",
+    "name": "hero_scene",
     "kind": "general",
     "count": 1
   },
@@ -279,7 +393,7 @@
     "id": "tag_463d306847434c56",
     "name": "historical-classical",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_753aa1728044497d",
@@ -288,14 +402,32 @@
     "count": 1
   },
   {
+    "id": "tag_e5c3fe9525bd4daf",
+    "name": "identity_preservation",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_220ea6f55d2946b7",
     "name": "illustration-art",
     "kind": "general",
-    "count": 2
+    "count": 22
+  },
+  {
+    "id": "tag_cedffd69adc1444e",
+    "name": "illustration_fusion",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_2f22d8a49db34610",
     "name": "image_editing",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d7fd92cf4a23468b",
+    "name": "image_upscale",
     "kind": "general",
     "count": 1
   },
@@ -309,7 +441,7 @@
     "id": "tag_c71b52f0032a43ad",
     "name": "infographic-visualization",
     "kind": "general",
-    "count": 12
+    "count": 49
   },
   {
     "id": "tag_7ad502ef06bf4e38",
@@ -396,8 +528,26 @@
     "count": 2
   },
   {
+    "id": "tag_138071af0cda45bc",
+    "name": "nanobanana_2",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c8f0fdc54e29419f",
+    "name": "narrative_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_c747d9515b46446e",
     "name": "neo_chinese_aesthetic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1d319fbe38594850",
+    "name": "non_scannable",
     "kind": "general",
     "count": 1
   },
@@ -432,14 +582,32 @@
     "count": 1
   },
   {
+    "id": "tag_f3cf2ab3ab184b93",
+    "name": "outfit_collage",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8dd7b91312594edd",
     "name": "pencil_sketch",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_dc1b4af97bb944d0",
+    "name": "personal_shopper",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1d91f02b0b5e4d57",
     "name": "personalized_recipe",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_21d042cef189493e",
+    "name": "pet_portrait",
     "kind": "general",
     "count": 1
   },
@@ -459,7 +627,7 @@
     "id": "tag_a44bc4483b284e5f",
     "name": "photo_editing",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_ce0a6188b63340c5",
@@ -468,10 +636,16 @@
     "count": 1
   },
   {
+    "id": "tag_9b73fa2374814d18",
+    "name": "photo_restoration",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_af505da42a2040e1",
     "name": "photography-realism",
     "kind": "general",
-    "count": 11
+    "count": 25
   },
   {
     "id": "tag_02fff36af6be4896",
@@ -486,6 +660,12 @@
     "count": 1
   },
   {
+    "id": "tag_92242009ca5b4a22",
+    "name": "portrait_enhancement",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1aca6991ea924e01",
     "name": "poster",
     "kind": "general",
@@ -495,7 +675,7 @@
     "id": "tag_b18cd35e78d0425b",
     "name": "poster-typography",
     "kind": "general",
-    "count": 7
+    "count": 27
   },
   {
     "id": "tag_e0dfb007b8074ed6",
@@ -513,7 +693,13 @@
     "id": "tag_9b62e240ca754fd2",
     "name": "product-ecommerce",
     "kind": "general",
-    "count": 6
+    "count": 9
+  },
+  {
+    "id": "tag_a9f2188881b84a45",
+    "name": "product_diagram",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_2037c7934fa84636",
@@ -524,6 +710,18 @@
   {
     "id": "tag_60b488427ee24bf3",
     "name": "profile_avatar",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_463f81dc169e49e8",
+    "name": "prop_document",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_935d85be2db243f6",
+    "name": "ramen",
     "kind": "general",
     "count": 1
   },
@@ -540,8 +738,20 @@
     "count": 1
   },
   {
+    "id": "tag_f467101c72954135",
+    "name": "restaurant_branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_883b23a76b7248fa",
     "name": "route_map",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_ba73d63931e3492c",
+    "name": "safety_sanitized",
     "kind": "general",
     "count": 1
   },
@@ -549,13 +759,13 @@
     "id": "tag_2f361c9914634a73",
     "name": "sample",
     "kind": "general",
-    "count": 214
+    "count": 378
   },
   {
     "id": "tag_0939053b28184516",
     "name": "scene-narrative",
     "kind": "general",
-    "count": 2
+    "count": 9
   },
   {
     "id": "tag_f66b2eca2f514cf5",
@@ -564,8 +774,38 @@
     "count": 1
   },
   {
+    "id": "tag_7ffb5e22d6f943e3",
+    "name": "silhouette_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_430171936cd1490b",
+    "name": "social_media_composite",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_b54063bc0f2f4bb1",
     "name": "social_media_ready",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d9aa5be526334fd0",
+    "name": "social_media_visual",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_dbd9cbe3db684940",
+    "name": "sony_a1",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_94a5d38347ab4489",
+    "name": "specimen_card",
     "kind": "general",
     "count": 1
   },
@@ -578,6 +818,12 @@
   {
     "id": "tag_674ac97ee0ca4179",
     "name": "sticker_pack",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_016c4d9b5b344630",
+    "name": "summer_style",
     "kind": "general",
     "count": 1
   },
@@ -612,6 +858,18 @@
     "count": 1
   },
   {
+    "id": "tag_ccc31a78dc7741bb",
+    "name": "technical_visualization",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_09f1a73b4a3f4022",
+    "name": "television",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_2ffc54be94484c49",
     "name": "travel_guide",
     "kind": "general",
@@ -620,6 +878,12 @@
   {
     "id": "tag_9d0ba307c58b4751",
     "name": "travel_infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d8e6633dcd8c4ff5",
+    "name": "twitter_x_frame",
     "kind": "general",
     "count": 1
   },
@@ -633,12 +897,30 @@
     "id": "tag_3883e7e5ddee4584",
     "name": "ui-interface",
     "kind": "general",
-    "count": 4
+    "count": 51
+  },
+  {
+    "id": "tag_6af17cf8f1ce4122",
+    "name": "vlog",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b2b9b28fecd2499b",
+    "name": "watercolor_poster",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
-    "count": 17
+    "count": 26
+  },
+  {
+    "id": "tag_8a3ee6ef5770412d",
+    "name": "xiaohongshu",
+    "kind": "general",
+    "count": 1
   }
 ]

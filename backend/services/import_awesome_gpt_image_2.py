@@ -18,10 +18,11 @@ SOURCE_LICENSE = "MIT"
 SOURCE_REPO_URL = "https://github.com/freestylefly/awesome-gpt-image-2"
 SOURCE_BLOB_BASE = f"{SOURCE_REPO_URL}/blob/main"
 SOURCE_RAW_BASE = "https://raw.githubusercontent.com/freestylefly/awesome-gpt-image-2/main"
+DEFAULT_GALLERY_FILENAME = "gallery-part-2.md"
 DEFAULT_GALLERY_PATH = Path("docs") / "gallery-part-2.md"
 
 CASE_HEADING_RE = re.compile(r"^###\s+例\s+(?P<number>\d+)[：:]\s*(?P<title>.+?)\s*$", re.MULTILINE)
-IMAGE_RE = re.compile(r"!\[(?P<alt>[^\]]*)\]\((?P<path>[^)]+)\)")
+IMAGE_RE = re.compile(r"!\[(?P<alt>(?:\\.|[^\]])*)\]\((?P<path>[^)]+)\)", re.DOTALL)
 SOURCE_LINE_RE = re.compile(r"^\*\*来源：\*\*\s*(?P<source>.+?)\s*$", re.MULTILINE)
 LINK_RE = re.compile(r"\[(?P<label>[^\]]+)\]\((?P<url>[^)]+)\)")
 FENCE_RE = re.compile(r"```(?:text|json)?\s*\n(?P<text>.*?)\n```", re.DOTALL)
@@ -113,20 +114,46 @@ def _unescape_markdown(value: str) -> str:
     return value.replace("\\_", "_").strip()
 
 
-def _gallery_path(source: Path | str) -> Path:
+def _gallery_path(source: Path | str, gallery_path: Path | str | None = None) -> Path:
     path = Path(source)
     if path.is_file():
         return path
-    for candidate in (path / DEFAULT_GALLERY_PATH, path / "gallery-part-2.md"):
+
+    candidates: list[Path] = []
+    if gallery_path is not None:
+        requested = Path(gallery_path)
+        candidates.append(path / requested)
+        if len(requested.parts) == 1:
+            candidates.append(path / "docs" / requested)
+    else:
+        candidates.extend((path / DEFAULT_GALLERY_PATH, path / DEFAULT_GALLERY_FILENAME))
+
+    for candidate in candidates:
         if candidate.is_file():
             return candidate
-    raise FileNotFoundError(f"Expected {path / DEFAULT_GALLERY_PATH} or {path / 'gallery-part-2.md'}")
+    expected = " or ".join(str(candidate) for candidate in candidates)
+    raise FileNotFoundError(f"Expected {expected}")
 
 
 def _repo_root_for_gallery(gallery_path: Path) -> Path:
     if gallery_path.parent.name == "docs":
         return gallery_path.parent.parent
     return gallery_path.parent
+
+
+def _repo_relative_gallery_path(gallery_path: Path, root: Path) -> str:
+    try:
+        return gallery_path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return gallery_path.name
+
+
+def _gallery_part_tag(gallery_repo_path: str) -> str:
+    match = re.search(r"gallery-part-(?P<number>\d+)", gallery_repo_path)
+    if match:
+        return f"awesome_gpt_image_2_part_{match.group('number')}"
+    safe = re.sub(r"[^a-z0-9]+", "_", Path(gallery_repo_path).stem.lower()).strip("_")
+    return f"awesome_gpt_image_2_{safe}" if safe else "awesome_gpt_image_2_gallery"
 
 
 def _markdown_sections(text: str) -> list[tuple[int, str, str]]:
@@ -177,7 +204,7 @@ def _split_bilingual_prompt(text: str) -> list[PromptIn]:
 
 def _fallback_collection_id(record: dict[str, Any]) -> str:
     text = f"{record.get('title', '')}\n{record.get('prompt_text', '')}".lower()
-    if any(token in text for token in ["ui", "界面", "网页", "应用", "截图", "朋友圈", "直播"]):
+    if re.search(r"\bui\b", text) or any(token in text for token in ["界面", "网页", "应用", "截图", "朋友圈", "直播"]):
         return "ui-interface"
     if any(token in text for token in ["信息图", "图表", "详解", "拆解", "分析", "数据", "地图", "infographic"]):
         return "infographic-visualization"
@@ -205,7 +232,7 @@ def _collection_id_for_record(record: dict[str, Any]) -> str:
 
 def _notes(record: dict[str, Any]) -> str:
     parts = [
-        f"Imported from {SOURCE_NAME} gallery-part-2 cases for demo/reference use.",
+        f"Imported from {SOURCE_NAME} {record['gallery_label']} cases for demo/reference use.",
         f"License observed in upstream repository: {SOURCE_LICENSE}. Preserve upstream and original-source attribution when publishing screenshots, demo GIFs, or fixtures.",
         f"Original case: {record['case_url']}",
     ]
@@ -218,9 +245,17 @@ def _notes(record: dict[str, Any]) -> str:
     return "\n".join(parts)
 
 
-def load_gallery_cases(source: Path | str, start_case: int = 310, end_case: int | None = None) -> list[dict[str, Any]]:
-    gallery = _gallery_path(source).resolve()
+def load_gallery_cases(
+    source: Path | str,
+    start_case: int = 310,
+    end_case: int | None = None,
+    gallery_path: Path | str | None = None,
+) -> list[dict[str, Any]]:
+    gallery = _gallery_path(source, gallery_path=gallery_path).resolve()
     root = _repo_root_for_gallery(gallery)
+    gallery_repo_path = _repo_relative_gallery_path(gallery, root)
+    gallery_label = Path(gallery_repo_path).stem
+    part_tag = _gallery_part_tag(gallery_repo_path)
     text = gallery.read_text(encoding="utf-8")
     records: list[dict[str, Any]] = []
     for number, title, body in _markdown_sections(text):
@@ -248,8 +283,11 @@ def load_gallery_cases(source: Path | str, start_case: int = 310, end_case: int 
                 "raw_image_url": f"{SOURCE_RAW_BASE}/{image_path}",
                 "source_links": source_links,
                 "author": " / ".join(link["label"] for link in source_links) or SOURCE_NAME,
-                "case_url": f"{SOURCE_BLOB_BASE}/docs/gallery-part-2.md#case-{number}",
-                "source_url": f"{SOURCE_BLOB_BASE}/docs/gallery-part-2.md#case-{number}",
+                "case_url": f"{SOURCE_BLOB_BASE}/{gallery_repo_path}#case-{number}",
+                "source_url": f"{SOURCE_BLOB_BASE}/{gallery_repo_path}#case-{number}",
+                "gallery_path": gallery_repo_path,
+                "gallery_label": gallery_label,
+                "part_tag": part_tag,
                 "prompt_text": prompt_text,
                 "prompts": _split_bilingual_prompt(prompt_text),
                 "collection_id": collection_id,
@@ -273,6 +311,7 @@ def import_awesome_gpt_image_2(
     library: Path | str,
     start_case: int = 310,
     end_case: int | None = None,
+    gallery_path: Path | str | None = None,
 ) -> ImportResult:
     library_path = Path(library)
     init_db(library_path)
@@ -290,7 +329,7 @@ def import_awesome_gpt_image_2(
         )
         conn.commit()
 
-    for record in load_gallery_cases(source, start_case=start_case, end_case=end_case):
+    for record in load_gallery_cases(source, start_case=start_case, end_case=end_case, gallery_path=gallery_path):
         slug = _case_slug(int(record["number"]))
         if _already_imported(library_path, slug):
             continue
@@ -301,7 +340,7 @@ def import_awesome_gpt_image_2(
         tags = [
             "sample",
             "awesome_gpt_image_2",
-            "awesome_gpt_image_2_part_2",
+            record["part_tag"],
             record["collection_id"],
         ]
         created = repo.create_item(
@@ -352,10 +391,11 @@ def import_awesome_gpt_image_2(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Import freestylefly/awesome-gpt-image-2 gallery cases into Image Prompt Library.")
-    parser.add_argument("--source", required=True, help="Path to a local clone/root or gallery-part-2.md")
+    parser.add_argument("--source", required=True, help="Path to a local clone/root or gallery markdown file")
     parser.add_argument("--library", default="library", help="Image Prompt Library data path")
     parser.add_argument("--start-case", type=int, default=310, help="First case number to import")
     parser.add_argument("--end-case", type=int, default=None, help="Optional final case number to import")
+    parser.add_argument("--gallery-path", default=None, help="Gallery path inside the source root, e.g. docs/gallery-part-1.md")
     args = parser.parse_args()
     print(
         import_awesome_gpt_image_2(
@@ -363,6 +403,7 @@ def main() -> None:
             args.library,
             start_case=args.start_case,
             end_case=args.end_case,
+            gallery_path=args.gallery_path,
         ).model_dump_json(indent=2)
     )
 

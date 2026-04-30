@@ -13,8 +13,30 @@ def _write_gallery_fixture(root: Path) -> Path:
     images = root / "data" / "images"
     docs.mkdir(parents=True)
     images.mkdir(parents=True)
+    Image.new("RGB", (72, 72), "green").save(images / "case1.jpg")
     Image.new("RGB", (80, 60), "orange").save(images / "case310.jpg")
     Image.new("RGB", (60, 80), "blue").save(images / "case355.jpg")
+    (docs / "gallery-part-1.md").write_text(
+        """## Gallery
+
+<a name="case-1"></a>
+
+### 例 1：信息图可视化设计
+
+![信息图可视化设计](../data/images/case1.jpg)
+
+**来源：** [@creator](https://x.com/creator/status/1)
+
+**提示词：**
+
+```text
+Create an infographic about a compact city food map.
+```
+
+***
+""",
+        encoding="utf-8",
+    )
     (docs / "gallery-part-2.md").write_text(
         """## Gallery
 
@@ -95,6 +117,17 @@ def test_load_gallery_cases_parses_requested_range_with_curated_collections(tmp_
     assert records[1]["author"] == "@dotey / Credit @xiaoxiaodong01"
 
 
+def test_load_gallery_cases_uses_requested_gallery_part_metadata(tmp_path: Path):
+    source = _write_gallery_fixture(tmp_path / "awesome-gpt-image-2")
+
+    records = load_gallery_cases(source, start_case=1, end_case=1, gallery_path="docs/gallery-part-1.md")
+
+    assert [record["number"] for record in records] == [1]
+    assert records[0]["case_url"].endswith("docs/gallery-part-1.md#case-1")
+    assert records[0]["gallery_label"] == "gallery-part-1"
+    assert records[0]["part_tag"] == "awesome_gpt_image_2_part_1"
+
+
 def test_import_awesome_gpt_image_2_imports_images_prompts_and_is_idempotent(tmp_path: Path):
     source = _write_gallery_fixture(tmp_path / "awesome-gpt-image-2")
     library = tmp_path / "library"
@@ -121,3 +154,26 @@ def test_import_awesome_gpt_image_2_imports_images_prompts_and_is_idempotent(tmp
     prompt_languages = {prompt.language for prompt in detail.prompts}
     assert prompt_languages == {"en", "zh_hans", "zh_hant"}
     assert repo.list_items(limit=10).total == 2
+
+
+def test_import_awesome_gpt_image_2_tags_requested_gallery_part(tmp_path: Path):
+    source = _write_gallery_fixture(tmp_path / "awesome-gpt-image-2")
+    library = tmp_path / "library"
+    init_db(library)
+
+    result = import_awesome_gpt_image_2(
+        source,
+        library,
+        start_case=1,
+        end_case=1,
+        gallery_path="docs/gallery-part-1.md",
+    )
+
+    assert result.item_count == 1
+    repo = ItemRepository(library)
+    with connect(library) as conn:
+        item_id = conn.execute("SELECT id FROM items WHERE slug=?", ("awesome-gpt-image-2-case-1",)).fetchone()[0]
+    detail = repo.get_item(item_id)
+    assert detail.source_url.endswith("docs/gallery-part-1.md#case-1")
+    assert "gallery-part-1 cases" in (detail.notes or "")
+    assert {tag.name for tag in detail.tags} >= {"awesome_gpt_image_2", "awesome_gpt_image_2_part_1"}
