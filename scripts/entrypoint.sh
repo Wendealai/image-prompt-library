@@ -2,6 +2,7 @@
 set -eu
 
 LIBRARY_PATH="${IMAGE_PROMPT_LIBRARY_PATH:-/data/library}"
+DEMO_BUNDLE_PATH="${IMAGE_PROMPT_DEMO_BUNDLE_PATH:-/app/frontend/dist/demo-data}"
 
 if [ "${IMPORT_DEMO_DATA_ON_START:-0}" = "1" ]; then
   item_total="$(
@@ -14,7 +15,9 @@ library = Path(os.environ.get("IMAGE_PROMPT_LIBRARY_PATH", "/data/library"))
 print(ItemRepository(library).list_items(limit=1).total)
 PY
   )"
-  if [ "$item_total" = "0" ]; then
+  if [ -d "$DEMO_BUNDLE_PATH" ]; then
+    python /app/scripts/import-demo-data.py --bundle "$DEMO_BUNDLE_PATH" --library "$LIBRARY_PATH"
+  elif [ "$item_total" = "0" ]; then
     python /app/scripts/import-demo-data.py --public-v0.1 --library "$LIBRARY_PATH"
   fi
 fi

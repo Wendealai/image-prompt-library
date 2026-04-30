@@ -312,3 +312,11 @@ def test_import_demo_data_script_exposes_local_and_public_v0_1_bundle_options():
     service = (ROOT / "backend" / "services" / "import_demo_bundle.py").read_text()
     assert 'ROOT / "frontend" / "public" / "demo-data"' in service
     assert "https://eddietyp.github.io/image-prompt-library/v0.1/demo-data" in service
+
+
+def test_entrypoint_imports_current_built_demo_bundle_before_public_fallback():
+    entrypoint = (ROOT / "scripts" / "entrypoint.sh").read_text()
+
+    assert 'DEMO_BUNDLE_PATH="${IMAGE_PROMPT_DEMO_BUNDLE_PATH:-/app/frontend/dist/demo-data}"' in entrypoint
+    assert 'python /app/scripts/import-demo-data.py --bundle "$DEMO_BUNDLE_PATH" --library "$LIBRARY_PATH"' in entrypoint
+    assert 'elif [ "$item_total" = "0" ]; then' in entrypoint
