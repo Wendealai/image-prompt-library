@@ -5,13 +5,13 @@ export function selectPrimaryImage(images: Array<ImageRecord | undefined>) {
 }
 
 export function imageDisplayPath(image?: ImageRecord) {
-  return image?.preview_path || image?.original_path || image?.thumb_path || '';
+  return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || '';
 }
 
 export function imageThumbnailPath(image?: ImageRecord) {
-  return image?.thumb_path || image?.preview_path || '';
+  return image?.thumb_path || image?.preview_path || image?.remote_url || '';
 }
 
 export function imageHeroPath(image?: ImageRecord) {
-  return image?.preview_path || image?.original_path || image?.thumb_path || '';
+  return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || '';
 }

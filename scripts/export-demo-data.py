@@ -65,6 +65,17 @@ def _source_for_image(library_path: Path, image: dict) -> Path:
 
 
 def _rewrite_image_record(library_path: Path, media_dir: Path, image: dict) -> dict:
+    remote_url = image.get("remote_url")
+    if remote_url and str(remote_url).startswith(("http://", "https://")):
+        rewritten = dict(image)
+        rewritten.update({
+            "original_path": image.get("original_path") or remote_url,
+            "preview_path": None,
+            "thumb_path": None,
+            "remote_url": remote_url,
+            "file_sha256": None,
+        })
+        return rewritten
     destination_rel = f"demo-data/media/{image['id']}.webp"
     destination = media_dir / f"{image['id']}.webp"
     width, height = _compress_image(_source_for_image(library_path, image), destination)
@@ -98,7 +109,9 @@ def _rewrite_cluster_previews(clusters: list[dict], items: list[dict]) -> list[d
             continue
         preview_by_cluster.setdefault(cluster["id"], [])
         if len(preview_by_cluster[cluster["id"]]) < 4:
-            preview_by_cluster[cluster["id"]].append(first["thumb_path"])
+            preview = first.get("thumb_path") or first.get("preview_path") or first.get("remote_url")
+            if preview:
+                preview_by_cluster[cluster["id"]].append(preview)
     rewritten = []
     for cluster in clusters:
         next_cluster = dict(cluster)

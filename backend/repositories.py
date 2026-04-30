@@ -168,6 +168,25 @@ class ItemRepository:
             conn.commit()
         return self._image_by_id(iid)
 
+    def add_remote_image(self, item_id: str, remote_url: str, *, storage_key: str | None = None, role: str = "result_image") -> ImageRecord:
+        if role not in {"result_image", "reference_image"}:
+            raise ValueError("Invalid image role")
+        clean_url = remote_url.strip()
+        if not clean_url:
+            raise ValueError("Remote image URL is required")
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT id FROM images WHERE item_id=? AND remote_url=?", (item_id, clean_url)).fetchone()
+            if row:
+                return self._image_by_id(row["id"])
+        return self.add_image(
+            item_id,
+            StoredImageInput(
+                original_path=(storage_key or clean_url).strip(),
+                remote_url=clean_url,
+                role=role,
+            ),
+        )
+
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None
         return ClusterRecord(id=row["cluster_id"], name=row["cluster_name"], description=row["cluster_description"], sort_order=row["cluster_sort_order"] or 0)
@@ -469,7 +488,7 @@ class ItemRepository:
             rows = conn.execute("""SELECT c.*, COUNT(i.id) count FROM clusters c LEFT JOIN items i ON i.cluster_id=c.id AND i.archived=0 GROUP BY c.id HAVING count > 0 ORDER BY c.sort_order, c.name""").fetchall()
             out=[]
             for r in rows:
-                previews = [x[0] for x in conn.execute("""SELECT COALESCE(img.thumb_path,img.preview_path,img.original_path)
+                previews = [x[0] for x in conn.execute("""SELECT COALESCE(img.thumb_path,img.preview_path,img.remote_url,img.original_path)
                     FROM images img JOIN items i ON i.id=img.item_id
                     WHERE i.cluster_id=? AND i.archived=0
                       AND NOT EXISTS (

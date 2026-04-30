@@ -1,4 +1,4 @@
-from typing import List, Literal, Optional
+from typing import Any, List, Literal, Optional
 from pydantic import BaseModel, Field, ConfigDict
 
 class PromptIn(BaseModel):
@@ -192,6 +192,75 @@ class PromptTemplateGenerateRequest(BaseModel):
 
 class PromptTemplateRerollRequest(BaseModel):
     rejected_variant_ids: List[str] = Field(default_factory=list)
+
+class NanobananaGeneration(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    resolution: Optional[str] = None
+    aspect_ratio: Optional[str] = Field(default=None, alias="aspectRatio")
+    image_count: Optional[int] = Field(default=None, ge=1, le=4, alias="imageCount")
+    quality: Optional[Literal["low", "medium", "high"]] = None
+    output_format: Optional[Literal["png", "jpeg", "webp"]] = Field(default=None, alias="outputFormat")
+    strength: Optional[float] = Field(default=None, ge=0, le=1)
+
+class NanobananaSourceItem(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    label: Optional[str] = None
+    role: Optional[str] = None
+    note: Optional[str] = None
+    image_url: str = Field(alias="imageUrl")
+    mime_type: Optional[str] = Field(default=None, alias="mimeType")
+
+class NanobananaImageRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    id: str
+    slot: str
+    prompt: str = Field(min_length=1, max_length=16000)
+    negative_prompt: Optional[str] = Field(default=None, alias="negativePrompt")
+    mode: Literal["text-to-image", "image-to-image"] = "text-to-image"
+    generation: Optional[NanobananaGeneration] = None
+    source_items: List[NanobananaSourceItem] = Field(default_factory=list, max_length=16, alias="sourceItems")
+
+class NanobananaDefaults(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    generation: NanobananaGeneration = Field(default_factory=lambda: NanobananaGeneration(
+        resolution="1024x1024",
+        aspectRatio="4:5",
+        imageCount=1,
+        quality="high",
+        outputFormat="png",
+    ))
+
+class NanobananaArticleImagesRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    article_id: str = Field(alias="articleId")
+    project_id: str = Field(default="image-prompt-library", alias="projectId")
+    style_pack: Optional[str] = Field(default=None, alias="stylePack")
+    callback_url: Optional[str] = Field(default=None, alias="callbackUrl")
+    idempotency_key: str = Field(alias="idempotencyKey")
+    defaults: NanobananaDefaults = Field(default_factory=NanobananaDefaults)
+    images: List[NanobananaImageRequest] = Field(min_length=1, max_length=32)
+    metadata: Optional[dict[str, Any]] = None
+    wait: bool = False
+    timeout_ms: int = Field(default=15 * 60 * 1000, ge=1000, alias="timeoutMs")
+    poll_interval_ms: int = Field(default=3000, ge=100, alias="pollIntervalMs")
+
+class NanobananaItemImageGenerationRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    prompt_text: Optional[str] = Field(default=None, alias="promptText", max_length=16000)
+    prompt_language: Optional[str] = Field(default=None, alias="promptLanguage")
+    style_pack: Optional[str] = Field(default=None, alias="stylePack")
+    generation: Optional[NanobananaGeneration] = None
+    source_items: List[NanobananaSourceItem] = Field(default_factory=list, max_length=16, alias="sourceItems")
+    idempotency_key: Optional[str] = Field(default=None, alias="idempotencyKey")
+    wait: bool = True
+    timeout_ms: int = Field(default=15 * 60 * 1000, ge=1000, alias="timeoutMs")
+    poll_interval_ms: int = Field(default=3000, ge=100, alias="pollIntervalMs")
 
 class ImportResult(BaseModel):
     id: str

@@ -155,6 +155,20 @@ You can sync the bundled n8n workflows into your instance with:
 ./scripts/sync-n8n-prompt-workflows.sh
 ```
 
+For server-side Nanobanana Internal Image API generation, configure these only in the backend/server environment:
+
+```bash
+NANOBANANA_IMAGE_API_BASE_URL=https://image-api.wendealai.com
+NANOBANANA_IMAGE_API_TOKEN=
+NANOBANANA_IMAGE_CALLBACK_URL=
+```
+
+The token must not be exposed through Vite/frontend environment variables. After setting `NANOBANANA_IMAGE_API_TOKEN`, run a live smoke with:
+
+```bash
+python scripts/nanobanana-live-smoke.py
+```
+
 ## Data layout
 
 Runtime data lives under `IMAGE_PROMPT_LIBRARY_PATH`:

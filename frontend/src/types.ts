@@ -12,7 +12,7 @@ export type PromptTemplateBulkInitMode = 'missing' | 'stale' | 'all';
 export interface PromptTemplateBulkInitRequest { mode?: PromptTemplateBulkInitMode; language?: string; limit?: number; dry_run?: boolean }
 export interface PromptTemplateBulkInitItemResult { item_id: string; title: string; status: string; template_id?: string; slot_count: number; detail?: string }
 export interface PromptTemplateBulkInitResult { mode: PromptTemplateBulkInitMode; dry_run: boolean; total_candidates: number; processed_count: number; skipped_count: number; failed_count: number; results: PromptTemplateBulkInitItemResult[] }
-export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; role?: UploadImageRole }
+export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; remote_url?: string; width?: number; height?: number; role?: UploadImageRole }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }
 export interface AppConfig { version: string; library_path: string; database_path: string; preferred_prompt_language?: string }

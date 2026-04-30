@@ -77,7 +77,7 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
 
 def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
     images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
-    assert "return image?.preview_path || image?.original_path || image?.thumb_path || ''" in images
+    assert "return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || ''" in images
 
 
 def test_cards_are_global_image_overlay_cards():
