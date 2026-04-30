@@ -44,4 +44,4 @@ def store_image(library_path: Path | str, data: bytes, filename: str = "image.pn
     thumb.save(library / thumb_rel, "WEBP", quality=82)
     preview = image.copy(); preview.thumbnail((1400, 1400))
     preview.save(library / preview_rel, "WEBP", quality=88)
-    return StoredImage(str(original_rel), str(thumb_rel), str(preview_rel), width, height, sha)
+    return StoredImage(original_rel.as_posix(), thumb_rel.as_posix(), preview_rel.as_posix(), width, height, sha)

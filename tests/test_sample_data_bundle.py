@@ -9,6 +9,7 @@ from pathlib import Path
 from threading import Thread
 
 
+import pytest
 from PIL import Image
 
 from backend.services import import_demo_bundle as import_demo_bundle_module
@@ -255,6 +256,8 @@ def test_install_sample_data_script_verifies_release_zip_checksum():
 
 
 def test_install_sample_data_script_supports_local_zip_override(tmp_path: Path):
+    if os.name == "nt":
+        pytest.skip("install-sample-data.sh is a POSIX shell script; Windows cannot execute it directly.")
     assets = tmp_path / "assets"
     image_dir = assets / "images"
     image_dir.mkdir(parents=True)
