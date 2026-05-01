@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build v0.2 mobile browsing preview
-        run: VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/${MOBILE_PREVIEW_PATH}/ npm run build
+        run: VITE_DEMO_MODE=true VITE_DEMO_ASSET_VERSION=${GITHUB_SHA} VITE_BASE_PATH=/image-prompt-library/${MOBILE_PREVIEW_PATH}/ npm run build
       - name: Stage v0.2 mobile browsing preview
         run: |
           mkdir -p .pages-artifact/${MOBILE_PREVIEW_PATH}
@@ -54,7 +54,7 @@ jobs:
           git worktree add .page-build/${LEGACY_DEMO_PATH} ${LEGACY_DEMO_REF}
           cd .page-build/${LEGACY_DEMO_PATH}
           npm install
-          VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build
+          VITE_DEMO_MODE=true VITE_DEMO_ASSET_VERSION=${GITHUB_SHA} VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build
       - name: Stage archived v0.1 demo
         if: steps.legacy-demo.outputs.available == 'true'
         run: |

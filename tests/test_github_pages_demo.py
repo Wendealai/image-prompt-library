@@ -13,6 +13,7 @@ def test_github_pages_demo_mode_uses_static_data_and_base_path():
     assert "VITE_BASE_PATH" in vite_config
     assert "base:" in vite_config
     assert "VITE_DEMO_MODE" in client
+    assert "VITE_DEMO_ASSET_VERSION" in client
     assert "DEMO_DATA_BASE" in client
     assert "demo-data/items.json" in client
     assert "demo-data/clusters.json" in client
@@ -54,6 +55,7 @@ def test_github_pages_workflow_deploys_versioned_demo_builds():
     assert "fetch-depth: 0" in text
     assert "LEGACY_DEMO_REF: v0.1.0-alpha" in text
     assert "MOBILE_PREVIEW_PATH: v0.2" in text
+    assert "VITE_DEMO_ASSET_VERSION=${GITHUB_SHA}" in text
     assert "VITE_BASE_PATH=/image-prompt-library/${MOBILE_PREVIEW_PATH}/ npm run build" in text
     assert "git worktree add .page-build/${LEGACY_DEMO_PATH} ${LEGACY_DEMO_REF}" in text
     assert "VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build" in text
@@ -134,6 +136,14 @@ def test_demo_bundle_metadata_and_taxonomy_counts_match_items():
         assert cluster["count"] == expected_cluster_counts.get(cluster["id"], 0)
         assert cluster["preview_images"] == expected_previews.get(cluster["id"], [])
 
+    image_less = [
+        item["slug"]
+        for item in items
+        if not item.get("first_image")
+        or not any(item["first_image"].get(key) for key in ("thumb_path", "preview_path", "original_path", "remote_url"))
+    ]
+    assert image_less == []
+
 
 def test_demo_bundle_preserves_curated_aijaz_avatar_prompt_imports():
     demo_root = ROOT / "frontend" / "public" / "demo-data"
@@ -143,7 +153,22 @@ def test_demo_bundle_preserves_curated_aijaz_avatar_prompt_imports():
     assert "x-iamsofiaijaz-2049895027560866232-formula" in items_text
     assert "Prompt reconstructed from a truncated X post by Aijaz" in items_text
     assert "Derived reusable template based on the linked X post by Aijaz" in items_text
-    assert '"first_image": null' in items_text
+    assert "This item now reuses the source post's example image" in items_text
+    assert "demo-data/media/img_1e6efab8a3954dc9.webp" in items_text
+    assert "demo-data/media/img_d08c050833bc4a77.webp" in items_text
+    assert (demo_root / "media" / "img_1e6efab8a3954dc9.webp").exists()
+    assert (demo_root / "media" / "img_d08c050833bc4a77.webp").exists()
+
+
+def test_demo_bundle_preserves_safety_curated_specimen_card_preview():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-iqrasaifiii-2049790084220928090" in items_text
+    assert "安全样张证件道具近景摄影" in items_text
+    assert "source post's clearly fictional sample output image" in items_text
+    assert "demo-data/media/img_525f8d4c7fd74df0.webp" in items_text
+    assert (demo_root / "media" / "img_525f8d4c7fd74df0.webp").exists()
 
 
 def test_demo_bundle_preserves_xiaoxiaodong_article_lego_prompt_pair():

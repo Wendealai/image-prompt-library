@@ -2068,14 +2068,42 @@
       }
     ],
     "prompt_snippet": "{\n  \"type\": \"Close-up prop photography\",\n  \"subject\": \"A clearly fictional prop identification card held by a hand, designed for film set dressing, UI mockups, or visual design study only\",\n  \"safety_constraints\": [\n    ",
-    "first_image": null,
+    "first_image": {
+      "id": "img_525f8d4c7fd74df0",
+      "item_id": "itm_08fc164826b64c2e",
+      "original_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+      "thumb_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+      "preview_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 503,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-02T00:52:00+00:00"
+    },
     "rating": 0,
     "favorite": false,
     "archived": false,
-    "updated_at": "2026-04-30T15:23:02.222931+00:00",
+    "updated_at": "2026-05-02T00:52:00+00:00",
     "created_at": "2026-04-30T15:23:02.222931+00:00",
-    "images": [],
-    "notes": "Safety-curated import from the linked X status via public fxtwitter/vxtwitter mirrors on 2026-05-01. The original post demonstrated a realistic fictional driver's license prompt with barcode and security-feature language; the reusable library prompt is intentionally rewritten as a clearly invalid prop/specimen card and omits the original ID-like result image from the public Explore bundle.",
+    "images": [
+      {
+        "id": "img_525f8d4c7fd74df0",
+        "item_id": "itm_08fc164826b64c2e",
+        "original_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+        "thumb_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+        "preview_path": "demo-data/media/img_525f8d4c7fd74df0.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 503,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-02T00:52:00+00:00"
+      }
+    ],
+    "notes": "Safety-curated import from the linked X status via public fxtwitter/vxtwitter mirrors on 2026-05-01. The original post demonstrated a realistic fictional driver's license prompt with barcode and security-feature language; the reusable library prompt is intentionally rewritten as a clearly invalid prop/specimen card and omits the original ID-like result image from the public Explore bundle. The source post explicitly says the output was made slightly fake so viewers can tell it is AI-generated; because the preview image is clearly fictional and safety-curated, this item now preserves the source post's clearly fictional sample output image as a visual reference.",
     "author": "Iqra Saifi (@IqraSaifiii)"
   },
   {
@@ -40204,14 +40232,42 @@
       }
     ],
     "prompt_snippet": "A high-detail 3D stylized cartoon avatar of a young man with a full, well-groomed beard, soft facial features, and expressive eyes. He is wearing round yellow-tinted glasses with thin frames. His hair is thick, slightly ",
-    "first_image": null,
+    "first_image": {
+      "id": "img_1e6efab8a3954dc9",
+      "item_id": "itm_5c66dcb775d74a84",
+      "original_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+      "thumb_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+      "preview_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-02T00:52:00+00:00"
+    },
     "rating": 0,
     "favorite": false,
     "archived": false,
-    "updated_at": "2026-05-01T02:12:10+00:00",
+    "updated_at": "2026-05-02T00:52:00+00:00",
     "created_at": "2026-05-01T02:12:10+00:00",
-    "images": [],
-    "notes": "Prompt reconstructed from a truncated X post by Aijaz (@iamsofiaijaz). The public X oEmbed text preserved only the opening segment; the remainder was completed conservatively to match the author's visible style and constraints. Preserve source attribution and treat this as a faithful reconstruction rather than a verbatim transcript.",
+    "images": [
+      {
+        "id": "img_1e6efab8a3954dc9",
+        "item_id": "itm_5c66dcb775d74a84",
+        "original_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+        "thumb_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+        "preview_path": "demo-data/media/img_1e6efab8a3954dc9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-02T00:52:00+00:00"
+      }
+    ],
+    "notes": "Prompt reconstructed from a truncated X post by Aijaz (@iamsofiaijaz). The public X oEmbed text preserved only the opening segment; the remainder was completed conservatively to match the author's visible style and constraints. Preserve source attribution and treat this as a faithful reconstruction rather than a verbatim transcript. This item now reuses the source post's example image as a visual preview of the reconstructed prompt output shown in the original X status.",
     "author": "Aijaz (@iamsofiaijaz)"
   },
   {
@@ -40279,14 +40335,42 @@
       }
     ],
     "prompt_snippet": "Create a high-detail 3D stylized cartoon avatar of [subject].\n\nFacial identity:\n- Gender/age impression: [young man / young woman / etc.]\n- Face shape: [oval / round / sharp / soft]\n- Skin tone: [tone]\n- Eyes: [large exp",
-    "first_image": null,
+    "first_image": {
+      "id": "img_d08c050833bc4a77",
+      "item_id": "itm_27617d8b85554b58",
+      "original_path": "demo-data/media/img_d08c050833bc4a77.webp",
+      "thumb_path": "demo-data/media/img_d08c050833bc4a77.webp",
+      "preview_path": "demo-data/media/img_d08c050833bc4a77.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-02T00:52:00+00:00"
+    },
     "rating": 0,
     "favorite": false,
     "archived": false,
-    "updated_at": "2026-05-01T02:12:11+00:00",
+    "updated_at": "2026-05-02T00:52:00+00:00",
     "created_at": "2026-05-01T02:12:11+00:00",
-    "images": [],
-    "notes": "Derived reusable template based on the linked X post by Aijaz (@iamsofiaijaz) and the repository's reconstructed concrete prompt version. This item generalizes the original look into a reusable avatar formula for future subjects. Preserve source attribution when reusing.",
+    "images": [
+      {
+        "id": "img_d08c050833bc4a77",
+        "item_id": "itm_27617d8b85554b58",
+        "original_path": "demo-data/media/img_d08c050833bc4a77.webp",
+        "thumb_path": "demo-data/media/img_d08c050833bc4a77.webp",
+        "preview_path": "demo-data/media/img_d08c050833bc4a77.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-02T00:52:00+00:00"
+      }
+    ],
+    "notes": "Derived reusable template based on the linked X post by Aijaz (@iamsofiaijaz) and the repository's reconstructed concrete prompt version. This item generalizes the original look into a reusable avatar formula for future subjects. Preserve source attribution when reusing. This item now reuses the source post's example image as a visual preview of the concrete style that the reusable formula is abstracted from.",
     "author": "Aijaz (@iamsofiaijaz)"
   },
   {

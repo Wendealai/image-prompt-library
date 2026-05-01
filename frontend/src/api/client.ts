@@ -3,10 +3,14 @@ import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemD
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
 const DEMO_DATA_BASE = `${import.meta.env.BASE_URL || '/'}demo-data`.replace(/\/+/g, '/');
+const DEMO_ASSET_VERSION = (import.meta.env.VITE_DEMO_ASSET_VERSION || '').trim();
 
 function demoUrl(path: string) {
   const base = import.meta.env.BASE_URL || '/';
-  return `${base}${path.replace(/^\/+/, '')}`;
+  const url = `${base}${path.replace(/^\/+/, '')}`;
+  if (!isDemoMode || !DEMO_ASSET_VERSION) return url;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}v=${encodeURIComponent(DEMO_ASSET_VERSION)}`;
 }
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> {
