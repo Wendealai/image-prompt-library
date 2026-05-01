@@ -134,12 +134,12 @@
     "name": "UI与界面",
     "description": null,
     "sort_order": 0,
-    "count": 52,
+    "count": 53,
     "preview_images": [
+      "demo-data/media/img_8d4ac06af8f5435c.webp",
       "demo-data/media/img_f365b16178744d15.webp",
       "demo-data/media/img_7fdfc0090a4d479c.webp",
-      "demo-data/media/img_a0e1e3a193814bac.webp",
-      "demo-data/media/img_933954dc05334f91.webp"
+      "demo-data/media/img_a0e1e3a193814bac.webp"
     ]
   },
   {
@@ -184,12 +184,12 @@
     "name": "品牌与标志",
     "description": null,
     "sort_order": 0,
-    "count": 12,
+    "count": 13,
     "preview_images": [
+      "demo-data/media/img_60c0497cac3242f9.webp",
       "demo-data/media/img_713d97e780254b95.webp",
       "demo-data/media/img_5d7d0822d7584e33.webp",
-      "demo-data/media/img_112b0d08ffdf4a63.webp",
-      "demo-data/media/img_db7658fb283b4451.webp"
+      "demo-data/media/img_112b0d08ffdf4a63.webp"
     ]
   },
   {
@@ -197,12 +197,12 @@
     "name": "商品与电商",
     "description": null,
     "sort_order": 0,
-    "count": 10,
+    "count": 13,
     "preview_images": [
-      "demo-data/media/img_3dafad1b084f4048.webp",
-      "demo-data/media/img_3802d25f29304eb3.webp",
-      "demo-data/media/img_49b402c8f01d4a78.webp",
-      "demo-data/media/img_380e9dc64deb4122.webp"
+      "demo-data/media/img_82d29f6016334161.webp",
+      "demo-data/media/img_c02e56cbe5214c48.webp",
+      "demo-data/media/img_9ccaba2c50e74c22.webp",
+      "demo-data/media/img_3dafad1b084f4048.webp"
     ]
   },
   {
@@ -210,12 +210,12 @@
     "name": "图像编辑与再创作",
     "description": null,
     "sort_order": 0,
-    "count": 5,
+    "count": 7,
     "preview_images": [
+      "demo-data/media/img_30cc566c80354335.webp",
+      "demo-data/media/img_769becb5fee84ca9.webp",
       "demo-data/media/img_5355c8cc11034eee.webp",
-      "demo-data/media/img_177b73d9720346ed.webp",
-      "demo-data/media/img_190e3ca8cf1f419b.webp",
-      "demo-data/media/img_c0beea1267e54e35.webp"
+      "demo-data/media/img_177b73d9720346ed.webp"
     ]
   },
   {
@@ -223,12 +223,12 @@
     "name": "图表与信息可视化",
     "description": null,
     "sort_order": 0,
-    "count": 51,
+    "count": 53,
     "preview_images": [
+      "demo-data/media/img_3d7e305d67b840ef.webp",
+      "demo-data/media/img_0ded093f9bfc47d7.webp",
       "demo-data/media/img_c3d829bc8ef54dd8.webp",
-      "demo-data/media/img_b2306212f6e14e68.webp",
-      "demo-data/media/img_8a296c4a49b246f6.webp",
-      "demo-data/media/img_91f9c60d72564ca6.webp"
+      "demo-data/media/img_b2306212f6e14e68.webp"
     ]
   },
   {
@@ -249,12 +249,12 @@
     "name": "插画与艺术",
     "description": null,
     "sort_order": 0,
-    "count": 24,
+    "count": 25,
     "preview_images": [
+      "demo-data/media/img_591468bf50604213.webp",
       "demo-data/media/img_d3e4aaae18f94c1a.webp",
       "demo-data/media/img_cba421cc2b234d29.webp",
-      "demo-data/media/img_c6441d058b1f4c7a.webp",
-      "demo-data/media/img_25df9cf4eaad44f6.webp"
+      "demo-data/media/img_c6441d058b1f4c7a.webp"
     ]
   },
   {
@@ -275,12 +275,22 @@
     "name": "海报与排版",
     "description": null,
     "sort_order": 0,
-    "count": 31,
+    "count": 33,
     "preview_images": [
-      "demo-data/media/img_6551cc6ea3134fb6.webp",
-      "demo-data/media/img_a7ed85c0b6304752.webp",
-      "demo-data/media/img_8e04efeab3294ace.webp",
-      "demo-data/media/img_b48d45a711524b08.webp"
+      "demo-data/media/img_ddeeb67e02ae417f.webp",
+      "demo-data/media/img_c0a5184300f444dd.webp",
+      "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "demo-data/media/img_6551cc6ea3134fb6.webp"
+    ]
+  },
+  {
+    "id": "clu_346416f1ec7945e9",
+    "name": "视频分镜与动态叙事",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_006f205c901441f5.webp"
     ]
   }
 ]

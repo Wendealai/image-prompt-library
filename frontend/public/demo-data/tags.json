@@ -24,6 +24,12 @@
     "count": 1
   },
   {
+    "id": "tag_d90c48e122c541d3",
+    "name": "advertising",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_daf43bdbfdae411f",
     "name": "aging_effect",
     "kind": "general",
@@ -32,6 +38,12 @@
   {
     "id": "tag_465abcb5f0854e67",
     "name": "aidavid125",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c40b239edf474df8",
+    "name": "animation_frame",
     "kind": "general",
     "count": 1
   },
@@ -66,6 +78,12 @@
     "count": 16
   },
   {
+    "id": "tag_f21c5a7aeacc495d",
+    "name": "athlete_storytelling",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_2f4363e4db164ece",
     "name": "awesome_gpt_image_2",
     "kind": "general",
@@ -84,8 +102,20 @@
     "count": 52
   },
   {
+    "id": "tag_b68f2f494f3d47c5",
+    "name": "biography_visual",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_31807869305749a6",
     "name": "blueprint",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a8ceff87f5734e0c",
+    "name": "book_diorama",
     "kind": "general",
     "count": 1
   },
@@ -96,14 +126,44 @@
     "count": 12
   },
   {
+    "id": "tag_81ed19a0eead4d12",
+    "name": "brand_identity",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_433ba4c7903c455e",
+    "name": "brand_store",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f5244cac465d42eb",
+    "name": "branding",
+    "kind": "general",
+    "count": 3
+  },
+  {
     "id": "tag_f1b3c640fa5145fd",
     "name": "business_portrait",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_51d407f20fd14617",
+    "name": "business_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_56b54e8e9e1442d5",
     "name": "cafe_lifestyle",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_873c4977db48481c",
+    "name": "camera_motion",
     "kind": "general",
     "count": 1
   },
@@ -150,6 +210,12 @@
     "count": 4
   },
   {
+    "id": "tag_422036d71f0d4259",
+    "name": "children_illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_d551346423b24dd1",
     "name": "chinese_prompt",
     "kind": "general",
@@ -160,6 +226,12 @@
     "name": "cinematic-storytelling",
     "kind": "general",
     "count": 16
+  },
+  {
+    "id": "tag_b25404c18a3d4c0b",
+    "name": "cinematic_editing",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_663964ffbf1f460b",
@@ -182,6 +254,18 @@
   {
     "id": "tag_b889e7e827654c80",
     "name": "comic_illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4415da58e1c94d66",
+    "name": "commercial_ad",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_44d549242b344f46",
+    "name": "commercial_illustration",
     "kind": "general",
     "count": 1
   },
@@ -210,6 +294,12 @@
     "count": 1
   },
   {
+    "id": "tag_5f6998c2b3b24d82",
+    "name": "creator_branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8a74926503d94f48",
     "name": "cross_section",
     "kind": "general",
@@ -225,13 +315,19 @@
     "id": "tag_8a1363d2ce5a4296",
     "name": "cutaway",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_4989621f47594070",
     "name": "design-typography",
     "kind": "general",
     "count": 23
+  },
+  {
+    "id": "tag_fad340e8387a487b",
+    "name": "dk_style",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_be58f2e129184183",
@@ -243,7 +339,7 @@
     "id": "tag_3f73bbbcf3ce46f3",
     "name": "ecommerce",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_97b1db47d1c04c7b",
@@ -260,6 +356,18 @@
   {
     "id": "tag_3872d1fdf22b4e3e",
     "name": "editorial_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7cc2bcaeca5549f8",
+    "name": "editorial_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2f0433017f0d46f7",
+    "name": "education",
     "kind": "general",
     "count": 1
   },
@@ -315,7 +423,7 @@
     "id": "tag_ca0a781505894ffa",
     "name": "formula_prompt",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_9145e62200134e39",
@@ -324,8 +432,20 @@
     "count": 162
   },
   {
+    "id": "tag_e76726364959465f",
+    "name": "furniture",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_c7dbc498763b4931",
     "name": "gadgetify",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_46b352b554b042a6",
+    "name": "gpt_2",
     "kind": "general",
     "count": 1
   },
@@ -333,7 +453,7 @@
     "id": "tag_4b5e832377564cd4",
     "name": "gpt_image_2",
     "kind": "general",
-    "count": 17
+    "count": 25
   },
   {
     "id": "tag_ac321b865cbb447c",
@@ -378,8 +498,20 @@
     "count": 1
   },
   {
+    "id": "tag_cbafe3c562e64d3f",
+    "name": "headshot",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_98ea93f829dc4045",
     "name": "health_guardrails",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e12bef1dc98649d8",
+    "name": "heritage",
     "kind": "general",
     "count": 1
   },
@@ -396,6 +528,12 @@
     "count": 4
   },
   {
+    "id": "tag_11f8992f7b214c36",
+    "name": "historical_visualization",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_753aa1728044497d",
     "name": "hooeem",
     "kind": "general",
@@ -405,7 +543,7 @@
     "id": "tag_e5c3fe9525bd4daf",
     "name": "identity_preservation",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_220ea6f55d2946b7",
@@ -426,6 +564,12 @@
     "count": 1
   },
   {
+    "id": "tag_0e332741a8e64232",
+    "name": "image_to_image",
+    "kind": "general",
+    "count": 2
+  },
+  {
     "id": "tag_d7fd92cf4a23468b",
     "name": "image_upscale",
     "kind": "general",
@@ -435,7 +579,7 @@
     "id": "tag_008372d23259438c",
     "name": "infographic",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_c71b52f0032a43ad",
@@ -462,6 +606,18 @@
     "count": 1
   },
   {
+    "id": "tag_e087d7f043a449fc",
+    "name": "inventions",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_55d65b3de3394f65",
+    "name": "isometric_diorama",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_731bf8e7e6ed4ca3",
     "name": "json_prompt",
     "kind": "general",
@@ -470,6 +626,24 @@
   {
     "id": "tag_2220ce2776be4c64",
     "name": "kawaii",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e088ce583e9b4ac4",
+    "name": "layout_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7f6e59638a52460f",
+    "name": "logo_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9cefae14f1bb4043",
+    "name": "luxury",
     "kind": "general",
     "count": 1
   },
@@ -492,6 +666,12 @@
     "count": 1
   },
   {
+    "id": "tag_cc89297bbae74038",
+    "name": "marketing_collateral",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_6057463e86274d45",
     "name": "meal_planning",
     "kind": "general",
@@ -502,6 +682,24 @@
     "name": "midjourney_style",
     "kind": "general",
     "count": 1
+  },
+  {
+    "id": "tag_bade15d90df64828",
+    "name": "midjourney_v7",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0211e7bc4b214ecb",
+    "name": "miniature_3d",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cda3287e75c84c8f",
+    "name": "minimal",
+    "kind": "general",
+    "count": 2
   },
   {
     "id": "tag_94beaddcdb40493f",
@@ -525,7 +723,7 @@
     "id": "tag_424c0390cfb9466d",
     "name": "nano_banana_pro",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_138071af0cda45bc",
@@ -534,8 +732,20 @@
     "count": 1
   },
   {
+    "id": "tag_d53ba7f9316243c4",
+    "name": "nanobanana_pro",
+    "kind": "general",
+    "count": 3
+  },
+  {
     "id": "tag_c8f0fdc54e29419f",
     "name": "narrative_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_fdb34556db5e4dcc",
+    "name": "negative_space",
     "kind": "general",
     "count": 1
   },
@@ -552,8 +762,20 @@
     "count": 1
   },
   {
+    "id": "tag_d9424694166d455a",
+    "name": "nordic_picture_book",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_4598abb963aa43e7",
     "name": "nutrition",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c46ed396368a4670",
+    "name": "nutrition_branding",
     "kind": "general",
     "count": 1
   },
@@ -624,6 +846,12 @@
     "count": 1
   },
   {
+    "id": "tag_66c316a0bf6d41d3",
+    "name": "photo_edit",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_a44bc4483b284e5f",
     "name": "photo_editing",
     "kind": "general",
@@ -648,6 +876,12 @@
     "count": 25
   },
   {
+    "id": "tag_46300aa7fbf241a3",
+    "name": "picture_book",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_02fff36af6be4896",
     "name": "pixar_style",
     "kind": "general",
@@ -657,7 +891,7 @@
     "id": "tag_c4aab56ffa4348a7",
     "name": "portrait",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_92242009ca5b4a22",
@@ -681,11 +915,17 @@
     "id": "tag_e0dfb007b8074ed6",
     "name": "poster_design",
     "kind": "general",
-    "count": 3
+    "count": 6
   },
   {
     "id": "tag_4717188292034092",
     "name": "poster_typography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_22def4b40f584ed9",
+    "name": "premium",
     "kind": "general",
     "count": 1
   },
@@ -708,6 +948,24 @@
     "count": 1
   },
   {
+    "id": "tag_d233748e28a840b1",
+    "name": "product_marketing",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_680b66d289d64696",
+    "name": "product_visual",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_95d1deaf1c65420c",
+    "name": "professional",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_60b488427ee24bf3",
     "name": "profile_avatar",
     "kind": "general",
@@ -716,6 +974,18 @@
   {
     "id": "tag_463f81dc169e49e8",
     "name": "prop_document",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6b867c19329c493a",
+    "name": "pseudo_code",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_71465b03bab14e33",
+    "name": "quanzhou",
     "kind": "general",
     "count": 1
   },
@@ -744,6 +1014,12 @@
     "count": 1
   },
   {
+    "id": "tag_60abb5bebf7d4553",
+    "name": "rotoscoping",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_883b23a76b7248fa",
     "name": "route_map",
     "kind": "general",
@@ -762,10 +1038,22 @@
     "count": 378
   },
   {
+    "id": "tag_33f8fdf2aab14b7e",
+    "name": "scandinavian",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_0939053b28184516",
     "name": "scene-narrative",
     "kind": "general",
     "count": 9
+  },
+  {
+    "id": "tag_d4eeccadb92848c7",
+    "name": "seedance_2",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_f66b2eca2f514cf5",
@@ -795,6 +1083,18 @@
     "id": "tag_d9aa5be526334fd0",
     "name": "social_media_visual",
     "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_5cc41bba3b744ec8",
+    "name": "social_profile",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9e189135b70f42d2",
+    "name": "soft_storytelling",
+    "kind": "general",
     "count": 1
   },
   {
@@ -816,14 +1116,50 @@
     "count": 1
   },
   {
+    "id": "tag_78efa47ceb05491c",
+    "name": "sports_sequence",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a3aa3ae322264bd6",
+    "name": "sref",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_674ac97ee0ca4179",
     "name": "sticker_pack",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_0747a8773e284e04",
+    "name": "storyboard",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3ba5076f585946e2",
+    "name": "stylization",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_016c4d9b5b344630",
     "name": "summer_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_12f88d83d5fb4143",
+    "name": "supplement_ad",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f5f1b7f7bf424af1",
+    "name": "symbol_first",
     "kind": "general",
     "count": 1
   },
@@ -836,6 +1172,12 @@
   {
     "id": "tag_d324db160f12421f",
     "name": "tapnow",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_bfc7a0d575ad416e",
+    "name": "tech_style",
     "kind": "general",
     "count": 1
   },
@@ -888,6 +1230,12 @@
     "count": 1
   },
   {
+    "id": "tag_eb5621fe120542de",
+    "name": "twitter_x_ui",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1fbf1cb8c4144aac",
     "name": "ui-brand-product",
     "kind": "general",
@@ -898,6 +1246,18 @@
     "name": "ui-interface",
     "kind": "general",
     "count": 51
+  },
+  {
+    "id": "tag_aa50cbd63b5d46c7",
+    "name": "ui_composite",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6437592cb62a4e0d",
+    "name": "video_prompt",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_6af17cf8f1ce4122",
@@ -912,10 +1272,22 @@
     "count": 1
   },
   {
+    "id": "tag_8436df4624294482",
+    "name": "wellness_branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_266ecead06a84b34",
+    "name": "workspace_scene",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
-    "count": 26
+    "count": 39
   },
   {
     "id": "tag_8a3ee6ef5770412d",

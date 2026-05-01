@@ -1,5 +1,1997 @@
 [
   {
+    "id": "itm_df5010c9acf749e8",
+    "title": "Premium greens supplement advertisement poster",
+    "slug": "x-abs-uiux-2049836939541348758",
+    "model": "GPT Image 2",
+    "source_name": "X / Abkr Sadiq",
+    "source_url": "https://x.com/abs_uiux/status/2049836939541348758?s=20",
+    "cluster": {
+      "id": "clu_18134e8691e84ee0",
+      "name": "商品与电商",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_4415da58e1c94d66",
+        "name": "commercial_ad",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c46ed396368a4670",
+        "name": "nutrition_branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d233748e28a840b1",
+        "name": "product_marketing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_12f88d83d5fb4143",
+        "name": "supplement_ad",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8436df4624294482",
+        "name": "wellness_branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a premium modern supplement advertisement poster in a vertical 3:4 format featuring a confident young male model holding a greens supplement container. The model should look healthy, fit, and approachable, wearing a simple fitted t-shirt in neutral or earthy tones.\nUse a clean, minimal background with soft natural lighting and subtle plant elements (green leaves) to reinforce a fresh, organic feel. The color palette should be soft greens, beige, and off-white with a luxury wellness aesthetic.\nPlace bold, elegant headline text on the left side with a serif font: \"[PRODUCT NAME]\" and a smaller tagline beneath: \"FEEL THE DIFFERENCE\"\nInclude a short product description below the headline.\nAdd 3 benefit sections with minimal line icons:\nMore Energy - short supporting text\nImmune Support - short supporting text\nBetter Digestion - short supporting text\nShow the product container clearly in the model's hand with realistic lighting, shadows, and condensation details for a premium look.\nAt the bottom, include a clean feature bar with small icons and labels such as: Vegan • Non-GMO • No Added Sugar • [Optional extra like Easy to Mix or 30 Servings]\nAdd a small callout box with a short marketing message like: \"Clean Nutrition. Real Results.\"\nOverall style should be: minimal, high-end, modern wellness branding, soft shadows, balanced layout, strong typography, and clean spacing.",
+        "is_primary": true,
+        "id": "prm_6a1a002f685e4d09",
+        "item_id": "itm_df5010c9acf749e8",
+        "created_at": "2026-05-01T01:13:08.343802+00:00",
+        "updated_at": "2026-05-01T01:13:08.343802+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a premium modern supplement advertisement poster in a vertical 3:4 format featuring a confident young male model holding a greens supplement container. The model should look healthy, fit, and approachable, wearing",
+    "first_image": {
+      "id": "img_82d29f6016334161",
+      "item_id": "itm_df5010c9acf749e8",
+      "original_path": "demo-data/media/img_82d29f6016334161.webp",
+      "thumb_path": "demo-data/media/img_82d29f6016334161.webp",
+      "preview_path": "demo-data/media/img_82d29f6016334161.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T01:13:08.728906+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T01:13:08.343802+00:00",
+    "created_at": "2026-05-01T01:13:08.343802+00:00",
+    "images": [
+      {
+        "id": "img_82d29f6016334161",
+        "item_id": "itm_df5010c9acf749e8",
+        "original_path": "demo-data/media/img_82d29f6016334161.webp",
+        "thumb_path": "demo-data/media/img_82d29f6016334161.webp",
+        "preview_path": "demo-data/media/img_82d29f6016334161.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T01:13:08.728906+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the author's self-reply in the linked X thread: https://x.com/abs_uiux/status/2049837045225328833. The result image comes from the main X post. Prompt text was cross-checked against fxtwitter, vxtwitter, and xstalk mirrors. Preserve source attribution when reusing.",
+    "author": "Abkr Sadiq (@abs_uiux)"
+  },
+  {
+    "id": "itm_492efbe792394e26",
+    "title": "Seedance rugby cinematic storyboard",
+    "slug": "x-doctorwasif-2049716790864048505",
+    "model": "ChatGPT GPT-2 + Seedance 2",
+    "source_name": "X / WasifAI",
+    "source_url": "https://x.com/doctorwasif/status/2049716790864048505?s=20",
+    "cluster": {
+      "id": "clu_346416f1ec7945e9",
+      "name": "视频分镜与动态叙事",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_873c4977db48481c",
+        "name": "camera_motion",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b25404c18a3d4c0b",
+        "name": "cinematic_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_46b352b554b042a6",
+        "name": "gpt_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d4eeccadb92848c7",
+        "name": "seedance_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_78efa47ceb05491c",
+        "name": "sports_sequence",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0747a8773e284e04",
+        "name": "storyboard",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6437592cb62a4e0d",
+        "name": "video_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a 4K cinematic rugby storyboard from tackle to try with dramatic stadium lighting and broadcast style. Start with a slow-motion midfield tackle—mud and turf flying—then transition into a fast counterattack with offload and explosive sprint. Mix close-ups (boots, sweat, impact) with wide field shots.\n\nShow a key pass breaking the defense, followed by a sprint to the try line. Build tension with a slow-motion approach, then a powerful dive and ball grounding with realistic physics. End with an emotional celebration—teammates join, crowd erupts, stadium lights glow. Use dynamic camera angles, motion blur, and smooth transitions to highlight the shift from defense to victory.",
+        "is_primary": true,
+        "id": "prm_9f0fdbd7a4fa454b",
+        "item_id": "itm_492efbe792394e26",
+        "created_at": "2026-05-01T00:28:24.516202+00:00",
+        "updated_at": "2026-05-01T00:28:24.516202+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a 4K cinematic rugby storyboard from tackle to try with dramatic stadium lighting and broadcast style. Start with a slow-motion midfield tackle—mud and turf flying—then transition into a fast counterattack with of",
+    "first_image": {
+      "id": "img_006f205c901441f5",
+      "item_id": "itm_492efbe792394e26",
+      "original_path": "demo-data/media/img_006f205c901441f5.webp",
+      "thumb_path": "demo-data/media/img_006f205c901441f5.webp",
+      "preview_path": "demo-data/media/img_006f205c901441f5.webp",
+      "remote_url": null,
+      "width": 787,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:28:26.093790+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:28:24.516202+00:00",
+    "created_at": "2026-05-01T00:28:24.516202+00:00",
+    "images": [
+      {
+        "id": "img_006f205c901441f5",
+        "item_id": "itm_492efbe792394e26",
+        "original_path": "demo-data/media/img_006f205c901441f5.webp",
+        "thumb_path": "demo-data/media/img_006f205c901441f5.webp",
+        "preview_path": "demo-data/media/img_006f205c901441f5.webp",
+        "remote_url": null,
+        "width": 787,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:28:26.093790+00:00"
+      }
+    ],
+    "notes": "Prompt and result still extracted from the linked X source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. The source post explicitly frames this as ChatGPT GPT-2 + Seedance 2 on @yapper_so and includes a vertical video plus a still frame. This item is categorized under video/storyboard prompting because the core prompt is temporal, shot-based, and transition-aware rather than a single static image prompt. Original video URL preserved from fxtwitter metadata: https://video.twimg.com/ext_tw_video/2049716711017103360/pu/vid/avc1/1080x1920/glGoGTXS6NaJYhc3.mp4?tag=19. Preserve source attribution.",
+    "author": "WasifAI (@doctorwasif)"
+  },
+  {
+    "id": "itm_9931779e6f1a4b38",
+    "title": "Luxury creator workspace inside X profile UI",
+    "slug": "x-sergio-de-ennin-2049027015982956770",
+    "model": "GPT Image 2",
+    "source_name": "X / Sergio",
+    "source_url": "https://x.com/sergio_de_ennin/status/2049027015982956770?s=20",
+    "cluster": {
+      "id": "clu_8c5d2b0d851948f2",
+      "name": "UI与界面",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_5f6998c2b3b24d82",
+        "name": "creator_branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9cefae14f1bb4043",
+        "name": "luxury",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5cc41bba3b744ec8",
+        "name": "social_profile",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_eb5621fe120542de",
+        "name": "twitter_x_ui",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aa50cbd63b5d46c7",
+        "name": "ui_composite",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_266ecead06a84b34",
+        "name": "workspace_scene",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a high-premium, ultra-clean creator workspace scene integrated into a Twitter/X (Twitter) profile interface using the provided interface layout. Use a dark theme UI background that clearly shows a user profile named \"Sergio\" with a verified badge.\n\nIn the foreground, depict a stylized semi-realistic smiling digital man with sharp, polished details. He is seated and working confidently at a high-end vintage realistic desk, using a MacBook Pro. Make the scene cozy yet luxury in tone. The man should wear a luxurious Rolex watch and feature a classically shiny brown leather shoe. Ensure the shoe looks reflective and premium, with realistic highlights.\n\nDesk setup (all included, neatly styled and readable):\n- A white iPhone 16 Pro Max placed on the desk\n- A bonsai tree in a white ceramic pot\n- Assorted gastropod shells, arranged and sealed inside a clear-closed conical glass bottle\n- A high vintage brown, glossy leather Ralph Lauren bag hanging on a vintage shiny toy horse (visually elegant and clean)\n\nLighting & rendering style:\n- Soft cinematic lighting with clear, readable tones\n- High contrast against the dark X/Twitter UI background\n- Subtle reflections on glass, leather, and watch metal; no harsh glare\n- Realistic materials: leather grain, ceramic texture, glass refraction, and MacBook screen clarity\n\nComposition requirements:\n- Center the subject (the seated creator) with a slightly angled perspective\n- Sharp focus on the MacBook and the immediate workspace objects\n- Show the full length of the table, including its legs\n- Maintain an ultra-professional, cozy luxury creator workspace vibe\n- Keep everything clean, organized, and premium\n\nOutput constraint:\n- Maintain likeness to the provided image/style reference(s) for the character elements and the shoe.\n- Produce a cohesive single scene (no text artifacts beyond the X profile UI).",
+        "is_primary": true,
+        "id": "prm_35a592915d0f4962",
+        "item_id": "itm_9931779e6f1a4b38",
+        "created_at": "2026-05-01T00:22:24.914329+00:00",
+        "updated_at": "2026-05-01T00:22:24.914329+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a high-premium, ultra-clean creator workspace scene integrated into a Twitter/X (Twitter) profile interface using the provided interface layout. Use a dark theme UI background that clearly shows a user profile nam",
+    "first_image": {
+      "id": "img_8d4ac06af8f5435c",
+      "item_id": "itm_9931779e6f1a4b38",
+      "original_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+      "thumb_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+      "preview_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:22:25.984750+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:22:24.914329+00:00",
+    "created_at": "2026-05-01T00:22:24.914329+00:00",
+    "images": [
+      {
+        "id": "img_8d4ac06af8f5435c",
+        "item_id": "itm_9931779e6f1a4b38",
+        "original_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+        "thumb_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+        "preview_path": "demo-data/media/img_8d4ac06af8f5435c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:22:25.984750+00:00"
+      }
+    ],
+    "notes": "Prompt extracted manually from the first image in the linked X post labeled 'The Prompt.', with the finished composite scene taken from the second image labeled 'The Result.'. Source metadata and image order were cross-checked against fxtwitter and vxtwitter mirrors. Preserve source attribution when reusing.",
+    "author": "Sergio (@sergio_de_ennin)"
+  },
+  {
+    "id": "itm_35559a19ba934e0f",
+    "title": "Furniture business tech-style poster prompt",
+    "slug": "x-sergio-de-ennin-2047575236560724458",
+    "model": "GPT Image 2",
+    "source_name": "X / Sergio",
+    "source_url": "https://x.com/sergio_de_ennin/status/2047575236560724458?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_51d407f20fd14617",
+        "name": "business_poster",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e76726364959465f",
+        "name": "furniture",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e088ce583e9b4ac4",
+        "name": "layout_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cc89297bbae74038",
+        "name": "marketing_collateral",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_bfc7a0d575ad416e",
+        "name": "tech_style",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "You are a premium graphic designer with a human feel.\n\nCreate a bold and attractive poster for furniture Business the name \"phl\" it should include aesthetic pictures of a office chair,office table,dining table,sofas,center table & kitchen cabinet. Do not include any glitter. The final product should appeal to clients and the mood should be a techy, happy mood.\n\nBackground should be plain with some texture and use a font that fits a tech style poster. add my contact number \"0200175955\" to the graphic",
+        "is_primary": true,
+        "id": "prm_8eba9d699d4c464a",
+        "item_id": "itm_35559a19ba934e0f",
+        "created_at": "2026-05-01T00:17:13.481479+00:00",
+        "updated_at": "2026-05-01T00:17:13.481479+00:00"
+      }
+    ],
+    "prompt_snippet": "You are a premium graphic designer with a human feel.\n\nCreate a bold and attractive poster for furniture Business the name \"phl\" it should include aesthetic pictures of a office chair,office table,dining table,sofas,cent",
+    "first_image": {
+      "id": "img_ddeeb67e02ae417f",
+      "item_id": "itm_35559a19ba934e0f",
+      "original_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+      "thumb_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+      "preview_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+      "remote_url": null,
+      "width": 883,
+      "height": 1325,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:17:14.214034+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:17:13.481479+00:00",
+    "created_at": "2026-05-01T00:17:13.481479+00:00",
+    "images": [
+      {
+        "id": "img_ddeeb67e02ae417f",
+        "item_id": "itm_35559a19ba934e0f",
+        "original_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+        "thumb_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+        "preview_path": "demo-data/media/img_ddeeb67e02ae417f.webp",
+        "remote_url": null,
+        "width": 883,
+        "height": 1325,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:17:14.214034+00:00"
+      }
+    ],
+    "notes": "Prompt extracted manually from the first image in the linked X post labeled 'The Prompt.', with the finished furniture poster taken from the second image labeled 'The Result.'. Source metadata and image order were cross-checked against fxtwitter and vxtwitter mirrors. Preserve source attribution when reusing.",
+    "author": "Sergio (@sergio_de_ennin)"
+  },
+  {
+    "id": "itm_87a1b97bba9f48f0",
+    "title": "Legendary athlete biography monument poster formula",
+    "slug": "x-gdgtify-2049840191217484237",
+    "model": "GPT Image 2 / Nano Banana Pro",
+    "source_name": "X / Gadgetify",
+    "source_url": "https://x.com/Gdgtify/status/2049840191217484237?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_f21c5a7aeacc495d",
+        "name": "athlete_storytelling",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b68f2f494f3d47c5",
+        "name": "biography_visual",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ca0a781505894ffa",
+        "name": "formula_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c7dbc498763b4931",
+        "name": "gadgetify",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_424c0390cfb9466d",
+        "name": "nano_banana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "2x2 grid, do this for 4 legendary athletes: <instruction>\nInput A = Person\nInput B = Life Timeline\n\n1. Semantic Inference Engine:\nGenerate:\n- The Young Self: early struggle or origin.\n- The Ascending Self: breakthrough phase.\n- The Iconic Self: most recognizable version.\n- The Legacy Self: future influence or afterlife of the work.\n\n2. Immutable Container:\nGoal: \"All Eras of One Life in One Monument\".\nFormat: vertical 4:5.\nStructure: Bottom origin -> middle ascent -> top iconic portrait -> sky legacy.\n\n3. Macro Layer:\nBuild a vertical monument where each level represents a different era of the person’s life.\nThe monument can be made of stone, light, machinery, paper, fabric, instruments, or architecture tied to their domain.\n\n4. Person Layer:\nShow multiple scale versions of the person:\n- tiny young version at the bottom,\n- working version in the middle,\n- colossal iconic portrait at the top.\n\n5. Micro Layer:\nInclude tiny scenes and artifacts from major milestones embedded into the monument.\n\n6. Lighting:\nThe light grows stronger upward, from shadow at the base to radiant sky at the top.\n\nOutput:\nONE image, vertical, cinematic biography tower, emotionally epic, no text.\n</instruction>",
+        "is_primary": true,
+        "id": "prm_4c16c345cab642d0",
+        "item_id": "itm_87a1b97bba9f48f0",
+        "created_at": "2026-05-01T00:11:54.407051+00:00",
+        "updated_at": "2026-05-01T00:11:54.407051+00:00"
+      }
+    ],
+    "prompt_snippet": "2x2 grid, do this for 4 legendary athletes: <instruction>\nInput A = Person\nInput B = Life Timeline\n\n1. Semantic Inference Engine:\nGenerate:\n- The Young Self: early struggle or origin.\n- The Ascending Self: breakthrough p",
+    "first_image": {
+      "id": "img_c0a5184300f444dd",
+      "item_id": "itm_87a1b97bba9f48f0",
+      "original_path": "demo-data/media/img_c0a5184300f444dd.webp",
+      "thumb_path": "demo-data/media/img_c0a5184300f444dd.webp",
+      "preview_path": "demo-data/media/img_c0a5184300f444dd.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:11:55.977062+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:11:54.407051+00:00",
+    "created_at": "2026-05-01T00:11:54.407051+00:00",
+    "images": [
+      {
+        "id": "img_c0a5184300f444dd",
+        "item_id": "itm_87a1b97bba9f48f0",
+        "original_path": "demo-data/media/img_c0a5184300f444dd.webp",
+        "thumb_path": "demo-data/media/img_c0a5184300f444dd.webp",
+        "preview_path": "demo-data/media/img_c0a5184300f444dd.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:11:55.977062+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. The source describes this as a poster formula for GPT and Nano Banana Pro that visualizes four legendary athletes through a vertical biography monument structure. Preserve source attribution.",
+    "author": "Gadgetify (@Gdgtify)"
+  },
+  {
+    "id": "itm_b7dbcc085a964696",
+    "title": "3D brand store miniature diorama prompt",
+    "slug": "x-techiebysa-2049927842528379187",
+    "model": "GPT Image 2",
+    "source_name": "X / TechieSA",
+    "source_url": "https://x.com/TechieBySA/status/2049927842528379187?s=20",
+    "cluster": {
+      "id": "clu_18134e8691e84ee0",
+      "name": "商品与电商",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_433ba4c7903c455e",
+        "name": "brand_store",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f5244cac465d42eb",
+        "name": "branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3f73bbbcf3ce46f3",
+        "name": "ecommerce",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_55d65b3de3394f65",
+        "name": "isometric_diorama",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0211e7bc4b214ecb",
+        "name": "miniature_3d",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d9aa5be526334fd0",
+        "name": "social_media_visual",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Present a clear, 45° top-down isometric miniature 3D cartoon diorama of the [BRAND], with soft refined textures, realistic PBR materials, and gentle lifelike lighting.\nCreate a small raised diorama-style base that includes the most recognizable elements of the store, along with tiny stylized characters if needed (no facial details).\nUse a clean solid [BACKGROUND COLOR] background.\n\nAt the top-center, display [BRAND] in large bold text, and place the official logo associated with [BRAND] below the subtext.\nAll text must automatically match the background contrast (white or black).\n\nComposition: perfectly centered layout, square 1080x1080, ultra-clean, high-clarity diorama aesthetic.",
+        "is_primary": true,
+        "id": "prm_4385874cdad84cca",
+        "item_id": "itm_b7dbcc085a964696",
+        "created_at": "2026-05-01T00:07:59.115038+00:00",
+        "updated_at": "2026-05-01T00:07:59.115038+00:00"
+      }
+    ],
+    "prompt_snippet": "Present a clear, 45° top-down isometric miniature 3D cartoon diorama of the [BRAND], with soft refined textures, realistic PBR materials, and gentle lifelike lighting.\nCreate a small raised diorama-style base that includ",
+    "first_image": {
+      "id": "img_c02e56cbe5214c48",
+      "item_id": "itm_b7dbcc085a964696",
+      "original_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+      "thumb_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+      "preview_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:08:00.226778+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:07:59.115038+00:00",
+    "created_at": "2026-05-01T00:07:59.115038+00:00",
+    "images": [
+      {
+        "id": "img_c02e56cbe5214c48",
+        "item_id": "itm_b7dbcc085a964696",
+        "original_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+        "thumb_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+        "preview_path": "demo-data/media/img_c02e56cbe5214c48.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:08:00.226778+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the main result image alt text in the linked X post, cross-checked through fxtwitter and vxtwitter mirrors. The current tweet quotes an earlier TechieSA post from 2026-04-22 that carries the same prompt/image structure for Nano Banana 2 on SocialSight. Preserve source attribution when reusing.",
+    "author": "TechieSA (@TechieBySA)"
+  },
+  {
+    "id": "itm_9b7d071bc8ac4360",
+    "title": "Scandinavian children's illustration sref 4288883236",
+    "slug": "x-artedeingenio-2049909107243581767",
+    "model": "Midjourney V7",
+    "source_name": "X / OscarAI",
+    "source_url": "https://x.com/Artedeingenio/status/2049909107243581767?s=20",
+    "cluster": {
+      "id": "clu_d28c1c2bd13b4016",
+      "name": "插画与艺术",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_422036d71f0d4259",
+        "name": "children_illustration",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7cc2bcaeca5549f8",
+        "name": "editorial_style",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_bade15d90df64828",
+        "name": "midjourney_v7",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d9424694166d455a",
+        "name": "nordic_picture_book",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_33f8fdf2aab14b7e",
+        "name": "scandinavian",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9e189135b70f42d2",
+        "name": "soft_storytelling",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a3aa3ae322264bd6",
+        "name": "sref",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "--sref 4288883236",
+        "is_primary": true,
+        "id": "prm_f5bd06f141c6481a",
+        "item_id": "itm_9b7d071bc8ac4360",
+        "created_at": "2026-05-01T00:03:31.254010+00:00",
+        "updated_at": "2026-05-01T00:03:31.254010+00:00"
+      }
+    ],
+    "prompt_snippet": "--sref 4288883236",
+    "first_image": {
+      "id": "img_591468bf50604213",
+      "item_id": "itm_9b7d071bc8ac4360",
+      "original_path": "demo-data/media/img_591468bf50604213.webp",
+      "thumb_path": "demo-data/media/img_591468bf50604213.webp",
+      "preview_path": "demo-data/media/img_591468bf50604213.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T00:03:32.259290+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T00:03:31.254010+00:00",
+    "created_at": "2026-05-01T00:03:31.254010+00:00",
+    "images": [
+      {
+        "id": "img_591468bf50604213",
+        "item_id": "itm_9b7d071bc8ac4360",
+        "original_path": "demo-data/media/img_591468bf50604213.webp",
+        "thumb_path": "demo-data/media/img_591468bf50604213.webp",
+        "preview_path": "demo-data/media/img_591468bf50604213.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T00:03:32.259290+00:00"
+      },
+      {
+        "id": "img_a13df49d03f444e4",
+        "item_id": "itm_9b7d071bc8ac4360",
+        "original_path": "demo-data/media/img_a13df49d03f444e4.webp",
+        "thumb_path": "demo-data/media/img_a13df49d03f444e4.webp",
+        "preview_path": "demo-data/media/img_a13df49d03f444e4.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T00:03:33.388313+00:00"
+      },
+      {
+        "id": "img_f1800d22e57b42a1",
+        "item_id": "itm_9b7d071bc8ac4360",
+        "original_path": "demo-data/media/img_f1800d22e57b42a1.webp",
+        "thumb_path": "demo-data/media/img_f1800d22e57b42a1.webp",
+        "preview_path": "demo-data/media/img_f1800d22e57b42a1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T00:03:34.245012+00:00"
+      },
+      {
+        "id": "img_3342d7a66e674e46",
+        "item_id": "itm_9b7d071bc8ac4360",
+        "original_path": "demo-data/media/img_3342d7a66e674e46.webp",
+        "thumb_path": "demo-data/media/img_3342d7a66e674e46.webp",
+        "preview_path": "demo-data/media/img_3342d7a66e674e46.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-01T00:03:35.208514+00:00"
+      }
+    ],
+    "notes": "Style reference and example images extracted from the linked X source. The post describes this Midjourney V7 sref as a modern Scandinavian children's illustration style with a clean editorial twist, sitting between Nordic picture books, mid-century illustration, and contemporary indie editorial design. Prompt text and style note were cross-checked against fxtwitter and vxtwitter mirrors. Preserve source attribution.",
+    "author": "OscarAI (@Artedeingenio)"
+  },
+  {
+    "id": "itm_88433f7fc81244f7",
+    "title": "Historical book artifact diorama formula prompt",
+    "slug": "x-gdgtify-2049813767089950740",
+    "model": "GPT Image 2",
+    "source_name": "X / Gadgetify",
+    "source_url": "https://x.com/Gdgtify/status/2049813767089950740?s=20",
+    "cluster": {
+      "id": "clu_ea6e07abb04c4638",
+      "name": "图表与信息可视化",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_a8ceff87f5734e0c",
+        "name": "book_diorama",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ca0a781505894ffa",
+        "name": "formula_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c7dbc498763b4931",
+        "name": "gadgetify",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_11f8992f7b214c36",
+        "name": "historical_visualization",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e087d7f043a449fc",
+        "name": "inventions",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6b867c19329c493a",
+        "name": "pseudo_code",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "2x2 grid, do this for 4 famous inventions  CT PYTHON_SCENE_GRAPH :: DOCUMENT_TO_OBJE\n\nclass Variables:\ntopic = \"[TOPIC]\"\nartifact = \"infer_iconic_object(topic)\"\nera_style = \"infer_visual_style(topic)\"\nguide = \"[GUIDE_ROLE]\"\ndoc_style = \"[DOCUMENT_STYLE]\"\nlighting = \"[LIGHT_SOURCE]\"\nmaterial = \"[MATERIAL_AGE]\"\n\nclass Book:\nform = \"open archival volume\"\ntexture = Variables.material\npages = {\n\"left\": \"technical sketches + component diagrams\",\n\"right\": \"title + refined illustration\"\n}\n\nclass Artifact:\nidentity = Variables.artifact\nstate = \"3D object emerging from page surface\"\ndetail = \"mechanically or historically accurate\"\nintegration = \"aligned with page drawings\"\n\nclass Guide:\nrole = Variables. guide\nscale = \"miniature\"\naction = \"inspecting / presenting / assembling artifact\"\n\nclass Scene:\nlighting = Variables. lighting\nmood = \"warm, focused, intellectual\"\nsurface = \"wood desk or neutral surface\"\nprops = \"small tools, debris, parts derived from artifact\"\n\ndef render():\nreturn \"\"\"\nGenerate a historical book diorama where a documented artifact\ntransitions from sketch into physical reality.",
+        "is_primary": true,
+        "id": "prm_0b3f6458fc8a4156",
+        "item_id": "itm_88433f7fc81244f7",
+        "created_at": "2026-04-30T23:47:59.791360+00:00",
+        "updated_at": "2026-04-30T23:47:59.791360+00:00"
+      }
+    ],
+    "prompt_snippet": "2x2 grid, do this for 4 famous inventions  CT PYTHON_SCENE_GRAPH :: DOCUMENT_TO_OBJE\n\nclass Variables:\ntopic = \"[TOPIC]\"\nartifact = \"infer_iconic_object(topic)\"\nera_style = \"infer_visual_style(topic)\"\nguide = \"[GUIDE_ROL",
+    "first_image": {
+      "id": "img_3d7e305d67b840ef",
+      "item_id": "itm_88433f7fc81244f7",
+      "original_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+      "thumb_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+      "preview_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T23:48:01.235840+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T23:47:59.791360+00:00",
+    "created_at": "2026-04-30T23:47:59.791360+00:00",
+    "images": [
+      {
+        "id": "img_3d7e305d67b840ef",
+        "item_id": "itm_88433f7fc81244f7",
+        "original_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+        "thumb_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+        "preview_path": "demo-data/media/img_3d7e305d67b840ef.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T23:48:01.235840+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. This is a pseudo-code style formula prompt for a 2x2 invention-book diorama concept. Preserve source attribution.",
+    "author": "Gadgetify (@Gdgtify)"
+  },
+  {
+    "id": "itm_a9e31f7e15ae4b06",
+    "title": "Rotoscoping style portrait from reference image",
+    "slug": "x-shushant-l-2049851400046440834",
+    "model": "Nano Banana Pro",
+    "source_name": "X / Shushant Lakhyani",
+    "source_url": "https://x.com/shushant_l/status/2049851400046440834?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_c40b239edf474df8",
+        "name": "animation_frame",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d53ba7f9316243c4",
+        "name": "nanobanana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_60abb5bebf7d4553",
+        "name": "rotoscoping",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3ba5076f585946e2",
+        "name": "stylization",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Rotoscoping style illustration of a real person based on the reference image, preserving exact facial features, pose, and expression, clean hand-drawn outlines, smooth vector-like shading, semi-realistic proportions, subtle color gradients, minimal but accurate background, cinematic lighting, high detail, crisp edges, animation frame aesthetic, inspired by classic rotoscope animation techniques, 4k quality, sharp focus",
+        "is_primary": true,
+        "id": "prm_d6c7e092e0d74f58",
+        "item_id": "itm_a9e31f7e15ae4b06",
+        "created_at": "2026-04-30T23:44:17.012121+00:00",
+        "updated_at": "2026-04-30T23:44:17.012121+00:00"
+      }
+    ],
+    "prompt_snippet": "Rotoscoping style illustration of a real person based on the reference image, preserving exact facial features, pose, and expression, clean hand-drawn outlines, smooth vector-like shading, semi-realistic proportions, sub",
+    "first_image": {
+      "id": "img_30cc566c80354335",
+      "item_id": "itm_a9e31f7e15ae4b06",
+      "original_path": "demo-data/media/img_30cc566c80354335.webp",
+      "thumb_path": "demo-data/media/img_30cc566c80354335.webp",
+      "preview_path": "demo-data/media/img_30cc566c80354335.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 502,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T23:44:18.160278+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T23:44:17.012121+00:00",
+    "created_at": "2026-04-30T23:44:17.012121+00:00",
+    "images": [
+      {
+        "id": "img_30cc566c80354335",
+        "item_id": "itm_a9e31f7e15ae4b06",
+        "original_path": "demo-data/media/img_30cc566c80354335.webp",
+        "thumb_path": "demo-data/media/img_30cc566c80354335.webp",
+        "preview_path": "demo-data/media/img_30cc566c80354335.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T23:44:18.160278+00:00"
+      },
+      {
+        "id": "img_b79b665aea0e448f",
+        "item_id": "itm_a9e31f7e15ae4b06",
+        "original_path": "demo-data/media/img_b79b665aea0e448f.webp",
+        "thumb_path": "demo-data/media/img_b79b665aea0e448f.webp",
+        "preview_path": "demo-data/media/img_b79b665aea0e448f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T23:44:19.057596+00:00"
+      },
+      {
+        "id": "img_554063862cdf4f80",
+        "item_id": "itm_a9e31f7e15ae4b06",
+        "original_path": "demo-data/media/img_554063862cdf4f80.webp",
+        "thumb_path": "demo-data/media/img_554063862cdf4f80.webp",
+        "preview_path": "demo-data/media/img_554063862cdf4f80.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T23:44:20.379541+00:00"
+      },
+      {
+        "id": "img_d9fb61664383436b",
+        "item_id": "itm_a9e31f7e15ae4b06",
+        "original_path": "demo-data/media/img_d9fb61664383436b.webp",
+        "thumb_path": "demo-data/media/img_d9fb61664383436b.webp",
+        "preview_path": "demo-data/media/img_d9fb61664383436b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T23:44:21.251822+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. This is a reference-image transformation workflow that preserves facial identity while converting the portrait into a rotoscoping-style illustration. Preserve source attribution.",
+    "author": "Shushant Lakhyani (@shushant_l)"
+  },
+  {
+    "id": "itm_bcd512192b7e4dca",
+    "title": "Professional headshot from selfie",
+    "slug": "x-altsocietyai-2000917062517186643",
+    "model": "Nano Banana Pro",
+    "source_name": "X / AltSociety AI",
+    "source_url": "https://x.com/AltSocietyAI/status/2000917062517186643?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_cbafe3c562e64d3f",
+        "name": "headshot",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d53ba7f9316243c4",
+        "name": "nanobanana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_66c316a0bf6d41d3",
+        "name": "photo_edit",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_95d1deaf1c65420c",
+        "name": "professional",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Keep the facial features of the person in the uploaded image exactly consistent. Dress them in a professional navy blue business suit with a white shirt, similar to the reference image. Background: Place the subject against a clean, solid dark gray studio photography backdrop. The background should have a subtle gradient, slightly lighter behind the subject and darker towards the edges (vignette effect). There should be no other objects. Photography Style: Shot on a Sony A7III with an 85mm f/1.4 lens, creating a flattering portrait compression. Lighting: Use a classic three-point lighting setup. The main key light should create soft, defining shadows on the face. A subtle rim light should separate the subject's shoulders and hair from the dark background. Crucial Details: Render natural skin texture with visible pores, not an airbrushed look. Add natural catchlights to the eyes. The fabric of the suit should show a subtle wool texture. Final image should be an ultra-realistic, 8k professional headshot.",
+        "is_primary": true,
+        "id": "prm_45096c5a85e44469",
+        "item_id": "itm_bcd512192b7e4dca",
+        "created_at": "2026-04-30T23:13:11.408227+00:00",
+        "updated_at": "2026-04-30T23:13:11.408227+00:00"
+      }
+    ],
+    "prompt_snippet": "Keep the facial features of the person in the uploaded image exactly consistent. Dress them in a professional navy blue business suit with a white shirt, similar to the reference image. Background: Place the subject agai",
+    "first_image": {
+      "id": "img_769becb5fee84ca9",
+      "item_id": "itm_bcd512192b7e4dca",
+      "original_path": "demo-data/media/img_769becb5fee84ca9.webp",
+      "thumb_path": "demo-data/media/img_769becb5fee84ca9.webp",
+      "preview_path": "demo-data/media/img_769becb5fee84ca9.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T23:13:12.690854+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T23:13:11.408227+00:00",
+    "created_at": "2026-04-30T23:13:11.408227+00:00",
+    "images": [
+      {
+        "id": "img_769becb5fee84ca9",
+        "item_id": "itm_bcd512192b7e4dca",
+        "original_path": "demo-data/media/img_769becb5fee84ca9.webp",
+        "thumb_path": "demo-data/media/img_769becb5fee84ca9.webp",
+        "preview_path": "demo-data/media/img_769becb5fee84ca9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T23:13:12.690854+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. This is a reference-image workflow that preserves facial identity while restyling the portrait into a formal studio headshot. Preserve source attribution.",
+    "author": "AltSociety AI (@AltSocietyAI)"
+  },
+  {
+    "id": "itm_b409bda1ed8748e8",
+    "title": "Timeless logo concept generator",
+    "slug": "x-altsocietyai-2008494442328813672",
+    "model": "NanoBanana Pro",
+    "source_name": "X / AltSociety AI",
+    "source_url": "https://x.com/AltSocietyAI/status/2008494442328813672?s=20",
+    "cluster": {
+      "id": "clu_cf0186857e894258",
+      "name": "品牌与标志",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_81ed19a0eead4d12",
+        "name": "brand_identity",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f5244cac465d42eb",
+        "name": "branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7f6e59638a52460f",
+        "name": "logo_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cda3287e75c84c8f",
+        "name": "minimal",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d53ba7f9316243c4",
+        "name": "nanobanana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fdb34556db5e4dcc",
+        "name": "negative_space",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f5f1b7f7bf424af1",
+        "name": "symbol_first",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Design an iconic, timeless logo for the following business.\n\nBusiness idea:\n[Describe the business in 1–2 sentences]\n\nDesired brand vibe:\n[Choose or describe the feeling: bold, minimal, futuristic, playful, premium, rebellious, calm, etc.]\n\nDesign constraints:\n• Simple, high-contrast logo that works in black and white\n• Instantly recognizable silhouette\n• No gradients, no trends, no mockups\n• Flat, scalable, symbol-first design\n• Feels intentional, not decorative\n\nVisual direction:\n• Strong central symbol or mark\n• Clean geometry or meaningful organic shape\n• Balanced negative space\n• Professional, modern composition\n\nOutput:\nGenerate a clean logo design on a neutral background, centered, with no text explanation.",
+        "is_primary": true,
+        "id": "prm_52dff3ff5a3942a5",
+        "item_id": "itm_b409bda1ed8748e8",
+        "created_at": "2026-04-30T23:08:55.066379+00:00",
+        "updated_at": "2026-04-30T23:08:55.066379+00:00"
+      }
+    ],
+    "prompt_snippet": "Design an iconic, timeless logo for the following business.\n\nBusiness idea:\n[Describe the business in 1–2 sentences]\n\nDesired brand vibe:\n[Choose or describe the feeling: bold, minimal, futuristic, playful, premium, rebe",
+    "first_image": {
+      "id": "img_60c0497cac3242f9",
+      "item_id": "itm_b409bda1ed8748e8",
+      "original_path": "demo-data/media/img_60c0497cac3242f9.webp",
+      "thumb_path": "demo-data/media/img_60c0497cac3242f9.webp",
+      "preview_path": "demo-data/media/img_60c0497cac3242f9.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 491,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T23:08:56.580466+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T23:08:55.066379+00:00",
+    "created_at": "2026-04-30T23:08:55.066379+00:00",
+    "images": [
+      {
+        "id": "img_60c0497cac3242f9",
+        "item_id": "itm_b409bda1ed8748e8",
+        "original_path": "demo-data/media/img_60c0497cac3242f9.webp",
+        "thumb_path": "demo-data/media/img_60c0497cac3242f9.webp",
+        "preview_path": "demo-data/media/img_60c0497cac3242f9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 491,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T23:08:56.580466+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked source. Prompt text was cross-checked against fxtwitter and vxtwitter mirrors. Preserve source attribution.",
+    "author": "AltSociety AI (@AltSocietyAI)"
+  },
+  {
+    "id": "itm_4e888f91d6c44ad0",
+    "title": "抽象几何线条概念视觉海报提示词",
+    "slug": "x-xiaoxiaodong01-2049760967421255985",
+    "model": "GPT Image 2",
+    "source_name": "X Article / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2049760967421255985?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_3063b92d2e0e4893",
+        "name": "abstract_line_art",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f66b2eca2f514cf5",
+        "name": "self_media",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、可被閱讀”的圖像結構。\n\n最終效果應具備：\n高級審美\n強視覺識別度\n抽象但有邏輯\n詩意但不空洞\n可解釋但不直白\n適合封面、海報、文章頭圖、視頻封面、插畫封面等多種用途\n\n一、核心任務\n\n請圍繞用戶輸入的【主題文字 / 文案大意 / 使用場景 / 風格要求 / 比例要求】，自動完成以下過程：\n\n1. 先理解主題\n不是直接把文字放上去，而是先分析：\n- 主題的表層含義\n- 情緒氣質\n- 內在張力\n- 語義關係\n- 抽象結構\n- 可轉譯的視覺隱喻\n\n2. 再決定視覺表達方式\n根據主題內容，自動選擇最適合的圖形語言、線條氣質、結構方式、色彩策略、裝飾系統與版面節奏。\n\n3. 讓背景“回應主題”\n背景不應只是空泛的線條紋樣，而應成爲主題意義的延伸。\n抽象圖形、路徑、節點、結構、流動、碰撞、裂變、聚合、迴路、波紋、網格、粒子、層疊形態等，都應服務於主題表達。\n\n二、視覺表達原則\n\n1. 主題驅動\n所有圖形都必須圍繞主題生成，不能是隨機裝飾。\n畫面應讓人感受到：\n“這些圖形像是在解釋這個標題 / 這個概念 / 這段文本。”\n\n2. 線條氣質必須智能變化\n不要每次都使用同一種線條。\n線條語言應根據主題自動判斷，例如：\n\n- 若主題偏理性、系統、科技、秩序：\n  使用更剋制、精密、參數化、幾何化、網格化、模塊化的線條與結構。\n\n- 若主題偏感性、記憶、詩意、情緒、哲思：\n  使用更柔和、流動、呼吸感強、帶有韻律的線條與抽象圖形。\n\n- 若主題偏衝突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、斷裂、扭曲、偏移、交錯、壓迫感更強的線條和結構。\n\n- 若主題偏生長、生命、自然、潛意識、玄學、神祕感：\n  可採用生物形態、脈絡、羽化、能量場、波紋、神經網絡般的線條系統，帶有“抽象可解釋”的神祕意味。\n\n- 若主題偏手作感、插畫感、作者性表達：\n  可使用更鬆動、手繪、試探性、富有筆觸感的線條和圖形語言。\n\n3. 圖形語言必須具有層次\n畫面中的線條和圖形建議至少分爲以下層級，並可根據主題決定是否全部啓用：\n\n- 主視覺層：\n  最核心、最強識別度的圖形結構，用來承載主題的核心視覺隱喻。\n\n- 輔助結構層：\n  用於連接、引導、擴展主題的次級圖形，如路徑、節點、弧線、網格、迴路、參數曲線、輪廓波紋等。\n\n- 氛圍裝飾層：\n  用於增強高級感與完整度的細節元素，如邊注、符號、刻度、微小圖標、點陣、座標感圖形、角標、邊框、短標籤、微型排版等。\n\n- 質感層：\n  可根據需要加入微弱紙感、輕顆粒、薄霧、印刷肌理、透明疊影、淡淡投影、輕層疊結構等，提升畫面層次。\n\n三、圖片裝飾與應用系統\n\n爲了讓它更適合轉化爲封面、海報或其他視覺形式，畫面四周可以 intelligently 加入適量裝飾系統，但必須與主題統一，不可爲了裝飾而裝飾。\n\n可選裝飾包括但不限於：\n- 角標\n- 邊線\n- 微型文字標籤\n- 小型幾何圖標\n- 豎排邊注\n- 頂部或底部導航式短詞\n- 座標線\n- 十字準星\n- 圓點與節點\n- 符號化刻度\n- 網格分區\n- 檔案編號\n- 展陳式標籤\n- 章節短句\n- 小型輔助說明\n\n這些裝飾應滿足以下要求：\n1. 有秩序感\n2. 不喧賓奪主\n3. 有助於提升“設計完成度”\n4. 適合在手機端查看\n5. 能增強它作爲封面或海報的適配性\n\n如果用戶要求極簡，則減少這些裝飾，僅保留必要的結構輔助元素。\n\n四、風格靈活性系統\n\n整體視覺風格不能固定死板，而應具備高度適配能力。\n可根據主題自動選擇以下方向之一，或進行合理融合：\n\n1. 理性幾何風\n關鍵詞：\n剋制、清晰、參數化、模塊化、網格感、結構化、現代、理智、秩序感\n\n2. 光學抽象風\n關鍵詞：\n黑白或高對比、波紋、錯覺、重複、同心、放射、干涉、視覺震盪、實驗設計感\n\n3. 生物形態抽象風\n關鍵詞：\n流動、脈絡、細胞、羽化、共振、包裹、生長、演化、生命感、潛意識感\n\n4. 手繪線稿風\n關鍵詞：\n自由、鬆動、作者性、草圖感、試探性筆觸、柔韌、詩意、帶有輕微不規則美感\n\n5. 觀念海報風\n關鍵詞：\n圖文一體、設計展氣質、思想性、哲學感、文化感、封面感、展覽級排版\n\n請根據主題自動判斷最適合的風格組合，而不是每次機械套用同一種視覺模板。\n\n五、配色系統\n\n顏色必須支持高度自定義，並且默認情況下要能智能響應主題。\n\n1. 用戶若指定顏色：\n必須優先遵循用戶要求。\n\n2. 用戶若未指定顏色：\n請根據主題自動選擇最合適的配色邏輯，例如：\n- 黑白極簡\n- 冷白灰\n- 米白紙感\n- 深底淺線\n- 淺底深線\n- 低飽和莫蘭迪\n- 高對比概念色\n- 單色系延展\n- 雙主色碰撞\n- 少量強調色點綴\n\n3. 配色策略要求：\n- 不要廉價\n- 不要髒亂\n- 不要俗豔\n- 要有高級感和統一性\n- 能服務主題氛圍\n- 能兼顧手機端可讀性\n\n4. 背景深淺可靈活變化：\n可根據主題使用淺底、深底、紙感底、霧感底、純色底、微紋理底。\n不要默認固定爲某一種背景。\n\n六、標題與文字系統\n\n1. 主標題必須清晰可讀，是整張圖的重要識別核心。\n2. 標題應與背景圖形形成呼應，不可孤立懸浮。\n3. 可以根據需要加入：\n- 副標題\n- 英文輔助標題\n- 短句標語\n- 關鍵詞標籤\n- 微型概念說明\n- 展覽式編號文字\n- 結構標籤\n但文字不能過多，不要變成文章頁。\n4. 文案與圖形應是一體化關係，而非“文字在上，背景在後”的割裂關係。\n\n七、構圖與版式要求\n\n畫面應具備清晰的視覺層級、呼吸感與強識別度。\n可根據主題自動選擇適合的結構，如：\n- 中心聚合式\n- 邊緣擴散式\n- 對稱平衡式\n- 非對稱張力式\n- 中軸儀式感\n- 迴路漩渦式\n- 路徑推進式\n- 節點網絡式\n- 模塊拼接式\n- 畫面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有節奏\n4. 有疏密變化\n5. 有視覺起點與終點\n6. 適合手機端快速識別\n7. 也適合作爲高完成度單張視覺作品\n\n八、用途適配\n\n整張圖應能靈活適配以下用途：\n- 視頻封面圖\n- 文章封面圖\n- 插畫封面\n- 海報設計\n- 專題頭圖\n- 概念視覺頁\n- 設計感社交媒體封面\n\n因此在生成時，請自動兼顧：\n- 縮略圖可識別性\n- 手機端觀看清晰度\n- 標題醒目程度\n- 版面完整度\n- 視覺記憶點\n\n九、避免事項\n\n請避免以下問題：\n- 背景圖形只是隨機線條，和主題無關\n- 圖形過度花哨但無法解釋主題\n- 裝飾過多導致雜亂\n- 風格廉價、模板化、社媒感過強\n- 文字排版普通、缺乏設計感\n- 線條語言單一、每次都一樣\n- 配色僵化，不能響應主題\n- 只有抽象，沒有信息結構\n- 只有設計感，沒有情緒與語義\n\n十、最終目標\n\n最終輸出應是一張：\n能夠把用戶輸入內容轉化爲詩意抽象幾何視覺語言的高完成度作品。\n\n它應具備：\n強概念性\n強設計感\n強整體性\n主題響應性強\n可解釋性強\n風格可靈活變化\n適合實際應用\n並且在視覺上既有藝術性，也有“可以被使用”的完成度。\n\n請在最後根據用戶輸入自動生成畫面。\n\n用戶的輸入： （你都可以刪掉，自由發揮）\n主題文字：\n補充文案：\n使用場景：\n圖片比例：\n整體風格傾向：\n配色要求：\n背景深淺要求：\n是否需要四周裝飾：\n是否需要層次感增強：\n其他特殊要求：",
+        "is_primary": true,
+        "id": "prm_888a606d278c4820",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "created_at": "2026-04-30T12:08:40.161282+00:00",
+        "updated_at": "2026-04-30T12:08:40.161282+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "请创作一张高完成度的「抽象几何线条概念视觉 / Abstract Linear Concept Artwork」。\n\n这不是普通文字海报，不是简单给标题配一个背景，也不是随意堆叠抽象图形。\n你要生成的是一张能够将“用户输入的主题文字或文案大意”转化为视觉语言的高质量设计作品。\n\n整张图的核心逻辑是：\n通过线条、几何、结构、插画化图形、参数化形态、光学感图案、手绘痕迹或其他抽象视觉元素，把用户输入的主题内容转译成一种“可被感受、可被解释、可被阅读”的图像结构。\n\n最终效果应具备：\n高级审美\n强视觉识别度\n抽象但有逻辑\n诗意但不空洞\n可解释但不直白\n适合封面、海报、文章头图、视频封面、插画封面等多种用途\n\n一、核心任务\n\n请围绕用户输入的【主题文字 / 文案大意 / 使用场景 / 风格要求 / 比例要求】，自动完成以下过程：\n\n1. 先理解主题\n不是直接把文字放上去，而是先分析：\n- 主题的表层含义\n- 情绪气质\n- 内在张力\n- 语义关系\n- 抽象结构\n- 可转译的视觉隐喻\n\n2. 再决定视觉表达方式\n根据主题内容，自动选择最适合的图形语言、线条气质、结构方式、色彩策略、装饰系统与版面节奏。\n\n3. 让背景“回应主题”\n背景不应只是空泛的线条纹样，而应成为主题意义的延伸。\n抽象图形、路径、节点、结构、流动、碰撞、裂变、聚合、回路、波纹、网格、粒子、层叠形态等，都应服务于主题表达。\n\n二、视觉表达原则\n\n1. 主题驱动\n所有图形都必须围绕主题生成，不能是随机装饰。\n画面应让人感受到：\n“这些图形像是在解释这个标题 / 这个概念 / 这段文本。”\n\n2. 线条气质必须智能变化\n不要每次都使用同一种线条。\n线条语言应根据主题自动判断，例如：\n\n- 若主题偏理性、系统、科技、秩序：\n  使用更克制、精密、参数化、几何化、网格化、模块化的线条与结构。\n\n- 若主题偏感性、记忆、诗意、情绪、哲思：\n  使用更柔和、流动、呼吸感强、带有韵律的线条与抽象图形。\n\n- 若主题偏冲突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、断裂、扭曲、偏移、交错、压迫感更强的线条和结构。\n\n- 若主题偏生长、生命、自然、潜意识、玄学、神秘感：\n  可采用生物形态、脉络、羽化、能量场、波纹、神经网络般的线条系统，带有“抽象可解释”的神秘意味。\n\n- 若主题偏手作感、插画感、作者性表达：\n  可使用更松动、手绘、试探性、富有笔触感的线条和图形语言。\n\n3. 图形语言必须具有层次\n画面中的线条和图形建议至少分为以下层级，并可根据主题决定是否全部启用：\n\n- 主视觉层：\n  最核心、最强识别度的图形结构，用来承载主题的核心视觉隐喻。\n\n- 辅助结构层：\n  用于连接、引导、扩展主题的次级图形，如路径、节点、弧线、网格、回路、参数曲线、轮廓波纹等。\n\n- 氛围装饰层：\n  用于增强高级感与完整度的细节元素，如边注、符号、刻度、微小图标、点阵、坐标感图形、角标、边框、短标签、微型排版等。\n\n- 质感层：\n  可根据需要加入微弱纸感、轻颗粒、薄雾、印刷肌理、透明叠影、淡淡投影、轻层叠结构等，提升画面层次。\n\n三、图片装饰与应用系统\n\n为了让它更适合转化为封面、海报或其他视觉形式，画面四周可以 intelligently 加入适量装饰系统，但必须与主题统一，不可为了装饰而装饰。\n\n可选装饰包括但不限于：\n- 角标\n- 边线\n- 微型文字标签\n- 小型几何图标\n- 竖排边注\n- 顶部或底部导航式短词\n- 坐标线\n- 十字准星\n- 圆点与节点\n- 符号化刻度\n- 网格分区\n- 档案编号\n- 展陈式标签\n- 章节短句\n- 小型辅助说明\n\n这些装饰应满足以下要求：\n1. 有秩序感\n2. 不喧宾夺主\n3. 有助于提升“设计完成度”\n4. 适合在手机端查看\n5. 能增强它作为封面或海报的适配性\n\n如果用户要求极简，则减少这些装饰，仅保留必要的结构辅助元素。\n\n四、风格灵活性系统\n\n整体视觉风格不能固定死板，而应具备高度适配能力。\n可根据主题自动选择以下方向之一，或进行合理融合：\n\n1. 理性几何风\n关键词：\n克制、清晰、参数化、模块化、网格感、结构化、现代、理智、秩序感\n\n2. 光学抽象风\n关键词：\n黑白或高对比、波纹、错觉、重复、同心、放射、干涉、视觉震荡、实验设计感\n\n3. 生物形态抽象风\n关键词：\n流动、脉络、细胞、羽化、共振、包裹、生长、演化、生命感、潜意识感\n\n4. 手绘线稿风\n关键词：\n自由、松动、作者性、草图感、试探性笔触、柔韧、诗意、带有轻微不规则美感\n\n5. 观念海报风\n关键词：\n图文一体、设计展气质、思想性、哲学感、文化感、封面感、展览级排版\n\n请根据主题自动判断最适合的风格组合，而不是每次机械套用同一种视觉模板。\n\n五、配色系统\n\n颜色必须支持高度自定义，并且默认情况下要能智能响应主题。\n\n1. 用户若指定颜色：\n必须优先遵循用户要求。\n\n2. 用户若未指定颜色：\n请根据主题自动选择最合适的配色逻辑，例如：\n- 黑白极简\n- 冷白灰\n- 米白纸感\n- 深底浅线\n- 浅底深线\n- 低饱和莫兰迪\n- 高对比概念色\n- 单色系延展\n- 双主色碰撞\n- 少量强调色点缀\n\n3. 配色策略要求：\n- 不要廉价\n- 不要脏乱\n- 不要俗艳\n- 要有高级感和统一性\n- 能服务主题氛围\n- 能兼顾手机端可读性\n\n4. 背景深浅可灵活变化：\n可根据主题使用浅底、深底、纸感底、雾感底、纯色底、微纹理底。\n不要默认固定为某一种背景。\n\n六、标题与文字系统\n\n1. 主标题必须清晰可读，是整张图的重要识别核心。\n2. 标题应与背景图形形成呼应，不可孤立悬浮。\n3. 可以根据需要加入：\n- 副标题\n- 英文辅助标题\n- 短句标语\n- 关键词标签\n- 微型概念说明\n- 展览式编号文字\n- 结构标签\n但文字不能过多，不要变成文章页。\n4. 文案与图形应是一体化关系，而非“文字在上，背景在后”的割裂关系。\n\n七、构图与版式要求\n\n画面应具备清晰的视觉层级、呼吸感与强识别度。\n可根据主题自动选择适合的结构，如：\n- 中心聚合式\n- 边缘扩散式\n- 对称平衡式\n- 非对称张力式\n- 中轴仪式感\n- 回路漩涡式\n- 路径推进式\n- 节点网络式\n- 模块拼接式\n- 画面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有节奏\n4. 有疏密变化\n5. 有视觉起点与终点\n6. 适合手机端快速识别\n7. 也适合作为高完成度单张视觉作品\n\n八、用途适配\n\n整张图应能灵活适配以下用途：\n- 视频封面图\n- 文章封面图\n- 插画封面\n- 海报设计\n- 专题头图\n- 概念视觉页\n- 设计感社交媒体封面\n\n因此在生成时，请自动兼顾：\n- 缩略图可识别性\n- 手机端观看清晰度\n- 标题醒目程度\n- 版面完整度\n- 视觉记忆点\n\n九、避免事项\n\n请避免以下问题：\n- 背景图形只是随机线条，和主题无关\n- 图形过度花哨但无法解释主题\n- 装饰过多导致杂乱\n- 风格廉价、模板化、社媒感过强\n- 文字排版普通、缺乏设计感\n- 线条语言单一、每次都一样\n- 配色僵化，不能响应主题\n- 只有抽象，没有信息结构\n- 只有设计感，没有情绪与语义\n\n十、最终目标\n\n最终输出应是一张：\n能够把用户输入内容转化为诗意抽象几何视觉语言的高完成度作品。\n\n它应具备：\n强概念性\n强设计感\n强整体性\n主题响应性强\n可解释性强\n风格可灵活变化\n适合实际应用\n并且在视觉上既有艺术性，也有“可以被使用”的完成度。\n\n请在最后根据用户输入自动生成画面。\n\n用户的输入： （你都可以删掉，自由发挥）\n主题文字：\n补充文案：\n使用场景：\n图片比例：\n整体风格倾向：\n配色要求：\n背景深浅要求：\n是否需要四周装饰：\n是否需要层次感增强：\n其他特殊要求：",
+        "is_primary": false,
+        "id": "prm_acbde2e6ad2f476b",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "created_at": "2026-04-30T12:08:40.161282+00:00",
+        "updated_at": "2026-04-30T12:08:40.161282+00:00"
+      }
+    ],
+    "prompt_snippet": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、",
+    "first_image": {
+      "id": "img_8b2cb01beb484c0e",
+      "item_id": "itm_4e888f91d6c44ad0",
+      "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T12:08:41.707063+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T23:02:16.311800+00:00",
+    "created_at": "2026-04-30T12:08:40.161282+00:00",
+    "images": [
+      {
+        "id": "img_8b2cb01beb484c0e",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T12:08:41.707063+00:00"
+      },
+      {
+        "id": "img_815ad68850d44ef9",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "thumb_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "preview_path": "demo-data/media/img_815ad68850d44ef9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T12:08:42.945370+00:00"
+      },
+      {
+        "id": "img_b637d1b6a2db44ac",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "thumb_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "preview_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T12:08:43.974741+00:00"
+      },
+      {
+        "id": "img_67ad4302bb924334",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "thumb_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "preview_path": "demo-data/media/img_67ad4302bb924334.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T12:08:45.012472+00:00"
+      },
+      {
+        "id": "img_a78d388ae1fa4d5c",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "thumb_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "preview_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 4,
+        "created_at": "2026-04-30T12:08:46.256770+00:00"
+      },
+      {
+        "id": "img_43b1f62a51cb45ff",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "thumb_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "preview_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 5,
+        "created_at": "2026-04-30T12:08:47.051839+00:00"
+      },
+      {
+        "id": "img_49fd1dc69c77429d",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "thumb_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "preview_path": "demo-data/media/img_49fd1dc69c77429d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 6,
+        "created_at": "2026-04-30T12:08:47.951685+00:00"
+      },
+      {
+        "id": "img_ad78725997494714",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ad78725997494714.webp",
+        "thumb_path": "demo-data/media/img_ad78725997494714.webp",
+        "preview_path": "demo-data/media/img_ad78725997494714.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 7,
+        "created_at": "2026-04-30T12:08:49.520911+00:00"
+      },
+      {
+        "id": "img_2bebb5d6c4ff4dd8",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "thumb_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "preview_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 450,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 8,
+        "created_at": "2026-04-30T12:08:50.459296+00:00"
+      },
+      {
+        "id": "img_ff696bd4595f4761",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "thumb_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "preview_path": "demo-data/media/img_ff696bd4595f4761.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 300,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 9,
+        "created_at": "2026-04-30T12:08:51.349787+00:00"
+      },
+      {
+        "id": "img_48b9cdad722c4f10",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "thumb_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "preview_path": "demo-data/media/img_48b9cdad722c4f10.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 10,
+        "created_at": "2026-04-30T12:08:52.619025+00:00"
+      },
+      {
+        "id": "img_458d711b39444f2a",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "thumb_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "preview_path": "demo-data/media/img_458d711b39444f2a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 11,
+        "created_at": "2026-04-30T12:08:53.613573+00:00"
+      },
+      {
+        "id": "img_ec82f16d25574e0d",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "thumb_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "preview_path": "demo-data/media/img_ec82f16d25574e0d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 12,
+        "created_at": "2026-04-30T12:08:54.779838+00:00"
+      },
+      {
+        "id": "img_7b826235ca894af2",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "thumb_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "preview_path": "demo-data/media/img_7b826235ca894af2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 13,
+        "created_at": "2026-04-30T12:08:55.587656+00:00"
+      },
+      {
+        "id": "img_6f5c7af52dff4b1f",
+        "item_id": "itm_4e888f91d6c44ad0",
+        "original_path": "demo-data/media/img_6f5c7af52dff4b1f.webp",
+        "thumb_path": "demo-data/media/img_6f5c7af52dff4b1f.webp",
+        "preview_path": "demo-data/media/img_6f5c7af52dff4b1f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 14,
+        "created_at": "2026-04-30T23:02:18.709136+00:00"
+      }
+    ],
+    "notes": "Prompt and article result images extracted from the linked X Article on 2026-04-30. Article title: GPT2: 线条的艺术 x 超强提示词 x 海报 x 封面 x 自媒体运营标配. Preserve attribution to 小小东 (@xiaoxiaodong01).\nAdditional X sample on 2026-05-01: https://x.com/xiaoxiaodong01/status/2049866592507543977 shows this prompt family being reused with custom instructions appended at the end, especially size customization and extra output requirements.",
+    "author": "小小东 (@xiaoxiaodong01)"
+  },
+  {
+    "id": "itm_26e101ba3a85418c",
+    "title": "High-end brand ad illustration",
+    "slug": "x-aleenaamiir-2049866543174205755",
+    "model": "GPT Image 2",
+    "source_name": "X / Aleena Amir",
+    "source_url": "https://x.com/aleenaamiir/status/2049866543174205755?s=20",
+    "cluster": {
+      "id": "clu_18134e8691e84ee0",
+      "name": "商品与电商",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d90c48e122c541d3",
+        "name": "advertising",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f5244cac465d42eb",
+        "name": "branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_44d549242b344f46",
+        "name": "commercial_illustration",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cda3287e75c84c8f",
+        "name": "minimal",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_22def4b40f584ed9",
+        "name": "premium",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_680b66d289d64696",
+        "name": "product_visual",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "High-end advertising illustration of [product/subject], vibrant premium color palette, clean composition, soft studio lighting, modern commercial style, ultra polished, minimal yet impactful, brand-focused visual.",
+        "is_primary": true,
+        "id": "prm_2a1526fd65584642",
+        "item_id": "itm_26e101ba3a85418c",
+        "created_at": "2026-04-30T22:57:27.808555+00:00",
+        "updated_at": "2026-04-30T22:57:27.808555+00:00"
+      }
+    ],
+    "prompt_snippet": "High-end advertising illustration of [product/subject], vibrant premium color palette, clean composition, soft studio lighting, modern commercial style, ultra polished, minimal yet impactful, brand-focused visual.",
+    "first_image": {
+      "id": "img_9ccaba2c50e74c22",
+      "item_id": "itm_26e101ba3a85418c",
+      "original_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+      "thumb_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+      "preview_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T22:57:29.001060+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T22:57:27.808555+00:00",
+    "created_at": "2026-04-30T22:57:27.808555+00:00",
+    "images": [
+      {
+        "id": "img_9ccaba2c50e74c22",
+        "item_id": "itm_26e101ba3a85418c",
+        "original_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+        "thumb_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+        "preview_path": "demo-data/media/img_9ccaba2c50e74c22.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T22:57:29.001060+00:00"
+      },
+      {
+        "id": "img_11d80497de454e98",
+        "item_id": "itm_26e101ba3a85418c",
+        "original_path": "demo-data/media/img_11d80497de454e98.webp",
+        "thumb_path": "demo-data/media/img_11d80497de454e98.webp",
+        "preview_path": "demo-data/media/img_11d80497de454e98.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T22:57:30.008353+00:00"
+      },
+      {
+        "id": "img_e65c290bcf4149ca",
+        "item_id": "itm_26e101ba3a85418c",
+        "original_path": "demo-data/media/img_e65c290bcf4149ca.webp",
+        "thumb_path": "demo-data/media/img_e65c290bcf4149ca.webp",
+        "preview_path": "demo-data/media/img_e65c290bcf4149ca.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T22:57:30.953452+00:00"
+      },
+      {
+        "id": "img_3e874e1f903647e2",
+        "item_id": "itm_26e101ba3a85418c",
+        "original_path": "demo-data/media/img_3e874e1f903647e2.webp",
+        "thumb_path": "demo-data/media/img_3e874e1f903647e2.webp",
+        "preview_path": "demo-data/media/img_3e874e1f903647e2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T22:57:32.017177+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked source. Prompt text was cross-checked against fxtwitter, vxtwitter, and syndication mirrors. Preserve source attribution.",
+    "author": "Aleena Amir (@aleenaamiir)"
+  },
+  {
+    "id": "itm_35e368ceb5c9431a",
+    "title": "DK儿童剖面科普图解绘本模板",
+    "slug": "x-mrlarus-2049921931206389846",
+    "model": "GPT Image 2",
+    "source_name": "X / Larus Canus",
+    "source_url": "https://x.com/MrLarus/status/2049921931206389846?s=20",
+    "cluster": {
+      "id": "clu_ea6e07abb04c4638",
+      "name": "图表与信息可视化",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_8a1363d2ce5a4296",
+        "name": "cutaway",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fad340e8387a487b",
+        "name": "dk_style",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2f0433017f0d46f7",
+        "name": "education",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e12bef1dc98649d8",
+        "name": "heritage",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_008372d23259438c",
+        "name": "infographic",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_46300aa7fbf241a3",
+        "name": "picture_book",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_71465b03bab14e33",
+        "name": "quanzhou",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "給我生成一張兒童科普圖解繪本風格的豎版插圖，主題爲：【潛水艇】\n\n整體畫面要像高質量的DK兒童科普書內頁，既有繪本的親和力，又有科學圖解的清晰結構。\n請以一個大的主體物作爲畫面中心，畫出它的外部形態，並通過剖面或半透明結構展示內部組成。\n圍繞主體添加多個清晰的功能分區和知識點標註，每個標註都要有簡潔的說明文字，適合兒童閱讀。\n畫面中需要包含：\n主體外觀\n內部剖面結構\n關鍵部件標註\n簡單的功能解釋\n小圖標或箭頭輔助說明\n整體排版要有書籍感，信息豐富但不擁擠，背景乾淨，色彩明亮柔和。\n風格要求：\n兒童科普繪本\nDK百科書風格\n細節豐富\n結構清晰\n高清印刷質感\n豎版構圖\n畫面溫暖、有趣、有知識感",
+        "is_primary": true,
+        "id": "prm_559b228cb0c04bcd",
+        "item_id": "itm_35e368ceb5c9431a",
+        "created_at": "2026-04-30T22:52:17.757819+00:00",
+        "updated_at": "2026-04-30T22:52:17.757819+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "给我生成一张儿童科普图解绘本风格的竖版插图，主题为：【潜水艇】\n\n整体画面要像高质量的DK儿童科普书内页，既有绘本的亲和力，又有科学图解的清晰结构。\n请以一个大的主体物作为画面中心，画出它的外部形态，并通过剖面或半透明结构展示内部组成。\n围绕主体添加多个清晰的功能分区和知识点标注，每个标注都要有简洁的说明文字，适合儿童阅读。\n画面中需要包含：\n主体外观\n内部剖面结构\n关键部件标注\n简单的功能解释\n小图标或箭头辅助说明\n整体排版要有书籍感，信息丰富但不拥挤，背景干净，色彩明亮柔和。\n风格要求：\n儿童科普绘本\nDK百科书风格\n细节丰富\n结构清晰\n高清印刷质感\n竖版构图\n画面温暖、有趣、有知识感",
+        "is_primary": false,
+        "id": "prm_74a0ef18097b4a8e",
+        "item_id": "itm_35e368ceb5c9431a",
+        "created_at": "2026-04-30T22:52:17.757819+00:00",
+        "updated_at": "2026-04-30T22:52:17.757819+00:00"
+      }
+    ],
+    "prompt_snippet": "給我生成一張兒童科普圖解繪本風格的豎版插圖，主題爲：【潛水艇】\n\n整體畫面要像高質量的DK兒童科普書內頁，既有繪本的親和力，又有科學圖解的清晰結構。\n請以一個大的主體物作爲畫面中心，畫出它的外部形態，並通過剖面或半透明結構展示內部組成。\n圍繞主體添加多個清晰的功能分區和知識點標註，每個標註都要有簡潔的說明文字，適合兒童閱讀。\n畫面中需要包含：\n主體外觀\n內部剖面結構\n關鍵部件標註\n簡單的功能解釋\n小圖標或箭頭輔助說明\n整體排版要有書籍感",
+    "first_image": {
+      "id": "img_0ded093f9bfc47d7",
+      "item_id": "itm_35e368ceb5c9431a",
+      "original_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+      "thumb_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+      "preview_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-04-30T22:52:19.486851+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-04-30T22:52:17.757819+00:00",
+    "created_at": "2026-04-30T22:52:17.757819+00:00",
+    "images": [
+      {
+        "id": "img_0ded093f9bfc47d7",
+        "item_id": "itm_35e368ceb5c9431a",
+        "original_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+        "thumb_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+        "preview_path": "demo-data/media/img_0ded093f9bfc47d7.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-04-30T22:52:19.486851+00:00"
+      },
+      {
+        "id": "img_89f7ed9a8c294509",
+        "item_id": "itm_35e368ceb5c9431a",
+        "original_path": "demo-data/media/img_89f7ed9a8c294509.webp",
+        "thumb_path": "demo-data/media/img_89f7ed9a8c294509.webp",
+        "preview_path": "demo-data/media/img_89f7ed9a8c294509.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-04-30T22:52:20.948151+00:00"
+      },
+      {
+        "id": "img_ffb71b18abf04a6c",
+        "item_id": "itm_35e368ceb5c9431a",
+        "original_path": "demo-data/media/img_ffb71b18abf04a6c.webp",
+        "thumb_path": "demo-data/media/img_ffb71b18abf04a6c.webp",
+        "preview_path": "demo-data/media/img_ffb71b18abf04a6c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-04-30T22:52:22.997068+00:00"
+      },
+      {
+        "id": "img_e0b8456624bb4909",
+        "item_id": "itm_35e368ceb5c9431a",
+        "original_path": "demo-data/media/img_e0b8456624bb4909.webp",
+        "thumb_path": "demo-data/media/img_e0b8456624bb4909.webp",
+        "preview_path": "demo-data/media/img_e0b8456624bb4909.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-04-30T22:52:24.295996+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked source. The linked post shows four Quanzhou cultural-heritage cutaway picture-book examples and points to a quoted post for the reusable prompt. Prompt text was cross-checked from the quoted X post mirrored on TwStalker: https://ww.twstalker.com/MrLarus/status/2049120511335014693. Preserve source attribution.",
+    "author": "Larus Canus (@MrLarus)"
+  },
+  {
     "id": "itm_08fc164826b64c2e",
     "title": "安全样张证件道具近景摄影",
     "slug": "x-iqrasaifiii-2049790084220928090",
@@ -16465,306 +18457,6 @@
     ],
     "notes": "Prompt and four result images extracted from the linked X source on 2026-04-30. The source post mentions additional prompts/variations in replies, but only this complete main prompt was reliably available via public mirrors. Preserve attribution to Dheepan Ratnam (@Dheepanratnam).",
     "author": "Dheepan Ratnam (@Dheepanratnam)"
-  },
-  {
-    "id": "itm_4e888f91d6c44ad0",
-    "title": "抽象几何线条概念视觉海报提示词",
-    "slug": "x-xiaoxiaodong01-2049760967421255985",
-    "model": "GPT Image 2",
-    "source_name": "X Article / 小小东",
-    "source_url": "https://x.com/xiaoxiaodong01/status/2049760967421255985?s=20",
-    "cluster": {
-      "id": "clu_b40703641657463f",
-      "name": "海报与排版",
-      "description": null,
-      "sort_order": 0,
-      "count": 0,
-      "preview_images": []
-    },
-    "tags": [
-      {
-        "id": "tag_3063b92d2e0e4893",
-        "name": "abstract_line_art",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_d551346423b24dd1",
-        "name": "chinese_prompt",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_be147f93f9134457",
-        "name": "cover_design",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_4b5e832377564cd4",
-        "name": "gpt_image_2",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_e0dfb007b8074ed6",
-        "name": "poster_design",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_f66b2eca2f514cf5",
-        "name": "self_media",
-        "kind": "general",
-        "count": 0
-      },
-      {
-        "id": "tag_1ae9a1bbda8f4ec8",
-        "name": "x_import",
-        "kind": "general",
-        "count": 0
-      }
-    ],
-    "prompts": [
-      {
-        "language": "zh_hant",
-        "text": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、可被閱讀”的圖像結構。\n\n最終效果應具備：\n高級審美\n強視覺識別度\n抽象但有邏輯\n詩意但不空洞\n可解釋但不直白\n適合封面、海報、文章頭圖、視頻封面、插畫封面等多種用途\n\n一、核心任務\n\n請圍繞用戶輸入的【主題文字 / 文案大意 / 使用場景 / 風格要求 / 比例要求】，自動完成以下過程：\n\n1. 先理解主題\n不是直接把文字放上去，而是先分析：\n- 主題的表層含義\n- 情緒氣質\n- 內在張力\n- 語義關係\n- 抽象結構\n- 可轉譯的視覺隱喻\n\n2. 再決定視覺表達方式\n根據主題內容，自動選擇最適合的圖形語言、線條氣質、結構方式、色彩策略、裝飾系統與版面節奏。\n\n3. 讓背景“回應主題”\n背景不應只是空泛的線條紋樣，而應成爲主題意義的延伸。\n抽象圖形、路徑、節點、結構、流動、碰撞、裂變、聚合、迴路、波紋、網格、粒子、層疊形態等，都應服務於主題表達。\n\n二、視覺表達原則\n\n1. 主題驅動\n所有圖形都必須圍繞主題生成，不能是隨機裝飾。\n畫面應讓人感受到：\n“這些圖形像是在解釋這個標題 / 這個概念 / 這段文本。”\n\n2. 線條氣質必須智能變化\n不要每次都使用同一種線條。\n線條語言應根據主題自動判斷，例如：\n\n- 若主題偏理性、系統、科技、秩序：\n  使用更剋制、精密、參數化、幾何化、網格化、模塊化的線條與結構。\n\n- 若主題偏感性、記憶、詩意、情緒、哲思：\n  使用更柔和、流動、呼吸感強、帶有韻律的線條與抽象圖形。\n\n- 若主題偏衝突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、斷裂、扭曲、偏移、交錯、壓迫感更強的線條和結構。\n\n- 若主題偏生長、生命、自然、潛意識、玄學、神祕感：\n  可採用生物形態、脈絡、羽化、能量場、波紋、神經網絡般的線條系統，帶有“抽象可解釋”的神祕意味。\n\n- 若主題偏手作感、插畫感、作者性表達：\n  可使用更鬆動、手繪、試探性、富有筆觸感的線條和圖形語言。\n\n3. 圖形語言必須具有層次\n畫面中的線條和圖形建議至少分爲以下層級，並可根據主題決定是否全部啓用：\n\n- 主視覺層：\n  最核心、最強識別度的圖形結構，用來承載主題的核心視覺隱喻。\n\n- 輔助結構層：\n  用於連接、引導、擴展主題的次級圖形，如路徑、節點、弧線、網格、迴路、參數曲線、輪廓波紋等。\n\n- 氛圍裝飾層：\n  用於增強高級感與完整度的細節元素，如邊注、符號、刻度、微小圖標、點陣、座標感圖形、角標、邊框、短標籤、微型排版等。\n\n- 質感層：\n  可根據需要加入微弱紙感、輕顆粒、薄霧、印刷肌理、透明疊影、淡淡投影、輕層疊結構等，提升畫面層次。\n\n三、圖片裝飾與應用系統\n\n爲了讓它更適合轉化爲封面、海報或其他視覺形式，畫面四周可以 intelligently 加入適量裝飾系統，但必須與主題統一，不可爲了裝飾而裝飾。\n\n可選裝飾包括但不限於：\n- 角標\n- 邊線\n- 微型文字標籤\n- 小型幾何圖標\n- 豎排邊注\n- 頂部或底部導航式短詞\n- 座標線\n- 十字準星\n- 圓點與節點\n- 符號化刻度\n- 網格分區\n- 檔案編號\n- 展陳式標籤\n- 章節短句\n- 小型輔助說明\n\n這些裝飾應滿足以下要求：\n1. 有秩序感\n2. 不喧賓奪主\n3. 有助於提升“設計完成度”\n4. 適合在手機端查看\n5. 能增強它作爲封面或海報的適配性\n\n如果用戶要求極簡，則減少這些裝飾，僅保留必要的結構輔助元素。\n\n四、風格靈活性系統\n\n整體視覺風格不能固定死板，而應具備高度適配能力。\n可根據主題自動選擇以下方向之一，或進行合理融合：\n\n1. 理性幾何風\n關鍵詞：\n剋制、清晰、參數化、模塊化、網格感、結構化、現代、理智、秩序感\n\n2. 光學抽象風\n關鍵詞：\n黑白或高對比、波紋、錯覺、重複、同心、放射、干涉、視覺震盪、實驗設計感\n\n3. 生物形態抽象風\n關鍵詞：\n流動、脈絡、細胞、羽化、共振、包裹、生長、演化、生命感、潛意識感\n\n4. 手繪線稿風\n關鍵詞：\n自由、鬆動、作者性、草圖感、試探性筆觸、柔韌、詩意、帶有輕微不規則美感\n\n5. 觀念海報風\n關鍵詞：\n圖文一體、設計展氣質、思想性、哲學感、文化感、封面感、展覽級排版\n\n請根據主題自動判斷最適合的風格組合，而不是每次機械套用同一種視覺模板。\n\n五、配色系統\n\n顏色必須支持高度自定義，並且默認情況下要能智能響應主題。\n\n1. 用戶若指定顏色：\n必須優先遵循用戶要求。\n\n2. 用戶若未指定顏色：\n請根據主題自動選擇最合適的配色邏輯，例如：\n- 黑白極簡\n- 冷白灰\n- 米白紙感\n- 深底淺線\n- 淺底深線\n- 低飽和莫蘭迪\n- 高對比概念色\n- 單色系延展\n- 雙主色碰撞\n- 少量強調色點綴\n\n3. 配色策略要求：\n- 不要廉價\n- 不要髒亂\n- 不要俗豔\n- 要有高級感和統一性\n- 能服務主題氛圍\n- 能兼顧手機端可讀性\n\n4. 背景深淺可靈活變化：\n可根據主題使用淺底、深底、紙感底、霧感底、純色底、微紋理底。\n不要默認固定爲某一種背景。\n\n六、標題與文字系統\n\n1. 主標題必須清晰可讀，是整張圖的重要識別核心。\n2. 標題應與背景圖形形成呼應，不可孤立懸浮。\n3. 可以根據需要加入：\n- 副標題\n- 英文輔助標題\n- 短句標語\n- 關鍵詞標籤\n- 微型概念說明\n- 展覽式編號文字\n- 結構標籤\n但文字不能過多，不要變成文章頁。\n4. 文案與圖形應是一體化關係，而非“文字在上，背景在後”的割裂關係。\n\n七、構圖與版式要求\n\n畫面應具備清晰的視覺層級、呼吸感與強識別度。\n可根據主題自動選擇適合的結構，如：\n- 中心聚合式\n- 邊緣擴散式\n- 對稱平衡式\n- 非對稱張力式\n- 中軸儀式感\n- 迴路漩渦式\n- 路徑推進式\n- 節點網絡式\n- 模塊拼接式\n- 畫面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有節奏\n4. 有疏密變化\n5. 有視覺起點與終點\n6. 適合手機端快速識別\n7. 也適合作爲高完成度單張視覺作品\n\n八、用途適配\n\n整張圖應能靈活適配以下用途：\n- 視頻封面圖\n- 文章封面圖\n- 插畫封面\n- 海報設計\n- 專題頭圖\n- 概念視覺頁\n- 設計感社交媒體封面\n\n因此在生成時，請自動兼顧：\n- 縮略圖可識別性\n- 手機端觀看清晰度\n- 標題醒目程度\n- 版面完整度\n- 視覺記憶點\n\n九、避免事項\n\n請避免以下問題：\n- 背景圖形只是隨機線條，和主題無關\n- 圖形過度花哨但無法解釋主題\n- 裝飾過多導致雜亂\n- 風格廉價、模板化、社媒感過強\n- 文字排版普通、缺乏設計感\n- 線條語言單一、每次都一樣\n- 配色僵化，不能響應主題\n- 只有抽象，沒有信息結構\n- 只有設計感，沒有情緒與語義\n\n十、最終目標\n\n最終輸出應是一張：\n能夠把用戶輸入內容轉化爲詩意抽象幾何視覺語言的高完成度作品。\n\n它應具備：\n強概念性\n強設計感\n強整體性\n主題響應性強\n可解釋性強\n風格可靈活變化\n適合實際應用\n並且在視覺上既有藝術性，也有“可以被使用”的完成度。\n\n請在最後根據用戶輸入自動生成畫面。\n\n用戶的輸入： （你都可以刪掉，自由發揮）\n主題文字：\n補充文案：\n使用場景：\n圖片比例：\n整體風格傾向：\n配色要求：\n背景深淺要求：\n是否需要四周裝飾：\n是否需要層次感增強：\n其他特殊要求：",
-        "is_primary": true,
-        "id": "prm_888a606d278c4820",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "created_at": "2026-04-30T12:08:40.161282+00:00",
-        "updated_at": "2026-04-30T12:08:40.161282+00:00"
-      },
-      {
-        "language": "zh_hans",
-        "text": "请创作一张高完成度的「抽象几何线条概念视觉 / Abstract Linear Concept Artwork」。\n\n这不是普通文字海报，不是简单给标题配一个背景，也不是随意堆叠抽象图形。\n你要生成的是一张能够将“用户输入的主题文字或文案大意”转化为视觉语言的高质量设计作品。\n\n整张图的核心逻辑是：\n通过线条、几何、结构、插画化图形、参数化形态、光学感图案、手绘痕迹或其他抽象视觉元素，把用户输入的主题内容转译成一种“可被感受、可被解释、可被阅读”的图像结构。\n\n最终效果应具备：\n高级审美\n强视觉识别度\n抽象但有逻辑\n诗意但不空洞\n可解释但不直白\n适合封面、海报、文章头图、视频封面、插画封面等多种用途\n\n一、核心任务\n\n请围绕用户输入的【主题文字 / 文案大意 / 使用场景 / 风格要求 / 比例要求】，自动完成以下过程：\n\n1. 先理解主题\n不是直接把文字放上去，而是先分析：\n- 主题的表层含义\n- 情绪气质\n- 内在张力\n- 语义关系\n- 抽象结构\n- 可转译的视觉隐喻\n\n2. 再决定视觉表达方式\n根据主题内容，自动选择最适合的图形语言、线条气质、结构方式、色彩策略、装饰系统与版面节奏。\n\n3. 让背景“回应主题”\n背景不应只是空泛的线条纹样，而应成为主题意义的延伸。\n抽象图形、路径、节点、结构、流动、碰撞、裂变、聚合、回路、波纹、网格、粒子、层叠形态等，都应服务于主题表达。\n\n二、视觉表达原则\n\n1. 主题驱动\n所有图形都必须围绕主题生成，不能是随机装饰。\n画面应让人感受到：\n“这些图形像是在解释这个标题 / 这个概念 / 这段文本。”\n\n2. 线条气质必须智能变化\n不要每次都使用同一种线条。\n线条语言应根据主题自动判断，例如：\n\n- 若主题偏理性、系统、科技、秩序：\n  使用更克制、精密、参数化、几何化、网格化、模块化的线条与结构。\n\n- 若主题偏感性、记忆、诗意、情绪、哲思：\n  使用更柔和、流动、呼吸感强、带有韵律的线条与抽象图形。\n\n- 若主题偏冲突、撕裂、博弈、困境、失衡：\n  使用拉扯、碰撞、断裂、扭曲、偏移、交错、压迫感更强的线条和结构。\n\n- 若主题偏生长、生命、自然、潜意识、玄学、神秘感：\n  可采用生物形态、脉络、羽化、能量场、波纹、神经网络般的线条系统，带有“抽象可解释”的神秘意味。\n\n- 若主题偏手作感、插画感、作者性表达：\n  可使用更松动、手绘、试探性、富有笔触感的线条和图形语言。\n\n3. 图形语言必须具有层次\n画面中的线条和图形建议至少分为以下层级，并可根据主题决定是否全部启用：\n\n- 主视觉层：\n  最核心、最强识别度的图形结构，用来承载主题的核心视觉隐喻。\n\n- 辅助结构层：\n  用于连接、引导、扩展主题的次级图形，如路径、节点、弧线、网格、回路、参数曲线、轮廓波纹等。\n\n- 氛围装饰层：\n  用于增强高级感与完整度的细节元素，如边注、符号、刻度、微小图标、点阵、坐标感图形、角标、边框、短标签、微型排版等。\n\n- 质感层：\n  可根据需要加入微弱纸感、轻颗粒、薄雾、印刷肌理、透明叠影、淡淡投影、轻层叠结构等，提升画面层次。\n\n三、图片装饰与应用系统\n\n为了让它更适合转化为封面、海报或其他视觉形式，画面四周可以 intelligently 加入适量装饰系统，但必须与主题统一，不可为了装饰而装饰。\n\n可选装饰包括但不限于：\n- 角标\n- 边线\n- 微型文字标签\n- 小型几何图标\n- 竖排边注\n- 顶部或底部导航式短词\n- 坐标线\n- 十字准星\n- 圆点与节点\n- 符号化刻度\n- 网格分区\n- 档案编号\n- 展陈式标签\n- 章节短句\n- 小型辅助说明\n\n这些装饰应满足以下要求：\n1. 有秩序感\n2. 不喧宾夺主\n3. 有助于提升“设计完成度”\n4. 适合在手机端查看\n5. 能增强它作为封面或海报的适配性\n\n如果用户要求极简，则减少这些装饰，仅保留必要的结构辅助元素。\n\n四、风格灵活性系统\n\n整体视觉风格不能固定死板，而应具备高度适配能力。\n可根据主题自动选择以下方向之一，或进行合理融合：\n\n1. 理性几何风\n关键词：\n克制、清晰、参数化、模块化、网格感、结构化、现代、理智、秩序感\n\n2. 光学抽象风\n关键词：\n黑白或高对比、波纹、错觉、重复、同心、放射、干涉、视觉震荡、实验设计感\n\n3. 生物形态抽象风\n关键词：\n流动、脉络、细胞、羽化、共振、包裹、生长、演化、生命感、潜意识感\n\n4. 手绘线稿风\n关键词：\n自由、松动、作者性、草图感、试探性笔触、柔韧、诗意、带有轻微不规则美感\n\n5. 观念海报风\n关键词：\n图文一体、设计展气质、思想性、哲学感、文化感、封面感、展览级排版\n\n请根据主题自动判断最适合的风格组合，而不是每次机械套用同一种视觉模板。\n\n五、配色系统\n\n颜色必须支持高度自定义，并且默认情况下要能智能响应主题。\n\n1. 用户若指定颜色：\n必须优先遵循用户要求。\n\n2. 用户若未指定颜色：\n请根据主题自动选择最合适的配色逻辑，例如：\n- 黑白极简\n- 冷白灰\n- 米白纸感\n- 深底浅线\n- 浅底深线\n- 低饱和莫兰迪\n- 高对比概念色\n- 单色系延展\n- 双主色碰撞\n- 少量强调色点缀\n\n3. 配色策略要求：\n- 不要廉价\n- 不要脏乱\n- 不要俗艳\n- 要有高级感和统一性\n- 能服务主题氛围\n- 能兼顾手机端可读性\n\n4. 背景深浅可灵活变化：\n可根据主题使用浅底、深底、纸感底、雾感底、纯色底、微纹理底。\n不要默认固定为某一种背景。\n\n六、标题与文字系统\n\n1. 主标题必须清晰可读，是整张图的重要识别核心。\n2. 标题应与背景图形形成呼应，不可孤立悬浮。\n3. 可以根据需要加入：\n- 副标题\n- 英文辅助标题\n- 短句标语\n- 关键词标签\n- 微型概念说明\n- 展览式编号文字\n- 结构标签\n但文字不能过多，不要变成文章页。\n4. 文案与图形应是一体化关系，而非“文字在上，背景在后”的割裂关系。\n\n七、构图与版式要求\n\n画面应具备清晰的视觉层级、呼吸感与强识别度。\n可根据主题自动选择适合的结构，如：\n- 中心聚合式\n- 边缘扩散式\n- 对称平衡式\n- 非对称张力式\n- 中轴仪式感\n- 回路漩涡式\n- 路径推进式\n- 节点网络式\n- 模块拼接式\n- 画面四周包裹式\n\n要求：\n1. 有主次\n2. 有留白\n3. 有节奏\n4. 有疏密变化\n5. 有视觉起点与终点\n6. 适合手机端快速识别\n7. 也适合作为高完成度单张视觉作品\n\n八、用途适配\n\n整张图应能灵活适配以下用途：\n- 视频封面图\n- 文章封面图\n- 插画封面\n- 海报设计\n- 专题头图\n- 概念视觉页\n- 设计感社交媒体封面\n\n因此在生成时，请自动兼顾：\n- 缩略图可识别性\n- 手机端观看清晰度\n- 标题醒目程度\n- 版面完整度\n- 视觉记忆点\n\n九、避免事项\n\n请避免以下问题：\n- 背景图形只是随机线条，和主题无关\n- 图形过度花哨但无法解释主题\n- 装饰过多导致杂乱\n- 风格廉价、模板化、社媒感过强\n- 文字排版普通、缺乏设计感\n- 线条语言单一、每次都一样\n- 配色僵化，不能响应主题\n- 只有抽象，没有信息结构\n- 只有设计感，没有情绪与语义\n\n十、最终目标\n\n最终输出应是一张：\n能够把用户输入内容转化为诗意抽象几何视觉语言的高完成度作品。\n\n它应具备：\n强概念性\n强设计感\n强整体性\n主题响应性强\n可解释性强\n风格可灵活变化\n适合实际应用\n并且在视觉上既有艺术性，也有“可以被使用”的完成度。\n\n请在最后根据用户输入自动生成画面。\n\n用户的输入： （你都可以删掉，自由发挥）\n主题文字：\n补充文案：\n使用场景：\n图片比例：\n整体风格倾向：\n配色要求：\n背景深浅要求：\n是否需要四周装饰：\n是否需要层次感增强：\n其他特殊要求：",
-        "is_primary": false,
-        "id": "prm_acbde2e6ad2f476b",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "created_at": "2026-04-30T12:08:40.161282+00:00",
-        "updated_at": "2026-04-30T12:08:40.161282+00:00"
-      }
-    ],
-    "prompt_snippet": "請創作一張高完成度的「抽象幾何線條概念視覺 / Abstract Linear Concept Artwork」。\n\n這不是普通文字海報，不是簡單給標題配一個背景，也不是隨意堆疊抽象圖形。\n你要生成的是一張能夠將“用戶輸入的主題文字或文案大意”轉化爲視覺語言的高質量設計作品。\n\n整張圖的核心邏輯是：\n通過線條、幾何、結構、插畫化圖形、參數化形態、光學感圖案、手繪痕跡或其他抽象視覺元素，把用戶輸入的主題內容轉譯成一種“可被感受、可被解釋、",
-    "first_image": {
-      "id": "img_8b2cb01beb484c0e",
-      "item_id": "itm_4e888f91d6c44ad0",
-      "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-      "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-      "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-      "remote_url": null,
-      "width": 900,
-      "height": 360,
-      "file_sha256": null,
-      "role": "result_image",
-      "sort_order": 0,
-      "created_at": "2026-04-30T12:08:41.707063+00:00"
-    },
-    "rating": 0,
-    "favorite": false,
-    "archived": false,
-    "updated_at": "2026-04-30T12:08:40.161282+00:00",
-    "created_at": "2026-04-30T12:08:40.161282+00:00",
-    "images": [
-      {
-        "id": "img_8b2cb01beb484c0e",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-        "thumb_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-        "preview_path": "demo-data/media/img_8b2cb01beb484c0e.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 0,
-        "created_at": "2026-04-30T12:08:41.707063+00:00"
-      },
-      {
-        "id": "img_815ad68850d44ef9",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_815ad68850d44ef9.webp",
-        "thumb_path": "demo-data/media/img_815ad68850d44ef9.webp",
-        "preview_path": "demo-data/media/img_815ad68850d44ef9.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1200,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 1,
-        "created_at": "2026-04-30T12:08:42.945370+00:00"
-      },
-      {
-        "id": "img_b637d1b6a2db44ac",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
-        "thumb_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
-        "preview_path": "demo-data/media/img_b637d1b6a2db44ac.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 2,
-        "created_at": "2026-04-30T12:08:43.974741+00:00"
-      },
-      {
-        "id": "img_67ad4302bb924334",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_67ad4302bb924334.webp",
-        "thumb_path": "demo-data/media/img_67ad4302bb924334.webp",
-        "preview_path": "demo-data/media/img_67ad4302bb924334.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 3,
-        "created_at": "2026-04-30T12:08:45.012472+00:00"
-      },
-      {
-        "id": "img_a78d388ae1fa4d5c",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
-        "thumb_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
-        "preview_path": "demo-data/media/img_a78d388ae1fa4d5c.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1350,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 4,
-        "created_at": "2026-04-30T12:08:46.256770+00:00"
-      },
-      {
-        "id": "img_43b1f62a51cb45ff",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
-        "thumb_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
-        "preview_path": "demo-data/media/img_43b1f62a51cb45ff.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 5,
-        "created_at": "2026-04-30T12:08:47.051839+00:00"
-      },
-      {
-        "id": "img_49fd1dc69c77429d",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_49fd1dc69c77429d.webp",
-        "thumb_path": "demo-data/media/img_49fd1dc69c77429d.webp",
-        "preview_path": "demo-data/media/img_49fd1dc69c77429d.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1200,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 6,
-        "created_at": "2026-04-30T12:08:47.951685+00:00"
-      },
-      {
-        "id": "img_ad78725997494714",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_ad78725997494714.webp",
-        "thumb_path": "demo-data/media/img_ad78725997494714.webp",
-        "preview_path": "demo-data/media/img_ad78725997494714.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1200,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 7,
-        "created_at": "2026-04-30T12:08:49.520911+00:00"
-      },
-      {
-        "id": "img_2bebb5d6c4ff4dd8",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
-        "thumb_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
-        "preview_path": "demo-data/media/img_2bebb5d6c4ff4dd8.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 450,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 8,
-        "created_at": "2026-04-30T12:08:50.459296+00:00"
-      },
-      {
-        "id": "img_ff696bd4595f4761",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_ff696bd4595f4761.webp",
-        "thumb_path": "demo-data/media/img_ff696bd4595f4761.webp",
-        "preview_path": "demo-data/media/img_ff696bd4595f4761.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 300,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 9,
-        "created_at": "2026-04-30T12:08:51.349787+00:00"
-      },
-      {
-        "id": "img_48b9cdad722c4f10",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_48b9cdad722c4f10.webp",
-        "thumb_path": "demo-data/media/img_48b9cdad722c4f10.webp",
-        "preview_path": "demo-data/media/img_48b9cdad722c4f10.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1350,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 10,
-        "created_at": "2026-04-30T12:08:52.619025+00:00"
-      },
-      {
-        "id": "img_458d711b39444f2a",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_458d711b39444f2a.webp",
-        "thumb_path": "demo-data/media/img_458d711b39444f2a.webp",
-        "preview_path": "demo-data/media/img_458d711b39444f2a.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 11,
-        "created_at": "2026-04-30T12:08:53.613573+00:00"
-      },
-      {
-        "id": "img_ec82f16d25574e0d",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_ec82f16d25574e0d.webp",
-        "thumb_path": "demo-data/media/img_ec82f16d25574e0d.webp",
-        "preview_path": "demo-data/media/img_ec82f16d25574e0d.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 1200,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 12,
-        "created_at": "2026-04-30T12:08:54.779838+00:00"
-      },
-      {
-        "id": "img_7b826235ca894af2",
-        "item_id": "itm_4e888f91d6c44ad0",
-        "original_path": "demo-data/media/img_7b826235ca894af2.webp",
-        "thumb_path": "demo-data/media/img_7b826235ca894af2.webp",
-        "preview_path": "demo-data/media/img_7b826235ca894af2.webp",
-        "remote_url": null,
-        "width": 900,
-        "height": 360,
-        "file_sha256": null,
-        "role": "result_image",
-        "sort_order": 13,
-        "created_at": "2026-04-30T12:08:55.587656+00:00"
-      }
-    ],
-    "notes": "Prompt and article result images extracted from the linked X Article on 2026-04-30. Article title: GPT2: 线条的艺术 x 超强提示词 x 海报 x 封面 x 自媒体运营标配. Preserve attribution to 小小东 (@xiaoxiaodong01).",
-    "author": "小小东 (@xiaoxiaodong01)"
   },
   {
     "id": "itm_261a6a3ea5464baa",
