@@ -134,7 +134,7 @@
     "name": "UI与界面",
     "description": null,
     "sort_order": 0,
-    "count": 53,
+    "count": 56,
     "preview_images": [
       "demo-data/media/img_8d4ac06af8f5435c.webp",
       "demo-data/media/img_f365b16178744d15.webp",
@@ -147,7 +147,7 @@
     "name": "人物与角色",
     "description": null,
     "sort_order": 0,
-    "count": 10,
+    "count": 12,
     "preview_images": [
       "demo-data/media/img_0fb07ce2f8ec4607.webp",
       "demo-data/media/img_b365e10e60a440f0.webp",
@@ -197,7 +197,7 @@
     "name": "商品与电商",
     "description": null,
     "sort_order": 0,
-    "count": 13,
+    "count": 14,
     "preview_images": [
       "demo-data/media/img_82d29f6016334161.webp",
       "demo-data/media/img_c02e56cbe5214c48.webp",
@@ -210,7 +210,7 @@
     "name": "图像编辑与再创作",
     "description": null,
     "sort_order": 0,
-    "count": 7,
+    "count": 15,
     "preview_images": [
       "demo-data/media/img_30cc566c80354335.webp",
       "demo-data/media/img_769becb5fee84ca9.webp",
@@ -223,7 +223,7 @@
     "name": "图表与信息可视化",
     "description": null,
     "sort_order": 0,
-    "count": 53,
+    "count": 54,
     "preview_images": [
       "demo-data/media/img_3d7e305d67b840ef.webp",
       "demo-data/media/img_0ded093f9bfc47d7.webp",
@@ -236,7 +236,7 @@
     "name": "场景与叙事",
     "description": null,
     "sort_order": 0,
-    "count": 9,
+    "count": 10,
     "preview_images": [
       "demo-data/media/img_a88f73e2a6704493.webp",
       "demo-data/media/img_1e47ddfc151c498d.webp",
@@ -262,7 +262,7 @@
     "name": "摄影与写实",
     "description": null,
     "sort_order": 0,
-    "count": 27,
+    "count": 29,
     "preview_images": [
       "demo-data/media/img_981d05b5a79542c2.webp",
       "demo-data/media/img_9c5bcb26b1ce441f.webp",
@@ -275,7 +275,7 @@
     "name": "海报与排版",
     "description": null,
     "sort_order": 0,
-    "count": 33,
+    "count": 41,
     "preview_images": [
       "demo-data/media/img_ddeeb67e02ae417f.webp",
       "demo-data/media/img_c0a5184300f444dd.webp",

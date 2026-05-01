@@ -40138,5 +40138,3004 @@
     ],
     "notes": "Imported from freestylefly/awesome-gpt-image-2 gallery-part-2 cases for demo/reference use.\nLicense observed in upstream repository: MIT. Preserve upstream and original-source attribution when publishing screenshots, demo GIFs, or fixtures.\nOriginal case: https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-310\nOriginal linked source(s): @TechieBySA https://x.com/TechieBySA/status/2031795709243019280\nOriginal image URL: https://raw.githubusercontent.com/freestylefly/awesome-gpt-image-2/main/data/images/case310.jpg",
     "author": "@TechieBySA"
+  },
+  {
+    "id": "itm_5c66dcb775d74a84",
+    "title": "3D cartoon avatar with yellow-tinted glasses",
+    "slug": "x-iamsofiaijaz-2049895027560866232",
+    "model": "GPT Image 2",
+    "source_name": "X / Aijaz",
+    "source_url": "https://x.com/iamsofiaijaz/status/2049895027560866232",
+    "cluster": {
+      "id": "clu_65c21e993fcd4973",
+      "name": "人物与角色",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_2c1a7c0dbc894c90",
+        "name": "3d_cartoon",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_7d8a927d3dea44b3",
+        "name": "character_design",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 27
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 5
+      },
+      {
+        "id": "tag_60b488427ee24bf3",
+        "name": "profile_avatar",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 41
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A high-detail 3D stylized cartoon avatar of a young man with a full, well-groomed beard, soft facial features, and expressive eyes. He is wearing round yellow-tinted glasses with thin frames. His hair is thick, slightly wavy, and neatly styled. His expression is warm, confident, and slightly playful. He is dressed in a modern casual outfit with a clean, fashionable look.\n\nRender him in a polished 3D cartoon style inspired by premium animated character design, with smooth surfaces, soft shading, subtle subsurface scattering, and crisp facial details. Keep the proportions appealing and stylized while maintaining strong resemblance and personality. Use vibrant but balanced colors, clean lighting, and a neat composition. The background should be simple, soft, and complementary, helping the character stand out without distractions.\n\nFocus on highly detailed eyes, beard texture, hair volume, and the reflective tint of the glasses. The final image should feel charming, modern, professional, and social-profile ready, with a premium stylized finish, centered framing, and ultra-clean presentation.",
+        "is_primary": true,
+        "id": "prm_76d6d574b7054aa2",
+        "item_id": "itm_5c66dcb775d74a84",
+        "created_at": "2026-05-01T02:12:10+00:00",
+        "updated_at": "2026-05-01T02:12:10+00:00"
+      }
+    ],
+    "prompt_snippet": "A high-detail 3D stylized cartoon avatar of a young man with a full, well-groomed beard, soft facial features, and expressive eyes. He is wearing round yellow-tinted glasses with thin frames. His hair is thick, slightly ",
+    "first_image": null,
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T02:12:10+00:00",
+    "created_at": "2026-05-01T02:12:10+00:00",
+    "images": [],
+    "notes": "Prompt reconstructed from a truncated X post by Aijaz (@iamsofiaijaz). The public X oEmbed text preserved only the opening segment; the remainder was completed conservatively to match the author's visible style and constraints. Preserve source attribution and treat this as a faithful reconstruction rather than a verbatim transcript.",
+    "author": "Aijaz (@iamsofiaijaz)"
+  },
+  {
+    "id": "itm_27617d8b85554b58",
+    "title": "Reusable 3D cartoon avatar formula",
+    "slug": "x-iamsofiaijaz-2049895027560866232-formula",
+    "model": "GPT Image 2",
+    "source_name": "X / Aijaz",
+    "source_url": "https://x.com/iamsofiaijaz/status/2049895027560866232",
+    "cluster": {
+      "id": "clu_65c21e993fcd4973",
+      "name": "人物与角色",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_2c1a7c0dbc894c90",
+        "name": "3d_cartoon",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_7d8a927d3dea44b3",
+        "name": "character_design",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 27
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 5
+      },
+      {
+        "id": "tag_60b488427ee24bf3",
+        "name": "profile_avatar",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 41
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a high-detail 3D stylized cartoon avatar of [subject].\n\nFacial identity:\n- Gender/age impression: [young man / young woman / etc.]\n- Face shape: [oval / round / sharp / soft]\n- Skin tone: [tone]\n- Eyes: [large expressive eyes / sharp eyes / etc.]\n- Nose and lips: [description]\n- Hair: [color, length, texture, style]\n- Facial hair: [none / trimmed beard / full beard / mustache]\n- Glasses/accessories: [description]\n\nExpression and personality:\nGive the character a [warm / confident / playful / calm / intelligent / stylish] expression.\nThe avatar should communicate [personality traits].\n\nClothing:\nDress the character in [outfit description], styled in a [modern casual / creative / minimal / streetwear / professional] way.\n\nArt direction:\nRender in a premium 3D stylized cartoon style, similar to high-end animated character art.\nUse:\n- smooth polished surfaces\n- soft cinematic shading\n- subtle global illumination\n- gentle subsurface scattering on skin\n- clean material separation\n- rich but controlled color harmony\n- appealing stylized proportions\n- crisp facial detail\n- refined hair volume and strand definition\n- natural beard/fabric texture where relevant\n\nComposition:\n- portrait orientation\n- centered bust or chest-up framing\n- eye-level camera\n- slight depth for dimensionality\n- clean silhouette\n- balanced negative space\n\nLighting:\nUse [soft studio lighting / warm cinematic lighting / bright key light with soft fill / rim light].\nMake the face the visual focus, with pleasing highlights in the eyes and subtle reflections on glasses or accessories.\n\nBackground:\nUse a simple premium background in [color palette], softly blurred or gradient-based, with minimal distractions.\nThe background should complement the subject and make the avatar pop.\n\nQuality goals:\nThe final image should feel:\n- charming\n- highly polished\n- modern\n- profile-picture ready\n- visually clean\n- expressive\n- premium\n\nAvoid:\n- uncanny realism\n- messy background\n- distorted hands if visible\n- asymmetrical glasses\n- muddy lighting\n- overexaggerated proportions\n- cheap toy-like plastic look unless explicitly requested",
+        "is_primary": true,
+        "id": "prm_8d6637a6468e4101",
+        "item_id": "itm_27617d8b85554b58",
+        "created_at": "2026-05-01T02:12:11+00:00",
+        "updated_at": "2026-05-01T02:12:11+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a high-detail 3D stylized cartoon avatar of [subject].\n\nFacial identity:\n- Gender/age impression: [young man / young woman / etc.]\n- Face shape: [oval / round / sharp / soft]\n- Skin tone: [tone]\n- Eyes: [large exp",
+    "first_image": null,
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T02:12:11+00:00",
+    "created_at": "2026-05-01T02:12:11+00:00",
+    "images": [],
+    "notes": "Derived reusable template based on the linked X post by Aijaz (@iamsofiaijaz) and the repository's reconstructed concrete prompt version. This item generalizes the original look into a reusable avatar formula for future subjects. Preserve source attribution when reusing.",
+    "author": "Aijaz (@iamsofiaijaz)"
+  },
+  {
+    "id": "itm_2a5a0b0fd8144a93",
+    "title": "乐高积木字体概念海报复杂版",
+    "slug": "x-xiaoxiaodong01-2050041783053439332-lego-poster-complex",
+    "model": "GPT Image 2",
+    "source_name": "X Article / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2050041783053439332?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 5
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 29
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 8
+      },
+      {
+        "id": "tag_4717188292034092",
+        "name": "poster_typography",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_f66b2eca2f514cf5",
+        "name": "self_media",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 43
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "生成一张高完成度「乐高字体概念海报」。\n\n核心任务：\n根据用户输入的【主题/文字】，设计一套原创“乐高积木感字体”，并把主题做成一张概念逻辑清晰的海报。\n\n\n\n画面要求：\n- 以主题文字为核心，使用积木颗粒、凸点、拼接模块构成主标题\n- 不使用任何官方 LEGO 标志或品牌元素，只做“积木风格”\n- 字体要像真实塑料积木拼出来：模块化、几何、厚度清晰、有凸点、有阴影\n- 根据主题含义自动生成一个核心视觉隐喻\n- 画面要同时展示：主标题、概念图形、字体系统、模块结构、局部样张\n- 可加入小型字形样本、拼装步骤、模块说明、颜色图例、细线标注\n- 整体像一张设计展海报 / 字体研究海报 / 概念板，而不是儿童玩具广告\n\n视觉风格：\n高级、干净、留白多、网格排版、信息图逻辑、现代设计感。\n背景以米白、浅灰、暖白为主。\n主色根据主题自动选择，可使用红、黄、蓝、绿、黑等积木色。\n灯光柔和，塑料质感真实，阴影干净，细节精致。\n\n构图：\n根据主题自动选择横版或竖版。\n主标题必须醒目，占画面视觉中心。\n概念图形与字体互相呼应。\n底部或侧边展示字体样本与模块系统。\n整体排版清晰、有秩序、有收藏级海报感。\n\n文字处理：\n如果主题是中文，重点字可以做成积木字体，其余文字可用现代黑体辅助。\n如果主题较长，自动提炼核心关键词，突出最有画面张力的部分。\n海报中文字要少而准，不要堆满。\n\n\n【主题】\n这里输入：旺铺出租\n比例2:1",
+        "is_primary": true,
+        "id": "prm_83457dd5282d4f72",
+        "item_id": "itm_2a5a0b0fd8144a93",
+        "created_at": "2026-05-01T08:04:00+00:00",
+        "updated_at": "2026-05-01T08:04:00+00:00"
+      }
+    ],
+    "prompt_snippet": "生成一张高完成度「乐高字体概念海报」。\n\n核心任务：\n根据用户输入的【主题/文字】，设计一套原创“乐高积木感字体”，并把主题做成一张概念逻辑清晰的海报。\n\n\n\n画面要求：\n- 以主题文字为核心，使用积木颗粒、凸点、拼接模块构成主标题\n- 不使用任何官方 LEGO 标志或品牌元素，只做“积木风格”\n- 字体要像真实塑料积木拼出来：模块化、几何、厚度清晰、有凸点、有阴影\n- 根据主题含义自动生成一个核心视觉隐喻\n- 画面要同时展示：主标题、",
+    "first_image": {
+      "id": "img_11fb31ec0d8a46d8",
+      "item_id": "itm_2a5a0b0fd8144a93",
+      "original_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "thumb_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "preview_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T08:04:01+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T08:04:02+00:00",
+    "created_at": "2026-05-01T08:04:02+00:00",
+    "images": [
+      {
+        "id": "img_11fb31ec0d8a46d8",
+        "item_id": "itm_2a5a0b0fd8144a93",
+        "original_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "thumb_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "preview_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T08:04:01+00:00"
+      }
+    ],
+    "notes": "Prompt and article cover image extracted from the linked X Article on 2026-05-01. Article title: GPT2实战： 乐高 x 文字 x 无限可能. This item preserves the article's 复杂版本 prompt, including the sample theme \"旺铺出租\" and ratio hint because they are part of the source markdown. The article explicitly credits inspiration to @cellinlab. Source article: https://x.com/i/article/2050038170264449024. Cover image source: https://pbs.twimg.com/media/HHMzCaRasAAy1Kk.jpg. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)"
+  },
+  {
+    "id": "itm_49cadf937fa346d8",
+    "title": "乐高积木字体概念海报极简版",
+    "slug": "x-xiaoxiaodong01-2050041783053439332-lego-poster-minimal",
+    "model": "GPT Image 2",
+    "source_name": "X Article / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2050041783053439332?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 5
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 29
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 8
+      },
+      {
+        "id": "tag_4717188292034092",
+        "name": "poster_typography",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_f66b2eca2f514cf5",
+        "name": "self_media",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 43
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "生成一张「乐高积木字体概念海报」。\n\n\n\n请根据主题设计一套原创积木风格字体，不使用官方 LEGO 标志。主标题由真实塑料积木模块拼成，带凸点、厚度、阴影和拼接结构。根据主题含义自动生成一个核心视觉隐喻，并把它做成高级设计展海报：干净留白、网格排版、信息图逻辑、概念板结构。画面包含主标题、概念图形、字体样本、模块结构、颜色图例和细线标注。整体高级、克制、现代、有收藏级海报感，不像儿童玩具广告。比例根据主题自动选择。\n\n主题：【在这里输入主题】\n\n你的其他要求：",
+        "is_primary": true,
+        "id": "prm_02f8138fbc894e58",
+        "item_id": "itm_49cadf937fa346d8",
+        "created_at": "2026-05-01T08:04:10+00:00",
+        "updated_at": "2026-05-01T08:04:10+00:00"
+      }
+    ],
+    "prompt_snippet": "生成一张「乐高积木字体概念海报」。\n\n\n\n请根据主题设计一套原创积木风格字体，不使用官方 LEGO 标志。主标题由真实塑料积木模块拼成，带凸点、厚度、阴影和拼接结构。根据主题含义自动生成一个核心视觉隐喻，并把它做成高级设计展海报：干净留白、网格排版、信息图逻辑、概念板结构。画面包含主标题、概念图形、字体样本、模块结构、颜色图例和细线标注。整体高级、克制、现代、有收藏级海报感，不像儿童玩具广告。比例根据主题自动选择。\n\n主题：【在这里输入",
+    "first_image": {
+      "id": "img_6f7fcfe8db484383",
+      "item_id": "itm_49cadf937fa346d8",
+      "original_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "thumb_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "preview_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T08:04:11+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T08:04:12+00:00",
+    "created_at": "2026-05-01T08:04:12+00:00",
+    "images": [
+      {
+        "id": "img_6f7fcfe8db484383",
+        "item_id": "itm_49cadf937fa346d8",
+        "original_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "thumb_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "preview_path": "demo-data/media/img_6e2d4bb9d4f74d30.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T08:04:11+00:00"
+      }
+    ],
+    "notes": "Prompt and article cover image extracted from the linked X Article on 2026-05-01. Article title: GPT2实战： 乐高 x 文字 x 无限可能. This item preserves the article's 极简版本 prompt with the final \"你的其他要求：\" extension slot intact for user-supplied constraints. The article explicitly credits inspiration to @cellinlab. Source article: https://x.com/i/article/2050038170264449024. Cover image source: https://pbs.twimg.com/media/HHMzCaRasAAy1Kk.jpg. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)"
+  },
+  {
+    "id": "itm_30f22f2c032e48b1",
+    "title": "手绘风照片物件注解简洁版",
+    "slug": "x-op7418-2050079838179135746-photo-annotation-core",
+    "model": "GPT Image 2",
+    "source_name": "X / 歸藏(guizang.ai)",
+    "source_url": "https://x.com/op7418/status/2050079838179135746?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 30
+      },
+      {
+        "id": "tag_ef98664715ce415b",
+        "name": "hand_drawn_annotation",
+        "kind": "general",
+        "count": 2
+      },
+      {
+        "id": "tag_146550c1d33c40f1",
+        "name": "photo_annotation",
+        "kind": "general",
+        "count": 2
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 4
+      },
+      {
+        "id": "tag_d9aa5be526334fd0",
+        "name": "social_media_visual",
+        "kind": "general",
+        "count": 3
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 44
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "请观察照片中的元素、并为每个物件加上有意义的 手绘风注解。请填写照片中的物品。\n描述规则：•使用像白色笔画的细线手绘线条•一笔画风格、随性、略带不均匀感•沿着物件外围加上描边轮廓•用箭头或虚线做出视线引导\n文字规则：•手写风格字体（日系可爱感）•句子简短、像自言自语的小碎念•语气偏日记感、带一点情绪\n注解生成规则：不要过度装饰，保留空白空间",
+        "is_primary": true,
+        "id": "prm_2ef1688c0a47443e",
+        "item_id": "itm_30f22f2c032e48b1",
+        "created_at": "2026-05-01T08:14:00+00:00",
+        "updated_at": "2026-05-01T08:14:00+00:00"
+      }
+    ],
+    "prompt_snippet": "请观察照片中的元素、并为每个物件加上有意义的 手绘风注解。请填写照片中的物品。\n描述规则：•使用像白色笔画的细线手绘线条•一笔画风格、随性、略带不均匀感•沿着物件外围加上描边轮廓•用箭头或虚线做出视线引导\n文字规则：•手写风格字体（日系可爱感）•句子简短、像自言自语的小碎念•语气偏日记感、带一点情绪\n注解生成规则：不要过度装饰，保留空白空间",
+    "first_image": {
+      "id": "img_22f82118c8f348a8",
+      "item_id": "itm_30f22f2c032e48b1",
+      "original_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+      "thumb_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+      "preview_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 675,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T08:14:01+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T08:14:02+00:00",
+    "created_at": "2026-05-01T08:14:02+00:00",
+    "images": [
+      {
+        "id": "img_22f82118c8f348a8",
+        "item_id": "itm_30f22f2c032e48b1",
+        "original_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+        "thumb_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+        "preview_path": "demo-data/media/img_4c6d65dd2ccb4d2e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T08:14:01+00:00"
+      }
+    ],
+    "notes": "Prompt text extracted from the note-tweet body in the linked X status on 2026-05-01. The post frames this as a currently popular GPT-Image-2.0 photo-annotation prompt seen on Douyin, and the author explicitly says they do not know the original creator. This item therefore attributes 歸藏(guizang.ai) (@op7418) as the sharer rather than the original author. Related source tweet from the same account: https://x.com/op7418/status/2050075020714815898. Preserve source attribution when reusing.",
+    "author": "歸藏(guizang.ai) (@op7418)"
+  },
+  {
+    "id": "itm_13cda1ccb3cda876",
+    "title": "3:4高级极简人像海报提示词",
+    "slug": "x-qisi-ai-2050079074257957008-3x4-minimal-portrait-poster",
+    "model": "Image generation prompt",
+    "source_name": "X / 骑司Chase",
+    "source_url": "https://x.com/qisi_ai/status/2050079074257957008?s=20",
+    "cluster": {
+      "id": "clu_5132aee9772647f3",
+      "name": "摄影与写实",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_f1b3c640fa5145fd",
+        "name": "business_portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_60b488427ee24bf3",
+        "name": "profile_avatar",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "将用户上传的人物照片转化为一张竖版 3:4 的高级极简人像海报。\n\n保留原图中人物的真实身份特征、五官结构、发型、发色、服装、首饰、姿势和整体气质。不要换脸，不要改变人物年龄、性别、种族或核心外貌。可以适度优化皮肤质感、光影、清晰度、服装细节和整体精致度，使画面呈现专业棚拍人像效果。\n\n将原图背景替换为干净的灰白色渐变棚拍背景，背景简洁、柔和、有高级感。人物以半身肖像构图呈现，居中或略微偏右，保留适当留白。光线为柔和均匀的商业摄影灯光，脸部清晰，肤色自然，整体质感细腻、真实、时尚。\n\n画面风格参考高端人像证件海报、时尚杂志封面、Portrait ID 风格、极简主义视觉设计。整体画面干净、克制、专业，具有高级品牌海报感。\n\n在画面左下角加入三行英文文字。用户可以输入自定义文字，如果用户没有输入，则自动生成适合该人物气质的英文文案。用户输入中文时，必须先翻译成自然、简洁、高级的英文后再显示在画面中，画面中不要出现中文。\n\n文字排版要求：\n\n主标题使用深蓝色粗体无衬线字体，字号较大，放在左下角最上方。副标题使用白色中等字号，位于主标题下方。系列文字使用白色大写无衬线字体，位于副标题下方。三行文字整体左对齐，排版简洁清晰，不遮挡人物面部，不影响人物主体。\n\n输出要求：\n\n图片比例为 3:4，竖版海报构图，高清，真实摄影质感，高级极简风格，商业棚拍光效，干净背景，时尚人像海报。\n\n主标题 人物姓名 / 昵称 / 艺名：\n副标题 人物气质 / 身份定位 / 品牌短句：\n系列文字 系列编号 + 风格主题：",
+        "is_primary": true,
+        "id": "prm_a05ca7b8764dd5e9",
+        "item_id": "itm_13cda1ccb3cda876",
+        "created_at": "2026-05-01T08:10:48+00:00",
+        "updated_at": "2026-05-01T09:47:48+00:00"
+      }
+    ],
+    "prompt_snippet": "将用户上传的人物照片转化为一张竖版 3:4 的高级极简人像海报。\n\n保留原图中人物的真实身份特征、五官结构、发型、发色、服装、首饰、姿势和整体气质。不要换脸，不要改变人物年龄、性别、种族或核心外貌。可以适度优化皮肤质感、光影、清晰度、服装细节和整体精致度，使画面呈现专业棚拍人像效果。\n\n将原图背景替换为干净的灰白色渐变棚拍背景，背景简洁、柔和、有高级感。人物以半身肖像构图呈现，居中或略微偏右，保留适当留白。光线为柔和均匀的商业摄影灯光，脸部清晰，肤色自然，整体质感细腻、真实、",
+    "first_image": {
+      "id": "img_4f7a97637f1d4517",
+      "item_id": "itm_13cda1ccb3cda876",
+      "original_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+      "thumb_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+      "preview_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 2000,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:47:49+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:47:48+00:00",
+    "created_at": "2026-05-01T08:10:48+00:00",
+    "images": [
+      {
+        "id": "img_4f7a97637f1d4517",
+        "item_id": "itm_13cda1ccb3cda876",
+        "original_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+        "thumb_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+        "preview_path": "demo-data/media/img_4f7a97637f1d4517.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 2000,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:47:49+00:00"
+      }
+    ],
+    "notes": "Prompt text and example image extracted from the note-tweet body in the linked X status on 2026-05-01. The post's shared link points back to https://x.com/qisi_ai/status/2049779470144552976?s=20, but this status publishes a distinct 3:4 advanced minimalist portrait-poster variant. Preserve attribution to 骑司Chase (@qisi_ai).",
+    "author": "骑司Chase (@qisi_ai)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_41a97e88f710982d",
+    "title": "Gym photo chibi scrapbook edit",
+    "slug": "x-ciri-ai-2050094437821513896-gym-chibi-scrapbook-edit",
+    "model": "GPT Image 2",
+    "source_name": "X / Ciri",
+    "source_url": "https://x.com/Ciri_ai/status/2050094437821513896?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_44e0336c56b044f8",
+        "name": "hand_drawn_notes",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_146550c1d33c40f1",
+        "name": "photo_annotation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Edit the image while keeping the original photo completely unchanged — including the person, face, body, pose, lighting, and gym background.\n\nAdd multiple small, cute chibi-style “mini versions” of her around the image. Each mini character should have a big head, expressive facial features, and match her hairstyle and outfit.\n\nDepict each mini version doing different gym-related activities:\n\none cheering with arms raised\n\none running in running shoes\n\none drinking from a shaker bottle\n\none wearing sporty running glasses\n\none climbing near her leg\n\nEnhance the image with playful, hand-drawn doodles and handwritten notes in white and pink ink, in a scrapbook style. Include elements like arrows, stars, hearts, sparkles, and sketchy lines.\n\nAdd cute, handwritten gym-themed motivational phrases:\n\n“lift strong”\n\n“stronger every rep”\n\n“no pain no gain”\n\n“sweat now, shine later”\n\n“progress over perfection”\n\n“train hard, stay soft”\n\nThe overall vibe should feel fun, energetic, and feminine.",
+        "is_primary": true,
+        "id": "prm_b500089abe1d63f0",
+        "item_id": "itm_41a97e88f710982d",
+        "created_at": "2026-05-01T09:47:58+00:00",
+        "updated_at": "2026-05-01T09:47:58+00:00"
+      }
+    ],
+    "prompt_snippet": "Edit the image while keeping the original photo completely unchanged — including the person, face, body, pose, lighting, and gym background.\n\nAdd multiple small, cute chibi-style “mini versions” of her around the image. Each mini character ",
+    "first_image": {
+      "id": "img_8b0034ea319e7aac",
+      "item_id": "itm_41a97e88f710982d",
+      "original_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+      "thumb_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+      "preview_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:47:59+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:47:58+00:00",
+    "created_at": "2026-05-01T09:47:58+00:00",
+    "images": [
+      {
+        "id": "img_8b0034ea319e7aac",
+        "item_id": "itm_41a97e88f710982d",
+        "original_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+        "thumb_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+        "preview_path": "demo-data/media/img_8b0034ea319e7aac.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:47:59+00:00"
+      },
+      {
+        "id": "img_7994f52570a7b8d1",
+        "item_id": "itm_41a97e88f710982d",
+        "original_path": "demo-data/media/img_7994f52570a7b8d1.webp",
+        "thumb_path": "demo-data/media/img_7994f52570a7b8d1.webp",
+        "preview_path": "demo-data/media/img_7994f52570a7b8d1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1040,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T09:48:00+00:00"
+      }
+    ],
+    "notes": "Prompt text and two example images extracted from the linked X status via public fxtwitter/vxtwitter mirrors on 2026-05-01. Preserve attribution to Ciri (@Ciri_ai). The prompt keeps the uploaded gym photo unchanged while adding chibi mini-characters, doodles, and handwritten motivational phrases.",
+    "author": "Ciri (@Ciri_ai)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_45e8b634dfd87f8f",
+    "title": "Scribbli 潦草风重绘提示词",
+    "slug": "x-web3annie-2050110913295122804-scribbli-redraw",
+    "model": "Image generation prompt",
+    "source_name": "X / Annie 所长",
+    "source_url": "https://x.com/web3annie/status/2050110913295122804?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ef98664715ce415b",
+        "name": "hand_drawn_annotation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "把附图，用一种笨拙到离谱、潦草到崩溃的方式重新画出来。背景用白色，看起来就像是用鼠标在Windows绘图工具里随便拖出来的那种。整体要勉强有点像原图，但又不太像，似是而非、对得上但又全都错位，带着那种逐像素乱抖的低质量感，突出一种荒谬的劣质手绘效果。\n\n其实算了，随你怎么画都行。",
+        "is_primary": true,
+        "id": "prm_8a8593680ceafa78",
+        "item_id": "itm_45e8b634dfd87f8f",
+        "created_at": "2026-05-01T09:48:08+00:00",
+        "updated_at": "2026-05-01T09:48:08+00:00"
+      }
+    ],
+    "prompt_snippet": "把附图，用一种笨拙到离谱、潦草到崩溃的方式重新画出来。背景用白色，看起来就像是用鼠标在Windows绘图工具里随便拖出来的那种。整体要勉强有点像原图，但又不太像，似是而非、对得上但又全都错位，带着那种逐像素乱抖的低质量感，突出一种荒谬的劣质手绘效果。\n\n其实算了，随你怎么画都行。",
+    "first_image": {
+      "id": "img_65929da82f6521b5",
+      "item_id": "itm_45e8b634dfd87f8f",
+      "original_path": "demo-data/media/img_65929da82f6521b5.webp",
+      "thumb_path": "demo-data/media/img_65929da82f6521b5.webp",
+      "preview_path": "demo-data/media/img_65929da82f6521b5.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1438,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:48:09+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:48:08+00:00",
+    "created_at": "2026-05-01T09:48:08+00:00",
+    "images": [
+      {
+        "id": "img_65929da82f6521b5",
+        "item_id": "itm_45e8b634dfd87f8f",
+        "original_path": "demo-data/media/img_65929da82f6521b5.webp",
+        "thumb_path": "demo-data/media/img_65929da82f6521b5.webp",
+        "preview_path": "demo-data/media/img_65929da82f6521b5.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1438,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:48:09+00:00"
+      },
+      {
+        "id": "img_3a78a909442e1590",
+        "item_id": "itm_45e8b634dfd87f8f",
+        "original_path": "demo-data/media/img_3a78a909442e1590.webp",
+        "thumb_path": "demo-data/media/img_3a78a909442e1590.webp",
+        "preview_path": "demo-data/media/img_3a78a909442e1590.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1439,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T09:48:10+00:00"
+      }
+    ],
+    "notes": "Prompt text and two example images extracted from the linked X status via public fxtwitter/vxtwitter mirrors on 2026-05-01. Preserve source attribution. The post frames this as the currently popular Scribbli rough-doodle redraw style.",
+    "author": "Annie 所长 (@web3annie)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_85b4ddc5728f7bca",
+    "title": "AI体态比例管理报告提示词",
+    "slug": "x-mrlarus-2050074075016384834-posture-analysis-report",
+    "model": "GPT Image 2",
+    "source_name": "X / Larus Canus",
+    "source_url": "https://x.com/MrLarus/status/2050074075016384834?s=20",
+    "cluster": {
+      "id": "clu_ea6e07abb04c4638",
+      "name": "图表与信息可视化",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_008372d23259438c",
+        "name": "infographic",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "请基于我上传的全身正面与全身侧面真人照片，生成一张横向 4:3 的高完成度「AI 体态比例管理报告 / AI Posture & Body Proportion Analysis Report」。\n\n本报告不是医学诊断，不是减肥前后对比，也不是夸张瘦身效果图，而是一张基于真人照片进行的「视觉体态分析 + 比例管理 + 穿搭优化 + 姿态校准模拟」报告。请严格保留用户本人的脸部辨识度、五官结构、年龄感、皮肤真实质感、发型气质、身材基础和原始身份，不要换脸，不要把人变成另一个人，不要制造夸张减重或不现实的身材变化。\n\n【核心设定】\nBefore：展示用户当前自然站姿状态，包含正面与侧面两个视角，保留真实体型、真实穿着和自然姿态。\nAfter：展示同一人在「姿态校准 + 穿搭优化 + 视觉比例调整」后的模拟状态，重点是更挺拔、更舒展、更有精神、更显比例协调，而不是变瘦、变骨感或大幅改变身材。\n请把 After 理解为「同一天通过正确站姿、核心收紧、肩颈放松、骨盆回正、穿搭线条优化后呈现出的更佳视觉状态」。\n\n【最高优先级原则】\n1. 不做医学诊断，只做视觉体态与穿搭比例分析。\n2. 不使用羞辱性词汇，不评价外貌好坏，不制造身材焦虑。\n3. 不夸张改变体型，不强行瘦身，不改变脂肪分布，不改变骨骼结构。\n4. 所有数据均以「AI视觉估算 / Visual Estimate」形式呈现，不冒充真实医学测量。\n5. 语言温和、专业、数据化、鼓励性，重点表达“可优化空间”“比例更协调”“体态更舒展”“穿搭更适配”。\n\n【整体版式】\n横向 4:3，高端健康管理顾问报告 + 时尚杂志信息图风格。背景使用干净米白、浅灰或低饱和暖白色，配合细线框、编号标签、局部放大框、姿态基准线、垂直重心线、曲线标注和简洁图表。整体信息量丰富但不拥挤，专业、有设计感、适合小红书或 X 分享。\n\n【标题区】\n主标题：AI 体态比例管理报告\n英文副标题：Posture & Body Proportion Analysis Report\n小标题：Before Natural Posture → After Posture & Styling Reset\n角标：非医学诊断 · AI视觉估算 · 姿态与穿搭优化模拟\n\n【主视觉区】\n采用四图对比结构：\n左侧为 BEFORE：\n- Before 正面图：保留用户自然站姿、自然穿搭、真实体型\n- Before 侧面图：展示自然侧面体态\n\n右侧为 AFTER：\n- After 正面图：同一人、同一身份、相似角度，姿态更挺拔，肩颈更舒展，腰腹线条更被穿搭优化，整体比例更协调\n- After 侧面图：同一人，侧面展示头颈位置更回正、肩背更打开、骨盆位置更中立、腹部前顶感降低、膝盖不过度锁死，整体重心更稳定\n\n四张人物图必须清晰、大小接近、对比关系明确。不要让 After 变成完全不同的人，也不要过度美颜或过度瘦身。\n\n【体态分析标注区】\n请在 Before 与 After 图上使用细线箭头、编号和局部放大框标注以下部位：\n\n1. 头颈位置 / Head & Neck Alignment\nBefore 可标注：头部前伸、颈部压力感更明显\nAfter 可标注：下巴微收、颈部线条更舒展\n\n2. 肩部与上臂 / Shoulder & Upper Arm Position\nBefore 可标注：圆肩趋势、肩胛前引、上臂位置偏前\nAfter 可标注：肩线打开、上半身更挺拔\n\n3. 胸廓与背部 / Ribcage & Upper Back\nBefore 可标注：胸廓前顶、背部支撑不足\nAfter 可标注：胸廓更稳定，背部曲线更自然\n\n4. 腰腹位置 / Waist & Abdomen\nBefore 可标注：腹部视觉前顶，腰线不清晰\nAfter 可标注：通过站姿与穿搭弱化前顶感，腰线更清楚\n\n5. 骨盆与髋部 / Pelvis & Hip Position\nBefore 可标注：骨盆前倾趋势，髋部重心不够稳定\nAfter 可标注：骨盆更接近中立位，髋部支撑更稳定\n\n6. 大腿与膝盖 / Thigh & Knee Alignment\nBefore 可标注：大腿内侧压力感、膝盖锁死或超伸趋势\nAfter 可标注：腿部受力更均衡，膝盖状态更自然\n\n7. 垂直重心线 / Vertical Balance Line\nBefore 可标注：头、肩、骨盆、膝盖、脚踝不完全在同一视觉重心线上\nAfter 可标注：重心线更稳定，整体更挺拔\n\n【数据对比栏】\n请用清晰图表展示 Before → After 的 AI视觉估算指标。所有指标都要标注「Visual Estimate」，不要写成真实医学检测。建议数据如下：\n\n- 头颈对齐度 / Neck Alignment：6.1 → 8.4\n- 肩背打开度 / Shoulder Openness：5.8 → 8.2\n- 骨盆稳定感 / Pelvic Stability：5.9 → 8.0\n- 腰腹视觉平衡 / Waist-Abdomen Balance：6.0 → 8.1\n- 垂直重心稳定 / Vertical Balance：6.3 → 8.6\n- 穿搭修饰效率 / Styling Compatibility：6.5 → 9.0\n- 整体挺拔度 / Posture Presence：6.2 → 8.8\n\n请使用进度条、雷达图或对比数字卡片呈现，视觉清楚但不要夸张。\n\n【曲线与比例分析区】\n请绘制轻量线条图或人体轮廓曲线示意，展示：\n- 颈肩线条\n- 背部曲线\n- 腰腹线条\n- 骨盆角度趋势\n- 腿部垂直线\n- 正面左右平衡感\n\n线条要像专业体态评估图，不能像医疗诊断图，不能制造恐吓感。\n\n【穿搭优化建议区】\n请展示 3 套适合 After 状态的日常穿搭方案。每套包含小缩略图、风格关键词和一句理由：\n\nLook 01：通勤显稳重\n关键词：直线廓形、深浅分层、外套修饰肩背\n理由：通过外套肩线与直筒下装，弱化腹部前顶感，增强纵向比例。\n\nLook 02：周末轻运动\n关键词：功能面料、微宽松、上短下长\n理由：提高舒适度，同时让身体线条更放松、更舒展。\n\nLook 03：城市轻潮\n关键词：短外套、高腰线、利落鞋型\n理由：提升视觉重心，让整体更挺拔、更年轻、更有精神。\n\n【行动建议区】\n请增加一个小模块「7天体态重启建议 / 7-Day Posture Reset」，内容温和、可执行：\n- 每天 3 分钟下巴回收练习\n- 每天 5 分钟胸椎打开\n- 每天 5 分钟髋屈肌拉伸\n- 每天 10 次臀桥激活\n- 站立时避免膝盖锁死\n- 拍照时保持脚掌稳定、肋骨回收、肩颈放松\n\n请注意，这些建议只能作为日常姿态管理建议，不要写成治疗方案。\n\n【底部总结】\n请用一句温和、有力量的话总结：\n“这不是一夜变瘦，而是通过姿态校准、重心调整和穿搭线条管理，让同一个身体呈现出更舒展、更挺拔、更自信的状态。”\n\n【严格避免】\n不要裸体或内衣展示；不要暴露化；不要羞辱身材；不要使用“肥胖缺陷”“赘肉问题”“身材很差”等负面词；不要夸张瘦身；不要假装医学诊断；不要虚构真实体脂率、真实腰围、真实体重；不要把用户变成另一个人；不要过度美颜；不要让 After 变成不现实的网红身材。",
+        "is_primary": true,
+        "id": "prm_233b53415cd2d940",
+        "item_id": "itm_85b4ddc5728f7bca",
+        "created_at": "2026-05-01T09:48:18+00:00",
+        "updated_at": "2026-05-01T09:48:18+00:00"
+      }
+    ],
+    "prompt_snippet": "请基于我上传的全身正面与全身侧面真人照片，生成一张横向 4:3 的高完成度「AI 体态比例管理报告 / AI Posture & Body Proportion Analysis Report」。\n\n本报告不是医学诊断，不是减肥前后对比，也不是夸张瘦身效果图，而是一张基于真人照片进行的「视觉体态分析 + 比例管理 + 穿搭优化 + 姿态校准模拟」报告。请严格保留用户本人的脸部辨识度、五官结构、年龄感、皮肤真实质感、发型气质、身材基础和原始身份，不要换脸，不要把人变成另一个人，",
+    "first_image": {
+      "id": "img_cb56452ed0cb5ea8",
+      "item_id": "itm_85b4ddc5728f7bca",
+      "original_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+      "thumb_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+      "preview_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 600,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:48:19+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:48:18+00:00",
+    "created_at": "2026-05-01T09:48:18+00:00",
+    "images": [
+      {
+        "id": "img_cb56452ed0cb5ea8",
+        "item_id": "itm_85b4ddc5728f7bca",
+        "original_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+        "thumb_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+        "preview_path": "demo-data/media/img_cb56452ed0cb5ea8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:48:19+00:00"
+      },
+      {
+        "id": "img_100e30860abd7943",
+        "item_id": "itm_85b4ddc5728f7bca",
+        "original_path": "demo-data/media/img_100e30860abd7943.webp",
+        "thumb_path": "demo-data/media/img_100e30860abd7943.webp",
+        "preview_path": "demo-data/media/img_100e30860abd7943.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T09:48:20+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the author's reply https://x.com/MrLarus/status/2050074225914835401, cross-checked through fxtwitter, vxtwitter, syndication, and Xstalk on 2026-05-01. The two example images come from the parent X status https://x.com/MrLarus/status/2050074075016384834?s=20, whose main text says the prompt is in comments. Preserve attribution to Larus Canus (@MrLarus).",
+    "author": "Larus Canus (@MrLarus)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_22514389ec5287cc",
+    "title": "Mini-me emotional composite around portrait",
+    "slug": "x-zahra4sure-2049852941969072517-mini-me-emotional-composite",
+    "model": "Gemini Nano Banana",
+    "source_name": "X / Ai Bella",
+    "source_url": "https://x.com/zahra4sure/status/2049852941969072517",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_44e0336c56b044f8",
+        "name": "hand_drawn_notes",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d9aa5be526334fd0",
+        "name": "social_media_visual",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Based on this image, centering on the person in the photo, please generate an \"emotional composite image where mini-me characters come alive and move around.\"\n\n[Core Concept]\n\"My little alter-egos in my daily life\"\nCute, playful, yet aesthetic direction Instagram aesthetic + an image with a story\n\n[1. Person Processing - Crucial]\nThe original person must be cut out/isolated from the background (Absolutely no changes to the face or pose allowed).\nPlace the person in the center or slightly towards the front of the scene.\nAdd natural shadows.\nAdd a thin white border around the person's outline (like a sticker, but not too thick).\n\n[2. Mini-Me Character Generation - Core]\nGenerate multiple \"mini-me characters\" based on the person.\nStyle: 3D cute SD (Super Deformed/Chibi) characters (Roblox or pixel styles are acceptable).\nMust reflect the exact facial features, hairstyle, and clothing of the person.\n\n[Mini-Me Characteristics]\nSmall size (palm-sized feel).\nMultiple characters appearing (around 3 to 7 characters).\n\n[3. Mini-Me Actions - Crucial]\nEach character must be actively doing something.\nExamples:\nJumping and playing\nWaving hands\nMimicking the person\nSitting on an object\nClimbing on the person's shoulder or head\nLooking like they are talking to each other\n👉 \"Static/frozen characters are strictly prohibited\"\n\n[4. Placement & Direction]\nPlace them naturally on top of books / bags / shoulders / the floor / hands, etc.\nPlace some in front of the person and some behind → to create a sense of depth and space.\nAdd shadows as if they actually exist in the physical space.\n\n[5. Title Generation - Core Feature]\nAnalyze the mood of the image and automatically generate a short, aesthetic text title.\n\n[Title Rules]\n2 to 5 words long.\nDo not explain; just convey the \"vibe.\"\nAvoid overly trendy internet slang.\nNatural and aesthetic tone.\n\n[Example Vibes/Titles]\nToday's moment\nJust a good day\nLittle joys of the day\nMy own timing\nSmall happiness\nRecording this moment\nJust found it funny\n👉 Must \"generate a new title that fits the mood of the image\"\n\n[6. Title Placement]\nPlace some text behind the person.\nPlace some text in front.\n👉 Create a three-dimensional layered composition.\nDo not make the text too large (maintain the aesthetic vibe).\nUse a soft font style.\n\n[7. Doodles & Sticker Elements]\nAdd handwritten-style doodles (thin pen feel).\nExamples:\nArrows →\nCircles for emphasis\nStars ✨\nHearts ♡\nDotted lines\n👉 Only add 3 to 6 elements (do not overdo it)\n\n[8. Auxiliary Text (Optional)]\nSmall sticker-like text.\nExamples:\nmini me\ntoday\nmood\nlol\ndaily\n\n[9. Overall Style]\nBright and warm tones.\nMaintain natural colors.\nAvoid looking too much like CG (computer graphics).\nAim for a \"real photo + cute composite\" feel.\n\n[10. Prohibitions]\nNo changing the person's face.\nNo characters looking out of place or disconnected from the scene.\nNo game UI styles.\nNo excessive filters or effects.\nNo card-news (infographic) style text blocks.\n\n[Final Goal]\nAn Instagram-worthy image that people want to save.\nGives off an \"I want to try this too\" vibe.\nCute and sensible composition.\nFace and body exactly same as uploaded image.\nMake the aspect ratio 3:4\n\nAdd a clean handwritten signature text \"@ZAHRA4SURE\" at the bottom corner (preferably bottom right), subtle but clearly visible, matching the color tone of the design, slightly embossed or glowing, not overpowering the main subject, aligned professionally like a premium artwork watermark.",
+        "is_primary": true,
+        "id": "prm_9c58b16ebdd5d53c",
+        "item_id": "itm_22514389ec5287cc",
+        "created_at": "2026-05-01T09:53:53+00:00",
+        "updated_at": "2026-05-01T09:53:53+00:00"
+      }
+    ],
+    "prompt_snippet": "Based on this image, centering on the person in the photo, please generate an \"emotional composite image where mini-me characters come alive and move around.\"\n\n[Core Concept]\n\"My little alter-egos in my daily life\"\nCute, playful, yet aesthe",
+    "first_image": {
+      "id": "img_39eec3a66fe24de1",
+      "item_id": "itm_22514389ec5287cc",
+      "original_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+      "thumb_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+      "preview_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+      "remote_url": null,
+      "width": 896,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:53:54+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:53:53+00:00",
+    "created_at": "2026-05-01T09:53:53+00:00",
+    "images": [
+      {
+        "id": "img_39eec3a66fe24de1",
+        "item_id": "itm_22514389ec5287cc",
+        "original_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+        "thumb_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+        "preview_path": "demo-data/media/img_39eec3a66fe24de1.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:53:54+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. Preserve attribution to Ai Bella (@zahra4sure). The post explicitly says the example was created on Gemini Nano Banana.",
+    "author": "Ai Bella (@zahra4sure)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_76303fe88c2cf0a8",
+    "title": "老照片 4K 修复提示词（缩略版）",
+    "slug": "x-lucy-love-ai-2050130365625638985-old-photo-4k-restoration",
+    "model": "ChatGPT Image",
+    "source_name": "X / 露西的百宝箱",
+    "source_url": "https://x.com/Lucy_love_AI/status/2050130365625638985",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_2a2e7e28e8b14db9",
+        "name": "chatgpt_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d7fd92cf4a23468b",
+        "name": "image_upscale",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9b73fa2374814d18",
+        "name": "photo_restoration",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "将这张老照片恢复为专业DSLR质量的肖像：色彩和细节，使用与佳能EOS R6 II相当的先进放大算法。确保恢复的图像看起来自然，保留精确的面部特征，具有高清晰度......",
+        "is_primary": true,
+        "id": "prm_3f5f83d3b89f2c8f",
+        "item_id": "itm_76303fe88c2cf0a8",
+        "created_at": "2026-05-01T09:54:03+00:00",
+        "updated_at": "2026-05-01T09:54:03+00:00"
+      }
+    ],
+    "prompt_snippet": "将这张老照片恢复为专业DSLR质量的肖像：色彩和细节，使用与佳能EOS R6 II相当的先进放大算法。确保恢复的图像看起来自然，保留精确的面部特征，具有高清晰度......",
+    "first_image": {
+      "id": "img_127c532457ab7bfc",
+      "item_id": "itm_76303fe88c2cf0a8",
+      "original_path": "demo-data/media/img_127c532457ab7bfc.webp",
+      "thumb_path": "demo-data/media/img_127c532457ab7bfc.webp",
+      "preview_path": "demo-data/media/img_127c532457ab7bfc.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 940,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T09:54:04+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T09:54:03+00:00",
+    "created_at": "2026-05-01T09:54:03+00:00",
+    "images": [
+      {
+        "id": "img_127c532457ab7bfc",
+        "item_id": "itm_76303fe88c2cf0a8",
+        "original_path": "demo-data/media/img_127c532457ab7bfc.webp",
+        "thumb_path": "demo-data/media/img_127c532457ab7bfc.webp",
+        "preview_path": "demo-data/media/img_127c532457ab7bfc.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 940,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T09:54:04+00:00"
+      },
+      {
+        "id": "img_785e0c3e2d000c8f",
+        "item_id": "itm_76303fe88c2cf0a8",
+        "original_path": "demo-data/media/img_785e0c3e2d000c8f.webp",
+        "thumb_path": "demo-data/media/img_785e0c3e2d000c8f.webp",
+        "preview_path": "demo-data/media/img_785e0c3e2d000c8f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 904,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T09:54:05+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the author's self-reply https://x.com/Lucy_love_AI/status/2050130367378841724, cross-checked through fxtwitter, vxtwitter, syndication, and Xstalk on 2026-05-01. The reply itself only exposes a shortened prompt ending with an ellipsis, so this item preserves that abbreviated source text verbatim rather than reconstructing missing instructions. The two example images come from the parent X status https://x.com/Lucy_love_AI/status/2050130365625638985, whose main text says the prompt is below. Preserve source attribution.",
+    "author": "露西的百宝箱 (@Lucy_love_AI)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_b9b490b00f6981a5",
+    "title": "Survival-grade everyday product design board",
+    "slug": "x-gdgtify-2050131863218577683-survival-gear-design-board",
+    "model": "GPT Image 2",
+    "source_name": "X / Gadgetify",
+    "source_url": "https://x.com/Gdgtify/status/2050131863218577683?s=20",
+    "cluster": {
+      "id": "clu_18134e8691e84ee0",
+      "name": "商品与电商",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_ca0a781505894ffa",
+        "name": "formula_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c7dbc498763b4931",
+        "name": "gadgetify",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "2x2 grid, Do this for 4 everyday objects <input> $ input = [everyday object, furniture, wearable, product, tech device, vehicle] </input>\n\n<instructions>\nAct as a world-class survival systems engineer, expedition designer, industrial artist, and product futurist.\n\nTransform $ input into a stunning design concept inspired by equipment or structures built for extreme survival.\n\nInfer:\n$ survival_context = deep sea, polar expedition, desert nomads, mountaineering, space habitat, submarine life, arctic shelters, cave exploration, or another harsh environment\n$ survival_logic = insulation, compression, modularity, repairability, pressure resistance, portability, heat retention, oxygen flow, or protection\n$ materials = realistic rugged-premium materials\n$ title = bold survival concept name\n\nCreate a technical design board.\n\n01 ENVIRONMENT\nShow visual studies of $ survival_context: landscape, pressure, temperature, tools, shelters, protective layers, survival constraints.\n\n02 SYSTEMS\nAnalyze how survival works in that environment: thermal layers, load-bearing frames, sealed compartments, inflatable structures, tether points, reflective surfaces, redundancy.\n\n03 TRANSLATION\nShow how $input evolves from these systems. Include sketches, modular components, sectional diagrams, interface studies, and emergency-use features.\n\n04 BUILD\nShow material swatches, fastening systems, weatherproof seams, insulation layers, hardware, straps, ports, and repair details.\n\nHero Render:\nA cinematic photorealistic render of $input transformed into a premium survival-grade object. It should look desirable, functional, extreme, and iconic.\n\nStyle:\nExpedition catalog meets luxury design poster, dramatic lighting, technical annotations, tactile rugged materials, 8k realism.\n\nNegative:\nNo military weapon aesthetic, no nest chair, no birds, no gore, no disaster victims, no messy labels, no watermark.\n</instructions>",
+        "is_primary": true,
+        "id": "prm_5a5340f3c4e75266",
+        "item_id": "itm_b9b490b00f6981a5",
+        "created_at": "2026-05-01T10:09:38+00:00",
+        "updated_at": "2026-05-01T10:09:38+00:00"
+      }
+    ],
+    "prompt_snippet": "2x2 grid, Do this for 4 everyday objects <input> $ input = [everyday object, furniture, wearable, product, tech device, vehicle] </input>\n\n<instructions>\nAct as a world-class survival systems engineer, expedition designer, industrial artist",
+    "first_image": {
+      "id": "img_f8b463a814766b62",
+      "item_id": "itm_b9b490b00f6981a5",
+      "original_path": "demo-data/media/img_f8b463a814766b62.webp",
+      "thumb_path": "demo-data/media/img_f8b463a814766b62.webp",
+      "preview_path": "demo-data/media/img_f8b463a814766b62.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T10:09:38+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T10:09:38+00:00",
+    "created_at": "2026-05-01T10:09:38+00:00",
+    "images": [
+      {
+        "id": "img_f8b463a814766b62",
+        "item_id": "itm_b9b490b00f6981a5",
+        "original_path": "demo-data/media/img_f8b463a814766b62.webp",
+        "thumb_path": "demo-data/media/img_f8b463a814766b62.webp",
+        "preview_path": "demo-data/media/img_f8b463a814766b62.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T10:09:38+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source frames this as a GPT Image 2 workflow for transforming ordinary products into survival-grade concepts through a 2x2 technical design-board structure. Preserve source attribution.",
+    "author": "Gadgetify (@Gdgtify)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_f2c0f1f7d97a16df",
+    "title": "饭店 logo 创意 4x4 网格提示词",
+    "slug": "x-xiaoxiaodong01-2050152425395519966-logo-grid-prompt",
+    "model": "GPT Image 2",
+    "source_name": "X / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2050152425395519966?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_81ed19a0eead4d12",
+        "name": "brand_identity",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7f6e59638a52460f",
+        "name": "logo_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f66b2eca2f514cf5",
+        "name": "self_media",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "我有一个饭店，中国的饭店， 我的饭店名字叫做：\n强记粉店\n\n按照全球顶级ui和logo设计师，还有顶级美学专家的水平、甚至你很懂字体艺术、图形艺术、小众文化、颜色心理学....字体风格和气质的设计。 图形心理学。\n\n给我提供16个logo创意\n这种创意，要能被世界500强企业所欣赏。这种创意，要被顾客轻松铭记、印象深刻。\n\n要求4x4 网格输出， 一个cell中一个logo创意。\n\n特别强调：\n类似鲁迅先生的logo作品。",
+        "is_primary": true,
+        "id": "prm_51fb3bd0c2bea1f6",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "created_at": "2026-05-01T10:12:42+00:00",
+        "updated_at": "2026-05-01T10:12:42+00:00"
+      }
+    ],
+    "prompt_snippet": "我有一个饭店，中国的饭店， 我的饭店名字叫做：\n强记粉店\n\n按照全球顶级ui和logo设计师，还有顶级美学专家的水平、甚至你很懂字体艺术、图形艺术、小众文化、颜色心理学....字体风格和气质的设计。 图形心理学。\n\n给我提供16个logo创意\n这种创意，要能被世界500强企业所欣赏。这种创意，要被顾客轻松铭记、印象深刻。\n\n要求4x4 网格输出， 一个cell中一个logo创意。\n\n特别强调：\n类似鲁迅先生的logo作品。",
+    "first_image": {
+      "id": "img_7082bbd31647bd6c",
+      "item_id": "itm_f2c0f1f7d97a16df",
+      "original_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+      "thumb_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+      "preview_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T10:12:42+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T10:12:42+00:00",
+    "created_at": "2026-05-01T10:12:42+00:00",
+    "images": [
+      {
+        "id": "img_7082bbd31647bd6c",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+        "thumb_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+        "preview_path": "demo-data/media/img_7082bbd31647bd6c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_ef25daff6b08a5ed",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_ef25daff6b08a5ed.webp",
+        "thumb_path": "demo-data/media/img_ef25daff6b08a5ed.webp",
+        "preview_path": "demo-data/media/img_ef25daff6b08a5ed.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_a79d1a4a87180ddc",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_a79d1a4a87180ddc.webp",
+        "thumb_path": "demo-data/media/img_a79d1a4a87180ddc.webp",
+        "preview_path": "demo-data/media/img_a79d1a4a87180ddc.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_5a1af010b4dc5eea",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_5a1af010b4dc5eea.webp",
+        "thumb_path": "demo-data/media/img_5a1af010b4dc5eea.webp",
+        "preview_path": "demo-data/media/img_5a1af010b4dc5eea.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_9293a847cbc2a250",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_9293a847cbc2a250.webp",
+        "thumb_path": "demo-data/media/img_9293a847cbc2a250.webp",
+        "preview_path": "demo-data/media/img_9293a847cbc2a250.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 4,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_49857e1587fe2904",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_49857e1587fe2904.webp",
+        "thumb_path": "demo-data/media/img_49857e1587fe2904.webp",
+        "preview_path": "demo-data/media/img_49857e1587fe2904.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 5,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_6628ee0295fb6b3a",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_6628ee0295fb6b3a.webp",
+        "thumb_path": "demo-data/media/img_6628ee0295fb6b3a.webp",
+        "preview_path": "demo-data/media/img_6628ee0295fb6b3a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 6,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_fd1ce6d8da17447a",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_fd1ce6d8da17447a.webp",
+        "thumb_path": "demo-data/media/img_fd1ce6d8da17447a.webp",
+        "preview_path": "demo-data/media/img_fd1ce6d8da17447a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 7,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_1d28ecb42b2d4c9b",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_1d28ecb42b2d4c9b.webp",
+        "thumb_path": "demo-data/media/img_1d28ecb42b2d4c9b.webp",
+        "preview_path": "demo-data/media/img_1d28ecb42b2d4c9b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 8,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_0aabd05e1d230c92",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_0aabd05e1d230c92.webp",
+        "thumb_path": "demo-data/media/img_0aabd05e1d230c92.webp",
+        "preview_path": "demo-data/media/img_0aabd05e1d230c92.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 9,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_0ab61db5364692d3",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_0ab61db5364692d3.webp",
+        "thumb_path": "demo-data/media/img_0ab61db5364692d3.webp",
+        "preview_path": "demo-data/media/img_0ab61db5364692d3.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 10,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_ac0334b2004f989b",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_ac0334b2004f989b.webp",
+        "thumb_path": "demo-data/media/img_ac0334b2004f989b.webp",
+        "preview_path": "demo-data/media/img_ac0334b2004f989b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 11,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      },
+      {
+        "id": "img_20a4ca7d130f2cc2",
+        "item_id": "itm_f2c0f1f7d97a16df",
+        "original_path": "demo-data/media/img_20a4ca7d130f2cc2.webp",
+        "thumb_path": "demo-data/media/img_20a4ca7d130f2cc2.webp",
+        "preview_path": "demo-data/media/img_20a4ca7d130f2cc2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 12,
+        "created_at": "2026-05-01T10:12:42+00:00"
+      }
+    ],
+    "notes": "Prompt and article result images extracted from the linked X Article on 2026-05-01. Article title: GPT2: 人人都是logo设计师...此话当真！. This item preserves the article's source markdown prompt, including the sample business name \"强记粉店\" and the Lu Xun style hint because they are part of the original article prompt. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_198510510ad1bdad",
+    "title": "Editorial portrait with abstract self-portrait backdrop",
+    "slug": "x-zahra4sure-2050015163219378680-editorial-portrait-painting",
+    "model": "Gemini Nano Banana",
+    "source_name": "X / Ai Bella",
+    "source_url": "https://x.com/zahra4sure/status/2050015163219378680?s=20",
+    "cluster": {
+      "id": "clu_5132aee9772647f3",
+      "name": "摄影与写实",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_f169b3e409774be5",
+        "name": "fashion",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_92242009ca5b4a22",
+        "name": "portrait_enhancement",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a high-fashion editorial portrait of a young womenn from the reference image. A confident women sits in a modern designer chair, wearing a sharp, tailored black suit with a crisp black shirt, no tie, polished black dress shoes. His posture is relaxed yet authoritative, conveying quiet power and self-assurance. The setting is a contemporary studio with concrete-gray walls and soft professional softbox lighting subtly visible at the edges of the frame. Behind him hangs a large expressive abstract painting of his own face, rendered in neutral beige, black, and charcoal tones, featuring bold brush strokes and subtle paint drips. Cinematic studio lighting, clean composition, luxury fashion campaign aesthetic, fine-art realism, sharp details, elegant and masculine mood, shallow depth of field, editorial photography style, 1:1 aspect ratio.",
+        "is_primary": true,
+        "id": "prm_deb264b695679fa2",
+        "item_id": "itm_198510510ad1bdad",
+        "created_at": "2026-05-01T10:35:56+00:00",
+        "updated_at": "2026-05-01T10:35:56+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a high-fashion editorial portrait of a young womenn from the reference image. A confident women sits in a modern designer chair, wearing a sharp, tailored black suit with a crisp black shirt, no tie, polished black dress shoes. His p",
+    "first_image": {
+      "id": "img_02f3be8e77a76f56",
+      "item_id": "itm_198510510ad1bdad",
+      "original_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+      "thumb_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+      "preview_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T10:35:56+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T10:35:56+00:00",
+    "created_at": "2026-05-01T10:35:56+00:00",
+    "images": [
+      {
+        "id": "img_02f3be8e77a76f56",
+        "item_id": "itm_198510510ad1bdad",
+        "original_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+        "thumb_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+        "preview_path": "demo-data/media/img_02f3be8e77a76f56.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T10:35:56+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source explicitly says the example was created on Gemini Nano Banana. This item preserves the prompt wording verbatim, including its source typos and gendered wording inconsistencies, rather than normalizing them. Preserve attribution to Ai Bella (@zahra4sure).",
+    "author": "Ai Bella (@zahra4sure)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_67068e581972e6d6",
+    "title": "参考服装拆解换装提示词",
+    "slug": "x-mrgafish-2049793669755183413-outfit-transfer",
+    "model": "GPT Image 2",
+    "source_name": "X / Mr Gafish",
+    "source_url": "https://x.com/MrGafish/status/2049793669755183413?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f169b3e409774be5",
+        "name": "fashion",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "拆解图1的角色服装，生成服装展示图，套用在图2的人物身上，保持人物头部与身体比例协调，3:2",
+        "is_primary": true,
+        "id": "prm_860ecc804510a957",
+        "item_id": "itm_67068e581972e6d6",
+        "created_at": "2026-05-01T10:38:27+00:00",
+        "updated_at": "2026-05-01T10:38:27+00:00"
+      }
+    ],
+    "prompt_snippet": "拆解图1的角色服装，生成服装展示图，套用在图2的人物身上，保持人物头部与身体比例协调，3:2",
+    "first_image": {
+      "id": "img_f404303559f2e25a",
+      "item_id": "itm_67068e581972e6d6",
+      "original_path": "demo-data/media/img_f404303559f2e25a.webp",
+      "thumb_path": "demo-data/media/img_f404303559f2e25a.webp",
+      "preview_path": "demo-data/media/img_f404303559f2e25a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 378,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T10:38:27+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T10:38:27+00:00",
+    "created_at": "2026-05-01T10:38:27+00:00",
+    "images": [
+      {
+        "id": "img_f404303559f2e25a",
+        "item_id": "itm_67068e581972e6d6",
+        "original_path": "demo-data/media/img_f404303559f2e25a.webp",
+        "thumb_path": "demo-data/media/img_f404303559f2e25a.webp",
+        "preview_path": "demo-data/media/img_f404303559f2e25a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 378,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T10:38:27+00:00"
+      },
+      {
+        "id": "img_6ef85d7565cf34f5",
+        "item_id": "itm_67068e581972e6d6",
+        "original_path": "demo-data/media/img_6ef85d7565cf34f5.webp",
+        "thumb_path": "demo-data/media/img_6ef85d7565cf34f5.webp",
+        "preview_path": "demo-data/media/img_6ef85d7565cf34f5.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T10:38:27+00:00"
+      }
+    ],
+    "notes": "Prompt and two example images extracted from the linked X status via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source frames this as a first GPT Image 2 clothing-transfer workflow after subscribing, using image 1 as the outfit reference and image 2 as the target person. Preserve attribution to Mr Gafish (@MrGafish).",
+    "author": "Mr Gafish (@MrGafish)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_883f4463cce394c3",
+    "title": "七龙珠高定封面角色海报通用模板",
+    "slug": "x-leyu37829-2049814392330682700-dragon-ball-editorial-cover",
+    "model": "Image generation prompt",
+    "source_name": "X / 乐鱼Joyfish",
+    "source_url": "https://x.com/leyu37829/status/2049814392330682700?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_8b1bbd3be3674c14",
+        "name": "characters-anime",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_473e99d6b72f4596",
+        "name": "editorial_cover",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8b19b0dc7f7049ee",
+        "name": "fashion_portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ca0a781505894ffa",
+        "name": "formula_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_771ef6199f8d499f",
+        "name": "magazine_cover",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "如果你穿越到七龙珠世界，你选择哪个角色？\n七龙珠-宇宙最强战力！\n提示词：\nMinimalist high-fashion cover aesthetic, high-end editorial portrait, independent art curation, luxury brand visual language and motion texture.\nNo matter the theme — anime characters, game characters, original creations, mythological figures, or abstract concepts — this universal material template can be fully applied. It automatically generates exclusive styling based on the character: fashion styling, hairstyle, texture, posing, facial expression, lighting, color tone, symbolic system, serial number markings, explanatory notes, and overall poster layout language.\nThe core design logic is to shape the character as a cover icon, not a rigid standing illustration.\nLarge areas of negative space, low information density, restrained typography, neat and premium layout unity, paired with exclusive symbolic elements for each character, reshape the artwork into an avant-garde fashion magazine cover or a collectible character art curation poster.\nImage upgrading, high-end cosplay vision, AI character portrait project.\nThe core keywords are not excessive detail stacking, but: restraint, order, breathing space, uniqueness, cover character texture.\nReplace only the core character name to reuse the complete prompt.\nAutomatically generate a collectible-level conceptual poster based on Cell (Perfect Form・Full Power) – Dragon Ball Z / Android Saga.\nOverall style: minimalist fashion cover + high-end editorial portrait.\nCell as the sole core subject, center or off-center composition, pure and restrained background, low visual information density, strong sense of breathing space, order and luxury brand-level high-end texture.\nCharacter costume, modeling, texture, posture, expression, light and shadow, color grading and symbolic system are all naturally derived from Cell’s original setting, ensuring high recognition, unique visual system and strong thematic identification. No rigid template duplication, no uniform style skin replacement.\nAutomatically generate the most fitting subtitles, short slogans, serial numbers and vertical annotation information. Ultra-minimal premium typesetting, loose kerning, restrained structure and modern tension. Text is integrated into the visual design, non-intrusive, no tacky oversized magazine typography.\nFinal visual effect: avant-garde modern fashion magazine cover, luxury brand conceptual campaign poster, high-collection-value character art poster.\nQuiet, mysterious, exquisite and restrained, with complete aesthetic texture and collectible quality.\nNo complex scene collage, no low-quality fan-art style, no ordinary anime promotional illustration, no overloaded information, no messy background, no templated face swapping.\nSignature: Lingxi Culture.\nThe signature is placed in a low-key, restrained layout, located in blank or soft tone areas with small and delicate size, highly unified with the overall premium poster design.",
+        "is_primary": true,
+        "id": "prm_70132b892dce2771",
+        "item_id": "itm_883f4463cce394c3",
+        "created_at": "2026-05-01T11:02:01+00:00",
+        "updated_at": "2026-05-01T11:02:01+00:00"
+      }
+    ],
+    "prompt_snippet": "如果你穿越到七龙珠世界，你选择哪个角色？\n七龙珠-宇宙最强战力！\n提示词：\nMinimalist high-fashion cover aesthetic, high-end editorial portrait, independent art curation, luxury brand visual language and motion texture.\nNo matter the theme — anime characters, game characters, original creations, mythological figures",
+    "first_image": {
+      "id": "img_311d261a0d197b5a",
+      "item_id": "itm_883f4463cce394c3",
+      "original_path": "demo-data/media/img_311d261a0d197b5a.webp",
+      "thumb_path": "demo-data/media/img_311d261a0d197b5a.webp",
+      "preview_path": "demo-data/media/img_311d261a0d197b5a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T11:02:01+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T11:02:01+00:00",
+    "created_at": "2026-05-01T11:02:01+00:00",
+    "images": [
+      {
+        "id": "img_311d261a0d197b5a",
+        "item_id": "itm_883f4463cce394c3",
+        "original_path": "demo-data/media/img_311d261a0d197b5a.webp",
+        "thumb_path": "demo-data/media/img_311d261a0d197b5a.webp",
+        "preview_path": "demo-data/media/img_311d261a0d197b5a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T11:02:01+00:00"
+      },
+      {
+        "id": "img_e4ccfc18ea577a6d",
+        "item_id": "itm_883f4463cce394c3",
+        "original_path": "demo-data/media/img_e4ccfc18ea577a6d.webp",
+        "thumb_path": "demo-data/media/img_e4ccfc18ea577a6d.webp",
+        "preview_path": "demo-data/media/img_e4ccfc18ea577a6d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T11:02:01+00:00"
+      },
+      {
+        "id": "img_bbbeaf4e81ef776c",
+        "item_id": "itm_883f4463cce394c3",
+        "original_path": "demo-data/media/img_bbbeaf4e81ef776c.webp",
+        "thumb_path": "demo-data/media/img_bbbeaf4e81ef776c.webp",
+        "preview_path": "demo-data/media/img_bbbeaf4e81ef776c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T11:02:01+00:00"
+      },
+      {
+        "id": "img_8c6151c65d4ba038",
+        "item_id": "itm_883f4463cce394c3",
+        "original_path": "demo-data/media/img_8c6151c65d4ba038.webp",
+        "thumb_path": "demo-data/media/img_8c6151c65d4ba038.webp",
+        "preview_path": "demo-data/media/img_8c6151c65d4ba038.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-01T11:02:01+00:00"
+      }
+    ],
+    "notes": "Prompt and four result images extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source frames this as a reusable high-fashion editorial cover template where only the core character name needs to be replaced; the concrete example centers on Cell (Perfect Form・Full Power) from Dragon Ball Z / Android Saga. Preserve attribution to 乐鱼Joyfish (@leyu37829).",
+    "author": "乐鱼Joyfish (@leyu37829)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_e8c02414f72db9c2",
+    "title": "3x2 AAA granny demon-hunter game concept sheet",
+    "slug": "x-oliviosarikas-2049939963022913651-granny-game-concept-sheet",
+    "model": "GPT Image 2",
+    "source_name": "X / Olivio Sarikas",
+    "source_url": "https://x.com/OlivioSarikas/status/2049939963022913651?s=20",
+    "cluster": {
+      "id": "clu_8c5d2b0d851948f2",
+      "name": "UI与界面",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_7d8a927d3dea44b3",
+        "name": "character_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3883e7e5ddee4584",
+        "name": "ui-interface",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aa50cbd63b5d46c7",
+        "name": "ui_composite",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Power Prompt UNLOCKED 🔥\nCreate a FULL Game CONCEPT in one Prompt🔥\nChatGPT Image 2:\non a 3x2 grid create a detailed gaming screens sheet for a highly detailed 3d game of a cool old granny with a pumpgun  who hunts demons in hell. the game is a  AAA game. include the following screens:\n\n1) a text that explains the game idea and mechanic\n2) a  startscreen with the character on white background and start and menu options,\n3) a character creator screen with 2 outfit and 2 head choices,\n4) a weapons skin screen with 2 more pumpgun screens (one nuclear themed, the other lava themed),\n5) a ingame third person screen of the fight,\n6) a ingame first person crafting screen with pumpgun upgrades,",
+        "is_primary": true,
+        "id": "prm_1fb1034a39e67479",
+        "item_id": "itm_e8c02414f72db9c2",
+        "created_at": "2026-05-01T11:08:11+00:00",
+        "updated_at": "2026-05-01T11:08:11+00:00"
+      }
+    ],
+    "prompt_snippet": "Power Prompt UNLOCKED 🔥\nCreate a FULL Game CONCEPT in one Prompt🔥\nChatGPT Image 2:\non a 3x2 grid create a detailed gaming screens sheet for a highly detailed 3d game of a cool old granny with a pumpgun  who hunts demons in hell. the game is a  AAA game. include the following scre",
+    "first_image": {
+      "id": "img_35458b89906cc8d4",
+      "item_id": "itm_e8c02414f72db9c2",
+      "original_path": "demo-data/media/img_35458b89906cc8d4.webp",
+      "thumb_path": "demo-data/media/img_35458b89906cc8d4.webp",
+      "preview_path": "demo-data/media/img_35458b89906cc8d4.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 506,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T11:08:11+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T11:08:11+00:00",
+    "created_at": "2026-05-01T11:08:11+00:00",
+    "images": [
+      {
+        "id": "img_35458b89906cc8d4",
+        "item_id": "itm_e8c02414f72db9c2",
+        "original_path": "demo-data/media/img_35458b89906cc8d4.webp",
+        "thumb_path": "demo-data/media/img_35458b89906cc8d4.webp",
+        "preview_path": "demo-data/media/img_35458b89906cc8d4.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 506,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T11:08:11+00:00"
+      },
+      {
+        "id": "img_09d676df6c8ccb24",
+        "item_id": "itm_e8c02414f72db9c2",
+        "original_path": "demo-data/media/img_09d676df6c8ccb24.webp",
+        "thumb_path": "demo-data/media/img_09d676df6c8ccb24.webp",
+        "preview_path": "demo-data/media/img_09d676df6c8ccb24.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 506,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T11:08:11+00:00"
+      },
+      {
+        "id": "img_5b77bc6c5a6d16be",
+        "item_id": "itm_e8c02414f72db9c2",
+        "original_path": "demo-data/media/img_5b77bc6c5a6d16be.webp",
+        "thumb_path": "demo-data/media/img_5b77bc6c5a6d16be.webp",
+        "preview_path": "demo-data/media/img_5b77bc6c5a6d16be.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 506,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T11:08:11+00:00"
+      }
+    ],
+    "notes": "Prompt excerpt and main result image extracted from the linked X note-tweet via public fxtwitter, vxtwitter, syndication, and Xstalk mirrors on 2026-05-01. Public mirrors currently expose only the accessible excerpt ending after the sixth requested screen, so this item preserves that source text verbatim rather than inferring omitted continuation. Two additional example images come from the author's self-replies https://x.com/OlivioSarikas/status/2049939967422644463 and https://x.com/OlivioSarikas/status/2049939971910647846, both labeled \"Alternative result:\". Preserve attribution to Olivio Sarikas (@OlivioSarikas).",
+    "author": "Olivio Sarikas (@OlivioSarikas)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_cd0488c26753700e",
+    "title": "Burning social profile portrait prompt",
+    "slug": "x-noor-ul-ain43-2050005353392423033-burning-social-profile-portrait",
+    "model": "Image generation prompt",
+    "source_name": "X / Noor",
+    "source_url": "https://x.com/Noor_ul_ain43/status/2050005353392423033?s=20",
+    "cluster": {
+      "id": "clu_8c5d2b0d851948f2",
+      "name": "UI与界面",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_8b19b0dc7f7049ee",
+        "name": "fashion_portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_430171936cd1490b",
+        "name": "social_media_composite",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5cc41bba3b744ec8",
+        "name": "social_profile",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aa50cbd63b5d46c7",
+        "name": "ui_composite",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Some posts aren’t worth keeping… so I let them burn 🔥\n\nPrompt ⤵️ \nA cinematic night portrait of a stylish young woman holding a large printed social media profile page that is partially burning with intense flames, fire forming a glowing V-shape across the paper, realistic fire and smoke, warm orange flames lighting her face, soft shadows, dark background with subtle bokeh lights, the paper clearly showing a modern social media profile layout with username “Noor 🌸” and bio text, девушка with short wavy hair, soft makeup, confident calm expression, wearing a black turtleneck and beige coat, ultra-realistic, high detail, dramatic lighting, shallow depth of field, editorial fashion photography, 4K",
+        "is_primary": true,
+        "id": "prm_13cb7a2ee920ecd7",
+        "item_id": "itm_cd0488c26753700e",
+        "created_at": "2026-05-01T11:27:41+00:00",
+        "updated_at": "2026-05-01T11:27:41+00:00"
+      }
+    ],
+    "prompt_snippet": "Some posts aren’t worth keeping… so I let them burn 🔥\n\nPrompt ⤵️ \nA cinematic night portrait of a stylish young woman holding a large printed social media profile page that is partially burning with intense flames, fire forming a glowing V-shape across the paper, realistic fire a",
+    "first_image": {
+      "id": "img_6715ea2b31f6158a",
+      "item_id": "itm_cd0488c26753700e",
+      "original_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+      "thumb_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+      "preview_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T11:27:41+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T11:27:41+00:00",
+    "created_at": "2026-05-01T11:27:41+00:00",
+    "images": [
+      {
+        "id": "img_6715ea2b31f6158a",
+        "item_id": "itm_cd0488c26753700e",
+        "original_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+        "thumb_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+        "preview_path": "demo-data/media/img_6715ea2b31f6158a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T11:27:41+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter, vxtwitter, and syndication mirrors on 2026-05-01. Preserve source attribution. The prompt creates an editorial night portrait built around a partially burning printed social-media profile page, with the profile layout itself serving as a tangible prop inside the scene.",
+    "author": "Noor (@Noor_ul_ain43)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_887fcf7c883659ec",
+    "title": "微缩模型等距建筑海报柔和文字版",
+    "slug": "x-xiaoxiaodong01-2050178967362302215-miniature-building-poster-soft",
+    "model": "GPT Image 2",
+    "source_name": "X / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2050178967362302215?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_425e3453358d4482",
+        "name": "architecture",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "请根据用户最后输入的【主题 / 品牌 / 模型名称】，生成一张高完成度的「45°俯视等距视角（isometric）微缩 3D 建筑模型海报」。\n\n核心任务：\n将用户提供的主题，智能转化为对应的品牌门店 / 建筑 / 展示空间 / 概念模型，并呈现为一个干净、精致、可商用展示的 miniature diorama（微缩立体场景）。\n\n输入适配规则：\n1. 如果用户只输入品牌、模型或主题名称：自动提炼其最具辨识度的建筑特征、门头元素、空间语言与品牌气质，转化为微缩建筑模型。\n2. 如果用户上传了自己的建筑物 / 店铺 / 咖啡馆照片：以该图片为主要参考，保留建筑外观、门头、窗户、空间结构等关键特征，并将其统一转化为这种风格的等距 3D 微缩模型。\n3. 如果同时有图片和文字：以图片建筑为主体，以文字作为标题与风格补充。\n\n视觉要求：\n- 45° top-down isometric / axonometric\n- 微缩模型感、玩具感、清晰干净、居中构图\n- 小型抬升式底座，包含建筑本体及少量周边环境\n- 可加入极简小人物、绿植、桌椅、路牌、街道、台阶等辅助元素\n- 小人物可爱简化，无需面部细节\n- 整体高级、克制、整洁，像精品品牌展示图或设计提案图\n\n配色逻辑（重点）：\n- 背景默认使用纯白或极浅暖白，不要彩色大背景，不要复杂渐变背景\n- 重点优化“建筑本体”的配色，而不是背景配色\n- 建筑配色参考“纪念碑谷”气质：低饱和、柔和、梦幻、克制\n- 推荐使用奶油白、浅沙色、雾粉、珊瑚粉、蜜桃色、浅陶土、鼠尾草绿、薄荷青、灰蓝绿等组合\n- 颜色关系要有统一的大色调与少量点缀色，避免杂乱、高饱和、商业俗艳配色\n- 背景保持干净，建筑颜色才是视觉重点\n\n文字排版：\n- 画面顶部居中放置主题名称 / 品牌名称，大号粗体，简洁有力\n- 下方可放对应 logo / 标识 / 简化品牌符号\n- 所有文字颜色根据背景自动适配；白色背景下默认使用黑色或深灰色文字\n- 排版整齐克制，不抢建筑主体\n\n画面要求：\n- 正方形构图，1080×1080\n- perfectly centered layout\n- 高清、明亮、柔和真实光照\n- 材质细腻，带轻微 PBR 质感，但整体仍偏柔和与艺术化\n- 不要复杂背景，不要杂乱装饰，不要过度写实，不要脏乱街景\n\n输出目标：\n生成一张“白色背景 + 纪念碑谷式建筑配色 + 微缩等距建筑模型”的高质感视觉图，适合品牌展示、概念提案、社交媒体封面或系列化创作。\n\n用户输入主题：\n星巴克咖啡",
+        "is_primary": true,
+        "id": "prm_d63338b3cc266b00",
+        "item_id": "itm_887fcf7c883659ec",
+        "created_at": "2026-05-01T12:07:25+00:00",
+        "updated_at": "2026-05-01T12:07:25+00:00"
+      }
+    ],
+    "prompt_snippet": "请根据用户最后输入的【主题 / 品牌 / 模型名称】，生成一张高完成度的「45°俯视等距视角（isometric）微缩 3D 建筑模型海报」。\n\n核心任务：\n将用户提供的主题，智能转化为对应的品牌门店 / 建筑 / 展示空间 / 概念模型，并呈现为一个干净、精致、可商用展示的 miniature diorama（微缩立体场景）。\n\n输入适配规则：\n1. 如果用户只输入品牌、模型或主题名称：自动提炼其最具辨识度的建筑特征、门头元素、空间语言与品牌气质，转化为微缩建筑模型。\n2. 如果用户上传了自己的建筑物 / 店铺 / 咖啡馆照片：以该图片为主要参考，保留",
+    "first_image": {
+      "id": "img_0eb6f8a452028fba",
+      "item_id": "itm_887fcf7c883659ec",
+      "original_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "thumb_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "preview_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:07:25+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:07:25+00:00",
+    "created_at": "2026-05-01T12:07:25+00:00",
+    "images": [
+      {
+        "id": "img_0eb6f8a452028fba",
+        "item_id": "itm_887fcf7c883659ec",
+        "original_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "thumb_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "preview_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:07:25+00:00"
+      }
+    ],
+    "notes": "Prompt and article cover image extracted from the linked X Article on 2026-05-01. Article title: GPT2: 微缩模型 x 万物可转 x 提示词 x 有韦斯安德森的味道。 This item preserves the article's 柔和颜色+文字 prompt, including the sample theme \"星巴克咖啡\" and the built-in title/logo behavior. The article body also contains multiple inline example images, but the public mirrors used for this import exposed a stable direct image URL only for the article cover, so the demo bundle uses the cover image as the visual reference. Source article: https://x.com/i/article/2050089691865849858. Cover image source: https://pbs.twimg.com/media/HHOxkMkaAAAy-bW.jpg. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_556ecf30a579c0c7",
+    "title": "微缩模型等距建筑海报鲜明无字版",
+    "slug": "x-xiaoxiaodong01-2050178967362302215-miniature-building-poster-vivid",
+    "model": "GPT Image 2",
+    "source_name": "X / 小小东",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2050178967362302215?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_425e3453358d4482",
+        "name": "architecture",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d551346423b24dd1",
+        "name": "chinese_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_be147f93f9134457",
+        "name": "cover_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "请根据用户最后输入的【主题 / 品牌 / 模型名称】，生成一张高完成度的「45°俯视等距视角（isometric）微缩 3D 建筑模型海报」。\n\n核心任务：\n将用户提供的主题，智能转化为对应的品牌门店 / 建筑 / 展示空间 / 概念模型，并呈现为一个干净、精致、可商用展示的 miniature diorama（微缩立体场景）。\n\n输入适配规则：\n1. 如果用户只输入品牌、模型或主题名称：自动提炼其最具辨识度的建筑特征、门头元素、空间语言、真实品牌色彩体系与品牌气质，转化为微缩建筑模型。\n2. 如果用户上传了自己的建筑物 / 店铺 / 咖啡馆照片：以该图片为主要参考，保留建筑外观、门头、窗户、空间结构、材质与色彩关系，并将其统一转化为这种风格的等距 3D 微缩模型。\n3. 如果同时有图片和文字：以图片建筑为主体，以文字作为主题与风格补充，不要自动在画面顶部生成标题，除非用户明确要求。\n\n视觉要求：\n- 45° top-down isometric / axonometric\n- 微缩模型感、玩具感、清晰干净、居中构图\n- 小型抬升式底座，包含建筑本体及少量周边环境\n- 可加入极简小人物、绿植、桌椅、路牌、街道、台阶等辅助元素\n- 小人物可爱简化，无需面部细节\n- 整体高级、克制、整洁，像精品品牌展示图或设计提案图\n\n配色逻辑（重点）：\n- 配色必须优先尊重主题 / 品牌 / 建筑本身的真实色彩体系，不要为了艺术化而强行改色\n- 背景默认使用纯白或极浅暖白，不要彩色大背景，不要复杂渐变背景\n- 重点优化“建筑本体”的色彩比例、材质质感与光照，而不是改变品牌原本的颜色逻辑\n- 品牌主色必须保持可识别，只做轻微高级化处理：降低刺眼感、增强哑光材质、柔和光照与建筑模型质感\n- 不要把品牌红色强行改成粉色 / 珊瑚色 / 陶土色\n- 不要把品牌黄色强行改成灰黄 / 暗黄 / 过淡的装饰色\n- 不要过度莫兰迪化、过度纪念碑谷化、过度韦斯安德森化，导致品牌不像原品牌\n- 高级感来自真实品牌色 + 克制面积比例 + 干净材质 + 留白，而不是脱离现实的幻想配色\n- 建筑基础色可使用白色、米白、浅灰、玻璃色、金属色、浅木色来平衡品牌主色\n- 环境色、底座色、绿植色应更克制，只服务建筑主体\n- 颜色关系要统一，避免杂乱、高饱和、商业俗艳配色\n\n文字排版：\n- 默认不要在画面顶部放置大标题\n- 默认不要生成悬浮在背景中的品牌 logo / 标识 / 说明文字\n- 只保留建筑本体上的真实门头、招牌、logo、导视牌等必要品牌信息\n- 这些文字和 logo 必须作为建筑结构的一部分，而不是漂浮在白色背景上\n- 如果用户明确要求加入标题，才在画面顶部居中放置主题名称 / 品牌名称，字体简洁、粗体、克制，不抢建筑主体\n\n画面要求：\n- 正方形构图，1080×1080\n- perfectly centered layout\n- 高清、明亮、柔和真实光照\n- 材质细腻，带轻微 PBR 质感，但整体仍偏柔和与艺术化\n- 不要复杂背景，不要杂乱装饰，不要过度写实，不要脏乱街景\n\n输出目标：\n生成一张“白色背景 + 真实品牌色体系 + 高级化建筑模型质感 + 微缩等距建筑模型”的高质感视觉图，适合品牌展示、概念提案、社交媒体封面或系列化创作。\n\n用户输入主题：\n茶饮悦色",
+        "is_primary": true,
+        "id": "prm_f86d86de2c060efd",
+        "item_id": "itm_556ecf30a579c0c7",
+        "created_at": "2026-05-01T12:07:25+00:00",
+        "updated_at": "2026-05-01T12:07:25+00:00"
+      }
+    ],
+    "prompt_snippet": "请根据用户最后输入的【主题 / 品牌 / 模型名称】，生成一张高完成度的「45°俯视等距视角（isometric）微缩 3D 建筑模型海报」。\n\n核心任务：\n将用户提供的主题，智能转化为对应的品牌门店 / 建筑 / 展示空间 / 概念模型，并呈现为一个干净、精致、可商用展示的 miniature diorama（微缩立体场景）。\n\n输入适配规则：\n1. 如果用户只输入品牌、模型或主题名称：自动提炼其最具辨识度的建筑特征、门头元素、空间语言、真实品牌色彩体系与品牌气质，转化为微缩建筑模型。\n2. 如果用户上传了自己的建筑物 / 店铺 / 咖啡馆照片：以该图",
+    "first_image": {
+      "id": "img_0c0c0d80db4f84bc",
+      "item_id": "itm_556ecf30a579c0c7",
+      "original_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "thumb_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "preview_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:07:25+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:07:25+00:00",
+    "created_at": "2026-05-01T12:07:25+00:00",
+    "images": [
+      {
+        "id": "img_0c0c0d80db4f84bc",
+        "item_id": "itm_556ecf30a579c0c7",
+        "original_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "thumb_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "preview_path": "demo-data/media/img_0eb6f8a452028fba.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:07:25+00:00"
+      }
+    ],
+    "notes": "Prompt and article cover image extracted from the linked X Article on 2026-05-01. Article title: GPT2: 微缩模型 x 万物可转 x 提示词 x 有韦斯安德森的味道。 This item preserves the article's 鲜明颜色+无文字 prompt, including the sample theme \"茶饮悦色\" and the stricter real-brand-color constraints. The article body also contains multiple inline example images, but the public mirrors used for this import exposed a stable direct image URL only for the article cover, so the demo bundle uses the cover image as the visual reference. Source article: https://x.com/i/article/2050089691865849858. Cover image source: https://pbs.twimg.com/media/HHOxkMkaAAAy-bW.jpg. Preserve attribution to 小小东 (@xiaoxiaodong01).",
+    "author": "小小东 (@xiaoxiaodong01)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_e71cab2e61fdbd21",
+    "title": "The North Face cinematic brand concept poster",
+    "slug": "x-rovvmut-2050168053523157062-north-face-brand-concept-poster",
+    "model": "GPT Image 2 on ChatGPT",
+    "source_name": "X / Heisenberg",
+    "source_url": "https://x.com/rovvmut_/status/2050168053523157062?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_81ed19a0eead4d12",
+        "name": "brand_identity",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8b19b0dc7f7049ee",
+        "name": "fashion_portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "GPT Image 2 on ChatGPT.\n\nPrompt: A high-fashion, cinematic brand concept poster for \"The North Face.\" The scene features a woman, standing in a stylized studio. They are dressed in edgy, oversized urban streetwear: a dark olive-green quilted puffer bomber jacket, layered black and tan distressed techwear shorts below knees, and black sneakers with white soles. The person holds a classic orange basketball at their hip. In the background, a massive, bold red \"THE NORTH FACE\" logo and its iconic half-dome symbol are stacked and centered, dominating the upper half of the frame. To the right of the subject, there's a small white stylized graffiti-style signature. The lighting is moody and dramatic, featuring a teal-tinted atmosphere with a warm rim light hitting the subject’s right side. The floor is a dark, smooth studio surface with a soft shadow cast forward. The overall aesthetic is gritty, futuristic, and high-contrast, with a heavy film grain texture.",
+        "is_primary": true,
+        "id": "prm_94a36ceca3b53fa0",
+        "item_id": "itm_e71cab2e61fdbd21",
+        "created_at": "2026-05-01T12:20:18+00:00",
+        "updated_at": "2026-05-01T12:20:18+00:00"
+      }
+    ],
+    "prompt_snippet": "GPT Image 2 on ChatGPT.\n\nPrompt: A high-fashion, cinematic brand concept poster for \"The North Face.\" The scene features a woman, standing in a stylized studio. They are dressed in edgy, oversized urban streetwear: a dark olive-green quilted puffer bomber jacket, layered black an",
+    "first_image": {
+      "id": "img_06f766130ada4daa",
+      "item_id": "itm_e71cab2e61fdbd21",
+      "original_path": "demo-data/media/img_06f766130ada4daa.webp",
+      "thumb_path": "demo-data/media/img_06f766130ada4daa.webp",
+      "preview_path": "demo-data/media/img_06f766130ada4daa.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1206,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:20:18+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:20:18+00:00",
+    "created_at": "2026-05-01T12:20:18+00:00",
+    "images": [
+      {
+        "id": "img_06f766130ada4daa",
+        "item_id": "itm_e71cab2e61fdbd21",
+        "original_path": "demo-data/media/img_06f766130ada4daa.webp",
+        "thumb_path": "demo-data/media/img_06f766130ada4daa.webp",
+        "preview_path": "demo-data/media/img_06f766130ada4daa.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1206,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:20:18+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source explicitly says this was made with GPT Image 2 on ChatGPT. Preserve attribution to Heisenberg (@rovvmut_).",
+    "author": "Heisenberg (@rovvmut_)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_b6094fca1818eee8",
+    "title": "Google search profile UI portrait prompt",
+    "slug": "x-aiwithlariab-2050174040732738004-google-search-profile-ui",
+    "model": "Gemini Nano Banana 2",
+    "source_name": "X / Lariab Fatima",
+    "source_url": "https://x.com/AiwithLariab/status/2050174040732738004?s=20",
+    "cluster": {
+      "id": "clu_8c5d2b0d851948f2",
+      "name": "UI与界面",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a44bc4483b284e5f",
+        "name": "photo_editing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3883e7e5ddee4584",
+        "name": "ui-interface",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aa50cbd63b5d46c7",
+        "name": "ui_composite",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Image on Gemini Nano banana 2\nPrompt 👇\nCreate a hyper-realistic, ultra-detailed Google search results page UI featuring a young girl (use uploaded reference image, preserve 100% exact facial identity, face structure, eyes, and expression).\n\n🧩 CORE CONCEPT\nThe entire image should look like a real Google search page, but personalized as a fun, aesthetic profile about the girl.\n\nSearch bar text:\n“who is this girl?”\n\n👤 MAIN SUBJECT (RIGHT SIDE HERO IMAGE)\nFull-body or 3/4 seated pose of the girl\nExpression: calm, slightly serious, confident\n\nWearing coordinated matching outfit in a bold color theme (RED + WHITE variant):\n\n- Red varsity jacket with white sleeves\n- White inner outfit (t-shirt + joggers)\n- Red-white sneakers (clean, stylish, matching palette)\n\nAccessories:\n\n- Stylish pink sunglasses\n- Minimal jewelry (small earrings, pendant)\n\nPose:\nSitting casually, one hand supporting chin\nLegs folded or relaxed pose\n\nLighting:\nSoft studio lighting, clean shadows, glossy finish\n\n🎨 MULTI-COLOR VARIATION SYSTEM\nInside the UI (top image thumbnails), include 3–4 small preview images of the same girl with different matching outfits:\n\n❤️ Red + White (main look)\n💛 Yellow + White\n💚 Green + White\n💜 Purple monochrome\n\nAll outfits must perfectly match while maintaining exact same facial identity.\n\n🖥️ GOOGLE UI STRUCTURE (LEFT SIDE)\n\n🔹 Header:\nGoogle logo\nTabs: All, Images, Videos, News, Shopping\n\n🔹 PROFILE CARD:\nName: Lariab ✔️\nTitle: CEO of Cuteness 👑\n\nBio line:\nStudent • Dreamer • Overthinker\n“A little girl with big dreams and an even bigger imagination.”\n\n🔹 ABOUT SECTION:\nAge: Unlimited ✨\nBorn: To shine\nZodiac: Princess ♡\nHobbies: Eating, sleeping, overthinking\nCurrent status: Procrastinating\n\n🔹 NET WORTH CARD:\n₹0\nBut Confidence: ₹10,00,00,000+\n\nAssets include:\nOverthinking\nCute smile\nBig dreams\nZero worries (sometimes)\n\n🔹 TOP STORIES:\n“Local girl refuses to stop dreaming big”\n“Too cute to handle – experts say”\n“Future loading…”\n\n🔹 PEOPLE ALSO ASK:\nWhy is she so cute?\nWhere does her confidence come from?\nWhy is she always the main character?\n\n🔹 ACHIEVEMENTS:\nSurvived 100% of bad days\nProfessional overthinker\nChampion of “kal se pakka”\nMakes parents proud\n\n🔹 SOCIAL LINKS:\nInstagram\nYouTube\nTikTok\nFacebook\n\n🔹 REVIEWS SECTION:\n⭐ Google: 4.9/5\n⭐ Instagram: 5/5\n⭐ YouTube: 4.8/5\n⭐ Facebook: 5/5\n\nSample review:\n“Literally the cutest girl on the planet”\n\n🔹 FOOTER TEXT:\n“Still searching? You just found perfection.”\n\n🎨 STYLE & QUALITY\nUltra-realistic + UI hybrid design\nClean white background\nSoft shadows\nCrisp modern sans-serif typography\nBalanced layout\n8K resolution\nHigh sharpness\n\n🔥 VIRAL DETAILS\nGirl slightly popping out from UI layer (3D depth effect)\nPerfect face consistency across all thumbnails\nBelievable Google-style layout\nReadable text\nColor harmony between outfit and UI accents",
+        "is_primary": true,
+        "id": "prm_6e3704ecb2e2faef",
+        "item_id": "itm_b6094fca1818eee8",
+        "created_at": "2026-05-01T12:20:18+00:00",
+        "updated_at": "2026-05-01T12:20:18+00:00"
+      }
+    ],
+    "prompt_snippet": "Image on Gemini Nano banana 2\nPrompt 👇\nCreate a hyper-realistic, ultra-detailed Google search results page UI featuring a young girl (use uploaded reference image, preserve 100% exact facial identity, face structure, eyes, and expression).\n\n🧩 CORE CONCEPT\nThe entire image should ",
+    "first_image": {
+      "id": "img_215e9418e73f7ad3",
+      "item_id": "itm_b6094fca1818eee8",
+      "original_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+      "thumb_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+      "preview_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+      "remote_url": null,
+      "width": 899,
+      "height": 1599,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:20:18+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:20:18+00:00",
+    "created_at": "2026-05-01T12:20:18+00:00",
+    "images": [
+      {
+        "id": "img_215e9418e73f7ad3",
+        "item_id": "itm_b6094fca1818eee8",
+        "original_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+        "thumb_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+        "preview_path": "demo-data/media/img_215e9418e73f7ad3.webp",
+        "remote_url": null,
+        "width": 899,
+        "height": 1599,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:20:18+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public fxtwitter/vxtwitter and syndication mirrors on 2026-05-01. The source explicitly says the example was made on Gemini Nano banana 2. Preserve attribution to Lariab Fatima (@AiwithLariab).",
+    "author": "Lariab Fatima (@AiwithLariab)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_7bbc561b536c488e",
+    "title": "Superdry modular branding grid prompt",
+    "slug": "x-diplomeme-2050184712195588291-superdry-branding-grid",
+    "model": "GPT Image 2",
+    "source_name": "X / ᴍᴜʀᴘʜʏ",
+    "source_url": "https://x.com/Diplomeme/status/2050184712195588291?s=20",
+    "cluster": {
+      "id": "clu_b40703641657463f",
+      "name": "海报与排版",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_81ed19a0eead4d12",
+        "name": "brand_identity",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b5e832377564cd4",
+        "name": "gpt_image_2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e088ce583e9b4ac4",
+        "name": "layout_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e0dfb007b8074ed6",
+        "name": "poster_design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Prompt : \n\n[BRAND NAME = SUPERDRY]\n[PRODUCT SET = T-SHIRT + KEYCHAIN + BAG]\n[COLOR PALETTE = BURNT ORANGE / BLACK / WHITE]\n\nROLE:\nSenior Social Media Art Director + Modular Grid Specialist\n\nOBJECTIVE:\nRecreate the EXACT layout system from reference\n→ Upgrade it into a **premium editorial Superdry identity board**\n→ Maintain structure, enhance execution\n\nAdd signature:\n© MURPHY AI (luxury integrated)\n\nPHASE 1: LAYOUT FOUNDATION (STRICTLY FOLLOW REFERENCE)\n\n2-COLUMN GRID\nRounded cards\nThick glowing outer border\n\nBLOCK STRUCTURE:\n\nLEFT COLUMN:\n[1] TOP → LOGO (BLACK BG)\n[2] MID → LOGO (WHITE BG)\n[3] SMALL → COLOR BLOCK\n[4] BOTTOM → MOCKUP (T-SHIRT FLATLAY)\n\nRIGHT COLUMN:\n[5] TOP (TALL) → BAG MOCKUP\n[6] MID → KEYCHAIN MOCKUP\n[7] BOTTOM (TALL) → MODEL (HERO)\n\nIMPORTANT:\n→ Keep proportions identical to reference\n→ Right column visually heavier\n\nPHASE 2: FRAME & BORDER SYSTEM (UPGRADE)\n\nOUTER FRAME:\n→ Thick rounded rectangle\n→ Color: Burnt Orange (#FF6A00)\n\nGLOW SYSTEM:\n→ Inner glow (soft orange)\n→ Outer glow (very subtle diffusion)\n\nINNER CARDS:\n→ Fill: Deep black (#0D0D0D) OR soft white (#FAFAFA)\n→ Stroke: 1px subtle orange (only key blocks)\n\nSPACING:\n→ Tight but breathable (premium feel)\n\nPHASE 3: BLOCK DESIGN EXECUTION\n\n[1] TOP LEFT — LOGO (BLACK)\n→ Superdry logo (white + Japanese)\n→ Add micro subtitle:\n   “STREETWEAR ESSENTIALS”\n→ Add faint blueprint grid texture\n\n[2] MID LEFT — LOGO (WHITE)\n→ Clean black logo\n→ Minimal, no noise\n→ Ultra crisp\n\n[3] SMALL LEFT — COLOR BLOCK\n→ 3 stacked mini rectangles:\n\nORANGE  \n#FF6A00  \n\nBLACK  \n#0D0D0D  \n\nWHITE  \n#FAFAFA  \n\n→ Typography small + centered\n\n[4] BOTTOM LEFT — FLATLAY\n→ T-shirt + keychain + tags\n→ Slight overlap (break perfection slightly)\n→ Add label:\n   “CORE SET”\n\n[5] TOP RIGHT — BAG (HERO PRODUCT)\n→ Crossbody bag\n→ Studio lighting\n→ Add:\n   Soft floor shadow\n   Orange rim light (right edge)\n→ Add micro text:\n   “01 — CROSSBODY BAG”\n\n[6] MID RIGHT — KEYCHAIN\n→ Floating\n→ Slight tilt\n→ Add reflection fade below\n→ Micro label:\n   “02 — KEYCHAIN”\n\n[7] BOTTOM RIGHT — MODEL (HERO)\n→ Wearing orange Superdry tee\n→ Confident pose\n→ Background:\n   Oversized blurred “SUPERDRY” or Japanese text\n\n→ Add micro label:\n   “03 — T-SHIRT”\n\n→ Add bottom micro line:\n   “ENGINEERED FOR EVERYDAY MOVEMENT”\n\nPHASE 4: COLOR INTELLIGENCE\n\nOrange usage:\n→ Borders\n→ Accents\n→ Product highlights\n\nNOT full backgrounds\n\nBlack:\n→ Dominant base\n\nWhite:\n→ Strategic contrast blocks only\n\nPHASE 5: TYPOGRAPHY SYSTEM\n\nFONT STYLE:\nClean neo-grotesk\n\nRULES:\n- No rotation\n- Tight tracking\n- Strong alignment\n\nHIERARCHY:\n1. LOGO\n2. PRODUCT LABELS (01/02/03)\n3. MICRO TEXT\n4. COLOR INFO\n\nPHASE 6: SIGNATURE (© MURPHY AI)\n\nFINAL PLACEMENT:\n\n→ Bottom center OUTSIDE grid (inside frame)\n→ Very small size\n→ Color: soft grey (#888888)\n→ Tracking: slightly wide\n\nOPTIONAL DETAIL:\n→ Add tiny divider lines on both sides\n\nExample:\n──── © MURPHY AI ────\n\nFEEL:\nPremium credit, not watermark\n\nPHASE 7: TEXTURE & DEPTH\n\n- Grain: 8%\n- Micro shadows between cards\n- Slight vignette on outer edges\n- Maintain sharpness\n\nPHASE 8: FINAL POLISH\n\n- Consistent lighting across all mockups\n- Rich blacks (no grey fade)\n- Clean edges (no glow bleeding)\n- Perfect alignment grid\n\nTECH SPECS:\n\n4:5 ratio  \n2400×3000px  \nsRGB  \nUltra sharp finish  \n\nFINAL OUTPUT:\n\nLooks like:\nA premium Instagram-ready brand system  \nInspired by your reference layout  \nBut elevated to **high-end editorial streetwear design**\n\nSignature:\nSubtle, intentional → © MURPHY AI",
+        "is_primary": true,
+        "id": "prm_12c532453c325fd7",
+        "item_id": "itm_7bbc561b536c488e",
+        "created_at": "2026-05-01T12:32:09+00:00",
+        "updated_at": "2026-05-01T12:32:09+00:00"
+      }
+    ],
+    "prompt_snippet": "Prompt : \n\n[BRAND NAME = SUPERDRY]\n[PRODUCT SET = T-SHIRT + KEYCHAIN + BAG]\n[COLOR PALETTE = BURNT ORANGE / BLACK / WHITE]\n\nROLE:\nSenior Social Media Art Director + Modular Grid Specialist\n\nOBJECTIVE:\nRecreate the EXACT layout system from reference\n→ Upgrade it into a **premium e",
+    "first_image": {
+      "id": "img_97cc291f3019535a",
+      "item_id": "itm_7bbc561b536c488e",
+      "original_path": "demo-data/media/img_97cc291f3019535a.webp",
+      "thumb_path": "demo-data/media/img_97cc291f3019535a.webp",
+      "preview_path": "demo-data/media/img_97cc291f3019535a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:32:09+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:32:09+00:00",
+    "created_at": "2026-05-01T12:32:09+00:00",
+    "images": [
+      {
+        "id": "img_97cc291f3019535a",
+        "item_id": "itm_7bbc561b536c488e",
+        "original_path": "demo-data/media/img_97cc291f3019535a.webp",
+        "thumb_path": "demo-data/media/img_97cc291f3019535a.webp",
+        "preview_path": "demo-data/media/img_97cc291f3019535a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:32:09+00:00"
+      }
+    ],
+    "notes": "Prompt extracted from the author self-reply https://x.com/Diplomeme/status/2050184971621716192, cross-checked against public fxtwitter, vxtwitter, syndication, and Xstalk mirrors on 2026-05-01. The result image comes from the parent X status https://x.com/Diplomeme/status/2050184712195588291, whose main text says \"Generate yours with prompt : ⤵️\". The source frames this as a GPT Image 2 modular branding-grid workflow for Superdry. Preserve attribution to ᴍᴜʀᴘʜʏ (@Diplomeme).",
+    "author": "ᴍᴜʀᴘʜʏ (@Diplomeme)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_7075c4c365dac2a7",
+    "title": "Whiteboard animation style portrait from reference image",
+    "slug": "x-shushant-l-2050183637195522456-whiteboard-animation-portrait",
+    "model": "Nano Banana Pro",
+    "source_name": "X / Shushant Lakhyani",
+    "source_url": "https://x.com/shushant_l/status/2050183637195522456?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_c40b239edf474df8",
+        "name": "animation_frame",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5c3fe9525bd4daf",
+        "name": "identity_preservation",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d53ba7f9316243c4",
+        "name": "nanobanana_pro",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c4aab56ffa4348a7",
+        "name": "portrait",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3ba5076f585946e2",
+        "name": "stylization",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Here's how to create your Whiteboard Animation style image.\n\nUse Google Nano Banana Pro or any other AI image generation model.\n\nUse this prompt: clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure white background. Use bold hand-drawn outlines, minimal shading, and a slightly exaggerated cartoon-like style while still preserving the person’s recognizable facial features, hairstyle, and expression. Add subtle motion lines and sketch imperfections to mimic real hand-drawn animation. The character should appear as if being drawn on a whiteboard, with a casual, engaging, and educational vibe. Keep the composition minimal, high contrast, and visually clear, with no complex background elements",
+        "is_primary": true,
+        "id": "prm_6ed85e4e72adb41c",
+        "item_id": "itm_7075c4c365dac2a7",
+        "created_at": "2026-05-01T12:38:33+00:00",
+        "updated_at": "2026-05-01T12:38:33+00:00"
+      }
+    ],
+    "prompt_snippet": "Here's how to create your Whiteboard Animation style image.\n\nUse Google Nano Banana Pro or any other AI image generation model.\n\nUse this prompt: clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure ",
+    "first_image": {
+      "id": "img_da059d440a6cb4fb",
+      "item_id": "itm_7075c4c365dac2a7",
+      "original_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+      "thumb_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+      "preview_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 502,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T12:38:33+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T12:38:33+00:00",
+    "created_at": "2026-05-01T12:38:33+00:00",
+    "images": [
+      {
+        "id": "img_da059d440a6cb4fb",
+        "item_id": "itm_7075c4c365dac2a7",
+        "original_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+        "thumb_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+        "preview_path": "demo-data/media/img_da059d440a6cb4fb.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T12:38:33+00:00"
+      },
+      {
+        "id": "img_381cc9a3fba59bb0",
+        "item_id": "itm_7075c4c365dac2a7",
+        "original_path": "demo-data/media/img_381cc9a3fba59bb0.webp",
+        "thumb_path": "demo-data/media/img_381cc9a3fba59bb0.webp",
+        "preview_path": "demo-data/media/img_381cc9a3fba59bb0.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T12:38:33+00:00"
+      },
+      {
+        "id": "img_df38246de6dfacd8",
+        "item_id": "itm_7075c4c365dac2a7",
+        "original_path": "demo-data/media/img_df38246de6dfacd8.webp",
+        "thumb_path": "demo-data/media/img_df38246de6dfacd8.webp",
+        "preview_path": "demo-data/media/img_df38246de6dfacd8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T12:38:33+00:00"
+      },
+      {
+        "id": "img_2437873add412bc4",
+        "item_id": "itm_7075c4c365dac2a7",
+        "original_path": "demo-data/media/img_2437873add412bc4.webp",
+        "thumb_path": "demo-data/media/img_2437873add412bc4.webp",
+        "preview_path": "demo-data/media/img_2437873add412bc4.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-01T12:38:33+00:00"
+      }
+    ],
+    "notes": "Prompt and result images extracted from the linked X note-tweet via public fxtwitter, vxtwitter, and syndication mirrors on 2026-05-01. The source explicitly recommends Google Nano Banana Pro, while noting that other AI image generation models can also use the prompt. This is a reference-image transformation workflow that preserves facial identity while converting the portrait into a clean whiteboard-animation marker sketch. Preserve attribution to Shushant Lakhyani (@shushant_l).",
+    "author": "Shushant Lakhyani (@shushant_l)",
+    "summary": null,
+    "prompt": null,
+    "image_prompt": null
+  },
+  {
+    "id": "itm_85bc837f18384d10",
+    "title": "Epic film-frame illustration formula prompt",
+    "slug": "x-zephyraleigh-2049916220179374125-epic-film-frame-illustration-formula",
+    "model": "Image generation prompt",
+    "source_name": "X / Zephyra Leigh",
+    "source_url": "https://x.com/ZephyraLeigh/status/2049916220179374125?s=20",
+    "cluster": {
+      "id": "clu_9f78aea8623c4aca",
+      "name": "场景与叙事",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_e73ed728ed954690",
+        "name": "cinematic-storytelling",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ca0a781505894ffa",
+        "name": "formula_prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_220ea6f55d2946b7",
+        "name": "illustration-art",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0939053b28184516",
+        "name": "scene-narrative",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A highly detailed illustration of [subject], set in [environment], featuring [key details]. Composition is [camera angle / framing], with [lighting style] lighting. The mood is [mood/emotion]. Rendered in [art style], with intricate textures, depth, and atmospheric elements, ultra high resolution.",
+        "is_primary": true,
+        "id": "prm_c3bf72fc56184e96",
+        "item_id": "itm_85bc837f18384d10",
+        "created_at": "2026-05-01T13:02:00+00:00",
+        "updated_at": "2026-05-01T13:02:00+00:00"
+      }
+    ],
+    "prompt_snippet": "A highly detailed illustration of [subject], set in [environment], featuring [key details]. Composition is [camera angle / framing], with [lighting style] lighting. The mood is [mood/emotion]. Rendered in [art style], with intricate texture",
+    "first_image": {
+      "id": "img_8bcd537a5ca1456b",
+      "item_id": "itm_85bc837f18384d10",
+      "original_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+      "thumb_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+      "preview_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T13:02:00+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T13:02:00+00:00",
+    "created_at": "2026-05-01T13:02:00+00:00",
+    "images": [
+      {
+        "id": "img_8bcd537a5ca1456b",
+        "item_id": "itm_85bc837f18384d10",
+        "original_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+        "thumb_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+        "preview_path": "demo-data/media/img_8bcd537a5ca1456b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T13:02:00+00:00"
+      },
+      {
+        "id": "img_e268fbfc55a344a1",
+        "item_id": "itm_85bc837f18384d10",
+        "original_path": "demo-data/media/img_e268fbfc55a344a1.webp",
+        "thumb_path": "demo-data/media/img_e268fbfc55a344a1.webp",
+        "preview_path": "demo-data/media/img_e268fbfc55a344a1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-01T13:02:00+00:00"
+      },
+      {
+        "id": "img_13a29a6ddd9a4bbf",
+        "item_id": "itm_85bc837f18384d10",
+        "original_path": "demo-data/media/img_13a29a6ddd9a4bbf.webp",
+        "thumb_path": "demo-data/media/img_13a29a6ddd9a4bbf.webp",
+        "preview_path": "demo-data/media/img_13a29a6ddd9a4bbf.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-01T13:02:00+00:00"
+      },
+      {
+        "id": "img_68e83de492064eff",
+        "item_id": "itm_85bc837f18384d10",
+        "original_path": "demo-data/media/img_68e83de492064eff.webp",
+        "thumb_path": "demo-data/media/img_68e83de492064eff.webp",
+        "preview_path": "demo-data/media/img_68e83de492064eff.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-01T13:02:00+00:00"
+      }
+    ],
+    "notes": "Prompt and four result images extracted from the linked X status via public vxtwitter, xstalk, r.jina, and syndication mirrors on 2026-05-01. The main post publishes a reusable formula prompt for creating epic film-like illustrated frames, so this item preserves it as a subject/environment/template structure without inferring any missing text. Preserve source attribution.",
+    "author": "Zephyra Leigh (@ZephyraLeigh)"
+  },
+  {
+    "id": "itm_7fe4779e27ae4384",
+    "title": "Cute crayon-style profile screenshot redraw",
+    "slug": "x-oye-samia-2050130847991488815-crayon-profile-screenshot-redraw",
+    "model": "Gemini Nano Banana",
+    "source_name": "X / Dr. Samia",
+    "source_url": "https://x.com/oye_samia/status/2050130847991488815?s=20",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_6aafecb2bce14bbc",
+        "name": "crayon_texture",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_24d4260705e0486e",
+        "name": "hand_drawn_doodles",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0e332741a8e64232",
+        "name": "image_to_image",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5cc41bba3b744ec8",
+        "name": "social_profile",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ae9a1bbda8f4ec8",
+        "name": "x_import",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Your Title text\n[Arrow pointing to profile screenshot area] Upload a screenshot of your profile\nEdit the provided image and reimagine the entire scene as a crayon-style drawing. Simplify the details and make it look like it was drawn by a 10-year-old child.\nDo not use the original image's colors. Give it the feeling of being drawn on a sheet of white paper, with a very cute, playful, and innocent look. Add charming childlike elements such as flowers, candy, stars, clouds, and other sweet decorative details to enhance the whimsical feel.\nKeep the overall result adorable, colorful, and full of childlike innocence.",
+        "is_primary": true,
+        "id": "prm_079be2faf7304638",
+        "item_id": "itm_7fe4779e27ae4384",
+        "created_at": "2026-05-01T13:18:00+00:00",
+        "updated_at": "2026-05-01T13:18:00+00:00"
+      }
+    ],
+    "prompt_snippet": "Your Title text\n[Arrow pointing to profile screenshot area] Upload a screenshot of your profile\nEdit the provided image and reimagine the entire scene as a crayon-style drawing. Simplify the details and make it look like it was drawn by a 1",
+    "first_image": {
+      "id": "img_7507e546a0624c2d",
+      "item_id": "itm_7fe4779e27ae4384",
+      "original_path": "demo-data/media/img_7507e546a0624c2d.webp",
+      "thumb_path": "demo-data/media/img_7507e546a0624c2d.webp",
+      "preview_path": "demo-data/media/img_7507e546a0624c2d.webp",
+      "remote_url": null,
+      "width": 825,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-01T13:18:00+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-01T13:18:00+00:00",
+    "created_at": "2026-05-01T13:18:00+00:00",
+    "images": [
+      {
+        "id": "img_7507e546a0624c2d",
+        "item_id": "itm_7fe4779e27ae4384",
+        "original_path": "demo-data/media/img_7507e546a0624c2d.webp",
+        "thumb_path": "demo-data/media/img_7507e546a0624c2d.webp",
+        "preview_path": "demo-data/media/img_7507e546a0624c2d.webp",
+        "remote_url": null,
+        "width": 825,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-01T13:18:00+00:00"
+      }
+    ],
+    "notes": "Prompt and result image extracted from the linked X note-tweet via public vxtwitter, xstalk, r.jina, oEmbed, and syndication mirrors on 2026-05-01. The main post explicitly says the example was made with Gemini Nano Banana. This is a profile-screenshot redraw workflow that turns the uploaded social-profile capture into a cute crayon-style childlike illustration without preserving the original colors. Preserve source attribution.",
+    "author": "Dr. Samia (@oye_samia)"
   }
 ]

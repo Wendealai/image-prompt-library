@@ -3,7 +3,7 @@
     "id": "tag_2c1a7c0dbc894c90",
     "name": "3d_cartoon",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_fa04fca8167a4f09",
@@ -45,7 +45,7 @@
     "id": "tag_c40b239edf474df8",
     "name": "animation_frame",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_7cd58eee5bdb433b",
@@ -63,7 +63,7 @@
     "id": "tag_425e3453358d4482",
     "name": "architecture",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_d32646157b254cec",
@@ -129,7 +129,7 @@
     "id": "tag_81ed19a0eead4d12",
     "name": "brand_identity",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_433ba4c7903c455e",
@@ -147,7 +147,7 @@
     "id": "tag_f1b3c640fa5145fd",
     "name": "business_portrait",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_51d407f20fd14617",
@@ -183,7 +183,7 @@
     "id": "tag_7d8a927d3dea44b3",
     "name": "character_design",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_0602150ffd7c4b24",
@@ -195,7 +195,7 @@
     "id": "tag_8b1bbd3be3674c14",
     "name": "characters-anime",
     "kind": "general",
-    "count": 26
+    "count": 27
   },
   {
     "id": "tag_469f61ee75e24b37",
@@ -207,7 +207,7 @@
     "id": "tag_2a2e7e28e8b14db9",
     "name": "chatgpt_image",
     "kind": "general",
-    "count": 4
+    "count": 5
   },
   {
     "id": "tag_422036d71f0d4259",
@@ -219,13 +219,13 @@
     "id": "tag_d551346423b24dd1",
     "name": "chinese_prompt",
     "kind": "general",
-    "count": 3
+    "count": 12
   },
   {
     "id": "tag_e73ed728ed954690",
     "name": "cinematic-storytelling",
     "kind": "general",
-    "count": 16
+    "count": 17
   },
   {
     "id": "tag_b25404c18a3d4c0b",
@@ -285,13 +285,13 @@
     "id": "tag_be147f93f9134457",
     "name": "cover_design",
     "kind": "general",
-    "count": 1
+    "count": 5
   },
   {
     "id": "tag_6aafecb2bce14bbc",
     "name": "crayon_texture",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_5f6998c2b3b24d82",
@@ -351,7 +351,7 @@
     "id": "tag_473e99d6b72f4596",
     "name": "editorial_cover",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_3872d1fdf22b4e3e",
@@ -393,7 +393,7 @@
     "id": "tag_f169b3e409774be5",
     "name": "fashion",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_a8ebb19ff82f495a",
@@ -411,7 +411,7 @@
     "id": "tag_8b19b0dc7f7049ee",
     "name": "fashion_portrait",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_b2fa44f592fa4db7",
@@ -423,7 +423,7 @@
     "id": "tag_ca0a781505894ffa",
     "name": "formula_prompt",
     "kind": "general",
-    "count": 3
+    "count": 6
   },
   {
     "id": "tag_9145e62200134e39",
@@ -441,7 +441,7 @@
     "id": "tag_c7dbc498763b4931",
     "name": "gadgetify",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_46b352b554b042a6",
@@ -453,7 +453,7 @@
     "id": "tag_4b5e832377564cd4",
     "name": "gpt_image_2",
     "kind": "general",
-    "count": 25
+    "count": 40
   },
   {
     "id": "tag_ac321b865cbb447c",
@@ -471,19 +471,19 @@
     "id": "tag_ef98664715ce415b",
     "name": "hand_drawn_annotation",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_24d4260705e0486e",
     "name": "hand_drawn_doodles",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_44e0336c56b044f8",
     "name": "hand_drawn_notes",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_1ae85bfac47b4aa9",
@@ -543,13 +543,13 @@
     "id": "tag_e5c3fe9525bd4daf",
     "name": "identity_preservation",
     "kind": "general",
-    "count": 3
+    "count": 8
   },
   {
     "id": "tag_220ea6f55d2946b7",
     "name": "illustration-art",
     "kind": "general",
-    "count": 22
+    "count": 23
   },
   {
     "id": "tag_cedffd69adc1444e",
@@ -567,19 +567,19 @@
     "id": "tag_0e332741a8e64232",
     "name": "image_to_image",
     "kind": "general",
-    "count": 2
+    "count": 8
   },
   {
     "id": "tag_d7fd92cf4a23468b",
     "name": "image_upscale",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_008372d23259438c",
     "name": "infographic",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_c71b52f0032a43ad",
@@ -633,13 +633,13 @@
     "id": "tag_e088ce583e9b4ac4",
     "name": "layout_design",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_7f6e59638a52460f",
     "name": "logo_design",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_9cefae14f1bb4043",
@@ -663,7 +663,7 @@
     "id": "tag_771ef6199f8d499f",
     "name": "magazine_cover",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_cc89297bbae74038",
@@ -735,7 +735,7 @@
     "id": "tag_d53ba7f9316243c4",
     "name": "nanobanana_pro",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_c8f0fdc54e29419f",
@@ -843,7 +843,7 @@
     "id": "tag_146550c1d33c40f1",
     "name": "photo_annotation",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_66c316a0bf6d41d3",
@@ -855,7 +855,7 @@
     "id": "tag_a44bc4483b284e5f",
     "name": "photo_editing",
     "kind": "general",
-    "count": 3
+    "count": 9
   },
   {
     "id": "tag_ce0a6188b63340c5",
@@ -867,7 +867,7 @@
     "id": "tag_9b73fa2374814d18",
     "name": "photo_restoration",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_af505da42a2040e1",
@@ -891,13 +891,13 @@
     "id": "tag_c4aab56ffa4348a7",
     "name": "portrait",
     "kind": "general",
-    "count": 3
+    "count": 6
   },
   {
     "id": "tag_92242009ca5b4a22",
     "name": "portrait_enhancement",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_1aca6991ea924e01",
@@ -915,13 +915,13 @@
     "id": "tag_e0dfb007b8074ed6",
     "name": "poster_design",
     "kind": "general",
-    "count": 6
+    "count": 14
   },
   {
     "id": "tag_4717188292034092",
     "name": "poster_typography",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_22def4b40f584ed9",
@@ -969,7 +969,7 @@
     "id": "tag_60b488427ee24bf3",
     "name": "profile_avatar",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_463f81dc169e49e8",
@@ -1047,7 +1047,7 @@
     "id": "tag_0939053b28184516",
     "name": "scene-narrative",
     "kind": "general",
-    "count": 9
+    "count": 10
   },
   {
     "id": "tag_d4eeccadb92848c7",
@@ -1059,7 +1059,7 @@
     "id": "tag_f66b2eca2f514cf5",
     "name": "self_media",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_7ffb5e22d6f943e3",
@@ -1071,7 +1071,7 @@
     "id": "tag_430171936cd1490b",
     "name": "social_media_composite",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_b54063bc0f2f4bb1",
@@ -1083,13 +1083,13 @@
     "id": "tag_d9aa5be526334fd0",
     "name": "social_media_visual",
     "kind": "general",
-    "count": 2
+    "count": 4
   },
   {
     "id": "tag_5cc41bba3b744ec8",
     "name": "social_profile",
     "kind": "general",
-    "count": 1
+    "count": 3
   },
   {
     "id": "tag_9e189135b70f42d2",
@@ -1143,7 +1143,7 @@
     "id": "tag_3ba5076f585946e2",
     "name": "stylization",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_016c4d9b5b344630",
@@ -1245,13 +1245,13 @@
     "id": "tag_3883e7e5ddee4584",
     "name": "ui-interface",
     "kind": "general",
-    "count": 51
+    "count": 53
   },
   {
     "id": "tag_aa50cbd63b5d46c7",
     "name": "ui_composite",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_6437592cb62a4e0d",
@@ -1287,7 +1287,7 @@
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
-    "count": 39
+    "count": 65
   },
   {
     "id": "tag_8a3ee6ef5770412d",
