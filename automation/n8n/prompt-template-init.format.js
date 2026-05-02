@@ -201,13 +201,25 @@ if (!markedText) {
 
 const stripSlotMarkup = (input) => input.replace(/\[\[slot[^\]]*\]\](.*?)\[\[\/slot\]\]/gs, '$1');
 const rawText = $item(0).$node['Prepare Prompt Template Init Payload'].json.rawText;
-const removePromptScaffolding = (input) => input
-  .replace(/^<<<IMAGE_PROMPT_BEGIN>>>\n?/i, '')
-  .replace(/\n?<<<IMAGE_PROMPT_END>>>\s*$/i, '')
-  .replace(/\n{2,}Only mark text that appears between those markers\.\s*$/i, '')
-  .replace(/\n{2,}Do not include the markers themselves in markedText\.\s*$/i, '')
-  .replace(/\n{2,}Return JSON only\.\s*$/i, '')
-  .trim();
+const removePromptScaffolding = (input) => {
+  let cleaned = input
+    .replace(/^<<<IMAGE_PROMPT_BEGIN>>>\n?/i, '')
+    .replace(/\n?<<<IMAGE_PROMPT_END>>>\s*$/i, '')
+    .trim();
+
+  const trailingInstructions = [
+    'Only mark text that appears between those markers.',
+    'Do not include the markers themselves in markedText.',
+    'Return JSON only.',
+  ];
+
+  for (const instruction of trailingInstructions) {
+    const escaped = instruction.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleaned = cleaned.replace(new RegExp(`\\n+${escaped}\\s*$`, 'i'), '').trimEnd();
+  }
+
+  return cleaned.trim();
+};
 
 let rendered = stripSlotMarkup(markedText);
 if (rendered !== rawText) {

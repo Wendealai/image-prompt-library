@@ -56,4 +56,5 @@ def test_prompt_template_init_workflow_uses_prompt_markers_and_cleanup_guard():
     assert 'Never create overlapping slots.' in prepare_code
     assert 'temperature: 0' in prepare_code
     assert 'removePromptScaffolding' in format_code
-    assert 'Return JSON only\\.' in format_code
+    assert "const trailingInstructions = [" in format_code
+    assert "cleaned = cleaned.replace(new RegExp(`\\\\n+${escaped}\\\\s*$`, 'i'), '').trimEnd();" in format_code
