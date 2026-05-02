@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Query, Request
+from dataclasses import asdict
 
 from backend.admin_auth import require_admin
 from backend.repositories import ItemRepository, StoredImageInput
@@ -9,6 +10,7 @@ from backend.services.image_generation import ImageGenerationError, ImageGenerat
 from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
 from backend.services.prompt_markup import PromptMarkupError, normalize_slot_values, render_marked_text, validate_marked_prompt
+from backend.services.prompt_source_prepare import PreparedPromptSource, prepare_prompt_template_source
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
 
 router = APIRouter()
@@ -85,27 +87,33 @@ def _selected_source_prompt(repository: ItemRepository, item_id: str, language: 
 def _initialize_prompt_template_bundle(repository: ItemRepository, *, item_id: str, language: str | None):
     workflow_result = None
     source_prompt = None
+    prepared_source_prompt = None
     item = None
     item, source_prompt = _selected_source_prompt(repository, item_id, language)
+    prepared_source_prompt = prepare_prompt_template_source(source_prompt.text)
     workflow_result = initialize_prompt_template(
         item_id=item.id,
         title=item.title,
         model=item.model,
         source_language=source_prompt.language,
-        raw_text=source_prompt.text,
+        raw_text=prepared_source_prompt.normalized_text,
     )
-    slots = validate_marked_prompt(source_prompt.text, workflow_result["marked_text"])
+    slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
+    analysis_notes = workflow_result["analysis_notes"]
+    if prepared_source_prompt.was_extracted:
+        prefix = f"Prompt body extracted via {prepared_source_prompt.strategy} before skeletonization."
+        analysis_notes = f"{prefix} {analysis_notes}".strip() if analysis_notes else prefix
     repository.save_prompt_template(
         item_id=item.id,
         source_language=workflow_result["source_language"],
-        raw_text_snapshot=source_prompt.text,
+        raw_text_snapshot=prepared_source_prompt.normalized_text,
         marked_text=workflow_result["marked_text"],
         slots=slots,
         status="ready",
         analysis_confidence=workflow_result["analysis_confidence"],
-        analysis_notes=workflow_result["analysis_notes"],
+        analysis_notes=analysis_notes,
     )
-    return repository.get_prompt_template_bundle(item.id), item, source_prompt, workflow_result
+    return repository.get_prompt_template_bundle(item.id), item, source_prompt, prepared_source_prompt, workflow_result
 
 
 @router.get("/items/{item_id}/prompt-template", response_model=PromptTemplateBundle)
@@ -178,9 +186,10 @@ def init_prompt_template(request: Request, item_id: str, payload: PromptTemplate
     repository = repo(request)
     workflow_result = None
     source_prompt = None
+    prepared_source_prompt: PreparedPromptSource | None = None
     item = None
     try:
-        bundle, item, source_prompt, workflow_result = _initialize_prompt_template_bundle(repository, item_id=item_id, language=payload.language)
+        bundle, item, source_prompt, prepared_source_prompt, workflow_result = _initialize_prompt_template_bundle(repository, item_id=item_id, language=payload.language)
         return bundle
     except KeyError as exc:
         _not_found(exc)
@@ -196,6 +205,7 @@ def init_prompt_template(request: Request, item_id: str, payload: PromptTemplate
                 "requested_language": payload.language,
                 "item": item.model_dump() if item else None,
                 "source_prompt": source_prompt.model_dump() if source_prompt else None,
+                "prepared_source_prompt": asdict(prepared_source_prompt) if prepared_source_prompt else None,
                 "workflow_result": workflow_result,
             },
         )
@@ -262,9 +272,10 @@ def batch_init_prompt_templates(request: Request, payload: PromptTemplateBatchIn
             continue
         workflow_result = None
         source_prompt = None
+        prepared_source_prompt = None
         item = None
         try:
-            bundle, item, source_prompt, workflow_result = _initialize_prompt_template_bundle(
+            bundle, item, source_prompt, prepared_source_prompt, workflow_result = _initialize_prompt_template_bundle(
                 repository,
                 item_id=candidate.item_id,
                 language=payload.language,
@@ -318,6 +329,7 @@ def batch_init_prompt_templates(request: Request, payload: PromptTemplateBatchIn
                     "requested_language": payload.language,
                     "item": item.model_dump() if item else None,
                     "source_prompt": source_prompt.model_dump() if source_prompt else None,
+                    "prepared_source_prompt": asdict(prepared_source_prompt) if prepared_source_prompt else None,
                     "workflow_result": workflow_result,
                 },
             )

@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
 from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .services.prompt_source_prepare import prepare_prompt_template_source
 from .services.text_normalize import to_traditional
 
 def now() -> str:
@@ -300,14 +301,14 @@ class ItemRepository:
             return template
 
     def _prompt_template_ops_status(self, row) -> str:
-        prompt_text = (row["prompt_text"] or "").strip()
-        if not prompt_text:
+        prepared_prompt = prepare_prompt_template_source(row["prompt_text"] or "")
+        if not prepared_prompt.normalized_text:
             return "no_prompt"
         if not row["template_id"]:
             return "missing"
         template_status = row["template_status"] or "missing"
         raw_snapshot = row["template_raw_text_snapshot"] or ""
-        if template_status == "ready" and raw_snapshot != prompt_text:
+        if template_status == "ready" and raw_snapshot != prepared_prompt.normalized_text:
             return "stale"
         return template_status
 
@@ -318,7 +319,7 @@ class ItemRepository:
             slot_count = len(json.loads(slots_json))
         except json.JSONDecodeError:
             slot_count = 0
-        prompt_excerpt = (row["prompt_text"] or "").strip()[:160] or None
+        prompt_excerpt = prepare_prompt_template_source(row["prompt_text"] or "").normalized_text[:160] or None
         return PromptTemplateOpsItem(
             item_id=row["item_id"],
             title=row["title"],

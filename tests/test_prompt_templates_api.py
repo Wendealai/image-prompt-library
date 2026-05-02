@@ -248,6 +248,47 @@ def test_prompt_template_init_unavailable_returns_424_json(tmp_path: Path, monke
     assert response.json()['detail'] == 'AI prompt workflow is not configured.'
 
 
+def test_prompt_template_init_extracts_wrapped_prompt_body_before_workflow(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    wrapped_prompt = (
+        "Here's how to create your Whiteboard Animation style image.\n\n"
+        "Use Google Nano Banana Pro or any other AI image generation model.\n\n"
+        "Use this prompt: clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    extracted_prompt = (
+        "clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    item_id = repo.create_item(ItemCreate(
+        title='Whiteboard Portrait',
+        prompts=[PromptIn(language='en', text=wrapped_prompt, is_primary=True)],
+    )).id
+    captured: dict[str, str] = {}
+
+    def fake_init_prompt_template(**kwargs):
+        captured['raw_text'] = kwargs['raw_text']
+        return {
+            'marked_text': '[[slot id="style_and_subject" group="theme_core" label="style"]]clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure white background.[[/slot]]',
+            'analysis_confidence': 0.95,
+            'analysis_notes': 'Stable wrapper split.',
+            'source_language': 'en',
+        }
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
+    assert response.status_code == 200
+    payload = response.json()
+    assert captured['raw_text'] == extracted_prompt
+    assert payload['template']['raw_text_snapshot'] == extracted_prompt
+    assert payload['template']['analysis_notes'].startswith('Prompt body extracted via labelled_tail before skeletonization.')
+
+
 def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_path: Path):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
@@ -303,6 +344,49 @@ def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_
     assert filtered.status_code == 200
     filtered_statuses = {item['status'] for item in filtered.json()['items']}
     assert filtered_statuses == {'missing', 'stale'}
+
+
+def test_prompt_template_ops_list_compares_normalized_prompt_body_for_wrapper_cases(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    wrapped_prompt = (
+        "Here's how to create your Whiteboard Animation style image.\n\n"
+        "Use Google Nano Banana Pro or any other AI image generation model.\n\n"
+        "Use this prompt: clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    extracted_prompt = (
+        "clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    item_id = repo.create_item(ItemCreate(
+        title='Whiteboard Portrait',
+        prompts=[PromptIn(language='en', text=wrapped_prompt, is_primary=True)],
+    )).id
+    repo.save_prompt_template(
+        item_id=item_id,
+        source_language='en',
+        raw_text_snapshot=extracted_prompt,
+        marked_text='[[slot id="style_and_subject" group="theme_core" label="style"]]clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure white background.[[/slot]]',
+        slots=[
+            PromptTemplateSlot(
+                id='style_and_subject',
+                group='theme_core',
+                label='style',
+                original_text=extracted_prompt,
+            ),
+        ],
+        analysis_confidence=0.95,
+    )
+
+    _admin_login(client)
+
+    response = client.get('/api/admin/prompt-templates/ops/items?limit=20')
+    assert response.status_code == 200
+    item = next(entry for entry in response.json()['items'] if entry['item_id'] == item_id)
+    assert item['status'] == 'ready'
+    assert item['prompt_excerpt'] == extracted_prompt[:160]
 
 
 def test_prompt_template_batch_init_returns_initialized_failed_and_skipped(tmp_path: Path, monkeypatch):
