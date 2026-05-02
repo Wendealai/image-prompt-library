@@ -587,6 +587,19 @@ export default function AdminApp() {
 
                   {selectedTemplate ? (
                     <div className="template-failure-detail-body">
+                      {selectedTemplate.prompt_source_extracted ? (
+                        <div className="template-source-extraction-card">
+                          <span className="template-ops-meta-pill">{t('templateReviewSourceExtracted')}</span>
+                          {selectedTemplate.prompt_source_strategy ? (
+                            <span>{t('templateReviewSourceStrategy')}: {selectedTemplate.prompt_source_strategy}</span>
+                          ) : null}
+                          {selectedTemplate.prompt_source_original_length && selectedTemplate.prompt_source_prepared_length ? (
+                            <span>
+                              {t('templateReviewSourceLengths')}: {selectedTemplate.prompt_source_original_length} {'->'} {selectedTemplate.prompt_source_prepared_length}
+                            </span>
+                          ) : null}
+                        </div>
+                      ) : null}
                       <div className="template-failure-detail-section">
                         <strong>{t('templateReviewRawPrompt')}</strong>
                         <pre>{selectedTemplate.raw_text_snapshot}</pre>

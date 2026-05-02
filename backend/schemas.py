@@ -33,6 +33,10 @@ class PromptTemplateRecord(BaseModel):
     reviewed_at: Optional[str] = None
     analysis_confidence: Optional[float] = None
     analysis_notes: Optional[str] = None
+    prompt_source_extracted: bool = False
+    prompt_source_strategy: Optional[str] = None
+    prompt_source_original_length: Optional[int] = None
+    prompt_source_prepared_length: Optional[int] = None
     created_at: str
     updated_at: str
 

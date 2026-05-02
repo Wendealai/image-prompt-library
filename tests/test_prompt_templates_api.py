@@ -287,6 +287,10 @@ def test_prompt_template_init_extracts_wrapped_prompt_body_before_workflow(tmp_p
     assert captured['raw_text'] == extracted_prompt
     assert payload['template']['raw_text_snapshot'] == extracted_prompt
     assert payload['template']['analysis_notes'].startswith('Prompt body extracted via labelled_tail before skeletonization.')
+    assert payload['template']['prompt_source_extracted'] is True
+    assert payload['template']['prompt_source_strategy'] == 'labelled_tail'
+    assert payload['template']['prompt_source_original_length'] == len(wrapped_prompt)
+    assert payload['template']['prompt_source_prepared_length'] == len(extracted_prompt)
 
 
 def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_path: Path):

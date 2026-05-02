@@ -1156,3 +1156,20 @@ def test_delete_action_archives_item_and_refreshes_visible_data():
     assert "confirm(t('deleteReferenceConfirm'))" in editor
     assert "api.deleteItem(item.id)" in editor
     assert "danger" in editor
+
+
+def test_admin_review_shows_prompt_source_extraction_metadata():
+    admin = (ROOT / "frontend" / "src" / "AdminApp.tsx").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    assert "prompt_source_extracted: boolean" in types
+    assert "prompt_source_strategy?: string" in types
+    assert "template-source-extraction-card" in admin
+    assert "selectedTemplate.prompt_source_extracted" in admin
+    assert "selectedTemplate.prompt_source_strategy" in admin
+    assert "selectedTemplate.prompt_source_original_length" in admin
+    assert "template-source-extraction-card" in css
+    assert "templateReviewSourceExtracted" in i18n
+    assert "templateReviewSourceStrategy" in i18n
+    assert "templateReviewSourceLengths" in i18n

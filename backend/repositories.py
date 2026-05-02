@@ -190,6 +190,16 @@ class ItemRepository:
         if not row:
             return None
         slots = [PromptTemplateSlot.model_validate(slot) for slot in json.loads(row["slots_json"] or "[]")]
+        prompt_row = conn.execute(
+            """
+            SELECT text FROM prompts
+            WHERE item_id=? AND TRIM(text) <> ''
+            ORDER BY is_primary DESC, created_at
+            LIMIT 1
+            """,
+            (item_id,),
+        ).fetchone()
+        prepared_prompt = prepare_prompt_template_source(prompt_row["text"] if prompt_row else "")
         return PromptTemplateRecord(
             id=row["id"],
             item_id=row["item_id"],
@@ -203,6 +213,10 @@ class ItemRepository:
             reviewed_at=row["reviewed_at"],
             analysis_confidence=row["analysis_confidence"],
             analysis_notes=row["analysis_notes"],
+            prompt_source_extracted=prepared_prompt.was_extracted,
+            prompt_source_strategy=prepared_prompt.strategy if prepared_prompt.was_extracted else None,
+            prompt_source_original_length=len(prepared_prompt.original_text) if prepared_prompt.was_extracted else None,
+            prompt_source_prepared_length=len(prepared_prompt.normalized_text) if prepared_prompt.was_extracted else None,
             created_at=row["created_at"],
             updated_at=row["updated_at"],
         )
