@@ -7,7 +7,7 @@ from backend.main import create_app
 from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, ItemUpdate, PromptIn, PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
 from backend.services.prompt_workflow_failures import record_prompt_workflow_failure
-from backend.services.prompt_workflows import PromptWorkflowError
+from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable
 
 
 MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core" label="主体"]]a tiny ramen bar[[/slot]] with [[slot id="support_props" group="theme_core" label="配套元素"]]paper lanterns and wooden stools[[/slot]].'
@@ -215,7 +215,7 @@ def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path
     _admin_login(client)
 
     response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
-    assert response.status_code == 502
+    assert response.status_code == 424
     failure_id = response.headers.get('x-prompt-workflow-failure-id')
     assert failure_id
     assert failure_id in response.json()['detail']
@@ -228,6 +228,24 @@ def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path
     assert sample['error_class'] == 'PromptWorkflowError'
     assert sample['workflow']['response_status'] == 500
     assert sample['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-init'
+
+
+def test_prompt_template_init_unavailable_returns_424_json(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+
+    def fake_init_prompt_template(**_kwargs):
+        raise PromptWorkflowUnavailable('Missing webhook URL')
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
+    assert response.status_code == 424
+    assert response.json()['detail'] == 'AI prompt workflow is not configured.'
 
 
 def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_path: Path):

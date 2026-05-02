@@ -12,6 +12,7 @@ from backend.services.prompt_markup import PromptMarkupError, normalize_slot_val
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
 
 router = APIRouter()
+UPSTREAM_WORKFLOW_FAILURE_STATUS = 424
 
 
 def repo(request: Request) -> ItemRepository:
@@ -47,14 +48,17 @@ def _record_workflow_failure_sample(request: Request, exc: Exception, *, operati
 
 def _handle_workflow_error(request: Request, exc: Exception, *, operation: str, context: dict | None = None):
     if isinstance(exc, PromptWorkflowUnavailable):
-        raise HTTPException(status_code=503, detail="AI prompt workflow is not configured.") from exc
+        raise HTTPException(
+            status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS,
+            detail="AI prompt workflow is not configured.",
+        ) from exc
     failure_id = _record_workflow_failure_sample(request, exc, operation=operation, context=context)
     headers: dict[str, str] | None = None
     if failure_id:
         headers = {"X-Prompt-Workflow-Failure-Id": failure_id}
     if isinstance(exc, PromptWorkflowError):
         detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
-        raise HTTPException(status_code=502, detail=detail, headers=headers) from exc
+        raise HTTPException(status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS, detail=detail, headers=headers) from exc
     if isinstance(exc, PromptMarkupError):
         detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
         raise HTTPException(status_code=400, detail=detail, headers=headers) from exc
@@ -158,9 +162,12 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
     except KeyError as exc:
         _item_not_found(exc)
     except ImageGenerationUnavailable as exc:
-        raise HTTPException(status_code=503, detail="AI image generation workflow is not configured.") from exc
+        raise HTTPException(
+            status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS,
+            detail="AI image generation workflow is not configured.",
+        ) from exc
     except ImageGenerationError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

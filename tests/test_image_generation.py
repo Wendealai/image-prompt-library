@@ -181,7 +181,7 @@ def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, m
     assert len(payload["images"]) == 1
 
 
-def test_generate_image_endpoint_returns_503_when_workflow_is_unavailable(tmp_path: Path, monkeypatch):
+def test_generate_image_endpoint_returns_424_when_workflow_is_unavailable(tmp_path: Path, monkeypatch):
     library = tmp_path / "library"
     app = create_app(library_path=library)
     client = TestClient(app)
@@ -195,5 +195,5 @@ def test_generate_image_endpoint_returns_503_when_workflow_is_unavailable(tmp_pa
     monkeypatch.setattr("backend.routers.prompt_templates.generate_images_from_prompt", fake_generate_images_from_prompt)
 
     response = client.post(f"/api/items/{item_id}/generate-image", json={"prompt": "A polished chrome poster"})
-    assert response.status_code == 503
+    assert response.status_code == 424
     assert response.json()["detail"] == "AI image generation workflow is not configured."
