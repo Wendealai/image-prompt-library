@@ -13,6 +13,8 @@ TOKEN_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN"
 TOKEN_HEADER_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER"
 TIMEOUT_ENV = "IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS"
 DEFAULT_TOKEN_HEADER = "X-Image-Prompt-Workflow-Token"
+INIT_RETRYABLE_STATUS_CODES = {500, 502, 503, 504}
+INIT_MAX_ATTEMPTS = 2
 
 
 class PromptWorkflowUnavailable(RuntimeError):
@@ -110,6 +112,13 @@ def _post_json(url: str, payload: dict[str, Any], *, operation: str) -> dict[str
     return payload
 
 
+def _should_retry_template_init(exc: PromptWorkflowError) -> bool:
+    if exc.response_status in INIT_RETRYABLE_STATUS_CODES:
+        return True
+    detail = f"{exc} {exc.response_text or ''}".lower()
+    return "markedtext does not render back to the original prompt exactly" in detail
+
+
 def initialize_prompt_template(*, item_id: str, title: str, model: str, source_language: str, raw_text: str) -> dict[str, Any]:
     payload = {
         "item": {
@@ -122,16 +131,29 @@ def initialize_prompt_template(*, item_id: str, title: str, model: str, source_l
             "text": raw_text,
         },
     }
-    response = _post_json(_workflow_url(INIT_URL_ENV), payload, operation="template_init")
-    marked_text = response.get("markedText") or response.get("marked_text")
-    if not isinstance(marked_text, str) or not marked_text.strip():
-        raise PromptWorkflowError("Init workflow must return a non-empty markedText string.")
-    return {
-        "marked_text": marked_text,
-        "analysis_confidence": response.get("confidence") or response.get("analysisConfidence"),
-        "analysis_notes": response.get("notes") or response.get("analysisNotes"),
-        "source_language": response.get("sourceLanguage") or response.get("source_language") or source_language,
-    }
+    url = _workflow_url(INIT_URL_ENV)
+
+    last_error: PromptWorkflowError | None = None
+    for attempt in range(1, INIT_MAX_ATTEMPTS + 1):
+        try:
+            response = _post_json(url, payload, operation="template_init")
+            marked_text = response.get("markedText") or response.get("marked_text")
+            if not isinstance(marked_text, str) or not marked_text.strip():
+                raise PromptWorkflowError("Init workflow must return a non-empty markedText string.")
+            return {
+                "marked_text": marked_text,
+                "analysis_confidence": response.get("confidence") or response.get("analysisConfidence"),
+                "analysis_notes": response.get("notes") or response.get("analysisNotes"),
+                "source_language": response.get("sourceLanguage") or response.get("source_language") or source_language,
+            }
+        except PromptWorkflowError as exc:
+            last_error = exc
+            if attempt >= INIT_MAX_ATTEMPTS or not _should_retry_template_init(exc):
+                raise
+
+    if last_error is not None:
+        raise last_error
+    raise PromptWorkflowError("Init workflow failed before producing a result.")
 
 
 def generate_prompt_variant(*, template: PromptTemplateRecord, theme_keyword: str, previous_variants: list[PromptGenerationVariantRecord]) -> dict[str, Any]:
