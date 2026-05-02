@@ -1,4 +1,4 @@
-import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, TagRecord, UploadImageRole } from '../types';
+import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -78,6 +78,10 @@ function demoAiUnavailable(): Promise<never> {
   return Promise.reject(new Error('AI prompt rewriting is unavailable in the online sandbox. Run Image Prompt Library locally with your own backend and n8n workflow.'));
 }
 
+function demoImageGenerationUnavailable(): Promise<never> {
+  return Promise.reject(new Error('Direct image generation is unavailable in the online sandbox. Run Image Prompt Library locally with your Nanobanana image API token.'));
+}
+
 export const mediaUrl = (path?: string) => {
   if (!path) return '';
   if (/^https?:\/\//i.test(path)) return path;
@@ -105,6 +109,7 @@ export const api = isDemoMode ? {
   generatePromptVariant: (_templateId: string, _themeKeyword: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   rerollPromptVariant: (_sessionId: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
+  generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
   clusters: () => demoJson<ClusterRecord[]>('demo-data/clusters.json'),
   tags: () => demoJson<TagRecord[]>('demo-data/tags.json'),
 } : {
@@ -125,6 +130,7 @@ export const api = isDemoMode ? {
   generatePromptVariant: (templateId: string, themeKeyword: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/templates/${templateId}/generate`, { method: 'POST', body: JSON.stringify({ theme_keyword: themeKeyword, rejected_variant_ids: rejectedVariantIds }) }),
   rerollPromptVariant: (sessionId: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/generation-sessions/${sessionId}/reroll`, { method: 'POST', body: JSON.stringify({ rejected_variant_ids: rejectedVariantIds }) }),
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),
+  generateItemImage: (itemId: string, payload: NanobananaItemImageGenerationRequest = {}) => json<NanobananaItemImageGenerationResult>(`/api/items/${itemId}/nanobanana/images`, { method: 'POST', body: JSON.stringify(payload) }),
   clusters: () => json<ClusterRecord[]>('/api/clusters'),
   tags: () => json<TagRecord[]>('/api/tags'),
 };

@@ -373,8 +373,8 @@ def test_demo_bundle_preserves_xiaoxiaodong_miniature_building_prompt_pair():
     assert "微缩模型等距建筑海报柔和文字版" in items_text
     assert "微缩模型等距建筑海报鲜明无字版" in items_text
     assert "Article title: GPT2: 微缩模型 x 万物可转 x 提示词 x 有韦斯安德森的味道。" in items_text
-    assert 'sample theme "星巴克咖啡"' in items_text
-    assert 'sample theme "茶饮悦色"' in items_text
+    assert 'sample theme \\"星巴克咖啡\\"' in items_text
+    assert 'sample theme \\"茶饮悦色\\"' in items_text
     assert "demo-data/media/img_0eb6f8a452028fba.webp" in items_text
     assert (demo_root / "media" / "img_0eb6f8a452028fba.webp").exists()
 
@@ -386,7 +386,7 @@ def test_demo_bundle_preserves_rovvmut_north_face_brand_poster():
     assert "x-rovvmut-2050168053523157062-north-face-brand-concept-poster" in items_text
     assert "The North Face cinematic brand concept poster" in items_text
     assert "made with GPT Image 2 on ChatGPT" in items_text
-    assert 'A high-fashion, cinematic brand concept poster for "The North Face."' in items_text
+    assert 'A high-fashion, cinematic brand concept poster for \\"The North Face.\\"' in items_text
     assert "demo-data/media/img_06f766130ada4daa.webp" in items_text
     assert (demo_root / "media" / "img_06f766130ada4daa.webp").exists()
 

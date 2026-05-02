@@ -218,6 +218,28 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert ".prompt-remix-segment.is-changed{" in compact_css
 
 
+def test_detail_modal_exposes_direct_nanobanana_image_generation():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+
+    assert "ImagePlus" in detail
+    assert "const handleGenerateImage = async () => {" in detail
+    assert "api.generateItemImage(item.id, { promptText, promptLanguage: lang })" in detail
+    assert "setImageGenerationFeedback" in detail
+    assert "prompt-generate-image-icon" in detail
+    assert "prompt-image-feedback" in detail
+    assert "generateItemImage: (_itemId: string" in client
+    assert "generateItemImage: (itemId: string" in client
+    assert "NanobananaItemImageGenerationRequest" in types
+    assert "NanobananaItemImageGenerationResult" in types
+    assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
+    assert ".prompt-generate-image-icon" in css
+    assert ".prompt-image-feedback" in css
+
+
 def test_detail_modal_calls_all_hooks_before_closed_state_return():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     assert detail.index("useEffect(() => {\n    imageViewerScaleRef.current = imageViewerScale;") < detail.index("if (!id) return null;")

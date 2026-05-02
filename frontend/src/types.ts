@@ -13,6 +13,10 @@ export interface PromptTemplateBulkInitRequest { mode?: PromptTemplateBulkInitMo
 export interface PromptTemplateBulkInitItemResult { item_id: string; title: string; status: string; template_id?: string; slot_count: number; detail?: string }
 export interface PromptTemplateBulkInitResult { mode: PromptTemplateBulkInitMode; dry_run: boolean; total_candidates: number; processed_count: number; skipped_count: number; failed_count: number; results: PromptTemplateBulkInitItemResult[] }
 export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; remote_url?: string; width?: number; height?: number; role?: UploadImageRole }
+export interface NanobananaGeneration { resolution?: string; aspectRatio?: string; imageCount?: number; quality?: 'low' | 'medium' | 'high'; outputFormat?: 'png' | 'jpeg' | 'webp'; strength?: number }
+export interface NanobananaSourceItem { label?: string; role?: string; note?: string; imageUrl: string; mimeType?: string }
+export interface NanobananaItemImageGenerationRequest { promptText?: string; promptLanguage?: string; stylePack?: string; generation?: NanobananaGeneration; sourceItems?: NanobananaSourceItem[]; idempotencyKey?: string; wait?: boolean; timeoutMs?: number; pollIntervalMs?: number }
+export interface NanobananaItemImageGenerationResult { create: Record<string, unknown>; terminal?: Record<string, unknown> | null; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }
 export interface AppConfig { version: string; library_path: string; database_path: string; preferred_prompt_language?: string }

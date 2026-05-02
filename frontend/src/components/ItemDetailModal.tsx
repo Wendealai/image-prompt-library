@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, ExternalLink, Heart, Minus, Pencil, Plus, X } from 'lucide-react';
+import { Check, Copy, ExternalLink, Heart, ImagePlus, Minus, Pencil, Plus, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
 import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
@@ -50,6 +50,21 @@ function resolvePromptRecord<T extends { language: string; text: string }>(
     || usable.find(prompt => prompt.language === preferredLanguage)
     || usable.find(prompt => prompt.language === 'en')
     || usable[0];
+}
+
+function extractErrorDetail(error: unknown): string {
+  if (!(error instanceof Error)) return '';
+  let message = error.message.trim();
+  if (!message) return '';
+  try {
+    const parsed = JSON.parse(message);
+    if (parsed && typeof parsed === 'object' && 'detail' in parsed && parsed.detail) {
+      message = String(parsed.detail).trim();
+    }
+  } catch {
+    // Keep raw error text when the payload is not JSON.
+  }
+  return message;
 }
 
 function InlineEditableField({
@@ -186,6 +201,8 @@ export default function ItemDetailModal({
   const [selectedImageIdentity, setSelectedImageIdentity] = useState<string>();
   const [imageViewerOpen, setImageViewerOpen] = useState(false);
   const [imageViewerScale, setImageViewerScale] = useState(1);
+  const [generatingImage, setGeneratingImage] = useState(false);
+  const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
   const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
@@ -255,6 +272,27 @@ export default function ItemDetailModal({
   const handleCopyPrompt = async (text = copyText) => {
     const copied = await copyTextToClipboard(text);
     onCopyPrompt(copied);
+  };
+  const handleGenerateImage = async () => {
+    if (!item || generatingImage) return;
+    const promptText = (prompt?.text || resolvedPrompt?.text || copyText).trim();
+    if (!promptText) {
+      setImageGenerationFeedback({ tone: 'error', message: t('imageGenerationNoPrompt') });
+      return;
+    }
+    setGeneratingImage(true);
+    setImageGenerationFeedback(null);
+    try {
+      const result = await api.generateItemImage(item.id, { promptText, promptLanguage: lang });
+      const updated = await api.item(item.id);
+      setItem(updated);
+      onChanged();
+      setImageGenerationFeedback({ tone: 'success', message: result.stored_images.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
+    } catch (error) {
+      setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
+    } finally {
+      setGeneratingImage(false);
+    }
   };
   const commitPrompt = (language: string, text: string) => {
     if (!item) return;
@@ -475,6 +513,9 @@ export default function ItemDetailModal({
                             })}
                           </div>
                           <span className="prompt-block-actions">
+                            <button type="button" className="prompt-generate-image-icon" onClick={handleGenerateImage} aria-label={t('generateImage')} title={t('generateImage')} disabled={generatingImage || !(prompt?.text || resolvedPrompt?.text || copyText).trim()}>
+                              <ImagePlus size={15} />
+                            </button>
                             <button type="button" className="prompt-copy-icon" onClick={() => handleCopyPrompt(prompt?.text || '')} aria-label={t('copyPrompt')} disabled={!prompt?.text}>
                               <Copy size={15} />
                             </button>
@@ -508,6 +549,9 @@ export default function ItemDetailModal({
                             </div>
                           )}
                         </div>
+                        {(generatingImage || imageGenerationFeedback) && (
+                          <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
+                        )}
                       </section>
                     );
                   })()}
