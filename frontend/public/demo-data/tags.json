@@ -3,7 +3,7 @@
     "id": "tag_2c1a7c0dbc894c90",
     "name": "3d_cartoon",
     "kind": "general",
-    "count": 3
+    "count": 5
   },
   {
     "id": "tag_fa04fca8167a4f09",
@@ -18,6 +18,12 @@
     "count": 1
   },
   {
+    "id": "tag_2be699e882268404",
+    "name": "3d_render",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_3063b92d2e0e4893",
     "name": "abstract_line_art",
     "kind": "general",
@@ -27,11 +33,17 @@
     "id": "tag_d90c48e122c541d3",
     "name": "advertising",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_daf43bdbfdae411f",
     "name": "aging_effect",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6c711ca4b1dda9d8",
+    "name": "ai_agency",
     "kind": "general",
     "count": 1
   },
@@ -42,16 +54,34 @@
     "count": 1
   },
   {
+    "id": "tag_a6a5b795304c85af",
+    "name": "anatomy",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_3a4a96a9a126eaf3",
+    "name": "animal_match",
+    "kind": "general",
+    "count": 2
+  },
+  {
     "id": "tag_c40b239edf474df8",
     "name": "animation_frame",
     "kind": "general",
     "count": 2
   },
   {
+    "id": "tag_7a15e5231db7f723",
+    "name": "anime_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_7cd58eee5bdb433b",
     "name": "annotation",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_4d71d2c944224197",
@@ -63,13 +93,13 @@
     "id": "tag_425e3453358d4482",
     "name": "architecture",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_d32646157b254cec",
     "name": "architecture-interiors",
     "kind": "general",
-    "count": 7
+    "count": 8
   },
   {
     "id": "tag_403b325dcf7041cd",
@@ -102,6 +132,18 @@
     "count": 52
   },
   {
+    "id": "tag_0f1792a301061d30",
+    "name": "awwwards",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_41e3c419d2f20da9",
+    "name": "banana_pro",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_b68f2f494f3d47c5",
     "name": "biography_visual",
     "kind": "general",
@@ -110,6 +152,12 @@
   {
     "id": "tag_31807869305749a6",
     "name": "blueprint",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_e6b919092918e3bb",
+    "name": "body_part",
     "kind": "general",
     "count": 1
   },
@@ -120,22 +168,22 @@
     "count": 1
   },
   {
-    "id": "tag_cd8d49414f60490c",
-    "name": "brand-logo",
-    "kind": "general",
-    "count": 12
-  },
-  {
     "id": "tag_81ed19a0eead4d12",
     "name": "brand_identity",
     "kind": "general",
-    "count": 4
+    "count": 5
   },
   {
     "id": "tag_433ba4c7903c455e",
     "name": "brand_store",
     "kind": "general",
     "count": 1
+  },
+  {
+    "id": "tag_cd8d49414f60490c",
+    "name": "brand-logo",
+    "kind": "general",
+    "count": 13
   },
   {
     "id": "tag_f5244cac465d42eb",
@@ -162,8 +210,20 @@
     "count": 1
   },
   {
+    "id": "tag_5cc353faf6ebc452",
+    "name": "calligraphy_system",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_873c4977db48481c",
     "name": "camera_motion",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2879ced7e4e4cacf",
+    "name": "card_design",
     "kind": "general",
     "count": 1
   },
@@ -183,19 +243,19 @@
     "id": "tag_7d8a927d3dea44b3",
     "name": "character_design",
     "kind": "general",
-    "count": 4
+    "count": 6
   },
   {
     "id": "tag_0602150ffd7c4b24",
     "name": "characters",
     "kind": "general",
-    "count": 8
+    "count": 10
   },
   {
     "id": "tag_8b1bbd3be3674c14",
     "name": "characters-anime",
     "kind": "general",
-    "count": 27
+    "count": 28
   },
   {
     "id": "tag_469f61ee75e24b37",
@@ -219,7 +279,19 @@
     "id": "tag_d551346423b24dd1",
     "name": "chinese_prompt",
     "kind": "general",
-    "count": 12
+    "count": 20
+  },
+  {
+    "id": "tag_ca19912a677b4676",
+    "name": "chinese_typography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b25404c18a3d4c0b",
+    "name": "cinematic_editing",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_e73ed728ed954690",
@@ -228,8 +300,8 @@
     "count": 17
   },
   {
-    "id": "tag_b25404c18a3d4c0b",
-    "name": "cinematic_editing",
+    "id": "tag_6def665438af0535",
+    "name": "city_poster",
     "kind": "general",
     "count": 1
   },
@@ -242,6 +314,12 @@
   {
     "id": "tag_a6d2beff55074e29",
     "name": "close_up_photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cc5d15bbecfad6f4",
+    "name": "collectible",
     "kind": "general",
     "count": 1
   },
@@ -270,6 +348,12 @@
     "count": 1
   },
   {
+    "id": "tag_4d10f97e90983104",
+    "name": "construction_video",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_06eef2deb94d4977",
     "name": "context_aware_text",
     "kind": "general",
@@ -279,7 +363,7 @@
     "id": "tag_dde29302ecbb41d3",
     "name": "country_variable",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_be147f93f9134457",
@@ -294,8 +378,20 @@
     "count": 2
   },
   {
+    "id": "tag_15986e2e30cec1cd",
+    "name": "creative_ai",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_5f6998c2b3b24d82",
     "name": "creator_branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_22f0b94b1a616d29",
+    "name": "creature_design",
     "kind": "general",
     "count": 1
   },
@@ -312,10 +408,22 @@
     "count": 1
   },
   {
+    "id": "tag_ed8fc37f66a8cb6f",
+    "name": "culture_icons",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8a1363d2ce5a4296",
     "name": "cutaway",
     "kind": "general",
     "count": 2
+  },
+  {
+    "id": "tag_c62a1190b91bc6d5",
+    "name": "cute",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_4989621f47594070",
@@ -326,6 +434,12 @@
   {
     "id": "tag_fad340e8387a487b",
     "name": "dk_style",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_86dc635b4d664066",
+    "name": "domoai",
     "kind": "general",
     "count": 1
   },
@@ -369,13 +483,19 @@
     "id": "tag_2f0433017f0d46f7",
     "name": "education",
     "kind": "general",
-    "count": 1
+    "count": 4
   },
   {
     "id": "tag_47db5c80ce874fab",
     "name": "education-infographics",
     "kind": "general",
     "count": 16
+  },
+  {
+    "id": "tag_2677bc5c26e80c21",
+    "name": "encyclopedia",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_a2b1e60a6bf44c84",
@@ -396,12 +516,6 @@
     "count": 3
   },
   {
-    "id": "tag_a8ebb19ff82f495a",
-    "name": "fashion-lifestyle",
-    "kind": "general",
-    "count": 9
-  },
-  {
     "id": "tag_41137f2cc7fd4bf4",
     "name": "fashion_editorial",
     "kind": "general",
@@ -412,6 +526,12 @@
     "name": "fashion_portrait",
     "kind": "general",
     "count": 4
+  },
+  {
+    "id": "tag_a8ebb19ff82f495a",
+    "name": "fashion-lifestyle",
+    "kind": "general",
+    "count": 9
   },
   {
     "id": "tag_b2fa44f592fa4db7",
@@ -430,6 +550,12 @@
     "name": "full_catalog",
     "kind": "general",
     "count": 162
+  },
+  {
+    "id": "tag_bef54ef9436b0473",
+    "name": "fun_test",
+    "kind": "general",
+    "count": 2
   },
   {
     "id": "tag_e76726364959465f",
@@ -453,7 +579,7 @@
     "id": "tag_4b5e832377564cd4",
     "name": "gpt_image_2",
     "kind": "general",
-    "count": 40
+    "count": 52
   },
   {
     "id": "tag_ac321b865cbb447c",
@@ -501,7 +627,7 @@
     "id": "tag_cbafe3c562e64d3f",
     "name": "headshot",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_98ea93f829dc4045",
@@ -522,20 +648,32 @@
     "count": 1
   },
   {
-    "id": "tag_463d306847434c56",
-    "name": "historical-classical",
-    "kind": "general",
-    "count": 4
-  },
-  {
     "id": "tag_11f8992f7b214c36",
     "name": "historical_visualization",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_463d306847434c56",
+    "name": "historical-classical",
+    "kind": "general",
+    "count": 4
+  },
+  {
     "id": "tag_753aa1728044497d",
     "name": "hooeem",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3502c24f7112a14c",
+    "name": "how_to",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d53b257ba8da2741",
+    "name": "ice",
     "kind": "general",
     "count": 1
   },
@@ -546,28 +684,34 @@
     "count": 8
   },
   {
-    "id": "tag_220ea6f55d2946b7",
-    "name": "illustration-art",
-    "kind": "general",
-    "count": 23
-  },
-  {
     "id": "tag_cedffd69adc1444e",
     "name": "illustration_fusion",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_220ea6f55d2946b7",
+    "name": "illustration-art",
+    "kind": "general",
+    "count": 25
+  },
+  {
     "id": "tag_2f22d8a49db34610",
     "name": "image_editing",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_0e332741a8e64232",
     "name": "image_to_image",
     "kind": "general",
-    "count": 8
+    "count": 11
+  },
+  {
+    "id": "tag_ec5f47f0845e2a8d",
+    "name": "image_to_video",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_d7fd92cf4a23468b",
@@ -579,7 +723,7 @@
     "id": "tag_008372d23259438c",
     "name": "infographic",
     "kind": "general",
-    "count": 3
+    "count": 6
   },
   {
     "id": "tag_c71b52f0032a43ad",
@@ -636,10 +780,16 @@
     "count": 2
   },
   {
+    "id": "tag_7d75142a0a0afacb",
+    "name": "leonardo_ai",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_7f6e59638a52460f",
     "name": "logo_design",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_9cefae14f1bb4043",
@@ -660,10 +810,22 @@
     "count": 1
   },
   {
+    "id": "tag_092fdbeaa351e75e",
+    "name": "macro_photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_771ef6199f8d499f",
     "name": "magazine_cover",
     "kind": "general",
     "count": 2
+  },
+  {
+    "id": "tag_bd5156be7e4c7d6f",
+    "name": "map_poster",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_cc89297bbae74038",
@@ -705,7 +867,7 @@
     "id": "tag_94beaddcdb40493f",
     "name": "minimalist_layout",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_0034e49bb80d49a9",
@@ -740,6 +902,12 @@
   {
     "id": "tag_c8f0fdc54e29419f",
     "name": "narrative_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_652482bccaebf24a",
+    "name": "natural_history",
     "kind": "general",
     "count": 1
   },
@@ -816,6 +984,12 @@
     "count": 1
   },
   {
+    "id": "tag_6bc5d9e73766c792",
+    "name": "personal_branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_dc1b4af97bb944d0",
     "name": "personal_shopper",
     "kind": "general",
@@ -832,12 +1006,6 @@
     "name": "pet_portrait",
     "kind": "general",
     "count": 1
-  },
-  {
-    "id": "tag_5ad60b83265b441e",
-    "name": "photo-real-world",
-    "kind": "general",
-    "count": 10
   },
   {
     "id": "tag_146550c1d33c40f1",
@@ -870,6 +1038,12 @@
     "count": 2
   },
   {
+    "id": "tag_5ad60b83265b441e",
+    "name": "photo-real-world",
+    "kind": "general",
+    "count": 13
+  },
+  {
     "id": "tag_af505da42a2040e1",
     "name": "photography-realism",
     "kind": "general",
@@ -888,10 +1062,16 @@
     "count": 1
   },
   {
+    "id": "tag_a93db4b0360cc635",
+    "name": "plush",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_c4aab56ffa4348a7",
     "name": "portrait",
     "kind": "general",
-    "count": 6
+    "count": 9
   },
   {
     "id": "tag_92242009ca5b4a22",
@@ -906,34 +1086,28 @@
     "count": 1
   },
   {
+    "id": "tag_e0dfb007b8074ed6",
+    "name": "poster_design",
+    "kind": "general",
+    "count": 20
+  },
+  {
+    "id": "tag_4717188292034092",
+    "name": "poster_typography",
+    "kind": "general",
+    "count": 5
+  },
+  {
     "id": "tag_b18cd35e78d0425b",
     "name": "poster-typography",
     "kind": "general",
     "count": 27
   },
   {
-    "id": "tag_e0dfb007b8074ed6",
-    "name": "poster_design",
-    "kind": "general",
-    "count": 14
-  },
-  {
-    "id": "tag_4717188292034092",
-    "name": "poster_typography",
-    "kind": "general",
-    "count": 3
-  },
-  {
     "id": "tag_22def4b40f584ed9",
     "name": "premium",
     "kind": "general",
     "count": 1
-  },
-  {
-    "id": "tag_9b62e240ca754fd2",
-    "name": "product-ecommerce",
-    "kind": "general",
-    "count": 9
   },
   {
     "id": "tag_a9f2188881b84a45",
@@ -954,16 +1128,28 @@
     "count": 1
   },
   {
+    "id": "tag_f848c606d007470d",
+    "name": "product_photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_680b66d289d64696",
     "name": "product_visual",
     "kind": "general",
     "count": 1
   },
   {
+    "id": "tag_9b62e240ca754fd2",
+    "name": "product-ecommerce",
+    "kind": "general",
+    "count": 9
+  },
+  {
     "id": "tag_95d1deaf1c65420c",
     "name": "professional",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_60b488427ee24bf3",
@@ -980,6 +1166,12 @@
   {
     "id": "tag_6b867c19329c493a",
     "name": "pseudo_code",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0fb348ebf9e0fa2a",
+    "name": "qr_code_design",
     "kind": "general",
     "count": 1
   },
@@ -1050,16 +1242,28 @@
     "count": 10
   },
   {
+    "id": "tag_fcc86851b5c08ac6",
+    "name": "section_design",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_d4eeccadb92848c7",
     "name": "seedance_2",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_f66b2eca2f514cf5",
     "name": "self_media",
     "kind": "general",
     "count": 4
+  },
+  {
+    "id": "tag_c8344010581f77c6",
+    "name": "signature_design",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_7ffb5e22d6f943e3",
@@ -1092,6 +1296,12 @@
     "count": 3
   },
   {
+    "id": "tag_d633be731dbb9b98",
+    "name": "socialsight",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_9e189135b70f42d2",
     "name": "soft_storytelling",
     "kind": "general",
@@ -1116,6 +1326,12 @@
     "count": 1
   },
   {
+    "id": "tag_39760c3210ed7d5c",
+    "name": "sports_advertising",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_78efa47ceb05491c",
     "name": "sports_sequence",
     "kind": "general",
@@ -1131,13 +1347,13 @@
     "id": "tag_674ac97ee0ca4179",
     "name": "sticker_pack",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_0747a8773e284e04",
     "name": "storyboard",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_3ba5076f585946e2",
@@ -1188,16 +1404,10 @@
     "count": 1
   },
   {
-    "id": "tag_1cb228de13924cce",
-    "name": "technical-research",
-    "kind": "general",
-    "count": 31
-  },
-  {
     "id": "tag_7388911a20a449d7",
     "name": "technical_diagram",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_ccc31a78dc7741bb",
@@ -1206,8 +1416,20 @@
     "count": 1
   },
   {
+    "id": "tag_1cb228de13924cce",
+    "name": "technical-research",
+    "kind": "general",
+    "count": 31
+  },
+  {
     "id": "tag_09f1a73b4a3f4022",
     "name": "television",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a42539ea0570c590",
+    "name": "toy_design",
     "kind": "general",
     "count": 1
   },
@@ -1224,6 +1446,12 @@
     "count": 1
   },
   {
+    "id": "tag_cb7cc48db9c5e2c0",
+    "name": "travel_map",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_d8e6633dcd8c4ff5",
     "name": "twitter_x_frame",
     "kind": "general",
@@ -1236,28 +1464,28 @@
     "count": 1
   },
   {
-    "id": "tag_1fbf1cb8c4144aac",
-    "name": "ui-brand-product",
-    "kind": "general",
-    "count": 8
-  },
-  {
-    "id": "tag_3883e7e5ddee4584",
-    "name": "ui-interface",
-    "kind": "general",
-    "count": 53
-  },
-  {
     "id": "tag_aa50cbd63b5d46c7",
     "name": "ui_composite",
     "kind": "general",
     "count": 4
   },
   {
+    "id": "tag_1fbf1cb8c4144aac",
+    "name": "ui-brand-product",
+    "kind": "general",
+    "count": 9
+  },
+  {
+    "id": "tag_3883e7e5ddee4584",
+    "name": "ui-interface",
+    "kind": "general",
+    "count": 54
+  },
+  {
     "id": "tag_6437592cb62a4e0d",
     "name": "video_prompt",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_6af17cf8f1ce4122",
@@ -1268,6 +1496,12 @@
   {
     "id": "tag_b2b9b28fecd2499b",
     "name": "watercolor_poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_ce9d52fcacaad9f2",
+    "name": "website_design",
     "kind": "general",
     "count": 1
   },
@@ -1287,12 +1521,12 @@
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
-    "count": 65
+    "count": 81
   },
   {
     "id": "tag_8a3ee6ef5770412d",
     "name": "xiaohongshu",
     "kind": "general",
-    "count": 1
+    "count": 2
   }
 ]

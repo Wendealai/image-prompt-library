@@ -459,3 +459,267 @@ def test_demo_bundle_preserves_samia_crayon_profile_redraw():
     assert "full of childlike innocence" in items_text
     assert "demo-data/media/img_7507e546a0624c2d.webp" in items_text
     assert (demo_root / "media" / "img_7507e546a0624c2d.webp").exists()
+
+
+def test_demo_bundle_preserves_xiaoxiaodong_qr_visual_design_prompt_safely():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-xiaoxiaodong01-2050758676181622946-qr-code-visual-design" in items_text
+    assert "GPT2: 二维码美化 x 设计感趣味感 x 搞自媒体、搞广告、学生党都笑了" in items_text
+    assert "二维码是功能核心，必须保持可扫描" in items_text
+    assert "用户最后输入的主题、文案或风格要求是" in items_text
+    assert "deliberately non-scannable neutral preview" in items_text
+    assert "demo-data/media/img_f54b86630dde7773.webp" in items_text
+    assert (demo_root / "media" / "img_f54b86630dde7773.webp").exists()
+
+
+def test_demo_bundle_preserves_vigo_sports_neon_type_poster_formula():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-vigocreativeai-2050822964975984748-sports-wide-angle-neon-type-poster" in items_text
+    assert "真实运动广角荧光巨字广告海报模板" in items_text
+    assert "real sports photography" in items_text
+    assert "extreme close-distance wide-angle perspective" in items_text
+    assert "giant fluorescent yellow typography" in items_text
+    assert "Derived reusable template from the linked X status" in items_text
+    assert "demo-data/media/img_7ee681d49678d0bb.webp" in items_text
+    assert "demo-data/media/img_621d74ddc919bfff.webp" in items_text
+    assert "demo-data/media/img_6a48a44df6dfe2e7.webp" in items_text
+    assert "demo-data/media/img_8262292bf52c7499.webp" in items_text
+    assert (demo_root / "media" / "img_7ee681d49678d0bb.webp").exists()
+    assert (demo_root / "media" / "img_621d74ddc919bfff.webp").exists()
+    assert (demo_root / "media" / "img_6a48a44df6dfe2e7.webp").exists()
+    assert (demo_root / "media" / "img_8262292bf52c7499.webp").exists()
+
+
+def test_demo_bundle_preserves_xiaoxiaodong_lookalike_analysis_prompt_pair():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-xiaoxiaodong01-2050809482461225398-dog-breed-lookalike-analysis-card" in items_text
+    assert "x-xiaoxiaodong01-2050809482461225398-species-lookalike-analysis-card" in items_text
+    assert "人像像什么狗狗品种分析对照图" in items_text
+    assert "人像像什么生物物种分析对照图" in items_text
+    assert "人像 vs 狗狗品种推测" in items_text
+    assert "人像 vs 生物物种推测" in items_text
+    assert "This item preserves the article's dog-breed version prompt" in items_text
+    assert "This item preserves the article's all-species version prompt" in items_text
+    assert "demo-data/media/img_342634c9c87a1954.webp" in items_text
+    assert "demo-data/media/img_e1e2fc406182f49d.webp" in items_text
+    assert (demo_root / "media" / "img_342634c9c87a1954.webp").exists()
+    assert (demo_root / "media" / "img_e1e2fc406182f49d.webp").exists()
+
+
+def test_demo_bundle_preserves_aleena_minimalist_country_sticker_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-aleenaamiir-2050591425746890778-minimalist-countries-sticker-collection" in items_text
+    assert "Minimalist countries sticker collection" in items_text
+    assert "Generate a minimalist sticker collection inspired by [COUNTRY]" in items_text
+    assert "key landmarks, famous dishes, and cultural icons" in items_text
+    assert "[COUNTY] is normalized to [COUNTRY]" in items_text
+    assert "demo-data/media/img_22df2179556dad5a.webp" in items_text
+    assert "demo-data/media/img_f62076d6e49da99a.webp" in items_text
+    assert "demo-data/media/img_0d9e7d9f7420ad8a.webp" in items_text
+    assert "demo-data/media/img_bdac07390924469a.webp" in items_text
+    assert (demo_root / "media" / "img_22df2179556dad5a.webp").exists()
+    assert (demo_root / "media" / "img_f62076d6e49da99a.webp").exists()
+    assert (demo_root / "media" / "img_0d9e7d9f7420ad8a.webp").exists()
+    assert (demo_root / "media" / "img_bdac07390924469a.webp").exists()
+
+
+def test_demo_bundle_preserves_xiaoxiaodong_professional_hr_headshot_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-xiaoxiaodong01-2050604419562266917-professional-hr-headshot-template" in items_text
+    assert "HR视角行业定制专业职业头像模板" in items_text
+    assert "生成一张基于输入照片的专业职业头像" in items_text
+    assert "符合专业HR审美" in items_text
+    assert "适用于 腾讯 / MCN 部门" in items_text
+    assert "the source/reference frame is not used as the primary demo image" in items_text
+    assert "demo-data/media/img_3addccfc4a94041e.webp" in items_text
+    assert "demo-data/media/img_b9b59871578a6c3b.webp" in items_text
+    assert "demo-data/media/img_f3fa3b48c99b2c04.webp" in items_text
+    assert "demo-data/media/img_880763843448fc1c.webp" in items_text
+    assert (demo_root / "media" / "img_3addccfc4a94041e.webp").exists()
+    assert (demo_root / "media" / "img_b9b59871578a6c3b.webp").exists()
+    assert (demo_root / "media" / "img_f3fa3b48c99b2c04.webp").exists()
+    assert (demo_root / "media" / "img_880763843448fc1c.webp").exists()
+
+
+def test_demo_bundle_preserves_liyue_signature_selection_poster_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-liyue-ai-2050590199902790102-six-style-signature-selection-poster" in items_text
+    assert "六款东方书法个人签名风格选择海报" in items_text
+    assert "设计一张 9:16 竖版东方书法签名推荐海报" in items_text
+    assert "生成 6 种不同但都适配该姓名的签名风格" in items_text
+    assert "Prompt recovered from a search-indexed gptimg2.best prompt detail" in items_text
+    assert "fxtwitter/vxtwitter exposed the main post and media but not the comment thread" in items_text
+    assert "demo-data/media/img_1e952f35f6aaa9f1.webp" in items_text
+    assert "demo-data/media/img_2be7674bb48f5178.webp" in items_text
+    assert (demo_root / "media" / "img_1e952f35f6aaa9f1.webp").exists()
+    assert (demo_root / "media" / "img_2be7674bb48f5178.webp").exists()
+
+
+def test_demo_bundle_preserves_techiesa_body_part_infographic_template():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-techiebysa-2050582644031631861-body-part-technical-infographic-template" in items_text
+    assert "Body part technical anatomy infographic template" in items_text
+    assert "Create a detailed technical infographic image of" in items_text
+    assert "photoreal render with precise blueprint-style educational annotations" in items_text
+    assert "Derived reusable body-part variant from the linked X status" in items_text
+    assert "current result image shows the same technical infographic formula applied to body parts" in items_text
+    assert "demo-data/media/img_8653e9e65ea86b1b.webp" in items_text
+    assert (demo_root / "media" / "img_8653e9e65ea86b1b.webp").exists()
+
+
+def test_demo_bundle_preserves_xiaoxiaodong_how_to_infographic_card_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-xiaoxiaodong01-2050567345010307280-how-to-infographic-card-poster" in items_text
+    assert "如何做信息图卡片海报设计提示词" in items_text
+    assert "生成一张“如何做（How-to）信息图设计稿”" in items_text
+    assert "用“视觉路径”表达过程，而不是列步骤" in items_text
+    assert "如何说话滴水不漏" in items_text
+    assert "Article title: GPT2: 百科海报 x 教程变卡片 x 清晰易懂 x 卡片设计 x 小红书号主 狂喜！" in items_text
+    assert "demo-data/media/img_60a9abe353a8f28c.webp" in items_text
+    assert "demo-data/media/img_4b2c739c712255f8.webp" in items_text
+    assert (demo_root / "media" / "img_60a9abe353a8f28c.webp").exists()
+    assert (demo_root / "media" / "img_4b2c739c712255f8.webp").exists()
+
+
+def test_demo_bundle_preserves_geekcatx_travel_map_style_library_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-geekcatx-2050770412108456141-fun-travel-map-poster-style-library" in items_text
+    assert "趣味旅行地图海报四风格提示词" in items_text
+    assert "你是一位世界顶级的旅行主题地图插画师" in items_text
+    assert "风格A｜温暖童趣风" in items_text
+    assert "风格D｜水墨国风风" in items_text
+    assert "目标城市：北京" in items_text
+    assert "Prompt preserved from the linked X Note Tweet" in items_text
+    assert "demo-data/media/img_7ba9dfa3c7779ee4.webp" in items_text
+    assert "demo-data/media/img_ffb8fbf3505435d9.webp" in items_text
+    assert "demo-data/media/img_8bb4e9290149dacc.webp" in items_text
+    assert "demo-data/media/img_3fe16f4af24c6fe7.webp" in items_text
+    assert (demo_root / "media" / "img_7ba9dfa3c7779ee4.webp").exists()
+    assert (demo_root / "media" / "img_ffb8fbf3505435d9.webp").exists()
+    assert (demo_root / "media" / "img_8bb4e9290149dacc.webp").exists()
+    assert (demo_root / "media" / "img_3fe16f4af24c6fe7.webp").exists()
+
+
+def test_demo_bundle_preserves_noor_creature_natural_history_infographic_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-noorwithwifi-2050532829977887073-creature-natural-history-infographic" in items_text
+    assert "Creature natural-history encyclopedia infographic prompt" in items_text
+    assert "A detailed scientific educational infographic about [Insert Creature" in items_text
+    assert "3D skeletal structure, a skull anatomy diagram with labels" in items_text
+    assert "Hunting Strategy" in items_text
+    assert "Prompt preserved verbatim from the linked X Note Tweet" in items_text
+    assert "demo-data/media/img_eb9d904cccef2508.webp" in items_text
+    assert "demo-data/media/img_ab79b6cff4633658.webp" in items_text
+    assert (demo_root / "media" / "img_eb9d904cccef2508.webp").exists()
+    assert (demo_root / "media" / "img_ab79b6cff4633658.webp").exists()
+
+
+def test_demo_bundle_preserves_charaspower_logo_ice_cube_product_photo_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-charaspowerai-2050613805227331745-logo-ice-cube-product-photo" in items_text
+    assert "Logo ice cube macro product photography prompt" in items_text
+    assert "ice cube sculpted in the shape of [brand] logo" in items_text
+    assert "transparency, internal cracks, air bubbles, light refraction" in items_text
+    assert "Banana Pro / Leonardo AI prompt" in items_text
+    assert "demo-data/media/img_65130982210562e9.webp" in items_text
+    assert "demo-data/media/img_a6d444ad8ec8a4da.webp" in items_text
+    assert "demo-data/media/img_24c7bc72d06e6e24.webp" in items_text
+    assert "demo-data/media/img_deb3c39512689916.webp" in items_text
+    assert (demo_root / "media" / "img_65130982210562e9.webp").exists()
+    assert (demo_root / "media" / "img_a6d444ad8ec8a4da.webp").exists()
+    assert (demo_root / "media" / "img_24c7bc72d06e6e24.webp").exists()
+    assert (demo_root / "media" / "img_deb3c39512689916.webp").exists()
+
+
+def test_demo_bundle_preserves_azed_plush_pop_3d_render_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-azed-ai-2050878302827708548-plush-pop-3d-render" in items_text
+    assert "Plush pop cute 3D collectible render prompt" in items_text
+    assert "A soft plush 3D model of a [subject] with [key detail]" in items_text
+    assert "velvety surface, squeezable toy-like form" in items_text
+    assert "adorable collectible feel" in items_text
+    assert "Prompt preserved verbatim from the linked X Note Tweet" in items_text
+    assert "demo-data/media/img_6e40f7cbb8dfc000.webp" in items_text
+    assert "demo-data/media/img_d6843715636a52c9.webp" in items_text
+    assert "demo-data/media/img_77c73b524728d0d6.webp" in items_text
+    assert "demo-data/media/img_7ef1f90207dd10ef.webp" in items_text
+    assert (demo_root / "media" / "img_6e40f7cbb8dfc000.webp").exists()
+    assert (demo_root / "media" / "img_d6843715636a52c9.webp").exists()
+    assert (demo_root / "media" / "img_77c73b524728d0d6.webp").exists()
+    assert (demo_root / "media" / "img_7ef1f90207dd10ef.webp").exists()
+
+
+def test_demo_bundle_preserves_techiesa_anime_legends_poster_template():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-techiebysa-2050629331827703965-anime-legends-poster-template" in items_text
+    assert "Anime legends 3D animated ensemble poster template" in items_text
+    assert "The subject is [ANIME TITLE]" in items_text
+    assert "Automatically select the most iconic and recognizable characters" in items_text
+    assert "Derived reusable anime-poster variant from the linked X status" in items_text
+    assert "public mirrors did not expose that comment" in items_text
+    assert "Attack on Titan, Dragon Ball Z, One Piece, Naruto" in items_text
+    assert "demo-data/media/img_7cc52cdc31298576.webp" in items_text
+    assert (demo_root / "media" / "img_7cc52cdc31298576.webp").exists()
+
+
+def test_demo_bundle_preserves_diplomeme_house_construction_video_template():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-diplomeme-2050843651379744922-house-construction-video-from-blueprint" in items_text
+    assert "House construction video from blueprint and land prompt" in items_text
+    assert "Empty land (site view)" in items_text
+    assert "Marking layout" in items_text
+    assert "Final house exterior (complete build)" in items_text
+    assert "Derived reusable construction-video template" in items_text
+    assert "public mirrors did not expose the source prompt/comment" in items_text
+    assert "demo-data/media/img_93044b1d3e2bc10d.webp" in items_text
+    assert (demo_root / "media" / "img_93044b1d3e2bc10d.webp").exists()
+
+
+def test_demo_bundle_preserves_lexnlin_ai_agency_website_section_prompt():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "x-lexnlin-2050709691978936715-ai-agency-website-section-images" in items_text
+    assert "AI agency website section image set prompt" in items_text
+    assert "generate images for a website for an AI agency" in items_text
+    assert "one image per section, for a total of eight distinct images" in items_text
+    assert "Awwwards SOTD-level website" in items_text
+    assert "Do not combine them into one image" in items_text
+    assert "Prompt preserved verbatim from the linked X Note Tweet" in items_text
+    assert 'Quote tweet text: \\"Images 2.0 website. Takes one prompt.' in items_text
+    assert "demo-data/media/img_94a435ae61efcc2c.webp" in items_text
+    assert "demo-data/media/img_f5f85d1dc9fe399c.webp" in items_text
+    assert "demo-data/media/img_a27c542f210674e5.webp" in items_text
+    assert "demo-data/media/img_3955f239a55168cc.webp" in items_text
+    assert (demo_root / "media" / "img_94a435ae61efcc2c.webp").exists()
+    assert (demo_root / "media" / "img_f5f85d1dc9fe399c.webp").exists()
+    assert (demo_root / "media" / "img_a27c542f210674e5.webp").exists()
+    assert (demo_root / "media" / "img_3955f239a55168cc.webp").exists()

@@ -4,7 +4,7 @@
     "name": "Architecture & Interiors",
     "description": null,
     "sort_order": 0,
-    "count": 8,
+    "count": 9,
     "preview_images": [
       "demo-data/media/img_90495e66679e4dfc.webp",
       "demo-data/media/img_2484f9060c8e4a94.webp",
@@ -30,7 +30,7 @@
     "name": "Characters & Anime",
     "description": null,
     "sort_order": 0,
-    "count": 26,
+    "count": 28,
     "preview_images": [
       "demo-data/media/img_a1bb094b71d04bdf.webp",
       "demo-data/media/img_12f764949cf44c55.webp",
@@ -69,7 +69,7 @@
     "name": "Education & Infographics",
     "description": null,
     "sort_order": 0,
-    "count": 16,
+    "count": 19,
     "preview_images": [
       "demo-data/media/img_364b7976a39e4300.webp",
       "demo-data/media/img_68b209c8840845f4.webp",
@@ -121,7 +121,7 @@
     "name": "UI, Brand & Product",
     "description": null,
     "sort_order": 0,
-    "count": 8,
+    "count": 10,
     "preview_images": [
       "demo-data/media/img_845f052bc14f491b.webp",
       "demo-data/media/img_3136ad12520d4060.webp",
@@ -210,7 +210,7 @@
     "name": "图像编辑与再创作",
     "description": null,
     "sort_order": 0,
-    "count": 15,
+    "count": 18,
     "preview_images": [
       "demo-data/media/img_30cc566c80354335.webp",
       "demo-data/media/img_769becb5fee84ca9.webp",
@@ -249,7 +249,7 @@
     "name": "插画与艺术",
     "description": null,
     "sort_order": 0,
-    "count": 25,
+    "count": 27,
     "preview_images": [
       "demo-data/media/img_591468bf50604213.webp",
       "demo-data/media/img_d3e4aaae18f94c1a.webp",
@@ -262,7 +262,7 @@
     "name": "摄影与写实",
     "description": null,
     "sort_order": 0,
-    "count": 29,
+    "count": 30,
     "preview_images": [
       "demo-data/media/img_525f8d4c7fd74df0.webp",
       "demo-data/media/img_981d05b5a79542c2.webp",
@@ -275,7 +275,7 @@
     "name": "海报与排版",
     "description": null,
     "sort_order": 0,
-    "count": 41,
+    "count": 43,
     "preview_images": [
       "demo-data/media/img_ddeeb67e02ae417f.webp",
       "demo-data/media/img_c0a5184300f444dd.webp",
