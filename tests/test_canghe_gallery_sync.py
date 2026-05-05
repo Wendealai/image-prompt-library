@@ -128,6 +128,32 @@ def test_sync_canghe_gallery_imports_incremental_case_with_image(tmp_path: Path)
     assert {tag.name for tag in detail.tags} >= {"canghe-gallery", "Fashion"}
 
 
+def test_sync_canghe_gallery_archives_legacy_no_image_duplicate_after_import(tmp_path: Path):
+    library = tmp_path / "library"
+    repo = ItemRepository(library)
+    legacy = repo.create_item(
+        ItemCreate(
+            title="Qingdao Beer Fashion Set",
+            source_name="freestylefly/awesome-gpt-image-2",
+            source_url="https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-385",
+            notes="Imported from freestylefly/awesome-gpt-image-2. Original case: https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-385",
+            prompts=[PromptIn(language="en", text="Legacy English-only prompt.", is_primary=True)],
+        ),
+        imported=True,
+    )
+
+    result = sync_canghe_gallery(
+        library,
+        cases_payload={"totalCases": 1, "cases": [_case(image="/images/case385.png")]},
+        image_fetcher=lambda _url: _png_bytes(),
+    )
+
+    assert result.imported_count == 1
+    assert result.archived_duplicate_count == 1
+    assert repo.get_item(legacy.id).archived is True
+    assert repo.list_items(limit=10).total == 1
+
+
 def test_canghe_gallery_sync_endpoint_requires_admin_and_supports_password_payload(tmp_path: Path, monkeypatch):
     app = create_app(library_path=tmp_path / "library")
     client = TestClient(app)

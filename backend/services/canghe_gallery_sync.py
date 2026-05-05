@@ -226,6 +226,33 @@ def _download_image(image_url: str, client: httpx.Client | None = None) -> bytes
             http.close()
 
 
+def _archive_legacy_no_image_duplicates(library_path: Path | str, repo: ItemRepository, case: dict[str, Any], created_item_id: str) -> int:
+    case_id = _case_id(case.get("id"))
+    title = _clean_text(case.get("title")) or ""
+    patterns = [f"%#case-{case_id}%", f"%case-{case_id}%"]
+    with connect(library_path) as conn:
+        rows = conn.execute(
+            """
+            SELECT i.id
+            FROM items i
+            LEFT JOIN images img ON img.item_id = i.id
+            WHERE i.archived=0
+              AND i.id <> ?
+              AND i.source_name = 'freestylefly/awesome-gpt-image-2'
+              AND i.title = ?
+              AND (i.notes LIKE ? OR i.notes LIKE ?)
+            GROUP BY i.id
+            HAVING COUNT(img.id) = 0
+            """,
+            (created_item_id, title, *patterns),
+        ).fetchall()
+    archived = 0
+    for row in rows:
+        repo.set_archived(row["id"], True)
+        archived += 1
+    return archived
+
+
 def _initialize_template(repo: ItemRepository, item_id: str, *, approve_template: bool) -> str | None:
     item = repo.get_item(item_id)
     source_prompt = next((prompt for prompt in item.prompts if prompt.is_primary and prompt.text.strip()), None)
@@ -318,6 +345,7 @@ def sync_canghe_gallery(
                     ),
                 )
                 result.image_count += 1
+            result.archived_duplicate_count += _archive_legacy_no_image_duplicates(library_path, repo, case, created.id)
             template_id = None
             if initialize_templates:
                 template_id = _initialize_template(repo, created.id, approve_template=approve_templates)

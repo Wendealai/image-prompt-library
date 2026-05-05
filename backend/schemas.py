@@ -313,6 +313,7 @@ class CangheGallerySyncResponse(BaseModel):
     candidate_count: int = 0
     imported_count: int = 0
     image_count: int = 0
+    archived_duplicate_count: int = 0
     template_initialized_count: int = 0
     template_approved_count: int = 0
     dry_run: bool = False
