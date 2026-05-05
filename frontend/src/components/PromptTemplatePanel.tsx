@@ -590,6 +590,10 @@ export default function PromptTemplatePanel({
                     {t('promptTemplateManualEdits')} · {manualEditedSlotCount} {t('promptTemplateSlots')}
                   </span>
                 )}
+                <button type="button" className="primary prompt-remix-generate-image-shortcut" onClick={handleGenerateImage} disabled={imageGenerationBusy}>
+                  <Sparkles size={15} />
+                  <span>{imageGenerationButtonLabel}</span>
+                </button>
               </div>
             </div>
             <div className="prompt-remix-editor-grid">

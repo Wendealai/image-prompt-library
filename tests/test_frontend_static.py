@@ -262,6 +262,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in panel
     assert "promptTemplateCopyFinal" in panel
     assert "handleGenerateImage" in panel
+    assert "prompt-remix-generate-image-shortcut" in panel
     assert "imageGenerationState" in panel
     assert "IMAGE_GENERATION_STAGE_DELAY_MS = 2200" in panel
     assert "prompt-remix-image-config" in panel
@@ -334,6 +335,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
+    assert ".prompt-remix-generate-image-shortcut{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}" in compact_css
+    assert ".prompt-remix-generate-image-shortcut{width:100%;justify-content:center}" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
     assert "if (loading || !template) return null;" in panel
     assert "prompt-remix-init" not in panel
