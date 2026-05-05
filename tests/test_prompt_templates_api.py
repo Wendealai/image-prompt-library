@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -194,18 +193,27 @@ def test_public_prompt_template_endpoint_only_returns_approved_templates(tmp_pat
     assert hidden_again.json()['template'] is None
 
 
-def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path, monkeypatch):
+def test_prompt_template_init_workflow_failure_uses_fallback_template(tmp_path: Path, monkeypatch):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
     repo = ItemRepository(tmp_path / 'library')
-    item_id = _create_item(repo)
+    item = repo.create_item(ItemCreate(
+        title='Template With Arguments',
+        prompts=[
+            PromptIn(
+                language='en',
+                text='Create a poster for {argument name="brand" default="NOIR"} with [PRODUCT] as the hero.',
+                is_primary=True,
+            ),
+        ],
+    ))
 
     def fake_init_prompt_template(**_kwargs):
         raise PromptWorkflowError(
             'Workflow request failed: {"message":"Error in workflow"}',
             operation='template_init',
             url='https://n8n.example/webhook/image-prompt-library-template-init',
-            request_payload={'item': {'id': item_id}, 'prompt': {'language': 'en'}},
+            request_payload={'item': {'id': item.id}, 'prompt': {'language': 'en'}},
             response_status=500,
             response_text='{"message":"Error in workflow"}',
         )
@@ -214,20 +222,15 @@ def test_prompt_template_init_failure_is_recorded_with_failure_id(tmp_path: Path
 
     _admin_login(client)
 
-    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
-    assert response.status_code == 424
-    failure_id = response.headers.get('x-prompt-workflow-failure-id')
-    assert failure_id
-    assert failure_id in response.json()['detail']
-
-    failure_path = tmp_path / 'library' / '_diagnostics' / 'prompt-workflow-failures' / f'{failure_id}.json'
-    assert failure_path.is_file()
-    sample = json.loads(failure_path.read_text(encoding='utf-8'))
-    assert sample['id'] == failure_id
-    assert sample['operation'] == 'template_init'
-    assert sample['error_class'] == 'PromptWorkflowError'
-    assert sample['workflow']['response_status'] == 500
-    assert sample['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-init'
+    response = client.post(f'/api/admin/items/{item.id}/prompt-template/init', json={})
+    assert response.status_code == 200
+    template = response.json()['template']
+    assert template['status'] == 'ready'
+    assert template['review_status'] == 'pending_review'
+    assert template['analysis_confidence'] == 0.52
+    assert 'Deterministic explicit placeholder fallback' in template['analysis_notes']
+    assert [slot['original_text'] for slot in template['slots']] == ['{argument name="brand" default="NOIR"}', '[PRODUCT]']
+    assert '[[slot id="brand"' in template['marked_text']
 
 
 def test_prompt_template_init_unavailable_returns_424_json(tmp_path: Path, monkeypatch):
@@ -455,19 +458,16 @@ def test_prompt_template_batch_init_returns_initialized_failed_and_skipped(tmp_p
     payload = response.json()
     assert payload['total_candidates'] == 4
     assert payload['processed'] == 4
-    assert payload['initialized'] == 1
-    assert payload['failed'] == 1
+    assert payload['initialized'] == 2
+    assert payload['failed'] == 0
     assert payload['skipped'] == 2
 
     results = {item['item_id']: item for item in payload['results']}
     assert results[success_id]['result'] == 'initialized'
-    assert results[failure_id]['result'] == 'failed'
-    assert results[failure_id]['failure_id']
+    assert results[failure_id]['result'] == 'initialized'
+    assert results[failure_id]['slot_count'] >= 1
     assert results[ready_id]['result'] == 'skipped'
     assert results[no_prompt_id]['result'] == 'skipped'
-
-    failure_sample = tmp_path / 'library' / '_diagnostics' / 'prompt-workflow-failures' / f"{results[failure_id]['failure_id']}.json"
-    assert failure_sample.is_file()
 
 
 def test_prompt_template_failure_list_and_detail_endpoints(tmp_path: Path):

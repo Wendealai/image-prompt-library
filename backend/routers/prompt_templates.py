@@ -10,6 +10,7 @@ from backend.services.image_generation import ImageGenerationError, ImageGenerat
 from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
 from backend.services.prompt_markup import PromptMarkupError, normalize_slot_values, render_marked_text, validate_marked_prompt
+from backend.services.prompt_template_fallback import build_fallback_prompt_template
 from backend.services.prompt_source_prepare import PreparedPromptSource, prepare_prompt_template_source
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
 
@@ -91,15 +92,28 @@ def _initialize_prompt_template_bundle(repository: ItemRepository, *, item_id: s
     item = None
     item, source_prompt = _selected_source_prompt(repository, item_id, language)
     prepared_source_prompt = prepare_prompt_template_source(source_prompt.text)
-    workflow_result = initialize_prompt_template(
-        item_id=item.id,
-        title=item.title,
-        model=item.model,
-        source_language=source_prompt.language,
-        raw_text=prepared_source_prompt.normalized_text,
-    )
-    slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
-    analysis_notes = workflow_result["analysis_notes"]
+    analysis_notes = None
+    try:
+        workflow_result = initialize_prompt_template(
+            item_id=item.id,
+            title=item.title,
+            model=item.model,
+            source_language=source_prompt.language,
+            raw_text=prepared_source_prompt.normalized_text,
+        )
+        slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
+    except (PromptWorkflowError, PromptMarkupError, ValueError) as exc:
+        fallback = build_fallback_prompt_template(prepared_source_prompt.normalized_text, reason=str(exc))
+        workflow_result = {
+            "marked_text": fallback.marked_text,
+            "analysis_confidence": fallback.analysis_confidence,
+            "analysis_notes": fallback.analysis_notes,
+            "source_language": source_prompt.language,
+            "fallback": True,
+        }
+        slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
     if prepared_source_prompt.was_extracted:
         prefix = f"Prompt body extracted via {prepared_source_prompt.strategy} before skeletonization."
         analysis_notes = f"{prefix} {analysis_notes}".strip() if analysis_notes else prefix
