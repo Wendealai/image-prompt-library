@@ -93,6 +93,14 @@ def case_dedupe_keys(case: dict[str, Any]) -> set[str]:
     return keys
 
 
+def case_import_dedupe_keys(case: dict[str, Any]) -> set[str]:
+    keys = {f"canghe_case:{_case_id(case.get('id'))}"}
+    hashed_prompt = prompt_hash(_clean_text(case.get("prompt")))
+    if hashed_prompt:
+        keys.add(f"prompt_sha256:{hashed_prompt}")
+    return keys
+
+
 def _keys_from_existing_row(source_url: str | None, notes: str | None) -> set[str]:
     keys: set[str] = set()
     normalized_url = normalize_source_url(source_url)
@@ -203,7 +211,7 @@ def select_new_cases(cases: list[dict[str, Any]], existing_keys: set[str], max_i
     duplicate_count = 0
     seen_keys = set(existing_keys)
     for case in cases:
-        keys = case_dedupe_keys(case)
+        keys = case_import_dedupe_keys(case)
         if keys & seen_keys:
             duplicate_count += 1
             seen_keys.update(keys)

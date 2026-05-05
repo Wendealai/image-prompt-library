@@ -4,12 +4,12 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from backend.db import connect
 from backend.main import create_app
 from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, PromptIn
 from backend.services.canghe_gallery_sync import (
     case_dedupe_keys,
+    case_import_dedupe_keys,
     collect_existing_dedupe_keys,
     image_url_for_case,
     item_payload_for_case,
@@ -55,33 +55,59 @@ def test_case_dedupe_keys_include_status_url_case_and_prompt_hash():
     assert f"prompt_sha256:{prompt_hash(case['prompt'])}" in keys
 
 
-def test_select_new_cases_skips_previous_x_status_imports(tmp_path: Path):
+def test_case_import_dedupe_keys_exclude_non_unique_source_links():
+    case = _case(sourceUrl="https://x.com/Popcraft_ai/status/2051142270381170754?s=20")
+
+    keys = case_import_dedupe_keys(case)
+
+    assert "canghe_case:385" in keys
+    assert f"prompt_sha256:{prompt_hash(case['prompt'])}" in keys
+    assert "x_status:2051142270381170754" not in keys
+    assert "source_url:https://x.com/Popcraft_ai/status/2051142270381170754" not in keys
+
+
+def test_select_new_cases_skips_previous_image_backed_prompt_hash(tmp_path: Path):
     repo = ItemRepository(tmp_path / "library")
-    repo.create_item(
+    item = repo.create_item(
         ItemCreate(
-            title="Existing X import",
-            source_url="https://x.com/Popcraft_ai/status/2051142270381170754?s=20",
-            prompts=[PromptIn(language="en", text="Earlier manually absorbed prompt.", is_primary=True)],
+            title="Existing image-backed prompt import",
+            source_url="https://x.com/other/status/2051142270381170754?s=20",
+            prompts=[PromptIn(language="en", text=_case()["prompt"], is_primary=True)],
         ),
         imported=True,
     )
-    with connect(tmp_path / "library") as conn:
-        existing_keys = {
-            f"x_status:{row[0]}"
-            for row in conn.execute("SELECT '2051142270381170754'").fetchall()
-        }
+    from backend.repositories import StoredImageInput
+
+    repo.add_image(
+        item.id,
+        StoredImageInput(
+            original_path="originals/existing.png",
+            thumb_path="thumbs/existing.webp",
+            preview_path="previews/existing.webp",
+            role="result_image",
+        ),
+    )
+    existing_keys = collect_existing_dedupe_keys(tmp_path / "library")
+
+    selected, duplicate_count = select_new_cases([_case()], existing_keys)
+
+    assert duplicate_count == 1
+    assert selected == []
+
+
+def test_select_new_cases_allows_same_status_when_case_and_prompt_differ():
+    existing_keys = {"x_status:2051142270381170754", "source_url:https://x.com/Popcraft_ai/status/2051142270381170754"}
     cases = [
-        _case(),
         _case(
             id=386,
-            sourceUrl="https://x.com/new/status/2052000000000000000",
-            prompt="A new incremental prompt from the Canghe gallery feed.",
+            sourceUrl="https://x.com/Popcraft_ai/status/2051142270381170754",
+            prompt="A different prompt from the same multi-image X post.",
         ),
     ]
 
     selected, duplicate_count = select_new_cases(cases, existing_keys)
 
-    assert duplicate_count == 1
+    assert duplicate_count == 0
     assert [case["id"] for case in selected] == [386]
 
 
