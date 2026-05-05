@@ -44,10 +44,12 @@ upsert_workflow() {
 
 INIT_ID="$(upsert_workflow 'Image Prompt Library - Template Init' "$N8N_DIR/prompt-template-init.workflow.json")"
 GENERATE_ID="$(upsert_workflow 'Image Prompt Library - Template Generate' "$N8N_DIR/prompt-template-generate.workflow.json")"
+CANGHE_ID="$(upsert_workflow 'Image Prompt Library - Canghe Gallery Daily Sync' "$N8N_DIR/canghe-gallery-daily-sync.workflow.json")"
 
 cat <<OUT
 INIT_WORKFLOW_ID=$INIT_ID
 GENERATE_WORKFLOW_ID=$GENERATE_ID
+CANGHE_GALLERY_SYNC_WORKFLOW_ID=$CANGHE_ID
 IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-init
 IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-generate
 OUT

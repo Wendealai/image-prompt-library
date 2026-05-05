@@ -1,0 +1,89 @@
+{
+  "name": "Image Prompt Library - Canghe Gallery Daily Sync",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "schedule_canghe_gallery_daily_sync",
+      "name": "Schedule Canghe Gallery Daily Sync",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -420,
+        80
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "call_image_prompt_library_canghe_sync",
+      "name": "Call Image Prompt Library Canghe Sync",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        80
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://prompt.wendealai.com/api/admin/intake/canghe-gallery/sync",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ { admin_password: $env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD, dry_run: false, max_imports: 80, initialize_templates: false, approve_templates: false } }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 60000
+    },
+    {
+      "id": "summarize_canghe_gallery_sync_result",
+      "name": "Summarize Canghe Gallery Sync Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        180,
+        80
+      ],
+      "parameters": {
+        "jsCode": "const payload = items[0]?.json || {};\nreturn [{\n  json: {\n    ok: true,\n    sourceTotal: payload.source_total ?? null,\n    duplicateCount: payload.duplicate_count ?? null,\n    candidateCount: payload.candidate_count ?? null,\n    importedCount: payload.imported_count ?? null,\n    imageCount: payload.image_count ?? null,\n    failureCount: Array.isArray(payload.failures) ? payload.failures.length : 0,\n    importedItems: payload.imported_items ?? [],\n    checkedAt: new Date().toISOString(),\n  }\n}];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Canghe Gallery Daily Sync": {
+      "main": [
+        [
+          {
+            "node": "Call Image Prompt Library Canghe Sync",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Image Prompt Library Canghe Sync": {
+      "main": [
+        [
+          {
+            "node": "Summarize Canghe Gallery Sync Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

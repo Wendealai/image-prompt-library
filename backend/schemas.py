@@ -285,6 +285,41 @@ class ImportResult(BaseModel):
 class CaseIntakeFetchRequest(BaseModel):
     url: str
 
+class CangheGallerySyncRequest(BaseModel):
+    dry_run: bool = False
+    max_imports: Optional[int] = Field(default=50, ge=1, le=300)
+    initialize_templates: bool = False
+    approve_templates: bool = False
+    admin_password: Optional[str] = None
+
+class CangheGalleryImportedItem(BaseModel):
+    item_id: Optional[str] = None
+    case_id: str
+    title: str
+    source_url: Optional[str] = None
+    image_url: Optional[str] = None
+    template_id: Optional[str] = None
+
+class CangheGallerySyncFailure(BaseModel):
+    case_id: str
+    title: str
+    stage: str
+    detail: str
+
+class CangheGallerySyncResponse(BaseModel):
+    source_url: str
+    source_total: int
+    duplicate_count: int = 0
+    candidate_count: int = 0
+    imported_count: int = 0
+    image_count: int = 0
+    template_initialized_count: int = 0
+    template_approved_count: int = 0
+    dry_run: bool = False
+    max_imports: Optional[int] = None
+    imported_items: List[CangheGalleryImportedItem] = Field(default_factory=list)
+    failures: List[CangheGallerySyncFailure] = Field(default_factory=list)
+
 class CaseIntakeImageCandidate(BaseModel):
     url: str
     source: str

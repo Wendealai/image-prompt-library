@@ -58,3 +58,17 @@ def test_prompt_template_init_workflow_uses_prompt_markers_and_cleanup_guard():
     assert 'removePromptScaffolding' in format_code
     assert "const trailingInstructions = [" in format_code
     assert "cleaned = cleaned.replace(new RegExp(`\\\\n+${escaped}\\\\s*$`, 'i'), '').trimEnd();" in format_code
+
+
+def test_canghe_gallery_daily_sync_workflow_calls_admin_sync_endpoint_without_embedded_password():
+    workflow = json.loads((N8N_DIR / 'canghe-gallery-daily-sync.workflow.json').read_text(encoding='utf-8'))
+    node_names = {node['name'] for node in workflow['nodes']}
+    request_node = next(node for node in workflow['nodes'] if node['name'] == 'Call Image Prompt Library Canghe Sync')
+    body = request_node['parameters']['jsonBody']
+
+    assert 'Schedule Canghe Gallery Daily Sync' in node_names
+    assert 'Summarize Canghe Gallery Sync Result' in node_names
+    assert request_node['parameters']['url'] == 'https://prompt.wendealai.com/api/admin/intake/canghe-gallery/sync'
+    assert '$env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in body
+    assert 'zwyy0323' not in body
+    assert workflow['connections']['Schedule Canghe Gallery Daily Sync']['main'][0][0]['node'] == 'Call Image Prompt Library Canghe Sync'

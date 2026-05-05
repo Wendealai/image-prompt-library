@@ -1,11 +1,13 @@
 # Image Prompt Library n8n Workflows
 
-This directory version-controls the two AI workflows used by the app:
+This directory version-controls the automation workflows used by the app:
 
 - `Image Prompt Library - Template Init`
 - `Image Prompt Library - Template Generate`
+- `Image Prompt Library - Canghe Gallery Daily Sync`
 
 They are built from the `*.prepare.js` and `*.format.js` code files by `build-workflows.mjs`.
+The Canghe gallery sync workflow is a static scheduled workflow that calls the app's admin sync endpoint once per day.
 
 ## Sync to n8n
 
@@ -23,7 +25,7 @@ Then run:
 The script will:
 
 1. build the workflow JSON files
-2. create or update the workflows in n8n
+2. create or update the workflows in n8n, including the daily Canghe gallery sync workflow
 3. activate them
 4. print the webhook URLs you should place in the app environment
 
@@ -36,6 +38,7 @@ The backend expects these variables:
 - `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` (optional; set it on the app backend and export it before syncing workflows if you enable auth)
 - `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER` (optional; defaults to `X-Image-Prompt-Workflow-Token`)
 - `IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS` (optional; defaults to `45`)
+- `IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD` (required by the daily Canghe gallery sync workflow when it calls the app admin endpoint)
 
 ## Optional Webhook Auth
 
