@@ -112,9 +112,25 @@ def collect_existing_dedupe_keys(library_path: Path | str) -> set[str]:
     init_db(library_path)
     keys: set[str] = set()
     with connect(library_path) as conn:
-        for row in conn.execute("SELECT source_url, notes FROM items WHERE archived=0").fetchall():
+        for row in conn.execute(
+            """
+            SELECT i.source_url, i.notes
+            FROM items i
+            WHERE i.archived=0
+              AND EXISTS (SELECT 1 FROM images img WHERE img.item_id = i.id)
+            """
+        ).fetchall():
             keys.update(_keys_from_existing_row(row["source_url"], row["notes"]))
-        for row in conn.execute("SELECT text FROM prompts WHERE TRIM(text) <> ''").fetchall():
+        for row in conn.execute(
+            """
+            SELECT p.text
+            FROM prompts p
+            JOIN items i ON i.id = p.item_id
+            WHERE i.archived=0
+              AND TRIM(p.text) <> ''
+              AND EXISTS (SELECT 1 FROM images img WHERE img.item_id = i.id)
+            """
+        ).fetchall():
             hashed_prompt = prompt_hash(row["text"])
             if hashed_prompt:
                 keys.add(f"prompt_sha256:{hashed_prompt}")
@@ -229,20 +245,29 @@ def _download_image(image_url: str, client: httpx.Client | None = None) -> bytes
 def _archive_legacy_no_image_duplicates(library_path: Path | str, repo: ItemRepository, case: dict[str, Any], created_item_id: str) -> int:
     case_id = _case_id(case.get("id"))
     title = _clean_text(case.get("title")) or ""
+    status_id = extract_x_status_id(_clean_text(case.get("sourceUrl")))
     patterns = [f"%#case-{case_id}%", f"%case-{case_id}%"]
+    if status_id:
+        patterns.extend([f"%/status/{status_id}%", f"%/i/status/{status_id}%"])
+    pattern_sql = " OR ".join("haystack LIKE ?" for _ in patterns)
     with connect(library_path) as conn:
         rows = conn.execute(
-            """
+            f"""
+            WITH candidates AS (
+              SELECT
+                i.id,
+                COALESCE(i.source_url, '') || ' ' || COALESCE(i.notes, '') AS haystack
+              FROM items i
+              LEFT JOIN images img ON img.item_id = i.id
+              WHERE i.archived=0
+                AND i.id <> ?
+                AND i.title = ?
+              GROUP BY i.id
+              HAVING COUNT(img.id) = 0
+            )
             SELECT i.id
-            FROM items i
-            LEFT JOIN images img ON img.item_id = i.id
-            WHERE i.archived=0
-              AND i.id <> ?
-              AND i.source_name = 'freestylefly/awesome-gpt-image-2'
-              AND i.title = ?
-              AND (i.notes LIKE ? OR i.notes LIKE ?)
-            GROUP BY i.id
-            HAVING COUNT(img.id) = 0
+            FROM candidates i
+            WHERE {pattern_sql}
             """,
             (created_item_id, title, *patterns),
         ).fetchall()

@@ -10,6 +10,7 @@ from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, PromptIn
 from backend.services.canghe_gallery_sync import (
     case_dedupe_keys,
+    collect_existing_dedupe_keys,
     image_url_for_case,
     item_payload_for_case,
     prompt_hash,
@@ -84,6 +85,24 @@ def test_select_new_cases_skips_previous_x_status_imports(tmp_path: Path):
     assert [case["id"] for case in selected] == [386]
 
 
+def test_no_image_existing_prompt_hash_does_not_block_image_backfill(tmp_path: Path):
+    repo = ItemRepository(tmp_path / "library")
+    repo.create_item(
+        ItemCreate(
+            title="No image exact prompt",
+            source_url="https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-385",
+            prompts=[PromptIn(language="en", text=_case()["prompt"], is_primary=True)],
+        ),
+        imported=True,
+    )
+
+    existing_keys = collect_existing_dedupe_keys(tmp_path / "library")
+    selected, duplicate_count = select_new_cases([_case()], existing_keys)
+
+    assert duplicate_count == 0
+    assert [case["id"] for case in selected] == [385]
+
+
 def test_item_payload_preserves_source_and_gallery_tags():
     payload = item_payload_for_case(_case())
 
@@ -152,6 +171,30 @@ def test_sync_canghe_gallery_archives_legacy_no_image_duplicate_after_import(tmp
     assert result.archived_duplicate_count == 1
     assert repo.get_item(legacy.id).archived is True
     assert repo.list_items(limit=10).total == 1
+
+
+def test_sync_canghe_gallery_archives_no_image_duplicate_by_x_status_after_import(tmp_path: Path):
+    library = tmp_path / "library"
+    repo = ItemRepository(library)
+    legacy = repo.create_item(
+        ItemCreate(
+            title="Qingdao Beer Fashion Set",
+            source_name="X / Popcraft",
+            source_url="https://x.com/Popcraft_ai/status/2051142270381170754?s=20",
+            prompts=[PromptIn(language="en", text="Previously absorbed without an image.", is_primary=True)],
+        ),
+        imported=True,
+    )
+
+    result = sync_canghe_gallery(
+        library,
+        cases_payload={"totalCases": 1, "cases": [_case(image="/images/case385.png")]},
+        image_fetcher=lambda _url: _png_bytes(),
+    )
+
+    assert result.imported_count == 1
+    assert result.archived_duplicate_count == 1
+    assert repo.get_item(legacy.id).archived is True
 
 
 def test_canghe_gallery_sync_endpoint_requires_admin_and_supports_password_payload(tmp_path: Path, monkeypatch):
