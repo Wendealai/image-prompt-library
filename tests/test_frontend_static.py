@@ -226,6 +226,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     compact_css = css.replace(" ", "")
     assert "PromptTemplatePanel" in detail
     assert "<PromptTemplatePanel" in detail
+    assert "fallbackPrompt={copyText}" in detail
     assert "onImageGenerated={result => {" in detail
     assert "api.promptTemplate(itemId)" in panel
     assert "api.initPromptTemplate(itemId)" not in panel
@@ -262,6 +263,9 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in panel
     assert "promptTemplateCopyFinal" in panel
     assert "handleGenerateImage" in panel
+    assert "handleGenerateFallbackImage" in panel
+    assert "prompt-direct-image-panel" in panel
+    assert "promptTemplateDirectImageHelp" in panel
     assert "prompt-remix-generate-image-shortcut" in panel
     assert "imageGenerationState" in panel
     assert "IMAGE_GENERATION_STAGE_DELAY_MS = 2200" in panel
@@ -312,6 +316,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in i18n
     assert "promptTemplateCopyFinal" in i18n
     assert "promptTemplateGenerateImage" in i18n
+    assert "promptTemplateDirectImageHelp" in i18n
     assert "promptTemplateGeneratingImage" in i18n
     assert "promptTemplateImageSettings" in i18n
     assert "promptTemplateImageSettingsHelp" in i18n
@@ -337,8 +342,11 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
     assert ".prompt-remix-generate-image-shortcut{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}" in compact_css
     assert ".prompt-remix-generate-image-shortcut{width:100%;justify-content:center}" in compact_css
+    assert ".prompt-direct-image-panel{border-color:rgba(192,147,45,.32);" in compact_css
+    assert ".prompt-direct-image-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
-    assert "if (loading || !template) return null;" in panel
+    assert "if (loading) return null;" in panel
+    assert "if (!template) {" in panel
     assert "prompt-remix-init" not in panel
 
 

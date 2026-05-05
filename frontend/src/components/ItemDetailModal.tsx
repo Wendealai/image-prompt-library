@@ -521,6 +521,7 @@ export default function ItemDetailModal({
 
                 <PromptTemplatePanel
                   itemId={item.id}
+                  fallbackPrompt={copyText}
                   t={t}
                   onCopyResult={onCopyPrompt}
                   onImageGenerated={result => {

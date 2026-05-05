@@ -135,11 +135,13 @@ function replaceSession(bundle: PromptTemplateBundle | null, session: PromptGene
 
 export default function PromptTemplatePanel({
   itemId,
+  fallbackPrompt,
   t,
   onCopyResult,
   onImageGenerated,
 }: {
   itemId: string;
+  fallbackPrompt?: string;
   t: Translator;
   onCopyResult: (success: boolean) => void;
   onImageGenerated?: (result: PromptImageGenerationResponse) => void;
@@ -272,6 +274,7 @@ export default function PromptTemplatePanel({
     : imageGenerationState.phase === 'error'
       ? t('promptTemplateImageRetry')
       : t('promptTemplateGenerateImage');
+  const fallbackPromptText = fallbackPrompt?.trim() || '';
 
   useEffect(() => {
     window.localStorage.setItem(IMAGE_GENERATION_PRESETS_STORAGE_KEY, JSON.stringify(savedImagePresets));
@@ -346,14 +349,11 @@ export default function PromptTemplatePanel({
     if (!copied) setFeedback({ tone: 'error', message: t('copyFailed') });
   };
 
-  const handleGenerateImage = async () => {
-    const nextPreview = assembledPreview || livePreview;
-    const promptText = nextPreview?.renderedText.trim() || '';
+  const runImageGeneration = async (promptText: string) => {
     if (!promptText) {
       setFeedback({ tone: 'error', message: t('promptTemplateFinalPromptRequired') });
       return;
     }
-    if (!assembledPreview) setAssembledPreview(nextPreview);
     clearImageGenerationTimer();
     setImageGenerationState({ phase: 'queued' });
     imageGenerationTimerRef.current = window.setTimeout(() => {
@@ -374,6 +374,21 @@ export default function PromptTemplatePanel({
       setImageGenerationState({ phase: 'error', message });
       setFeedback({ tone: 'error', message });
     }
+  };
+
+  const handleGenerateImage = async () => {
+    const nextPreview = assembledPreview || livePreview;
+    const promptText = nextPreview?.renderedText.trim() || '';
+    if (!promptText) {
+      setFeedback({ tone: 'error', message: t('promptTemplateFinalPromptRequired') });
+      return;
+    }
+    if (!assembledPreview) setAssembledPreview(nextPreview);
+    await runImageGeneration(promptText);
+  };
+
+  const handleGenerateFallbackImage = async () => {
+    await runImageGeneration(fallbackPromptText);
   };
 
   const handleApplyImagePreset = (options: Required<PromptImageGenerationOptions>) => {
@@ -449,7 +464,41 @@ export default function PromptTemplatePanel({
     );
   };
 
-  if (loading || !template) return null;
+  if (loading) return null;
+
+  if (!template) {
+    return (
+      <section className="prompt-remix-panel prompt-direct-image-panel" aria-label={t('promptTemplateGenerateImage')}>
+        <header className="prompt-remix-header">
+          <div>
+            <h3>{t('promptTemplateGenerateImage')}</h3>
+            <p>{t('promptTemplateDirectImageHelp')}</p>
+          </div>
+          <button
+            type="button"
+            className="primary prompt-direct-image-button"
+            onClick={handleGenerateFallbackImage}
+            disabled={imageGenerationBusy || !fallbackPromptText}
+          >
+            <Sparkles size={15} />
+            <span>{imageGenerationButtonLabel}</span>
+          </button>
+        </header>
+        {feedback && <p className={`prompt-remix-feedback ${feedback.tone}`}>{feedback.message}</p>}
+        {imageGenerationState.phase !== 'idle' && (
+          <div className={`prompt-remix-image-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
+            <p>{imageGenerationStatusText}</p>
+            {imageGenerationState.phase === 'error' && (
+              <button type="button" className="secondary" onClick={handleGenerateFallbackImage} disabled={!fallbackPromptText}>
+                <RefreshCcw size={15} />
+                <span>{t('promptTemplateImageRetry')}</span>
+              </button>
+            )}
+          </div>
+        )}
+      </section>
+    );
+  }
 
   return (
     <section className="prompt-remix-panel" aria-label={t('aiRewrite')}>
