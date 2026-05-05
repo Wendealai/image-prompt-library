@@ -72,3 +72,12 @@ def test_canghe_gallery_daily_sync_workflow_calls_admin_sync_endpoint_without_em
     assert '$env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in body
     assert 'zwyy0323' not in body
     assert workflow['connections']['Schedule Canghe Gallery Daily Sync']['main'][0][0]['node'] == 'Call Image Prompt Library Canghe Sync'
+
+
+def test_n8n_sync_script_injects_canghe_password_only_for_upload():
+    script = (ROOT / 'scripts' / 'sync-n8n-prompt-workflows.sh').read_text(encoding='utf-8')
+
+    assert 'IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in script
+    assert 'CANGHE_TEMP_WORKFLOW="$(mktemp)"' in script
+    assert 'CANGHE_UPLOAD_WORKFLOW="$CANGHE_TEMP_WORKFLOW"' in script
+    assert "json.dumps(password)" in script

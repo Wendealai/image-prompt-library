@@ -44,7 +44,33 @@ upsert_workflow() {
 
 INIT_ID="$(upsert_workflow 'Image Prompt Library - Template Init' "$N8N_DIR/prompt-template-init.workflow.json")"
 GENERATE_ID="$(upsert_workflow 'Image Prompt Library - Template Generate' "$N8N_DIR/prompt-template-generate.workflow.json")"
-CANGHE_ID="$(upsert_workflow 'Image Prompt Library - Canghe Gallery Daily Sync' "$N8N_DIR/canghe-gallery-daily-sync.workflow.json")"
+CANGHE_WORKFLOW_FILE="$N8N_DIR/canghe-gallery-daily-sync.workflow.json"
+CANGHE_UPLOAD_WORKFLOW="$CANGHE_WORKFLOW_FILE"
+CANGHE_TEMP_WORKFLOW=""
+if [[ -n "${IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD:-}" ]]; then
+  CANGHE_TEMP_WORKFLOW="$(mktemp)"
+  python3 - <<'PY' "$CANGHE_WORKFLOW_FILE" "$CANGHE_TEMP_WORKFLOW" "$IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD"
+import json
+import sys
+
+source, target, password = sys.argv[1:4]
+workflow = json.load(open(source, "r", encoding="utf-8"))
+for node in workflow.get("nodes", []):
+    if node.get("name") == "Call Image Prompt Library Canghe Sync":
+        parameters = node.setdefault("parameters", {})
+        parameters["jsonBody"] = (
+            "={{ { admin_password: "
+            + json.dumps(password)
+            + ", dry_run: false, max_imports: 80, initialize_templates: false, approve_templates: false } }}"
+        )
+json.dump(workflow, open(target, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+PY
+  CANGHE_UPLOAD_WORKFLOW="$CANGHE_TEMP_WORKFLOW"
+fi
+CANGHE_ID="$(upsert_workflow 'Image Prompt Library - Canghe Gallery Daily Sync' "$CANGHE_UPLOAD_WORKFLOW")"
+if [[ -n "$CANGHE_TEMP_WORKFLOW" ]]; then
+  rm -f "$CANGHE_TEMP_WORKFLOW"
+fi
 
 cat <<OUT
 INIT_WORKFLOW_ID=$INIT_ID
