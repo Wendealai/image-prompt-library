@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Check, Copy, ExternalLink, Heart, Minus, Pencil, Plus, X } from 'lucide-react';
-import { api, mediaUrl } from '../api/client';
+import { api } from '../api/client';
+import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
-import { imageDisplayPath, imageHeroPath, selectPrimaryImage } from '../utils/images';
+import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
 import { PROMPT_LANGUAGE_LABELS, resolvePromptText, type PromptLanguage } from '../utils/prompts';
 
@@ -381,10 +382,11 @@ export default function ItemDetailModal({
               <section className="modal-hero" ref={heroSectionRef}>
                 {activeImage ? (
                   <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
-                    <img
+                    <FallbackImage
                       className="hero-image"
-                      src={mediaUrl(imageHeroPath(activeImage))}
+                      paths={imageHeroPaths(activeImage)}
                       alt={item.title}
+                      fallback={<span className="placeholder hero-image image-load-fallback">{t('noImage')}</span>}
                     />
                   </button>
                 ) : (
@@ -415,7 +417,7 @@ export default function ItemDetailModal({
                         onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
                         aria-label={t('openImageDetailViewer')}
                       >
-                        <img src={mediaUrl(imageDisplayPath(img))} alt="" />
+                        <FallbackImage paths={imageDisplayPaths(img)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
                       </button>
                     ))}
                   </div>
@@ -587,7 +589,12 @@ export default function ItemDetailModal({
                 onTouchCancel={handleImageViewerTouchEnd}
               >
                 <div className="detail-image-viewer-stage" style={{ width: `${imageViewerScale * 100}%` }}>
-                  <img className="detail-image-viewer-image" src={mediaUrl(imageHeroPath(activeImage))} alt={item?.title || ''} />
+                  <FallbackImage
+                    className="detail-image-viewer-image"
+                    paths={imageHeroPaths(activeImage)}
+                    alt={item?.title || ''}
+                    fallback={<span className="placeholder image-load-fallback">{t('noImage')}</span>}
+                  />
                 </div>
               </div>
             </div>

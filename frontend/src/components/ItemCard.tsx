@@ -1,8 +1,8 @@
 import type { MouseEvent } from 'react';
 import { Copy, Heart, Pencil } from 'lucide-react';
-import { mediaUrl } from '../api/client';
+import FallbackImage from './FallbackImage';
 import type { ItemSummary } from '../types';
-import { imageDisplayPath, selectPrimaryImage } from '../utils/images';
+import { imageDisplayPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
 
 export default function ItemCard({
@@ -23,7 +23,7 @@ export default function ItemCard({
   showActions?: boolean;
 }) {
   const primaryImage = selectPrimaryImage([item.first_image]);
-  const imagePath = imageDisplayPath(primaryImage);
+  const imagePaths = imageDisplayPaths(primaryImage);
   const imageAspectRatio = primaryImage?.width && primaryImage?.height
     ? `${primaryImage.width} / ${primaryImage.height}`
     : undefined;
@@ -42,15 +42,16 @@ export default function ItemCard({
 
   return (
     <article className={`item-card ${item.favorite ? 'is-favorite' : ''}`} style={{ breakInside: 'avoid' }} onClick={() => onOpen(item.id)}>
-      {imagePath ? (
+      {imagePaths.length ? (
         <div className={`card-image-frame ${imageAspectRatio ? 'has-reserved-ratio' : 'natural-ratio'}`} style={{ aspectRatio: imageAspectRatio }}>
-          <img
-            src={mediaUrl(imagePath)}
+          <FallbackImage
+            paths={imagePaths}
             loading="lazy"
             decoding="async"
             width={primaryImage?.width || undefined}
             height={primaryImage?.height || undefined}
             alt={item.title}
+            fallback={<span className="placeholder image-load-fallback">{t('noImage')}</span>}
           />
         </div>
       ) : <div className="placeholder">{t('noImage')}</div>}

@@ -78,6 +78,24 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
 def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
     images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
     assert "return image?.preview_path || image?.original_path || image?.thumb_path || ''" in images
+    assert "export function imageDisplayPaths(image?: ImageRecord)" in images
+    assert "uniquePaths([image?.preview_path, image?.original_path, image?.thumb_path])" in images
+    assert "export function imageHeroPaths(image?: ImageRecord)" in images
+    assert "export function imageThumbnailPaths(image?: ImageRecord)" in images
+
+
+def test_frontend_images_have_load_failure_fallbacks():
+    fallback = (ROOT / "frontend" / "src" / "components" / "FallbackImage.tsx").read_text()
+    card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    assert "setPathIndex(currentIndex => Math.min(currentIndex + 1, imagePaths.length))" in fallback
+    assert "src={mediaUrl(imagePaths[pathIndex])}" in fallback
+    assert "fallback={<span className=\"placeholder image-load-fallback\">{t('noImage')}</span>}" in card
+    assert "paths={imageHeroPaths(activeImage)}" in detail
+    assert "paths={node.imagePaths}" in explore
+    assert ".image-load-fallback" in css
 
 
 def test_cards_are_global_image_overlay_cards():
@@ -450,10 +468,10 @@ def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
 def test_explore_uses_real_thumbnails_not_dots_or_originals():
     explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
-    assert "function getConstellationImagePath" in explore
+    assert "function getConstellationImagePaths" in explore
     assert "selectPrimaryImage([item.first_image])" in explore
-    assert "imageThumbnailPath(primaryImage)" in explore
-    assert "first_image?.original_path" not in explore
+    assert "imageThumbnailPaths(primaryImage)" in explore
+    assert "imagePaths: getConstellationImagePaths(item)" in explore
     assert "lod-dot" not in explore
     assert "node-placeholder" not in explore
     assert "loading=\"lazy\"" in explore

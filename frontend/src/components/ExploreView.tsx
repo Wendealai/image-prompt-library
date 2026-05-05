@@ -1,8 +1,8 @@
 import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { Minus, Plus, RotateCcw } from 'lucide-react';
-import { mediaUrl } from '../api/client';
+import FallbackImage from './FallbackImage';
 import type { ClusterRecord, ItemSummary } from '../types';
-import { imageThumbnailPath, selectPrimaryImage } from '../utils/images';
+import { imageThumbnailPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
 
 const CANVAS_WIDTH = 2200;
@@ -43,7 +43,7 @@ type GestureState = {
 
 type ConstellationNode = {
   item: ItemSummary;
-  imagePath: string;
+  imagePaths: string[];
   x: number;
   y: number;
   width: number;
@@ -73,17 +73,17 @@ function isBlankConstellationPointerTarget(target: EventTarget | null, viewport:
   return Boolean(target.closest('.constellation-canvas, .constellation-links'));
 }
 
-function getConstellationImagePath(item: ItemSummary) {
+function getConstellationImagePaths(item: ItemSummary) {
   const primaryImage = selectPrimaryImage([item.first_image]);
-  return imageThumbnailPath(primaryImage);
+  return imageThumbnailPaths(primaryImage);
 }
 
 function scoreItems(items: ItemSummary[]) {
   return [...items].sort((a, b) => {
     if (a.favorite !== b.favorite) return a.favorite ? -1 : 1;
     if ((b.rating || 0) !== (a.rating || 0)) return (b.rating || 0) - (a.rating || 0);
-    const aImage = getConstellationImagePath(a) ? 1 : 0;
-    const bImage = getConstellationImagePath(b) ? 1 : 0;
+    const aImage = getConstellationImagePaths(a).length ? 1 : 0;
+    const bImage = getConstellationImagePaths(b).length ? 1 : 0;
     if (aImage !== bImage) return bImage - aImage;
     return a.title.localeCompare(b.title, 'zh-Hant');
   });
@@ -225,7 +225,7 @@ function relaxConstellationNodes(nodes: ConstellationNode[], center: { x: number
   return relaxed
     .map(node => ({
       item: node.item,
-      imagePath: node.imagePath,
+      imagePaths: node.imagePaths,
       x: node.x,
       y: node.y,
       width: node.width,
@@ -289,7 +289,7 @@ function buildCompactFocusSlots(visible: ItemSummary[], pos: { x: number; y: num
     const slot = slots[index] || slots[slots.length - 1] || { x: pos.x, y: pos.y + 240, angle: Math.PI / 2, distance: 240 };
     return {
       item,
-      imagePath: getConstellationImagePath(item),
+      imagePaths: getConstellationImagePaths(item),
       x: slot.x,
       y: slot.y,
       width,
@@ -315,7 +315,7 @@ function buildClusterNodes(allItems: ItemSummary[], cap: number, pos: { x: numbe
     const radius = baseRadius + ring * radiusStep + (index % 5) * 4;
     return {
       item,
-      imagePath: getConstellationImagePath(item),
+      imagePaths: getConstellationImagePaths(item),
       x: pos.x + Math.cos(angle) * radius,
       y: pos.y + Math.sin(angle) * radius * (focused ? 0.9 : 0.82),
       width,
@@ -637,7 +637,16 @@ export default function ExploreView({
               title={node.item.title}
               aria-label={node.item.title}
             >
-              {node.imagePath ? <img src={mediaUrl(node.imagePath)} alt={node.item.title} loading="lazy" decoding="async" draggable={false} /> : <span className="thumb-fallback">{t('noImage')}</span>}
+              {node.imagePaths.length ? (
+                <FallbackImage
+                  paths={node.imagePaths}
+                  alt={node.item.title}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  fallback={<span className="thumb-fallback">{t('noImage')}</span>}
+                />
+              ) : <span className="thumb-fallback">{t('noImage')}</span>}
               <span>{node.item.title}</span>
             </button>
           )))}
