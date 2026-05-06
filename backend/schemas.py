@@ -270,10 +270,21 @@ class PromptImageGenerateOptions(BaseModel):
     aspect_ratio: Optional[Literal["auto", "1:1", "4:3", "3:2", "16:9", "9:16"]] = None
     image_count: Optional[int] = Field(default=None, ge=1, le=4)
     style: Optional[Literal["auto", "cinematic", "editorial", "illustration", "photoreal", "fantasy art", "ink & wash"]] = None
+    strength: Optional[float] = Field(default=None, ge=0, le=1)
+
+class PromptImageReferenceInput(BaseModel):
+    type: Optional[Literal["file-base64", "url"]] = "file-base64"
+    label: Optional[str] = None
+    role: Optional[str] = None
+    note: Optional[str] = None
+    mime_type: Optional[str] = None
+    image_base64: Optional[str] = None
+    image_url: Optional[str] = None
 
 class PromptImageGenerateRequest(BaseModel):
     prompt: str
     generation: Optional[PromptImageGenerateOptions] = None
+    references: List[PromptImageReferenceInput] = Field(default_factory=list, max_length=16)
 
 class ImportResult(BaseModel):
     id: str

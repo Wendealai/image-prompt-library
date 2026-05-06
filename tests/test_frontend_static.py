@@ -226,7 +226,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     compact_css = css.replace(" ", "")
     assert "PromptTemplatePanel" in detail
     assert "<PromptTemplatePanel" in detail
-    assert "fallbackPrompt={copyText}" in detail
     assert "onImageGenerated={result => {" in detail
     assert "api.promptTemplate(itemId)" in panel
     assert "api.initPromptTemplate(itemId)" not in panel
@@ -263,10 +262,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in panel
     assert "promptTemplateCopyFinal" in panel
     assert "handleGenerateImage" in panel
-    assert "handleGenerateFallbackImage" in panel
-    assert "prompt-direct-image-panel" in panel
-    assert "promptTemplateDirectImageHelp" in panel
-    assert "prompt-remix-generate-image-shortcut" in panel
     assert "imageGenerationState" in panel
     assert "IMAGE_GENERATION_STAGE_DELAY_MS = 2200" in panel
     assert "prompt-remix-image-config" in panel
@@ -275,6 +270,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageResolution" in panel
     assert "promptTemplateImageStyle" in panel
     assert "promptTemplateImageCount" in panel
+    assert "promptTemplateImageStrength" in panel
     assert "promptTemplateImageQueued" in panel
     assert "promptTemplateImageRendering" in panel
     assert "promptTemplateImageRetry" in panel
@@ -287,6 +283,9 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "handleSaveImagePreset" in panel
     assert "handleDeleteImagePreset" in panel
     assert "handleApplyImagePreset" in panel
+    assert "buildImageReferenceInputs" in panel
+    assert "prompt-remix-reference-section" in panel
+    assert "referenceImages={uniqueImages}" in detail
     assert "promptTemplateImagePresets" in panel
     assert "promptTemplateImagePresetDefault" in panel
     assert "promptTemplateImagePresetRecent" in panel
@@ -295,8 +294,9 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in panel
     assert "promptTemplateImagePresetDelete" in panel
     assert "promptTemplateImagePresetNameRequired" in panel
-    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions)" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
     assert "promptTemplateGenerateImage" in panel
+    assert "promptTemplateGenerateImageToImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
@@ -305,7 +305,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
-    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions)" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[] = [])" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -324,6 +324,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageAspectRatio" in i18n
     assert "promptTemplateImageStyle" in i18n
     assert "promptTemplateImageCount" in i18n
+    assert "promptTemplateImageStrength" in i18n
     assert "promptTemplateImageQueued" in i18n
     assert "promptTemplateImageRendering" in i18n
     assert "promptTemplateImageRetry" in i18n
@@ -337,16 +338,16 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in i18n
     assert "promptTemplateImagePresetDelete" in i18n
     assert "promptTemplateImagePresetNameRequired" in i18n
+    assert "promptTemplateImageReferences" in i18n
+    assert "promptTemplateImageToImageMode" in i18n
     assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
-    assert ".prompt-remix-generate-image-shortcut{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}" in compact_css
-    assert ".prompt-remix-generate-image-shortcut{width:100%;justify-content:center}" in compact_css
-    assert ".prompt-direct-image-panel{border-color:rgba(192,147,45,.32);" in compact_css
-    assert ".prompt-direct-image-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}" in compact_css
+    assert ".prompt-remix-reference-section{display:flex;flex-direction:column;" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
     assert "if (loading) return null;" in panel
-    assert "if (!template) {" in panel
+    assert "prompt-direct-image-panel" in panel
+    assert "fallbackPromptText" in panel
     assert "prompt-remix-init" not in panel
 
 

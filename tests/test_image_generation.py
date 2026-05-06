@@ -1,4 +1,5 @@
 import base64
+import json
 from pathlib import Path
 
 import httpx
@@ -63,6 +64,52 @@ def test_generate_images_from_prompt_handles_sync_images(monkeypatch):
     assert len(result.images) == 1
     assert result.images[0].data == PNG_BYTES
     assert result.images[0].mime_type == "image/png"
+
+
+def test_generate_images_from_prompt_sends_reference_images_as_source_items(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL", "https://n8n.example/webhook/img-generate-submit")
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        payload = json.loads(request.content.decode("utf-8"))
+        assert payload["mode"] == "image-to-image"
+        assert payload["generation"]["strength"] == 0.6
+        assert payload["source"] == payload["sourceItems"][0]
+        assert payload["sources"] == payload["sourceItems"]
+        assert payload["sourceCount"] == 1
+        assert payload["sourceItems"][0] == {
+            "type": "file-base64",
+            "label": "primary",
+            "role": "subject",
+            "note": "keep pose",
+            "mimeType": "image/png",
+            "imageBase64": PNG_BASE64,
+        }
+        return httpx.Response(
+            200,
+            json={
+                "ok": True,
+                "status": "completed",
+                "images": [{"src": f"data:image/png;base64,{PNG_BASE64}", "mimeType": "image/png"}],
+            },
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        result = generate_images_from_prompt(
+            "Keep this character but change outfit",
+            generation_options={"strength": 0.6},
+            reference_images=[{
+                "type": "file-base64",
+                "label": "primary",
+                "role": "subject",
+                "note": "keep pose",
+                "mime_type": "image/png",
+                "image_base64": PNG_BASE64,
+            }],
+            client=client,
+        )
+
+    assert result.status == "completed"
+    assert len(result.images) == 1
 
 
 def test_generate_images_from_prompt_polls_job_status(monkeypatch):
@@ -179,6 +226,53 @@ def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, m
     payload = response.json()
     assert payload["job_id"] == "job_options"
     assert len(payload["images"]) == 1
+
+
+def test_generate_image_endpoint_forwards_reference_images(tmp_path: Path, monkeypatch):
+    library = tmp_path / "library"
+    app = create_app(library_path=library)
+    client = TestClient(app)
+    repo = ItemRepository(library)
+    item_id = _create_item(repo)
+
+    def fake_generate_images_from_prompt(prompt: str, *, item_id: str | None = None, title: str | None = None, generation_options=None, reference_images=None, client=None):
+        assert prompt == "Restyle from reference"
+        assert item_id is not None
+        assert title == "Studio Poster"
+        assert generation_options == {"strength": 0.7}
+        assert reference_images == [{
+            "type": "file-base64",
+            "label": "primary",
+            "role": "subject",
+            "mime_type": "image/png",
+            "image_base64": PNG_BASE64,
+        }]
+        return ImageGenerationResult(
+            status="completed",
+            job_id="job_reference",
+            output_text=None,
+            images=[GeneratedImageBinary(data=PNG_BYTES, mime_type="image/png", filename="generated.png")],
+        )
+
+    monkeypatch.setattr("backend.routers.prompt_templates.generate_images_from_prompt", fake_generate_images_from_prompt)
+
+    response = client.post(
+        f"/api/items/{item_id}/generate-image",
+        json={
+            "prompt": "Restyle from reference",
+            "generation": {"strength": 0.7},
+            "references": [{
+                "type": "file-base64",
+                "label": "primary",
+                "role": "subject",
+                "mime_type": "image/png",
+                "image_base64": PNG_BASE64,
+            }],
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["job_id"] == "job_reference"
 
 
 def test_generate_image_endpoint_returns_424_when_workflow_is_unavailable(tmp_path: Path, monkeypatch):

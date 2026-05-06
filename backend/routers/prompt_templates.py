@@ -152,11 +152,19 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
     repository = repo(request)
     try:
         item = repository.get_item(item_id)
+        generate_kwargs = {
+            "item_id": item.id,
+            "title": item.title,
+            "generation_options": payload.generation.model_dump(exclude_none=True) if payload.generation else None,
+        }
+        if payload.references:
+            generate_kwargs["reference_images"] = [
+                reference.model_dump(exclude_none=True)
+                for reference in payload.references
+            ]
         result = generate_images_from_prompt(
             payload.prompt,
-            item_id=item.id,
-            title=item.title,
-            generation_options=payload.generation.model_dump(exclude_none=True) if payload.generation else None,
+            **generate_kwargs,
         )
         created_images = []
         for generated in result.images:

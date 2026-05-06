@@ -523,6 +523,7 @@ export default function ItemDetailModal({
                   itemId={item.id}
                   fallbackPrompt={copyText}
                   t={t}
+                  referenceImages={uniqueImages}
                   onCopyResult={onCopyPrompt}
                   onImageGenerated={result => {
                     setItem(result.item);

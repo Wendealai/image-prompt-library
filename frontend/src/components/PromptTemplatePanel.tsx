@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Copy, RefreshCcw, Sparkles } from 'lucide-react';
-import { api } from '../api/client';
+import { Copy, ImagePlus, RefreshCcw, Sparkles, X } from 'lucide-react';
+import { api, mediaUrl } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
-import type { PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptRenderSegment, PromptTemplateBundle } from '../types';
+import type { ImageRecord, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptRenderSegment, PromptTemplateBundle } from '../types';
 import type { Translator } from '../utils/i18n';
 
 type LocalPromptPreview = {
@@ -15,6 +15,18 @@ type SavedImageGenerationPreset = {
   id: string;
   name: string;
   options: Required<PromptImageGenerationOptions>;
+};
+
+type ImageReferenceDraft = {
+  id: string;
+  source: 'library' | 'file';
+  file?: File;
+  image?: ImageRecord;
+  previewUrl: string;
+  label: string;
+  role: string;
+  note: string;
+  objectUrl?: string;
 };
 
 type ImageGenerationPhase = 'idle' | 'queued' | 'rendering' | 'success' | 'error';
@@ -33,11 +45,17 @@ const IMAGE_GENERATION_STAGE_DELAY_MS = 2200;
 const IMAGE_GENERATION_PRESETS_STORAGE_KEY = 'image-prompt-library.image_generation_presets.v1';
 const IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY = 'image-prompt-library.image_generation_recent_options.v1';
 const IMAGE_GENERATION_PRESET_LIMIT = 6;
+const IMAGE_REFERENCE_LIMIT = 16;
+const IMAGE_REFERENCE_MAX_EDGE = 1536;
+const IMAGE_REFERENCE_MAX_BYTES = 4 * 1024 * 1024;
+const IMAGE_REFERENCE_JPEG_QUALITY = 0.86;
+const IMAGE_REFERENCE_ROLE_OPTIONS = ['subject', 'style', 'composition', 'material', 'palette', 'element'] as const;
 const DEFAULT_IMAGE_GENERATION_OPTIONS: Required<PromptImageGenerationOptions> = {
   resolution: '1024x1024',
   aspect_ratio: '1:1',
   image_count: 1,
   style: 'auto',
+  strength: 0.65,
 };
 
 function isAllowedValue<T extends readonly string[]>(value: unknown, allowedValues: T, fallback: string): string {
@@ -49,11 +67,15 @@ function normalizeImageGenerationOptions(value: unknown): Required<PromptImageGe
   const imageCount = typeof record.image_count === 'number' && Number.isFinite(record.image_count)
     ? Math.max(1, Math.min(4, Math.round(record.image_count)))
     : DEFAULT_IMAGE_GENERATION_OPTIONS.image_count;
+  const strength = typeof record.strength === 'number' && Number.isFinite(record.strength)
+    ? Math.max(0, Math.min(1, record.strength))
+    : DEFAULT_IMAGE_GENERATION_OPTIONS.strength;
   return {
     resolution: isAllowedValue(record.resolution, IMAGE_RESOLUTION_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.resolution),
     aspect_ratio: isAllowedValue(record.aspect_ratio, IMAGE_ASPECT_RATIO_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.aspect_ratio),
     image_count: imageCount,
     style: isAllowedValue(record.style, IMAGE_STYLE_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.style),
+    strength,
   };
 }
 
@@ -94,7 +116,8 @@ function sameImageGenerationOptions(
   return left.resolution === right.resolution
     && left.aspect_ratio === right.aspect_ratio
     && left.image_count === right.image_count
-    && left.style === right.style;
+    && left.style === right.style
+    && left.strength === right.strength;
 }
 
 function extractErrorDetail(error: unknown): string {
@@ -110,6 +133,78 @@ function extractErrorDetail(error: unknown): string {
     // Keep raw error text when the payload is not JSON.
   }
   return message;
+}
+
+function imagePathForReference(image: ImageRecord): string {
+  return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+}
+
+function imageReferenceIdentity(image: ImageRecord) {
+  return image.preview_path || image.original_path || image.thumb_path || image.id;
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result !== 'string') {
+        reject(new Error('Image file could not be read.'));
+        return;
+      }
+      resolve(result.includes(',') ? result.split(',')[1] : result);
+    };
+    reader.onerror = () => reject(new Error('Image file could not be read.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function canvasToBlob(canvas: HTMLCanvasElement, mimeType: string, quality?: number): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(candidate => {
+      if (candidate) resolve(candidate);
+      else reject(new Error('Image reference could not be prepared.'));
+    }, mimeType, quality);
+  });
+}
+
+async function optimizeImageReferenceFile(file: File): Promise<{ base64: string; mimeType: string }> {
+  const fallbackMimeType = file.type || 'image/png';
+  const fallback = async () => ({ base64: await fileToBase64(file), mimeType: fallbackMimeType });
+  if (typeof document === 'undefined' || !('createImageBitmap' in window)) return fallback();
+  try {
+    const bitmap = await createImageBitmap(file);
+    const maxEdge = Math.max(bitmap.width, bitmap.height);
+    const scale = maxEdge > IMAGE_REFERENCE_MAX_EDGE ? IMAGE_REFERENCE_MAX_EDGE / maxEdge : 1;
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext('2d');
+    if (!context) {
+      bitmap.close();
+      return fallback();
+    }
+    context.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+    const outputMimeType = file.type === 'image/png' && file.size <= IMAGE_REFERENCE_MAX_BYTES ? 'image/png' : 'image/jpeg';
+    let blob = await canvasToBlob(canvas, outputMimeType, outputMimeType === 'image/jpeg' ? IMAGE_REFERENCE_JPEG_QUALITY : undefined);
+    if (blob.size > IMAGE_REFERENCE_MAX_BYTES && outputMimeType === 'image/jpeg') {
+      blob = await canvasToBlob(canvas, outputMimeType, 0.74);
+    }
+    const normalizedFile = new File([blob], outputMimeType === 'image/jpeg' ? 'reference.jpg' : 'reference.png', { type: outputMimeType });
+    return { base64: await fileToBase64(normalizedFile), mimeType: outputMimeType };
+  } catch {
+    return fallback();
+  }
+}
+
+async function fileFromReferenceUrl(url: string, label: string): Promise<File> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Reference image could not be fetched: ${response.status}`);
+  const blob = await response.blob();
+  return new File([blob], label || 'reference-image', { type: blob.type || 'image/png' });
 }
 
 function statusLabel(status: string, t: Translator) {
@@ -137,12 +232,14 @@ export default function PromptTemplatePanel({
   itemId,
   fallbackPrompt,
   t,
+  referenceImages = [],
   onCopyResult,
   onImageGenerated,
 }: {
   itemId: string;
   fallbackPrompt?: string;
   t: Translator;
+  referenceImages?: ImageRecord[];
   onCopyResult: (success: boolean) => void;
   onImageGenerated?: (result: PromptImageGenerationResponse) => void;
 }) {
@@ -157,12 +254,15 @@ export default function PromptTemplatePanel({
   const [savedImagePresets, setSavedImagePresets] = useState<SavedImageGenerationPreset[]>(loadSavedImageGenerationPresets);
   const [recentImageGenerationOptions, setRecentImageGenerationOptions] = useState<Required<PromptImageGenerationOptions> | null>(loadRecentImageGenerationOptions);
   const [imagePresetName, setImagePresetName] = useState('');
+  const [imageReferences, setImageReferences] = useState<ImageReferenceDraft[]>([]);
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
   const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({});
   const [editingVariantId, setEditingVariantId] = useState('original');
   const [assembledPreview, setAssembledPreview] = useState<LocalPromptPreview | null>(null);
   const [targetedSlotId, setTargetedSlotId] = useState<string | null>(null);
   const slotInputRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
+  const imageReferenceInputRef = useRef<HTMLInputElement | null>(null);
+  const imageReferencesRef = useRef<ImageReferenceDraft[]>([]);
   const targetedSlotTimerRef = useRef<number | null>(null);
   const imageGenerationTimerRef = useRef<number | null>(null);
 
@@ -223,11 +323,27 @@ export default function PromptTemplatePanel({
   }, [template?.id, template?.updated_at, loadEditorDraft]);
 
   useEffect(() => {
+    imageReferencesRef.current = imageReferences;
+  }, [imageReferences]);
+
+  useEffect(() => {
     return () => {
       if (targetedSlotTimerRef.current) window.clearTimeout(targetedSlotTimerRef.current);
       clearImageGenerationTimer();
+      imageReferencesRef.current.forEach(reference => {
+        if (reference.objectUrl) URL.revokeObjectURL(reference.objectUrl);
+      });
     };
   }, [clearImageGenerationTimer]);
+
+  useEffect(() => {
+    setImageReferences(current => {
+      current.forEach(reference => {
+        if (reference.objectUrl) URL.revokeObjectURL(reference.objectUrl);
+      });
+      return [];
+    });
+  }, [itemId]);
 
   const livePreview = useMemo(() => {
     if (!template) return null;
@@ -252,7 +368,14 @@ export default function PromptTemplatePanel({
   }, [draftBaseValues, editorValues, template]);
 
   const imageGenerationBusy = imageGenerationState.phase === 'queued' || imageGenerationState.phase === 'rendering';
+  const imageToImageEnabled = imageReferences.length > 0;
   const hasRecentImagePreset = Boolean(recentImageGenerationOptions && !sameImageGenerationOptions(recentImageGenerationOptions, DEFAULT_IMAGE_GENERATION_OPTIONS));
+  const libraryReferenceCandidates = useMemo(() => {
+    const selected = new Set(imageReferences.filter(reference => reference.source === 'library').map(reference => reference.id));
+    return referenceImages
+      .filter(image => !selected.has(`library-${imageReferenceIdentity(image)}`))
+      .slice(0, 8);
+  }, [imageReferences, referenceImages]);
   const activePresetId = useMemo(() => {
     const savedPreset = savedImagePresets.find(preset => sameImageGenerationOptions(preset.options, imageGenerationOptions));
     if (savedPreset) return savedPreset.id;
@@ -273,7 +396,9 @@ export default function PromptTemplatePanel({
       : t('promptTemplateGeneratingImage')
     : imageGenerationState.phase === 'error'
       ? t('promptTemplateImageRetry')
-      : t('promptTemplateGenerateImage');
+      : imageToImageEnabled
+        ? t('promptTemplateGenerateImageToImage')
+        : t('promptTemplateGenerateImage');
   const fallbackPromptText = fallbackPrompt?.trim() || '';
 
   useEffect(() => {
@@ -284,6 +409,89 @@ export default function PromptTemplatePanel({
     setImageGenerationOptions(nextOptions);
     setImageGenerationState({ phase: 'idle' });
   }, []);
+
+  const addImageReferenceDrafts = useCallback((drafts: ImageReferenceDraft[]) => {
+    if (drafts.length === 0) return;
+    setImageReferences(current => {
+      const next = [...current];
+      for (const draft of drafts) {
+        if (next.length >= IMAGE_REFERENCE_LIMIT) break;
+        if (next.some(existing => existing.id === draft.id)) {
+          if (draft.objectUrl) URL.revokeObjectURL(draft.objectUrl);
+          continue;
+        }
+        next.push(draft);
+      }
+      return next;
+    });
+    setImageGenerationState({ phase: 'idle' });
+  }, []);
+
+  const handleAddLocalReferenceImages = (files: FileList | null) => {
+    const imageFiles = Array.from(files || []).filter(file => file.type.startsWith('image/'));
+    if (imageReferenceInputRef.current) imageReferenceInputRef.current.value = '';
+    if (imageFiles.length === 0) {
+      setFeedback({ tone: 'error', message: t('imageFileOnly') });
+      return;
+    }
+    addImageReferenceDrafts(imageFiles.map((file, index) => {
+      const objectUrl = URL.createObjectURL(file);
+      return {
+        id: `file-${Date.now()}-${index}-${file.name}`,
+        source: 'file',
+        file,
+        previewUrl: objectUrl,
+        label: file.name || `${t('promptTemplateImageReference')} ${imageReferences.length + index + 1}`,
+        role: index === 0 && imageReferences.length === 0 ? 'subject' : 'style',
+        note: '',
+        objectUrl,
+      };
+    }));
+  };
+
+  const handleAddLibraryReferenceImage = (image: ImageRecord) => {
+    const identity = imageReferenceIdentity(image);
+    addImageReferenceDrafts([{
+      id: `library-${identity}`,
+      source: 'library',
+      image,
+      previewUrl: imagePathForReference(image),
+      label: `${t('promptTemplateImageReference')} ${imageReferences.length + 1}`,
+      role: imageReferences.length === 0 ? 'subject' : 'style',
+      note: image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved'),
+    }]);
+  };
+
+  const handleRemoveImageReference = (referenceId: string) => {
+    setImageReferences(current => {
+      const removed = current.find(reference => reference.id === referenceId);
+      if (removed?.objectUrl) URL.revokeObjectURL(removed.objectUrl);
+      return current.filter(reference => reference.id !== referenceId);
+    });
+    setImageGenerationState({ phase: 'idle' });
+  };
+
+  const handleUpdateImageReference = (referenceId: string, patch: Partial<Pick<ImageReferenceDraft, 'label' | 'role' | 'note'>>) => {
+    setImageReferences(current => current.map(reference => reference.id === referenceId ? { ...reference, ...patch } : reference));
+    setImageGenerationState({ phase: 'idle' });
+  };
+
+  const buildImageReferenceInputs = async (): Promise<PromptImageReferenceInput[]> => {
+    const references: PromptImageReferenceInput[] = [];
+    for (const [index, reference] of imageReferences.entries()) {
+      const file = reference.file || await fileFromReferenceUrl(reference.previewUrl, reference.label);
+      const optimized = await optimizeImageReferenceFile(file);
+      references.push({
+        type: 'file-base64',
+        label: index === 0 ? 'primary' : reference.label.trim() || `${t('promptTemplateImageReference')} ${index + 1}`,
+        role: reference.role || (index === 0 ? 'subject' : 'style'),
+        note: reference.note.trim() || undefined,
+        mime_type: optimized.mimeType,
+        image_base64: optimized.base64,
+      });
+    }
+    return references;
+  };
 
   const handleGenerate = async () => {
     if (!template) return;
@@ -362,7 +570,8 @@ export default function PromptTemplatePanel({
     }, IMAGE_GENERATION_STAGE_DELAY_MS);
     setFeedback(null);
     try {
-      const result = await api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions);
+      const references = imageReferences.length > 0 ? await buildImageReferenceInputs() : [];
+      const result = await api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references);
       clearImageGenerationTimer();
       window.localStorage.setItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY, JSON.stringify(imageGenerationOptions));
       setRecentImageGenerationOptions(imageGenerationOptions);
@@ -789,7 +998,103 @@ export default function PromptTemplatePanel({
                     {[1, 2, 3, 4].map(option => <option key={option} value={option}>{option}</option>)}
                   </select>
                 </label>
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageStrength')}</span>
+                  <input
+                    className="prompt-remix-range"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value={String(imageGenerationOptions.strength)}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, strength: Number(event.target.value) })}
+                    disabled={imageGenerationBusy || !imageToImageEnabled}
+                  />
+                  <em>{Math.round(imageGenerationOptions.strength * 100)}%</em>
+                </label>
               </div>
+              <section className="prompt-remix-reference-section" aria-label={t('promptTemplateImageReferences')}>
+                <div className="prompt-remix-reference-head">
+                  <div>
+                    <strong>{t('promptTemplateImageReferences')}</strong>
+                    <span>{imageToImageEnabled ? `${imageReferences.length}/${IMAGE_REFERENCE_LIMIT} · ${t('promptTemplateImageToImageMode')}` : t('promptTemplateImageReferencesHelp')}</span>
+                  </div>
+                  <div className="prompt-remix-reference-actions">
+                    <input
+                      ref={imageReferenceInputRef}
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      hidden
+                      onChange={event => handleAddLocalReferenceImages(event.currentTarget.files)}
+                    />
+                    <button type="button" className="secondary" onClick={() => imageReferenceInputRef.current?.click()} disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}>
+                      <ImagePlus size={15} />
+                      <span>{t('promptTemplateImageAddReference')}</span>
+                    </button>
+                  </div>
+                </div>
+                {libraryReferenceCandidates.length > 0 && (
+                  <div className="prompt-remix-reference-library">
+                    {libraryReferenceCandidates.map(image => (
+                      <button
+                        type="button"
+                        key={imageReferenceIdentity(image)}
+                        className="prompt-remix-reference-source"
+                        onClick={() => handleAddLibraryReferenceImage(image)}
+                        disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}
+                        title={image.role || undefined}
+                      >
+                        <img src={imagePathForReference(image)} alt={t('promptTemplateImageReference')} />
+                        <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {imageReferences.length > 0 ? (
+                  <div className="prompt-remix-reference-list">
+                    {imageReferences.map((reference, index) => (
+                      <article key={reference.id} className="prompt-remix-reference-card">
+                        <img src={reference.previewUrl} alt={reference.label || t('promptTemplateImageReference')} />
+                        <div className="prompt-remix-reference-fields">
+                          <div className="prompt-remix-reference-card-head">
+                            <strong>{index === 0 ? t('promptTemplateImagePrimaryReference') : t('promptTemplateImageReference')}</strong>
+                            <button type="button" className="prompt-remix-reference-remove" onClick={() => handleRemoveImageReference(reference.id)} disabled={imageGenerationBusy} aria-label={t('promptTemplateImageRemoveReference')}>
+                              <X size={14} />
+                            </button>
+                          </div>
+                          <input
+                            className="prompt-remix-input"
+                            value={reference.label}
+                            onChange={event => handleUpdateImageReference(reference.id, { label: event.target.value })}
+                            placeholder={t('promptTemplateImageReferenceLabelPlaceholder')}
+                            disabled={imageGenerationBusy}
+                          />
+                          <div className="prompt-remix-reference-row">
+                            <select
+                              className="prompt-remix-select"
+                              value={reference.role}
+                              onChange={event => handleUpdateImageReference(reference.id, { role: event.target.value })}
+                              disabled={imageGenerationBusy}
+                            >
+                              {IMAGE_REFERENCE_ROLE_OPTIONS.map(role => <option key={role} value={role}>{role}</option>)}
+                            </select>
+                            <input
+                              className="prompt-remix-input"
+                              value={reference.note}
+                              onChange={event => handleUpdateImageReference(reference.id, { note: event.target.value })}
+                              placeholder={t('promptTemplateImageReferenceNotePlaceholder')}
+                              disabled={imageGenerationBusy}
+                            />
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="prompt-remix-reference-empty">{t('promptTemplateImageReferencesEmpty')}</p>
+                )}
+              </section>
               {imageGenerationState.phase !== 'idle' && (
                 <div className={`prompt-remix-image-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
                   <p>{imageGenerationStatusText}</p>

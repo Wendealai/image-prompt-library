@@ -39,6 +39,8 @@ DEFAULT_QUALITY = "high"
 DEFAULT_OUTPUT_FORMAT = "png"
 DEFAULT_BACKGROUND = "auto"
 DEFAULT_STYLE = "auto"
+DEFAULT_IMAGE_TO_IMAGE_STRENGTH = 0.65
+MAX_REFERENCE_IMAGES = 16
 
 
 class ImageGenerationUnavailable(RuntimeError):
@@ -357,6 +359,57 @@ def _resolve_generated_images(http_client: httpx.Client, payload: Any) -> list[G
     return [_download_image_source(http_client, src, mime_type) for src, mime_type in _extract_image_sources(payload)]
 
 
+def _reference_string(reference: dict[str, Any], *keys: str) -> str:
+    for key in keys:
+        value = reference.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
+
+
+def _normalize_reference_images(reference_images: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for index, reference in enumerate(reference_images or []):
+        if not _is_record(reference):
+            continue
+        image_base64 = _reference_string(reference, "image_base64", "imageBase64")
+        image_url = _reference_string(reference, "image_url", "imageUrl")
+        if not image_base64 and not image_url:
+            continue
+        mime_type = _reference_string(reference, "mime_type", "mimeType") or "image/png"
+        item: dict[str, Any] = {
+            "type": "file-base64" if image_base64 else "url",
+            "label": _reference_string(reference, "label") or ("primary" if index == 0 else f"reference {index + 1}"),
+            "role": _reference_string(reference, "role") or ("subject" if index == 0 else "style"),
+        }
+        note = _reference_string(reference, "note")
+        if note:
+            item["note"] = note
+        if image_base64:
+            item["mimeType"] = mime_type
+            item["imageBase64"] = image_base64
+        if image_url:
+            item["imageUrl"] = image_url
+        normalized.append(item)
+        if len(normalized) >= MAX_REFERENCE_IMAGES:
+            break
+    return normalized
+
+
+def _generation_strength(normalized_generation: dict[str, Any], *, has_references: bool) -> float:
+    if not has_references:
+        return 1.0
+    default = DEFAULT_IMAGE_TO_IMAGE_STRENGTH if has_references else 1.0
+    raw_value = normalized_generation.get("strength")
+    if raw_value is None or raw_value == "":
+        return default
+    try:
+        value = float(raw_value)
+    except (TypeError, ValueError) as exc:
+        raise ImageGenerationError(f"Invalid image generation strength: {raw_value}") from exc
+    return min(1.0, max(0.0, value))
+
+
 def _extract_job_id(payload: Any) -> str:
     return _pick_string_from_paths(payload, [
         ["jobId"],
@@ -535,11 +588,16 @@ def _build_generate_payload(
     item_id: str | None = None,
     title: str | None = None,
     generation_options: dict[str, Any] | None = None,
+    reference_images: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     normalized_generation = generation_options or {}
+    reference_items = _normalize_reference_images(reference_images)
+    mode = "image-to-image" if reference_items else "text-to-image"
+    if reference_images and not reference_items:
+        raise ValueError("Image-to-image requires at least one usable reference image.")
     payload: dict[str, Any] = {
         "requestId": str(uuid.uuid4()),
-        "mode": "text-to-image",
+        "mode": mode,
         "provider": os.environ.get(PROVIDER_ENV, DEFAULT_PROVIDER).strip() or DEFAULT_PROVIDER,
         "model": os.environ.get(MODEL_ENV, DEFAULT_MODEL).strip() or DEFAULT_MODEL,
         "toolModel": os.environ.get(TOOL_MODEL_ENV, DEFAULT_TOOL_MODEL).strip() or DEFAULT_TOOL_MODEL,
@@ -557,9 +615,14 @@ def _build_generate_payload(
             "style": str(normalized_generation.get("style") or os.environ.get(STYLE_ENV, DEFAULT_STYLE)).strip() or DEFAULT_STYLE,
             "temperature": round(_generation_temperature(), 2),
             "seed": None,
-            "strength": 1,
+            "strength": _generation_strength(normalized_generation, has_references=bool(reference_items)),
         },
     }
+    if reference_items:
+        payload["source"] = reference_items[0]
+        payload["sources"] = reference_items
+        payload["sourceItems"] = reference_items
+        payload["sourceCount"] = len(reference_items)
     if item_id or title:
         payload["metadata"] = {k: v for k, v in {"itemId": item_id, "title": title}.items() if v}
     return payload
@@ -571,6 +634,7 @@ def generate_images_from_prompt(
     item_id: str | None = None,
     title: str | None = None,
     generation_options: dict[str, Any] | None = None,
+    reference_images: list[dict[str, Any]] | None = None,
     client: httpx.Client | None = None,
 ) -> ImageGenerationResult:
     cleaned_prompt = prompt.strip()
@@ -583,6 +647,7 @@ def generate_images_from_prompt(
         item_id=item_id,
         title=title,
         generation_options=generation_options,
+        reference_images=reference_images,
     )
     headers = {"Content-Type": "application/json", **_workflow_headers()}
 
