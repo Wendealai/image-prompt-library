@@ -39,7 +39,7 @@
         "sendBody": true,
         "contentType": "json",
         "specifyBody": "json",
-        "jsonBody": "={{ { admin_password: $env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD, dry_run: false, max_imports: 80, initialize_templates: false, approve_templates: false } }}",
+        "jsonBody": "={{ { admin_password: $env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD, dry_run: false, max_imports: 80, initialize_templates: true, approve_templates: false } }}",
         "options": {
           "timeout": 300000
         }

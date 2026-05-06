@@ -8,6 +8,7 @@ This directory version-controls the automation workflows used by the app:
 
 They are built from the `*.prepare.js` and `*.format.js` code files by `build-workflows.mjs`.
 The Canghe gallery sync workflow is a static scheduled workflow that calls the app's admin sync endpoint once per day.
+New prompt imports should initialize prompt skeleton templates by default. The daily Canghe workflow sends `initialize_templates: true`; use the CLI/API opt-out only for deliberate maintenance runs.
 
 ## Sync to n8n
 

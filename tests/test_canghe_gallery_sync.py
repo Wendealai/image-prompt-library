@@ -163,14 +163,20 @@ def test_sync_canghe_gallery_imports_incremental_case_with_image(tmp_path: Path)
 
     assert result.imported_count == 1
     assert result.image_count == 1
+    assert result.template_initialized_count == 1
     assert result.failures == []
     imported = result.imported_items[0]
     assert imported.case_id == "385"
+    assert imported.template_id
     assert imported.image_url == "https://gpt-image2.canghe.ai/images/case385.png"
     detail = ItemRepository(library).get_item(imported.item_id)
     assert detail.title == "Qingdao Beer Fashion Set"
     assert detail.images and (library / detail.images[0].thumb_path).exists()
     assert {tag.name for tag in detail.tags} >= {"canghe-gallery", "Fashion"}
+    template = ItemRepository(library).get_prompt_template_bundle(imported.item_id).template
+    assert template is not None
+    assert template.status == "ready"
+    assert "Deterministic" in (template.analysis_notes or "")
 
 
 def test_sync_canghe_gallery_archives_legacy_no_image_duplicate_after_import(tmp_path: Path):
@@ -226,10 +232,12 @@ def test_sync_canghe_gallery_archives_no_image_duplicate_by_x_status_after_impor
 def test_canghe_gallery_sync_endpoint_requires_admin_and_supports_password_payload(tmp_path: Path, monkeypatch):
     app = create_app(library_path=tmp_path / "library")
     client = TestClient(app)
+    captured_kwargs = {}
 
     def fake_sync(*_args, **kwargs):
         from backend.schemas import CangheGallerySyncResponse
 
+        captured_kwargs.update(kwargs)
         return CangheGallerySyncResponse(
             source_url="https://gpt-image2.canghe.ai/cases.json",
             source_total=382,
@@ -251,3 +259,4 @@ def test_canghe_gallery_sync_endpoint_requires_admin_and_supports_password_paylo
     assert authorized.status_code == 200
     assert authorized.json()["candidate_count"] == 1
     assert authorized.json()["dry_run"] is True
+    assert captured_kwargs["initialize_templates"] is True

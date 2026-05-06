@@ -19,9 +19,10 @@ from backend.schemas import (
     PromptIn,
 )
 from backend.services.image_store import store_image
-from backend.services.prompt_markup import validate_marked_prompt
+from backend.services.prompt_markup import PromptMarkupError, validate_marked_prompt
 from backend.services.prompt_source_prepare import prepare_prompt_template_source
-from backend.services.prompt_workflows import initialize_prompt_template
+from backend.services.prompt_template_fallback import build_fallback_prompt_template
+from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, initialize_prompt_template
 
 CANGHE_SITE_URL = "https://gpt-image2.canghe.ai/#gallery"
 CANGHE_CASES_URL = "https://gpt-image2.canghe.ai/cases.json"
@@ -293,14 +294,29 @@ def _initialize_template(repo: ItemRepository, item_id: str, *, approve_template
     if source_prompt is None:
         raise ValueError("Imported item does not have a usable prompt.")
     prepared = prepare_prompt_template_source(source_prompt.text)
-    workflow_result = initialize_prompt_template(
-        item_id=item.id,
-        title=item.title,
-        model=item.model,
-        source_language=source_prompt.language,
-        raw_text=prepared.normalized_text,
-    )
-    slots = validate_marked_prompt(prepared.normalized_text, workflow_result["marked_text"])
+    try:
+        workflow_result = initialize_prompt_template(
+            item_id=item.id,
+            title=item.title,
+            model=item.model,
+            source_language=source_prompt.language,
+            raw_text=prepared.normalized_text,
+        )
+        slots = validate_marked_prompt(prepared.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
+    except (PromptWorkflowUnavailable, PromptWorkflowError, PromptMarkupError, ValueError) as exc:
+        fallback = build_fallback_prompt_template(prepared.normalized_text, reason=str(exc))
+        workflow_result = {
+            "marked_text": fallback.marked_text,
+            "analysis_confidence": fallback.analysis_confidence,
+            "analysis_notes": fallback.analysis_notes,
+            "source_language": source_prompt.language,
+        }
+        slots = validate_marked_prompt(prepared.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
+    if prepared.was_extracted:
+        prefix = f"Prompt body extracted via {prepared.strategy} before skeletonization."
+        analysis_notes = f"{prefix} {analysis_notes}".strip() if analysis_notes else prefix
     template = repo.save_prompt_template(
         item_id=item.id,
         source_language=workflow_result["source_language"],
@@ -309,7 +325,7 @@ def _initialize_template(repo: ItemRepository, item_id: str, *, approve_template
         slots=slots,
         status="ready",
         analysis_confidence=workflow_result["analysis_confidence"],
-        analysis_notes=workflow_result["analysis_notes"],
+        analysis_notes=analysis_notes,
     )
     if approve_template:
         template = repo.review_prompt_template(template.id, review_status="approved", review_notes="Auto-approved after Canghe gallery sync.")
@@ -323,7 +339,7 @@ def sync_canghe_gallery(
     cases_payload: dict[str, Any] | None = None,
     dry_run: bool = False,
     max_imports: int | None = None,
-    initialize_templates: bool = False,
+    initialize_templates: bool = True,
     approve_templates: bool = False,
     image_fetcher: Callable[[str], bytes] | None = None,
 ) -> CangheGallerySyncResponse:

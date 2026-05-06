@@ -26,7 +26,7 @@ def _remote_sync(args: argparse.Namespace) -> dict:
         "admin_password": password,
         "dry_run": args.dry_run,
         "max_imports": args.max_imports,
-        "initialize_templates": args.init_templates,
+        "initialize_templates": not args.no_init_templates,
         "approve_templates": args.approve_templates,
     }
     with httpx.Client(follow_redirects=True, timeout=args.timeout) as client:
@@ -44,7 +44,8 @@ def main() -> int:
     parser.add_argument("--admin-password", help="Admin password for remote sync. Prefer env vars for scheduled runs.")
     parser.add_argument("--dry-run", action="store_true", help="Report incremental candidates without importing.")
     parser.add_argument("--max-imports", type=int, default=50, help="Maximum new cases to import or report.")
-    parser.add_argument("--init-templates", action="store_true", help="Initialize prompt skeleton templates for imported items.")
+    parser.add_argument("--init-templates", action="store_true", help="Deprecated; prompt skeleton templates are initialized by default.")
+    parser.add_argument("--no-init-templates", action="store_true", help="Skip prompt skeleton template initialization for imported items.")
     parser.add_argument("--approve-templates", action="store_true", help="Approve initialized prompt templates.")
     parser.add_argument("--timeout", type=float, default=300, help="Remote API timeout in seconds.")
     args = parser.parse_args()
@@ -58,7 +59,7 @@ def main() -> int:
             source_url=args.source_url,
             dry_run=args.dry_run,
             max_imports=args.max_imports,
-            initialize_templates=args.init_templates,
+            initialize_templates=not args.no_init_templates,
             approve_templates=args.approve_templates,
         ).model_dump()
     print(json.dumps(payload, ensure_ascii=False, indent=2))

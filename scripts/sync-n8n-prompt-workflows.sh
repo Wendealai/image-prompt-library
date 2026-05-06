@@ -61,7 +61,7 @@ for node in workflow.get("nodes", []):
         parameters["jsonBody"] = (
             "={{ { admin_password: "
             + json.dumps(password)
-            + ", dry_run: false, max_imports: 80, initialize_templates: false, approve_templates: false } }}"
+            + ", dry_run: false, max_imports: 80, initialize_templates: true, approve_templates: false } }}"
         )
 json.dump(workflow, open(target, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 PY

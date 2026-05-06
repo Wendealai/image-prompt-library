@@ -70,6 +70,7 @@ def test_canghe_gallery_daily_sync_workflow_calls_admin_sync_endpoint_without_em
     assert 'Summarize Canghe Gallery Sync Result' in node_names
     assert request_node['parameters']['url'] == 'https://prompt.wendealai.com/api/admin/intake/canghe-gallery/sync'
     assert '$env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in body
+    assert 'initialize_templates: true' in body
     assert 'zwyy0323' not in body
     assert workflow['connections']['Schedule Canghe Gallery Daily Sync']['main'][0][0]['node'] == 'Call Image Prompt Library Canghe Sync'
 
@@ -80,4 +81,5 @@ def test_n8n_sync_script_injects_canghe_password_only_for_upload():
     assert 'IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in script
     assert 'CANGHE_TEMP_WORKFLOW="$(mktemp)"' in script
     assert 'CANGHE_UPLOAD_WORKFLOW="$CANGHE_TEMP_WORKFLOW"' in script
+    assert 'initialize_templates: true' in script
     assert "json.dumps(password)" in script

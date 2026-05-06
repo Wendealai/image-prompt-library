@@ -288,7 +288,7 @@ class CaseIntakeFetchRequest(BaseModel):
 class CangheGallerySyncRequest(BaseModel):
     dry_run: bool = False
     max_imports: Optional[int] = Field(default=50, ge=1, le=300)
-    initialize_templates: bool = False
+    initialize_templates: bool = True
     approve_templates: bool = False
     admin_password: Optional[str] = None
 
