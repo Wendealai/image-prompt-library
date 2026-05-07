@@ -4,6 +4,7 @@ from pathlib import Path
 
 import httpx
 from fastapi.testclient import TestClient
+from PIL import Image
 
 from backend.main import create_app
 from backend.repositories import ItemRepository
@@ -33,6 +34,7 @@ def test_generate_images_from_prompt_handles_sync_images(monkeypatch):
         assert '"aspectRatio":"16:9"' in payload
         assert '"imageCount":3' in payload
         assert '"style":"editorial"' in payload
+        assert '"outputFormat":"jpeg"' in payload
         return httpx.Response(
             200,
             json={
@@ -55,6 +57,7 @@ def test_generate_images_from_prompt_handles_sync_images(monkeypatch):
                 "aspect_ratio": "16:9",
                 "image_count": 3,
                 "style": "editorial",
+                "output_format": "jpg",
             },
             client=client,
         )
@@ -179,9 +182,12 @@ def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monke
     stored_original = library / payload["images"][0]["original_path"]
     stored_preview = library / payload["images"][0]["preview_path"]
     stored_thumb = library / payload["images"][0]["thumb_path"]
+    assert stored_original.suffix == ".jpg"
     assert stored_original.is_file()
     assert stored_preview.is_file()
     assert stored_thumb.is_file()
+    with Image.open(stored_original) as stored:
+        assert stored.format == "JPEG"
 
 
 def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, monkeypatch):
@@ -200,6 +206,7 @@ def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, m
             "aspect_ratio": "3:2",
             "image_count": 2,
             "style": "illustration",
+            "output_format": "png",
         }
         return ImageGenerationResult(
             status="completed",
@@ -219,6 +226,7 @@ def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, m
                 "aspect_ratio": "3:2",
                 "image_count": 2,
                 "style": "illustration",
+                "output_format": "png",
             },
         },
     )

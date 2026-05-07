@@ -161,13 +161,52 @@ class ItemRepository:
         if image.role not in {"result_image", "reference_image"}:
             raise ValueError("Invalid image role")
         with connect(self.library_path) as conn:
+            item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
+            if not item_exists:
+                raise KeyError(item_id)
             iid = new_id("img")
             ts = now()
             order = conn.execute("SELECT COALESCE(MAX(sort_order),-1)+1 FROM images WHERE item_id=?", (item_id,)).fetchone()[0]
             conn.execute("""INSERT INTO images(id,item_id,original_path,thumb_path,preview_path,remote_url,width,height,file_sha256,role,sort_order,created_at)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""", (iid,item_id,image.original_path,image.thumb_path,image.preview_path,image.remote_url,image.width,image.height,image.file_sha256,image.role,order,ts))
+            conn.execute("UPDATE items SET updated_at=? WHERE id=?", (ts, item_id))
             conn.commit()
         return self._image_by_id(iid)
+
+    def delete_image(self, item_id: str, image_id: str) -> ImageRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM images WHERE id=? AND item_id=?", (image_id, item_id)).fetchone()
+            if not row:
+                item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
+                if not item_exists:
+                    raise KeyError(item_id)
+                raise KeyError(image_id)
+            record = ImageRecord(**dict(row))
+            conn.execute("DELETE FROM images WHERE id=?", (image_id,))
+            conn.execute("UPDATE items SET updated_at=? WHERE id=?", (now(), item_id))
+            conn.commit()
+        return record
+
+    def image_paths_in_use(self, paths: list[str]) -> set[str]:
+        values = [path for path in paths if path]
+        if not values:
+            return set()
+        placeholders = ",".join("?" for _ in values)
+        with connect(self.library_path) as conn:
+            rows = conn.execute(
+                f"""
+                SELECT original_path, thumb_path, preview_path
+                FROM images
+                WHERE original_path IN ({placeholders})
+                   OR thumb_path IN ({placeholders})
+                   OR preview_path IN ({placeholders})
+                """,
+                (*values, *values, *values),
+            ).fetchall()
+        in_use: set[str] = set()
+        for row in rows:
+            in_use.update(path for path in (row["original_path"], row["thumb_path"], row["preview_path"]) if path)
+        return in_use
 
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None

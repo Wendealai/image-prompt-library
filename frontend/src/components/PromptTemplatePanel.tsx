@@ -14,7 +14,7 @@ type LocalPromptPreview = {
 type SavedImageGenerationPreset = {
   id: string;
   name: string;
-  options: Required<PromptImageGenerationOptions>;
+  options: RequiredImageGenerationOptions;
 };
 
 type ImageReferenceDraft = {
@@ -41,6 +41,7 @@ type ImageGenerationState =
 const IMAGE_RESOLUTION_OPTIONS = ['1024x1024', '1536x1024', '1024x1536', '2048x2048', '4096x4096'] as const;
 const IMAGE_ASPECT_RATIO_OPTIONS = ['auto', '1:1', '4:3', '3:2', '16:9', '9:16'] as const;
 const IMAGE_STYLE_OPTIONS = ['auto', 'cinematic', 'editorial', 'illustration', 'photoreal', 'fantasy art', 'ink & wash'] as const;
+const IMAGE_OUTPUT_FORMAT_OPTIONS = ['jpg', 'png'] as const;
 const IMAGE_GENERATION_STAGE_DELAY_MS = 2200;
 const IMAGE_GENERATION_PRESETS_STORAGE_KEY = 'image-prompt-library.image_generation_presets.v1';
 const IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY = 'image-prompt-library.image_generation_recent_options.v1';
@@ -50,19 +51,28 @@ const IMAGE_REFERENCE_MAX_EDGE = 1536;
 const IMAGE_REFERENCE_MAX_BYTES = 4 * 1024 * 1024;
 const IMAGE_REFERENCE_JPEG_QUALITY = 0.86;
 const IMAGE_REFERENCE_ROLE_OPTIONS = ['subject', 'style', 'composition', 'material', 'palette', 'element'] as const;
-const DEFAULT_IMAGE_GENERATION_OPTIONS: Required<PromptImageGenerationOptions> = {
+
+type RequiredImageGenerationOptions = Omit<Required<PromptImageGenerationOptions>, 'resolution' | 'aspect_ratio' | 'style' | 'output_format'> & {
+  resolution: (typeof IMAGE_RESOLUTION_OPTIONS)[number];
+  aspect_ratio: (typeof IMAGE_ASPECT_RATIO_OPTIONS)[number];
+  style: (typeof IMAGE_STYLE_OPTIONS)[number];
+  output_format: (typeof IMAGE_OUTPUT_FORMAT_OPTIONS)[number];
+};
+
+const DEFAULT_IMAGE_GENERATION_OPTIONS: RequiredImageGenerationOptions = {
   resolution: '1024x1024',
   aspect_ratio: '1:1',
   image_count: 1,
   style: 'auto',
+  output_format: 'jpg',
   strength: 0.65,
 };
 
-function isAllowedValue<T extends readonly string[]>(value: unknown, allowedValues: T, fallback: string): string {
-  return typeof value === 'string' && allowedValues.includes(value as T[number]) ? value : fallback;
+function isAllowedValue<T extends readonly string[]>(value: unknown, allowedValues: T, fallback: T[number]): T[number] {
+  return typeof value === 'string' && allowedValues.includes(value as T[number]) ? value as T[number] : fallback;
 }
 
-function normalizeImageGenerationOptions(value: unknown): Required<PromptImageGenerationOptions> {
+function normalizeImageGenerationOptions(value: unknown): RequiredImageGenerationOptions {
   const record = value && typeof value === 'object' ? value as Record<string, unknown> : {};
   const imageCount = typeof record.image_count === 'number' && Number.isFinite(record.image_count)
     ? Math.max(1, Math.min(4, Math.round(record.image_count)))
@@ -75,11 +85,12 @@ function normalizeImageGenerationOptions(value: unknown): Required<PromptImageGe
     aspect_ratio: isAllowedValue(record.aspect_ratio, IMAGE_ASPECT_RATIO_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.aspect_ratio),
     image_count: imageCount,
     style: isAllowedValue(record.style, IMAGE_STYLE_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.style),
+    output_format: isAllowedValue(record.output_format, IMAGE_OUTPUT_FORMAT_OPTIONS, DEFAULT_IMAGE_GENERATION_OPTIONS.output_format),
     strength,
   };
 }
 
-function loadRecentImageGenerationOptions(): Required<PromptImageGenerationOptions> | null {
+function loadRecentImageGenerationOptions(): RequiredImageGenerationOptions | null {
   try {
     const raw = window.localStorage.getItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY);
     if (!raw) return null;
@@ -110,13 +121,14 @@ function loadSavedImageGenerationPresets(): SavedImageGenerationPreset[] {
 }
 
 function sameImageGenerationOptions(
-  left: Required<PromptImageGenerationOptions>,
-  right: Required<PromptImageGenerationOptions>,
+  left: RequiredImageGenerationOptions,
+  right: RequiredImageGenerationOptions,
 ) {
   return left.resolution === right.resolution
     && left.aspect_ratio === right.aspect_ratio
     && left.image_count === right.image_count
     && left.style === right.style
+    && left.output_format === right.output_format
     && left.strength === right.strength;
 }
 
@@ -249,10 +261,10 @@ export default function PromptTemplatePanel({
   const [feedback, setFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const [generating, setGenerating] = useState(false);
   const [rerolling, setRerolling] = useState(false);
-  const [imageGenerationOptions, setImageGenerationOptions] = useState<Required<PromptImageGenerationOptions>>(() => loadRecentImageGenerationOptions() || DEFAULT_IMAGE_GENERATION_OPTIONS);
+  const [imageGenerationOptions, setImageGenerationOptions] = useState<RequiredImageGenerationOptions>(() => loadRecentImageGenerationOptions() || DEFAULT_IMAGE_GENERATION_OPTIONS);
   const [imageGenerationState, setImageGenerationState] = useState<ImageGenerationState>({ phase: 'idle' });
   const [savedImagePresets, setSavedImagePresets] = useState<SavedImageGenerationPreset[]>(loadSavedImageGenerationPresets);
-  const [recentImageGenerationOptions, setRecentImageGenerationOptions] = useState<Required<PromptImageGenerationOptions> | null>(loadRecentImageGenerationOptions);
+  const [recentImageGenerationOptions, setRecentImageGenerationOptions] = useState<RequiredImageGenerationOptions | null>(loadRecentImageGenerationOptions);
   const [imagePresetName, setImagePresetName] = useState('');
   const [imageReferences, setImageReferences] = useState<ImageReferenceDraft[]>([]);
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
@@ -405,7 +417,7 @@ export default function PromptTemplatePanel({
     window.localStorage.setItem(IMAGE_GENERATION_PRESETS_STORAGE_KEY, JSON.stringify(savedImagePresets));
   }, [savedImagePresets]);
 
-  const updateImageGenerationOptions = useCallback((nextOptions: Required<PromptImageGenerationOptions>) => {
+  const updateImageGenerationOptions = useCallback((nextOptions: RequiredImageGenerationOptions) => {
     setImageGenerationOptions(nextOptions);
     setImageGenerationState({ phase: 'idle' });
   }, []);
@@ -600,7 +612,7 @@ export default function PromptTemplatePanel({
     await runImageGeneration(fallbackPromptText);
   };
 
-  const handleApplyImagePreset = (options: Required<PromptImageGenerationOptions>) => {
+  const handleApplyImagePreset = (options: RequiredImageGenerationOptions) => {
     if (imageGenerationBusy) return;
     updateImageGenerationOptions(options);
   };
@@ -959,7 +971,7 @@ export default function PromptTemplatePanel({
                   <select
                     className="prompt-remix-select"
                     value={imageGenerationOptions.aspect_ratio}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, aspect_ratio: event.target.value as Required<PromptImageGenerationOptions>['aspect_ratio'] })}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, aspect_ratio: event.target.value as RequiredImageGenerationOptions['aspect_ratio'] })}
                     disabled={imageGenerationBusy}
                   >
                     {IMAGE_ASPECT_RATIO_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
@@ -970,7 +982,7 @@ export default function PromptTemplatePanel({
                   <select
                     className="prompt-remix-select"
                     value={imageGenerationOptions.resolution}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, resolution: event.target.value as Required<PromptImageGenerationOptions>['resolution'] })}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, resolution: event.target.value as RequiredImageGenerationOptions['resolution'] })}
                     disabled={imageGenerationBusy}
                   >
                     {IMAGE_RESOLUTION_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
@@ -981,7 +993,7 @@ export default function PromptTemplatePanel({
                   <select
                     className="prompt-remix-select"
                     value={imageGenerationOptions.style}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, style: event.target.value as Required<PromptImageGenerationOptions>['style'] })}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, style: event.target.value as RequiredImageGenerationOptions['style'] })}
                     disabled={imageGenerationBusy}
                   >
                     {IMAGE_STYLE_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
@@ -996,6 +1008,17 @@ export default function PromptTemplatePanel({
                     disabled={imageGenerationBusy}
                   >
                     {[1, 2, 3, 4].map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+                <label className="prompt-remix-select-field">
+                  <span>{t('promptTemplateImageFormat')}</span>
+                  <select
+                    className="prompt-remix-select"
+                    value={imageGenerationOptions.output_format}
+                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, output_format: event.target.value as RequiredImageGenerationOptions['output_format'] })}
+                    disabled={imageGenerationBusy}
+                  >
+                    {IMAGE_OUTPUT_FORMAT_OPTIONS.map(option => <option key={option} value={option}>{option.toUpperCase()}</option>)}
                   </select>
                 </label>
                 <label className="prompt-remix-select-field">

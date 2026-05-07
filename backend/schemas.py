@@ -270,6 +270,7 @@ class PromptImageGenerateOptions(BaseModel):
     aspect_ratio: Optional[Literal["auto", "1:1", "4:3", "3:2", "16:9", "9:16"]] = None
     image_count: Optional[int] = Field(default=None, ge=1, le=4)
     style: Optional[Literal["auto", "cinematic", "editorial", "illustration", "photoreal", "fantasy art", "ink & wash"]] = None
+    output_format: Optional[Literal["jpg", "png"]] = None
     strength: Optional[float] = Field(default=None, ge=0, le=1)
 
 class PromptImageReferenceInput(BaseModel):

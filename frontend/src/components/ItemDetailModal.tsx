@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, ExternalLink, Heart, Minus, Pencil, Plus, X } from 'lucide-react';
-import { api } from '../api/client';
+import { Check, Copy, Download, ExternalLink, Heart, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { api, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
@@ -21,6 +21,18 @@ const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
 
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
+}
+
+function imageDownloadUrl(image: ImageRecord) {
+  return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+}
+
+function imageDownloadFilename(item: ItemDetail, image: ImageRecord) {
+  const sourcePath = image.original_path || image.preview_path || image.thumb_path || '';
+  const extensionMatch = sourcePath.match(/\.([a-z0-9]+)(?:$|\?)/i);
+  const extension = (extensionMatch?.[1] || 'jpg').toLowerCase().replace('jpeg', 'jpg');
+  const safeTitle = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 72) || 'prompt-image';
+  return `${safeTitle}-${image.id}.${extension}`;
 }
 
 function dedupeImages(images: ImageRecord[]) {
@@ -370,6 +382,33 @@ export default function ItemDetailModal({
   const handleImageViewerTouchEnd = () => {
     pinchGestureRef.current = null;
   };
+  const handleDownloadImage = (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+    event?.stopPropagation();
+    if (!item) return;
+    const href = imageDownloadUrl(image);
+    if (!href) return;
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = imageDownloadFilename(item, image);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+  const handleDeleteImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+    event?.stopPropagation();
+    if (!item || !window.confirm(t('deleteImageConfirm'))) return;
+    try {
+      const updated = await api.deleteImage(item.id, image.id);
+      const nextImages = dedupeImages(updated.images);
+      const nextActiveImage = nextImages.find(candidate => getImageIdentity(candidate) !== getImageIdentity(image)) || selectPrimaryImage(nextImages);
+      setItem(updated);
+      setSelectedImageIdentity(nextActiveImage ? getImageIdentity(nextActiveImage) : undefined);
+      setImageViewerOpen(false);
+      onChanged();
+    } catch (error) {
+      window.alert(error instanceof Error && error.message ? error.message : t('imageDeleteFailed'));
+    }
+  };
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -391,6 +430,18 @@ export default function ItemDetailModal({
                   </button>
                 ) : (
                   <div className="placeholder hero-image">{t('noImage')}</div>
+                )}
+                {activeImage && (
+                  <div className="detail-image-actions" onClick={event => event.stopPropagation()}>
+                    <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                      <Download size={17} />
+                    </button>
+                    {showMutations && (
+                      <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                        <Trash2 size={17} />
+                      </button>
+                    )}
+                  </div>
                 )}
                 <div className="mobile-hero-actions" aria-label={t('itemActions')}>
                   <button className="modal-icon-button mobile-hero-close" onClick={onClose} aria-label={t('close')}>
@@ -563,9 +614,19 @@ export default function ItemDetailModal({
                   <strong>{t('imageDetailViewer')}</strong>
                   <span>{t('imageDetailViewerHint')}</span>
                 </div>
-                <button type="button" className="modal-icon-button" onClick={closeImageViewer} aria-label={t('close')}>
-                  <X size={18} />
-                </button>
+                <div className="detail-image-viewer-actions">
+                  <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                    <Download size={16} />
+                  </button>
+                  {showMutations && (
+                    <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                      <Trash2 size={16} />
+                    </button>
+                  )}
+                  <button type="button" className="modal-icon-button" onClick={closeImageViewer} aria-label={t('close')}>
+                    <X size={18} />
+                  </button>
+                </div>
               </div>
               <div className="detail-image-viewer-controls" aria-label={t('constellationControls')}>
                 <button type="button" className="modal-icon-button" onClick={() => nudgeImageViewerScale(-0.25)} aria-label={t('zoomOut')} disabled={imageViewerScale <= 1}>

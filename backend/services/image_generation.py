@@ -36,7 +36,7 @@ DEFAULT_TOOL_MODEL = "gpt-image-2"
 DEFAULT_RESOLUTION = "1024x1024"
 DEFAULT_ASPECT_RATIO = "1:1"
 DEFAULT_QUALITY = "high"
-DEFAULT_OUTPUT_FORMAT = "png"
+DEFAULT_OUTPUT_FORMAT = "jpg"
 DEFAULT_BACKGROUND = "auto"
 DEFAULT_STYLE = "auto"
 DEFAULT_IMAGE_TO_IMAGE_STRENGTH = 0.65
@@ -410,6 +410,15 @@ def _generation_strength(normalized_generation: dict[str, Any], *, has_reference
     return min(1.0, max(0.0, value))
 
 
+def _generation_output_format(normalized_generation: dict[str, Any]) -> str:
+    raw_value = str(normalized_generation.get("output_format") or os.environ.get(OUTPUT_FORMAT_ENV, DEFAULT_OUTPUT_FORMAT)).strip().lower()
+    if raw_value in {"jpg", "jpeg"}:
+        return "jpeg"
+    if raw_value == "png":
+        return "png"
+    raise ImageGenerationError(f"Invalid image output format: {raw_value}")
+
+
 def _extract_job_id(payload: Any) -> str:
     return _pick_string_from_paths(payload, [
         ["jobId"],
@@ -610,7 +619,7 @@ def _build_generate_payload(
             "aspectRatio": str(normalized_generation.get("aspect_ratio") or os.environ.get(ASPECT_RATIO_ENV, DEFAULT_ASPECT_RATIO)).strip() or DEFAULT_ASPECT_RATIO,
             "imageCount": int(normalized_generation.get("image_count") or _int_env(IMAGE_COUNT_ENV, 1, minimum=1, maximum=4)),
             "quality": os.environ.get(QUALITY_ENV, DEFAULT_QUALITY).strip() or DEFAULT_QUALITY,
-            "outputFormat": os.environ.get(OUTPUT_FORMAT_ENV, DEFAULT_OUTPUT_FORMAT).strip() or DEFAULT_OUTPUT_FORMAT,
+            "outputFormat": _generation_output_format(normalized_generation),
             "background": os.environ.get(BACKGROUND_ENV, DEFAULT_BACKGROUND).strip() or DEFAULT_BACKGROUND,
             "style": str(normalized_generation.get("style") or os.environ.get(STYLE_ENV, DEFAULT_STYLE)).strip() or DEFAULT_STYLE,
             "temperature": round(_generation_temperature(), 2),

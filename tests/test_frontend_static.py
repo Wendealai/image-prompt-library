@@ -179,8 +179,12 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert "const imageViewerScrollRef = useRef<HTMLDivElement>(null);" in detail
     assert "const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);" in detail
     assert "className=\"hero-image-button\"" in detail
+    assert "className=\"detail-image-actions\"" in detail
+    assert "className=\"detail-image-viewer-actions\"" in detail
     assert "className=\"detail-image-viewer\"" in detail
     assert "className=\"detail-image-viewer-controls\"" in detail
+    assert "handleDownloadImage" in detail
+    assert "handleDeleteImage" in detail
     assert "style={{ width: `${imageViewerScale * 100}%` }}" in detail
     assert "const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;" in detail
     assert "function clampImageViewerScale(scale: number)" in detail
@@ -197,17 +201,24 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert ".hero-image-button{width:100%;height:100%;display:block;border:0;padding:0;background:transparent;cursor:zoom-in}" in compact_css
     assert ".hero-image{width:100%;height:auto;max-height:none;object-fit:contain}" in compact_css
     assert ".mobile-hero-actions{display:block}" in compact_css
+    assert ".detail-image-actions{left:12px;top:calc(12px+env(safe-area-inset-top))}" in compact_css
+    assert ".detail-image-action{width:40px;height:40px;background:rgba(33,25,34,.72);color:white}" in compact_css
     assert ".mobile-hero-close{position:absolute;right:12px;top:calc(12px+env(safe-area-inset-top));" in compact_css
     assert ".mobile-hero-primary-actions{position:absolute;right:12px;bottom:12px;" in compact_css
     assert ".detail-image-viewer{position:absolute;inset:0;z-index:16;" in compact_css
+    assert ".detail-image-viewer-actions{display:inline-flex;align-items:center;gap:8px;flex:00auto}" in compact_css
     assert ".detail-image-viewer-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}" in compact_css
     assert ".detail-image-viewer-scroll{min-height:0;overflow:auto;" in compact_css
     assert "touch-action:manipulation" in css
     assert "-webkit-overflow-scrolling:touch" in css
-    assert "| 'openImageDetailViewer' | 'imageDetailViewer' | 'imageDetailViewerHint'" in i18n
+    assert "| 'openImageDetailViewer' | 'imageDetailViewer' | 'imageDetailViewerHint' | 'downloadImage' | 'deleteImage' | 'deleteImageConfirm' | 'imageDeleteFailed'" in i18n
     assert "openImageDetailViewer: 'Open image detail viewer'" in i18n
     assert "imageDetailViewer: 'Image detail viewer'" in i18n
     assert "imageDetailViewerHint: 'Drag to inspect details, and use double-tap or pinch gestures to zoom in or out.'" in i18n
+    assert "downloadImage: 'Download image'" in i18n
+    assert "deleteImage: 'Delete image'" in i18n
+    assert "deleteImageConfirm: 'Delete this image? Original, preview, and thumbnail files will also be removed when no other case uses them.'" in i18n
+    assert "imageDeleteFailed: 'Failed to delete image.'" in i18n
 
 
 def test_detail_modal_does_not_call_hooks_after_empty_id_guard():
@@ -324,6 +335,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageAspectRatio" in i18n
     assert "promptTemplateImageStyle" in i18n
     assert "promptTemplateImageCount" in i18n
+    assert "promptTemplateImageFormat" in i18n
     assert "promptTemplateImageStrength" in i18n
     assert "promptTemplateImageQueued" in i18n
     assert "promptTemplateImageRendering" in i18n
@@ -340,6 +352,10 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetNameRequired" in i18n
     assert "promptTemplateImageReferences" in i18n
     assert "promptTemplateImageToImageMode" in i18n
+    assert "deleteImage: (itemId: string, imageId: string)" in client
+    assert "promptTemplateImageFormat" in panel
+    assert "output_format: 'jpg'" in panel
+    assert "IMAGE_OUTPUT_FORMAT_OPTIONS = ['jpg', 'png'] as const" in panel
     assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css

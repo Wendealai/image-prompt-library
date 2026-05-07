@@ -162,13 +162,15 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
                 reference.model_dump(exclude_none=True)
                 for reference in payload.references
             ]
+        generation_options = payload.generation.model_dump(exclude_none=True) if payload.generation else {}
+        output_format = generation_options.get("output_format") or "jpg"
         result = generate_images_from_prompt(
             payload.prompt,
             **generate_kwargs,
         )
         created_images = []
         for generated in result.images:
-            stored = store_image(request.app.state.library_path, generated.data, generated.filename)
+            stored = store_image(request.app.state.library_path, generated.data, generated.filename, output_format=output_format)
             created_images.append(repository.add_image(
                 item.id,
                 StoredImageInput(
