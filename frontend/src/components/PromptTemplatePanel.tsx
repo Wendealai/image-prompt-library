@@ -3,7 +3,7 @@ import { Copy, ImagePlus, RefreshCcw, Sparkles, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
-import type { ImageRecord, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptRenderSegment, PromptTemplateBundle } from '../types';
+import type { ImageRecord, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptRenderSegment, PromptTemplateBundle } from '../types';
 import type { Translator } from '../utils/i18n';
 
 type LocalPromptPreview = {
@@ -225,6 +225,18 @@ function statusLabel(status: string, t: Translator) {
   return status;
 }
 
+function qualityLabel(label: string | undefined, t: Translator) {
+  if (label === 'excellent') return t('promptTemplateQualityExcellent');
+  if (label === 'good') return t('promptTemplateQualityGood');
+  if (label === 'needs_review') return t('promptTemplateQualityNeedsReview');
+  if (label === 'weak') return t('promptTemplateQualityWeak');
+  return label || t('promptTemplateQualityNeedsReview');
+}
+
+function slotTypeLabel(variableType: string | undefined, t: Translator) {
+  return `${t('promptTemplateVariableType')}: ${variableType || 'other'}`;
+}
+
 function imageGenerationStatusTone(phase: ImageGenerationPhase) {
   if (phase === 'queued') return 'stale';
   if (phase === 'rendering') return 'ready';
@@ -267,6 +279,7 @@ export default function PromptTemplatePanel({
   const [recentImageGenerationOptions, setRecentImageGenerationOptions] = useState<RequiredImageGenerationOptions | null>(loadRecentImageGenerationOptions);
   const [imagePresetName, setImagePresetName] = useState('');
   const [imageReferences, setImageReferences] = useState<ImageReferenceDraft[]>([]);
+  const [lastImageRun, setLastImageRun] = useState<PromptImageGenerationRunRecord | null>(null);
   const [editorValues, setEditorValues] = useState<Record<string, string>>({});
   const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({});
   const [editingVariantId, setEditingVariantId] = useState('original');
@@ -587,6 +600,7 @@ export default function PromptTemplatePanel({
       clearImageGenerationTimer();
       window.localStorage.setItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY, JSON.stringify(imageGenerationOptions));
       setRecentImageGenerationOptions(imageGenerationOptions);
+      setLastImageRun(result.run || null);
       setImageGenerationState({ phase: 'success', imageCount: result.images.length });
       onImageGenerated?.(result);
     } catch (error) {
@@ -737,11 +751,19 @@ export default function PromptTemplatePanel({
             <span className={`prompt-remix-status is-${template.status}`}>{statusLabel(template.status, t)}</span>
             <span>{template.slots.length} {t('promptTemplateSlots')}</span>
             {typeof template.analysis_confidence === 'number' && <span>{Math.round(template.analysis_confidence * 100)}%</span>}
+            {typeof template.quality_score === 'number' && (
+              <span className={`prompt-remix-quality-chip is-${template.quality_label || 'needs_review'}`}>
+                {t('promptTemplateQuality')}: {Math.round(template.quality_score * 100)} · {qualityLabel(template.quality_label, t)}
+              </span>
+            )}
           </div>
 
           <div className="prompt-remix-slot-list">
             {template.slots.map(slot => (
-              <span key={slot.id} className="prompt-remix-slot-chip">{slot.label}</span>
+              <span key={slot.id} className="prompt-remix-slot-chip">
+                {slot.label}
+                {slot.variable_type ? <em>{slot.variable_type}</em> : null}
+              </span>
             ))}
           </div>
 
@@ -879,7 +901,9 @@ export default function PromptTemplatePanel({
                     <div className="prompt-remix-editor-card-head">
                       <div>
                         <strong>{slot.label}</strong>
+                        <span className="prompt-remix-type-chip">{slotTypeLabel(slot.variable_type, t)}</span>
                         {slot.instruction && <p>{slot.instruction}</p>}
+                        {slot.input_hint && <p>{slot.input_hint}</p>}
                       </div>
                       <button type="button" className="secondary prompt-remix-reset" onClick={() => handleResetSlot(slot.id)} disabled={!changed}>
                         <span>{t('promptTemplateResetSlot')}</span>
@@ -1127,6 +1151,14 @@ export default function PromptTemplatePanel({
                       <span>{t('promptTemplateImageRetry')}</span>
                     </button>
                   )}
+                </div>
+              )}
+              {lastImageRun && (
+                <div className="prompt-remix-run-card">
+                  <strong>{t('promptTemplateImageRunSaved')}</strong>
+                  <span>{lastImageRun.id}</span>
+                  <span>{lastImageRun.image_ids.length} image(s)</span>
+                  <span>{t('promptTemplateImageRunReferences')}: {lastImageRun.references.length}</span>
                 </div>
               )}
             </section>

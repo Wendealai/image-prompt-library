@@ -4,6 +4,7 @@ import re
 from typing import Iterable
 
 from backend.schemas import PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
+from backend.services.prompt_template_quality import normalize_prompt_template_slot
 
 SLOT_PATTERN = re.compile(r"\[\[slot(?P<attrs>[^\]]*)\]\](?P<content>.*?)\[\[/slot\]\]", re.DOTALL)
 ATTR_PATTERN = re.compile(r'([a-zA-Z_][\w-]*)="([^"]*)"')
@@ -28,14 +29,16 @@ def extract_slots(marked_text: str) -> list[PromptTemplateSlot]:
         if slot_id in seen_ids:
             raise PromptMarkupError(f"Duplicate slot id: {slot_id}")
         seen_ids.add(slot_id)
-        slots.append(PromptTemplateSlot(
+        slots.append(normalize_prompt_template_slot(PromptTemplateSlot(
             id=slot_id,
             group=attrs.get("group", "content") or "content",
             label=attrs.get("label", slot_id) or slot_id,
             original_text=match.group("content"),
             role=attrs.get("role") or None,
             instruction=attrs.get("instruction") or None,
-        ))
+            variable_type=attrs.get("variable_type") or attrs.get("type") or None,
+            input_hint=attrs.get("input_hint") or attrs.get("hint") or None,
+        )))
     return slots
 
 

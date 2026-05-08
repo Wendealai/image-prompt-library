@@ -80,6 +80,14 @@ function technicalStatusLabel(status: string, t: ReturnType<typeof makeTranslato
   }
 }
 
+function qualityLabel(label: string | undefined, t: ReturnType<typeof makeTranslator>) {
+  if (label === 'excellent') return t('promptTemplateQualityExcellent');
+  if (label === 'good') return t('promptTemplateQualityGood');
+  if (label === 'needs_review') return t('promptTemplateQualityNeedsReview');
+  if (label === 'weak') return t('promptTemplateQualityWeak');
+  return label || t('promptTemplateQualityNeedsReview');
+}
+
 function queueLabel(queue: QueueFilter, t: ReturnType<typeof makeTranslator>) {
   switch (queue) {
     case 'needs_init':
@@ -536,6 +544,7 @@ export default function AdminApp() {
                   <div className="template-ops-item-meta">
                     <span>{technicalStatusLabel(item.status, t)}</span>
                     <span>{item.slot_count} {t('promptTemplateSlots')}</span>
+                    {typeof item.quality_score === 'number' ? <span>{t('promptTemplateQuality')} {Math.round(item.quality_score * 100)}</span> : null}
                     {item.prompt_updated_at ? <span>{formatTimestamp(item.prompt_updated_at, uiLanguage)}</span> : null}
                   </div>
                   <p className={`template-ops-item-text ${item.prompt_excerpt ? '' : 'is-empty'}`}>{item.prompt_excerpt || t('templateOpsPromptMissing')}</p>
@@ -558,6 +567,11 @@ export default function AdminApp() {
                   <div className="template-ops-toolbar-meta">
                     <span className={`prompt-remix-status ${selectedItem.published ? 'is-ready' : selectedItem.review_status === 'rejected' || selectedItem.status === 'failed' ? 'is-failed' : 'is-stale'}`}>{reviewStatusLabel(selectedItem.review_status, t)}</span>
                     <span className="template-ops-meta-pill">{technicalStatusLabel(selectedItem.status, t)}</span>
+                    {typeof selectedItem.quality_score === 'number' ? (
+                      <span className={`template-quality-pill is-${selectedItem.quality_label || 'needs_review'}`}>
+                        {t('promptTemplateQuality')} {Math.round(selectedItem.quality_score * 100)} · {qualityLabel(selectedItem.quality_label, t)}
+                      </span>
+                    ) : null}
                     {selectedItem.published ? <span className="template-ops-meta-pill">{t('templateReviewPublished')}</span> : null}
                   </div>
 
@@ -608,11 +622,26 @@ export default function AdminApp() {
                         <strong>{t('promptTemplateMarkedPrompt')}</strong>
                         <pre>{selectedTemplate.marked_text}</pre>
                       </div>
+                      {typeof selectedTemplate.quality_score === 'number' ? (
+                        <div className="template-failure-detail-section">
+                          <strong>{t('promptTemplateQuality')}</strong>
+                          <div className="template-quality-card">
+                            <span className={`template-quality-pill is-${selectedTemplate.quality_label || 'needs_review'}`}>
+                              {Math.round(selectedTemplate.quality_score * 100)} · {qualityLabel(selectedTemplate.quality_label, t)}
+                            </span>
+                            {selectedTemplate.quality_reasons.length ? (
+                              <ul>
+                                {selectedTemplate.quality_reasons.map(reason => <li key={reason}>{reason}</li>)}
+                              </ul>
+                            ) : null}
+                          </div>
+                        </div>
+                      ) : null}
                       <div className="template-failure-detail-section">
                         <strong>{t('promptTemplateSlots')}</strong>
                         <div className="prompt-remix-slot-list">
                           {selectedTemplate.slots.map(slot => (
-                            <span key={slot.id} className="prompt-remix-slot-chip">{slot.label}</span>
+                            <span key={slot.id} className="prompt-remix-slot-chip">{slot.label}{slot.variable_type ? <em>{slot.variable_type}</em> : null}</span>
                           ))}
                         </div>
                       </div>

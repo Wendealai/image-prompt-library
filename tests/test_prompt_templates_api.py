@@ -74,7 +74,12 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     assert init_payload['template']['status'] == 'ready'
     assert init_payload['template']['review_status'] == 'pending_review'
     assert init_payload['template']['slots'][0]['id'] == 'main_subject'
+    assert init_payload['template']['slots'][0]['variable_type'] == 'subject'
+    assert init_payload['template']['slots'][0]['input_hint']
     assert init_payload['template']['analysis_confidence'] == 0.91
+    assert init_payload['template']['quality_score'] >= 0.66
+    assert init_payload['template']['quality_label'] in {'good', 'excellent'}
+    assert init_payload['template']['quality_reasons']
 
     template_id = init_payload['template']['id']
     public_before_review = client.get(f'/api/items/{item_id}/prompt-template')
@@ -228,8 +233,11 @@ def test_prompt_template_init_workflow_failure_uses_fallback_template(tmp_path: 
     assert template['status'] == 'ready'
     assert template['review_status'] == 'pending_review'
     assert template['analysis_confidence'] == 0.52
+    assert template['quality_score'] >= 0.4
+    assert template['quality_label'] in {'needs_review', 'good', 'excellent'}
     assert 'Deterministic explicit placeholder fallback' in template['analysis_notes']
     assert [slot['original_text'] for slot in template['slots']] == ['{argument name="brand" default="NOIR"}', '[PRODUCT]']
+    assert [slot['variable_type'] for slot in template['slots']] == ['brand', 'subject']
     assert '[[slot id="brand"' in template['marked_text']
 
 
@@ -342,6 +350,9 @@ def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_
     assert status_by_item[ready_id] == 'ready'
     assert status_by_item[stale_id] == 'stale'
     assert status_by_item[no_prompt_id] == 'no_prompt'
+    ready_item = next(item for item in payload['items'] if item['item_id'] == ready_id)
+    assert ready_item['quality_score'] >= 0.66
+    assert ready_item['quality_label'] in {'good', 'excellent'}
     assert payload['status_counts']['missing'] >= 1
     assert payload['status_counts']['ready'] >= 1
     assert payload['status_counts']['stale'] >= 1

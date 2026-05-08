@@ -178,6 +178,11 @@ def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monke
     assert payload["job_id"] == "job_saved"
     assert len(payload["images"]) == 1
     assert len(payload["item"]["images"]) == 1
+    assert payload["run"]["job_id"] == "job_saved"
+    assert payload["run"]["prompt"] == "A polished chrome poster"
+    assert payload["run"]["generation_options"] == {}
+    assert payload["run"]["references"] == []
+    assert payload["run"]["image_ids"] == [payload["images"][0]["id"]]
 
     stored_original = library / payload["images"][0]["original_path"]
     stored_preview = library / payload["images"][0]["preview_path"]
@@ -234,6 +239,13 @@ def test_generate_image_endpoint_forwards_generation_overrides(tmp_path: Path, m
     payload = response.json()
     assert payload["job_id"] == "job_options"
     assert len(payload["images"]) == 1
+    assert payload["run"]["generation_options"] == {
+        "resolution": "1536x1024",
+        "aspect_ratio": "3:2",
+        "image_count": 2,
+        "style": "illustration",
+        "output_format": "png",
+    }
 
 
 def test_generate_image_endpoint_forwards_reference_images(tmp_path: Path, monkeypatch):
@@ -281,6 +293,10 @@ def test_generate_image_endpoint_forwards_reference_images(tmp_path: Path, monke
     assert response.status_code == 200
     payload = response.json()
     assert payload["job_id"] == "job_reference"
+    assert payload["run"]["references"][0]["has_image_base64"] is True
+    assert payload["run"]["references"][0]["image_base64_length"] == len(PNG_BASE64)
+    assert "image_base64" not in payload["run"]["references"][0]
+    assert payload["run"]["generation_options"] == {"strength": 0.7}
 
 
 def test_generate_image_endpoint_returns_424_when_workflow_is_unavailable(tmp_path: Path, monkeypatch):

@@ -37,6 +37,17 @@ def _item_not_found(exc: KeyError):
     raise HTTPException(status_code=404, detail="Item not found.") from exc
 
 
+def _generation_reference_metadata(payload: PromptImageGenerateRequest) -> list[dict]:
+    references: list[dict] = []
+    for reference in payload.references:
+        data = reference.model_dump(exclude_none=True)
+        if "image_base64" in data:
+            data["has_image_base64"] = True
+            data["image_base64_length"] = len(data.pop("image_base64"))
+        references.append(data)
+    return references
+
+
 def _record_workflow_failure_sample(request: Request, exc: Exception, *, operation: str, context: dict | None = None) -> str | None:
     if not isinstance(exc, (PromptWorkflowError, PromptMarkupError, ValueError)):
         return None
@@ -184,12 +195,22 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
                     role="result_image",
                 ),
             ))
+        run = repository.add_prompt_image_generation_run(
+            item_id=item.id,
+            prompt=payload.prompt.strip(),
+            generation_options=generation_options,
+            references=_generation_reference_metadata(payload),
+            job_id=result.job_id,
+            status=result.status or "completed",
+            image_ids=[image.id for image in created_images],
+        )
         return PromptImageGenerationResponse(
             status=result.status or "completed",
             prompt=payload.prompt.strip(),
             job_id=result.job_id,
             images=created_images,
             item=repository.get_item(item_id),
+            run=run,
         )
     except KeyError as exc:
         _item_not_found(exc)

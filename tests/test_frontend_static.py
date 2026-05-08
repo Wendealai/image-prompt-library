@@ -336,6 +336,9 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageStyle" in i18n
     assert "promptTemplateImageCount" in i18n
     assert "promptTemplateImageFormat" in i18n
+    assert "promptTemplateQuality" in i18n
+    assert "promptTemplateVariableType" in i18n
+    assert "promptTemplateImageRunSaved" in i18n
     assert "promptTemplateImageStrength" in i18n
     assert "promptTemplateImageQueued" in i18n
     assert "promptTemplateImageRendering" in i18n
@@ -354,12 +357,16 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageToImageMode" in i18n
     assert "deleteImage: (itemId: string, imageId: string)" in client
     assert "promptTemplateImageFormat" in panel
+    assert "prompt-remix-quality-chip" in panel
+    assert "prompt-remix-type-chip" in panel
+    assert "lastImageRun" in panel
     assert "output_format: 'jpg'" in panel
     assert "IMAGE_OUTPUT_FORMAT_OPTIONS = ['jpg', 'png'] as const" in panel
     assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
     assert ".prompt-remix-reference-section{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-run-card{display:flex;align-items:center;gap:8px;flex-wrap:wrap;" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
     assert "if (loading) return null;" in panel
     assert "prompt-direct-image-panel" in panel
@@ -399,6 +406,8 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "templateQueuePendingReview" in admin
     assert "template-failure-layout" in admin
     assert "template-failure-detail-section" in admin
+    assert "template-quality-card" in admin
+    assert "qualityLabel(selectedTemplate.quality_label, t)" in admin
     assert "api.adminPromptTemplateOpsItems" not in config
     assert "adminSession: () => json<AdminSessionRecord>" in client
     assert "adminLogin: (password: string)" in client
@@ -411,6 +420,8 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
     assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
     assert "export interface PromptTemplateOpsItem" in types
+    assert "quality_score?: number" in types
+    assert "export interface PromptImageGenerationRunRecord" in types
     assert "export interface PromptTemplateBatchInitResponse" in types
     assert "export interface PromptTemplateReviewRequest" in types
     assert "export interface AdminLoginRequest" in types
@@ -422,12 +433,14 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "templateQueuePendingReview" in i18n
     assert "templateReviewApprove" in i18n
     assert "templateReviewReject" in i18n
+    assert "promptTemplateQuality" in i18n
     assert ".config-section-head{display:flex;align-items:flex-start;justify-content:space-between;" in compact_css
     assert ".admin-shell{min-height:100vh;padding:30px;" in compact_css
     assert ".admin-auth-card{width:min(480px,100%);display:grid;gap:14px;" in compact_css
     assert ".admin-review-layout{display:grid;grid-template-columns:minmax(300px,.92fr)minmax(420px,1.08fr);" in compact_css
     assert ".admin-template-review{display:grid;gap:12px;" in compact_css
     assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
+    assert ".template-quality-card{display:grid;gap:10px;" in compact_css
 
 
 def test_topbar_uses_attached_header_logo_branding():

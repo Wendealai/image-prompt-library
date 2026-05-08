@@ -19,6 +19,8 @@ class PromptTemplateSlot(BaseModel):
     original_text: str
     role: Optional[str] = None
     instruction: Optional[str] = None
+    variable_type: Optional[str] = None
+    input_hint: Optional[str] = None
 
 class PromptTemplateRecord(BaseModel):
     id: str
@@ -33,6 +35,9 @@ class PromptTemplateRecord(BaseModel):
     reviewed_at: Optional[str] = None
     analysis_confidence: Optional[float] = None
     analysis_notes: Optional[str] = None
+    quality_score: Optional[float] = None
+    quality_label: Optional[str] = None
+    quality_reasons: List[str] = Field(default_factory=list)
     prompt_source_extracted: bool = False
     prompt_source_strategy: Optional[str] = None
     prompt_source_original_length: Optional[int] = None
@@ -95,6 +100,8 @@ class PromptTemplateOpsItem(BaseModel):
     template_updated_at: Optional[str] = None
     slot_count: int = 0
     analysis_confidence: Optional[float] = None
+    quality_score: Optional[float] = None
+    quality_label: Optional[str] = None
 
 class PromptTemplateOpsItemList(BaseModel):
     items: List[PromptTemplateOpsItem] = Field(default_factory=list)
@@ -242,13 +249,6 @@ class ItemDetail(ItemSummary):
     notes: Optional[str] = None
     author: Optional[str] = None
 
-class PromptImageGenerationResponse(BaseModel):
-    status: str = "completed"
-    prompt: str
-    job_id: Optional[str] = None
-    images: List[ImageRecord] = Field(default_factory=list)
-    item: ItemDetail
-
 class ItemList(BaseModel):
     items: List[ItemSummary]
     total: int
@@ -286,6 +286,25 @@ class PromptImageGenerateRequest(BaseModel):
     prompt: str
     generation: Optional[PromptImageGenerateOptions] = None
     references: List[PromptImageReferenceInput] = Field(default_factory=list, max_length=16)
+
+class PromptImageGenerationRunRecord(BaseModel):
+    id: str
+    item_id: str
+    prompt: str
+    generation_options: dict[str, Any] = Field(default_factory=dict)
+    references: List[dict[str, Any]] = Field(default_factory=list)
+    job_id: Optional[str] = None
+    status: str = "completed"
+    image_ids: List[str] = Field(default_factory=list)
+    created_at: str
+
+class PromptImageGenerationResponse(BaseModel):
+    status: str = "completed"
+    prompt: str
+    job_id: Optional[str] = None
+    images: List[ImageRecord] = Field(default_factory=list)
+    item: ItemDetail
+    run: Optional[PromptImageGenerationRunRecord] = None
 
 class ImportResult(BaseModel):
     id: str
