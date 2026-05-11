@@ -8,19 +8,21 @@ def test_init_db_creates_required_tables(tmp_path: Path):
     assert db_path == library / "db.sqlite"
     with connect(library) as conn:
         tables = {row[0] for row in conn.execute("SELECT name FROM sqlite_master WHERE type IN ('table','view')")}
-        assert {"items", "prompts", "images", "clusters", "tags", "item_tags", "imports", "item_search", "prompt_templates", "prompt_generation_sessions", "prompt_generation_variants", "prompt_image_generation_runs", "schema_migrations"} <= tables
+        assert {"items", "prompts", "images", "clusters", "tags", "item_tags", "imports", "item_search", "prompt_templates", "prompt_generation_sessions", "prompt_generation_variants", "schema_migrations"} <= tables
         assert conn.execute("PRAGMA foreign_keys").fetchone()[0] == 1
         image_columns = {row[1] for row in conn.execute("PRAGMA table_info(images)")}
         assert "role" in image_columns
         images_sql = conn.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='images'").fetchone()[0]
         assert "CHECK(role IN ('result_image', 'reference_image'))" in images_sql
+        item_tag_columns = {row[1] for row in conn.execute("PRAGMA table_info(item_tags)")}
+        assert "sort_order" in item_tag_columns
         assert {row[0] for row in conn.execute("SELECT version FROM schema_migrations")} == {
             "001_initial.sql",
             "002_image_roles.sql",
             "003_image_role_check.sql",
             "004_prompt_templates.sql",
             "005_prompt_template_review_states.sql",
-            "006_prompt_template_quality_and_image_runs.sql",
+            "006_item_tag_sort_order.sql",
         }
 
 

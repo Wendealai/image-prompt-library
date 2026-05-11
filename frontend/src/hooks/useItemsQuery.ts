@@ -6,12 +6,13 @@ type QueryScope = {
   q: string;
   clusterId?: string;
   tag?: string;
+  sort?: string;
   viewLimit: number;
 };
 
-export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewLimit = 100, reloadKey = 0) {
+export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewLimit = 100, reloadKey = 0, sort?: string) {
   const [data, setData] = useState<ItemList>({ items: [], total: 0, limit: viewLimit, offset: 0 });
-  const [dataScope, setDataScope] = useState<QueryScope>({ q: '', clusterId: undefined, tag: undefined, viewLimit });
+  const [dataScope, setDataScope] = useState<QueryScope>({ q: '', clusterId: undefined, tag: undefined, sort: undefined, viewLimit });
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -25,11 +26,11 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
     setRefreshing(hasVisibleData);
     setError(undefined);
 
-    api.items({ q, cluster: clusterId, tag, limit: viewLimit })
+    api.items({ q, cluster: clusterId, tag, sort, limit: viewLimit })
       .then(nextData => {
         if (!cancelled) {
           setData(nextData);
-          setDataScope({ q, clusterId, tag, viewLimit });
+          setDataScope({ q, clusterId, tag, sort, viewLimit });
         }
       })
       .catch(e => {
@@ -44,7 +45,7 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
       });
 
     return () => { cancelled = true; };
-  }, [q, clusterId, tag, viewLimit, reloadKey]);
+  }, [q, clusterId, tag, sort, viewLimit, reloadKey]);
 
   return { data, loading, initialLoading, refreshing, error, dataScope };
 }

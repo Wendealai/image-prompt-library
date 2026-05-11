@@ -11,10 +11,40 @@ def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
-    assert "useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey)" in app
+    assert "useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey, 'created_desc')" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
-    assert "[q, clusterId, tag, viewLimit, reloadKey]" in hook
+    assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
+
+
+def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = compact(css)
+
+    assert "export type CardsSortMode = 'added' | 'explore';" in types
+    assert "CARDS_SORT_STORAGE_KEY = 'image-prompt-library.cards_sort_mode.v1'" in app
+    assert "function loadCardsSortMode(): CardsSortMode" in app
+    assert "const [cardsSortMode, setCardsSortMode] = useState<CardsSortMode>(loadCardsSortMode)" in app
+    assert "export function sortCardsItems" in app
+    assert ".sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hant'))" in app
+    assert "const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode)" in app
+    assert "items={sortedCardItems}" in app
+    assert "cardsSortMode={cardsSortMode}" in app
+    assert "onCardsSortMode={updateCardsSortMode}" in app
+    assert "cards-sort-toggle" in topbar
+    assert "aria-label={t('cardsSort')}" in topbar
+    assert "onClick={() => onCardsSortMode('added')}" in topbar
+    assert "onClick={() => onCardsSortMode('explore')}" in topbar
+    assert "| 'cardsSort' | 'cardsSortAdded' | 'cardsSortExplore'" in i18n
+    assert "cardsSortAdded: '添加顺序'" in i18n
+    assert "cardsSortExplore: 'Explore 分类'" in i18n
+    assert ".view-dock{flex:00auto;display:flex;align-items:center;gap:8px}" in compact_css
+    assert ".cards-sort-toggle{display:flex;gap:3px;" in compact_css
+    assert ".cards-sort-togglebutton.active{background:#211922;color:white}" in compact_css
 
 
 def test_topbar_is_toolbar_search_not_hero_or_keyboard_shortcut():
@@ -78,24 +108,6 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
 def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
     images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
     assert "return image?.preview_path || image?.original_path || image?.thumb_path || ''" in images
-    assert "export function imageDisplayPaths(image?: ImageRecord)" in images
-    assert "uniquePaths([image?.preview_path, image?.original_path, image?.thumb_path])" in images
-    assert "export function imageHeroPaths(image?: ImageRecord)" in images
-    assert "export function imageThumbnailPaths(image?: ImageRecord)" in images
-
-
-def test_frontend_images_have_load_failure_fallbacks():
-    fallback = (ROOT / "frontend" / "src" / "components" / "FallbackImage.tsx").read_text()
-    card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
-    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
-    explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
-    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
-    assert "setPathIndex(currentIndex => Math.min(currentIndex + 1, imagePaths.length))" in fallback
-    assert "src={mediaUrl(imagePaths[pathIndex])}" in fallback
-    assert "fallback={<span className=\"placeholder image-load-fallback\">{t('noImage')}</span>}" in card
-    assert "paths={imageHeroPaths(activeImage)}" in detail
-    assert "paths={node.imagePaths}" in explore
-    assert ".image-load-fallback" in css
 
 
 def test_cards_are_global_image_overlay_cards():
@@ -179,12 +191,8 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert "const imageViewerScrollRef = useRef<HTMLDivElement>(null);" in detail
     assert "const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);" in detail
     assert "className=\"hero-image-button\"" in detail
-    assert "className=\"detail-image-actions\"" in detail
-    assert "className=\"detail-image-viewer-actions\"" in detail
     assert "className=\"detail-image-viewer\"" in detail
     assert "className=\"detail-image-viewer-controls\"" in detail
-    assert "handleDownloadImage" in detail
-    assert "handleDeleteImage" in detail
     assert "style={{ width: `${imageViewerScale * 100}%` }}" in detail
     assert "const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;" in detail
     assert "function clampImageViewerScale(scale: number)" in detail
@@ -201,24 +209,17 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert ".hero-image-button{width:100%;height:100%;display:block;border:0;padding:0;background:transparent;cursor:zoom-in}" in compact_css
     assert ".hero-image{width:100%;height:auto;max-height:none;object-fit:contain}" in compact_css
     assert ".mobile-hero-actions{display:block}" in compact_css
-    assert ".detail-image-actions{left:12px;top:calc(12px+env(safe-area-inset-top))}" in compact_css
-    assert ".detail-image-action{width:40px;height:40px;background:rgba(33,25,34,.72);color:white}" in compact_css
     assert ".mobile-hero-close{position:absolute;right:12px;top:calc(12px+env(safe-area-inset-top));" in compact_css
     assert ".mobile-hero-primary-actions{position:absolute;right:12px;bottom:12px;" in compact_css
     assert ".detail-image-viewer{position:absolute;inset:0;z-index:16;" in compact_css
-    assert ".detail-image-viewer-actions{display:inline-flex;align-items:center;gap:8px;flex:00auto}" in compact_css
     assert ".detail-image-viewer-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}" in compact_css
     assert ".detail-image-viewer-scroll{min-height:0;overflow:auto;" in compact_css
     assert "touch-action:manipulation" in css
     assert "-webkit-overflow-scrolling:touch" in css
-    assert "| 'openImageDetailViewer' | 'imageDetailViewer' | 'imageDetailViewerHint' | 'downloadImage' | 'deleteImage' | 'deleteImageConfirm' | 'imageDeleteFailed'" in i18n
+    assert "| 'openImageDetailViewer' | 'imageDetailViewer' | 'imageDetailViewerHint'" in i18n
     assert "openImageDetailViewer: 'Open image detail viewer'" in i18n
     assert "imageDetailViewer: 'Image detail viewer'" in i18n
     assert "imageDetailViewerHint: 'Drag to inspect details, and use double-tap or pinch gestures to zoom in or out.'" in i18n
-    assert "downloadImage: 'Download image'" in i18n
-    assert "deleteImage: 'Delete image'" in i18n
-    assert "deleteImageConfirm: 'Delete this image? Original, preview, and thumbnail files will also be removed when no other case uses them.'" in i18n
-    assert "imageDeleteFailed: 'Failed to delete image.'" in i18n
 
 
 def test_detail_modal_does_not_call_hooks_after_empty_id_guard():
@@ -281,7 +282,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageResolution" in panel
     assert "promptTemplateImageStyle" in panel
     assert "promptTemplateImageCount" in panel
-    assert "promptTemplateImageStrength" in panel
     assert "promptTemplateImageQueued" in panel
     assert "promptTemplateImageRendering" in panel
     assert "promptTemplateImageRetry" in panel
@@ -294,9 +294,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "handleSaveImagePreset" in panel
     assert "handleDeleteImagePreset" in panel
     assert "handleApplyImagePreset" in panel
-    assert "buildImageReferenceInputs" in panel
-    assert "prompt-remix-reference-section" in panel
-    assert "referenceImages={uniqueImages}" in detail
     assert "promptTemplateImagePresets" in panel
     assert "promptTemplateImagePresetDefault" in panel
     assert "promptTemplateImagePresetRecent" in panel
@@ -305,9 +302,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in panel
     assert "promptTemplateImagePresetDelete" in panel
     assert "promptTemplateImagePresetNameRequired" in panel
-    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions)" in panel
     assert "promptTemplateGenerateImage" in panel
-    assert "promptTemplateGenerateImageToImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
@@ -316,7 +312,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
-    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[] = [])" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions)" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -327,7 +323,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateAssemble" in i18n
     assert "promptTemplateCopyFinal" in i18n
     assert "promptTemplateGenerateImage" in i18n
-    assert "promptTemplateDirectImageHelp" in i18n
     assert "promptTemplateGeneratingImage" in i18n
     assert "promptTemplateImageSettings" in i18n
     assert "promptTemplateImageSettingsHelp" in i18n
@@ -335,11 +330,6 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImageAspectRatio" in i18n
     assert "promptTemplateImageStyle" in i18n
     assert "promptTemplateImageCount" in i18n
-    assert "promptTemplateImageFormat" in i18n
-    assert "promptTemplateQuality" in i18n
-    assert "promptTemplateVariableType" in i18n
-    assert "promptTemplateImageRunSaved" in i18n
-    assert "promptTemplateImageStrength" in i18n
     assert "promptTemplateImageQueued" in i18n
     assert "promptTemplateImageRendering" in i18n
     assert "promptTemplateImageRetry" in i18n
@@ -353,24 +343,11 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in i18n
     assert "promptTemplateImagePresetDelete" in i18n
     assert "promptTemplateImagePresetNameRequired" in i18n
-    assert "promptTemplateImageReferences" in i18n
-    assert "promptTemplateImageToImageMode" in i18n
-    assert "deleteImage: (itemId: string, imageId: string)" in client
-    assert "promptTemplateImageFormat" in panel
-    assert "prompt-remix-quality-chip" in panel
-    assert "prompt-remix-type-chip" in panel
-    assert "lastImageRun" in panel
-    assert "output_format: 'jpg'" in panel
-    assert "IMAGE_OUTPUT_FORMAT_OPTIONS = ['jpg', 'png'] as const" in panel
     assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
-    assert ".prompt-remix-reference-section{display:flex;flex-direction:column;" in compact_css
-    assert ".prompt-remix-run-card{display:flex;align-items:center;gap:8px;flex-wrap:wrap;" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
-    assert "if (loading) return null;" in panel
-    assert "prompt-direct-image-panel" in panel
-    assert "fallbackPromptText" in panel
+    assert "if (loading || !template) return null;" in panel
     assert "prompt-remix-init" not in panel
 
 
@@ -406,8 +383,6 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "templateQueuePendingReview" in admin
     assert "template-failure-layout" in admin
     assert "template-failure-detail-section" in admin
-    assert "template-quality-card" in admin
-    assert "qualityLabel(selectedTemplate.quality_label, t)" in admin
     assert "api.adminPromptTemplateOpsItems" not in config
     assert "adminSession: () => json<AdminSessionRecord>" in client
     assert "adminLogin: (password: string)" in client
@@ -420,8 +395,6 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
     assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
     assert "export interface PromptTemplateOpsItem" in types
-    assert "quality_score?: number" in types
-    assert "export interface PromptImageGenerationRunRecord" in types
     assert "export interface PromptTemplateBatchInitResponse" in types
     assert "export interface PromptTemplateReviewRequest" in types
     assert "export interface AdminLoginRequest" in types
@@ -433,14 +406,12 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "templateQueuePendingReview" in i18n
     assert "templateReviewApprove" in i18n
     assert "templateReviewReject" in i18n
-    assert "promptTemplateQuality" in i18n
     assert ".config-section-head{display:flex;align-items:flex-start;justify-content:space-between;" in compact_css
     assert ".admin-shell{min-height:100vh;padding:30px;" in compact_css
     assert ".admin-auth-card{width:min(480px,100%);display:grid;gap:14px;" in compact_css
     assert ".admin-review-layout{display:grid;grid-template-columns:minmax(300px,.92fr)minmax(420px,1.08fr);" in compact_css
     assert ".admin-template-review{display:grid;gap:12px;" in compact_css
     assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
-    assert ".template-quality-card{display:grid;gap:10px;" in compact_css
 
 
 def test_topbar_uses_attached_header_logo_branding():
@@ -509,10 +480,10 @@ def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
 def test_explore_uses_real_thumbnails_not_dots_or_originals():
     explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
-    assert "function getConstellationImagePaths" in explore
+    assert "function getConstellationImagePath" in explore
     assert "selectPrimaryImage([item.first_image])" in explore
-    assert "imageThumbnailPaths(primaryImage)" in explore
-    assert "imagePaths: getConstellationImagePaths(item)" in explore
+    assert "imageThumbnailPath(primaryImage)" in explore
+    assert "first_image?.original_path" not in explore
     assert "lod-dot" not in explore
     assert "node-placeholder" not in explore
     assert "loading=\"lazy\"" in explore

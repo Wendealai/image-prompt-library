@@ -54,6 +54,18 @@ def test_create_get_search_and_filter_item(tmp_path):
     assert c.get("/api/items", params={"cluster": created["cluster"]["id"]}).json()["total"] == 1
 
 
+def test_item_tags_keep_payload_order_on_create_and_update(tmp_path):
+    c = client(tmp_path)
+    created = c.post("/api/items", json=create_payload(tags=["zebra", "alpha", "mid"])).json()
+    assert [tag["name"] for tag in created["tags"]] == ["zebra", "alpha", "mid"]
+
+    patched = c.patch(f"/api/items/{created['id']}", json={"tags": ["glass", "cinematic", "poster"]}).json()
+    assert [tag["name"] for tag in patched["tags"]] == ["glass", "cinematic", "poster"]
+
+    listed = c.get("/api/items", params={"sort": "created_desc"}).json()["items"][0]
+    assert [tag["name"] for tag in listed["tags"]] == ["glass", "cinematic", "poster"]
+
+
 def test_items_list_limit_allows_gallery_overview_scale(tmp_path):
     c = client(tmp_path)
     for idx in range(230):
@@ -164,26 +176,6 @@ def test_image_upload_persists_result_and_reference_roles(tmp_path):
     assert reference.status_code == 200
     assert invalid.status_code == 400
     assert [image["role"] for image in detail["images"]] == ["result_image", "reference_image"]
-
-
-def test_image_delete_removes_record_and_orphan_files(tmp_path):
-    c = client(tmp_path)
-    item = c.post("/api/items", json=create_payload()).json()
-    uploaded = c.post(
-        f"/api/items/{item['id']}/images",
-        data={"role": "result_image"},
-        files={"file": ("result.png", png_bytes(), "image/png")},
-    ).json()
-    library = tmp_path / "library"
-    paths = [uploaded["original_path"], uploaded["preview_path"], uploaded["thumb_path"]]
-    assert all((library / path).exists() for path in paths)
-
-    response = c.delete(f"/api/items/{item['id']}/images/{uploaded['id']}")
-
-    assert response.status_code == 200
-    assert response.json()["images"] == []
-    assert all(not (library / path).exists() for path in paths)
-    assert c.delete(f"/api/items/{item['id']}/images/{uploaded['id']}").status_code == 404
 
 
 def test_result_image_is_primary_even_when_reference_uploaded_first(tmp_path):
