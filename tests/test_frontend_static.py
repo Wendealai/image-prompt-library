@@ -302,7 +302,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in panel
     assert "promptTemplateImagePresetDelete" in panel
     assert "promptTemplateImagePresetNameRequired" in panel
-    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions)" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
     assert "promptTemplateGenerateImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
@@ -312,7 +312,7 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
-    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions)" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[]" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -347,7 +347,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
     assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
     assert "export function buildSlotValueRecord" in prompt_template_utils
-    assert "if (loading || !template) return null;" in panel
+    assert "if (loading) return null;" in panel
+    assert "if (!template) {" in panel
     assert "prompt-remix-init" not in panel
 
 
@@ -482,7 +483,7 @@ def test_explore_uses_real_thumbnails_not_dots_or_originals():
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     assert "function getConstellationImagePath" in explore
     assert "selectPrimaryImage([item.first_image])" in explore
-    assert "imageThumbnailPath(primaryImage)" in explore
+    assert "imageThumbnailPaths(primaryImage)" in explore
     assert "first_image?.original_path" not in explore
     assert "lod-dot" not in explore
     assert "node-placeholder" not in explore
