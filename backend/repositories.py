@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .services.prompt_template_quality import normalize_prompt_template_slots, score_prompt_template
 from .services.prompt_source_prepare import prepare_prompt_template_source
 from .services.text_normalize import to_traditional
 
@@ -169,6 +170,57 @@ class ItemRepository:
             conn.commit()
         return self._image_by_id(iid)
 
+    def add_prompt_image_generation_run(
+        self,
+        *,
+        item_id: str,
+        prompt: str,
+        generation_options: dict | None = None,
+        references: list[dict] | None = None,
+        job_id: str | None = None,
+        status: str = "completed",
+        image_ids: list[str] | None = None,
+    ) -> PromptImageGenerationRunRecord:
+        with connect(self.library_path) as conn:
+            if not conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone():
+                raise KeyError(item_id)
+            run_id = new_id("igr")
+            ts = now()
+            conn.execute(
+                """INSERT INTO prompt_image_generation_runs(id,item_id,prompt,generation_options_json,references_json,job_id,status,image_ids_json,created_at)
+                VALUES(?,?,?,?,?,?,?,?,?)""",
+                (
+                    run_id,
+                    item_id,
+                    prompt,
+                    json.dumps(generation_options or {}, ensure_ascii=False),
+                    json.dumps(references or [], ensure_ascii=False),
+                    job_id,
+                    status or "completed",
+                    json.dumps(image_ids or [], ensure_ascii=False),
+                    ts,
+                ),
+            )
+            conn.commit()
+        return self.get_prompt_image_generation_run(run_id)
+
+    def get_prompt_image_generation_run(self, run_id: str) -> PromptImageGenerationRunRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM prompt_image_generation_runs WHERE id=?", (run_id,)).fetchone()
+            if not row:
+                raise KeyError(run_id)
+            return PromptImageGenerationRunRecord(
+                id=row["id"],
+                item_id=row["item_id"],
+                prompt=row["prompt"],
+                generation_options=json.loads(row["generation_options_json"] or "{}"),
+                references=json.loads(row["references_json"] or "[]"),
+                job_id=row["job_id"],
+                status=row["status"],
+                image_ids=json.loads(row["image_ids_json"] or "[]"),
+                created_at=row["created_at"],
+            )
+
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None
         return ClusterRecord(id=row["cluster_id"], name=row["cluster_name"], description=row["cluster_description"], sort_order=row["cluster_sort_order"] or 0)
@@ -213,6 +265,9 @@ class ItemRepository:
             reviewed_at=row["reviewed_at"],
             analysis_confidence=row["analysis_confidence"],
             analysis_notes=row["analysis_notes"],
+            quality_score=row["quality_score"],
+            quality_label=row["quality_label"],
+            quality_reasons=json.loads(row["quality_reasons_json"] or "[]"),
             prompt_source_extracted=prepared_prompt.was_extracted,
             prompt_source_strategy=prepared_prompt.strategy if prepared_prompt.was_extracted else None,
             prompt_source_original_length=len(prepared_prompt.original_text) if prepared_prompt.was_extracted else None,
@@ -351,6 +406,8 @@ class ItemRepository:
             template_updated_at=row["template_updated_at"],
             slot_count=slot_count,
             analysis_confidence=row["analysis_confidence"],
+            quality_score=row["quality_score"],
+            quality_label=row["quality_label"],
         )
 
     def list_prompt_template_ops_items(
@@ -383,7 +440,9 @@ class ItemRepository:
                   pt.raw_text_snapshot AS template_raw_text_snapshot,
                   pt.updated_at AS template_updated_at,
                   pt.slots_json AS template_slots_json,
-                  pt.analysis_confidence AS analysis_confidence
+                  pt.analysis_confidence AS analysis_confidence,
+                  pt.quality_score AS quality_score,
+                  pt.quality_label AS quality_label
                 FROM items i
                 LEFT JOIN prompts prompt
                   ON prompt.id = (
@@ -430,6 +489,13 @@ class ItemRepository:
         analysis_confidence: float | None = None,
         analysis_notes: str | None = None,
     ) -> PromptTemplateRecord:
+        normalized_slots = normalize_prompt_template_slots(slots)
+        quality = score_prompt_template(
+            raw_text=raw_text_snapshot,
+            marked_text=marked_text,
+            slots=normalized_slots,
+            analysis_confidence=analysis_confidence,
+        )
         with connect(self.library_path) as conn:
             item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
             if not item_exists:
@@ -438,20 +504,21 @@ class ItemRepository:
             template_id = existing["id"] if existing else new_id("tpl")
             created_at = existing["created_at"] if existing else now()
             updated_at = now()
-            slots_json = json.dumps([slot.model_dump() for slot in slots], ensure_ascii=False)
+            slots_json = json.dumps([slot.model_dump() for slot in normalized_slots], ensure_ascii=False)
+            quality_reasons_json = json.dumps(quality.reasons, ensure_ascii=False)
             if existing:
                 conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (template_id,))
                 conn.execute(
                     """UPDATE prompt_templates
-                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, review_status=?, review_notes=?, reviewed_at=?, analysis_confidence=?, analysis_notes=?, updated_at=?
+                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, review_status=?, review_notes=?, reviewed_at=?, analysis_confidence=?, analysis_notes=?, quality_score=?, quality_label=?, quality_reasons_json=?, updated_at=?
                     WHERE id=?""",
-                    (source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, updated_at, template_id),
+                    (source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, quality.score, quality.label, quality_reasons_json, updated_at, template_id),
                 )
             else:
                 conn.execute(
-                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,review_status,review_notes,reviewed_at,analysis_confidence,analysis_notes,created_at,updated_at)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, created_at, updated_at),
+                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,review_status,review_notes,reviewed_at,analysis_confidence,analysis_notes,quality_score,quality_label,quality_reasons_json,created_at,updated_at)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, quality.score, quality.label, quality_reasons_json, created_at, updated_at),
                 )
             conn.commit()
         bundle = self.get_prompt_template_bundle(item_id)

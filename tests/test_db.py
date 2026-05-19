@@ -23,6 +23,7 @@ def test_init_db_creates_required_tables(tmp_path: Path):
             "004_prompt_templates.sql",
             "005_prompt_template_review_states.sql",
             "006_item_tag_sort_order.sql",
+            "006_prompt_template_quality_and_image_runs.sql",
         }
 
 
