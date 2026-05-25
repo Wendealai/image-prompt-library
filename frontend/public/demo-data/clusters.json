@@ -1,278 +1,1769 @@
 [
   {
-    "id": "clu_f229d30b885d43af",
+    "id": "clu_d3815a427e074927",
+    "name": "3D App Icon Character Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_8f583664ed9f40aa.webp"
+    ]
+  },
+  {
+    "id": "clu_e2feba4d667e4c46",
+    "name": "3D Character Collectibles",
+    "description": null,
+    "sort_order": 0,
+    "count": 5,
+    "preview_images": [
+      "demo-data/media/img_25c392b747974aa6.webp",
+      "demo-data/media/img_7ae50f5cd3b047c2.webp",
+      "demo-data/media/img_f287ce765afc499a.webp",
+      "demo-data/media/img_3af1b33891094c24.webp"
+    ]
+  },
+  {
+    "id": "clu_facb89febd254663",
+    "name": "3D Character Portrait Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_4b4e5567dead47ef.webp",
+      "demo-data/media/img_fc6a13fc61c74a9b.webp"
+    ]
+  },
+  {
+    "id": "clu_7cdab0e3057e4e7b",
+    "name": "3D Printable Miniature Models",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c0affa32e13e4c9f.webp"
+    ]
+  },
+  {
+    "id": "clu_52dbd8a5692d4e1c",
+    "name": "3D Typography Prompt Templates",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_375558d63b714c67.webp",
+      "demo-data/media/img_a07ed66f133f4eb9.webp"
+    ]
+  },
+  {
+    "id": "clu_945d1b6f52434666",
+    "name": "3D diorama",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_f6befc76df264ca7.webp",
+      "demo-data/media/img_0ef75cdab3cf434c.webp"
+    ]
+  },
+  {
+    "id": "clu_b5c6768d0aa64cf8",
+    "name": "AI Visual Prompt Cookbook",
+    "description": null,
+    "sort_order": 0,
+    "count": 30,
+    "preview_images": [
+      "demo-data/media/img_56d9bc62a918438e.webp",
+      "demo-data/media/img_3c02a6df999049ac.webp",
+      "demo-data/media/img_7ccf680292b840c8.webp",
+      "demo-data/media/img_9a11aee94fdf4b28.webp"
+    ]
+  },
+  {
+    "id": "clu_0c33d0a901d94619",
+    "name": "Ancient Art Realistic Photography Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_4423c7a27e454792.webp"
+    ]
+  },
+  {
+    "id": "clu_6956cc6f37174986",
+    "name": "App Icon Design",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_94a4c684c3f7454f.webp"
+    ]
+  },
+  {
+    "id": "clu_f0d818ee002c49a6",
+    "name": "Architectural Miniature Blueprint Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_75c7fc5337074a18.webp"
+    ]
+  },
+  {
+    "id": "clu_dee1b54d234946b1",
     "name": "Architecture & Interiors",
     "description": null,
     "sort_order": 0,
-    "count": 8,
+    "count": 9,
     "preview_images": [
-      "demo-data/media/img_90495e66679e4dfc.webp",
-      "demo-data/media/img_2484f9060c8e4a94.webp",
-      "demo-data/media/img_9cf16a0879164464.webp",
-      "demo-data/media/img_5310d541c1af41de.webp"
+      "demo-data/media/img_68b3edd6d5f4412c.webp",
+      "demo-data/media/img_ec73a438bef242f4.webp",
+      "demo-data/media/img_75b35a7bc3694375.webp",
+      "demo-data/media/img_aecfda01431f4be8.webp"
     ]
   },
   {
-    "id": "clu_bf262522f261450f",
+    "id": "clu_6c5879d6619048dc",
+    "name": "Architecture & Spaces",
+    "description": null,
+    "sort_order": 0,
+    "count": 6,
+    "preview_images": [
+      "demo-data/media/img_b3ab531d50204586.webp",
+      "demo-data/media/img_bcab72ece527492b.webp",
+      "demo-data/media/img_8a5e32682967477f.webp",
+      "demo-data/media/img_9f3b86618b884599.webp"
+    ]
+  },
+  {
+    "id": "clu_ae098f45233b4344",
+    "name": "Architecture Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a0609bfb95744a28.webp"
+    ]
+  },
+  {
+    "id": "clu_14110c7049e444f5",
+    "name": "Architecture analysis",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_240d8a16b13f4a64.webp"
+    ]
+  },
+  {
+    "id": "clu_900076beb41c4006",
     "name": "Art & Illustration",
     "description": null,
     "sort_order": 0,
-    "count": 16,
+    "count": 20,
     "preview_images": [
-      "demo-data/media/img_083a45126a1f4f13.webp",
-      "demo-data/media/img_82adf2c3d51d4837.webp",
-      "demo-data/media/img_9dbb5d2304dd46ae.webp",
-      "demo-data/media/img_ff28796817174852.webp"
+      "demo-data/media/img_8304d79dceb54d46.webp",
+      "demo-data/media/img_15bae61f97b04662.webp",
+      "demo-data/media/img_16ba5bead2e647f2.webp",
+      "demo-data/media/img_7a86eb5dd7a64fa6.webp"
     ]
   },
   {
-    "id": "clu_266a220b787546eb",
+    "id": "clu_5bf9315da8ee4fd8",
+    "name": "Avatar Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a8625082ee5b4a90.webp"
+    ]
+  },
+  {
+    "id": "clu_6fb300803fe342e0",
+    "name": "Brand & Logos",
+    "description": null,
+    "sort_order": 0,
+    "count": 15,
+    "preview_images": [
+      "demo-data/media/img_c3d88ccd4fde40ba.webp",
+      "demo-data/media/img_e3f88219fc6b4332.webp",
+      "demo-data/media/img_03be2ea7278544de.webp",
+      "demo-data/media/img_5ec805b9324949c1.webp"
+    ]
+  },
+  {
+    "id": "clu_3eceff0b2a724951",
+    "name": "Brand Commercialization Systems",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_975a7907271e42cd.webp"
+    ]
+  },
+  {
+    "id": "clu_0f6d3d43df834962",
+    "name": "Brand Identity Mockup Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fb3a160b93b24716.webp"
+    ]
+  },
+  {
+    "id": "clu_b0f862e6f62e45a2",
+    "name": "Brand Mascot Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_1be72fc787ec47b7.webp"
+    ]
+  },
+  {
+    "id": "clu_c105540d3f2040b1",
+    "name": "Brand Proposal Systems",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a82c06a599404493.webp"
+    ]
+  },
+  {
+    "id": "clu_b11e9b51de724824",
+    "name": "Business Portrait Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_40727049435d4c20.webp"
+    ]
+  },
+  {
+    "id": "clu_86baf2e69eb44dbf",
+    "name": "Business Tech PPT Aesthetics",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_7022676fc7044944.webp"
+    ]
+  },
+  {
+    "id": "clu_579c4195dd8f4ff9",
+    "name": "Caricature Character Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c3df9320ae924588.webp"
+    ]
+  },
+  {
+    "id": "clu_c86c93b3d0214c5f",
+    "name": "Cartoon Props",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_eb3f13df8c5d43f8.webp"
+    ]
+  },
+  {
+    "id": "clu_fb6cf3f18aa54662",
+    "name": "Character Caricature & Collectible Figurine Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_defe36cc38b64da6.webp"
+    ]
+  },
+  {
+    "id": "clu_d47a7ec1a96d4d23",
+    "name": "Character Sticker Sheets",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_7c5ec006a16b475a.webp"
+    ]
+  },
+  {
+    "id": "clu_894e8743df414ff8",
+    "name": "Character design",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_82e3e7718d0e41d8.webp"
+    ]
+  },
+  {
+    "id": "clu_6645eb9e0bc34025",
     "name": "Characters & Anime",
     "description": null,
     "sort_order": 0,
-    "count": 26,
+    "count": 30,
     "preview_images": [
-      "demo-data/media/img_a1bb094b71d04bdf.webp",
-      "demo-data/media/img_12f764949cf44c55.webp",
-      "demo-data/media/img_d24d027ff34841db.webp",
-      "demo-data/media/img_df0ea65749e04eb8.webp"
+      "demo-data/media/img_6dedeb4e4f324e02.webp",
+      "demo-data/media/img_b076f6b84ed8496e.webp",
+      "demo-data/media/img_78e40910240740ed.webp",
+      "demo-data/media/img_30afae161a4343bf.webp"
     ]
   },
   {
-    "id": "clu_70e6c1b19e80479d",
+    "id": "clu_07034c402dac46c2",
+    "name": "Characters & People",
+    "description": null,
+    "sort_order": 0,
+    "count": 17,
+    "preview_images": [
+      "demo-data/media/img_1ce0ee58e48f4902.webp",
+      "demo-data/media/img_ec0db9090e7243e8.webp",
+      "demo-data/media/img_b8d44747d34a403d.webp",
+      "demo-data/media/img_9fbd5b17a7b54d4f.webp"
+    ]
+  },
+  {
+    "id": "clu_5a76e8270f0a4941",
+    "name": "Charts & Infographics",
+    "description": null,
+    "sort_order": 0,
+    "count": 19,
+    "preview_images": [
+      "demo-data/media/img_2c4c1eb6a64340da.webp",
+      "demo-data/media/img_6c70946582c44af8.webp",
+      "demo-data/media/img_b4c9722c7164480a.webp",
+      "demo-data/media/img_c63413544ae54cdc.webp"
+    ]
+  },
+  {
+    "id": "clu_2e477a014c7b4d02",
+    "name": "Chinese Aesthetic Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fa251e34ed024fa3.webp"
+    ]
+  },
+  {
+    "id": "clu_f5aae53d91424d56",
     "name": "Cinematic Storytelling",
     "description": null,
     "sort_order": 0,
-    "count": 16,
+    "count": 17,
     "preview_images": [
-      "demo-data/media/img_350e2397f6dc4b94.webp",
-      "demo-data/media/img_80260c3a77084536.webp",
-      "demo-data/media/img_a803aaade47b454f.webp",
-      "demo-data/media/img_a2dc9684db9f4ed1.webp"
+      "demo-data/media/img_8008ceb5fec24843.webp",
+      "demo-data/media/img_ed92e5d3dbfb470d.webp",
+      "demo-data/media/img_986f57c341a14141.webp",
+      "demo-data/media/img_11857be7a7e348b2.webp"
     ]
   },
   {
-    "id": "clu_68c59657fdd64dab",
+    "id": "clu_fca98e9af02140f5",
+    "name": "Cinematic Travel Infographic Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c7c6da8be0ea414f.webp"
+    ]
+  },
+  {
+    "id": "clu_c5644d2043e24f36",
+    "name": "Collectible Character Figurine Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_9477fe29879d40ae.webp"
+    ]
+  },
+  {
+    "id": "clu_1e907234eaa540cf",
+    "name": "Commercial Brand Brochures",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_d889e612c1f042ca.webp",
+      "demo-data/media/img_ad033fa3641e4a65.webp"
+    ]
+  },
+  {
+    "id": "clu_3b49c2a5afa84f33",
+    "name": "Conceptual Minimal Logo Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fcfbe4267ba742ce.webp"
+    ]
+  },
+  {
+    "id": "clu_9e89dbd91955471e",
+    "name": "Corporate Brochure Systems",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_2347ca6b90fb4ceb.webp"
+    ]
+  },
+  {
+    "id": "clu_32dfefa6a0924dd4",
+    "name": "Corporate Report Parody",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_d4ef3daa58084bb6.webp"
+    ]
+  },
+  {
+    "id": "clu_479f7a86f57741fc",
+    "name": "Creative / Visual Experiments",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_0795180a4cfe456f.webp"
+    ]
+  },
+  {
+    "id": "clu_935eefbaee464968",
+    "name": "Cultural Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_13b712ea6fdc448f.webp",
+      "demo-data/media/img_5ae6473c46fc4bf0.webp"
+    ]
+  },
+  {
+    "id": "clu_7d2706a9bb2b48d9",
+    "name": "Cultural Solar Term Cards",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_8524bfaa71e34bb5.webp"
+    ]
+  },
+  {
+    "id": "clu_7438d6f59eb74f77",
+    "name": "Custom Invitation Card Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_677b45a1ee234a2b.webp"
+    ]
+  },
+  {
+    "id": "clu_d141f6e8dfbf42ea",
     "name": "Design, Posters & Typography",
+    "description": null,
+    "sort_order": 0,
+    "count": 27,
+    "preview_images": [
+      "demo-data/media/img_17061caf17374236.webp",
+      "demo-data/media/img_5c82a0c7df704df4.webp",
+      "demo-data/media/img_c52dae06d6e747e3.webp",
+      "demo-data/media/img_e0ca38459bca446f.webp"
+    ]
+  },
+  {
+    "id": "clu_1027313aca1e46a2",
+    "name": "Documents & Publishing",
+    "description": null,
+    "sort_order": 0,
+    "count": 6,
+    "preview_images": [
+      "demo-data/media/img_46b42b10fa8e401a.webp",
+      "demo-data/media/img_52f24a13555742bb.webp",
+      "demo-data/media/img_6237980f7c66461a.webp",
+      "demo-data/media/img_f2567b533b3740e3.webp"
+    ]
+  },
+  {
+    "id": "clu_d060ce6bdb574cda",
+    "name": "Doodle Portrait Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c994e88a36464bcf.webp"
+    ]
+  },
+  {
+    "id": "clu_96ce272fd81c4937",
+    "name": "E-commerce Product Advertising",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fcf097b241da42cc.webp"
+    ]
+  },
+  {
+    "id": "clu_1ace783e76f543f2",
+    "name": "Eastern Fantasy Portrait Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_0a498c1dc0b941a1.webp"
+    ]
+  },
+  {
+    "id": "clu_43e60897f66445b3",
+    "name": "Eastern Fantasy Scroll-Breaking Portrait Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_abd2216cc9e8437b.webp"
+    ]
+  },
+  {
+    "id": "clu_3b6967da10e948a1",
+    "name": "Ecommerce Product Detail Pages",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a4f4d633b25642cd.webp"
+    ]
+  },
+  {
+    "id": "clu_bc56118b90b44f0f",
+    "name": "Editorial Caricature & Satirical Sketch Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_814da17b8f884e2a.webp"
+    ]
+  },
+  {
+    "id": "clu_4379563c99a1417d",
+    "name": "Editorial Data Visualization Prompt Templates",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_219fe6fb131d4d86.webp"
+    ]
+  },
+  {
+    "id": "clu_4661ad9ad6b241e5",
+    "name": "Editorial design",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c7c2ffef8bdb4e74.webp"
+    ]
+  },
+  {
+    "id": "clu_e132abbefed7484f",
+    "name": "Education & Infographics",
+    "description": null,
+    "sort_order": 0,
+    "count": 19,
+    "preview_images": [
+      "demo-data/media/img_88eb7fd40f0a498f.webp",
+      "demo-data/media/img_e2f9d1e5a0ff4246.webp",
+      "demo-data/media/img_d424789e3ea74fb1.webp",
+      "demo-data/media/img_19bcb82810094c6c.webp"
+    ]
+  },
+  {
+    "id": "clu_d3a288deab65450c",
+    "name": "Education & Micro Model Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_cb373d17e7b64c2b.webp"
+    ]
+  },
+  {
+    "id": "clu_713c3539031b410b",
+    "name": "Educational infographic",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a97305eed0b243d5.webp"
+    ]
+  },
+  {
+    "id": "clu_9b6bd150ab274464",
+    "name": "Electronic Components Miniature Visual Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_b098b7de0eb345c0.webp"
+    ]
+  },
+  {
+    "id": "clu_579ac1d8bc824495",
+    "name": "Fashion Editorial & Luxury Campaign Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_500dc9695ba3469c.webp"
+    ]
+  },
+  {
+    "id": "clu_0600f081361c4832",
+    "name": "Fashion Editorial & Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_308d360898ed4f9b.webp"
+    ]
+  },
+  {
+    "id": "clu_f808894fe933484b",
+    "name": "Fashion Illustration",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_bc9fa6fcd6cd4000.webp"
+    ]
+  },
+  {
+    "id": "clu_8a69267e8fc04e04",
+    "name": "Fashion, Beauty & Lifestyle",
+    "description": null,
+    "sort_order": 0,
+    "count": 14,
+    "preview_images": [
+      "demo-data/media/img_b353948c47234994.webp",
+      "demo-data/media/img_7b79f238926e4390.webp",
+      "demo-data/media/img_a32d43b5e9c74cdd.webp",
+      "demo-data/media/img_026f0eb1e11246a4.webp"
+    ]
+  },
+  {
+    "id": "clu_ae9998778f93435e",
+    "name": "Food & culture infographic",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_b0a6bb433c4e4274.webp"
+    ]
+  },
+  {
+    "id": "clu_ff3231910e474ff5",
+    "name": "Graphic Design Portfolio Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_cae38f61e0d8446c.webp"
+    ]
+  },
+  {
+    "id": "clu_c7b7df9e1d224785",
+    "name": "Healing Hand-Drawn Copy Wallpaper Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_37faef03cc4047e2.webp"
+    ]
+  },
+  {
+    "id": "clu_5cc8778e798e4918",
+    "name": "History & Classical Themes",
+    "description": null,
+    "sort_order": 0,
+    "count": 9,
+    "preview_images": [
+      "demo-data/media/img_4f3a94c9cac24275.webp",
+      "demo-data/media/img_e4608e95cf0740c6.webp",
+      "demo-data/media/img_1fa948f3a8d94fd7.webp",
+      "demo-data/media/img_6621e073172b4c97.webp"
+    ]
+  },
+  {
+    "id": "clu_c6a1c4247c044f4e",
+    "name": "IP 商品化品牌系统 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_ca083af23df7472c.webp"
+    ]
+  },
+  {
+    "id": "clu_1d7b6d8059f44064",
+    "name": "Illustration & Art",
     "description": null,
     "sort_order": 0,
     "count": 23,
     "preview_images": [
-      "demo-data/media/img_2213c21bde0d490e.webp",
-      "demo-data/media/img_8a542c78aaec4e65.webp",
-      "demo-data/media/img_e206cc59513d483f.webp",
-      "demo-data/media/img_21e7660a6f014b58.webp"
+      "demo-data/media/img_bb42593929a34500.webp",
+      "demo-data/media/img_05167b3816c440e4.webp",
+      "demo-data/media/img_17ea6146cd6c450a.webp",
+      "demo-data/media/img_a65d3ba895644005.webp"
     ]
   },
   {
-    "id": "clu_dbc03637a7ae4bd7",
-    "name": "Education & Infographics",
+    "id": "clu_d7571dde757e4d46",
+    "name": "Illustration Style Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 16,
+    "count": 2,
     "preview_images": [
-      "demo-data/media/img_364b7976a39e4300.webp",
-      "demo-data/media/img_68b209c8840845f4.webp",
-      "demo-data/media/img_538f93b4b4bc4169.webp",
-      "demo-data/media/img_0219f94629024864.webp"
+      "demo-data/media/img_00f132629ef0449e.webp",
+      "demo-data/media/img_aa170f807dd94fab.webp"
     ]
   },
   {
-    "id": "clu_75e060027e63479f",
-    "name": "Fashion, Beauty & Lifestyle",
+    "id": "clu_c95ea7abf7d64e87",
+    "name": "Image transformation",
     "description": null,
     "sort_order": 0,
-    "count": 10,
+    "count": 3,
     "preview_images": [
-      "demo-data/media/img_77052d36b3054997.webp",
-      "demo-data/media/img_1ab3c1faab204892.webp",
-      "demo-data/media/img_d9b70e1c2eda4747.webp",
-      "demo-data/media/img_251fb69582f940a6.webp"
+      "demo-data/media/img_52b800626fb94187.webp",
+      "demo-data/media/img_b139f4765d784067.webp",
+      "demo-data/media/img_7af772d3fcd14f18.webp"
     ]
   },
   {
-    "id": "clu_e0faca15ce9f4f01",
+    "id": "clu_d4a75aa74afd4e81",
+    "name": "Image-to-Image Illustration",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_db84a5bfa2d14a56.webp"
+    ]
+  },
+  {
+    "id": "clu_661740dcb04442f1",
+    "name": "Image-to-Image Storybook Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fb545e32e2474c2d.webp"
+    ]
+  },
+  {
+    "id": "clu_56c2eca3d2b54b91",
+    "name": "Image-to-Image Storybook Transformations",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_157bb62981f8409e.webp"
+    ]
+  },
+  {
+    "id": "clu_f6303c4343a84a5a",
+    "name": "Image-to-Image Texture Transformations",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_5420283f85994631.webp"
+    ]
+  },
+  {
+    "id": "clu_3c3e2211f6e64c30",
+    "name": "Infographic & Editorial Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_e74b5f14bbeb46fc.webp",
+      "demo-data/media/img_7931afee5f41419a.webp"
+    ]
+  },
+  {
+    "id": "clu_e4677d9c9cad45b5",
+    "name": "Infographic Digest Systems",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_37dfb96b4f71422e.webp"
+    ]
+  },
+  {
+    "id": "clu_af306ec5be3a4450",
+    "name": "Information Simplification Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_a3da078eb5204fb2.webp"
+    ]
+  },
+  {
+    "id": "clu_f14a8dde3b214639",
+    "name": "Ink Illustration & Eastern Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_748b973cafab4ad5.webp"
+    ]
+  },
+  {
+    "id": "clu_cd17a7e2c67546c4",
+    "name": "Kawaii Travel Diorama Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_6d4c5324b2764e8f.webp"
+    ]
+  },
+  {
+    "id": "clu_a1a2ac6803e64ed7",
+    "name": "Keyword Emphasis Infographic Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_3db5a6294fb844f7.webp"
+    ]
+  },
+  {
+    "id": "clu_2ffce31d1659461e",
+    "name": "Knowledge Card & Social Infographic Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_07a283df50c743a5.webp"
+    ]
+  },
+  {
+    "id": "clu_6eea02089ef84ff5",
+    "name": "Local Store Marketing Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_f203e3af63e04986.webp"
+    ]
+  },
+  {
+    "id": "clu_9a67aa6181944dd9",
+    "name": "Logo & Brand Identity Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 3,
+    "preview_images": [
+      "demo-data/media/img_bf73747da8484154.webp",
+      "demo-data/media/img_3b9e622f99e04389.webp",
+      "demo-data/media/img_d09a5b1fe6514a45.webp"
+    ]
+  },
+  {
+    "id": "clu_60fc8083cc894b91",
+    "name": "Logo Design",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_d46c3e09e3594100.webp"
+    ]
+  },
+  {
+    "id": "clu_38055e8f64634cb3",
+    "name": "Logo Design Systems",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_59a2a9f8b5204328.webp",
+      "demo-data/media/img_9334b2b4e0374cb4.webp"
+    ]
+  },
+  {
+    "id": "clu_64ff9736d4b14651",
+    "name": "Miniature Diorama Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_027e2b8ea29848bf.webp",
+      "demo-data/media/img_9675d069b2a64a59.webp"
+    ]
+  },
+  {
+    "id": "clu_6a5a3aa893e4433e",
+    "name": "Minimal Prompt Photography",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c13698f0a9d04081.webp"
+    ]
+  },
+  {
+    "id": "clu_9bf3495e3ba44483",
+    "name": "Naked-eye 3D Typography Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_cb60fdf0cc48490e.webp"
+    ]
+  },
+  {
+    "id": "clu_d80fb88a2fb8489f",
+    "name": "Other Use Cases",
+    "description": null,
+    "sort_order": 0,
+    "count": 30,
+    "preview_images": [
+      "demo-data/media/img_a17cc364c80742c5.webp",
+      "demo-data/media/img_5b973cb02fb74b7c.webp",
+      "demo-data/media/img_f3ca39392d2b48a5.webp",
+      "demo-data/media/img_90f5cbd56513482f.webp"
+    ]
+  },
+  {
+    "id": "clu_f692e1986fd24081",
+    "name": "Packaging Design",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_4b0cfcc9f32a486a.webp"
+    ]
+  },
+  {
+    "id": "clu_94d4e11569e6499c",
+    "name": "Paper Craft Illustration",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_5e29bab59a6f4485.webp"
+    ]
+  },
+  {
+    "id": "clu_b58467ba78c44650",
+    "name": "Paper Craft Sculpture Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_3014627eb3b144f9.webp"
+    ]
+  },
+  {
+    "id": "clu_fb7f0bfe81b549cb",
     "name": "Photography & Real-world Screens",
     "description": null,
     "sort_order": 0,
     "count": 10,
     "preview_images": [
-      "demo-data/media/img_7baddd094a8f4c54.webp",
-      "demo-data/media/img_67a1482a31b14a16.webp",
-      "demo-data/media/img_e73209517f4d4a23.webp",
-      "demo-data/media/img_e7eb6c20ab644b4a.webp"
+      "demo-data/media/img_83d61669cfdb4341.webp",
+      "demo-data/media/img_01e29ebde9124b68.webp",
+      "demo-data/media/img_e5922b615c924492.webp",
+      "demo-data/media/img_d5e274ca2bde4c6a.webp"
     ]
   },
   {
-    "id": "clu_fa5c307a771643c3",
+    "id": "clu_a52b2e27f3354781",
+    "name": "Photography & Realism",
+    "description": null,
+    "sort_order": 0,
+    "count": 39,
+    "preview_images": [
+      "demo-data/media/img_3ce74bedeeec4779.webp",
+      "demo-data/media/img_d21bbbdb0dee4fbe.webp",
+      "demo-data/media/img_0f8aceda179f4df1.webp",
+      "demo-data/media/img_c0a53c126bb74b17.webp"
+    ]
+  },
+  {
+    "id": "clu_2cad37b986b947fa",
+    "name": "Photoreal & Wildlife Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c0d0f251303548b4.webp"
+    ]
+  },
+  {
+    "id": "clu_63d8fe352e844c42",
+    "name": "Poetic Chinese Typography Cover Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_106847f759d04906.webp"
+    ]
+  },
+  {
+    "id": "clu_279d599d369b4242",
+    "name": "Portrait & Character Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_b291703f125743f2.webp",
+      "demo-data/media/img_b8e5cdd70dbe4d67.webp"
+    ]
+  },
+  {
+    "id": "clu_979511841f464582",
+    "name": "Portrait Stylization",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_fc7f64067b06453d.webp",
+      "demo-data/media/img_c59abecccf554536.webp"
+    ]
+  },
+  {
+    "id": "clu_6877e2d62bf04f7a",
+    "name": "Portrait Transformation Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_78c0384fab194dfe.webp",
+      "demo-data/media/img_4e96a19eb87247c2.webp"
+    ]
+  },
+  {
+    "id": "clu_44c69f97f6244790",
+    "name": "Portrait photography",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_1c42cbee549a4aa6.webp"
+    ]
+  },
+  {
+    "id": "clu_6f5f111eb0f54075",
+    "name": "Posters & Typography",
+    "description": null,
+    "sort_order": 0,
+    "count": 41,
+    "preview_images": [
+      "demo-data/media/img_6ebfac1af4fa4255.webp",
+      "demo-data/media/img_9de9d3e7d33e4388.webp",
+      "demo-data/media/img_a5d5424f033f4f66.webp",
+      "demo-data/media/img_fdaaf0d059064450.webp"
+    ]
+  },
+  {
+    "id": "clu_2e22535177b4441f",
+    "name": "Presentation & Infographic Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_9df54aa2e42b48fa.webp",
+      "demo-data/media/img_2d9ac68441e440b6.webp"
+    ]
+  },
+  {
+    "id": "clu_b1a56f941f2e4f9b",
+    "name": "Product & Merchandise Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_d41aeedefc754081.webp"
+    ]
+  },
+  {
+    "id": "clu_227ad1da6586467e",
+    "name": "Product Advertising Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_6c4ee73979034699.webp"
+    ]
+  },
+  {
+    "id": "clu_cf8b9113c9a54075",
+    "name": "Product Packaging & Branding Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_453765f0a2a24ac1.webp"
+    ]
+  },
+  {
+    "id": "clu_d76d5b0ba3774c26",
+    "name": "Products & E-commerce",
+    "description": null,
+    "sort_order": 0,
+    "count": 23,
+    "preview_images": [
+      "demo-data/media/img_7a59243833224e8b.webp",
+      "demo-data/media/img_088dc36048f941da.webp",
+      "demo-data/media/img_51ad20bd6ca9425e.webp",
+      "demo-data/media/img_af42ee1e898e4ba3.webp"
+    ]
+  },
+  {
+    "id": "clu_23906a8032984a6a",
+    "name": "Recommendation Cards",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_6a89906d04ae4c23.webp"
+    ]
+  },
+  {
+    "id": "clu_1b1215cda9de48b1",
+    "name": "Reference-Based App Icon Character Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_b5fd6470d4c64d80.webp"
+    ]
+  },
+  {
+    "id": "clu_0bbb10c5b153460a",
+    "name": "Scenes & Storytelling",
+    "description": null,
+    "sort_order": 0,
+    "count": 12,
+    "preview_images": [
+      "demo-data/media/img_1e4122da54244288.webp",
+      "demo-data/media/img_cb4ca7525bad4905.webp",
+      "demo-data/media/img_24860d6d926b4fe4.webp",
+      "demo-data/media/img_bfa96e033a2643eb.webp"
+    ]
+  },
+  {
+    "id": "clu_9fc7d6505638497c",
+    "name": "Social Content Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c34855c093494bd7.webp"
+    ]
+  },
+  {
+    "id": "clu_4b820c14bd594674",
+    "name": "Social Media Covers",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_9f831afe3c024734.webp"
+    ]
+  },
+  {
+    "id": "clu_c7fe6cd2c6e44be8",
+    "name": "Sports Caricature",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_fc9f94a431c74c80.webp"
+    ]
+  },
+  {
+    "id": "clu_e242085bf07f4a7f",
+    "name": "Sticker Pack Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_bddfe2225cc142d2.webp"
+    ]
+  },
+  {
+    "id": "clu_590b9de6e2724e59",
+    "name": "Sticker Packs",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_515b6e8f80b043ae.webp"
+    ]
+  },
+  {
+    "id": "clu_b19e41ebafd04b67",
+    "name": "Storybook Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_2462635fa16448c3.webp"
+    ]
+  },
+  {
+    "id": "clu_a00ed2a98bd94f22",
+    "name": "Style-Locked Variable Image Machines",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_8b4905b40de1417a.webp"
+    ]
+  },
+  {
+    "id": "clu_11d4639ce7ff44c3",
+    "name": "Stylized Character Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_738275a713494549.webp"
+    ]
+  },
+  {
+    "id": "clu_a960cfa9eaad41b9",
+    "name": "Stylized Portrait Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_eb9fffa0c7ba4309.webp"
+    ]
+  },
+  {
+    "id": "clu_d9a79699998c4166",
     "name": "Technical & Research Diagrams",
     "description": null,
     "sort_order": 0,
     "count": 32,
     "preview_images": [
-      "demo-data/media/img_49535edd49754ff2.webp",
-      "demo-data/media/img_3a913170ca49496f.webp",
-      "demo-data/media/img_f6b12822c1d44db3.webp",
-      "demo-data/media/img_3a6dc6c4e38f4ec1.webp"
+      "demo-data/media/img_24aeef4b16c14cc5.webp",
+      "demo-data/media/img_1bb0ce09991d4392.webp",
+      "demo-data/media/img_eb67c4a5b72b47ff.webp",
+      "demo-data/media/img_942e381eaf3d4eca.webp"
     ]
   },
   {
-    "id": "clu_66492896f3b04851",
+    "id": "clu_a158b678cded4393",
+    "name": "Technical Architecture Diagrams",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_9aca6c31fe8c43d6.webp"
+    ]
+  },
+  {
+    "id": "clu_21f0ca6fb84347a5",
+    "name": "Torn Paper Collage Cover Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_935553059a1e423a.webp"
+    ]
+  },
+  {
+    "id": "clu_5aace31864154ec4",
+    "name": "Toy Collector Sheet Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_430a7aae92f344a2.webp"
+    ]
+  },
+  {
+    "id": "clu_526fa01cfbfe451e",
+    "name": "Travel & City Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c82608f247cd45e6.webp"
+    ]
+  },
+  {
+    "id": "clu_0447db6eab9f4669",
+    "name": "Travel Infographic Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_197c5fef10354f5f.webp"
+    ]
+  },
+  {
+    "id": "clu_a76e1e5d6e1d4326",
+    "name": "Travel Poster & Map Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_cf97e508ff0f4864.webp",
+      "demo-data/media/img_c82335afa44c4d52.webp"
+    ]
+  },
+  {
+    "id": "clu_7efaa1205ce24974",
+    "name": "Travel Poster & Urban Illustration Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 4,
+    "preview_images": [
+      "demo-data/media/img_75137a1fa69641e4.webp",
+      "demo-data/media/img_344f13e9f9054b2f.webp",
+      "demo-data/media/img_4a80cbe3dd20432d.webp",
+      "demo-data/media/img_52683b590e104890.webp"
+    ]
+  },
+  {
+    "id": "clu_46de19a37c224864",
+    "name": "Travel Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_6225524ee96644b0.webp",
+      "demo-data/media/img_a514555884c14495.webp"
+    ]
+  },
+  {
+    "id": "clu_606c3f682f5a4aa1",
+    "name": "Travel Souvenir Prompt Templates",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_af40fccf71884d23.webp"
+    ]
+  },
+  {
+    "id": "clu_ebd4c12028fd42cd",
+    "name": "Typography Poster Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_40488372ede447c1.webp"
+    ]
+  },
+  {
+    "id": "clu_986a374e433241db",
+    "name": "UI & Interfaces",
+    "description": null,
+    "sort_order": 0,
+    "count": 80,
+    "preview_images": [
+      "demo-data/media/img_bc66faa85c6e41d5.webp",
+      "demo-data/media/img_d13280f575594be9.webp",
+      "demo-data/media/img_7a114ca8155c4d3b.webp",
+      "demo-data/media/img_ad796a863603426b.webp"
+    ]
+  },
+  {
+    "id": "clu_7999dc4371d14416",
     "name": "UI, Brand & Product",
     "description": null,
     "sort_order": 0,
     "count": 8,
     "preview_images": [
-      "demo-data/media/img_845f052bc14f491b.webp",
-      "demo-data/media/img_3136ad12520d4060.webp",
-      "demo-data/media/img_a6767e52f9ee4ff0.webp",
-      "demo-data/media/img_4fe1467161a94e3e.webp"
+      "demo-data/media/img_7e890e413a044c18.webp",
+      "demo-data/media/img_713dec4533924fd2.webp",
+      "demo-data/media/img_a2a12f6cd02e427f.webp",
+      "demo-data/media/img_1e7243f7743f4f03.webp"
     ]
   },
   {
-    "id": "clu_8c5d2b0d851948f2",
+    "id": "clu_e750394f407b4706",
     "name": "UI与界面",
     "description": null,
     "sort_order": 0,
-    "count": 4,
+    "count": 52,
     "preview_images": [
-      "demo-data/media/img_3303cd5f59f845c5.webp",
-      "demo-data/media/img_93f4ce650b8c46bb.webp",
-      "demo-data/media/img_7d7863012cba4942.webp",
-      "demo-data/media/img_bf8d043503d14782.webp"
+      "demo-data/media/img_768ce2f863dc4ff2.webp",
+      "demo-data/media/img_254081901f0d4db6.webp",
+      "demo-data/media/img_4783e0ee04d64581.webp",
+      "demo-data/media/img_eb67423106ac4ddb.webp"
     ]
   },
   {
-    "id": "clu_65c21e993fcd4973",
+    "id": "clu_142deb549ff5417f",
+    "name": "Vintage Travel Stamp Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_e119b446c6364a88.webp"
+    ]
+  },
+  {
+    "id": "clu_6eeeba2e84cd4c25",
+    "name": "Watercolor to Reality City Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_c4666081f2c94ff4.webp"
+    ]
+  },
+  {
+    "id": "clu_14923036bfb64d97",
+    "name": "Wedding Stationery & Luxury Packaging Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_681dc24f66114e11.webp"
+    ]
+  },
+  {
+    "id": "clu_773c4408d13f4c59",
+    "name": "Wes Anderson Editorial Posters",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_33b088e8199a44e8.webp"
+    ]
+  },
+  {
+    "id": "clu_7d9802fdc8ad4193",
+    "name": "Zodiac Character IP Prompt Templates",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_3c52a5f4d2d043b1.webp"
+    ]
+  },
+  {
+    "id": "clu_4c0d43316af44f96",
+    "name": "中文封面海报 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_b8936c2cc4bc400b.webp"
+    ]
+  },
+  {
+    "id": "clu_a10093d277e949da",
+    "name": "中文知识封面 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_adb9627aa39b4cf9.webp"
+    ]
+  },
+  {
+    "id": "clu_e5683015c4174494",
+    "name": "二次元 / 插画设定",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_037651ee88c74f3c.webp"
+    ]
+  },
+  {
+    "id": "clu_4423680e35eb4fea",
+    "name": "产品 / 商业广告",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_d1f56ad2234842d6.webp"
+    ]
+  },
+  {
+    "id": "clu_84bc00f1a44a42eb",
+    "name": "人物 / 角色肖像",
+    "description": null,
+    "sort_order": 0,
+    "count": 3,
+    "preview_images": [
+      "demo-data/media/img_60b0b17554b0437e.webp",
+      "demo-data/media/img_4d759512cb9e457f.webp",
+      "demo-data/media/img_546c2ac99110402a.webp"
+    ]
+  },
+  {
+    "id": "clu_f8ab4d3943f34479",
     "name": "人物与角色",
     "description": null,
     "sort_order": 0,
-    "count": 5,
+    "count": 9,
     "preview_images": [
-      "demo-data/media/img_007605cb0b984aed.webp",
-      "demo-data/media/img_90b604f4ceea4c9d.webp",
-      "demo-data/media/img_8ff0dcf31c09444c.webp",
-      "demo-data/media/img_8b3565812212466b.webp"
+      "demo-data/media/img_d0ba1fb7a64f4930.webp",
+      "demo-data/media/img_3cb4ee6ff28b4219.webp",
+      "demo-data/media/img_600a872b4a714b94.webp",
+      "demo-data/media/img_e357f4b059ff4a9f.webp"
     ]
   },
   {
-    "id": "clu_483d45f189cc4a05",
+    "id": "clu_a15e413347b2413b",
     "name": "健康营养与食谱",
     "description": null,
     "sort_order": 0,
     "count": 1,
     "preview_images": [
-      "demo-data/media/img_2f82f5a8da0045c2.webp"
+      "demo-data/media/img_a0d74ce28f8742f4.webp"
     ]
   },
   {
-    "id": "clu_ed81bde095c84c5c",
-    "name": "历史与古风题材",
+    "id": "clu_99907fdab0ca465e",
+    "name": "创意 / 视觉实验",
     "description": null,
     "sort_order": 0,
     "count": 3,
     "preview_images": [
-      "demo-data/media/img_7b505d6514794ba7.webp",
-      "demo-data/media/img_658ed7a205c5400f.webp",
-      "demo-data/media/img_d0c89e469751443e.webp"
+      "demo-data/media/img_3c9f9d6947404a7b.webp",
+      "demo-data/media/img_63e478c07a654102.webp",
+      "demo-data/media/img_a4815d3b6a4d4914.webp"
     ]
   },
   {
-    "id": "clu_cf0186857e894258",
-    "name": "品牌与标志",
+    "id": "clu_234ff4c5a3904660",
+    "name": "历史与古风题材",
     "description": null,
     "sort_order": 0,
     "count": 2,
     "preview_images": [
-      "demo-data/media/img_eeb4a7be43fe44e6.webp",
-      "demo-data/media/img_c6ffeb90af0b4170.webp"
+      "demo-data/media/img_3bede1ba0fc8436e.webp",
+      "demo-data/media/img_1c70a2e6496041c8.webp"
     ]
   },
   {
-    "id": "clu_18134e8691e84ee0",
+    "id": "clu_e57f646302814dd9",
+    "name": "品牌与标志",
+    "description": null,
+    "sort_order": 0,
+    "count": 11,
+    "preview_images": [
+      "demo-data/media/img_99589899aed24b76.webp",
+      "demo-data/media/img_430d4cbe09d04900.webp",
+      "demo-data/media/img_968bd22e221b4843.webp",
+      "demo-data/media/img_6003e2cfff4d42f4.webp"
+    ]
+  },
+  {
+    "id": "clu_1990a9f517994d09",
+    "name": "品牌空间与展位设计 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_10f95ea359c44a13.webp"
+    ]
+  },
+  {
+    "id": "clu_215d7ede499e4316",
     "name": "商品与电商",
     "description": null,
     "sort_order": 0,
-    "count": 7,
+    "count": 9,
     "preview_images": [
-      "demo-data/media/img_380e9dc64deb4122.webp",
-      "demo-data/media/img_2590ec55cbab493e.webp",
-      "demo-data/media/img_46fab76bb8ac4a9f.webp",
-      "demo-data/media/img_5ca8aa7efab145cb.webp"
+      "demo-data/media/img_e2dc4df135284aa3.webp",
+      "demo-data/media/img_cb206f3bc8324aac.webp",
+      "demo-data/media/img_99599f8ca9154165.webp",
+      "demo-data/media/img_38e5bd54771b413d.webp"
     ]
   },
   {
-    "id": "clu_1315c03ab3724ed8",
+    "id": "clu_7d421c939f114f2b",
     "name": "图像编辑与再创作",
-    "description": null,
-    "sort_order": 0,
-    "count": 3,
-    "preview_images": [
-      "demo-data/media/img_190e3ca8cf1f419b.webp",
-      "demo-data/media/img_c0beea1267e54e35.webp",
-      "demo-data/media/img_e903e47448884c10.webp"
-    ]
-  },
-  {
-    "id": "clu_ea6e07abb04c4638",
-    "name": "图表与信息可视化",
     "description": null,
     "sort_order": 0,
     "count": 14,
     "preview_images": [
-      "demo-data/media/img_b700369b2b6b4650.webp",
-      "demo-data/media/img_524578385e644af9.webp",
-      "demo-data/media/img_89b8317133d44178.webp",
-      "demo-data/media/img_f9a716a2ba424f51.webp"
+      "demo-data/media/img_40d2e2a8e4c74561.webp",
+      "demo-data/media/img_a126583f0ab94fa1.webp",
+      "demo-data/media/img_bc58b09438ab42f0.webp",
+      "demo-data/media/img_1f13059ed9c64bb6.webp"
     ]
   },
   {
-    "id": "clu_9f78aea8623c4aca",
+    "id": "clu_225d570605b94de8",
+    "name": "图表与信息可视化",
+    "description": null,
+    "sort_order": 0,
+    "count": 42,
+    "preview_images": [
+      "demo-data/media/img_823fd5f4527c4275.webp",
+      "demo-data/media/img_7af1b08c7c6447a4.webp",
+      "demo-data/media/img_48176765b0eb4072.webp",
+      "demo-data/media/img_b76a174f00364126.webp"
+    ]
+  },
+  {
+    "id": "clu_4475869b71534a77",
     "name": "场景与叙事",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 8,
     "preview_images": [
-      "demo-data/media/img_c52a950e0ed142e5.webp",
-      "demo-data/media/img_1548e1d06bfb4fbe.webp"
+      "demo-data/media/img_bfa6982b9a224365.webp",
+      "demo-data/media/img_70b782ae54054ace.webp",
+      "demo-data/media/img_5c179c5faaf14654.webp",
+      "demo-data/media/img_c3524a7bc98b4314.webp"
     ]
   },
   {
-    "id": "clu_d28c1c2bd13b4016",
+    "id": "clu_96028cd4994f4735",
+    "name": "情侣头像 / CP 头像",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_aea84cf60bfa48d9.webp"
+    ]
+  },
+  {
+    "id": "clu_3785504d95c44c4e",
+    "name": "手账插画 / 菜单食谱",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_7e1cf9853cc04713.webp"
+    ]
+  },
+  {
+    "id": "clu_07ba6eaa916c45f0",
     "name": "插画与艺术",
+    "description": null,
+    "sort_order": 0,
+    "count": 24,
+    "preview_images": [
+      "demo-data/media/img_f292db50c09f4283.webp",
+      "demo-data/media/img_7a12bc282f684823.webp",
+      "demo-data/media/img_894a42607dbf4631.webp",
+      "demo-data/media/img_b8e6f7cd9c714c00.webp"
+    ]
+  },
+  {
+    "id": "clu_c25450cb404e4e44",
+    "name": "摄影与写实",
+    "description": null,
+    "sort_order": 0,
+    "count": 17,
+    "preview_images": [
+      "demo-data/media/img_a9e5811968924fa7.webp",
+      "demo-data/media/img_577aff0efcdf4029.webp",
+      "demo-data/media/img_8a461f2b16ad4f06.webp",
+      "demo-data/media/img_80b62c2804444911.webp"
+    ]
+  },
+  {
+    "id": "clu_085c13f0995044c2",
+    "name": "海报 / 品宣视觉",
+    "description": null,
+    "sort_order": 0,
+    "count": 4,
+    "preview_images": [
+      "demo-data/media/img_2399803896cc44bd.webp",
+      "demo-data/media/img_87aaf24e135c4b02.webp",
+      "demo-data/media/img_945edeb0de5340cc.webp",
+      "demo-data/media/img_9a4418e3478a4a79.webp"
+    ]
+  },
+  {
+    "id": "clu_f5dfd6e4cbfe407e",
+    "name": "海报与排版",
+    "description": null,
+    "sort_order": 0,
+    "count": 34,
+    "preview_images": [
+      "demo-data/media/img_ae91ec9c3481404b.webp",
+      "demo-data/media/img_8f1fb70e15964e73.webp",
+      "demo-data/media/img_d32899281cd046ca.webp",
+      "demo-data/media/img_c3c0bd5e83804ab5.webp"
+    ]
+  },
+  {
+    "id": "clu_1d8cd38262ee4c66",
+    "name": "电商品牌系统 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_8ae3afe7cc8f4de2.webp"
+    ]
+  },
+  {
+    "id": "clu_ca513ce0c75f467b",
+    "name": "社交媒体与人物特效",
     "description": null,
     "sort_order": 0,
     "count": 3,
     "preview_images": [
-      "demo-data/media/img_a0e254ff24bb420f.webp",
-      "demo-data/media/img_bd23b980424143c1.webp",
-      "demo-data/media/img_d6607b8d9f70426a.webp"
+      "demo-data/media/img_cf7d2b223f984151.webp",
+      "demo-data/media/img_124ca2e740c54f51.webp",
+      "demo-data/media/img_f7709a1e9481481e.webp"
     ]
   },
   {
-    "id": "clu_5132aee9772647f3",
-    "name": "摄影与写实",
+    "id": "clu_b070a8562ed14ebb",
+    "name": "社媒封面 Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 12,
+    "count": 1,
     "preview_images": [
-      "demo-data/media/img_507c71bd7d5940bf.webp",
-      "demo-data/media/img_1a8533b525364baf.webp",
-      "demo-data/media/img_475b2d9495e64b39.webp",
-      "demo-data/media/img_d27eec761294486e.webp"
+      "demo-data/media/img_a6173245473e43b3.webp"
     ]
   },
   {
-    "id": "clu_b40703641657463f",
-    "name": "海报与排版",
+    "id": "clu_8689c365d8b147c9",
+    "name": "视频分镜与动态叙事",
     "description": null,
     "sort_order": 0,
-    "count": 10,
+    "count": 1,
     "preview_images": [
-      "demo-data/media/img_2596ba2ac5154687.webp",
-      "demo-data/media/img_8b2cb01beb484c0e.webp",
-      "demo-data/media/img_5148b0cc7408484a.webp",
-      "demo-data/media/img_3778c21057e142ad.webp"
+      "demo-data/media/img_646cb5dff02e43b1.webp"
+    ]
+  },
+  {
+    "id": "clu_53946c772a474470",
+    "name": "餐饮品牌宣传物料 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_783de4bcab074254.webp"
+    ]
+  },
+  {
+    "id": "clu_2deda930d5e949a8",
+    "name": "餐饮门店物料 Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_79b839b25aad4eb5.webp"
     ]
   }
 ]
