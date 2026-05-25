@@ -13,7 +13,7 @@ export function imageDisplayPaths(image?: ImageRecord) {
 }
 
 export function imageDisplayPath(image?: ImageRecord) {
-  return image?.preview_path || image?.original_path || image?.thumb_path || '';
+  return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || '';
 }
 
 export function imageThumbnailPaths(image?: ImageRecord) {
@@ -21,7 +21,7 @@ export function imageThumbnailPaths(image?: ImageRecord) {
 }
 
 export function imageThumbnailPath(image?: ImageRecord) {
-  return image?.thumb_path || image?.preview_path || '';
+  return image?.thumb_path || image?.preview_path || image?.remote_url || '';
 }
 
 export function imageHeroPaths(image?: ImageRecord) {
@@ -29,5 +29,5 @@ export function imageHeroPaths(image?: ImageRecord) {
 }
 
 export function imageHeroPath(image?: ImageRecord) {
-  return image?.preview_path || image?.original_path || image?.thumb_path || '';
+  return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || '';
 }

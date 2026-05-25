@@ -1,12 +1,16 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
+const DEMO_ASSET_VERSION = (import.meta.env.VITE_DEMO_ASSET_VERSION || '').trim();
 const DEMO_DATA_BASE = `${import.meta.env.BASE_URL || '/'}demo-data`.replace(/\/+/g, '/');
 
 function demoUrl(path: string) {
   const base = import.meta.env.BASE_URL || '/';
-  return `${base}${path.replace(/^\/+/, '')}`;
+  const url = `${base}${path.replace(/^\/+/, '')}`;
+  if (!isDemoMode || !DEMO_ASSET_VERSION) return url;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}v=${encodeURIComponent(DEMO_ASSET_VERSION)}`;
 }
 
 function summarizeResponseError(body: string, status: number) {
@@ -100,6 +104,10 @@ function demoAiUnavailable(): Promise<never> {
   return Promise.reject(new Error('AI prompt rewriting is unavailable in the online sandbox. Run Image Prompt Library locally with your own backend and n8n workflow.'));
 }
 
+function demoImageGenerationUnavailable(): Promise<never> {
+  return Promise.reject(new Error('Direct image generation is unavailable in the online sandbox. Run Image Prompt Library locally with your Nanobanana image API token.'));
+}
+
 export const mediaUrl = (path?: string) => {
   if (!path) return '';
   if (isDemoMode && path.startsWith('demo-data/')) return demoUrl(path);
@@ -122,6 +130,7 @@ export const api = isDemoMode ? {
   fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   promptTemplate: (_itemId: string) => demoAiUnavailable(),
+  bulkInitPromptTemplates: (_payload: PromptTemplateBulkInitRequest) => demoAiUnavailable(),
   adminSession: () => Promise.resolve<AdminSessionRecord>({ authenticated: false }),
   adminLogin: (_password: string) => Promise.reject(new Error('Admin is unavailable in the online sandbox. Run Image Prompt Library locally with your own backend.')),
   adminLogout: () => Promise.resolve<AdminSessionRecord>({ authenticated: false }),
@@ -131,6 +140,7 @@ export const api = isDemoMode ? {
   rerollPromptVariant: (_sessionId: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
   generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions, _references?: PromptImageReferenceInput[]) => demoAiUnavailable(),
+  generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
   adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),
   adminBatchInitPromptTemplates: (_payload: PromptTemplateBatchInitRequest) => demoAiUnavailable(),
   adminPromptTemplateFailures: (_limit = 50) => demoAiUnavailable(),
@@ -153,6 +163,7 @@ export const api = isDemoMode ? {
   fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch', { method: 'POST', body: JSON.stringify({ url }) }),
   fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url)),
   promptTemplate: (itemId: string) => json<PromptTemplateBundle>(`/api/items/${itemId}/prompt-template`),
+  bulkInitPromptTemplates: (payload: PromptTemplateBulkInitRequest) => json<PromptTemplateBulkInitResult>(`/api/prompt-templates/bulk-init`, { method: 'POST', body: JSON.stringify(payload) }),
   adminPromptTemplate: (itemId: string) => json<PromptTemplateBundle>(`/api/admin/items/${itemId}/prompt-template`),
   adminSession: () => json<AdminSessionRecord>('/api/admin/auth/session'),
   adminLogin: (password: string) => json<AdminSessionRecord>('/api/admin/auth/login', { method: 'POST', body: JSON.stringify({ password }) }),
@@ -162,6 +173,7 @@ export const api = isDemoMode ? {
   rerollPromptVariant: (sessionId: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/generation-sessions/${sessionId}/reroll`, { method: 'POST', body: JSON.stringify({ rejected_variant_ids: rejectedVariantIds }) }),
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),
   generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[] = []) => json<PromptImageGenerationResponse>(`/api/items/${itemId}/generate-image`, { method: 'POST', body: JSON.stringify({ prompt, ...(generation ? { generation } : {}), ...(references.length > 0 ? { references } : {}) }) }),
+  generateItemImage: (itemId: string, payload: NanobananaItemImageGenerationRequest = {}) => json<NanobananaItemImageGenerationResult>(`/api/items/${itemId}/nanobanana/images`, { method: 'POST', body: JSON.stringify(payload) }),
   adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {}) => {
     const qs = new URLSearchParams();
     if (params.limit) qs.set('limit', String(params.limit));

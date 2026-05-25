@@ -170,6 +170,25 @@ class ItemRepository:
             conn.commit()
         return self._image_by_id(iid)
 
+    def add_remote_image(self, item_id: str, remote_url: str, *, storage_key: str | None = None, role: str = "result_image") -> ImageRecord:
+        if role not in {"result_image", "reference_image"}:
+            raise ValueError("Invalid image role")
+        clean_url = remote_url.strip()
+        if not clean_url:
+            raise ValueError("Remote image URL is required")
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT id FROM images WHERE item_id=? AND remote_url=?", (item_id, clean_url)).fetchone()
+            if row:
+                return self._image_by_id(row["id"])
+        return self.add_image(
+            item_id,
+            StoredImageInput(
+                original_path=(storage_key or clean_url).strip(),
+                remote_url=clean_url,
+                role=role,
+            ),
+        )
+
     def add_prompt_image_generation_run(
         self,
         *,

@@ -71,7 +71,7 @@ def test_canghe_gallery_daily_sync_workflow_calls_admin_sync_endpoint_without_em
     assert request_node['parameters']['url'] == 'https://prompt.wendealai.com/api/admin/intake/canghe-gallery/sync'
     assert '$env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in body
     assert 'initialize_templates: true' in body
-    assert 'zwyy0323' not in body
+    assert 'test-admin-password' not in body
     assert workflow['connections']['Schedule Canghe Gallery Daily Sync']['main'][0][0]['node'] == 'Call Image Prompt Library Canghe Sync'
 
 

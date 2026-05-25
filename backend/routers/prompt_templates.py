@@ -5,7 +5,7 @@ from dataclasses import asdict
 
 from backend.admin_auth import require_admin
 from backend.repositories import ItemRepository, StoredImageInput
-from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
 from backend.services.image_generation import ImageGenerationError, ImageGenerationUnavailable, generate_images_from_prompt
 from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
@@ -286,6 +286,75 @@ def list_prompt_template_ops(
 ):
     require_admin(request)
     return repo(request).list_prompt_template_ops_items(statuses=status, limit=limit)
+
+
+@router.post("/prompt-templates/bulk-init", response_model=PromptTemplateBulkInitResult)
+def bulk_init_prompt_templates(request: Request, payload: PromptTemplateBulkInitRequest):
+    repository = repo(request)
+    statuses = None if payload.mode == "all" else [payload.mode]
+    candidates = repository.list_prompt_template_ops_items(statuses=statuses, limit=payload.limit).items
+    results: list[PromptTemplateBulkInitItemResult] = []
+    processed_count = 0
+    skipped_count = 0
+    failed_count = 0
+
+    for candidate in candidates:
+        if not candidate.can_initialize and payload.mode != "all":
+            skipped_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="skipped",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
+                detail="Template is not eligible for initialization.",
+            ))
+            continue
+        if payload.dry_run:
+            skipped_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="dry_run",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
+                detail="Dry run; no template initialized.",
+            ))
+            continue
+        try:
+            bundle, *_ = _initialize_prompt_template_bundle(repository, item_id=candidate.item_id, language=payload.language)
+            template = bundle.template
+            processed_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="initialized",
+                template_id=template.id if template else None,
+                slot_count=len(template.slots) if template else 0,
+                detail="Template initialized.",
+            ))
+        except PromptWorkflowUnavailable as exc:
+            raise HTTPException(status_code=424, detail="AI prompt workflow is not configured.") from exc
+        except Exception as exc:  # noqa: BLE001
+            failed_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="failed",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
+                detail=str(exc),
+            ))
+
+    return PromptTemplateBulkInitResult(
+        mode=payload.mode,
+        dry_run=payload.dry_run,
+        total_candidates=len(candidates),
+        processed_count=processed_count,
+        skipped_count=skipped_count,
+        failed_count=failed_count,
+        results=results,
+    )
 
 
 @router.post("/admin/prompt-templates/ops/batch-init", response_model=PromptTemplateBatchInitResponse)

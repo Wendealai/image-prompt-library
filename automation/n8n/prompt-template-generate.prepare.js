@@ -1,10 +1,17 @@
 const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;
+const item = body.item && typeof body.item === 'object' ? body.item : {};
 const template = body.template && typeof body.template === 'object' ? body.template : {};
 const slots = Array.isArray(template.slots) ? template.slots : [];
 const previousVariants = Array.isArray(body.previousVariants) ? body.previousVariants : [];
 
 const templateId = String(template.id ?? '').trim();
 const itemId = String(template.itemId ?? template.item_id ?? '').trim();
+const itemTitle = String(item.title ?? '').trim();
+const itemModel = String(item.model ?? '').trim();
+const sourceUrl = String(item.sourceUrl ?? item.source_url ?? '').trim();
+const author = String(item.author ?? '').trim();
+const itemNotes = String(item.notes ?? '').trim();
+const defaultImportSkillUrl = String(item.defaultImportSkillUrl ?? item.default_import_skill_url ?? '').trim();
 const sourceLanguage = String(template.sourceLanguage ?? template.source_language ?? '').trim() || 'original';
 const rawText = String(template.rawText ?? template.raw_text ?? '').trim();
 const markedText = String(template.markedText ?? template.marked_text ?? '').trim();
@@ -38,6 +45,7 @@ const systemPrompt = [
   'Do not return a full prompt. Return slot values only.',
   'When the user changes the theme keyword, rewrite the variable regions holistically so the whole prompt stays stylistically coherent.',
   'Different slots may need coordinated changes. Think across all slots together before responding.',
+  'If a default import skill URL is provided in the user context, apply it as background guidance while still obeying the fixed skeleton and slot boundaries.',
   'Never invent or remove slot ids.',
   'Return valid JSON only with keys slotValues and changeSummary.',
   'slotValues must be an array of objects with keys slot_id and text.',
@@ -58,8 +66,15 @@ const userPrompt = [
   'Rewrite the marked prompt slots for a new theme.',
   `Template ID: ${templateId}`,
   `Item ID: ${itemId}`,
+  itemTitle ? `Title: ${itemTitle}` : '',
+  itemModel ? `Model: ${itemModel}` : '',
   `Source language: ${sourceLanguage}`,
+  sourceUrl ? `Source URL: ${sourceUrl}` : '',
+  author ? `Author: ${author}` : '',
+  itemNotes ? `Item notes:\n${itemNotes}` : '',
+  defaultImportSkillUrl ? `Default import skill URL: ${defaultImportSkillUrl}` : '',
   `Theme keyword: ${themeKeyword}`,
+  defaultImportSkillUrl ? 'Apply the synced default import skill URL above as background rewrite guidance.' : '',
   '',
   'Marked template:',
   markedText,
@@ -74,7 +89,7 @@ const userPrompt = [
   previousVariantText,
   '',
   'Return JSON only.',
-].join('\n');
+].filter(Boolean).join('\n');
 
 return [{
   json: {

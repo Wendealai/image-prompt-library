@@ -3,7 +3,8 @@ from pathlib import Path
 
 APP_VERSION = "0.1.0"
 DEFAULT_LIBRARY_PATH = Path(__file__).resolve().parents[1] / "library"
-DEFAULT_ADMIN_PASSWORD = "zwyy0323"
+DEFAULT_ADMIN_PASSWORD = ""
+DEFAULT_LINK_IMPORT_SKILL_URL = "https://x.com/MrDasOnX/status/2049527944905982314"
 
 
 def resolve_library_path(library_path=None) -> Path:
@@ -16,7 +17,7 @@ def resolve_library_path(library_path=None) -> Path:
 
 
 def get_admin_password() -> str:
-    return os.environ.get("IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD") or DEFAULT_ADMIN_PASSWORD
+    return os.environ.get("IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD", "").strip() or DEFAULT_ADMIN_PASSWORD
 
 
 def get_admin_session_secret(library_path=None) -> str:
@@ -25,3 +26,7 @@ def get_admin_session_secret(library_path=None) -> str:
         return configured
     library = resolve_library_path(library_path)
     return f"{get_admin_password()}::{APP_VERSION}::{library.resolve()}"
+
+
+def default_link_import_skill_url() -> str:
+    return os.environ.get("IMAGE_PROMPT_LIBRARY_DEFAULT_IMPORT_SKILL_URL", DEFAULT_LINK_IMPORT_SKILL_URL).strip()

@@ -1,6 +1,8 @@
 from io import BytesIO
 from pathlib import Path
 
+import pytest
+
 from fastapi.testclient import TestClient
 from PIL import Image
 
@@ -18,7 +20,12 @@ from backend.services.canghe_gallery_sync import (
     sync_canghe_gallery,
 )
 
-ADMIN_PASSWORD = "zwyy0323"
+ADMIN_PASSWORD = "test-admin-password"
+
+
+@pytest.fixture(autouse=True)
+def _configure_admin_password(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD", ADMIN_PASSWORD)
 
 
 def _png_bytes() -> bytes:

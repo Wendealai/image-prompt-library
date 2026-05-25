@@ -13,6 +13,9 @@ export interface PromptImageGenerationOptions { resolution?: string; aspect_rati
 export interface PromptImageReferenceInput { type?: 'file-base64' | 'url'; label?: string; role?: string; note?: string; mime_type?: string; image_base64?: string; image_url?: string }
 export interface PromptImageGenerationRunRecord { id: string; item_id: string; prompt: string; generation_options: Record<string, unknown>; references: Record<string, unknown>[]; job_id?: string; status: string; image_ids: string[]; created_at: string }
 export interface PromptImageGenerationResponse { status: string; prompt: string; job_id?: string; images: ImageRecord[]; item: ItemDetail; run?: PromptImageGenerationRunRecord }
+export interface PromptTemplateBulkInitRequest { mode?: 'missing' | 'stale' | 'all'; language?: string; limit?: number; dry_run?: boolean }
+export interface PromptTemplateBulkInitItemResult { item_id: string; title: string; status: string; template_id?: string; slot_count: number; detail?: string }
+export interface PromptTemplateBulkInitResult { mode: string; dry_run: boolean; total_candidates: number; processed_count: number; skipped_count: number; failed_count: number; results: PromptTemplateBulkInitItemResult[] }
 export interface PromptTemplateOpsItem { item_id: string; title: string; model: string; status: string; review_status: string; can_initialize: boolean; can_review: boolean; published: boolean; prompt_language?: string; prompt_updated_at?: string; prompt_excerpt?: string; template_id?: string; template_status?: string; template_updated_at?: string; slot_count: number; analysis_confidence?: number; quality_score?: number; quality_label?: string }
 export interface PromptTemplateOpsItemList { items: PromptTemplateOpsItem[]; total: number; limit: number; status_counts: Record<string, number> }
 export interface PromptTemplateBatchInitRequest { item_ids?: string[]; statuses?: string[]; limit?: number; force?: boolean; language?: string }
@@ -24,7 +27,11 @@ export interface AdminSessionRecord { authenticated: boolean }
 export interface PromptWorkflowFailureSummary { id: string; created_at: string; operation: string; error_class: string; error_message: string; item_id?: string; template_id?: string; session_id?: string; theme_keyword?: string; requested_language?: string; response_status?: number }
 export interface PromptWorkflowFailureRecord extends PromptWorkflowFailureSummary { context: Record<string, unknown>; workflow?: Record<string, unknown>; traceback?: string }
 export interface PromptWorkflowFailureList { failures: PromptWorkflowFailureSummary[]; total: number; limit: number }
-export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; role?: UploadImageRole }
+export interface NanobananaGeneration { resolution?: string; aspectRatio?: string; imageCount?: number; quality?: 'low' | 'medium' | 'high'; outputFormat?: 'png' | 'jpeg' | 'webp'; strength?: number }
+export interface NanobananaSourceItem { label?: string; role?: string; note?: string; imageUrl: string; mimeType?: string }
+export interface NanobananaItemImageGenerationRequest { promptText?: string; promptLanguage?: string; stylePack?: string; generation?: NanobananaGeneration; sourceItems?: NanobananaSourceItem[]; idempotencyKey?: string; wait?: boolean; timeoutMs?: number; pollIntervalMs?: number }
+export interface NanobananaItemImageGenerationResult { create: Record<string, unknown>; terminal?: Record<string, unknown> | null; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
+export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; role?: UploadImageRole; remote_url?: string }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }
 export interface AppConfig { version: string; library_path: string; database_path: string; preferred_prompt_language?: string }

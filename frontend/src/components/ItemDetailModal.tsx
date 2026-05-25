@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, Download, ExternalLink, Heart, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { Check, Copy, Download, ExternalLink, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
@@ -51,6 +51,21 @@ function clampImageViewerScale(scale: number) {
 
 function measureTouchDistance(firstTouch: { clientX: number; clientY: number }, secondTouch: { clientX: number; clientY: number }) {
   return Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
+}
+
+function extractErrorDetail(error: unknown): string {
+  if (!(error instanceof Error)) return '';
+  let message = error.message.trim();
+  if (!message) return '';
+  try {
+    const parsed = JSON.parse(message);
+    if (parsed && typeof parsed === 'object' && 'detail' in parsed && parsed.detail) {
+      message = String(parsed.detail).trim();
+    }
+  } catch {
+    // Keep raw error text when the payload is not JSON.
+  }
+  return message;
 }
 
 function resolvePromptRecord<T extends { language: string; text: string }>(
@@ -199,6 +214,8 @@ export default function ItemDetailModal({
   const [selectedImageIdentity, setSelectedImageIdentity] = useState<string>();
   const [imageViewerOpen, setImageViewerOpen] = useState(false);
   const [imageViewerScale, setImageViewerScale] = useState(1);
+  const [generatingImage, setGeneratingImage] = useState(false);
+  const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
@@ -245,8 +262,8 @@ export default function ItemDetailModal({
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
   useEffect(() => {
-    const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
     setSelectedImageIdentity(current => {
+      const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
       if (current && availableImageIdentities.has(current)) return current;
       return primaryImage ? getImageIdentity(primaryImage) : undefined;
     });
@@ -272,6 +289,29 @@ export default function ItemDetailModal({
   const handleCopyPrompt = async (text = copyText) => {
     const copied = await copyTextToClipboard(text);
     onCopyPrompt(copied);
+  };
+  const handleGenerateImage = async () => {
+    if (!item || generatingImage) return;
+    const promptText = (prompt?.text || resolvedPrompt?.text || copyText).trim();
+    if (!promptText) {
+      setImageGenerationFeedback({ tone: 'error', message: t('imageGenerationNoPrompt') });
+      return;
+    }
+    setGeneratingImage(true);
+    setImageGenerationFeedback(null);
+    try {
+      const result = await api.generateItemImage(item.id, { promptText, promptLanguage: lang });
+      const updated = await api.item(item.id);
+      setItem(updated);
+      const newestImage = updated.images[updated.images.length - 1];
+      if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+      onChanged();
+      setImageGenerationFeedback({ tone: 'success', message: result.stored_images.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
+    } catch (error) {
+      setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
+    } finally {
+      setGeneratingImage(false);
+    }
   };
   const commitPrompt = (language: string, text: string) => {
     if (!item) return;
@@ -532,6 +572,9 @@ export default function ItemDetailModal({
                             })}
                           </div>
                           <span className="prompt-block-actions">
+                            <button type="button" className="prompt-generate-image-icon" onClick={handleGenerateImage} aria-label={t('generateImage')} title={t('generateImage')} disabled={generatingImage || !(prompt?.text || resolvedPrompt?.text || copyText).trim()}>
+                              <ImagePlus size={15} />
+                            </button>
                             <button type="button" className="prompt-copy-icon" onClick={() => handleCopyPrompt(prompt?.text || '')} aria-label={t('copyPrompt')} disabled={!prompt?.text}>
                               <Copy size={15} />
                             </button>
@@ -565,6 +608,9 @@ export default function ItemDetailModal({
                             </div>
                           )}
                         </div>
+                        {(generatingImage || imageGenerationFeedback) && (
+                          <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
+                        )}
                       </section>
                     );
                   })()}

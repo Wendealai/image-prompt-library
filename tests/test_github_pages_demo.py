@@ -1,3 +1,5 @@
+import json
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +13,7 @@ def test_github_pages_demo_mode_uses_static_data_and_base_path():
     assert "VITE_BASE_PATH" in vite_config
     assert "base:" in vite_config
     assert "VITE_DEMO_MODE" in client
+    assert "VITE_DEMO_ASSET_VERSION" in client
     assert "DEMO_DATA_BASE" in client
     assert "demo-data/items.json" in client
     assert "demo-data/clusters.json" in client
@@ -52,6 +55,7 @@ def test_github_pages_workflow_deploys_versioned_demo_builds():
     assert "fetch-depth: 0" in text
     assert "LEGACY_DEMO_REF: v0.1.0-alpha" in text
     assert "MOBILE_PREVIEW_PATH: v0.2" in text
+    assert "VITE_DEMO_ASSET_VERSION=${GITHUB_SHA}" in text
     assert "VITE_BASE_PATH=/image-prompt-library/${MOBILE_PREVIEW_PATH}/ npm run build" in text
     assert "git worktree add .page-build/${LEGACY_DEMO_PATH} ${LEGACY_DEMO_REF}" in text
     assert "VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build" in text
@@ -94,3 +98,102 @@ def test_demo_data_bundle_is_present_and_uses_compressed_media_paths():
     assert ".webp" in items_text
     assert "originals/" not in items_text
     assert "library/db.sqlite" not in items_text
+
+
+def test_demo_bundle_metadata_and_taxonomy_counts_match_items():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items = json.loads((demo_root / "items.json").read_text())
+    tags = json.loads((demo_root / "tags.json").read_text())
+    clusters = json.loads((demo_root / "clusters.json").read_text())
+    metadata = json.loads((demo_root / "metadata.json").read_text())
+
+    assert metadata["item_count"] == len(items)
+
+    expected_tag_counts = Counter(
+        tag["name"]
+        for item in items
+        for tag in item.get("tags", [])
+    )
+    for tag in tags:
+        assert tag["count"] == expected_tag_counts.get(tag["name"], 0)
+
+    expected_cluster_counts = Counter()
+    expected_previews = defaultdict(list)
+    for item in items:
+        cluster = item.get("cluster")
+        if not cluster:
+            continue
+        cluster_id = cluster["id"]
+        expected_cluster_counts[cluster_id] += 1
+        first_image = item.get("first_image")
+        if not first_image or len(expected_previews[cluster_id]) >= 4:
+            continue
+        preview = first_image.get("thumb_path") or first_image.get("preview_path") or first_image.get("remote_url")
+        if preview:
+            expected_previews[cluster_id].append(preview)
+
+    for cluster in clusters:
+        assert cluster["count"] == expected_cluster_counts.get(cluster["id"], 0)
+        assert cluster["preview_images"] == expected_previews.get(cluster["id"], [])
+
+    image_less = [
+        item["slug"]
+        for item in items
+        if not item.get("first_image")
+        or not any(item["first_image"].get(key) for key in ("thumb_path", "preview_path", "original_path", "remote_url"))
+    ]
+    assert image_less == []
+
+
+
+def test_demo_bundle_matches_latest_production_export_counts():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items = json.loads((demo_root / "items.json").read_text())
+    clusters = json.loads((demo_root / "clusters.json").read_text())
+    tags = json.loads((demo_root / "tags.json").read_text())
+    metadata = json.loads((demo_root / "metadata.json").read_text())
+    media_files = list((demo_root / "media").glob("*.webp"))
+
+    assert len(items) == 928
+    assert len(clusters) == 163
+    assert len(tags) == 1728
+    assert len(media_files) == 1474
+    assert metadata["item_count"] == 928
+    assert metadata["image_max_width"] == 900
+    assert metadata["image_quality"] == 62
+
+
+def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items = json.loads((demo_root / "items.json").read_text())
+    clusters = json.loads((demo_root / "clusters.json").read_text())
+    media_dir = demo_root / "media"
+    referenced = set()
+
+    def visit(value):
+        if isinstance(value, str) and value.startswith("demo-data/media/"):
+            referenced.add(value.rsplit("/", 1)[-1])
+        elif isinstance(value, dict):
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+
+    visit(items)
+    visit(clusters)
+
+    assert len(referenced) == 1474
+    assert sorted(path.name for path in media_dir.glob("*.webp")) == sorted(referenced)
+
+
+def test_demo_bundle_includes_latest_production_and_sample_records():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items_text = (demo_root / "items.json").read_text()
+
+    assert "canghe-gpt-image-2-case-460" in items_text
+    assert "goat-名人跨界漫画夸张海报-prompt" in items_text
+    assert "可爱尴尬双人-3d-设计师手办-prompt" in items_text
+    assert "高端五常大米电商品牌主视觉封面-prompt" in items_text
+    assert "sample-gpt-image-2-skill-no-162-en" in items_text
+    assert "demo-data/media/" in items_text

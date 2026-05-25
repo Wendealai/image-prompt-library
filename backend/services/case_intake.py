@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import mimetypes
+import re
 from dataclasses import dataclass
 from html import unescape
 from html.parser import HTMLParser
@@ -12,6 +13,7 @@ from PIL import Image, UnidentifiedImageError
 
 import httpx
 
+from backend.config import default_link_import_skill_url
 from backend.schemas import CaseIntakeFetchResult, CaseIntakeImageCandidate
 
 USER_AGENT = "ImagePromptLibrary/0.1 (+https://github.com/wendealai/image-prompt-library)"
@@ -40,10 +42,65 @@ BLOCK_TAGS = {
     "h5",
     "h6",
 }
+SOCIAL_STATUS_HOSTS = {
+    "x.com",
+    "www.x.com",
+    "mobile.x.com",
+    "twitter.com",
+    "www.twitter.com",
+    "mobile.twitter.com",
+}
+SOCIAL_PROMPT_TITLE_PREFIXES = (
+    "prompt share",
+    "prompt idea",
+    "prompt breakdown",
+    "style share",
+    "style prompt",
+)
+SOCIAL_STATUS_PROMPT_LABEL_RE = (
+    r"^[^A-Za-z0-9\u3400-\u9fff]*"
+    r"(?:english\s+prompt|prompt|提示詞|提示词)\s*[:：-]?\s*(.*)$"
+)
+SOCIAL_STATUS_TCO_RE = r"https://t\.co/[A-Za-z0-9]+"
 
 
 def _normalize_line(value: str) -> str:
     return " ".join(unescape(value).split()).strip()
+
+
+def _truncated_text(lines: list[str]) -> str:
+    output: list[str] = []
+    total = 0
+    for line in lines:
+        fragment = line if not output else f"\n{line}"
+        if total + len(fragment) > MAX_INTAKE_CHARS:
+            remaining = MAX_INTAKE_CHARS - total
+            if remaining > 0:
+                output.append(fragment[:remaining].rstrip())
+            break
+        output.append(fragment)
+        total += len(fragment)
+    return "".join(output).strip()
+
+
+def _default_import_skill_note() -> str | None:
+    skill_url = default_link_import_skill_url()
+    if not skill_url:
+        return None
+    return f"Default import skill: {skill_url}"
+
+
+def _merge_notes_with_default_import_skill(notes: str | None) -> str | None:
+    normalized_notes = (notes or "").strip()
+    skill_note = _default_import_skill_note()
+    skill_url = default_link_import_skill_url()
+    if not skill_note:
+        return normalized_notes or None
+    if skill_note in normalized_notes or (skill_url and skill_url in normalized_notes):
+        return normalized_notes or None
+    if not normalized_notes:
+        return skill_note
+    return f"{normalized_notes}\n{skill_note}"
 
 
 @dataclass
@@ -192,30 +249,206 @@ def _filtered_body_lines(lines: Iterable[str], title: str, description: str) -> 
 
 def _build_intake_text(title: str, final_url: str, description: str, author: str, body_lines: list[str]) -> str:
     lines: list[str] = []
+    merged_description = _merge_notes_with_default_import_skill(description)
     if title:
         lines.append(f"Title: {title}")
     lines.append(f"Source URL: {final_url}")
     if author:
         lines.append(f"Author: {author}")
-    if description:
+    if merged_description:
         lines.append("Notes:")
-        lines.append(description)
+        lines.append(merged_description)
     if body_lines:
         lines.append("")
         lines.extend(body_lines)
+    return _truncated_text(lines)
 
-    output: list[str] = []
-    total = 0
-    for line in lines:
-        fragment = line if not output else f"\n{line}"
-        if total + len(fragment) > MAX_INTAKE_CHARS:
-            remaining = MAX_INTAKE_CHARS - total
-            if remaining > 0:
-                output.append(fragment[:remaining].rstrip())
-            break
-        output.append(fragment)
-        total += len(fragment)
-    return "".join(output).strip()
+
+def _social_status_id(url: str) -> str | None:
+    parsed = urlparse(url)
+    if parsed.netloc.lower() not in SOCIAL_STATUS_HOSTS:
+        return None
+    parts = [part for part in parsed.path.split("/") if part]
+    if len(parts) >= 3 and parts[1] == "status" and parts[2].isdigit():
+        return parts[2]
+    if len(parts) >= 4 and parts[0] == "i" and parts[1] == "web" and parts[2] == "status" and parts[3].isdigit():
+        return parts[3]
+    return None
+
+
+def _social_status_text_lines(text: str) -> list[str]:
+    cleaned_text = re.sub(SOCIAL_STATUS_TCO_RE, "", text).replace("\r", "")
+    return [_normalize_line(line) for line in cleaned_text.split("\n") if _normalize_line(line)]
+
+
+def _social_status_title(line: str | None) -> str | None:
+    if not line:
+        return None
+    for prefix in SOCIAL_PROMPT_TITLE_PREFIXES:
+        pattern = rf"^{re.escape(prefix)}\s*[:：-]\s*(.+)$"
+        match = re.match(pattern, line, flags=re.IGNORECASE)
+        if match:
+            title = _normalize_line(match.group(1))
+            return title or None
+    if re.match(SOCIAL_STATUS_PROMPT_LABEL_RE, line, flags=re.IGNORECASE):
+        return None
+    if len(line) <= 120:
+        return line
+    return None
+
+
+def _social_status_prompt_parts(text: str) -> tuple[str | None, str | None, str | None]:
+    lines = _social_status_text_lines(text)
+    if not lines:
+        return None, None, None
+    title = _social_status_title(lines[0])
+    prompt_lines: list[str] = []
+    note_lines: list[str] = []
+    found_prompt = False
+    for index, line in enumerate(lines):
+        if title and index == 0:
+            continue
+        match = re.match(SOCIAL_STATUS_PROMPT_LABEL_RE, line, flags=re.IGNORECASE)
+        if match:
+            found_prompt = True
+            inline_prompt = _normalize_line(match.group(1))
+            if inline_prompt:
+                prompt_lines.append(inline_prompt)
+            continue
+        if found_prompt:
+            prompt_lines.append(line)
+            continue
+        note_lines.append(line)
+
+    if not found_prompt and lines:
+        note_lines = lines[1:] if title and len(lines) > 1 else []
+        prompt_lines = [] if note_lines else lines
+    prompt = "\n".join(prompt_lines).strip() or None
+    notes = "\n".join(note_lines).strip() or None
+    return title, prompt, notes
+
+
+def _social_status_author(payload: dict) -> str | None:
+    user = payload.get("user")
+    if not isinstance(user, dict):
+        return None
+    name = _normalize_line(str(user.get("name") or ""))
+    screen_name = _normalize_line(str(user.get("screen_name") or ""))
+    if name and screen_name:
+        return f"{name} (@{screen_name})"
+    if name:
+        return name
+    if screen_name:
+        return f"@{screen_name}"
+    return None
+
+
+def _social_status_final_url(payload: dict, fallback_status_id: str) -> str:
+    user = payload.get("user")
+    if isinstance(user, dict):
+        screen_name = _normalize_line(str(user.get("screen_name") or ""))
+        if screen_name:
+            return f"https://x.com/{screen_name}/status/{fallback_status_id}"
+    return f"https://x.com/i/web/status/{fallback_status_id}"
+
+
+def _social_status_image_candidates(payload: dict) -> list[CaseIntakeImageCandidate]:
+    resolved: list[CaseIntakeImageCandidate] = []
+    seen: set[str] = set()
+    candidate_groups = []
+    photos = payload.get("photos")
+    media_details = payload.get("mediaDetails")
+    if isinstance(photos, list):
+        candidate_groups.append((photos, "tweet_photo", "url"))
+    if isinstance(media_details, list):
+        candidate_groups.append((media_details, "tweet_media", "media_url_https"))
+    for items, source, field in candidate_groups:
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            candidate_url = _resolved_candidate_url("", str(item.get(field) or ""))
+            if not candidate_url or candidate_url in seen:
+                continue
+            seen.add(candidate_url)
+            resolved.append(CaseIntakeImageCandidate(url=candidate_url, source=source, alt=None))
+    return resolved
+
+
+def _social_status_tags(payload: dict) -> list[str]:
+    entities = payload.get("entities")
+    if not isinstance(entities, dict):
+        return []
+    hashtags = entities.get("hashtags")
+    if not isinstance(hashtags, list):
+        return []
+    return [_normalize_line(str(tag.get("text") or "")) for tag in hashtags if isinstance(tag, dict) and _normalize_line(str(tag.get("text") or ""))]
+
+
+def _build_social_status_intake_text(
+    *,
+    title: str | None,
+    final_url: str,
+    author: str | None,
+    tags: list[str],
+    notes: str | None,
+    prompt: str | None,
+) -> str:
+    lines: list[str] = []
+    merged_notes = _merge_notes_with_default_import_skill(notes)
+    if title:
+        lines.append(f"Title: {title}")
+    lines.append(f"Source URL: {final_url}")
+    if author:
+        lines.append(f"Author: {author}")
+    if tags:
+        lines.append(f"Tags: {', '.join(tags)}")
+    if merged_notes:
+        lines.append("Notes:")
+        lines.append(merged_notes)
+    if prompt:
+        lines.append("")
+        lines.append("English Prompt:")
+        lines.append(prompt)
+    return _truncated_text(lines)
+
+
+def _fetch_social_status_intake(url: str, client: httpx.Client) -> CaseIntakeFetchResult | None:
+    status_id = _social_status_id(url)
+    if not status_id:
+        return None
+    try:
+        response = client.get("https://cdn.syndication.twimg.com/tweet-result", params={"id": status_id, "token": "1"})
+        response.raise_for_status()
+        payload = response.json()
+    except (httpx.HTTPError, ValueError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+
+    final_url = _social_status_final_url(payload, status_id)
+    author = _social_status_author(payload)
+    title, prompt, notes = _social_status_prompt_parts(str(payload.get("text") or ""))
+    tags = _social_status_tags(payload)
+    image_candidates = _social_status_image_candidates(payload)
+    image_url = image_candidates[0].url if image_candidates else None
+    intake_text = _build_social_status_intake_text(
+        title=title,
+        final_url=final_url,
+        author=author,
+        tags=tags,
+        notes=notes,
+        prompt=prompt,
+    )
+    return CaseIntakeFetchResult(
+        url=url,
+        final_url=final_url,
+        title=title,
+        description=notes,
+        author=author,
+        image_url=image_url,
+        image_candidates=image_candidates,
+        intake_text=intake_text,
+    )
 
 
 def _resolved_candidate_url(base_url: str, candidate: str | None) -> str | None:
@@ -281,6 +514,9 @@ def fetch_case_intake_from_url(url: str, client: httpx.Client | None = None) -> 
         headers={"User-Agent": USER_AGENT},
     )
     try:
+        social_result = _fetch_social_status_intake(normalized_url, http_client)
+        if social_result is not None:
+            return social_result
         response = http_client.get(normalized_url)
         response.raise_for_status()
         extractor = StructuredHtmlExtractor()

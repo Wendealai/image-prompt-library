@@ -40,7 +40,8 @@ def _is_https_request(request: Request) -> bool:
 
 
 def verify_admin_password(password: str) -> bool:
-    return hmac.compare_digest(password, get_admin_password())
+    configured_password = get_admin_password()
+    return bool(configured_password) and hmac.compare_digest(password, configured_password)
 
 
 def build_admin_session_token(request: Request) -> str:

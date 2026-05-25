@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from fastapi.testclient import TestClient
 
 from backend.main import create_app
@@ -10,7 +12,12 @@ from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflo
 
 
 MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core" label="主体"]]a tiny ramen bar[[/slot]] with [[slot id="support_props" group="theme_core" label="配套元素"]]paper lanterns and wooden stools[[/slot]].'
-ADMIN_PASSWORD = 'zwyy0323'
+ADMIN_PASSWORD = 'test-admin-password'
+
+
+@pytest.fixture(autouse=True)
+def _configure_admin_password(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD", ADMIN_PASSWORD)
 
 
 def _create_item(repo: ItemRepository) -> str:

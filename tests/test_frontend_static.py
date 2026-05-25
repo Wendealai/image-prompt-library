@@ -107,7 +107,7 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
 
 def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
     images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
-    assert "return image?.preview_path || image?.original_path || image?.thumb_path || ''" in images
+    assert "return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || ''" in images
 
 
 def test_cards_are_global_image_overlay_cards():
@@ -413,6 +413,34 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert ".admin-review-layout{display:grid;grid-template-columns:minmax(300px,.92fr)minmax(420px,1.08fr);" in compact_css
     assert ".admin-template-review{display:grid;gap:12px;" in compact_css
     assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
+
+
+def test_detail_modal_exposes_direct_nanobanana_image_generation():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+
+    assert "ImagePlus" in detail
+    assert "const handleGenerateImage = async () => {" in detail
+    assert "api.generateItemImage(item.id, { promptText, promptLanguage: lang })" in detail
+    assert "setImageGenerationFeedback" in detail
+    assert "prompt-generate-image-icon" in detail
+    assert "prompt-image-feedback" in detail
+    assert "generateItemImage: (_itemId: string" in client
+    assert "generateItemImage: (itemId: string" in client
+    assert "NanobananaItemImageGenerationRequest" in types
+    assert "NanobananaItemImageGenerationResult" in types
+    assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
+    assert ".prompt-generate-image-icon" in css
+    assert ".prompt-image-feedback" in css
+
+
+def test_detail_modal_calls_all_hooks_before_closed_state_return():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    assert detail.index("useEffect(() => {\n    imageViewerScaleRef.current = imageViewerScale;") < detail.index("if (!id) return null;")
+    assert detail.index("useEffect(() => {\n    setSelectedImageIdentity") < detail.index("if (!id) return null;")
 
 
 def test_topbar_uses_attached_header_logo_branding():
