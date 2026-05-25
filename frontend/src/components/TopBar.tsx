@@ -1,6 +1,6 @@
 import { Filter, Search, Settings } from 'lucide-react';
 import headerLogo from '../assets/header-logo.png';
-import type { ViewMode } from '../types';
+import type { CardsSortMode, ViewMode } from '../types';
 import type { Translator } from '../utils/i18n';
 import ViewToggle from './ViewToggle';
 
@@ -10,6 +10,8 @@ interface Props {
   onQ: (v: string) => void;
   view: ViewMode;
   onView: (v: ViewMode) => void;
+  cardsSortMode: CardsSortMode;
+  onCardsSortMode: (v: CardsSortMode) => void;
   onFilters: () => void;
   onConfig: () => void;
   count: number;
@@ -23,6 +25,8 @@ export default function TopBar({
   onQ,
   view,
   onView,
+  cardsSortMode,
+  onCardsSortMode,
   onFilters,
   onConfig,
   count,
@@ -69,6 +73,12 @@ export default function TopBar({
           )}
         </div>
         <div className="view-dock">
+          {view === 'cards' && (
+            <div className="cards-sort-toggle" aria-label={t('cardsSort')}>
+              <button className={cardsSortMode === 'added' ? 'active' : ''} onClick={() => onCardsSortMode('added')}>{t('cardsSortAdded')}</button>
+              <button className={cardsSortMode === 'explore' ? 'active' : ''} onClick={() => onCardsSortMode('explore')}>{t('cardsSortExplore')}</button>
+            </div>
+          )}
           <ViewToggle t={t} view={view} onView={onView} />
         </div>
       </div>

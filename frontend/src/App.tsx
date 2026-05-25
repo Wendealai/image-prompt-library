@@ -10,7 +10,7 @@ import ItemEditorModal from './components/ItemEditorModal';
 import ConfigPanel from './components/ConfigPanel';
 import { useDebouncedValue } from './hooks/useDebouncedValue';
 import { useItemsQuery } from './hooks/useItemsQuery';
-import type { ClusterRecord, ItemDetail, ItemSummary, TagRecord, ViewMode } from './types';
+import type { CardsSortMode, ClusterRecord, ItemDetail, ItemSummary, TagRecord, ViewMode } from './types';
 import { copyTextToClipboard } from './utils/clipboard';
 import { DEFAULT_UI_LANGUAGE, makeTranslator, normalizeUiLanguage, type UiLanguage } from './utils/i18n';
 import { DEFAULT_PROMPT_LANGUAGE, normalizePromptLanguage, resolvePromptText, type PromptLanguage } from './utils/prompts';
@@ -18,6 +18,7 @@ import { DEFAULT_PROMPT_LANGUAGE, normalizePromptLanguage, resolvePromptText, ty
 const UI_LANGUAGE_STORAGE_KEY = 'image-prompt-library.ui_language';
 const PROMPT_LANGUAGE_STORAGE_KEY = 'image-prompt-library.preferred_prompt_language';
 const VIEW_STORAGE_KEY = 'image-prompt-library.view_mode.v2';
+const CARDS_SORT_STORAGE_KEY = 'image-prompt-library.cards_sort_mode.v1';
 const GLOBAL_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.global_thumbnail_budget';
 const FOCUS_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.focus_thumbnail_budget';
 
@@ -39,11 +40,38 @@ function loadPreferredView(): ViewMode {
   return isMobileViewport ? 'cards' : 'explore';
 }
 
+function loadCardsSortMode(): CardsSortMode {
+  if (typeof window === 'undefined') return 'added';
+  const savedSort = window.localStorage.getItem(CARDS_SORT_STORAGE_KEY);
+  return savedSort === 'explore' || savedSort === 'added' ? savedSort : 'added';
+}
+
 function loadNumberSetting(key: string, fallback: number, min: number, max: number) {
   if (typeof window === 'undefined') return fallback;
   const raw = Number(window.localStorage.getItem(key));
   if (!Number.isFinite(raw)) return fallback;
   return Math.min(max, Math.max(min, Math.round(raw)));
+}
+
+function timeValue(value: string) {
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+export function sortCardsItems(items: ItemSummary[], clusters: ClusterRecord[], cardsSortMode: CardsSortMode) {
+  const addedOrder = (a: ItemSummary, b: ItemSummary) => timeValue(b.created_at) - timeValue(a.created_at) || a.title.localeCompare(b.title, 'zh-Hant');
+  if (cardsSortMode === 'added') return [...items].sort(addedOrder);
+
+  const clusterRank = new Map(
+    [...clusters]
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hant'))
+      .map((cluster, index) => [cluster.id, index]),
+  );
+  return [...items].sort((a, b) => {
+    const aRank = clusterRank.get(a.cluster?.id || '') ?? Number.MAX_SAFE_INTEGER;
+    const bRank = clusterRank.get(b.cluster?.id || '') ?? Number.MAX_SAFE_INTEGER;
+    return aRank - bRank || addedOrder(a, b);
+  });
 }
 
 function selectedCollectionNameSizeClass(name: string) {
@@ -57,6 +85,7 @@ export default function App() {
   const debouncedQ = useDebouncedValue(q);
   const [clusterId, setClusterId] = useState<string>();
   const [view, setView] = useState<ViewMode>(loadPreferredView);
+  const [cardsSortMode, setCardsSortMode] = useState<CardsSortMode>(loadCardsSortMode);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [configOpen, setConfigOpen] = useState(false);
   const [clusters, setClusters] = useState<ClusterRecord[]>([]);
@@ -73,11 +102,12 @@ export default function App() {
   const [pendingExploreUnfilterClusterId, setPendingExploreUnfilterClusterId] = useState<string>();
   const [exploreUnfilterFadePhase, setExploreUnfilterFadePhase] = useState<'out' | 'pre-in' | 'in' | 'idle'>('idle');
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
-  const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey);
+  const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey, 'created_desc');
   const exploreFocusedClusterId = view === 'explore'
     ? (clusterId || (dataScope.clusterId === pendingExploreUnfilterClusterId ? pendingExploreUnfilterClusterId : undefined))
     : clusterId;
   const selectedCluster = useMemo(() => clusters.find(c => c.id === clusterId), [clusters, clusterId]);
+  const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode), [data.items, clusters, cardsSortMode]);
   const t = useMemo(() => makeTranslator(uiLanguage), [uiLanguage]);
   const refreshClusters = () => api.clusters().then(setClusters).catch(() => setClusters([]));
   const refreshTags = () => api.tags().then(setTags).catch(() => setTags([]));
@@ -116,6 +146,10 @@ export default function App() {
     setView(nextView);
     window.localStorage.setItem(VIEW_STORAGE_KEY, nextView);
   };
+  const updateCardsSortMode = (nextSortMode: CardsSortMode) => {
+    setCardsSortMode(nextSortMode);
+    window.localStorage.setItem(CARDS_SORT_STORAGE_KEY, nextSortMode);
+  };
   const updateGlobalThumbnailBudget = (budget: number) => {
     setGlobalThumbnailBudget(budget);
     window.localStorage.setItem(GLOBAL_THUMBNAIL_BUDGET_STORAGE_KEY, String(budget));
@@ -138,7 +172,7 @@ export default function App() {
   const editSummary = (item: { id: string }) => { api.item(item.id).then(full => { setEditing(full); setEditorOpen(true); }).catch(() => undefined); };
   const showSelectedCollectionDock = Boolean(selectedCluster && !filtersOpen && !configOpen && !detailId && !editorOpen);
   return <div className={`app ${view === 'explore' ? 'explore-mode' : 'cards-mode'}`}>
-    <TopBar t={t} q={q} onQ={setQ} view={view} onView={updateView} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} clusterName={selectedCluster?.name} clearCluster={clearCluster} />
+    <TopBar t={t} q={q} onQ={setQ} view={view} onView={updateView} cardsSortMode={cardsSortMode} onCardsSortMode={updateCardsSortMode} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} clusterName={selectedCluster?.name} clearCluster={clearCluster} />
     {isDemoMode && (
       <div className="demo-banner" role="status">
         <strong>{t('onlineSandbox')}</strong>
@@ -157,7 +191,7 @@ export default function App() {
       {error && <div className="error">{error}</div>}
       {view === 'explore'
         ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
-        : <CardsView t={t} items={data.items} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
+        : <CardsView t={t} items={sortedCardItems} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
     </main>
     {showSelectedCollectionDock && selectedCluster && (
       <button className="selected-collection-dock" onClick={clearCluster} aria-label={`${t('collectionChip')}: ${selectedCluster.name}. ${t('close')}`}>

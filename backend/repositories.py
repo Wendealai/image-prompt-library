@@ -4,7 +4,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .services.prompt_template_quality import normalize_prompt_template_slots, score_prompt_template
+from .services.prompt_source_prepare import prepare_prompt_template_source
 from .services.text_normalize import to_traditional
 
 def now() -> str:
@@ -103,10 +105,10 @@ class ItemRepository:
             for idx, prompt in enumerate(self._normalized_prompts(payload.prompts)):
                 conn.execute("INSERT INTO prompts(id,item_id,language,text,is_primary,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
                     (new_id("prm"), iid, prompt.language, prompt.text, int(prompt.is_primary or idx == 0), ts, ts))
-            for tag in payload.tags:
+            for tag_index, tag in enumerate(payload.tags):
                 if tag.strip():
                     tid = self.ensure_tag(conn, tag)
-                    conn.execute("INSERT OR IGNORE INTO item_tags(item_id,tag_id) VALUES(?,?)", (iid, tid))
+                    conn.execute("INSERT OR IGNORE INTO item_tags(item_id,tag_id,sort_order) VALUES(?,?,?)", (iid, tid, tag_index))
             self.rebuild_search(conn, iid)
             conn.commit()
         return self.get_item(iid)
@@ -129,9 +131,9 @@ class ItemRepository:
                 conn.execute(f"UPDATE items SET {sets} WHERE id=?", (*scalar.values(), item_id))
             if "tags" in data and data["tags"] is not None:
                 conn.execute("DELETE FROM item_tags WHERE item_id=?", (item_id,))
-                for tag in data["tags"]:
+                for tag_index, tag in enumerate(data["tags"]):
                     if tag.strip():
-                        conn.execute("INSERT OR IGNORE INTO item_tags(item_id,tag_id) VALUES(?,?)", (item_id, self.ensure_tag(conn, tag)))
+                        conn.execute("INSERT OR IGNORE INTO item_tags(item_id,tag_id,sort_order) VALUES(?,?,?)", (item_id, self.ensure_tag(conn, tag), tag_index))
             if "prompts" in data and data["prompts"] is not None:
                 conn.execute("DELETE FROM prompts WHERE item_id=?", (item_id,))
                 ts = now()
@@ -187,6 +189,57 @@ class ItemRepository:
             ),
         )
 
+    def add_prompt_image_generation_run(
+        self,
+        *,
+        item_id: str,
+        prompt: str,
+        generation_options: dict | None = None,
+        references: list[dict] | None = None,
+        job_id: str | None = None,
+        status: str = "completed",
+        image_ids: list[str] | None = None,
+    ) -> PromptImageGenerationRunRecord:
+        with connect(self.library_path) as conn:
+            if not conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone():
+                raise KeyError(item_id)
+            run_id = new_id("igr")
+            ts = now()
+            conn.execute(
+                """INSERT INTO prompt_image_generation_runs(id,item_id,prompt,generation_options_json,references_json,job_id,status,image_ids_json,created_at)
+                VALUES(?,?,?,?,?,?,?,?,?)""",
+                (
+                    run_id,
+                    item_id,
+                    prompt,
+                    json.dumps(generation_options or {}, ensure_ascii=False),
+                    json.dumps(references or [], ensure_ascii=False),
+                    job_id,
+                    status or "completed",
+                    json.dumps(image_ids or [], ensure_ascii=False),
+                    ts,
+                ),
+            )
+            conn.commit()
+        return self.get_prompt_image_generation_run(run_id)
+
+    def get_prompt_image_generation_run(self, run_id: str) -> PromptImageGenerationRunRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM prompt_image_generation_runs WHERE id=?", (run_id,)).fetchone()
+            if not row:
+                raise KeyError(run_id)
+            return PromptImageGenerationRunRecord(
+                id=row["id"],
+                item_id=row["item_id"],
+                prompt=row["prompt"],
+                generation_options=json.loads(row["generation_options_json"] or "{}"),
+                references=json.loads(row["references_json"] or "[]"),
+                job_id=row["job_id"],
+                status=row["status"],
+                image_ids=json.loads(row["image_ids_json"] or "[]"),
+                created_at=row["created_at"],
+            )
+
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None
         return ClusterRecord(id=row["cluster_id"], name=row["cluster_name"], description=row["cluster_description"], sort_order=row["cluster_sort_order"] or 0)
@@ -197,7 +250,7 @@ class ItemRepository:
             return ImageRecord(**dict(row))
 
     def _tags(self, conn, item_id: str) -> list[TagRecord]:
-        rows = conn.execute("SELECT t.id,t.name,t.kind,0 as count FROM tags t JOIN item_tags it ON it.tag_id=t.id WHERE it.item_id=? ORDER BY t.name", (item_id,)).fetchall()
+        rows = conn.execute("SELECT t.id,t.name,t.kind,0 as count FROM tags t JOIN item_tags it ON it.tag_id=t.id WHERE it.item_id=? ORDER BY it.sort_order, t.name", (item_id,)).fetchall()
         return [TagRecord(**dict(r)) for r in rows]
 
     def _prompts(self, conn, item_id: str) -> list[PromptRecord]:
@@ -208,6 +261,16 @@ class ItemRepository:
         if not row:
             return None
         slots = [PromptTemplateSlot.model_validate(slot) for slot in json.loads(row["slots_json"] or "[]")]
+        prompt_row = conn.execute(
+            """
+            SELECT text FROM prompts
+            WHERE item_id=? AND TRIM(text) <> ''
+            ORDER BY is_primary DESC, created_at
+            LIMIT 1
+            """,
+            (item_id,),
+        ).fetchone()
+        prepared_prompt = prepare_prompt_template_source(prompt_row["text"] if prompt_row else "")
         return PromptTemplateRecord(
             id=row["id"],
             item_id=row["item_id"],
@@ -216,8 +279,18 @@ class ItemRepository:
             marked_text=row["marked_text"],
             slots=slots,
             status=row["status"],
+            review_status=row["review_status"],
+            review_notes=row["review_notes"],
+            reviewed_at=row["reviewed_at"],
             analysis_confidence=row["analysis_confidence"],
             analysis_notes=row["analysis_notes"],
+            quality_score=row["quality_score"],
+            quality_label=row["quality_label"],
+            quality_reasons=json.loads(row["quality_reasons_json"] or "[]"),
+            prompt_source_extracted=prepared_prompt.was_extracted,
+            prompt_source_strategy=prepared_prompt.strategy if prepared_prompt.was_extracted else None,
+            prompt_source_original_length=len(prepared_prompt.original_text) if prepared_prompt.was_extracted else None,
+            prompt_source_prepared_length=len(prepared_prompt.normalized_text) if prepared_prompt.was_extracted else None,
             created_at=row["created_at"],
             updated_at=row["updated_at"],
         )
@@ -263,7 +336,10 @@ class ItemRepository:
         if not row:
             return
         conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (row["id"],))
-        conn.execute("UPDATE prompt_templates SET status='stale', updated_at=? WHERE item_id=?", (now(), item_id))
+        conn.execute(
+            "UPDATE prompt_templates SET status='stale', review_status='pending_review', review_notes=NULL, reviewed_at=NULL, updated_at=? WHERE item_id=?",
+            (now(), item_id),
+        )
 
     def _images(self, conn, item_id: str) -> list[ImageRecord]:
         return [ImageRecord(**dict(r)) for r in conn.execute("""SELECT * FROM images WHERE item_id=?
@@ -291,51 +367,16 @@ class ItemRepository:
                 raise KeyError(item_id)
             raise ValueError("Item does not have a usable prompt.")
 
-    def get_prompt_template_bundle(self, item_id: str, session_limit: int = 6) -> PromptTemplateBundle:
+    def get_prompt_template_bundle(self, item_id: str, session_limit: int = 6, public_only: bool = False) -> PromptTemplateBundle:
         with connect(self.library_path) as conn:
             item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
             if not item_exists:
                 raise KeyError(item_id)
             template = self._prompt_template(conn, item_id)
+            if public_only and template and not (template.status == "ready" and template.review_status == "approved"):
+                template = None
             sessions = self._prompt_generation_sessions(conn, template.id, limit=session_limit) if template else []
             return PromptTemplateBundle(template=template, sessions=sessions)
-
-    def _prompt_template_init_candidate_clause(self, mode: str) -> str:
-        if mode == "missing":
-            return "pt.id IS NULL"
-        if mode == "stale":
-            return "pt.status='stale'"
-        if mode == "all":
-            return "1=1"
-        raise ValueError(f"Unsupported prompt template init mode: {mode}")
-
-    def count_prompt_template_init_candidates(self, mode: str = "missing") -> int:
-        mode_clause = self._prompt_template_init_candidate_clause(mode)
-        with connect(self.library_path) as conn:
-            return conn.execute(
-                f"""SELECT COUNT(*)
-                FROM items i
-                LEFT JOIN prompt_templates pt ON pt.item_id=i.id
-                WHERE i.archived=0
-                  AND EXISTS (SELECT 1 FROM prompts p WHERE p.item_id=i.id AND TRIM(p.text) <> '')
-                  AND {mode_clause}"""
-            ).fetchone()[0]
-
-    def list_prompt_template_init_candidates(self, mode: str = "missing", limit: int = 100) -> list[dict[str, str | None]]:
-        mode_clause = self._prompt_template_init_candidate_clause(mode)
-        with connect(self.library_path) as conn:
-            rows = conn.execute(
-                f"""SELECT i.id item_id, i.title, pt.id template_id, pt.status template_status
-                FROM items i
-                LEFT JOIN prompt_templates pt ON pt.item_id=i.id
-                WHERE i.archived=0
-                  AND EXISTS (SELECT 1 FROM prompts p WHERE p.item_id=i.id AND TRIM(p.text) <> '')
-                  AND {mode_clause}
-                ORDER BY i.updated_at ASC, i.created_at ASC
-                LIMIT ?""",
-                (limit,),
-            ).fetchall()
-            return [dict(row) for row in rows]
 
     def get_prompt_template_by_id(self, template_id: str) -> PromptTemplateRecord:
         with connect(self.library_path) as conn:
@@ -347,6 +388,111 @@ class ItemRepository:
                 raise KeyError(template_id)
             return template
 
+    def _prompt_template_ops_status(self, row) -> str:
+        prepared_prompt = prepare_prompt_template_source(row["prompt_text"] or "")
+        if not prepared_prompt.normalized_text:
+            return "no_prompt"
+        if not row["template_id"]:
+            return "missing"
+        template_status = row["template_status"] or "missing"
+        raw_snapshot = row["template_raw_text_snapshot"] or ""
+        if template_status == "ready" and raw_snapshot != prepared_prompt.normalized_text:
+            return "stale"
+        return template_status
+
+    def _prompt_template_ops_item_from_row(self, row) -> PromptTemplateOpsItem:
+        status = self._prompt_template_ops_status(row)
+        slots_json = row["template_slots_json"] or "[]"
+        try:
+            slot_count = len(json.loads(slots_json))
+        except json.JSONDecodeError:
+            slot_count = 0
+        prompt_excerpt = prepare_prompt_template_source(row["prompt_text"] or "").normalized_text[:160] or None
+        return PromptTemplateOpsItem(
+            item_id=row["item_id"],
+            title=row["title"],
+            model=row["model"],
+            status=status,
+            review_status=row["review_status"] or "pending_review",
+            can_initialize=status in {"missing", "stale", "failed"},
+            can_review=status == "ready",
+            published=status == "ready" and (row["review_status"] or "pending_review") == "approved",
+            prompt_language=row["prompt_language"],
+            prompt_updated_at=row["prompt_updated_at"],
+            prompt_excerpt=prompt_excerpt,
+            template_id=row["template_id"],
+            template_status=row["template_status"],
+            template_updated_at=row["template_updated_at"],
+            slot_count=slot_count,
+            analysis_confidence=row["analysis_confidence"],
+            quality_score=row["quality_score"],
+            quality_label=row["quality_label"],
+        )
+
+    def list_prompt_template_ops_items(
+        self,
+        *,
+        item_ids: list[str] | None = None,
+        statuses: list[str] | None = None,
+        limit: int = 100,
+    ) -> PromptTemplateOpsItemList:
+        status_filter = {value.strip() for value in (statuses or []) if value and value.strip()}
+        with connect(self.library_path) as conn:
+            where = ["i.archived=0"]
+            params: list[str] = []
+            if item_ids:
+                placeholders = ",".join("?" for _ in item_ids)
+                where.append(f"i.id IN ({placeholders})")
+                params.extend(item_ids)
+            rows = conn.execute(
+                f"""
+                SELECT
+                  i.id AS item_id,
+                  i.title,
+                  i.model,
+                  prompt.language AS prompt_language,
+                  prompt.text AS prompt_text,
+                  prompt.updated_at AS prompt_updated_at,
+                  pt.id AS template_id,
+                  pt.status AS template_status,
+                  pt.review_status AS review_status,
+                  pt.raw_text_snapshot AS template_raw_text_snapshot,
+                  pt.updated_at AS template_updated_at,
+                  pt.slots_json AS template_slots_json,
+                  pt.analysis_confidence AS analysis_confidence,
+                  pt.quality_score AS quality_score,
+                  pt.quality_label AS quality_label
+                FROM items i
+                LEFT JOIN prompts prompt
+                  ON prompt.id = (
+                    SELECT p2.id
+                    FROM prompts p2
+                    WHERE p2.item_id = i.id AND TRIM(p2.text) <> ''
+                    ORDER BY p2.is_primary DESC, p2.created_at
+                    LIMIT 1
+                  )
+                LEFT JOIN prompt_templates pt ON pt.item_id = i.id
+                WHERE {" AND ".join(where)}
+                ORDER BY i.updated_at DESC, i.created_at DESC
+                """,
+                params,
+            ).fetchall()
+        items = [self._prompt_template_ops_item_from_row(row) for row in rows]
+        status_counts: dict[str, int] = {}
+        for item in items:
+            status_counts[item.status] = status_counts.get(item.status, 0) + 1
+        if status_filter:
+            items = [item for item in items if item.status in status_filter]
+        status_order = {"missing": 0, "stale": 1, "failed": 2, "no_prompt": 3, "ready": 4}
+        items.sort(key=lambda item: (status_order.get(item.status, 99), item.title.lower()))
+        limited_items = items[:limit]
+        return PromptTemplateOpsItemList(
+            items=limited_items,
+            total=len(items),
+            limit=limit,
+            status_counts=status_counts,
+        )
+
     def save_prompt_template(
         self,
         *,
@@ -356,9 +502,19 @@ class ItemRepository:
         marked_text: str,
         slots: list[PromptTemplateSlot],
         status: str = "ready",
+        review_status: str = "pending_review",
+        review_notes: str | None = None,
+        reviewed_at: str | None = None,
         analysis_confidence: float | None = None,
         analysis_notes: str | None = None,
     ) -> PromptTemplateRecord:
+        normalized_slots = normalize_prompt_template_slots(slots)
+        quality = score_prompt_template(
+            raw_text=raw_text_snapshot,
+            marked_text=marked_text,
+            slots=normalized_slots,
+            analysis_confidence=analysis_confidence,
+        )
         with connect(self.library_path) as conn:
             item_exists = conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone()
             if not item_exists:
@@ -367,25 +523,47 @@ class ItemRepository:
             template_id = existing["id"] if existing else new_id("tpl")
             created_at = existing["created_at"] if existing else now()
             updated_at = now()
-            slots_json = json.dumps([slot.model_dump() for slot in slots], ensure_ascii=False)
+            slots_json = json.dumps([slot.model_dump() for slot in normalized_slots], ensure_ascii=False)
+            quality_reasons_json = json.dumps(quality.reasons, ensure_ascii=False)
             if existing:
                 conn.execute("DELETE FROM prompt_generation_sessions WHERE template_id=?", (template_id,))
                 conn.execute(
                     """UPDATE prompt_templates
-                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, analysis_confidence=?, analysis_notes=?, updated_at=?
+                    SET source_language=?, raw_text_snapshot=?, marked_text=?, slots_json=?, status=?, review_status=?, review_notes=?, reviewed_at=?, analysis_confidence=?, analysis_notes=?, quality_score=?, quality_label=?, quality_reasons_json=?, updated_at=?
                     WHERE id=?""",
-                    (source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, updated_at, template_id),
+                    (source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, quality.score, quality.label, quality_reasons_json, updated_at, template_id),
                 )
             else:
                 conn.execute(
-                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,analysis_confidence,analysis_notes,created_at,updated_at)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?)""",
-                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, analysis_confidence, analysis_notes, created_at, updated_at),
+                    """INSERT INTO prompt_templates(id,item_id,source_language,raw_text_snapshot,marked_text,slots_json,status,review_status,review_notes,reviewed_at,analysis_confidence,analysis_notes,quality_score,quality_label,quality_reasons_json,created_at,updated_at)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (template_id, item_id, source_language, raw_text_snapshot, marked_text, slots_json, status, review_status, review_notes, reviewed_at, analysis_confidence, analysis_notes, quality.score, quality.label, quality_reasons_json, created_at, updated_at),
                 )
             conn.commit()
         bundle = self.get_prompt_template_bundle(item_id)
         if bundle.template is None:
             raise KeyError(item_id)
+        return bundle.template
+
+    def review_prompt_template(self, template_id: str, *, review_status: str, review_notes: str | None = None) -> PromptTemplateRecord:
+        if review_status not in {"approved", "rejected"}:
+            raise ValueError("Invalid prompt template review status.")
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT item_id, status FROM prompt_templates WHERE id=?", (template_id,)).fetchone()
+            if not row:
+                raise KeyError(template_id)
+            if row["status"] != "ready":
+                raise ValueError("Only ready templates can be reviewed.")
+            reviewed_at = now()
+            conn.execute(
+                "UPDATE prompt_templates SET review_status=?, review_notes=?, reviewed_at=?, updated_at=? WHERE id=?",
+                (review_status, review_notes, reviewed_at, reviewed_at, template_id),
+            )
+            conn.commit()
+            item_id = row["item_id"]
+        bundle = self.get_prompt_template_bundle(item_id)
+        if bundle.template is None:
+            raise KeyError(template_id)
         return bundle.template
 
     def create_prompt_generation_session(self, template_id: str, theme_keyword: str) -> PromptGenerationSessionRecord:
@@ -488,7 +666,7 @@ class ItemRepository:
             rows = conn.execute("""SELECT c.*, COUNT(i.id) count FROM clusters c LEFT JOIN items i ON i.cluster_id=c.id AND i.archived=0 GROUP BY c.id HAVING count > 0 ORDER BY c.sort_order, c.name""").fetchall()
             out=[]
             for r in rows:
-                previews = [x[0] for x in conn.execute("""SELECT COALESCE(img.thumb_path,img.preview_path,img.remote_url,img.original_path)
+                previews = [x[0] for x in conn.execute("""SELECT COALESCE(img.thumb_path,img.preview_path,img.original_path)
                     FROM images img JOIN items i ON i.id=img.item_id
                     WHERE i.cluster_id=? AND i.archived=0
                       AND NOT EXISTS (
@@ -513,6 +691,6 @@ class ItemRepository:
         row = conn.execute("SELECT i.title,i.source_name,i.source_url,i.notes,c.name cluster FROM items i LEFT JOIN clusters c ON c.id=i.cluster_id WHERE i.id=?", (item_id,)).fetchone()
         if not row: return
         prompts = "\n".join(r[0] for r in conn.execute("SELECT text FROM prompts WHERE item_id=?", (item_id,)).fetchall())
-        tags = " ".join(r[0] for r in conn.execute("SELECT t.name FROM tags t JOIN item_tags it ON it.tag_id=t.id WHERE it.item_id=?", (item_id,)).fetchall())
+        tags = " ".join(r[0] for r in conn.execute("SELECT t.name FROM tags t JOIN item_tags it ON it.tag_id=t.id WHERE it.item_id=? ORDER BY it.sort_order, t.name", (item_id,)).fetchall())
         source = " ".join(x or "" for x in (row["source_name"], row["source_url"]))
         conn.execute("INSERT INTO item_search(item_id,title,prompts,tags,cluster,source,notes) VALUES(?,?,?,?,?,?,?)", (item_id,row["title"],prompts,tags,row["cluster"] or "",source,row["notes"] or ""))

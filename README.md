@@ -149,6 +149,31 @@ IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS=45
 
 If you set `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN`, export the same token before running `./scripts/sync-n8n-prompt-workflows.sh` so the auth gate is embedded into the synced n8n workflows.
 
+If you also want the public prompt panel to generate images directly from the finalized prompt, configure the image-generation webhooks as well:
+
+```bash
+IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL=
+IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL=
+IMAGE_PROMPT_LIBRARY_IMAGE_WORKFLOW_TOKEN=
+IMAGE_PROMPT_LIBRARY_IMAGE_WORKFLOW_TOKEN_HEADER=X-N8N-Token
+IMAGE_PROMPT_LIBRARY_IMAGE_TIMEOUT_SECONDS=60
+IMAGE_PROMPT_LIBRARY_IMAGE_POLL_INTERVAL_SECONDS=2
+IMAGE_PROMPT_LIBRARY_IMAGE_POLL_TIMEOUT_SECONDS=150
+IMAGE_PROMPT_LIBRARY_IMAGE_PROVIDER=openai
+IMAGE_PROMPT_LIBRARY_IMAGE_MODEL=gpt-5.4-mini
+IMAGE_PROMPT_LIBRARY_IMAGE_TOOL_MODEL=gpt-image-2
+IMAGE_PROMPT_LIBRARY_IMAGE_RESOLUTION=1024x1024
+IMAGE_PROMPT_LIBRARY_IMAGE_ASPECT_RATIO=1:1
+IMAGE_PROMPT_LIBRARY_IMAGE_QUALITY=high
+IMAGE_PROMPT_LIBRARY_IMAGE_OUTPUT_FORMAT=png
+IMAGE_PROMPT_LIBRARY_IMAGE_BACKGROUND=auto
+IMAGE_PROMPT_LIBRARY_IMAGE_STYLE=auto
+IMAGE_PROMPT_LIBRARY_IMAGE_TEMPERATURE=0.7
+IMAGE_PROMPT_LIBRARY_IMAGE_COUNT=1
+```
+
+The app accepts both sync image responses and `jobId` + polling mode from the existing `img-generate-submit` / `img-job-status` n8n workflows. Generated images are downloaded back into `IMAGE_PROMPT_LIBRARY_PATH` and attached to the current case automatically.
+
 You can sync the bundled n8n workflows into your instance with:
 
 ```bash
@@ -206,17 +231,17 @@ Then start the app and open <http://127.0.0.1:8000/>.
 
 The installer downloads the sample image ZIP from the public `sample-data-v1` release and verifies its SHA256 checksum before import. The sample library is based on [`wuyoscar/gpt_image_2_skill`](https://github.com/wuyoscar/gpt_image_2_skill), licensed under **CC BY 4.0**. It is included only as demo/sample content; your own prompt library data remains private and is not part of the sample bundle.
 
-### Import the bundled demo cases
+### Import the public v0.1 demo cases
 
-If you want the compressed, read-only demo cases shipped in this repository, import the bundled `demo-data` snapshot instead:
+If you want the exact cases shown in the archived GitHub Pages `v0.1` demo, import the bundled `demo-data` snapshot instead:
 
 ```bash
 ./scripts/import-demo-data.py
 ```
 
-That command imports the repo-local `frontend/public/demo-data/` bundle. The current bundle combines the `wuyoscar/gpt_image_2_skill` sample set with a curated `freestylefly/awesome-gpt-image-2` case 310-361 extension.
+That command imports the repo-local `frontend/public/demo-data/` bundle, which matches <https://eddietyp.github.io/image-prompt-library/v0.1/demo-data/items.json>.
 
-To import the exact archived GitHub Pages `v0.1` demo cases directly from the public site:
+To import directly from the public site instead of the local bundle:
 
 ```bash
 ./scripts/import-demo-data.py --public-v0.1
@@ -285,7 +310,7 @@ Image Prompt Library's core application code is open source under **AGPL-3.0-or-
 
 Commercial licenses are available for organizations that want to use, modify, or host Image Prompt Library under terms outside the AGPL. Contact the maintainer if you need proprietary hosted-product terms or other non-AGPL licensing.
 
-Sample data and third-party assets are licensed separately and retain their original attribution/license terms. The optional sample bundle currently preserves `wuyoscar/gpt_image_2_skill` / **CC BY 4.0** attribution; the repo-local online demo bundle also preserves `freestylefly/awesome-gpt-image-2` / **MIT** attribution for cases 310-361. Do not treat sample prompts/images as part of the app-code AGPL grant.
+Sample data and third-party assets are licensed separately and retain their original attribution/license terms. The optional sample bundle currently preserves `wuyoscar/gpt_image_2_skill` / **CC BY 4.0** attribution; do not treat sample prompts/images as part of the app-code AGPL grant.
 
 Your own local prompt library data remains yours and should not be committed to this repository.
 

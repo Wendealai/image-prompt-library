@@ -11,10 +11,40 @@ def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
-    assert "useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey)" in app
+    assert "useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey, 'created_desc')" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
-    assert "[q, clusterId, tag, viewLimit, reloadKey]" in hook
+    assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
+
+
+def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = compact(css)
+
+    assert "export type CardsSortMode = 'added' | 'explore';" in types
+    assert "CARDS_SORT_STORAGE_KEY = 'image-prompt-library.cards_sort_mode.v1'" in app
+    assert "function loadCardsSortMode(): CardsSortMode" in app
+    assert "const [cardsSortMode, setCardsSortMode] = useState<CardsSortMode>(loadCardsSortMode)" in app
+    assert "export function sortCardsItems" in app
+    assert ".sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hant'))" in app
+    assert "const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode)" in app
+    assert "items={sortedCardItems}" in app
+    assert "cardsSortMode={cardsSortMode}" in app
+    assert "onCardsSortMode={updateCardsSortMode}" in app
+    assert "cards-sort-toggle" in topbar
+    assert "aria-label={t('cardsSort')}" in topbar
+    assert "onClick={() => onCardsSortMode('added')}" in topbar
+    assert "onClick={() => onCardsSortMode('explore')}" in topbar
+    assert "| 'cardsSort' | 'cardsSortAdded' | 'cardsSortExplore'" in i18n
+    assert "cardsSortAdded: '添加顺序'" in i18n
+    assert "cardsSortExplore: 'Explore 分类'" in i18n
+    assert ".view-dock{flex:00auto;display:flex;align-items:center;gap:8px}" in compact_css
+    assert ".cards-sort-toggle{display:flex;gap:3px;" in compact_css
+    assert ".cards-sort-togglebutton.active{background:#211922;color:white}" in compact_css
 
 
 def test_topbar_is_toolbar_search_not_hero_or_keyboard_shortcut():
@@ -192,30 +222,197 @@ def test_mobile_detail_modal_has_image_first_floating_controls():
     assert "imageDetailViewerHint: 'Drag to inspect details, and use double-tap or pinch gestures to zoom in or out.'" in i18n
 
 
+def test_detail_modal_does_not_call_hooks_after_empty_id_guard():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    guard_index = detail.index("if (!id) return null;")
+    assert "useEffect(" not in detail[guard_index:]
+
+
 def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
     client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    prompt_template_utils = (ROOT / "frontend" / "src" / "utils" / "promptTemplate.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
     assert "PromptTemplatePanel" in detail
-    assert "<PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />" in detail
+    assert "<PromptTemplatePanel" in detail
+    assert "onImageGenerated={result => {" in detail
     assert "api.promptTemplate(itemId)" in panel
-    assert "api.initPromptTemplate(itemId)" in panel
+    assert "api.initPromptTemplate(itemId)" not in panel
     assert "api.generatePromptVariant(template.id, nextKeyword)" in panel
     assert "api.rerollPromptVariant(currentSession.id" in panel
-    assert "api.acceptPromptVariant(variant.id)" in panel
+    assert "buildSlotValueRecord" in panel
+    assert "renderMarkedPrompt(template.marked_text, editorValues)" in panel
+    assert "slotInputRefs = useRef<Record<string, HTMLTextAreaElement | null>>({})" in panel
+    assert "const [draftBaseValues, setDraftBaseValues] = useState<Record<string, string>>({})" in panel
+    assert "const applyDraftValues = useCallback((nextValues: Record<string, string>, nextVariantId: string) => {" in panel
+    assert "targetedSlotId" in panel
+    assert "handleJumpToSlot" in panel
+    assert "handleApplyVariantChanges" in panel
+    assert "promptTemplateReplaceAllSlots" in panel
+    assert "promptTemplateVariantReadyDraftPreserved" in panel
+    assert "promptTemplateManualEdits" in panel
+    assert "manualEditedSlotCount" in panel
+    assert "applyImpactCount" in panel
+    assert "replaceImpactCount" in panel
+    assert "setEditorValues(current => ({ ...current, [slotId]: text }))" in panel
+    assert "variant.segments" in panel
+    assert "promptTemplateAppliedChangedSlots" in panel
+    assert "promptTemplateApplyChangedSlots" in panel
+    assert "setFeedback({ tone: 'success', message: t('promptTemplateVariantReadyDraftPreserved') })" in panel
+    assert "}, [template?.id, template?.updated_at, loadEditorDraft]);" in panel
+    assert "latestVariant?.id, loadEditorDraft" not in panel
+    assert "target.scrollIntoView({ block: 'center', behavior: 'smooth' })" in panel
+    assert "target.focus({ preventScroll: true })" in panel
+    assert "prompt-remix-segment-button" in panel
+    assert "renderPreviewSegment(segment, `assembled-${index}`)" in panel
+    assert "prompt-remix-editor" in panel
+    assert "prompt-remix-original" in panel
+    assert "promptTemplateSlotEditor" in panel
+    assert "promptTemplateAssemble" in panel
+    assert "promptTemplateCopyFinal" in panel
+    assert "handleGenerateImage" in panel
+    assert "imageGenerationState" in panel
+    assert "IMAGE_GENERATION_STAGE_DELAY_MS = 2200" in panel
+    assert "prompt-remix-image-config" in panel
+    assert "promptTemplateImageSettings" in panel
+    assert "promptTemplateImageAspectRatio" in panel
+    assert "promptTemplateImageResolution" in panel
+    assert "promptTemplateImageStyle" in panel
+    assert "promptTemplateImageCount" in panel
+    assert "promptTemplateImageQueued" in panel
+    assert "promptTemplateImageRendering" in panel
+    assert "promptTemplateImageRetry" in panel
+    assert "promptTemplateImageFocused" in panel
+    assert "IMAGE_GENERATION_PRESETS_STORAGE_KEY = 'image-prompt-library.image_generation_presets.v1'" in panel
+    assert "IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY = 'image-prompt-library.image_generation_recent_options.v1'" in panel
+    assert "prompt-remix-preset-section" in panel
+    assert "savedImagePresets" in panel
+    assert "recentImageGenerationOptions" in panel
+    assert "handleSaveImagePreset" in panel
+    assert "handleDeleteImagePreset" in panel
+    assert "handleApplyImagePreset" in panel
+    assert "promptTemplateImagePresets" in panel
+    assert "promptTemplateImagePresetDefault" in panel
+    assert "promptTemplateImagePresetRecent" in panel
+    assert "promptTemplateImagePresetNamePlaceholder" in panel
+    assert "promptTemplateImagePresetSave" in panel
+    assert "promptTemplateImagePresetSaved" in panel
+    assert "promptTemplateImagePresetDelete" in panel
+    assert "promptTemplateImagePresetNameRequired" in panel
+    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
+    assert "promptTemplateGenerateImage" in panel
+    assert "promptTemplateGeneratingImage" in panel
+    assert "api.acceptPromptVariant(variant.id)" not in panel
     assert "promptTemplate: (itemId: string)" in client
-    assert "initPromptTemplate: (itemId: string, language?: string)" in client
+    assert "adminInitPromptTemplate: (itemId: string, language?: string)" in client
+    assert "adminPromptTemplate: (itemId: string)" in client
     assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
     assert "rerollPromptVariant: (sessionId: string" in client
     assert "acceptPromptVariant: (variantId: string)" in client
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[]" in client
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
-    assert "promptTemplateAcceptAndCopy" in i18n
-    assert ".prompt-remix-panel{display:flex;flex-direction:column;" in compact_css
-    assert ".prompt-remix-preview{" in compact_css
-    assert ".prompt-remix-segment.is-changed{" in compact_css
+    assert "promptTemplateSlotEditor" in i18n
+    assert "promptTemplateReplaceAllSlots" in i18n
+    assert "promptTemplateApplyChangedSlots" in i18n
+    assert "promptTemplateAppliedChangedSlots" in i18n
+    assert "promptTemplateVariantReadyDraftPreserved" in i18n
+    assert "promptTemplateManualEdits" in i18n
+    assert "promptTemplateAssemble" in i18n
+    assert "promptTemplateCopyFinal" in i18n
+    assert "promptTemplateGenerateImage" in i18n
+    assert "promptTemplateGeneratingImage" in i18n
+    assert "promptTemplateImageSettings" in i18n
+    assert "promptTemplateImageSettingsHelp" in i18n
+    assert "promptTemplateImageResolution" in i18n
+    assert "promptTemplateImageAspectRatio" in i18n
+    assert "promptTemplateImageStyle" in i18n
+    assert "promptTemplateImageCount" in i18n
+    assert "promptTemplateImageQueued" in i18n
+    assert "promptTemplateImageRendering" in i18n
+    assert "promptTemplateImageRetry" in i18n
+    assert "promptTemplateImageFocused" in i18n
+    assert "promptTemplateImagePresets" in i18n
+    assert "promptTemplateImagePresetsHelp" in i18n
+    assert "promptTemplateImagePresetDefault" in i18n
+    assert "promptTemplateImagePresetRecent" in i18n
+    assert "promptTemplateImagePresetNamePlaceholder" in i18n
+    assert "promptTemplateImagePresetSave" in i18n
+    assert "promptTemplateImagePresetSaved" in i18n
+    assert "promptTemplateImagePresetDelete" in i18n
+    assert "promptTemplateImagePresetNameRequired" in i18n
+    assert ".prompt-remix-preset-section{display:flex;flex-direction:column;" in compact_css
+    assert ".prompt-remix-preset-chip{display:inline-flex;align-items:center;" in compact_css
+    assert ".prompt-remix-preset-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap}" in compact_css
+    assert "export function buildSlotValueRecord" in prompt_template_utils
+    assert "if (loading) return null;" in panel
+    assert "if (!template) {" in panel
+    assert "prompt-remix-init" not in panel
+
+
+def test_admin_app_hosts_template_ops_and_review_surface():
+    admin = (ROOT / "frontend" / "src" / "AdminApp.tsx").read_text()
+    main = (ROOT / "frontend" / "src" / "main.tsx").read_text()
+    config = (ROOT / "frontend" / "src" / "components" / "ConfigPanel.tsx").read_text()
+    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    compact_css = css.replace(" ", "")
+    assert "const normalizedPathname = basePath && basePath !== '/' && pathname.startsWith(basePath)" in main
+    assert "const isAdminRoute = normalizedPathname === '/admin' || normalizedPathname.startsWith('/admin/')" in main
+    assert "{isAdminRoute ? <AdminApp /> : <App />}" in main
+    assert "api.adminSession()" in admin
+    assert "api.adminLogin(password.trim())" in admin
+    assert "api.adminLogout()" in admin
+    assert "api.adminPromptTemplateOpsItems" in admin
+    assert "api.adminPromptTemplate(selectedItemId)" in admin
+    assert "api.adminInitPromptTemplate(itemId)" in admin
+    assert "api.adminBatchInitPromptTemplates" in admin
+    assert "api.adminApprovePromptTemplate" in admin
+    assert "api.adminRejectPromptTemplate" in admin
+    assert "api.adminPromptTemplateFailures" in admin
+    assert "api.adminPromptTemplateFailure" in admin
+    assert "templateOpsCenter" in admin
+    assert "adminPromptTemplates" in admin
+    assert "adminAuthTitle" in admin
+    assert "adminPasswordLabel" in admin
+    assert "templateReviewApprove" in admin
+    assert "templateReviewReject" in admin
+    assert "templateQueuePendingReview" in admin
+    assert "template-failure-layout" in admin
+    assert "template-failure-detail-section" in admin
+    assert "api.adminPromptTemplateOpsItems" not in config
+    assert "adminSession: () => json<AdminSessionRecord>" in client
+    assert "adminLogin: (password: string)" in client
+    assert "adminLogout: () => json<AdminSessionRecord>" in client
+    assert "adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {})" in client
+    assert "adminBatchInitPromptTemplates: (payload: PromptTemplateBatchInitRequest)" in client
+    assert "adminPromptTemplateFailures: (limit = 50)" in client
+    assert "adminPromptTemplateFailure: (failureId: string)" in client
+    assert "adminPromptTemplate: (itemId: string)" in client
+    assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
+    assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
+    assert "export interface PromptTemplateOpsItem" in types
+    assert "export interface PromptTemplateBatchInitResponse" in types
+    assert "export interface PromptTemplateReviewRequest" in types
+    assert "export interface AdminLoginRequest" in types
+    assert "export interface AdminSessionRecord" in types
+    assert "export interface PromptWorkflowFailureRecord" in types
+    assert "adminPromptTemplates" in i18n
+    assert "adminAuthTitle" in i18n
+    assert "adminPasswordLabel" in i18n
+    assert "templateQueuePendingReview" in i18n
+    assert "templateReviewApprove" in i18n
+    assert "templateReviewReject" in i18n
+    assert ".config-section-head{display:flex;align-items:flex-start;justify-content:space-between;" in compact_css
+    assert ".admin-shell{min-height:100vh;padding:30px;" in compact_css
+    assert ".admin-auth-card{width:min(480px,100%);display:grid;gap:14px;" in compact_css
+    assert ".admin-review-layout{display:grid;grid-template-columns:minmax(300px,.92fr)minmax(420px,1.08fr);" in compact_css
+    assert ".admin-template-review{display:grid;gap:12px;" in compact_css
+    assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
 
 
 def test_detail_modal_exposes_direct_nanobanana_image_generation():
@@ -314,7 +511,7 @@ def test_explore_uses_real_thumbnails_not_dots_or_originals():
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     assert "function getConstellationImagePath" in explore
     assert "selectPrimaryImage([item.first_image])" in explore
-    assert "imageThumbnailPath(primaryImage)" in explore
+    assert "imageThumbnailPaths(primaryImage)" in explore
     assert "first_image?.original_path" not in explore
     assert "lod-dot" not in explore
     assert "node-placeholder" not in explore
@@ -1018,3 +1215,20 @@ def test_delete_action_archives_item_and_refreshes_visible_data():
     assert "confirm(t('deleteReferenceConfirm'))" in editor
     assert "api.deleteItem(item.id)" in editor
     assert "danger" in editor
+
+
+def test_admin_review_shows_prompt_source_extraction_metadata():
+    admin = (ROOT / "frontend" / "src" / "AdminApp.tsx").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    assert "prompt_source_extracted: boolean" in types
+    assert "prompt_source_strategy?: string" in types
+    assert "template-source-extraction-card" in admin
+    assert "selectedTemplate.prompt_source_extracted" in admin
+    assert "selectedTemplate.prompt_source_strategy" in admin
+    assert "selectedTemplate.prompt_source_original_length" in admin
+    assert "template-source-extraction-card" in css
+    assert "templateReviewSourceExtracted" in i18n
+    assert "templateReviewSourceStrategy" in i18n
+    assert "templateReviewSourceLengths" in i18n

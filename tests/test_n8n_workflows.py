@@ -40,43 +40,46 @@ def test_prompt_template_workflows_include_auth_gate(filename: str, webhook_name
     assert 'X-Image-Prompt-Workflow-Token' in auth_code
 
 
-@pytest.mark.parametrize(
-    ('filename', 'prepare_name', 'required_snippets'),
-    [
-        (
-            'prompt-template-init.workflow.json',
-            'Prepare Prompt Template Init Payload',
-            [
-                'defaultImportSkillUrl',
-                'Default import skill URL:',
-                'Apply the synced default import skill URL above as background import guidance.',
-                'Source URL:',
-                'Author:',
-                'Item notes:',
-            ],
-        ),
-        (
-            'prompt-template-generate.workflow.json',
-            'Prepare Prompt Template Generate Payload',
-            [
-                'defaultImportSkillUrl',
-                'Default import skill URL:',
-                'Apply the synced default import skill URL above as background rewrite guidance.',
-                'Source URL:',
-                'Author:',
-                'Item notes:',
-            ],
-        ),
-    ],
-)
-def test_prompt_template_workflows_include_default_import_skill_context(
-    filename: str,
-    prepare_name: str,
-    required_snippets: list[str],
-):
-    workflow = json.loads((N8N_DIR / filename).read_text(encoding='utf-8'))
-    prepare_node = next(node for node in workflow['nodes'] if node['name'] == prepare_name)
-    prepare_code = prepare_node['parameters']['jsCode']
+def test_prompt_template_init_workflow_uses_prompt_markers_and_cleanup_guard():
+    workflow = json.loads((N8N_DIR / 'prompt-template-init.workflow.json').read_text(encoding='utf-8'))
+    prepare_node = next(node for node in workflow['nodes'] if node['name'] == 'Prepare Prompt Template Init Payload')
+    format_node = next(node for node in workflow['nodes'] if node['name'] == 'Format Prompt Template Init Output')
 
-    for snippet in required_snippets:
-        assert snippet in prepare_code
+    prepare_code = prepare_node['parameters']['jsCode']
+    format_code = format_node['parameters']['jsCode']
+
+    assert '<<<IMAGE_PROMPT_BEGIN>>>' in prepare_code
+    assert '<<<IMAGE_PROMPT_END>>>' in prepare_code
+    assert 'Only the text between those markers belongs to the original prompt.' in prepare_code
+    assert 'Do not include the boundary markers or any follow-up instructions in markedText.' in prepare_code
+    assert 'Never nest one slot inside another slot.' in prepare_code
+    assert 'Never create overlapping slots.' in prepare_code
+    assert 'temperature: 0' in prepare_code
+    assert 'removePromptScaffolding' in format_code
+    assert "const trailingInstructions = [" in format_code
+    assert "cleaned = cleaned.replace(new RegExp(`\\\\n+${escaped}\\\\s*$`, 'i'), '').trimEnd();" in format_code
+
+
+def test_canghe_gallery_daily_sync_workflow_calls_admin_sync_endpoint_without_embedded_password():
+    workflow = json.loads((N8N_DIR / 'canghe-gallery-daily-sync.workflow.json').read_text(encoding='utf-8'))
+    node_names = {node['name'] for node in workflow['nodes']}
+    request_node = next(node for node in workflow['nodes'] if node['name'] == 'Call Image Prompt Library Canghe Sync')
+    body = request_node['parameters']['jsonBody']
+
+    assert 'Schedule Canghe Gallery Daily Sync' in node_names
+    assert 'Summarize Canghe Gallery Sync Result' in node_names
+    assert request_node['parameters']['url'] == 'https://prompt.wendealai.com/api/admin/intake/canghe-gallery/sync'
+    assert '$env.IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in body
+    assert 'initialize_templates: true' in body
+    assert 'test-admin-password' not in body
+    assert workflow['connections']['Schedule Canghe Gallery Daily Sync']['main'][0][0]['node'] == 'Call Image Prompt Library Canghe Sync'
+
+
+def test_n8n_sync_script_injects_canghe_password_only_for_upload():
+    script = (ROOT / 'scripts' / 'sync-n8n-prompt-workflows.sh').read_text(encoding='utf-8')
+
+    assert 'IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD' in script
+    assert 'CANGHE_TEMP_WORKFLOW="$(mktemp)"' in script
+    assert 'CANGHE_UPLOAD_WORKFLOW="$CANGHE_TEMP_WORKFLOW"' in script
+    assert 'initialize_templates: true' in script
+    assert "json.dumps(password)" in script

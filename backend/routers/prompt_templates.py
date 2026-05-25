@@ -1,25 +1,21 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Query, Request
+from dataclasses import asdict
 
-from backend.repositories import ItemRepository
-from backend.schemas import (
-    PromptGenerationSessionRecord,
-    PromptTemplateBulkInitItemResult,
-    PromptTemplateBulkInitRequest,
-    PromptTemplateBulkInitResult,
-    PromptTemplateBundle,
-    PromptTemplateGenerateRequest,
-    PromptTemplateInitRequest,
-    PromptTemplateRecord,
-    PromptTemplateRerollRequest,
-)
+from backend.admin_auth import require_admin
+from backend.repositories import ItemRepository, StoredImageInput
+from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.services.image_generation import ImageGenerationError, ImageGenerationUnavailable, generate_images_from_prompt
+from backend.services.image_store import store_image
+from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
 from backend.services.prompt_markup import PromptMarkupError, normalize_slot_values, render_marked_text, validate_marked_prompt
-from backend.services.prompt_template_fallbacks import build_json_value_template, build_plain_text_block_template
-from backend.services.text_normalize import to_traditional
+from backend.services.prompt_template_fallback import build_fallback_prompt_template
+from backend.services.prompt_source_prepare import PreparedPromptSource, prepare_prompt_template_source
 from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable, generate_prompt_variant, initialize_prompt_template
 
 router = APIRouter()
+UPSTREAM_WORKFLOW_FAILURE_STATUS = 424
 
 
 def repo(request: Request) -> ItemRepository:
@@ -37,15 +33,52 @@ def _not_found(exc: KeyError):
     raise HTTPException(status_code=404, detail="Prompt template resource not found.") from exc
 
 
-def _handle_workflow_error(exc: Exception):
+def _item_not_found(exc: KeyError):
+    raise HTTPException(status_code=404, detail="Item not found.") from exc
+
+
+def _generation_reference_metadata(payload: PromptImageGenerateRequest) -> list[dict]:
+    references: list[dict] = []
+    for reference in payload.references:
+        data = reference.model_dump(exclude_none=True)
+        if "image_base64" in data:
+            data["has_image_base64"] = True
+            data["image_base64_length"] = len(data.pop("image_base64"))
+        references.append(data)
+    return references
+
+
+def _record_workflow_failure_sample(request: Request, exc: Exception, *, operation: str, context: dict | None = None) -> str | None:
+    if not isinstance(exc, (PromptWorkflowError, PromptMarkupError, ValueError)):
+        return None
+    failure_id, _ = record_prompt_workflow_failure(
+        library_path=request.app.state.library_path,
+        operation=operation,
+        exc=exc,
+        context=context,
+    )
+    return failure_id
+
+
+def _handle_workflow_error(request: Request, exc: Exception, *, operation: str, context: dict | None = None):
     if isinstance(exc, PromptWorkflowUnavailable):
-        raise HTTPException(status_code=503, detail="AI prompt workflow is not configured.") from exc
+        raise HTTPException(
+            status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS,
+            detail="AI prompt workflow is not configured.",
+        ) from exc
+    failure_id = _record_workflow_failure_sample(request, exc, operation=operation, context=context)
+    headers: dict[str, str] | None = None
+    if failure_id:
+        headers = {"X-Prompt-Workflow-Failure-Id": failure_id}
     if isinstance(exc, PromptWorkflowError):
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS, detail=detail, headers=headers) from exc
     if isinstance(exc, PromptMarkupError):
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=400, detail=detail, headers=headers) from exc
     if isinstance(exc, ValueError):
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+        raise HTTPException(status_code=400, detail=detail, headers=headers) from exc
     raise exc
 
 
@@ -60,203 +93,422 @@ def _selected_source_prompt(repository: ItemRepository, item_id: str, language: 
                 return item, prompt
         raise HTTPException(status_code=400, detail=f"Prompt language not found: {language}")
     primary_prompt = next((prompt for prompt in usable_prompts if prompt.is_primary), usable_prompts[0])
-    simplified_prompt = next((prompt for prompt in usable_prompts if prompt.language == "zh_hans"), None)
-    if primary_prompt.language == "zh_hant" and simplified_prompt and primary_prompt.text == to_traditional(simplified_prompt.text):
-        return item, simplified_prompt
     return item, primary_prompt
 
 
-def _initialize_template_for_item(repository: ItemRepository, item_id: str, language: str | None) -> PromptTemplateRecord:
+def _initialize_prompt_template_bundle(repository: ItemRepository, *, item_id: str, language: str | None):
+    workflow_result = None
+    source_prompt = None
+    prepared_source_prompt = None
+    item = None
     item, source_prompt = _selected_source_prompt(repository, item_id, language)
-    workflow_result = initialize_prompt_template(
-        item=item,
-        source_language=source_prompt.language,
-        raw_text=source_prompt.text,
-    )
-    slots = validate_marked_prompt(source_prompt.text, workflow_result["marked_text"])
-    return repository.save_prompt_template(
+    prepared_source_prompt = prepare_prompt_template_source(source_prompt.text)
+    analysis_notes = None
+    try:
+        workflow_result = initialize_prompt_template(
+            item_id=item.id,
+            title=item.title,
+            model=item.model,
+            source_language=source_prompt.language,
+            raw_text=prepared_source_prompt.normalized_text,
+        )
+        slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
+    except (PromptWorkflowError, PromptMarkupError, ValueError) as exc:
+        fallback = build_fallback_prompt_template(prepared_source_prompt.normalized_text, reason=str(exc))
+        workflow_result = {
+            "marked_text": fallback.marked_text,
+            "analysis_confidence": fallback.analysis_confidence,
+            "analysis_notes": fallback.analysis_notes,
+            "source_language": source_prompt.language,
+            "fallback": True,
+        }
+        slots = validate_marked_prompt(prepared_source_prompt.normalized_text, workflow_result["marked_text"])
+        analysis_notes = workflow_result["analysis_notes"]
+    if prepared_source_prompt.was_extracted:
+        prefix = f"Prompt body extracted via {prepared_source_prompt.strategy} before skeletonization."
+        analysis_notes = f"{prefix} {analysis_notes}".strip() if analysis_notes else prefix
+    repository.save_prompt_template(
         item_id=item.id,
         source_language=workflow_result["source_language"],
-        raw_text_snapshot=source_prompt.text,
+        raw_text_snapshot=prepared_source_prompt.normalized_text,
         marked_text=workflow_result["marked_text"],
         slots=slots,
         status="ready",
         analysis_confidence=workflow_result["analysis_confidence"],
-        analysis_notes=workflow_result["analysis_notes"],
+        analysis_notes=analysis_notes,
     )
-
-
-def _save_json_value_fallback_template(repository: ItemRepository, item_id: str, language: str | None, previous_error: Exception) -> PromptTemplateRecord:
-    item, source_prompt = _selected_source_prompt(repository, item_id, language)
-    marked_text, slots = build_json_value_template(source_prompt.text)
-    return repository.save_prompt_template(
-        item_id=item.id,
-        source_language=source_prompt.language,
-        raw_text_snapshot=source_prompt.text,
-        marked_text=marked_text,
-        slots=slots,
-        status="ready",
-        analysis_confidence=0.65,
-        analysis_notes=f"Deterministic JSON value skeleton fallback after n8n init failed: {previous_error}",
-    )
-
-
-def _save_plain_text_fallback_template(repository: ItemRepository, item_id: str, language: str | None, previous_error: Exception) -> PromptTemplateRecord:
-    item, source_prompt = _selected_source_prompt(repository, item_id, language)
-    marked_text, slots = build_plain_text_block_template(source_prompt.text)
-    return repository.save_prompt_template(
-        item_id=item.id,
-        source_language=source_prompt.language,
-        raw_text_snapshot=source_prompt.text,
-        marked_text=marked_text,
-        slots=slots,
-        status="ready",
-        analysis_confidence=0.55,
-        analysis_notes=f"Deterministic plain-text block skeleton fallback after n8n init failed: {previous_error}",
-    )
-
-
-def _fallback_languages(language: str | None) -> tuple[str | None, ...]:
-    return (language,) if language is not None else ("zh_hans", None)
-
-
-def _initialize_template_for_item_with_local_fallback(
-    repository: ItemRepository,
-    item_id: str,
-    language: str | None,
-    previous_error: Exception,
-) -> PromptTemplateRecord:
-    for fallback_language in _fallback_languages(language):
-        try:
-            return _save_json_value_fallback_template(repository, item_id, fallback_language, previous_error)
-        except HTTPException as fallback_exc:
-            if fallback_exc.status_code != 400:
-                raise
-        except (PromptMarkupError, ValueError):
-            continue
-
-    for fallback_language in _fallback_languages(language):
-        try:
-            return _save_plain_text_fallback_template(repository, item_id, fallback_language, previous_error)
-        except HTTPException as fallback_exc:
-            if fallback_exc.status_code != 400:
-                raise
-        except (PromptMarkupError, ValueError):
-            continue
-
-    raise previous_error
-
-
-def _initialize_template_for_item_with_bulk_fallback(repository: ItemRepository, item_id: str, language: str | None) -> PromptTemplateRecord:
-    try:
-        return _initialize_template_for_item(repository, item_id, language)
-    except PromptWorkflowError as first_exc:
-        if language is not None:
-            return _initialize_template_for_item_with_local_fallback(repository, item_id, language, first_exc)
-        retry_error: Exception | None = None
-        try:
-            return _initialize_template_for_item(repository, item_id, "zh_hans")
-        except HTTPException as retry_exc:
-            if retry_exc.status_code != 400:
-                raise
-            retry_error = retry_exc
-        except PromptWorkflowError as retry_exc:
-            retry_error = retry_exc
-        return _initialize_template_for_item_with_local_fallback(
-            repository,
-            item_id,
-            language,
-            retry_error if isinstance(retry_error, PromptWorkflowError) else first_exc,
-        )
+    return repository.get_prompt_template_bundle(item.id), item, source_prompt, prepared_source_prompt, workflow_result
 
 
 @router.get("/items/{item_id}/prompt-template", response_model=PromptTemplateBundle)
 def get_prompt_template(request: Request, item_id: str):
+    try:
+        return repo(request).get_prompt_template_bundle(item_id, public_only=True)
+    except KeyError as exc:
+        _not_found(exc)
+
+
+@router.get("/admin/items/{item_id}/prompt-template", response_model=PromptTemplateBundle)
+def get_admin_prompt_template(request: Request, item_id: str):
+    require_admin(request)
     try:
         return repo(request).get_prompt_template_bundle(item_id)
     except KeyError as exc:
         _not_found(exc)
 
 
-@router.post("/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)
-def init_prompt_template(request: Request, item_id: str, payload: PromptTemplateInitRequest):
+@router.post("/items/{item_id}/generate-image", response_model=PromptImageGenerationResponse)
+def generate_image_from_prompt(request: Request, item_id: str, payload: PromptImageGenerateRequest):
     repository = repo(request)
     try:
-        template = _initialize_template_for_item(repository, item_id, payload.language)
-        return repository.get_prompt_template_bundle(template.item_id)
+        item = repository.get_item(item_id)
+        generate_kwargs = {
+            "item_id": item.id,
+            "title": item.title,
+            "generation_options": payload.generation.model_dump(exclude_none=True) if payload.generation else None,
+        }
+        if payload.references:
+            generate_kwargs["reference_images"] = [
+                reference.model_dump(exclude_none=True)
+                for reference in payload.references
+            ]
+        generation_options = payload.generation.model_dump(exclude_none=True) if payload.generation else {}
+        output_format = generation_options.get("output_format") or "jpg"
+        result = generate_images_from_prompt(
+            payload.prompt,
+            **generate_kwargs,
+        )
+        created_images = []
+        for generated in result.images:
+            stored = store_image(request.app.state.library_path, generated.data, generated.filename, output_format=output_format)
+            created_images.append(repository.add_image(
+                item.id,
+                StoredImageInput(
+                    original_path=stored.original_path,
+                    thumb_path=stored.thumb_path,
+                    preview_path=stored.preview_path,
+                    remote_url=generated.remote_url,
+                    width=stored.width,
+                    height=stored.height,
+                    file_sha256=stored.file_sha256,
+                    role="result_image",
+                ),
+            ))
+        run = repository.add_prompt_image_generation_run(
+            item_id=item.id,
+            prompt=payload.prompt.strip(),
+            generation_options=generation_options,
+            references=_generation_reference_metadata(payload),
+            job_id=result.job_id,
+            status=result.status or "completed",
+            image_ids=[image.id for image in created_images],
+        )
+        return PromptImageGenerationResponse(
+            status=result.status or "completed",
+            prompt=payload.prompt.strip(),
+            job_id=result.job_id,
+            images=created_images,
+            item=repository.get_item(item_id),
+            run=run,
+        )
+    except KeyError as exc:
+        _item_not_found(exc)
+    except ImageGenerationUnavailable as exc:
+        raise HTTPException(
+            status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS,
+            detail="AI image generation workflow is not configured.",
+        ) from exc
+    except ImageGenerationError as exc:
+        raise HTTPException(status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/admin/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)
+def init_prompt_template(request: Request, item_id: str, payload: PromptTemplateInitRequest):
+    require_admin(request)
+    repository = repo(request)
+    workflow_result = None
+    source_prompt = None
+    prepared_source_prompt: PreparedPromptSource | None = None
+    item = None
+    try:
+        bundle, item, source_prompt, prepared_source_prompt, workflow_result = _initialize_prompt_template_bundle(repository, item_id=item_id, language=payload.language)
+        return bundle
     except KeyError as exc:
         _not_found(exc)
+    except HTTPException:
+        raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_init",
+            context={
+                "item_id": item_id,
+                "requested_language": payload.language,
+                "item": item.model_dump() if item else None,
+                "source_prompt": source_prompt.model_dump() if source_prompt else None,
+                "prepared_source_prompt": asdict(prepared_source_prompt) if prepared_source_prompt else None,
+                "workflow_result": workflow_result,
+            },
+        )
+
+
+@router.post("/admin/prompt-templates/{template_id}/approve", response_model=PromptTemplateRecord)
+def approve_prompt_template(request: Request, template_id: str, payload: PromptTemplateReviewRequest):
+    require_admin(request)
+    try:
+        return repo(request).review_prompt_template(template_id, review_status="approved", review_notes=payload.review_notes)
+    except KeyError as exc:
+        _not_found(exc)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.post("/admin/prompt-templates/{template_id}/reject", response_model=PromptTemplateRecord)
+def reject_prompt_template(request: Request, template_id: str, payload: PromptTemplateReviewRequest):
+    require_admin(request)
+    try:
+        return repo(request).review_prompt_template(template_id, review_status="rejected", review_notes=payload.review_notes)
+    except KeyError as exc:
+        _not_found(exc)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.get("/admin/prompt-templates/ops/items", response_model=PromptTemplateOpsItemList)
+def list_prompt_template_ops(
+    request: Request,
+    status: list[str] | None = Query(default=None),
+    limit: int = Query(default=100, ge=1, le=300),
+):
+    require_admin(request)
+    return repo(request).list_prompt_template_ops_items(statuses=status, limit=limit)
 
 
 @router.post("/prompt-templates/bulk-init", response_model=PromptTemplateBulkInitResult)
 def bulk_init_prompt_templates(request: Request, payload: PromptTemplateBulkInitRequest):
     repository = repo(request)
-    total_candidates = repository.count_prompt_template_init_candidates(payload.mode)
-    candidates = repository.list_prompt_template_init_candidates(payload.mode, payload.limit)
+    statuses = None if payload.mode == "all" else [payload.mode]
+    candidates = repository.list_prompt_template_ops_items(statuses=statuses, limit=payload.limit).items
     results: list[PromptTemplateBulkInitItemResult] = []
-    if payload.dry_run:
-        for candidate in candidates:
-            results.append(PromptTemplateBulkInitItemResult(
-                item_id=str(candidate["item_id"]),
-                title=str(candidate["title"]),
-                status="would_initialize",
-                template_id=candidate["template_id"],
-                detail=candidate["template_status"],
-            ))
-        return PromptTemplateBulkInitResult(
-            mode=payload.mode,
-            dry_run=True,
-            total_candidates=total_candidates,
-            skipped_count=len(results),
-            results=results,
-        )
+    processed_count = 0
+    skipped_count = 0
+    failed_count = 0
 
     for candidate in candidates:
-        item_id = str(candidate["item_id"])
-        title = str(candidate["title"])
-        try:
-            template = _initialize_template_for_item_with_bulk_fallback(repository, item_id, payload.language)
+        if not candidate.can_initialize and payload.mode != "all":
+            skipped_count += 1
             results.append(PromptTemplateBulkInitItemResult(
-                item_id=item_id,
-                title=title,
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="skipped",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
+                detail="Template is not eligible for initialization.",
+            ))
+            continue
+        if payload.dry_run:
+            skipped_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                status="dry_run",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
+                detail="Dry run; no template initialized.",
+            ))
+            continue
+        try:
+            bundle, *_ = _initialize_prompt_template_bundle(repository, item_id=candidate.item_id, language=payload.language)
+            template = bundle.template
+            processed_count += 1
+            results.append(PromptTemplateBulkInitItemResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
                 status="initialized",
-                template_id=template.id,
-                slot_count=len(template.slots),
+                template_id=template.id if template else None,
+                slot_count=len(template.slots) if template else 0,
+                detail="Template initialized.",
             ))
         except PromptWorkflowUnavailable as exc:
-            _handle_workflow_error(exc)
+            raise HTTPException(status_code=424, detail="AI prompt workflow is not configured.") from exc
         except Exception as exc:  # noqa: BLE001
+            failed_count += 1
             results.append(PromptTemplateBulkInitItemResult(
-                item_id=item_id,
-                title=title,
+                item_id=candidate.item_id,
+                title=candidate.title,
                 status="failed",
+                template_id=candidate.template_id,
+                slot_count=candidate.slot_count,
                 detail=str(exc),
             ))
 
-    processed_count = sum(1 for result in results if result.status == "initialized")
-    failed_count = sum(1 for result in results if result.status == "failed")
     return PromptTemplateBulkInitResult(
         mode=payload.mode,
-        dry_run=False,
-        total_candidates=total_candidates,
+        dry_run=payload.dry_run,
+        total_candidates=len(candidates),
         processed_count=processed_count,
+        skipped_count=skipped_count,
         failed_count=failed_count,
         results=results,
+    )
+
+
+@router.post("/admin/prompt-templates/ops/batch-init", response_model=PromptTemplateBatchInitResponse)
+def batch_init_prompt_templates(request: Request, payload: PromptTemplateBatchInitRequest):
+    require_admin(request)
+    repository = repo(request)
+    candidates = repository.list_prompt_template_ops_items(
+        item_ids=payload.item_ids or None,
+        statuses=None if payload.item_ids else payload.statuses,
+        limit=payload.limit,
+    ).items
+    results: list[PromptTemplateBatchInitResult] = []
+    initialized = 0
+    skipped = 0
+    failed = 0
+
+    for candidate in candidates:
+        if not candidate.can_initialize and not payload.force:
+            skipped += 1
+            results.append(PromptTemplateBatchInitResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                result="skipped",
+                detail="Template is already ready." if candidate.status == "ready" else "This item does not have a usable prompt.",
+                template_id=candidate.template_id,
+                template_status=candidate.template_status or candidate.status,
+                slot_count=candidate.slot_count,
+            ))
+            continue
+        workflow_result = None
+        source_prompt = None
+        prepared_source_prompt = None
+        item = None
+        try:
+            bundle, item, source_prompt, prepared_source_prompt, workflow_result = _initialize_prompt_template_bundle(
+                repository,
+                item_id=candidate.item_id,
+                language=payload.language,
+            )
+            template = bundle.template
+            initialized += 1
+            results.append(PromptTemplateBatchInitResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                result="initialized",
+                detail="Template initialized.",
+                template_id=template.id if template else None,
+                template_status=template.status if template else None,
+                slot_count=len(template.slots) if template else 0,
+            ))
+        except KeyError:
+            failed += 1
+            results.append(PromptTemplateBatchInitResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                result="failed",
+                detail="Prompt template resource not found.",
+            ))
+        except HTTPException as exc:
+            skipped += 1
+            results.append(PromptTemplateBatchInitResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                result="skipped",
+                detail=str(exc.detail),
+                template_id=candidate.template_id,
+                template_status=candidate.template_status or candidate.status,
+                slot_count=candidate.slot_count,
+            ))
+        except Exception as exc:  # noqa: BLE001
+            if isinstance(exc, PromptWorkflowUnavailable):
+                _handle_workflow_error(
+                    request,
+                    exc,
+                    operation="template_init",
+                    context={
+                        "item_id": candidate.item_id,
+                    },
+                )
+            failure_id = _record_workflow_failure_sample(
+                request,
+                exc,
+                operation="template_init",
+                context={
+                    "item_id": candidate.item_id,
+                    "requested_language": payload.language,
+                    "item": item.model_dump() if item else None,
+                    "source_prompt": source_prompt.model_dump() if source_prompt else None,
+                    "prepared_source_prompt": asdict(prepared_source_prompt) if prepared_source_prompt else None,
+                    "workflow_result": workflow_result,
+                },
+            )
+            failed += 1
+            detail = str(exc) if not failure_id else f"{exc} [failure_id={failure_id}]"
+            results.append(PromptTemplateBatchInitResult(
+                item_id=candidate.item_id,
+                title=candidate.title,
+                result="failed",
+                detail=detail,
+                failure_id=failure_id,
+                template_id=candidate.template_id,
+                template_status=candidate.template_status or candidate.status,
+                slot_count=candidate.slot_count,
+            ))
+
+    return PromptTemplateBatchInitResponse(
+        total_candidates=len(candidates),
+        processed=len(results),
+        initialized=initialized,
+        skipped=skipped,
+        failed=failed,
+        results=results,
+    )
+
+
+@router.get("/admin/prompt-template-failures", response_model=PromptWorkflowFailureList)
+def get_prompt_template_failures(
+    request: Request,
+    limit: int = Query(default=50, ge=1, le=200),
+):
+    require_admin(request)
+    failures = list_prompt_workflow_failures(request.app.state.library_path, limit=limit)
+    return PromptWorkflowFailureList(failures=failures, total=len(failures), limit=limit)
+
+
+@router.get("/admin/prompt-template-failures/{failure_id}", response_model=PromptWorkflowFailureRecord)
+def get_prompt_template_failure(request: Request, failure_id: str):
+    require_admin(request)
+    try:
+        payload = read_prompt_workflow_failure(request.app.state.library_path, failure_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Prompt workflow failure sample not found.") from exc
+    return PromptWorkflowFailureRecord(
+        **summarize_prompt_workflow_failure(payload),
+        context=payload.get("context") if isinstance(payload.get("context"), dict) else {},
+        workflow=payload.get("workflow") if isinstance(payload.get("workflow"), dict) else None,
+        traceback=payload.get("traceback"),
     )
 
 
 @router.post("/templates/{template_id}/generate", response_model=PromptGenerationSessionRecord)
 def generate_prompt_template_variant(request: Request, template_id: str, payload: PromptTemplateGenerateRequest):
     repository = repo(request)
+    template = None
+    workflow_result = None
+    slot_values = None
     try:
         template = repository.get_prompt_template_by_id(template_id)
-        item = repository.get_item(template.item_id)
         if template.status != "ready":
             raise HTTPException(status_code=409, detail="The prompt template must be re-initialized before generating variants.")
+        if template.review_status != "approved":
+            raise HTTPException(status_code=409, detail="The prompt template is not approved for application use yet.")
         theme_keyword = _normalize_theme_keyword(payload.theme_keyword)
-        workflow_result = generate_prompt_variant(template=template, item=item, theme_keyword=theme_keyword, previous_variants=[])
+        workflow_result = generate_prompt_variant(template=template, theme_keyword=theme_keyword, previous_variants=[])
         slot_values = normalize_slot_values(workflow_result["slot_values"], template.slots)
         rendered_text, segments = render_marked_text(template.marked_text, slot_values)
         session = repository.create_prompt_generation_session(template_id, theme_keyword)
@@ -272,21 +524,38 @@ def generate_prompt_template_variant(request: Request, template_id: str, payload
     except HTTPException:
         raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_generate",
+            context={
+                "template_id": template_id,
+                "theme_keyword": payload.theme_keyword,
+                "template": template.model_dump() if template else None,
+                "workflow_result": workflow_result,
+                "slot_values": slot_values,
+            },
+        )
 
 
 @router.post("/generation-sessions/{session_id}/reroll", response_model=PromptGenerationSessionRecord)
 def reroll_prompt_template_variant(request: Request, session_id: str, payload: PromptTemplateRerollRequest):
     repository = repo(request)
+    session = None
+    template = None
+    workflow_result = None
+    slot_values = None
+    previous_variants = None
     try:
         session = repository.get_prompt_generation_session(session_id)
         template = repository.get_prompt_template_by_id(session.template_id)
-        item = repository.get_item(template.item_id)
         if template.status != "ready":
             raise HTTPException(status_code=409, detail="The prompt template must be re-initialized before generating variants.")
+        if template.review_status != "approved":
+            raise HTTPException(status_code=409, detail="The prompt template is not approved for application use yet.")
         rejected_ids = {variant_id for variant_id in payload.rejected_variant_ids if variant_id}
         previous_variants = [variant for variant in session.variants if not rejected_ids or variant.id in rejected_ids]
-        workflow_result = generate_prompt_variant(template=template, item=item, theme_keyword=session.theme_keyword, previous_variants=previous_variants)
+        workflow_result = generate_prompt_variant(template=template, theme_keyword=session.theme_keyword, previous_variants=previous_variants)
         slot_values = normalize_slot_values(workflow_result["slot_values"], template.slots)
         rendered_text, segments = render_marked_text(template.marked_text, slot_values)
         return repository.add_prompt_generation_variant(
@@ -301,7 +570,20 @@ def reroll_prompt_template_variant(request: Request, session_id: str, payload: P
     except HTTPException:
         raise
     except Exception as exc:  # noqa: BLE001
-        _handle_workflow_error(exc)
+        _handle_workflow_error(
+            request,
+            exc,
+            operation="template_reroll",
+            context={
+                "session_id": session_id,
+                "rejected_variant_ids": payload.rejected_variant_ids,
+                "session": session.model_dump() if session else None,
+                "template": template.model_dump() if template else None,
+                "previous_variants": [variant.model_dump() for variant in previous_variants] if previous_variants is not None else None,
+                "workflow_result": workflow_result,
+                "slot_values": slot_values,
+            },
+        )
 
 
 @router.post("/prompt-variants/{variant_id}/accept", response_model=PromptGenerationSessionRecord)

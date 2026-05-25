@@ -54,6 +54,18 @@ def test_create_get_search_and_filter_item(tmp_path):
     assert c.get("/api/items", params={"cluster": created["cluster"]["id"]}).json()["total"] == 1
 
 
+def test_item_tags_keep_payload_order_on_create_and_update(tmp_path):
+    c = client(tmp_path)
+    created = c.post("/api/items", json=create_payload(tags=["zebra", "alpha", "mid"])).json()
+    assert [tag["name"] for tag in created["tags"]] == ["zebra", "alpha", "mid"]
+
+    patched = c.patch(f"/api/items/{created['id']}", json={"tags": ["glass", "cinematic", "poster"]}).json()
+    assert [tag["name"] for tag in patched["tags"]] == ["glass", "cinematic", "poster"]
+
+    listed = c.get("/api/items", params={"sort": "created_desc"}).json()["items"][0]
+    assert [tag["name"] for tag in listed["tags"]] == ["glass", "cinematic", "poster"]
+
+
 def test_items_list_limit_allows_gallery_overview_scale(tmp_path):
     c = client(tmp_path)
     for idx in range(230):

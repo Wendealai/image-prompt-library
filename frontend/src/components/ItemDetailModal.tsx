@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, ExternalLink, Heart, ImagePlus, Minus, Pencil, Plus, X } from 'lucide-react';
+import { Check, Copy, Download, ExternalLink, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
+import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
-import { imageDisplayPath, imageHeroPath, selectPrimaryImage } from '../utils/images';
+import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
 import { PROMPT_LANGUAGE_LABELS, resolvePromptText, type PromptLanguage } from '../utils/prompts';
 
@@ -20,6 +21,18 @@ const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
 
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
+}
+
+function imageDownloadUrl(image: ImageRecord) {
+  return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+}
+
+function imageDownloadFilename(item: ItemDetail, image: ImageRecord) {
+  const sourcePath = image.original_path || image.preview_path || image.thumb_path || '';
+  const extensionMatch = sourcePath.match(/\.([a-z0-9]+)(?:$|\?)/i);
+  const extension = (extensionMatch?.[1] || 'jpg').toLowerCase().replace('jpeg', 'jpg');
+  const safeTitle = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 72) || 'prompt-image';
+  return `${safeTitle}-${image.id}.${extension}`;
 }
 
 function dedupeImages(images: ImageRecord[]) {
@@ -40,18 +53,6 @@ function measureTouchDistance(firstTouch: { clientX: number; clientY: number }, 
   return Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
 }
 
-function resolvePromptRecord<T extends { language: string; text: string }>(
-  prompts: T[],
-  selectedLanguage: string,
-  preferredLanguage: PromptLanguage,
-): T | undefined {
-  const usable = prompts.filter(prompt => prompt.text.trim().length > 0);
-  return usable.find(prompt => prompt.language === selectedLanguage)
-    || usable.find(prompt => prompt.language === preferredLanguage)
-    || usable.find(prompt => prompt.language === 'en')
-    || usable[0];
-}
-
 function extractErrorDetail(error: unknown): string {
   if (!(error instanceof Error)) return '';
   let message = error.message.trim();
@@ -65,6 +66,18 @@ function extractErrorDetail(error: unknown): string {
     // Keep raw error text when the payload is not JSON.
   }
   return message;
+}
+
+function resolvePromptRecord<T extends { language: string; text: string }>(
+  prompts: T[],
+  selectedLanguage: string,
+  preferredLanguage: PromptLanguage,
+): T | undefined {
+  const usable = prompts.filter(prompt => prompt.text.trim().length > 0);
+  return usable.find(prompt => prompt.language === selectedLanguage)
+    || usable.find(prompt => prompt.language === preferredLanguage)
+    || usable.find(prompt => prompt.language === 'en')
+    || usable[0];
 }
 
 function InlineEditableField({
@@ -205,6 +218,7 @@ export default function ItemDetailModal({
   const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
   const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
   const lastViewerTapAtRef = useRef(0);
   const lastDefaultPromptKeyRef = useRef('');
@@ -241,18 +255,21 @@ export default function ItemDetailModal({
       .filter(tag => !existing.has(tag.name) && (!query || tag.name.toLowerCase().includes(query)))
       .slice(0, 8);
   }, [item, tags, tagQuery]);
-
   const prompt = item?.prompts.find(promptRecord => promptRecord.language === lang);
   const resolvedPrompt = resolvePromptRecord(availablePromptRecords, lang, preferredLanguage);
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
-  const uniqueImages = dedupeImages(item?.images || []);
+  const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
   useEffect(() => {
-    setSelectedImageIdentity(primaryImage ? getImageIdentity(primaryImage) : undefined);
+    setSelectedImageIdentity(current => {
+      const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
+      if (current && availableImageIdentities.has(current)) return current;
+      return primaryImage ? getImageIdentity(primaryImage) : undefined;
+    });
     setImageViewerOpen(false);
     setImageViewerScale(1);
-  }, [item?.id, primaryImage?.id, primaryImage?.original_path, primaryImage?.preview_path, primaryImage?.thumb_path]);
+  }, [item?.id, uniqueImages, primaryImage?.id, primaryImage?.original_path, primaryImage?.preview_path, primaryImage?.thumb_path]);
   useEffect(() => {
     imageViewerScaleRef.current = imageViewerScale;
   }, [imageViewerScale]);
@@ -286,6 +303,8 @@ export default function ItemDetailModal({
       const result = await api.generateItemImage(item.id, { promptText, promptLanguage: lang });
       const updated = await api.item(item.id);
       setItem(updated);
+      const newestImage = updated.images[updated.images.length - 1];
+      if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
       onChanged();
       setImageGenerationFeedback({ tone: 'success', message: result.stored_images.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
     } catch (error) {
@@ -403,6 +422,33 @@ export default function ItemDetailModal({
   const handleImageViewerTouchEnd = () => {
     pinchGestureRef.current = null;
   };
+  const handleDownloadImage = (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+    event?.stopPropagation();
+    if (!item) return;
+    const href = imageDownloadUrl(image);
+    if (!href) return;
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = imageDownloadFilename(item, image);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+  const handleDeleteImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+    event?.stopPropagation();
+    if (!item || !window.confirm(t('deleteImageConfirm'))) return;
+    try {
+      const updated = await api.deleteImage(item.id, image.id);
+      const nextImages = dedupeImages(updated.images);
+      const nextActiveImage = nextImages.find(candidate => getImageIdentity(candidate) !== getImageIdentity(image)) || selectPrimaryImage(nextImages);
+      setItem(updated);
+      setSelectedImageIdentity(nextActiveImage ? getImageIdentity(nextActiveImage) : undefined);
+      setImageViewerOpen(false);
+      onChanged();
+    } catch (error) {
+      window.alert(error instanceof Error && error.message ? error.message : t('imageDeleteFailed'));
+    }
+  };
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -412,17 +458,30 @@ export default function ItemDetailModal({
         ) : (
           <div className="modal-content-enter" key={item.id}>
             <div className="detail-layout">
-              <section className="modal-hero">
+              <section className="modal-hero" ref={heroSectionRef}>
                 {activeImage ? (
                   <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
-                    <img
+                    <FallbackImage
                       className="hero-image"
-                      src={mediaUrl(imageHeroPath(activeImage))}
+                      paths={imageHeroPaths(activeImage)}
                       alt={item.title}
+                      fallback={<span className="placeholder hero-image image-load-fallback">{t('noImage')}</span>}
                     />
                   </button>
                 ) : (
                   <div className="placeholder hero-image">{t('noImage')}</div>
+                )}
+                {activeImage && (
+                  <div className="detail-image-actions" onClick={event => event.stopPropagation()}>
+                    <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                      <Download size={17} />
+                    </button>
+                    {showMutations && (
+                      <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                        <Trash2 size={17} />
+                      </button>
+                    )}
+                  </div>
                 )}
                 <div className="mobile-hero-actions" aria-label={t('itemActions')}>
                   <button className="modal-icon-button mobile-hero-close" onClick={onClose} aria-label={t('close')}>
@@ -449,7 +508,7 @@ export default function ItemDetailModal({
                         onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
                         aria-label={t('openImageDetailViewer')}
                       >
-                        <img src={mediaUrl(imageDisplayPath(img))} alt="" />
+                        <FallbackImage paths={imageDisplayPaths(img)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
                       </button>
                     ))}
                   </div>
@@ -557,7 +616,20 @@ export default function ItemDetailModal({
                   })()}
                 </div>
 
-                <PromptTemplatePanel itemId={item.id} t={t} onCopyResult={onCopyPrompt} />
+                <PromptTemplatePanel
+                  itemId={item.id}
+                  fallbackPrompt={copyText}
+                  t={t}
+                  referenceImages={uniqueImages}
+                  onCopyResult={onCopyPrompt}
+                  onImageGenerated={result => {
+                    setItem(result.item);
+                    const newestImage = result.images[result.images.length - 1];
+                    if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                    window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+                    onChanged();
+                  }}
+                />
 
                 <InlineEditableTextArea className="notes-inline-edit" value={item.notes || ''} placeholder={t('addNote')} onCommit={value => commitInlineUpdate({ notes: value.trim() || null })} editable={showMutations} />
 
@@ -588,9 +660,19 @@ export default function ItemDetailModal({
                   <strong>{t('imageDetailViewer')}</strong>
                   <span>{t('imageDetailViewerHint')}</span>
                 </div>
-                <button type="button" className="modal-icon-button" onClick={closeImageViewer} aria-label={t('close')}>
-                  <X size={18} />
-                </button>
+                <div className="detail-image-viewer-actions">
+                  <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                    <Download size={16} />
+                  </button>
+                  {showMutations && (
+                    <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                      <Trash2 size={16} />
+                    </button>
+                  )}
+                  <button type="button" className="modal-icon-button" onClick={closeImageViewer} aria-label={t('close')}>
+                    <X size={18} />
+                  </button>
+                </div>
               </div>
               <div className="detail-image-viewer-controls" aria-label={t('constellationControls')}>
                 <button type="button" className="modal-icon-button" onClick={() => nudgeImageViewerScale(-0.25)} aria-label={t('zoomOut')} disabled={imageViewerScale <= 1}>
@@ -616,7 +698,12 @@ export default function ItemDetailModal({
                 onTouchCancel={handleImageViewerTouchEnd}
               >
                 <div className="detail-image-viewer-stage" style={{ width: `${imageViewerScale * 100}%` }}>
-                  <img className="detail-image-viewer-image" src={mediaUrl(imageHeroPath(activeImage))} alt={item?.title || ''} />
+                  <FallbackImage
+                    className="detail-image-viewer-image"
+                    paths={imageHeroPaths(activeImage)}
+                    alt={item?.title || ''}
+                    fallback={<span className="placeholder image-load-fallback">{t('noImage')}</span>}
+                  />
                 </div>
               </div>
             </div>

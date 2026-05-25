@@ -1,9 +1,9 @@
-import type { AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
 
 const API = '';
 const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
-const DEMO_DATA_BASE = `${import.meta.env.BASE_URL || '/'}demo-data`.replace(/\/+/g, '/');
 const DEMO_ASSET_VERSION = (import.meta.env.VITE_DEMO_ASSET_VERSION || '').trim();
+const DEMO_DATA_BASE = `${import.meta.env.BASE_URL || '/'}demo-data`.replace(/\/+/g, '/');
 
 function demoUrl(path: string) {
   const base = import.meta.env.BASE_URL || '/';
@@ -13,9 +13,35 @@ function demoUrl(path: string) {
   return `${url}${separator}v=${encodeURIComponent(DEMO_ASSET_VERSION)}`;
 }
 
+function summarizeResponseError(body: string, status: number) {
+  const trimmed = body.trim();
+  if (!trimmed) return `Request failed with status ${status}.`;
+  try {
+    const parsed = JSON.parse(trimmed) as { detail?: string; message?: string };
+    if (typeof parsed.detail === 'string' && parsed.detail.trim()) return parsed.detail.trim();
+    if (typeof parsed.message === 'string' && parsed.message.trim()) return parsed.message.trim();
+  } catch {
+    // Fall back to the raw response body below.
+  }
+  if (/^<!doctype html/i.test(trimmed) || /^<html/i.test(trimmed)) return `Request failed with status ${status}.`;
+  return trimmed;
+}
+
+export class ApiError extends Error {
+  status: number;
+  body: string;
+
+  constructor(status: number, body: string) {
+    super(summarizeResponseError(body, status));
+    this.name = 'ApiError';
+    this.status = status;
+    this.body = body;
+  }
+}
+
 async function json<T>(url: string, init?: RequestInit): Promise<T> {
-  const r = await fetch(API + url, { headers: init?.body instanceof FormData ? undefined : { 'Content-Type': 'application/json' }, ...init });
-  if (!r.ok) throw new Error(await r.text());
+  const r = await fetch(API + url, { credentials: 'same-origin', headers: init?.body instanceof FormData ? undefined : { 'Content-Type': 'application/json' }, ...init });
+  if (!r.ok) throw new ApiError(r.status, await r.text());
   return r.json();
 }
 
@@ -84,7 +110,6 @@ function demoImageGenerationUnavailable(): Promise<never> {
 
 export const mediaUrl = (path?: string) => {
   if (!path) return '';
-  if (/^https?:\/\//i.test(path)) return path;
   if (isDemoMode && path.startsWith('demo-data/')) return demoUrl(path);
   return `/media/${path}`;
 };
@@ -101,15 +126,27 @@ export const api = isDemoMode ? {
   deleteItem: (_id: string) => demoReadOnly(),
   favorite: (_id: string) => demoReadOnly(),
   uploadImage: (_id: string, _file: File, _role: UploadImageRole = 'result_image') => demoReadOnly(),
+  deleteImage: (_itemId: string, _imageId: string) => demoReadOnly(),
   fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.')),
   promptTemplate: (_itemId: string) => demoAiUnavailable(),
-  initPromptTemplate: (_itemId: string, _language?: string) => demoAiUnavailable(),
-  bulkInitPromptTemplates: (_payload: PromptTemplateBulkInitRequest = {}) => demoAiUnavailable(),
+  bulkInitPromptTemplates: (_payload: PromptTemplateBulkInitRequest) => demoAiUnavailable(),
+  adminSession: () => Promise.resolve<AdminSessionRecord>({ authenticated: false }),
+  adminLogin: (_password: string) => Promise.reject(new Error('Admin is unavailable in the online sandbox. Run Image Prompt Library locally with your own backend.')),
+  adminLogout: () => Promise.resolve<AdminSessionRecord>({ authenticated: false }),
+  adminPromptTemplate: (_itemId: string) => demoAiUnavailable(),
+  adminInitPromptTemplate: (_itemId: string, _language?: string) => demoAiUnavailable(),
   generatePromptVariant: (_templateId: string, _themeKeyword: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   rerollPromptVariant: (_sessionId: string, _rejectedVariantIds: string[] = []) => demoAiUnavailable(),
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
+  generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions, _references?: PromptImageReferenceInput[]) => demoAiUnavailable(),
   generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
+  adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),
+  adminBatchInitPromptTemplates: (_payload: PromptTemplateBatchInitRequest) => demoAiUnavailable(),
+  adminPromptTemplateFailures: (_limit = 50) => demoAiUnavailable(),
+  adminPromptTemplateFailure: (_failureId: string) => demoAiUnavailable(),
+  adminApprovePromptTemplate: (_templateId: string, _payload: PromptTemplateReviewRequest = {}) => demoAiUnavailable(),
+  adminRejectPromptTemplate: (_templateId: string, _payload: PromptTemplateReviewRequest = {}) => demoAiUnavailable(),
   clusters: () => demoJson<ClusterRecord[]>('demo-data/clusters.json'),
   tags: () => demoJson<TagRecord[]>('demo-data/tags.json'),
 } : {
@@ -122,15 +159,32 @@ export const api = isDemoMode ? {
   deleteItem: (id: string) => json<ItemDetail>(`/api/items/${id}`, { method: 'DELETE' }),
   favorite: (id: string) => json<ItemDetail>(`/api/items/${id}/favorite`, { method: 'POST' }),
   uploadImage: (id: string, file: File, role: UploadImageRole = 'result_image') => { const fd = new FormData(); fd.set('file', file); fd.set('role', role); return json(`/api/items/${id}/images`, { method: 'POST', body: fd }); },
+  deleteImage: (itemId: string, imageId: string) => json<ItemDetail>(`/api/items/${itemId}/images/${imageId}`, { method: 'DELETE' }),
   fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch', { method: 'POST', body: JSON.stringify({ url }) }),
   fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url)),
   promptTemplate: (itemId: string) => json<PromptTemplateBundle>(`/api/items/${itemId}/prompt-template`),
-  initPromptTemplate: (itemId: string, language?: string) => json<PromptTemplateBundle>(`/api/items/${itemId}/prompt-template/init`, { method: 'POST', body: JSON.stringify(language ? { language } : {}) }),
-  bulkInitPromptTemplates: (payload: PromptTemplateBulkInitRequest = {}) => json<PromptTemplateBulkInitResult>('/api/prompt-templates/bulk-init', { method: 'POST', body: JSON.stringify(payload) }),
+  bulkInitPromptTemplates: (payload: PromptTemplateBulkInitRequest) => json<PromptTemplateBulkInitResult>(`/api/prompt-templates/bulk-init`, { method: 'POST', body: JSON.stringify(payload) }),
+  adminPromptTemplate: (itemId: string) => json<PromptTemplateBundle>(`/api/admin/items/${itemId}/prompt-template`),
+  adminSession: () => json<AdminSessionRecord>('/api/admin/auth/session'),
+  adminLogin: (password: string) => json<AdminSessionRecord>('/api/admin/auth/login', { method: 'POST', body: JSON.stringify({ password }) }),
+  adminLogout: () => json<AdminSessionRecord>('/api/admin/auth/logout', { method: 'POST' }),
+  adminInitPromptTemplate: (itemId: string, language?: string) => json<PromptTemplateBundle>(`/api/admin/items/${itemId}/prompt-template/init`, { method: 'POST', body: JSON.stringify(language ? { language } : {}) }),
   generatePromptVariant: (templateId: string, themeKeyword: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/templates/${templateId}/generate`, { method: 'POST', body: JSON.stringify({ theme_keyword: themeKeyword, rejected_variant_ids: rejectedVariantIds }) }),
   rerollPromptVariant: (sessionId: string, rejectedVariantIds: string[] = []) => json<PromptGenerationSessionRecord>(`/api/generation-sessions/${sessionId}/reroll`, { method: 'POST', body: JSON.stringify({ rejected_variant_ids: rejectedVariantIds }) }),
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),
+  generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[] = []) => json<PromptImageGenerationResponse>(`/api/items/${itemId}/generate-image`, { method: 'POST', body: JSON.stringify({ prompt, ...(generation ? { generation } : {}), ...(references.length > 0 ? { references } : {}) }) }),
   generateItemImage: (itemId: string, payload: NanobananaItemImageGenerationRequest = {}) => json<NanobananaItemImageGenerationResult>(`/api/items/${itemId}/nanobanana/images`, { method: 'POST', body: JSON.stringify(payload) }),
+  adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {}) => {
+    const qs = new URLSearchParams();
+    if (params.limit) qs.set('limit', String(params.limit));
+    params.status?.forEach(value => qs.append('status', value));
+    return json<PromptTemplateOpsItemList>(`/api/admin/prompt-templates/ops/items?${qs.toString()}`);
+  },
+  adminBatchInitPromptTemplates: (payload: PromptTemplateBatchInitRequest) => json<PromptTemplateBatchInitResponse>('/api/admin/prompt-templates/ops/batch-init', { method: 'POST', body: JSON.stringify(payload) }),
+  adminPromptTemplateFailures: (limit = 50) => json<PromptWorkflowFailureList>(`/api/admin/prompt-template-failures?limit=${limit}`),
+  adminPromptTemplateFailure: (failureId: string) => json<PromptWorkflowFailureRecord>(`/api/admin/prompt-template-failures/${failureId}`),
+  adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {}) => json<PromptTemplateRecord>(`/api/admin/prompt-templates/${templateId}/approve`, { method: 'POST', body: JSON.stringify(payload) }),
+  adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {}) => json<PromptTemplateRecord>(`/api/admin/prompt-templates/${templateId}/reject`, { method: 'POST', body: JSON.stringify(payload) }),
   clusters: () => json<ClusterRecord[]>('/api/clusters'),
   tags: () => json<TagRecord[]>('/api/tags'),
 };

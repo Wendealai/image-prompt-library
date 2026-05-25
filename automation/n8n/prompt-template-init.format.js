@@ -165,7 +165,7 @@ const firstNumber = (paths) => {
   return null;
 };
 
-const markedText = firstString([
+let markedText = firstString([
   ['markedText'],
   ['marked_text'],
   ['data', 'markedText'],
@@ -200,8 +200,37 @@ if (!markedText) {
 }
 
 const stripSlotMarkup = (input) => input.replace(/\[\[slot[^\]]*\]\](.*?)\[\[\/slot\]\]/gs, '$1');
-const rendered = stripSlotMarkup(markedText);
 const rawText = $item(0).$node['Prepare Prompt Template Init Payload'].json.rawText;
+const removePromptScaffolding = (input) => {
+  let cleaned = input
+    .replace(/^<<<IMAGE_PROMPT_BEGIN>>>\n?/i, '')
+    .replace(/\n?<<<IMAGE_PROMPT_END>>>\s*$/i, '')
+    .trim();
+
+  const trailingInstructions = [
+    'Only mark text that appears between those markers.',
+    'Do not include the markers themselves in markedText.',
+    'Return JSON only.',
+  ];
+
+  for (const instruction of trailingInstructions) {
+    const escaped = instruction.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleaned = cleaned.replace(new RegExp(`\\n+${escaped}\\s*$`, 'i'), '').trimEnd();
+  }
+
+  return cleaned.trim();
+};
+
+let rendered = stripSlotMarkup(markedText);
+if (rendered !== rawText) {
+  const cleanedMarkedText = removePromptScaffolding(markedText);
+  const cleanedRendered = stripSlotMarkup(cleanedMarkedText);
+  if (cleanedRendered === rawText) {
+    markedText = cleanedMarkedText;
+    rendered = cleanedRendered;
+  }
+}
+
 if (rendered !== rawText) {
   throw new Error('markedText does not render back to the original prompt exactly.');
 }

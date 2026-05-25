@@ -5,8 +5,7 @@ from typing import Any
 
 import httpx
 
-from backend.config import default_link_import_skill_url
-from backend.schemas import ItemDetail, PromptGenerationVariantRecord, PromptTemplateRecord
+from backend.schemas import PromptGenerationVariantRecord, PromptTemplateRecord
 
 INIT_URL_ENV = "IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL"
 GENERATE_URL_ENV = "IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL"
@@ -14,6 +13,8 @@ TOKEN_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN"
 TOKEN_HEADER_ENV = "IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER"
 TIMEOUT_ENV = "IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS"
 DEFAULT_TOKEN_HEADER = "X-Image-Prompt-Workflow-Token"
+INIT_RETRYABLE_STATUS_CODES = {500, 502, 503, 504}
+INIT_MAX_ATTEMPTS = 2
 
 
 class PromptWorkflowUnavailable(RuntimeError):
@@ -21,7 +22,22 @@ class PromptWorkflowUnavailable(RuntimeError):
 
 
 class PromptWorkflowError(RuntimeError):
-    pass
+    def __init__(
+        self,
+        message: str,
+        *,
+        operation: str | None = None,
+        url: str | None = None,
+        request_payload: dict[str, Any] | None = None,
+        response_status: int | None = None,
+        response_text: str | None = None,
+    ):
+        super().__init__(message)
+        self.operation = operation
+        self.url = url
+        self.request_payload = request_payload
+        self.response_status = response_status
+        self.response_text = response_text
 
 
 def _workflow_url(env_name: str) -> str:
@@ -50,72 +66,98 @@ def _timeout_seconds() -> float:
     return max(5.0, timeout)
 
 
-def _post_json(url: str, payload: dict[str, Any]) -> dict[str, Any]:
+def _post_json(url: str, payload: dict[str, Any], *, operation: str) -> dict[str, Any]:
+    request_payload = payload
     headers = {"Content-Type": "application/json", **_workflow_headers()}
     try:
         response = httpx.post(url, json=payload, headers=headers, timeout=_timeout_seconds())
         response.raise_for_status()
     except httpx.HTTPStatusError as exc:
         detail = exc.response.text.strip() or exc.response.reason_phrase
-        raise PromptWorkflowError(f"Workflow request failed: {detail}") from exc
+        raise PromptWorkflowError(
+            f"Workflow request failed: {detail}",
+            operation=operation,
+            url=url,
+            request_payload=request_payload,
+            response_status=exc.response.status_code,
+            response_text=detail,
+        ) from exc
     except httpx.HTTPError as exc:
-        raise PromptWorkflowError(f"Workflow request failed: {exc}") from exc
+        raise PromptWorkflowError(
+            f"Workflow request failed: {exc}",
+            operation=operation,
+            url=url,
+            request_payload=request_payload,
+        ) from exc
     try:
         payload = response.json()
     except ValueError as exc:
-        raise PromptWorkflowError("Workflow response must be valid JSON.") from exc
+        raise PromptWorkflowError(
+            "Workflow response must be valid JSON.",
+            operation=operation,
+            url=url,
+            request_payload=request_payload,
+            response_status=response.status_code,
+            response_text=response.text,
+        ) from exc
     if not isinstance(payload, dict):
-        raise PromptWorkflowError("Workflow response must be a JSON object.")
+        raise PromptWorkflowError(
+            "Workflow response must be a JSON object.",
+            operation=operation,
+            url=url,
+            request_payload=request_payload,
+            response_status=response.status_code,
+            response_text=response.text,
+        )
     return payload
 
 
-def _item_payload(item: ItemDetail) -> dict[str, Any]:
-    payload: dict[str, Any] = {
-        "id": item.id,
-        "title": item.title,
-        "model": item.model,
-    }
-    if item.source_url:
-        payload["sourceUrl"] = item.source_url
-    if item.author:
-        payload["author"] = item.author
-    if item.notes:
-        payload["notes"] = item.notes
-    default_skill_url = default_link_import_skill_url()
-    if default_skill_url:
-        payload["defaultImportSkillUrl"] = default_skill_url
-    return payload
+def _should_retry_template_init(exc: PromptWorkflowError) -> bool:
+    if exc.response_status in INIT_RETRYABLE_STATUS_CODES:
+        return True
+    detail = f"{exc} {exc.response_text or ''}".lower()
+    return "markedtext does not render back to the original prompt exactly" in detail
 
 
-def initialize_prompt_template(*, item: ItemDetail, source_language: str, raw_text: str) -> dict[str, Any]:
+def initialize_prompt_template(*, item_id: str, title: str, model: str, source_language: str, raw_text: str) -> dict[str, Any]:
     payload = {
-        "item": _item_payload(item),
+        "item": {
+            "id": item_id,
+            "title": title,
+            "model": model,
+        },
         "prompt": {
             "language": source_language,
             "text": raw_text,
         },
     }
-    response = _post_json(_workflow_url(INIT_URL_ENV), payload)
-    marked_text = response.get("markedText") or response.get("marked_text")
-    if not isinstance(marked_text, str) or not marked_text.strip():
-        raise PromptWorkflowError("Init workflow must return a non-empty markedText string.")
-    return {
-        "marked_text": marked_text,
-        "analysis_confidence": response.get("confidence") or response.get("analysisConfidence"),
-        "analysis_notes": response.get("notes") or response.get("analysisNotes"),
-        "source_language": response.get("sourceLanguage") or response.get("source_language") or source_language,
-    }
+    url = _workflow_url(INIT_URL_ENV)
+
+    last_error: PromptWorkflowError | None = None
+    for attempt in range(1, INIT_MAX_ATTEMPTS + 1):
+        try:
+            response = _post_json(url, payload, operation="template_init")
+            marked_text = response.get("markedText") or response.get("marked_text")
+            if not isinstance(marked_text, str) or not marked_text.strip():
+                raise PromptWorkflowError("Init workflow must return a non-empty markedText string.")
+            return {
+                "marked_text": marked_text,
+                "analysis_confidence": response.get("confidence") or response.get("analysisConfidence"),
+                "analysis_notes": response.get("notes") or response.get("analysisNotes"),
+                "source_language": response.get("sourceLanguage") or response.get("source_language") or source_language,
+            }
+        except PromptWorkflowError as exc:
+            last_error = exc
+            if attempt >= INIT_MAX_ATTEMPTS or not _should_retry_template_init(exc):
+                raise
+
+    if last_error is not None:
+        raise last_error
+    raise PromptWorkflowError("Init workflow failed before producing a result.")
 
 
-def generate_prompt_variant(
-    *,
-    template: PromptTemplateRecord,
-    item: ItemDetail,
-    theme_keyword: str,
-    previous_variants: list[PromptGenerationVariantRecord],
-) -> dict[str, Any]:
+def generate_prompt_variant(*, template: PromptTemplateRecord, theme_keyword: str, previous_variants: list[PromptGenerationVariantRecord]) -> dict[str, Any]:
     payload = {
-        "item": _item_payload(item),
         "template": {
             "id": template.id,
             "itemId": template.item_id,
@@ -136,7 +178,7 @@ def generate_prompt_variant(
             for variant in previous_variants
         ],
     }
-    response = _post_json(_workflow_url(GENERATE_URL_ENV), payload)
+    response = _post_json(_workflow_url(GENERATE_URL_ENV), payload, operation="template_generate")
     slot_values = response.get("slotValues") or response.get("slot_values")
     if not isinstance(slot_values, list) or not slot_values:
         raise PromptWorkflowError("Generate workflow must return a non-empty slotValues list.")

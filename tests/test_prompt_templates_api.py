@@ -1,40 +1,37 @@
 from pathlib import Path
 
+import pytest
+
 from fastapi.testclient import TestClient
 
-from backend.db import connect
 from backend.main import create_app
-from backend.repositories import ItemRepository, new_id, now
+from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, ItemUpdate, PromptIn, PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
-from backend.services.prompt_markup import render_marked_text
-from backend.services.prompt_workflows import PromptWorkflowError
+from backend.services.prompt_workflow_failures import record_prompt_workflow_failure
+from backend.services.prompt_workflows import PromptWorkflowError, PromptWorkflowUnavailable
 
 
 MARKED_TEXT = 'A cinematic poster of [[slot id="main_subject" group="theme_core" label="主体"]]a tiny ramen bar[[/slot]] with [[slot id="support_props" group="theme_core" label="配套元素"]]paper lanterns and wooden stools[[/slot]].'
+ADMIN_PASSWORD = 'test-admin-password'
+
+
+@pytest.fixture(autouse=True)
+def _configure_admin_password(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD", ADMIN_PASSWORD)
 
 
 def _create_item(repo: ItemRepository) -> str:
     item = repo.create_item(ItemCreate(
         title='Midnight Noodles',
-        source_url='https://example.test/midnight-noodles',
-        author='Fixture Author',
-        notes='Fixture notes',
         prompts=[PromptIn(language='en', text='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.', is_primary=True)],
     ))
     return item.id
 
 
-def _create_named_item(repo: ItemRepository, title: str, prompt_text: str) -> str:
-    item = repo.create_item(ItemCreate(
-        title=title,
-        prompts=[PromptIn(language='en', text=prompt_text, is_primary=True)],
-    ))
-    return item.id
-
-
-def _mark_first_word(raw_text: str) -> str:
-    first_word, rest = raw_text.split(' ', 1)
-    return f'[[slot id="main_subject" group="theme_core" label="主体"]]{first_word}[[/slot]] {rest}'
+def _admin_login(client: TestClient):
+    response = client.post('/api/admin/auth/login', json={'password': ADMIN_PASSWORD})
+    assert response.status_code == 200
+    assert response.json()['authenticated'] is True
 
 
 def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeypatch):
@@ -44,10 +41,7 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     item_id = _create_item(repo)
 
     def fake_init_prompt_template(**kwargs):
-        assert kwargs['item'].id == item_id
-        assert kwargs['item'].source_url == 'https://example.test/midnight-noodles'
-        assert kwargs['item'].author == 'Fixture Author'
-        assert kwargs['item'].notes == 'Fixture notes'
+        assert kwargs['item_id'] == item_id
         assert kwargs['source_language'] == 'en'
         return {
             'marked_text': MARKED_TEXT,
@@ -74,22 +68,40 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     ])
 
     def fake_generate_prompt_variant(**kwargs):
-        assert kwargs['item'].id == item_id
-        assert kwargs['item'].title == 'Midnight Noodles'
-        assert kwargs['item'].source_url == 'https://example.test/midnight-noodles'
         return next(responses)
 
     monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
     monkeypatch.setattr('backend.routers.prompt_templates.generate_prompt_variant', fake_generate_prompt_variant)
 
-    init_response = client.post(f'/api/items/{item_id}/prompt-template/init', json={})
+    _admin_login(client)
+
+    init_response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
     assert init_response.status_code == 200
     init_payload = init_response.json()
     assert init_payload['template']['status'] == 'ready'
+    assert init_payload['template']['review_status'] == 'pending_review'
     assert init_payload['template']['slots'][0]['id'] == 'main_subject'
+    assert init_payload['template']['slots'][0]['variable_type'] == 'subject'
+    assert init_payload['template']['slots'][0]['input_hint']
     assert init_payload['template']['analysis_confidence'] == 0.91
+    assert init_payload['template']['quality_score'] >= 0.66
+    assert init_payload['template']['quality_label'] in {'good', 'excellent'}
+    assert init_payload['template']['quality_reasons']
 
     template_id = init_payload['template']['id']
+    public_before_review = client.get(f'/api/items/{item_id}/prompt-template')
+    assert public_before_review.status_code == 200
+    assert public_before_review.json()['template'] is None
+
+    admin_bundle = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert admin_bundle.status_code == 200
+    assert admin_bundle.json()['template']['review_status'] == 'pending_review'
+
+    approve_response = client.post(f'/api/admin/prompt-templates/{template_id}/approve', json={'review_notes': 'Looks good.'})
+    assert approve_response.status_code == 200
+    assert approve_response.json()['review_status'] == 'approved'
+    assert approve_response.json()['review_notes'] == 'Looks good.'
+
     generate_response = client.post(f'/api/templates/{template_id}/generate', json={'theme_keyword': 'retro music shop'})
     assert generate_response.status_code == 200
     session_payload = generate_response.json()
@@ -112,35 +124,6 @@ def test_prompt_template_init_generate_reroll_and_accept(tmp_path: Path, monkeyp
     accepted_payload = accept_response.json()
     assert accepted_payload['accepted_variant_id'] == reroll_payload['variants'][0]['id']
     assert accepted_payload['variants'][0]['accepted'] is True
-
-
-def test_prompt_template_init_prefers_simplified_source_when_traditional_is_auto_generated(tmp_path: Path, monkeypatch):
-    app = create_app(library_path=tmp_path / 'library')
-    client = TestClient(app)
-    repo = ItemRepository(tmp_path / 'library')
-    item = repo.create_item(ItemCreate(
-        title='Soda Bottle',
-        prompts=[PromptIn(language='zh_hans', text='红色 soda bottle on a steel table.', is_primary=True)],
-    ))
-
-    def fake_init_prompt_template(**kwargs):
-        assert kwargs['item'].id == item.id
-        assert kwargs['source_language'] == 'zh_hans'
-        return {
-            'marked_text': _mark_first_word(kwargs['raw_text']),
-            'analysis_confidence': 0.91,
-            'analysis_notes': 'Uses the original simplified prompt.',
-            'source_language': kwargs['source_language'],
-        }
-
-    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
-
-    response = client.post(f'/api/items/{item.id}/prompt-template/init', json={})
-
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload['template']['source_language'] == 'zh_hans'
-    assert payload['template']['raw_text_snapshot'] == '红色 soda bottle on a steel table.'
 
 
 def test_updating_prompts_marks_template_stale_and_clears_sessions(tmp_path: Path):
@@ -180,169 +163,401 @@ def test_updating_prompts_marks_template_stale_and_clears_sessions(tmp_path: Pat
     bundle = repo.get_prompt_template_bundle(item_id)
     assert bundle.template is not None
     assert bundle.template.status == 'stale'
+    assert bundle.template.review_status == 'pending_review'
     assert bundle.sessions == []
 
 
-def test_bulk_prompt_template_init_processes_missing_templates_only(tmp_path: Path, monkeypatch):
+def test_public_prompt_template_endpoint_only_returns_approved_templates(tmp_path: Path):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
     repo = ItemRepository(tmp_path / 'library')
-    missing_item_id = _create_named_item(repo, 'Paper Lanterns', 'Paper lanterns above a narrow alley.')
-    ready_item_id = _create_named_item(repo, 'Glass Greenhouse', 'Glass greenhouse with orchids and mist.')
-    existing_template = repo.save_prompt_template(
-        item_id=ready_item_id,
+    item_id = _create_item(repo)
+    template = repo.save_prompt_template(
+        item_id=item_id,
         source_language='en',
-        raw_text_snapshot='Glass greenhouse with orchids and mist.',
-        marked_text=_mark_first_word('Glass greenhouse with orchids and mist.'),
-        slots=[PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='Glass')],
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
         analysis_confidence=0.8,
-        analysis_notes='Already reviewed.',
+        analysis_notes='Stable',
     )
-    initialized_ids: list[str] = []
 
-    def fake_init_prompt_template(**kwargs):
-        initialized_ids.append(kwargs['item'].id)
-        return {
-            'marked_text': _mark_first_word(kwargs['raw_text']),
-            'analysis_confidence': 0.93,
-            'analysis_notes': 'Bulk initialized.',
-            'source_language': kwargs['source_language'],
-        }
+    hidden_response = client.get(f'/api/items/{item_id}/prompt-template')
+    assert hidden_response.status_code == 200
+    assert hidden_response.json()['template'] is None
 
-    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+    repo.review_prompt_template(template.id, review_status='approved', review_notes='Ship it.')
 
-    response = client.post('/api/prompt-templates/bulk-init', json={'mode': 'missing', 'limit': 10})
+    visible_response = client.get(f'/api/items/{item_id}/prompt-template')
+    assert visible_response.status_code == 200
+    assert visible_response.json()['template']['review_status'] == 'approved'
 
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload['total_candidates'] == 1
-    assert payload['processed_count'] == 1
-    assert payload['failed_count'] == 0
-    assert initialized_ids == [missing_item_id]
-    assert payload['results'][0]['item_id'] == missing_item_id
-    assert payload['results'][0]['slot_count'] == 1
-    assert repo.get_prompt_template_bundle(missing_item_id).template is not None
-    assert repo.get_prompt_template_bundle(ready_item_id).template.id == existing_template.id
+    _admin_login(client)
+
+    reject_response = client.post(f'/api/admin/prompt-templates/{template.id}/reject', json={'review_notes': 'Needs better slots.'})
+    assert reject_response.status_code == 200
+    assert reject_response.json()['review_status'] == 'rejected'
+
+    hidden_again = client.get(f'/api/items/{item_id}/prompt-template')
+    assert hidden_again.status_code == 200
+    assert hidden_again.json()['template'] is None
 
 
-def test_bulk_prompt_template_init_retries_simplified_prompt_after_workflow_error(tmp_path: Path, monkeypatch):
+def test_prompt_template_init_workflow_failure_uses_fallback_template(tmp_path: Path, monkeypatch):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
     repo = ItemRepository(tmp_path / 'library')
     item = repo.create_item(ItemCreate(
-        title='Future Runner',
-        prompts=[PromptIn(language='en', text='A long cinematic runner poster with layered city reflections.', is_primary=True)],
+        title='Template With Arguments',
+        prompts=[
+            PromptIn(
+                language='en',
+                text='Create a poster for {argument name="brand" default="NOIR"} with [PRODUCT] as the hero.',
+                is_primary=True,
+            ),
+        ],
     ))
-    with connect(tmp_path / 'library') as conn:
-        ts = now()
-        conn.execute(
-            "INSERT INTO prompts(id,item_id,language,text,is_primary,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
-            (new_id('prm'), item.id, 'zh_hans', '未来跑者 poster with layered city reflections.', 0, ts, ts),
+
+    def fake_init_prompt_template(**_kwargs):
+        raise PromptWorkflowError(
+            'Workflow request failed: {"message":"Error in workflow"}',
+            operation='template_init',
+            url='https://n8n.example/webhook/image-prompt-library-template-init',
+            request_payload={'item': {'id': item.id}, 'prompt': {'language': 'en'}},
+            response_status=500,
+            response_text='{"message":"Error in workflow"}',
         )
-        conn.commit()
-    seen_languages: list[str] = []
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post(f'/api/admin/items/{item.id}/prompt-template/init', json={})
+    assert response.status_code == 200
+    template = response.json()['template']
+    assert template['status'] == 'ready'
+    assert template['review_status'] == 'pending_review'
+    assert template['analysis_confidence'] == 0.52
+    assert template['quality_score'] >= 0.4
+    assert template['quality_label'] in {'needs_review', 'good', 'excellent'}
+    assert 'Deterministic explicit placeholder fallback' in template['analysis_notes']
+    assert [slot['original_text'] for slot in template['slots']] == ['{argument name="brand" default="NOIR"}', '[PRODUCT]']
+    assert [slot['variable_type'] for slot in template['slots']] == ['brand', 'subject']
+    assert '[[slot id="brand"' in template['marked_text']
+
+
+def test_prompt_template_init_unavailable_returns_424_json(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+
+    def fake_init_prompt_template(**_kwargs):
+        raise PromptWorkflowUnavailable('Missing webhook URL')
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
+    assert response.status_code == 424
+    assert response.json()['detail'] == 'AI prompt workflow is not configured.'
+
+
+def test_prompt_template_init_extracts_wrapped_prompt_body_before_workflow(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    wrapped_prompt = (
+        "Here's how to create your Whiteboard Animation style image.\n\n"
+        "Use Google Nano Banana Pro or any other AI image generation model.\n\n"
+        "Use this prompt: clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    extracted_prompt = (
+        "clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    item_id = repo.create_item(ItemCreate(
+        title='Whiteboard Portrait',
+        prompts=[PromptIn(language='en', text=wrapped_prompt, is_primary=True)],
+    )).id
+    captured: dict[str, str] = {}
 
     def fake_init_prompt_template(**kwargs):
-        seen_languages.append(kwargs['source_language'])
-        if kwargs['source_language'] == 'en':
-            raise PromptWorkflowError('markedText must contain at least one slot marker.')
+        captured['raw_text'] = kwargs['raw_text']
         return {
-            'marked_text': _mark_first_word(kwargs['raw_text']),
-            'analysis_confidence': 0.89,
-            'analysis_notes': 'Retried with simplified source.',
-            'source_language': kwargs['source_language'],
+            'marked_text': '[[slot id="style_and_subject" group="theme_core" label="style"]]clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure white background.[[/slot]]',
+            'analysis_confidence': 0.95,
+            'analysis_notes': 'Stable wrapper split.',
+            'source_language': 'en',
         }
 
     monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
 
-    response = client.post('/api/prompt-templates/bulk-init', json={'mode': 'missing', 'limit': 10})
+    _admin_login(client)
 
+    response = client.post(f'/api/admin/items/{item_id}/prompt-template/init', json={})
     assert response.status_code == 200
     payload = response.json()
-    assert payload['processed_count'] == 1
-    assert payload['failed_count'] == 0
-    assert seen_languages == ['en', 'zh_hans']
-    assert repo.get_prompt_template_bundle(item.id).template.source_language == 'zh_hans'
+    assert captured['raw_text'] == extracted_prompt
+    assert payload['template']['raw_text_snapshot'] == extracted_prompt
+    assert payload['template']['analysis_notes'].startswith('Prompt body extracted via labelled_tail before skeletonization.')
+    assert payload['template']['prompt_source_extracted'] is True
+    assert payload['template']['prompt_source_strategy'] == 'labelled_tail'
+    assert payload['template']['prompt_source_original_length'] == len(wrapped_prompt)
+    assert payload['template']['prompt_source_prepared_length'] == len(extracted_prompt)
 
 
-def test_bulk_prompt_template_init_uses_json_value_fallback_after_workflow_errors(tmp_path: Path, monkeypatch):
+def test_prompt_template_ops_list_reports_missing_ready_stale_and_no_prompt(tmp_path: Path):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
     repo = ItemRepository(tmp_path / 'library')
-    raw_prompt = '{\n  "style": "cinematic poster",\n  "subject": "red and blue high heels"\n}'
-    item = repo.create_item(ItemCreate(
-        title='Structured Prompt',
-        prompts=[PromptIn(language='en', text=raw_prompt, is_primary=True)],
-    ))
 
-    def fake_init_prompt_template(**kwargs):
-        raise PromptWorkflowError('markedText does not render back to the original prompt exactly.')
+    missing_id = _create_item(repo)
+    ready_id = _create_item(repo)
+    stale_id = _create_item(repo)
+    no_prompt_id = repo.create_item(ItemCreate(
+        title='Blank Prompt Case',
+        prompts=[PromptIn(language='en', text='   ', is_primary=True)],
+    )).id
 
-    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
-
-    response = client.post('/api/prompt-templates/bulk-init', json={'mode': 'missing', 'limit': 10})
-
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload['processed_count'] == 1
-    assert payload['failed_count'] == 0
-    template = repo.get_prompt_template_bundle(item.id).template
-    assert template.source_language == 'en'
-    assert template.raw_text_snapshot == raw_prompt
-    assert 'group="structured_json"' in template.marked_text
-    assert [slot.original_text for slot in template.slots] == ['cinematic poster', 'red and blue high heels']
-
-
-def test_bulk_prompt_template_init_uses_plain_text_fallback_after_workflow_errors(tmp_path: Path, monkeypatch):
-    app = create_app(library_path=tmp_path / 'library')
-    client = TestClient(app)
-    repo = ItemRepository(tmp_path / 'library')
-    raw_prompt = (
-        'Create a research poster for a multimodal AI workflow.\n'
-        'Use a clean lab aesthetic with labeled arrows and compact captions.\n\n'
-        'Show data entering the model, a reasoning trace, and a final visual answer.'
+    repo.save_prompt_template(
+        item_id=ready_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+            PromptTemplateSlot(id='support_props', group='theme_core', label='配套元素', original_text='paper lanterns and wooden stools'),
+        ],
+        analysis_confidence=0.93,
+        analysis_notes='Ready',
     )
-    item = repo.create_item(ItemCreate(
-        title='Workflow Poster',
-        prompts=[PromptIn(language='en', text=raw_prompt, is_primary=True)],
-    ))
+    repo.save_prompt_template(
+        item_id=stale_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+        status='stale',
+    )
 
-    def fake_init_prompt_template(**kwargs):
-        raise PromptWorkflowError('markedText does not render back to the original prompt exactly.')
+    _admin_login(client)
 
-    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
-
-    response = client.post('/api/prompt-templates/bulk-init', json={'mode': 'missing', 'limit': 10})
-
+    response = client.get('/api/admin/prompt-templates/ops/items?limit=20')
     assert response.status_code == 200
     payload = response.json()
-    assert payload['processed_count'] == 1
-    assert payload['failed_count'] == 0
-    template = repo.get_prompt_template_bundle(item.id).template
-    rendered_text, _segments = render_marked_text(template.marked_text)
-    assert rendered_text == raw_prompt
-    assert template.analysis_confidence == 0.55
-    assert [slot.group for slot in template.slots] == ['content_block', 'content_block']
+    status_by_item = {item['item_id']: item['status'] for item in payload['items']}
+    assert status_by_item[missing_id] == 'missing'
+    assert status_by_item[ready_id] == 'ready'
+    assert status_by_item[stale_id] == 'stale'
+    assert status_by_item[no_prompt_id] == 'no_prompt'
+    ready_item = next(item for item in payload['items'] if item['item_id'] == ready_id)
+    assert ready_item['quality_score'] >= 0.66
+    assert ready_item['quality_label'] in {'good', 'excellent'}
+    assert payload['status_counts']['missing'] >= 1
+    assert payload['status_counts']['ready'] >= 1
+    assert payload['status_counts']['stale'] >= 1
+    assert payload['status_counts']['no_prompt'] >= 1
+
+    filtered = client.get('/api/admin/prompt-templates/ops/items?status=missing&status=stale&limit=20')
+    assert filtered.status_code == 200
+    filtered_statuses = {item['status'] for item in filtered.json()['items']}
+    assert filtered_statuses == {'missing', 'stale'}
 
 
-def test_bulk_prompt_template_init_dry_run_does_not_call_workflow(tmp_path: Path, monkeypatch):
+def test_prompt_template_ops_list_compares_normalized_prompt_body_for_wrapper_cases(tmp_path: Path):
     app = create_app(library_path=tmp_path / 'library')
     client = TestClient(app)
     repo = ItemRepository(tmp_path / 'library')
-    item_id = _create_named_item(repo, 'Ceramic Market', 'Ceramic market stall under warm string lights.')
+    wrapped_prompt = (
+        "Here's how to create your Whiteboard Animation style image.\n\n"
+        "Use Google Nano Banana Pro or any other AI image generation model.\n\n"
+        "Use this prompt: clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    extracted_prompt = (
+        "clean whiteboard animation style illustration of the person from the reference image, "
+        "drawn as a simple black marker sketch on a pure white background."
+    )
+    item_id = repo.create_item(ItemCreate(
+        title='Whiteboard Portrait',
+        prompts=[PromptIn(language='en', text=wrapped_prompt, is_primary=True)],
+    )).id
+    repo.save_prompt_template(
+        item_id=item_id,
+        source_language='en',
+        raw_text_snapshot=extracted_prompt,
+        marked_text='[[slot id="style_and_subject" group="theme_core" label="style"]]clean whiteboard animation style illustration of the person from the reference image, drawn as a simple black marker sketch on a pure white background.[[/slot]]',
+        slots=[
+            PromptTemplateSlot(
+                id='style_and_subject',
+                group='theme_core',
+                label='style',
+                original_text=extracted_prompt,
+            ),
+        ],
+        analysis_confidence=0.95,
+    )
 
-    def fail_init_prompt_template(**kwargs):
-        raise AssertionError('dry-run should not call n8n')
+    _admin_login(client)
 
-    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fail_init_prompt_template)
+    response = client.get('/api/admin/prompt-templates/ops/items?limit=20')
+    assert response.status_code == 200
+    item = next(entry for entry in response.json()['items'] if entry['item_id'] == item_id)
+    assert item['status'] == 'ready'
+    assert item['prompt_excerpt'] == extracted_prompt[:160]
 
-    response = client.post('/api/prompt-templates/bulk-init', json={'mode': 'missing', 'dry_run': True})
 
+def test_prompt_template_batch_init_returns_initialized_failed_and_skipped(tmp_path: Path, monkeypatch):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+
+    success_id = _create_item(repo)
+    failure_id = _create_item(repo)
+    ready_id = _create_item(repo)
+    no_prompt_id = repo.create_item(ItemCreate(
+        title='No Prompt Available',
+        prompts=[PromptIn(language='en', text='', is_primary=True)],
+    )).id
+
+    repo.save_prompt_template(
+        item_id=ready_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+    )
+    repo.save_prompt_template(
+        item_id=failure_id,
+        source_language='en',
+        raw_text_snapshot='A cinematic poster of a tiny ramen bar with paper lanterns and wooden stools.',
+        marked_text=MARKED_TEXT,
+        slots=[
+            PromptTemplateSlot(id='main_subject', group='theme_core', label='主体', original_text='a tiny ramen bar'),
+        ],
+        status='stale',
+    )
+
+    def fake_init_prompt_template(**kwargs):
+        if kwargs['item_id'] == failure_id:
+            raise PromptWorkflowError(
+                'Workflow request failed: {"message":"bad item"}',
+                operation='template_init',
+                url='https://n8n.example/webhook/image-prompt-library-template-init',
+                request_payload={'item': {'id': failure_id}},
+                response_status=500,
+                response_text='{"message":"bad item"}',
+            )
+        return {
+            'marked_text': MARKED_TEXT,
+            'analysis_confidence': 0.88,
+            'analysis_notes': 'Batch ready.',
+            'source_language': 'en',
+        }
+
+    monkeypatch.setattr('backend.routers.prompt_templates.initialize_prompt_template', fake_init_prompt_template)
+
+    _admin_login(client)
+
+    response = client.post('/api/admin/prompt-templates/ops/batch-init', json={
+        'item_ids': [success_id, failure_id, ready_id, no_prompt_id],
+        'limit': 10,
+    })
     assert response.status_code == 200
     payload = response.json()
-    assert payload['total_candidates'] == 1
-    assert payload['processed_count'] == 0
-    assert payload['skipped_count'] == 1
-    assert payload['results'][0]['item_id'] == item_id
-    assert payload['results'][0]['status'] == 'would_initialize'
-    assert repo.get_prompt_template_bundle(item_id).template is None
+    assert payload['total_candidates'] == 4
+    assert payload['processed'] == 4
+    assert payload['initialized'] == 2
+    assert payload['failed'] == 0
+    assert payload['skipped'] == 2
+
+    results = {item['item_id']: item for item in payload['results']}
+    assert results[success_id]['result'] == 'initialized'
+    assert results[failure_id]['result'] == 'initialized'
+    assert results[failure_id]['slot_count'] >= 1
+    assert results[ready_id]['result'] == 'skipped'
+    assert results[no_prompt_id]['result'] == 'skipped'
+
+
+def test_prompt_template_failure_list_and_detail_endpoints(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+
+    failure_id, _ = record_prompt_workflow_failure(
+        library_path=tmp_path / 'library',
+        operation='template_generate',
+        exc=PromptWorkflowError(
+            'Workflow request failed: timeout',
+            operation='template_generate',
+            url='https://n8n.example/webhook/image-prompt-library-template-generate',
+            request_payload={'template': {'id': 'tpl_123'}},
+            response_status=502,
+            response_text='timeout',
+        ),
+        context={
+            'item_id': 'itm_123',
+            'template_id': 'tpl_123',
+            'theme_keyword': 'night market',
+        },
+    )
+
+    _admin_login(client)
+
+    list_response = client.get('/api/admin/prompt-template-failures?limit=10')
+    assert list_response.status_code == 200
+    failures = list_response.json()['failures']
+    assert failures[0]['id'] == failure_id
+    assert failures[0]['item_id'] == 'itm_123'
+    assert failures[0]['template_id'] == 'tpl_123'
+    assert failures[0]['theme_keyword'] == 'night market'
+    assert failures[0]['response_status'] == 502
+
+    detail_response = client.get(f'/api/admin/prompt-template-failures/{failure_id}')
+    assert detail_response.status_code == 200
+    detail = detail_response.json()
+    assert detail['id'] == failure_id
+    assert detail['context']['item_id'] == 'itm_123'
+    assert detail['workflow']['url'] == 'https://n8n.example/webhook/image-prompt-library-template-generate'
+    assert 'PromptWorkflowError' in detail['traceback']
+
+
+def test_admin_auth_session_login_logout_and_protected_routes(tmp_path: Path):
+    app = create_app(library_path=tmp_path / 'library')
+    client = TestClient(app)
+    repo = ItemRepository(tmp_path / 'library')
+    item_id = _create_item(repo)
+
+    session_before = client.get('/api/admin/auth/session')
+    assert session_before.status_code == 200
+    assert session_before.json()['authenticated'] is False
+
+    protected_before = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_before.status_code == 401
+
+    invalid_login = client.post('/api/admin/auth/login', json={'password': 'wrong-password'})
+    assert invalid_login.status_code == 401
+
+    _admin_login(client)
+
+    session_after = client.get('/api/admin/auth/session')
+    assert session_after.status_code == 200
+    assert session_after.json()['authenticated'] is True
+
+    protected_after = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_after.status_code == 200
+
+    logout = client.post('/api/admin/auth/logout')
+    assert logout.status_code == 200
+    assert logout.json()['authenticated'] is False
+
+    protected_after_logout = client.get(f'/api/admin/items/{item_id}/prompt-template')
+    assert protected_after_logout.status_code == 401

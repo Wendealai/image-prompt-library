@@ -22,6 +22,18 @@ def test_store_image_creates_original_thumb_and_preview(tmp_path: Path):
         assert max(thumb.size) <= 420
 
 
+def test_store_image_can_convert_original_to_jpg_or_png(tmp_path: Path):
+    jpg = store_image(tmp_path / "library", png_bytes(), "sample.png", output_format="jpg")
+    png = store_image(tmp_path / "library", png_bytes(color=(30, 60, 90)), "sample.jpg", output_format="png")
+
+    assert jpg.original_path.endswith(".jpg")
+    assert png.original_path.endswith(".png")
+    with Image.open(tmp_path / "library" / jpg.original_path) as stored_jpg:
+        assert stored_jpg.format == "JPEG"
+    with Image.open(tmp_path / "library" / png.original_path) as stored_png:
+        assert stored_png.format == "PNG"
+
+
 def test_store_image_rejects_too_many_pixels(tmp_path: Path):
     data = png_bytes(size=(5000, 5000))
     try:
