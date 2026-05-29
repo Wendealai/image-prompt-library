@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { api } from '../api/client';
 import type { ItemList } from '../types';
 
+const API_PAGE_LIMIT = 1000;
+
 type QueryScope = {
   q: string;
   clusterId?: string;
@@ -26,7 +28,21 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
     setRefreshing(hasVisibleData);
     setError(undefined);
 
-    api.items({ q, cluster: clusterId, tag, sort, limit: viewLimit })
+    async function loadItems(): Promise<ItemList> {
+      const firstPageLimit = Math.min(viewLimit, API_PAGE_LIMIT);
+      const firstPage = await api.items({ q, cluster: clusterId, tag, sort, limit: firstPageLimit, offset: 0 });
+      if (firstPage.items.length >= viewLimit || firstPage.items.length >= firstPage.total) return firstPage;
+
+      const nextOffsets: number[] = [];
+      for (let offset = firstPage.items.length; offset < Math.min(firstPage.total, viewLimit); offset += API_PAGE_LIMIT) {
+        nextOffsets.push(offset);
+      }
+      const nextPages = await Promise.all(nextOffsets.map(offset => api.items({ q, cluster: clusterId, tag, sort, limit: Math.min(API_PAGE_LIMIT, viewLimit - offset), offset })));
+      const items = [...firstPage.items, ...nextPages.flatMap(page => page.items)].slice(0, viewLimit);
+      return { ...firstPage, items, limit: viewLimit };
+    }
+
+    loadItems()
       .then(nextData => {
         if (!cancelled) {
           setData(nextData);

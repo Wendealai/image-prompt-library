@@ -11,10 +11,12 @@ def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
-    assert "const itemQueryLimit = view === 'cards' ? 120 : 1000" in app
+    assert "const itemQueryLimit = view === 'cards' ? 120 : 5000" in app
     assert "useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
+    assert "API_PAGE_LIMIT = 1000" in hook
+    assert "nextOffsets.map(offset => api.items" in hook
     assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
 
 

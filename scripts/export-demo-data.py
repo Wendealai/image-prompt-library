@@ -69,7 +69,7 @@ def _rewrite_image_record(library_path: Path, media_dir: Path, image: dict) -> d
     if remote_url and str(remote_url).startswith(("http://", "https://")):
         rewritten = dict(image)
         rewritten.update({
-            "original_path": image.get("original_path") or remote_url,
+            "original_path": remote_url,
             "preview_path": None,
             "thumb_path": None,
             "remote_url": remote_url,
@@ -124,6 +124,13 @@ def write_json(path: Path, data: object) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def _all_item_summaries(repo: ItemRepository):
+    first_page = repo.list_items(limit=1, offset=0)
+    if first_page.total == 0:
+        return []
+    return repo.list_items(limit=first_page.total, offset=0).items
+
+
 def export_demo(library_path: Path, output: Path = DEFAULT_OUTPUT) -> None:
     repo = ItemRepository(library_path)
     media_dir = output / "media"
@@ -131,8 +138,8 @@ def export_demo(library_path: Path, output: Path = DEFAULT_OUTPUT) -> None:
         shutil.rmtree(output)
     media_dir.mkdir(parents=True, exist_ok=True)
 
-    item_list = repo.list_items(limit=1000, offset=0)
-    items = [_rewrite_item(library_path, media_dir, repo.get_item(item.id).model_dump(mode="json")) for item in item_list.items]
+    item_list = _all_item_summaries(repo)
+    items = [_rewrite_item(library_path, media_dir, repo.get_item(item.id).model_dump(mode="json")) for item in item_list]
     clusters = _rewrite_cluster_previews([cluster.model_dump(mode="json") for cluster in repo.list_clusters()], items)
     tags = [tag.model_dump(mode="json") for tag in repo.list_tags()]
     metadata = {

@@ -102,7 +102,7 @@ export default function App() {
   const [pendingExploreUnfilterClusterId, setPendingExploreUnfilterClusterId] = useState<string>();
   const [exploreUnfilterFadePhase, setExploreUnfilterFadePhase] = useState<'out' | 'pre-in' | 'in' | 'idle'>('idle');
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
-  const itemQueryLimit = view === 'cards' ? 120 : 1000;
+  const itemQueryLimit = view === 'cards' ? 120 : 5000;
   const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc');
   const exploreFocusedClusterId = view === 'explore'
     ? (clusterId || (dataScope.clusterId === pendingExploreUnfilterClusterId ? pendingExploreUnfilterClusterId : undefined))
