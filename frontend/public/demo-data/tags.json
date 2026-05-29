@@ -195,7 +195,7 @@
     "id": "tag_087cc505af4f452b",
     "name": "2x2 grid",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_fddb74413070497b",
@@ -477,7 +477,7 @@
     "id": "tag_4543679d1a104deb",
     "name": "9:16",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_c0960289f67c4622",
@@ -1023,7 +1023,7 @@
     "id": "tag_f82397a0d2904cd2",
     "name": "GPT Image 2",
     "kind": "general",
-    "count": 441
+    "count": 446
   },
   {
     "id": "tag_9de1cbc51b294dd6",
@@ -1743,7 +1743,7 @@
     "id": "tag_6f02883bc01040f8",
     "name": "SocialSight",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_fb00a0a8747e451d",
@@ -2013,7 +2013,7 @@
     "id": "tag_9a6e41c4e3734883",
     "name": "X source",
     "kind": "general",
-    "count": 31
+    "count": 36
   },
   {
     "id": "tag_3a4b1c1b9197454a",
@@ -2072,6 +2072,12 @@
   {
     "id": "tag_d90c48e122c541d3",
     "name": "advertising",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d578446ddc0d4ad3",
+    "name": "advertising campaign",
     "kind": "general",
     "count": 1
   },
@@ -2589,7 +2595,7 @@
     "id": "tag_fc8b2b46b1364f70",
     "name": "brand poster",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_8d36ccb0fd2d4770",
@@ -2840,6 +2846,12 @@
   {
     "id": "tag_9ef2c210dfd64dd6",
     "name": "cartoon prop",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_5a60812f7fce4bc3",
+    "name": "cartoon style",
     "kind": "general",
     "count": 1
   },
@@ -3195,7 +3207,7 @@
     "id": "tag_ce4ced2302b24ed9",
     "name": "cinematic poster",
     "kind": "general",
-    "count": 3
+    "count": 4
   },
   {
     "id": "tag_88894c5b9b844bbc",
@@ -3338,6 +3350,12 @@
   {
     "id": "tag_a6d2beff55074e29",
     "name": "close_up_photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_384cdeea1862426b",
+    "name": "cloud logo",
     "kind": "general",
     "count": 1
   },
@@ -3780,6 +3798,12 @@
     "count": 1
   },
   {
+    "id": "tag_05cf48778d3a4193",
+    "name": "creator tools",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_5f6998c2b3b24d82",
     "name": "creator_branding",
     "kind": "general",
@@ -4026,6 +4050,12 @@
     "count": 1
   },
   {
+    "id": "tag_3f0879ac409b4636",
+    "name": "double exposure",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_be58f2e129184183",
     "name": "double_exposure",
     "kind": "general",
@@ -4106,6 +4136,12 @@
   {
     "id": "tag_573b0f35988b4478",
     "name": "editorial infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a7a32517fe5a4a31",
+    "name": "editorial photography",
     "kind": "general",
     "count": 1
   },
@@ -5217,7 +5253,13 @@
     "id": "tag_2d8b565f22aa4491",
     "name": "identity preservation",
     "kind": "general",
-    "count": 5
+    "count": 6
+  },
+  {
+    "id": "tag_9beaa405f6814741",
+    "name": "identity reflection",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_e759c6b0ff1b407b",
@@ -5325,7 +5367,7 @@
     "id": "tag_008372d23259438c",
     "name": "infographic",
     "kind": "general",
-    "count": 16
+    "count": 18
   },
   {
     "id": "tag_48b9b294f4e34c7f",
@@ -5811,7 +5853,7 @@
     "id": "tag_cf89f2cf2e0348ab",
     "name": "logo design",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_46d0a07961ef4dee",
@@ -5895,7 +5937,7 @@
     "id": "tag_c8720927eced49f7",
     "name": "luxury branding",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_5ca80c08319a4501",
@@ -7020,6 +7062,12 @@
     "count": 1
   },
   {
+    "id": "tag_bb034c133d6f46b1",
+    "name": "personal profile",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_558783a7ffc341e2",
     "name": "personal-training",
     "kind": "general",
@@ -7090,6 +7138,12 @@
     "name": "photo",
     "kind": "general",
     "count": 5
+  },
+  {
+    "id": "tag_3a997ad532b84496",
+    "name": "photo reference",
+    "kind": "general",
+    "count": 2
   },
   {
     "id": "tag_59123b12aeea4829",
@@ -7192,6 +7246,12 @@
     "name": "photorealistic",
     "kind": "general",
     "count": 2
+  },
+  {
+    "id": "tag_2653fd74bdf64425",
+    "name": "photorealistic clouds",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_90e8aabf4a6f4dbf",
@@ -7443,7 +7503,7 @@
     "id": "tag_1aca6991ea924e01",
     "name": "poster",
     "kind": "general",
-    "count": 25
+    "count": 27
   },
   {
     "id": "tag_ccc0f8c66c5340ef",
@@ -7713,7 +7773,7 @@
     "id": "tag_ad21f46edfb142f8",
     "name": "prompt system",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_68d58950a86c4849",
@@ -8208,6 +8268,12 @@
     "count": 1
   },
   {
+    "id": "tag_39f3598ea755413c",
+    "name": "self portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_4366d417d2b14a6d",
     "name": "self-media cover",
     "kind": "general",
@@ -8313,7 +8379,7 @@
     "id": "tag_64f7884edc65457b",
     "name": "social media",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_b2dbd643c8d04934",
@@ -8324,6 +8390,12 @@
   {
     "id": "tag_b4540c6ee0be46eb",
     "name": "social media branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2f6e60e25c10443a",
+    "name": "social media poster",
     "kind": "general",
     "count": 1
   },
@@ -9300,6 +9372,12 @@
     "count": 2
   },
   {
+    "id": "tag_3764b3e758d147e3",
+    "name": "survival kit",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_0ae1b52f1f8a4a63",
     "name": "sword-immortal",
     "kind": "general",
@@ -9453,7 +9531,7 @@
     "id": "tag_1b1c0a263ec34f14",
     "name": "template",
     "kind": "general",
-    "count": 2
+    "count": 4
   },
   {
     "id": "tag_f25678fc60f4415e",
@@ -9554,6 +9632,12 @@
   {
     "id": "tag_2040349279b14224",
     "name": "torn paper collage",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7adcb1cb1a544fb4",
+    "name": "tourism campaign",
     "kind": "general",
     "count": 1
   },
@@ -9669,7 +9753,7 @@
     "id": "tag_efc5e9c6b1214a09",
     "name": "travel poster",
     "kind": "general",
-    "count": 11
+    "count": 12
   },
   {
     "id": "tag_b0b1c68a99584adb",
@@ -10212,6 +10296,12 @@
     "count": 1
   },
   {
+    "id": "tag_c66edfe4a6f04595",
+    "name": "workflow roadmap",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_266ecead06a84b34",
     "name": "workspace_scene",
     "kind": "general",
@@ -10226,6 +10316,12 @@
   {
     "id": "tag_9180ecc8978e4bab",
     "name": "world painting",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c3dfd26ba4ac4b53",
+    "name": "worldbuilding",
     "kind": "general",
     "count": 1
   },
@@ -10254,6 +10350,18 @@
     "count": 84
   },
   {
+    "id": "tag_82acaf8010124b65",
+    "name": "x-status-2060273802505011707",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_709547bf0c6046ca",
+    "name": "x-status-2060288395784442195",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_7cf1434759614fcd",
     "name": "x-status-2060305726921482453",
     "kind": "general",
@@ -10262,6 +10370,24 @@
   {
     "id": "tag_8a808f343bd14c32",
     "name": "x-status-2060331094583480421",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_062201cca9f54726",
+    "name": "x-status-2060334532080124229",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7649853f176f445a",
+    "name": "x-status-2060334640272159184",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_807933cd722a4345",
+    "name": "x-status-2060334886465265855",
     "kind": "general",
     "count": 1
   },
@@ -10821,7 +10947,7 @@
     "id": "tag_33a610789baa414a",
     "name": "封面设计",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_36996f2776b34978",
@@ -11112,6 +11238,12 @@
     "count": 1
   },
   {
+    "id": "tag_471df2d8487545ff",
+    "name": "标题驱动",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8be7eb6d11514cc0",
     "name": "横版封面",
     "kind": "general",
@@ -11384,6 +11516,12 @@
   {
     "id": "tag_8e98b56cc9494d60",
     "name": "西游记",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_514b6b772f5e4a0b",
+    "name": "视觉文明",
     "kind": "general",
     "count": 1
   },

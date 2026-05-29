@@ -156,11 +156,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 1033
-    assert len(clusters) == 169
-    assert len(tags) == 1923
-    assert len(media_files) == 1580
-    assert metadata["item_count"] == 1033
+    assert len(items) == 1038
+    assert len(clusters) == 170
+    assert len(tags) == 1946
+    assert len(media_files) == 1671
+    assert metadata["item_count"] == 1038
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -187,8 +187,31 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
 
     media_files = {path.name for path in media_dir.glob("*.webp")}
 
-    assert len(referenced) == 1580
+    assert len(referenced) == 1671
     assert referenced <= media_files
+
+
+def test_demo_bundle_uses_local_media_for_x_imports():
+    demo_root = ROOT / "frontend" / "public" / "demo-data"
+    items = json.loads((demo_root / "items.json").read_text())
+    repaired_titles = {
+        "毕业纪念画册结构化工作流 Prompt",
+        "手机屏幕跃出超写实视觉错觉 Prompt",
+        "Sketchbook Ink Watercolor Trump Caricature Prompt",
+        "中国证件照生成助手 Prompt",
+        "聚光灯 3D 夸张漫画角色 Prompt",
+        "KFC 轻食商业海报 Agent 示例 Prompt",
+        "日系住宅空间家居搭配配置清单图 Prompt",
+    }
+
+    repaired = [item for item in items if item["title"] in repaired_titles]
+    assert {item["title"] for item in repaired} == repaired_titles
+    for item in repaired:
+        first_image = item["first_image"]
+        assert first_image["original_path"].startswith("demo-data/media/")
+        assert first_image["thumb_path"].startswith("demo-data/media/")
+        assert first_image["preview_path"].startswith("demo-data/media/")
+        assert first_image["remote_url"] is None
 
 
 def test_demo_bundle_includes_latest_production_and_sample_records():

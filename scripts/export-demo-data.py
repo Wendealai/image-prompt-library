@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import json
 import os
-import shutil
 import sys
 from pathlib import Path
 
@@ -38,6 +37,9 @@ def _resolve_library_path() -> Path:
 
 def _compress_image(source: Path, destination: Path) -> tuple[int | None, int | None]:
     destination.parent.mkdir(parents=True, exist_ok=True)
+    if destination.exists():
+        with Image.open(destination) as image:
+            return image.width, image.height
     with Image.open(source) as image:
         image = ImageOps.exif_transpose(image)
         if image.mode not in {"RGB", "RGBA"}:
@@ -65,8 +67,12 @@ def _source_for_image(library_path: Path, image: dict) -> Path:
 
 
 def _rewrite_image_record(library_path: Path, media_dir: Path, image: dict) -> dict:
+    try:
+        local_source = _source_for_image(library_path, image)
+    except FileNotFoundError:
+        local_source = None
     remote_url = image.get("remote_url")
-    if remote_url and str(remote_url).startswith(("http://", "https://")):
+    if local_source is None and remote_url and str(remote_url).startswith(("http://", "https://")):
         rewritten = dict(image)
         rewritten.update({
             "original_path": remote_url,
@@ -78,7 +84,9 @@ def _rewrite_image_record(library_path: Path, media_dir: Path, image: dict) -> d
         return rewritten
     destination_rel = f"demo-data/media/{image['id']}.webp"
     destination = media_dir / f"{image['id']}.webp"
-    width, height = _compress_image(_source_for_image(library_path, image), destination)
+    if local_source is None:
+        raise FileNotFoundError(f"No source image found for {image.get('id')}")
+    width, height = _compress_image(local_source, destination)
     rewritten = dict(image)
     rewritten.update({
         "original_path": destination_rel,
@@ -134,12 +142,21 @@ def _all_item_summaries(repo: ItemRepository):
 def export_demo(library_path: Path, output: Path = DEFAULT_OUTPUT) -> None:
     repo = ItemRepository(library_path)
     media_dir = output / "media"
-    if output.exists():
-        shutil.rmtree(output)
+    output.mkdir(parents=True, exist_ok=True)
     media_dir.mkdir(parents=True, exist_ok=True)
 
     item_list = _all_item_summaries(repo)
     items = [_rewrite_item(library_path, media_dir, repo.get_item(item.id).model_dump(mode="json")) for item in item_list]
+    referenced_media = {
+        Path(path).name
+        for item in items
+        for image in item.get("images", [])
+        for path in [image.get("original_path")]
+        if isinstance(path, str) and path.startswith("demo-data/media/")
+    }
+    for media_file in media_dir.glob("*.webp"):
+        if media_file.name not in referenced_media:
+            media_file.unlink()
     clusters = _rewrite_cluster_previews([cluster.model_dump(mode="json") for cluster in repo.list_clusters()], items)
     tags = [tag.model_dump(mode="json") for tag in repo.list_tags()]
     metadata = {
