@@ -4,6 +4,7 @@ import pytest
 
 from fastapi.testclient import TestClient
 
+from backend.config import get_admin_session_secret
 from backend.main import create_app
 from backend.repositories import ItemRepository
 from backend.schemas import ItemCreate, ItemUpdate, PromptIn, PromptRenderSegment, PromptTemplateSlot, PromptVariantValue
@@ -561,3 +562,17 @@ def test_admin_auth_session_login_logout_and_protected_routes(tmp_path: Path):
 
     protected_after_logout = client.get(f'/api/admin/items/{item_id}/prompt-template')
     assert protected_after_logout.status_code == 401
+
+
+def test_admin_session_secret_is_persisted_outside_password(tmp_path: Path, monkeypatch):
+    library = tmp_path / 'library'
+    monkeypatch.delenv('IMAGE_PROMPT_LIBRARY_ADMIN_SESSION_SECRET', raising=False)
+    monkeypatch.setenv('IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD', 'first-password')
+
+    first_secret = get_admin_session_secret(library)
+    assert len(first_secret) >= 43
+    assert 'first-password' not in first_secret
+    assert (library / '.admin_session_secret').exists()
+
+    monkeypatch.setenv('IMAGE_PROMPT_LIBRARY_ADMIN_PASSWORD', 'changed-password')
+    assert get_admin_session_secret(library) == first_secret

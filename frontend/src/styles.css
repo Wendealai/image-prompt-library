@@ -126,3 +126,102 @@ main{max-width:1680px;margin:0 auto;padding:26px 30px 88px}.app.explore-mode{hei
 .prompt-image-feedback{margin:8px 0 0;font-size:12px;color:var(--muted)}
 .prompt-image-feedback.error{color:#b42318}
 .prompt-image-feedback.success{color:#2f6846}
+
+/* Taste pass: make search and browsing primary, move utilities into a quieter layer. */
+.chrome{padding:10px 24px 9px}
+.nav-row{grid-template-columns:minmax(190px,245px) minmax(280px,1fr) auto;gap:12px}
+.brand-lockup{min-width:0;gap:10px}
+.brand-lockup .logo-mark{width:38px;height:38px}
+.brand-lockup span{min-width:0;display:block}
+.brand-lockup b{font-size:14px;line-height:1.05;letter-spacing:-.025em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand-lockup small{display:block;margin-top:3px;color:#7b7469;font-size:11px;font-weight:850;letter-spacing:.01em;white-space:nowrap}
+.toolbar-search{height:46px;border-radius:16px;box-shadow:none}
+.toolbar-search input{font-size:15px}
+.nav-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0}
+.filter-button{height:42px;border-radius:14px;padding:0 12px;background:rgba(255,255,255,.72);border:1px solid rgba(226,221,208,.86);font-weight:850}
+.filter-button.active{background:#f0ebff;border-color:#ded5ff;box-shadow:none}
+.iconbtn{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid rgba(226,221,208,.86)}
+.status-row{justify-content:flex-start;margin:8px auto 0}
+.active-filter-strip{gap:7px}
+.soft-chip,.active-filter{padding:7px 10px;border-radius:12px;font-size:12px;font-weight:800}
+.view-dock{gap:6px;padding:3px;border:1px solid rgba(226,221,208,.7);border-radius:16px;background:rgba(255,255,255,.58)}
+.toggle{gap:2px;padding:2px;border-radius:12px;background:transparent}
+.toggle button{border-radius:10px;padding:7px 10px;font-size:12px;font-weight:850}
+.toggle .active,.tabs .active{box-shadow:none;border:1px solid rgba(226,221,208,.88)}
+.cards-sort-toggle{padding:2px;border-radius:12px;background:transparent;border-color:rgba(226,221,208,.68)}
+.cards-sort-toggle button{border-radius:9px;padding:6px 8px;font-size:11px}
+main{padding-top:20px}
+.app.explore-mode .app-main{padding:12px 24px 20px}
+.demo-banner{margin:8px auto 0;padding:7px 24px;border-top:1px solid rgba(226,221,208,.58);border-bottom:1px solid rgba(226,221,208,.42);background:rgba(255,255,255,.48);gap:9px}
+.demo-banner strong,.demo-banner span,.demo-banner a{border:0;background:transparent;padding:0;font-size:11px;color:#70685d}
+.demo-banner strong{padding:3px 8px;border-radius:999px;background:#211922;color:white}
+.demo-banner a{color:var(--accent-strong);font-weight:900}
+.drawer{width:340px;padding:18px}
+.drawer h2{font-size:22px}
+.filter-drawer{width:min(350px,92vw);padding:18px;overflow-x:hidden;box-shadow:18px 0 46px rgba(33,25,34,.16)}
+.filter-drawer-head{padding-bottom:12px}
+.filter-search{height:42px;margin:14px 0 10px;border-radius:13px;box-shadow:none}
+.filter-pill-grid{gap:5px;margin-top:10px}
+.filter-pill-grid button{width:100%;min-width:0;padding:9px 10px;border-radius:11px;box-shadow:none}
+.filter-pill-grid button:hover{transform:none;background:#faf7ef}
+.filter-pill-grid button.selected{box-shadow:none}
+.filter-pill-grid span{font-size:13px;font-weight:800}
+.filter-pill-grid b{padding:3px 7px;font-size:11px}
+.config{width:min(360px,92vw)}
+.config-card,.setting-group{margin-top:12px;padding:12px;border-radius:14px;background:rgba(250,247,239,.86)}
+.setting-group h3{font-size:14px}
+.setting-group .muted{font-size:12px;line-height:1.5}
+.segmented-control{border-radius:12px;padding:3px}
+.segmented-control button{border-radius:9px;padding:7px 8px;font-size:12px}
+.setting-title-row strong{min-width:44px;padding:4px 8px;font-size:12px}
+details.setting-group{display:block}
+details.setting-group summary{display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none;cursor:pointer;font-size:13px;font-weight:900;color:#4f483f}
+details.setting-group summary::-webkit-details-marker{display:none}
+details.setting-group summary::after{content:"+";width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#ebe4d8;color:#5d554a;font-size:15px;line-height:1}
+details.setting-group[open] summary::after{content:"-"}
+details.utility-section h3{margin-top:12px}
+.system-paths p{margin:10px 0 0;font-size:12px;line-height:1.45}
+.system-paths code{display:block;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cards-grid,.masonry-like{column-gap:12px}
+.item-card{margin-bottom:12px;border-radius:16px}
+.item-card:hover{transform:translateY(-2px)}
+.card-actions{top:8px;right:8px;gap:5px}
+.hover-action{padding:7px 8px;box-shadow:0 6px 14px rgba(33,25,34,.14)}
+.constellation-cluster-card strong{overflow-wrap:anywhere}
+.card-body h3{overflow-wrap:anywhere}
+
+@media(max-width:1100px){
+  .nav-row{grid-template-columns:minmax(150px,190px) minmax(220px,1fr) auto}
+  .brand-lockup b{display:none}
+  .brand-lockup .logo-mark{width:34px;height:34px}
+  .cards-sort-toggle{display:none}
+}
+
+@media(max-width:760px){
+  .chrome{padding:10px 12px 9px}
+  .nav-row{grid-template-columns:auto 1fr;gap:8px}
+  .brand-lockup{order:1;gap:7px}
+  .brand-lockup .logo-mark{width:32px;height:32px}
+  .brand-lockup small{font-size:11px}
+  .nav-tools{order:2;justify-content:flex-end;gap:6px}
+  .toolbar-search{grid-column:1/-1;order:3;height:43px;border-radius:14px;padding:0 13px}
+  .toolbar-search input{font-size:14px}
+  .filter-label{display:none}
+  .filter-button,.iconbtn{width:38px;height:38px;padding:0;border-radius:12px}
+  .view-dock{padding:2px;border-radius:13px}
+  .toggle button{padding:6px 8px;font-size:11px}
+  .status-row{margin-top:7px}
+  .active-filter-strip{overflow-x:auto;flex-wrap:nowrap}
+  .active-filter-strip .active-filter{display:inline-flex}
+  .soft-chip,.active-filter{flex:0 0 auto;max-width:min(76vw,360px)}
+  .demo-banner{padding:6px 12px;flex-wrap:nowrap;overflow:hidden}
+  .demo-banner span:nth-of-type(n+2){display:none}
+  .demo-banner strong,.demo-banner span,.demo-banner a{flex:0 0 auto;font-size:11px}
+  main{padding:18px 12px 136px}
+  .app.explore-mode .app-main{padding:10px 12px 18px}
+  .drawer,.filter-drawer,.config{width:100vw;padding:calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom))}
+  .filter-pill-grid{gap:6px}
+  .mobile-masonry-columns .card-body{padding:34px 8px 9px}
+  .item-card .card-actions{top:7px;right:7px;gap:4px}
+  .hover-action{width:31px;height:31px}
+}

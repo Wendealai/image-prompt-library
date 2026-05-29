@@ -1,7 +1,17 @@
 import os
+import secrets
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
-APP_VERSION = "0.1.0"
+
+def get_app_version() -> str:
+    try:
+        return version("image-prompt-library")
+    except PackageNotFoundError:
+        return "0.1.0"
+
+
+APP_VERSION = get_app_version()
 DEFAULT_LIBRARY_PATH = Path(__file__).resolve().parents[1] / "library"
 DEFAULT_ADMIN_PASSWORD = ""
 DEFAULT_LINK_IMPORT_SKILL_URL = "https://x.com/MrDasOnX/status/2049527944905982314"
@@ -25,7 +35,12 @@ def get_admin_session_secret(library_path=None) -> str:
     if configured:
         return configured
     library = resolve_library_path(library_path)
-    return f"{get_admin_password()}::{APP_VERSION}::{library.resolve()}"
+    secret_path = library / ".admin_session_secret"
+    if secret_path.exists():
+        return secret_path.read_text(encoding="utf-8").strip()
+    secret = secrets.token_urlsafe(48)
+    secret_path.write_text(secret, encoding="utf-8")
+    return secret
 
 
 def default_link_import_skill_url() -> str:

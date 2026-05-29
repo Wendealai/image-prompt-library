@@ -23,7 +23,7 @@ def test_init_db_creates_required_tables(tmp_path: Path):
             "004_prompt_templates.sql",
             "005_prompt_template_review_states.sql",
             "006_item_tag_sort_order.sql",
-            "006_prompt_template_quality_and_image_runs.sql",
+            "007_prompt_template_quality_and_image_runs.sql",
         }
 
 
@@ -33,3 +33,20 @@ def test_init_db_is_idempotent(tmp_path: Path):
     with connect(tmp_path / "library") as conn:
         assert conn.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == len(MIGRATIONS)
         assert {row[0] for row in conn.execute("SELECT version FROM schema_migrations")} == set(MIGRATIONS)
+
+
+def test_init_db_records_new_name_when_legacy_quality_migration_already_ran(tmp_path: Path):
+    library = tmp_path / "library"
+    init_db(library)
+    with connect(library) as conn:
+        conn.execute("DELETE FROM schema_migrations WHERE version=?", ("007_prompt_template_quality_and_image_runs.sql",))
+        conn.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (?, datetime('now'))", ("006_prompt_template_quality_and_image_runs.sql",))
+        conn.commit()
+
+    init_db(library)
+
+    with connect(library) as conn:
+        versions = {row[0] for row in conn.execute("SELECT version FROM schema_migrations")}
+        assert "006_prompt_template_quality_and_image_runs.sql" in versions
+        assert "007_prompt_template_quality_and_image_runs.sql" in versions
+        assert conn.execute("SELECT COUNT(*) FROM prompt_image_generation_runs").fetchone()[0] == 0

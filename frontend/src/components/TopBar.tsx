@@ -34,13 +34,17 @@ export default function TopBar({
   clearCluster,
 }: Props) {
   const hasActiveFilter = Boolean(clusterName);
+  const hasStatusFilters = Boolean(q || clusterName);
   return (
     <header className="chrome">
       <nav className="nav-row" aria-label={t('primaryNavigation')}>
-        <button className={`vista-button filter-button${hasActiveFilter ? ' active' : ''}`} onClick={onFilters}>
-          <Filter size={18} />
-          <span className="filter-label">{t('filters')}</span>
-        </button>
+        <div className="logo brand-lockup" aria-label={t('appHome')}>
+          <img className="logo-mark" src={headerLogo} alt="" aria-hidden="true" decoding="async" />
+          <span>
+            <b>Image Prompt Library</b>
+            <small>{count} {t('referencesShown')}</small>
+          </span>
+        </div>
 
         <label className="search toolbar-search" aria-label={t('searchAria')}>
           <Search size={20} />
@@ -52,19 +56,30 @@ export default function TopBar({
           />
         </label>
 
-        <div className="logo mobile-brand" aria-label={t('appHome')}>
-          <img className="logo-mark" src={headerLogo} alt="" aria-hidden="true" />
-          <b>Image Prompt Library</b>
-        </div>
+        <div className="nav-tools">
+          <button className={`vista-button filter-button${hasActiveFilter ? ' active' : ''}`} onClick={onFilters}>
+            <Filter size={18} />
+            <span className="filter-label">{t('filters')}</span>
+          </button>
 
-        <button className="iconbtn config-button" onClick={onConfig} aria-label={t('config')}>
-          <Settings size={19} />
-        </button>
+          <div className="view-dock">
+            {view === 'cards' && (
+              <div className="cards-sort-toggle" aria-label={t('cardsSort')}>
+                <button className={cardsSortMode === 'added' ? 'active' : ''} onClick={() => onCardsSortMode('added')}>{t('cardsSortAdded')}</button>
+                <button className={cardsSortMode === 'explore' ? 'active' : ''} onClick={() => onCardsSortMode('explore')}>{t('cardsSortExplore')}</button>
+              </div>
+            )}
+            <ViewToggle t={t} view={view} onView={onView} />
+          </div>
+
+          <button className="iconbtn config-button" onClick={onConfig} aria-label={t('config')}>
+            <Settings size={19} />
+          </button>
+        </div>
       </nav>
 
-      <div className="status-row mobile-status-view-row">
+      {hasStatusFilters && <div className="status-row mobile-status-view-row">
         <div className="active-filter-strip" aria-label={t('currentFilters')}>
-          <span className="template-count">{count} {t('referencesShown')}</span>
           {q && <span className="chip soft-chip">{t('searchChip')}: “{q}”</span>}
           {clusterName && (
             <button className="chip active-filter" onClick={clearCluster}>
@@ -72,16 +87,7 @@ export default function TopBar({
             </button>
           )}
         </div>
-        <div className="view-dock">
-          {view === 'cards' && (
-            <div className="cards-sort-toggle" aria-label={t('cardsSort')}>
-              <button className={cardsSortMode === 'added' ? 'active' : ''} onClick={() => onCardsSortMode('added')}>{t('cardsSortAdded')}</button>
-              <button className={cardsSortMode === 'explore' ? 'active' : ''} onClick={() => onCardsSortMode('explore')}>{t('cardsSortExplore')}</button>
-            </div>
-          )}
-          <ViewToggle t={t} view={view} onView={onView} />
-        </div>
-      </div>
+      </div>}
     </header>
   );
 }

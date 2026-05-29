@@ -20,6 +20,8 @@ export default function FallbackImage({ paths, fallback = null, onError, ...imgP
 
   return (
     <img
+      loading="lazy"
+      decoding="async"
       {...imgProps}
       src={mediaUrl(imagePaths[pathIndex])}
       onError={event => {

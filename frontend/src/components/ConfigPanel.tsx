@@ -151,7 +151,10 @@ export default function ConfigPanel({
         <div className="range-ticks"><span>{t('compact')}</span><span>{t('gallery')}</span><span>{t('full')}</span></div>
       </section>
 
-      <section className="setting-group">
+      <details className="setting-group utility-section">
+        <summary>
+          <span>{t('promptTemplateBulk')}</span>
+        </summary>
         <h3>{t('promptTemplateBulk')}</h3>
         <p className="muted">{t('promptTemplateBulkHelp')}</p>
         <button className="primary setting-action" onClick={runMissingPromptTemplates} disabled={bulkRunning || isDemoMode}>
@@ -165,10 +168,15 @@ export default function ConfigPanel({
           </p>
         )}
         {bulkError && <p className="setting-feedback error">{bulkError}</p>}
-      </section>
+      </details>
 
-      <p>{t('libraryPath')}: <code>{cfg?.library_path}</code></p>
-      <p>{t('databasePath')}: <code>{cfg?.database_path}</code></p>
+      <details className="setting-group system-paths">
+        <summary>
+          <span>{t('libraryPath')}</span>
+        </summary>
+        <p>{t('libraryPath')}: <code>{cfg?.library_path}</code></p>
+        <p>{t('databasePath')}: <code>{cfg?.database_path}</code></p>
+      </details>
     </aside>
   );
 }

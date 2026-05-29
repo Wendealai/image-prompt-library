@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ChangeEvent, DragEvent } from 'react';
+import { useMemo, useState } from 'react';
 import { ImagePlus, Trash2, X } from 'lucide-react';
 import { api, caseIntakeImageUrl } from '../api/client';
-import type { CaseIntakeImageCandidate, ClusterRecord, ItemDetail, TagRecord, UploadImageRole } from '../types';
+import { useEditorImageInputs } from '../hooks/useEditorImageInputs';
+import type { CaseIntakeImageCandidate, ClusterRecord, ItemDetail, TagRecord } from '../types';
 import type { Translator } from '../utils/i18n';
 import { parsePromptIntake, type PromptIntakeDraft } from '../utils/promptIntake';
 
@@ -12,33 +12,6 @@ function promptText(item: ItemDetail | undefined, language: string) {
 
 function initialTraditionalPrompt(item: ItemDetail | undefined) {
   return promptText(item, 'zh_hant') || promptText(item, 'original');
-}
-
-function inferTitleFromFilename(filename: string): string | null {
-  const normalized = filename
-    .replace(/\.[^/.]+$/, '')
-    .replace(/[_-]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-  if (!normalized) return null;
-  const genericNames = new Set(['image', 'photo', 'picture', 'clipboard', 'pasted image', 'screenshot']);
-  if (genericNames.has(normalized.toLowerCase())) return null;
-  return normalized.charAt(0).toUpperCase() + normalized.slice(1);
-}
-
-function imageFilesFromList(files: FileList | File[] | null | undefined): File[] {
-  if (!files) return [];
-  return Array.from(files).filter(file => file.type.startsWith('image/'));
-}
-
-function imageFilesFromClipboard(clipboardData: DataTransfer | null | undefined): File[] {
-  if (!clipboardData) return [];
-  const directFiles = imageFilesFromList(clipboardData.files);
-  if (directFiles.length > 0) return directFiles;
-  return Array.from(clipboardData.items || [])
-    .filter(item => item.kind === 'file' && item.type.startsWith('image/'))
-    .map(item => item.getAsFile())
-    .filter((file): file is File => Boolean(file));
 }
 
 function countPromptIntakeFields(draft: PromptIntakeDraft): number {
@@ -98,8 +71,6 @@ export default function ItemEditorModal({
   const [zhHantPrompt, setZhHantPrompt] = useState(initialTraditionalPrompt(item));
   const [zhHansPrompt, setZhHansPrompt] = useState(promptText(item, 'zh_hans'));
   const [englishPrompt, setEnglishPrompt] = useState(promptText(item, 'en'));
-  const [resultFile, setResultFile] = useState<File>();
-  const [referenceFile, setReferenceFile] = useState<File>();
   const [intakeUrl, setIntakeUrl] = useState(item?.source_url || '');
   const [intakeText, setIntakeText] = useState('');
   const [intakeFeedback, setIntakeFeedback] = useState<{ tone: 'success' | 'error'; message: string } | null>(null);
@@ -111,13 +82,22 @@ export default function ItemEditorModal({
   const [failedIntakeImageUrls, setFailedIntakeImageUrls] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [resultDropActive, setResultDropActive] = useState(false);
-  const [referenceDropActive, setReferenceDropActive] = useState(false);
+  const [saveError, setSaveError] = useState('');
 
   const hasExistingResultImage = Boolean(item?.images?.some(image => image.role === 'result_image'));
+  const {
+    resultFile,
+    referenceFile,
+    resultDropActive,
+    referenceDropActive,
+    assignImageFile,
+    onZoneInputChange,
+    onZoneDrop,
+    onZoneDragOver,
+    onZoneDragLeave,
+  } = useEditorImageInputs({ t, title, setTitle, setSaveError, hasExistingResultImage });
   const hasPrompt = Boolean(zhHantPrompt.trim() || zhHansPrompt.trim() || englishPrompt.trim());
   const missingRequiredImage = !hasExistingResultImage && !resultFile;
-  const [saveError, setSaveError] = useState('');
   const filteredClusters = useMemo(() => {
     const query = cluster.trim().toLowerCase();
     if (!query) return clusters.slice(0, 8);
@@ -144,84 +124,6 @@ export default function ItemEditorModal({
     const selected = new Set(parts);
     selected.add(tagName);
     setTags(Array.from(selected).join(', '));
-  };
-
-  const assignImageFile = useCallback((role: UploadImageRole, file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setSaveError(t('imageFileOnly'));
-      return;
-    }
-    setSaveError('');
-    if (role === 'result_image') {
-      setResultFile(file);
-    } else {
-      setReferenceFile(file);
-    }
-    if (!title.trim()) {
-      const suggestion = inferTitleFromFilename(file.name);
-      if (suggestion) setTitle(suggestion);
-    }
-  }, [t, title]);
-
-  const assignImageFromFiles = useCallback((role: UploadImageRole, files: FileList | File[] | null | undefined) => {
-    const [firstImage] = imageFilesFromList(files);
-    if (!firstImage) {
-      setSaveError(t('imageFileOnly'));
-      return;
-    }
-    assignImageFile(role, firstImage);
-  }, [assignImageFile, t]);
-
-  useEffect(() => {
-    const handlePaste = (event: ClipboardEvent) => {
-      const target = event.target;
-      if (target instanceof HTMLElement && target.closest('textarea, input:not([type="file"])')) {
-        return;
-      }
-      const [clipboardImage] = imageFilesFromClipboard(event.clipboardData);
-      if (!clipboardImage) return;
-      event.preventDefault();
-      const role: UploadImageRole = !hasExistingResultImage && !resultFile
-        ? 'result_image'
-        : !referenceFile
-          ? 'reference_image'
-          : 'result_image';
-      assignImageFile(role, clipboardImage);
-    };
-    window.addEventListener('paste', handlePaste);
-    return () => window.removeEventListener('paste', handlePaste);
-  }, [assignImageFile, hasExistingResultImage, referenceFile, resultFile]);
-
-  const onZoneInputChange = (role: UploadImageRole) => (event: ChangeEvent<HTMLInputElement>) => {
-    assignImageFromFiles(role, event.target.files);
-    event.target.value = '';
-  };
-
-  const onZoneDrop = (role: UploadImageRole) => (event: DragEvent<HTMLLabelElement>) => {
-    event.preventDefault();
-    if (role === 'result_image') {
-      setResultDropActive(false);
-    } else {
-      setReferenceDropActive(false);
-    }
-    assignImageFromFiles(role, event.dataTransfer.files);
-  };
-
-  const onZoneDragOver = (role: UploadImageRole) => (event: DragEvent<HTMLLabelElement>) => {
-    event.preventDefault();
-    if (role === 'result_image') {
-      setResultDropActive(true);
-    } else {
-      setReferenceDropActive(true);
-    }
-  };
-
-  const onZoneDragLeave = (role: UploadImageRole) => () => {
-    if (role === 'result_image') {
-      setResultDropActive(false);
-    } else {
-      setReferenceDropActive(false);
-    }
   };
 
   const applyIntakeDraft = (draft: PromptIntakeDraft) => {
@@ -511,6 +413,7 @@ export default function ItemEditorModal({
                           src={caseIntakeImageUrl(candidate.url)}
                           alt={candidate.alt || t('promptIntakeImageCandidateAlt')}
                           loading="lazy"
+                          decoding="async"
                           onError={() => setFailedIntakeImageUrls(current => current.includes(candidate.url) ? current : [...current, candidate.url])}
                         />
                       )}

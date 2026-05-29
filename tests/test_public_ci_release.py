@@ -19,9 +19,25 @@ def test_ci_workflow_runs_full_public_alpha_checks():
     assert "python-version: '3.11'" in workflow
     assert "python -m pip install -e '.[dev]'" in workflow
     assert "npm install" in workflow
+    assert "python -m ruff check backend tests scripts" in workflow
+    assert "npm run lint" in workflow
     assert "python -m pytest -q" in workflow
     assert "npm run build" in workflow
     assert "npm run build:demo" in workflow
+
+
+def test_verify_scripts_run_full_local_quality_gate():
+    package_json = (ROOT / "package.json").read_text()
+    verify_ps1 = (ROOT / "scripts" / "verify.ps1").read_text()
+    verify_sh = (ROOT / "scripts" / "verify.sh").read_text()
+
+    assert '"verify": "powershell -ExecutionPolicy Bypass -File ./scripts/verify.ps1"' in package_json
+    for verify_script in (verify_ps1, verify_sh):
+        assert "python -m ruff check backend tests scripts" in verify_script
+        assert "python -m pytest -q" in verify_script
+        assert "npm run lint" in verify_script
+        assert "npm run build" in verify_script
+        assert "npm run build:demo" in verify_script
 
 
 def test_alpha_release_notes_are_public_safe_and_actionable():

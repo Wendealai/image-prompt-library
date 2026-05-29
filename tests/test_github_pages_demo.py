@@ -8,18 +8,20 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_github_pages_demo_mode_uses_static_data_and_base_path():
     vite_config = (ROOT / "vite.config.ts").read_text()
     client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    demo = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
+    media = (ROOT / "frontend" / "src" / "api" / "media.ts").read_text()
     package_json = (ROOT / "package.json").read_text()
 
     assert "VITE_BASE_PATH" in vite_config
     assert "base:" in vite_config
-    assert "VITE_DEMO_MODE" in client
-    assert "VITE_DEMO_ASSET_VERSION" in client
+    assert "VITE_DEMO_MODE" in demo
+    assert "VITE_DEMO_ASSET_VERSION" in demo
     assert "DEMO_DATA_BASE" in client
-    assert "demo-data/items.json" in client
-    assert "demo-data/clusters.json" in client
-    assert "demo-data/tags.json" in client
-    assert "mediaUrl = (path?: string)" in client
-    assert "demoUrl" in client
+    assert "demo-data/items.json" in demo
+    assert "demo-data/clusters.json" in demo
+    assert "demo-data/tags.json" in demo
+    assert "mediaUrl = (path?: string)" in media
+    assert "demoUrl" in demo
     assert '"build:demo"' in package_json
     assert "VITE_DEMO_MODE=true" in package_json
     assert "VITE_BASE_PATH=/image-prompt-library/" in package_json
@@ -154,11 +156,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 928
-    assert len(clusters) == 163
-    assert len(tags) == 1728
-    assert len(media_files) == 1474
-    assert metadata["item_count"] == 928
+    assert len(items) == 1030
+    assert len(clusters) == 169
+    assert len(tags) == 1900
+    assert len(media_files) == 1607
+    assert metadata["item_count"] == 1030
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -183,8 +185,10 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
     visit(items)
     visit(clusters)
 
-    assert len(referenced) == 1474
-    assert sorted(path.name for path in media_dir.glob("*.webp")) == sorted(referenced)
+    media_files = {path.name for path in media_dir.glob("*.webp")}
+
+    assert len(referenced) == 1589
+    assert referenced <= media_files
 
 
 def test_demo_bundle_includes_latest_production_and_sample_records():

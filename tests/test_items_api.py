@@ -1,6 +1,10 @@
+import os
+
+import pytest
 from fastapi.testclient import TestClient
 from io import BytesIO
 from PIL import Image
+from backend.config import APP_VERSION
 from backend.main import create_app
 from backend.db import connect
 
@@ -102,13 +106,14 @@ def test_patch_favorite_and_archive_item(tmp_path):
 
 def test_clusters_tags_and_config(tmp_path):
     c = client(tmp_path)
-    item = c.post("/api/items", json=create_payload()).json()
+    c.post("/api/items", json=create_payload())
     clusters = c.get("/api/clusters").json()
     assert clusters[0]["name"] == "Architecture"
     assert clusters[0]["count"] == 1
     tags = c.get("/api/tags").json()
     assert {t["name"] for t in tags} >= {"glass", "vista"}
     cfg = c.get("/api/config").json()
+    assert cfg["version"] == APP_VERSION
     assert cfg["database_path"].endswith("db.sqlite")
     assert c.get("/api/health").json()["ok"] is True
 
@@ -138,9 +143,14 @@ def test_media_route_does_not_follow_allowed_dir_symlink_to_database(tmp_path):
     c = client(tmp_path)
     c.post("/api/items", json=create_payload())
     library = tmp_path / "library"
+    db_path = library / "db.sqlite"
+    assert db_path.exists()
     leak = library / "originals" / "leak"
     leak.parent.mkdir(parents=True, exist_ok=True)
-    leak.symlink_to(library / "db.sqlite")
+    try:
+        os.symlink(str(db_path), str(leak))
+    except OSError as exc:
+        pytest.skip(f"symlink creation is not available in this environment: {exc}")
     assert c.get("/media/originals/leak").status_code == 404
 
 

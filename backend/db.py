@@ -9,8 +9,12 @@ MIGRATIONS = [
     "004_prompt_templates.sql",
     "005_prompt_template_review_states.sql",
     "006_item_tag_sort_order.sql",
-    "006_prompt_template_quality_and_image_runs.sql",
+    "007_prompt_template_quality_and_image_runs.sql",
 ]
+
+MIGRATION_ALIASES = {
+    "007_prompt_template_quality_and_image_runs.sql": "006_prompt_template_quality_and_image_runs.sql",
+}
 
 def get_db_path(library_path=None) -> Path:
     return resolve_library_path(library_path) / "db.sqlite"
@@ -28,9 +32,12 @@ def init_db(library_path=None) -> Path:
         conn.execute("CREATE TABLE IF NOT EXISTS schema_migrations (version TEXT PRIMARY KEY, applied_at TEXT NOT NULL)")
         done = {r[0] for r in conn.execute("SELECT version FROM schema_migrations")}
         for migration in MIGRATIONS:
-            if migration not in done:
+            legacy_migration = MIGRATION_ALIASES.get(migration)
+            if migration not in done and legacy_migration not in done:
                 sql = (Path(__file__).parent / "migrations" / migration).read_text(encoding="utf-8")
                 conn.executescript(sql)
+                conn.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (?, datetime('now'))", (migration,))
+            elif legacy_migration in done and migration not in done:
                 conn.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (?, datetime('now'))", (migration,))
         conn.commit()
     return db_path

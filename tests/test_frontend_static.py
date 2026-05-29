@@ -11,7 +11,8 @@ def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
-    assert "useItemsQuery(debouncedQ, clusterId, undefined, 1000, itemsReloadKey, 'created_desc')" in app
+    assert "const itemQueryLimit = view === 'cards' ? 120 : 1000" in app
+    assert "useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
     assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
@@ -110,6 +111,18 @@ def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_ima
     assert "return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || ''" in images
 
 
+def test_images_use_lazy_async_decoding_defaults():
+    fallback = (ROOT / "frontend" / "src" / "components" / "FallbackImage.tsx").read_text()
+    topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    editor = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
+    panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
+    assert 'loading="lazy"' in fallback
+    assert 'decoding="async"' in fallback
+    assert 'decoding="async"' in topbar
+    assert 'loading="lazy"' in editor and 'decoding="async"' in editor
+    assert panel.count('loading="lazy" decoding="async"') >= 2
+
+
 def test_cards_are_global_image_overlay_cards():
     card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -136,16 +149,16 @@ def test_mobile_header_keeps_brand_centered_and_status_inline():
     topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
-    assert "mobile-brand" in topbar
+    assert "brand-lockup" in topbar
     assert "mobile-status-view-row" in topbar
-    assert topbar.index("filter-button") < topbar.index("toolbar-search") < topbar.index("mobile-brand") < topbar.index("config-button")
+    assert topbar.index("brand-lockup") < topbar.index("toolbar-search") < topbar.index("nav-tools") < topbar.index("config-button")
     assert "{count} {t('referencesShown')}" in topbar
     assert "references shown" not in (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     assert ".nav-row{display:grid;grid-template-columns:autominmax(340px,1fr)autoauto;" in compact_css
     assert ".logo{grid-column:1/-1;justify-self:center;order:-1}" not in compact_css
     assert ".nav-row{grid-template-columns:auto1frauto;" in compact_css
     assert ".toolbar-search{grid-column:1/-1;order:4}" in compact_css
-    assert ".mobile-brand{justify-self:center" in compact_css
+    assert ".mobile-brand{justify-self:center" in compact_css or ".brand-lockup{justify-self:center" in compact_css
     assert ".status-row{flex-direction:row;align-items:center;" in compact_css
 
 
@@ -231,7 +244,6 @@ def test_detail_modal_does_not_call_hooks_after_empty_id_guard():
 def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
-    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     prompt_template_utils = (ROOT / "frontend" / "src" / "utils" / "promptTemplate.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -306,13 +318,14 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateGenerateImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
-    assert "promptTemplate: (itemId: string)" in client
-    assert "adminInitPromptTemplate: (itemId: string, language?: string)" in client
-    assert "adminPromptTemplate: (itemId: string)" in client
-    assert "generatePromptVariant: (templateId: string, themeKeyword: string" in client
-    assert "rerollPromptVariant: (sessionId: string" in client
-    assert "acceptPromptVariant: (variantId: string)" in client
-    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[]" in client
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
+    assert "promptTemplate: (itemId: string)" in local_api
+    assert "adminInitPromptTemplate: (itemId: string, language?: string)" in local_api
+    assert "adminPromptTemplate: (itemId: string)" in local_api
+    assert "generatePromptVariant: (templateId: string, themeKeyword: string" in local_api
+    assert "rerollPromptVariant: (sessionId: string" in local_api
+    assert "acceptPromptVariant: (variantId: string)" in local_api
+    assert "generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[]" in local_api
     assert "| 'aiRewrite' | 'aiRewriteHelp'" in i18n
     assert "promptTemplateSlotEditor" in i18n
     assert "promptTemplateReplaceAllSlots" in i18n
@@ -356,7 +369,7 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     admin = (ROOT / "frontend" / "src" / "AdminApp.tsx").read_text()
     main = (ROOT / "frontend" / "src" / "main.tsx").read_text()
     config = (ROOT / "frontend" / "src" / "components" / "ConfigPanel.tsx").read_text()
-    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
     types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -385,16 +398,16 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert "template-failure-layout" in admin
     assert "template-failure-detail-section" in admin
     assert "api.adminPromptTemplateOpsItems" not in config
-    assert "adminSession: () => json<AdminSessionRecord>" in client
-    assert "adminLogin: (password: string)" in client
-    assert "adminLogout: () => json<AdminSessionRecord>" in client
-    assert "adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {})" in client
-    assert "adminBatchInitPromptTemplates: (payload: PromptTemplateBatchInitRequest)" in client
-    assert "adminPromptTemplateFailures: (limit = 50)" in client
-    assert "adminPromptTemplateFailure: (failureId: string)" in client
-    assert "adminPromptTemplate: (itemId: string)" in client
-    assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
-    assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in client
+    assert "adminSession: () => json<AdminSessionRecord>" in local_api
+    assert "adminLogin: (password: string)" in local_api
+    assert "adminLogout: () => json<AdminSessionRecord>" in local_api
+    assert "adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {})" in local_api
+    assert "adminBatchInitPromptTemplates: (payload: PromptTemplateBatchInitRequest)" in local_api
+    assert "adminPromptTemplateFailures: (limit = 50)" in local_api
+    assert "adminPromptTemplateFailure: (failureId: string)" in local_api
+    assert "adminPromptTemplate: (itemId: string)" in local_api
+    assert "adminApprovePromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in local_api
+    assert "adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {})" in local_api
     assert "export interface PromptTemplateOpsItem" in types
     assert "export interface PromptTemplateBatchInitResponse" in types
     assert "export interface PromptTemplateReviewRequest" in types
@@ -417,7 +430,8 @@ def test_admin_app_hosts_template_ops_and_review_surface():
 
 def test_detail_modal_exposes_direct_nanobanana_image_generation():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
-    client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    demo_api = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
     types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -428,8 +442,8 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "setImageGenerationFeedback" in detail
     assert "prompt-generate-image-icon" in detail
     assert "prompt-image-feedback" in detail
-    assert "generateItemImage: (_itemId: string" in client
-    assert "generateItemImage: (itemId: string" in client
+    assert "generateItemImage: (_itemId: string" in demo_api
+    assert "generateItemImage: (itemId: string" in local_api
     assert "NanobananaItemImageGenerationRequest" in types
     assert "NanobananaItemImageGenerationResult" in types
     assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
@@ -552,19 +566,21 @@ def test_explore_has_lightweight_hover_preview_without_layout_mutation():
 
 def test_item_editor_supports_quick_capture_inputs():
     modal = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
+    image_inputs = (ROOT / "frontend" / "src" / "hooks" / "useEditorImageInputs.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = compact(css)
 
-    assert "function inferTitleFromFilename(filename: string): string | null" in modal
-    assert "const genericNames = new Set(['image', 'photo', 'picture', 'clipboard', 'pasted image', 'screenshot']);" in modal
-    assert "function imageFilesFromClipboard(clipboardData: DataTransfer | null | undefined): File[]" in modal
-    assert "window.addEventListener('paste', handlePaste);" in modal
-    assert "window.removeEventListener('paste', handlePaste)" in modal
-    assert "target.closest('textarea, input:not([type=\"file\"])')" in modal
-    assert "event.preventDefault();" in modal
-    assert "assignImageFile(role, clipboardImage);" in modal
-    assert "const role: UploadImageRole = !hasExistingResultImage && !resultFile" in modal
+    assert "useEditorImageInputs" in modal
+    assert "function inferTitleFromFilename(filename: string): string | null" in image_inputs
+    assert "const genericNames = new Set(['image', 'photo', 'picture', 'clipboard', 'pasted image', 'screenshot']);" in image_inputs
+    assert "function imageFilesFromClipboard(clipboardData: DataTransfer | null | undefined): File[]" in image_inputs
+    assert "window.addEventListener('paste', handlePaste);" in image_inputs
+    assert "window.removeEventListener('paste', handlePaste)" in image_inputs
+    assert "target.closest('textarea, input:not([type=\"file\"])')" in image_inputs
+    assert "event.preventDefault();" in image_inputs
+    assert "assignImageFile(role, clipboardImage);" in image_inputs
+    assert "const role: UploadImageRole = !hasExistingResultImage && !resultFile" in image_inputs
     assert "onDragOver={onZoneDragOver('result_image')}" in modal
     assert "onDrop={onZoneDrop('result_image')}" in modal
     assert "onDragOver={onZoneDragOver('reference_image')}" in modal
@@ -572,8 +588,8 @@ def test_item_editor_supports_quick_capture_inputs():
     assert "className={`drop-zone ${missingRequiredImage ? 'required' : ''} ${resultDropActive ? 'drag-active' : ''}`}" in modal
     assert "className={`drop-zone reference-drop-zone ${referenceDropActive ? 'drag-active' : ''}`}" in modal
     assert "<span className=\"drop-zone-hint\">{t('imageCaptureHint')}</span>" in modal
-    assert "setSaveError(t('imageFileOnly'));" in modal
-    assert "if (suggestion) setTitle(suggestion);" in modal
+    assert "setSaveError(t('imageFileOnly'));" in image_inputs
+    assert "if (suggestion) setTitle(suggestion);" in image_inputs
 
     assert "| 'imageCaptureHint' | 'imageFileOnly'" in i18n
     assert "imageCaptureHint: '拖放、貼上，或點擊選擇圖片'" in i18n
@@ -591,7 +607,9 @@ def test_item_editor_supports_quick_capture_inputs():
 
 def test_item_editor_supports_prompt_intake_parser_panel():
     modal = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
-    api_client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    demo_api = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
+    http_api = (ROOT / "frontend" / "src" / "api" / "http.ts").read_text()
     types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     intake = (ROOT / "frontend" / "src" / "utils" / "promptIntake.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
@@ -650,12 +668,12 @@ def test_item_editor_supports_prompt_intake_parser_panel():
     assert "className=\"secondary intake-button\"" in modal
     assert "className=\"secondary intake-apply-button\"" in modal
     assert "className={`form-feedback ${intakeFeedback.tone}`}" in modal
-    assert "fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in api_client
-    assert "fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in api_client
-    assert "fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch'" in api_client
-    assert "export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;" in api_client
-    assert "fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url))" in api_client
-    assert "async function fileFromUrl(url: string, init?: RequestInit): Promise<File>" in api_client
+    assert "fetchCaseIntake: (_url: string) => Promise.reject(new Error('URL intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in demo_api
+    assert "fetchCaseIntakeImage: (_url: string) => Promise.reject(new Error('Remote image intake is unavailable in the online sandbox. Run the app locally to fetch case pages.'))" in demo_api
+    assert "fetchCaseIntake: (url: string) => json<CaseIntakeFetchResult>('/api/intake/fetch'" in local_api
+    assert "export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;" in local_api
+    assert "fetchCaseIntakeImage: (url: string) => fileFromUrl(caseIntakeImageUrl(url))" in local_api
+    assert "async function fileFromUrl(url: string, init?: RequestInit): Promise<File>" in http_api
     assert "export interface CaseIntakeImageCandidate { url: string; source: string; alt?: string }" in types
     assert "export interface CaseIntakeFetchResult { url: string; final_url: string; title?: string; description?: string; author?: string; image_url?: string; image_candidates?: CaseIntakeImageCandidate[]; intake_text: string }" in types
     assert "export function parsePromptIntake(input: string): PromptIntakeDraft | null" in intake
@@ -1144,7 +1162,7 @@ def test_editor_supports_multilingual_prompts_collection_suggestions_and_image_r
     editor = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     types = (ROOT / "frontend" / "src" / "types.ts").read_text()
-    api_client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
 
     assert "clusters={clusters}" in app
@@ -1185,7 +1203,7 @@ def test_editor_supports_multilingual_prompts_collection_suggestions_and_image_r
     assert "result_image" in types
     assert "reference_image" in types
     assert "role?: UploadImageRole" in types
-    assert "fd.set('role', role)" in api_client
+    assert "formData.set('role', role)" in local_api
 
 
 def test_frontend_prefers_result_image_for_card_and_detail_hero():
@@ -1204,11 +1222,11 @@ def test_frontend_prefers_result_image_for_card_and_detail_hero():
 
 def test_delete_action_archives_item_and_refreshes_visible_data():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
-    api_client = (ROOT / "frontend" / "src" / "api" / "client.ts").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
     editor = (ROOT / "frontend" / "src" / "components" / "ItemEditorModal.tsx").read_text()
 
-    assert "deleteItem" in api_client
-    assert "method: 'DELETE'" in api_client
+    assert "deleteItem" in local_api
+    assert "method: 'DELETE'" in local_api
     assert "onDeleted" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "t('deleteReference')" in editor

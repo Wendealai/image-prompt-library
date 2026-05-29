@@ -1,4 +1,5 @@
 import httpx
+import pytest
 from fastapi.testclient import TestClient
 from io import BytesIO
 from PIL import Image
@@ -7,6 +8,16 @@ from backend.config import default_link_import_skill_url
 from backend.main import create_app
 from backend.schemas import CaseIntakeFetchResult
 from backend.services.case_intake import FetchedCaseImage, fetch_case_image_from_url, fetch_case_intake_from_url
+
+
+@pytest.fixture(autouse=True)
+def public_example_test_dns(monkeypatch):
+    def fake_public_host_addresses(hostname: str) -> list[str]:
+        if hostname == "example.test" or hostname.endswith(".example.test"):
+            return ["93.184.216.34"]
+        return ["93.184.216.34"]
+
+    monkeypatch.setattr("backend.services.case_intake._public_host_addresses", fake_public_host_addresses)
 
 
 def test_fetch_case_intake_from_url_extracts_structured_html():
@@ -148,6 +159,55 @@ def test_case_intake_fetch_endpoint_rejects_invalid_url(tmp_path):
 
     assert response.status_code == 400
     assert response.text
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "http://localhost/case",
+        "http://127.0.0.1/case",
+        "http://[::1]/case",
+        "http://10.0.0.2/case",
+        "http://172.16.0.2/case",
+        "http://192.168.1.2/case",
+        "http://169.254.169.254/latest/meta-data",
+    ],
+)
+def test_fetch_case_intake_from_url_rejects_private_network_targets(url):
+    with pytest.raises(ValueError, match="public http or https URL"):
+        fetch_case_intake_from_url(url)
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "http://localhost/image.png",
+        "http://127.0.0.1/image.png",
+        "http://10.0.0.2/image.png",
+        "http://169.254.169.254/latest/meta-data",
+    ],
+)
+def test_fetch_case_image_from_url_rejects_private_network_targets(url):
+    with pytest.raises(ValueError, match="public http or https URL"):
+        fetch_case_image_from_url(url)
+
+
+def test_fetch_case_intake_from_url_rejects_redirect_to_private_network():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(302, headers={"location": "http://127.0.0.1/private"}, request=request)
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        with pytest.raises(ValueError, match="public http or https URL"):
+            fetch_case_intake_from_url("https://example.test/case", client=client)
+
+
+def test_fetch_case_image_from_url_rejects_redirect_to_private_network():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(302, headers={"location": "http://127.0.0.1/private.png"}, request=request)
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        with pytest.raises(ValueError, match="public http or https URL"):
+            fetch_case_image_from_url("https://example.test/reference", client=client)
 
 
 def test_fetch_case_image_from_url_returns_verified_image_payload():

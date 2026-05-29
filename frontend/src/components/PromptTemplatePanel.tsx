@@ -1092,7 +1092,7 @@ export default function PromptTemplatePanel({
                         disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}
                         title={image.role || undefined}
                       >
-                        <img src={imagePathForReference(image)} alt={t('promptTemplateImageReference')} />
+                        <img src={imagePathForReference(image)} alt={t('promptTemplateImageReference')} loading="lazy" decoding="async" />
                         <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
                       </button>
                     ))}
@@ -1102,7 +1102,7 @@ export default function PromptTemplatePanel({
                   <div className="prompt-remix-reference-list">
                     {imageReferences.map((reference, index) => (
                       <article key={reference.id} className="prompt-remix-reference-card">
-                        <img src={reference.previewUrl} alt={reference.label || t('promptTemplateImageReference')} />
+                        <img src={reference.previewUrl} alt={reference.label || t('promptTemplateImageReference')} loading="lazy" decoding="async" />
                         <div className="prompt-remix-reference-fields">
                           <div className="prompt-remix-reference-card-head">
                             <strong>{index === 0 ? t('promptTemplateImagePrimaryReference') : t('promptTemplateImageReference')}</strong>

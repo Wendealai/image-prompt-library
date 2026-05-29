@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import ipaddress
 import mimetypes
 import re
+import socket
 from dataclasses import dataclass
 from html import unescape
 from html.parser import HTMLParser
@@ -19,6 +21,8 @@ from backend.schemas import CaseIntakeFetchResult, CaseIntakeImageCandidate
 USER_AGENT = "ImagePromptLibrary/0.1 (+https://github.com/wendealai/image-prompt-library)"
 MAX_INTAKE_CHARS = 12_000
 MAX_REMOTE_IMAGE_BYTES = 30 * 1024 * 1024
+PUBLIC_URL_REQUIRED_MESSAGE = "Please enter a valid public http or https URL."
+LOCAL_HOSTNAMES = {"localhost", "localhost.localdomain"}
 SKIP_TAGS = {"script", "style", "noscript", "svg"}
 BLOCK_TAGS = {
     "title",
@@ -226,12 +230,53 @@ class StructuredHtmlExtractor(HTMLParser):
         self.lines.append(line)
 
 
+def _is_public_ip_address(address: str) -> bool:
+    try:
+        parsed = ipaddress.ip_address(address)
+    except ValueError:
+        return False
+    return parsed.is_global
+
+
+def _public_host_addresses(hostname: str) -> list[str]:
+    try:
+        return [info[4][0] for info in socket.getaddrinfo(hostname, None, type=socket.SOCK_STREAM)]
+    except socket.gaierror as exc:
+        raise ValueError(PUBLIC_URL_REQUIRED_MESSAGE) from exc
+
+
 def _validated_url(url: str) -> str:
     normalized = url.strip()
     parsed = urlparse(normalized)
-    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-        raise ValueError("Please enter a valid http or https URL.")
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc or not parsed.hostname:
+        raise ValueError(PUBLIC_URL_REQUIRED_MESSAGE)
+    hostname = parsed.hostname.strip().rstrip(".").lower()
+    if not hostname or hostname in LOCAL_HOSTNAMES:
+        raise ValueError(PUBLIC_URL_REQUIRED_MESSAGE)
+    try:
+        literal_ip = ipaddress.ip_address(hostname)
+    except ValueError:
+        addresses = _public_host_addresses(hostname)
+        if not addresses or not all(_is_public_ip_address(address) for address in addresses):
+            raise ValueError(PUBLIC_URL_REQUIRED_MESSAGE) from None
+    else:
+        if not literal_ip.is_global:
+            raise ValueError(PUBLIC_URL_REQUIRED_MESSAGE)
     return normalized
+
+
+def _get_public_url(client: httpx.Client, url: str) -> httpx.Response:
+    current_url = _validated_url(url)
+    for _ in range(20):
+        response = client.get(current_url, follow_redirects=False)
+        if not response.is_redirect:
+            _validated_url(str(response.url))
+            return response
+        location = response.headers.get("location")
+        if not location:
+            return response
+        current_url = _validated_url(urljoin(str(response.url), location))
+    raise httpx.TooManyRedirects("Exceeded maximum allowed redirects.", request=response.request)
 
 
 def _filtered_body_lines(lines: Iterable[str], title: str, description: str) -> list[str]:
@@ -517,7 +562,7 @@ def fetch_case_intake_from_url(url: str, client: httpx.Client | None = None) -> 
         social_result = _fetch_social_status_intake(normalized_url, http_client)
         if social_result is not None:
             return social_result
-        response = http_client.get(normalized_url)
+        response = _get_public_url(http_client, normalized_url)
         response.raise_for_status()
         extractor = StructuredHtmlExtractor()
         extractor.feed(response.text)
@@ -559,7 +604,7 @@ def fetch_case_image_from_url(url: str, client: httpx.Client | None = None) -> F
         headers={"User-Agent": USER_AGENT},
     )
     try:
-        response = http_client.get(normalized_url)
+        response = _get_public_url(http_client, normalized_url)
         response.raise_for_status()
         data = response.content
         if len(data) > MAX_REMOTE_IMAGE_BYTES:

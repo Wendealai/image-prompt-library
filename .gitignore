@@ -1,5 +1,6 @@
 library/db.sqlite
 library/db.sqlite-*
+library/db.sqlite.*backup*
 library/originals/*
 library/thumbs/*
 library/previews/*
@@ -15,6 +16,8 @@ node_modules/
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.codegraph/
+.playwright-mcp/
 dist/
 frontend/dist/
 .pages-artifact/
