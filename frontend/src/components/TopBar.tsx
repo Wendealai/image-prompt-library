@@ -35,6 +35,7 @@ export default function TopBar({
 }: Props) {
   const hasActiveFilter = Boolean(clusterName);
   const hasStatusFilters = Boolean(q || clusterName);
+  const showSecondaryToolbar = hasStatusFilters || view === 'cards';
   return (
     <header className="chrome">
       <nav className="nav-row" aria-label={t('primaryNavigation')}>
@@ -63,12 +64,6 @@ export default function TopBar({
           </button>
 
           <div className="view-dock">
-            {view === 'cards' && (
-              <div className="cards-sort-toggle" aria-label={t('cardsSort')}>
-                <button className={cardsSortMode === 'added' ? 'active' : ''} onClick={() => onCardsSortMode('added')}>{t('cardsSortAdded')}</button>
-                <button className={cardsSortMode === 'explore' ? 'active' : ''} onClick={() => onCardsSortMode('explore')}>{t('cardsSortExplore')}</button>
-              </div>
-            )}
             <ViewToggle t={t} view={view} onView={onView} />
           </div>
 
@@ -78,7 +73,7 @@ export default function TopBar({
         </div>
       </nav>
 
-      {hasStatusFilters && <div className="status-row mobile-status-view-row">
+      {showSecondaryToolbar && <div className="status-row mobile-status-view-row">
         <div className="active-filter-strip" aria-label={t('currentFilters')}>
           {q && <span className="chip soft-chip">{t('searchChip')}: “{q}”</span>}
           {clusterName && (
@@ -87,6 +82,12 @@ export default function TopBar({
             </button>
           )}
         </div>
+        {view === 'cards' && (
+          <div className="cards-sort-toggle" aria-label={t('cardsSort')}>
+            <button className={cardsSortMode === 'added' ? 'active' : ''} onClick={() => onCardsSortMode('added')}>{t('cardsSortAdded')}</button>
+            <button className={cardsSortMode === 'explore' ? 'active' : ''} onClick={() => onCardsSortMode('explore')}>{t('cardsSortExplore')}</button>
+          </div>
+        )}
       </div>}
     </header>
   );

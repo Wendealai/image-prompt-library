@@ -215,6 +215,74 @@ Do not commit runtime `library/` data to git. It is your private prompt/image co
 4. Save the card.
 5. Use Cards/Explore, search, filters, and detail view to browse and copy prompts later.
 
+After importing or collecting new public prompt records for the demo bundle, run:
+
+```bash
+npm run after-import
+```
+
+This exports fresh `frontend/public/demo-data`, updates the demo count assertions, and checks for active items without images, remote-only image records, missing local image files, unresolved demo media references, and stale demo/database counts. To run only the health gate:
+
+```bash
+npm run check:library
+```
+
+For repeatable public X/Twitter prompt imports, create a local JSON manifest from the post and images captured in the browser:
+
+```bash
+npm run build:x-manifest -- \
+  --thread-json ./thread.json \
+  --images-json ./images.json \
+  --output ./manifest.json \
+  --cluster-name "Posters & Typography" \
+  --tag "commercial poster"
+```
+
+Then import it:
+
+```bash
+npm run import:x -- ./path/to/manifest.json --after-import
+```
+
+For the common single-post path, build and import in one step:
+
+```bash
+npm run prepare:x -- \
+  --thread-json ./thread.json \
+  --images-json ./images.json \
+  --title "Example Prompt" \
+  --cluster-name "Posters & Typography" \
+  --tag "commercial poster" \
+  --after-import
+```
+
+For a batch of reviewed manifests, put them in one directory and run:
+
+```bash
+npm run import:x-batch -- ./manifests --after-import
+```
+
+Batch import skips active duplicate `source_url` records and runs post-import maintenance only once after all new items are created.
+
+The manifest format is:
+
+```json
+{
+  "source_url": "https://x.com/example/status/123",
+  "title": "Example Prompt",
+  "author": "@example",
+  "prompt_text": "The full prompt text.",
+  "prompt_reply_url": "https://x.com/example/status/124",
+  "cluster_name": "Posters & Typography",
+  "tags": ["X source", "x-status-123"],
+  "images": [
+    { "data_url": "data:image/jpeg;base64,...", "filename": "example-1.jpg" }
+  ]
+}
+```
+
+Images can use `data_url`, `base64` plus `content_type`, or a local `path`. The importer skips duplicate active items with the same `source_url` and stores every image locally before the demo export.
+
 ## Import and example data
 
 The app starts with an empty private library. Your own `library/` folder contains personal prompt data and images, so it is intentionally ignored by git.

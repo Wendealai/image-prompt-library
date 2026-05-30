@@ -35,6 +35,8 @@ def test_verify_scripts_run_full_local_quality_gate():
     for verify_script in (verify_ps1, verify_sh):
         assert "python -m ruff check backend tests scripts" in verify_script
         assert "python -m pytest -q" in verify_script
+        assert "python scripts/check-library-health.py" in verify_script
+        assert "Skipping library health check" in verify_script
         assert "npm run lint" in verify_script
         assert "npm run build" in verify_script
         assert "npm run build:demo" in verify_script

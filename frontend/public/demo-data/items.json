@@ -1,5 +1,1193 @@
 [
   {
+    "id": "itm_2634640a11d14457",
+    "title": "美业门店异形小立牌 Prompt",
+    "slug": "美业门店异形小立牌-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2060635462302110176",
+    "cluster": {
+      "id": "clu_7e5abfdd022e40bc",
+      "name": "Local Store Marketing Posters",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_19ded1d3062443d6",
+        "name": "美业门店",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c8e41a6edb5d45cf",
+        "name": "异形小立牌",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d8b8eeec02a845cb",
+        "name": "门店异形桌牌",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_35047d8dd7434ff3",
+        "name": "beauty salon marketing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ad7999b58f134110",
+        "name": "store display cards",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_59e63e4f78cd43dd",
+        "name": "table tent cards",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ff2b581a247540f5",
+        "name": "standee design",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_bea88c65faa34fae",
+        "name": "white background",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_314eb96cdda84161",
+        "name": "cutout ready",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_894a2b477aa247a1",
+        "name": "2x2 layout",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b6fd9d1b11bf4289",
+        "name": "retail marketing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_31d93ec113c74a96",
+        "name": "local store marketing",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_84bb6c8eae134c04",
+        "name": "x-status-2060635462302110176",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "《美業門店異形小立牌》提示詞：\n\n請生成一張「美業門店異形小立牌」設計展示圖，背景必須爲純白色，畫面中只展示 4 個獨立的小型異形立牌，採用 2×2 排列，彼此留白清晰、不重疊，方便後期單獨摳圖、改字和二次排版使用。\n\n主題方向：[美甲店 / 美睫店 / 皮膚管理 / 頭療養髮 / 美容SPA / 紋繡店]\n品牌名稱：[品牌名]\n整體風格：[甜美精緻 / 輕奢柔美 / 淨透專業 / 草本療愈 / 高級簡約]\n主色調：[主色調]\n\n4 個小立牌內容：\n[項目名1] / [價格1] / 標籤：[人氣/招牌/新品/推薦] / 賣點：[賣點1]\n[項目名2] / [價格2] / 標籤：[人氣/招牌/新品/推薦] / 賣點：[賣點2]\n[項目名3] / [價格3] / 標籤：[人氣/招牌/新品/推薦] / 賣點：[賣點3]\n[項目名4] / [價格4] / 標籤：[人氣/招牌/新品/推薦] / 賣點：[賣點4]\n\n設計要求：\n背景必須是純白色，不要門店場景、不要人物手持、不要桌面佈景、不要海報排版。\n每個立牌都要完整清晰，邊緣明確，方便後期單獨摳圖。\n每個立牌都要有明顯異形輪廓，不是普通長方形；輪廓要結合項目特徵設計，比如指甲、眼睛、睫毛、羽毛、水滴、側臉、葉片、髮絲、梳子、精油瓶等元素。\n每個立牌包含：項目名稱、價格、標籤詞、短賣點和對應的項目視覺元素。\n4 個立牌要風格統一但形狀、圖案構成、裝飾元素有差異，不能只是同一個模板換字。\n畫面要明亮、精緻、商業感強，像真實美業門店可使用的小型項目推薦立牌素材圖。\n可帶簡潔小底座，但底座不要太大；只允許輕微乾淨的陰影，方便摳圖。\n最終效果要適合前臺臺卡、項目推薦卡、新客體驗牌、諮詢區小立牌等門店物料使用。",
+        "is_primary": true,
+        "id": "prm_6a386f3c1f204d7d",
+        "item_id": "itm_2634640a11d14457",
+        "created_at": "2026-05-30T14:47:49.371576+00:00",
+        "updated_at": "2026-05-30T14:47:49.371576+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "《美业门店异形小立牌》提示词：\n\n请生成一张「美业门店异形小立牌」设计展示图，背景必须为纯白色，画面中只展示 4 个独立的小型异形立牌，采用 2×2 排列，彼此留白清晰、不重叠，方便后期单独抠图、改字和二次排版使用。\n\n主题方向：[美甲店 / 美睫店 / 皮肤管理 / 头疗养发 / 美容SPA / 纹绣店]\n品牌名称：[品牌名]\n整体风格：[甜美精致 / 轻奢柔美 / 净透专业 / 草本疗愈 / 高级简约]\n主色调：[主色调]\n\n4 个小立牌内容：\n[项目名1] / [价格1] / 标签：[人气/招牌/新品/推荐] / 卖点：[卖点1]\n[项目名2] / [价格2] / 标签：[人气/招牌/新品/推荐] / 卖点：[卖点2]\n[项目名3] / [价格3] / 标签：[人气/招牌/新品/推荐] / 卖点：[卖点3]\n[项目名4] / [价格4] / 标签：[人气/招牌/新品/推荐] / 卖点：[卖点4]\n\n设计要求：\n背景必须是纯白色，不要门店场景、不要人物手持、不要桌面布景、不要海报排版。\n每个立牌都要完整清晰，边缘明确，方便后期单独抠图。\n每个立牌都要有明显异形轮廓，不是普通长方形；轮廓要结合项目特征设计，比如指甲、眼睛、睫毛、羽毛、水滴、侧脸、叶片、发丝、梳子、精油瓶等元素。\n每个立牌包含：项目名称、价格、标签词、短卖点和对应的项目视觉元素。\n4 个立牌要风格统一但形状、图案构成、装饰元素有差异，不能只是同一个模板换字。\n画面要明亮、精致、商业感强，像真实美业门店可使用的小型项目推荐立牌素材图。\n可带简洁小底座，但底座不要太大；只允许轻微干净的阴影，方便抠图。\n最终效果要适合前台台卡、项目推荐卡、新客体验牌、咨询区小立牌等门店物料使用。",
+        "is_primary": false,
+        "id": "prm_e7de4c451e7b4d1a",
+        "item_id": "itm_2634640a11d14457",
+        "created_at": "2026-05-30T14:47:49.371576+00:00",
+        "updated_at": "2026-05-30T14:47:49.371576+00:00"
+      }
+    ],
+    "prompt_snippet": "《美業門店異形小立牌》提示詞：\n\n請生成一張「美業門店異形小立牌」設計展示圖，背景必須爲純白色，畫面中只展示 4 個獨立的小型異形立牌，採用 2×2 排列，彼此留白清晰、不重疊，方便後期單獨摳圖、改字和二次排版使用。\n\n主題方向：[美甲店 / 美睫店 / 皮膚管理 / 頭療養髮 / 美容SPA / 紋繡店]\n品牌名稱：[品牌名]\n整體風格：[甜美精緻 / 輕奢柔美 / 淨透專業 / 草本療愈 / 高級簡約]\n主色調：[主色調]\n\n4 個",
+    "first_image": {
+      "id": "img_57db3489a0044e97",
+      "item_id": "itm_2634640a11d14457",
+      "original_path": "demo-data/media/img_57db3489a0044e97.webp",
+      "thumb_path": "demo-data/media/img_57db3489a0044e97.webp",
+      "preview_path": "demo-data/media/img_57db3489a0044e97.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-30T14:47:49.760243+00:00"
+    },
+    "rating": 4,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-30T14:47:49.371576+00:00",
+    "created_at": "2026-05-30T14:47:49.371576+00:00",
+    "images": [
+      {
+        "id": "img_57db3489a0044e97",
+        "item_id": "itm_2634640a11d14457",
+        "original_path": "demo-data/media/img_57db3489a0044e97.webp",
+        "thumb_path": "demo-data/media/img_57db3489a0044e97.webp",
+        "preview_path": "demo-data/media/img_57db3489a0044e97.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-30T14:47:49.760243+00:00"
+      },
+      {
+        "id": "img_bafd948f2e874fde",
+        "item_id": "itm_2634640a11d14457",
+        "original_path": "demo-data/media/img_bafd948f2e874fde.webp",
+        "thumb_path": "demo-data/media/img_bafd948f2e874fde.webp",
+        "preview_path": "demo-data/media/img_bafd948f2e874fde.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-30T14:47:50.026080+00:00"
+      },
+      {
+        "id": "img_bbcacf84f6a34d21",
+        "item_id": "itm_2634640a11d14457",
+        "original_path": "demo-data/media/img_bbcacf84f6a34d21.webp",
+        "thumb_path": "demo-data/media/img_bbcacf84f6a34d21.webp",
+        "preview_path": "demo-data/media/img_bbcacf84f6a34d21.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-30T14:47:50.270763+00:00"
+      },
+      {
+        "id": "img_88b9150cd1f541af",
+        "item_id": "itm_2634640a11d14457",
+        "original_path": "demo-data/media/img_88b9150cd1f541af.webp",
+        "thumb_path": "demo-data/media/img_88b9150cd1f541af.webp",
+        "preview_path": "demo-data/media/img_88b9150cd1f541af.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-30T14:47:50.558185+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2060635462302110176\n\nAuthor: @MrLarus\n\nPrompt reply: https://x.com/MrLarus/status/2060635549912678432\n\nReferenced earlier template: https://x.com/MrLarus/status/2059882274699546795\n\nOriginal tweet intro:\n💅用 ChatGPT-Image2 做《门店异形桌牌》，美业促单必备！\n\n每张图都是白底 + 4 个独立小立牌：\n方便后期抠图、改字，做成前台台卡、项目推荐卡、新客体验牌~\n\n任何门店都可以用，把项目、价格、卖点\n变成门店里能被看到、被咨询、被下单的小型销售触点！\n\n提示词见引用推👇",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_c1a4d67a4d3849c5",
+    "title": "城市味觉档案一城一菜海报 Prompt",
+    "slug": "城市味觉档案一城一菜海报-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2060656617482305973",
+    "cluster": {
+      "id": "clu_8176fc2bcc034dc3",
+      "name": "Food & culture infographic",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_87c0066e88124bed",
+        "name": "城市味觉档案",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0998af65291f49c2",
+        "name": "一城一菜",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6ccd46152dc94466",
+        "name": "city flavor archive",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_90e91cc786174c89",
+        "name": "one city one dish",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d77322247f4e47c8",
+        "name": "food poster",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3a3745afe3224851",
+        "name": "restaurant branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_76df64b4bc5d43a2",
+        "name": "cultural tourism",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_70b2ec25f0e04db2",
+        "name": "retro print",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_246ccf5a725d4482",
+        "name": "landmark overlay",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2dda6cfa03524b26",
+        "name": "城市文旅",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5cbc2372635d48a9",
+        "name": "餐饮品牌",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_69e4e7a000c447a6",
+        "name": "x-status-2060656617482305973",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "《城市味覺檔案》海報簡版提示詞：\n\n生成一張《城市味覺檔案 City Flavor Archive》系列海報，主題爲“One City, One Dish / 一城一菜”。\n\n城市：【城市名】\n代表菜：【菜品名】\n品牌名：【品牌名】\n主標題：【城市名】你好\n口號：【口號文案】\n印章文字：【印章文字】\n英文輔助：HELLO 【城市英文名】 / ONE CITY ONE DISH\n畫幅比例：4:5 豎版\n\n畫面要求：\n前景放置一道真實、有食慾、清晰明亮的【菜品名】，作爲畫面最大視覺主體，佔據下半部分，食材、醬汁、熱氣、配料和器皿質感要明顯，菜品要比背景更鮮明。\n\n背景使用【城市名】代表性地標建築羣，採用“主地標 + 半透明副地標 + 城市遠景”的層疊結構，形成城市舊影和地標羣氛圍。背景帶有舊紙張、舊牆面、半調網點、顆粒印刷、斑駁肌理和復古海報質感，但這些質感主要作用於背景，不要壓暗菜品。\n\n文字只保留核心信息：大標題“【城市名】你好”、菜品名、品牌名、手寫體口號、小紅印章、少量英文輔助。不要出現日期，不要堆滿小字。大標題要用亮米白或暖白書法字，和背景形成強對比。\n\n整體風格：高級餐飲品牌海報、城市風味視覺檔案、地方文化、復古印刷、地標疊影、真實美食攝影、時尚專業、有層次感。不要做成菜單、廉價促銷圖、卡通圖、四宮格或多圖合併。",
+        "is_primary": true,
+        "id": "prm_1632243b2df04fd1",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "created_at": "2026-05-30T12:14:28.479534+00:00",
+        "updated_at": "2026-05-30T12:14:28.479534+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "《城市味觉档案》海报简版提示词：\n\n生成一张《城市味觉档案 City Flavor Archive》系列海报，主题为“One City, One Dish / 一城一菜”。\n\n城市：【城市名】\n代表菜：【菜品名】\n品牌名：【品牌名】\n主标题：【城市名】你好\n口号：【口号文案】\n印章文字：【印章文字】\n英文辅助：HELLO 【城市英文名】 / ONE CITY ONE DISH\n画幅比例：4:5 竖版\n\n画面要求：\n前景放置一道真实、有食欲、清晰明亮的【菜品名】，作为画面最大视觉主体，占据下半部分，食材、酱汁、热气、配料和器皿质感要明显，菜品要比背景更鲜明。\n\n背景使用【城市名】代表性地标建筑群，采用“主地标 + 半透明副地标 + 城市远景”的层叠结构，形成城市旧影和地标群氛围。背景带有旧纸张、旧墙面、半调网点、颗粒印刷、斑驳肌理和复古海报质感，但这些质感主要作用于背景，不要压暗菜品。\n\n文字只保留核心信息：大标题“【城市名】你好”、菜品名、品牌名、手写体口号、小红印章、少量英文辅助。不要出现日期，不要堆满小字。大标题要用亮米白或暖白书法字，和背景形成强对比。\n\n整体风格：高级餐饮品牌海报、城市风味视觉档案、地方文化、复古印刷、地标叠影、真实美食摄影、时尚专业、有层次感。不要做成菜单、廉价促销图、卡通图、四宫格或多图合并。",
+        "is_primary": false,
+        "id": "prm_b853613bdea149ca",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "created_at": "2026-05-30T12:14:28.479534+00:00",
+        "updated_at": "2026-05-30T12:14:28.479534+00:00"
+      }
+    ],
+    "prompt_snippet": "《城市味覺檔案》海報簡版提示詞：\n\n生成一張《城市味覺檔案 City Flavor Archive》系列海報，主題爲“One City, One Dish / 一城一菜”。\n\n城市：【城市名】\n代表菜：【菜品名】\n品牌名：【品牌名】\n主標題：【城市名】你好\n口號：【口號文案】\n印章文字：【印章文字】\n英文輔助：HELLO 【城市英文名】 / ONE CITY ONE DISH\n畫幅比例：4:5 豎版\n\n畫面要求：\n前景放置一道真實、有食",
+    "first_image": {
+      "id": "img_e129cb4b01724909",
+      "item_id": "itm_c1a4d67a4d3849c5",
+      "original_path": "demo-data/media/img_e129cb4b01724909.webp",
+      "thumb_path": "demo-data/media/img_e129cb4b01724909.webp",
+      "preview_path": "demo-data/media/img_e129cb4b01724909.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-30T12:14:29.012248+00:00"
+    },
+    "rating": 4,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-30T12:14:28.479534+00:00",
+    "created_at": "2026-05-30T12:14:28.479534+00:00",
+    "images": [
+      {
+        "id": "img_e129cb4b01724909",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "original_path": "demo-data/media/img_e129cb4b01724909.webp",
+        "thumb_path": "demo-data/media/img_e129cb4b01724909.webp",
+        "preview_path": "demo-data/media/img_e129cb4b01724909.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-30T12:14:29.012248+00:00"
+      },
+      {
+        "id": "img_c531a8ea63974e52",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "original_path": "demo-data/media/img_c531a8ea63974e52.webp",
+        "thumb_path": "demo-data/media/img_c531a8ea63974e52.webp",
+        "preview_path": "demo-data/media/img_c531a8ea63974e52.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-30T12:14:29.460710+00:00"
+      },
+      {
+        "id": "img_782c9581881e40e9",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "original_path": "demo-data/media/img_782c9581881e40e9.webp",
+        "thumb_path": "demo-data/media/img_782c9581881e40e9.webp",
+        "preview_path": "demo-data/media/img_782c9581881e40e9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-30T12:14:29.878549+00:00"
+      },
+      {
+        "id": "img_6c8ccd39952c435e",
+        "item_id": "itm_c1a4d67a4d3849c5",
+        "original_path": "demo-data/media/img_6c8ccd39952c435e.webp",
+        "thumb_path": "demo-data/media/img_6c8ccd39952c435e.webp",
+        "preview_path": "demo-data/media/img_6c8ccd39952c435e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-30T12:14:30.257241+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2060656617482305973\n\nAuthor: @MrLarus\n\nPrompt reply: https://x.com/MrLarus/status/2060656720192397644\n\nOriginal tweet intro:\n太惊喜了！\n我用ChatGPT-Image2生成《城市味觉档案》，一城一菜！😋\n\n把城市地标、地方风味和复古印刷风结合：\n1、潮汕 × 牛肉丸\n2、西安 × 肉夹馍\n3、重庆 × 重庆小面\n4、武汉 × 热干面\n\n用当地地标建筑群做背景叠影，前景一道代表菜…\n适合餐饮品牌、文旅美食和城市伴手礼做海报参考！♥️\n\n提示词在评论区👇",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_4f77b0cf45044dbb",
+    "title": "Public Domain Comic Pop-Up Toy Photography Prompt",
+    "slug": "public-domain-comic-pop-up-toy-photography-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / @Gdgtify",
+    "source_url": "https://x.com/Gdgtify/status/2060294078160392678",
+    "cluster": {
+      "id": "clu_1d24371e590e426d",
+      "name": "Pop-Up Book & Toy Photography Prompts",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_0cc9159c6eb045eb",
+        "name": "public domain comics",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2990706c68194059",
+        "name": "manga",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_24d33cc34eee4f63",
+        "name": "comic book",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b49c9b8e572f412d",
+        "name": "pop-up book",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_bdf35f04046a4048",
+        "name": "macro toy photography",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1a4de89036644107",
+        "name": "vinyl toy",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_087cc505af4f452b",
+        "name": "2x2 grid",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cc9aa2bc2dc34302",
+        "name": "comic SFX",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e9aff6b5648c4090",
+        "name": "metadata card",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8529d3512d7847e3",
+        "name": "x-status-2060294078160392678",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "2x2 grid, do this for 4 public domain mangas or comic books that are famous: scene_type: \"Macro Toy Photography / Pop-Up Book\" metadata:   title: \"$ISSUE_TITLE\"   year: \"$YEAR\"   sfx: \"$SFX_WORD\" spatial_layers:   background_Z: \"Upright hardcover book spine acting as a 2D scenic backdrop\"   floor_Y: \"Open book pages laying flat, printed with comic strips\"   midground_3D:      actor_1: \"Vinyl toy of $ COMIC_HERO\"     actor_2: \"Vinyl toy of $ VILLAIN\"     kinetic_fx: \"Solidified 3D action trails/energy\"   foreground_UI:      element_1: \"Floating 3D letters spelling $ SFX_WORD\"     element_2: \"Floating dialogue/info box with metadata\"",
+        "is_primary": true,
+        "id": "prm_d5e1b7b671c9431d",
+        "item_id": "itm_4f77b0cf45044dbb",
+        "created_at": "2026-05-29T22:43:46.491634+00:00",
+        "updated_at": "2026-05-29T22:43:46.491634+00:00"
+      }
+    ],
+    "prompt_snippet": "2x2 grid, do this for 4 public domain mangas or comic books that are famous: scene_type: \"Macro Toy Photography / Pop-Up Book\" metadata:   title: \"$ISSUE_TITLE\"   year: \"$YEAR\"   sfx: \"$SFX_WORD\" spatial_layers:   backgr",
+    "first_image": {
+      "id": "img_18ffa9e52681400e",
+      "item_id": "itm_4f77b0cf45044dbb",
+      "original_path": "demo-data/media/img_18ffa9e52681400e.webp",
+      "thumb_path": "demo-data/media/img_18ffa9e52681400e.webp",
+      "preview_path": "demo-data/media/img_18ffa9e52681400e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 600,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-29T22:43:46.509241+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-29T22:43:46.491634+00:00",
+    "created_at": "2026-05-29T22:43:46.491634+00:00",
+    "images": [
+      {
+        "id": "img_18ffa9e52681400e",
+        "item_id": "itm_4f77b0cf45044dbb",
+        "original_path": "demo-data/media/img_18ffa9e52681400e.webp",
+        "thumb_path": "demo-data/media/img_18ffa9e52681400e.webp",
+        "preview_path": "demo-data/media/img_18ffa9e52681400e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-29T22:43:46.509241+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Gdgtify/status/2060294078160392678\n\nAuthor: @Gdgtify\n\nOriginal tweet intro:\nA fun way to visualize public domain titles. GPT doesn't allow anything else, so we may as well go with that\n\nQuoted earlier example: https://x.com/Gdgtify/status/2037509692281250148",
+    "author": "@Gdgtify"
+  },
+  {
+    "id": "itm_6c3553aeda9647c3",
+    "title": "Ao Run West Sea Dragon King Fantasy Book Cover Prompt",
+    "slug": "ao-run-west-sea-dragon-king-fantasy-book-cover-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / @SimplyAnnisa",
+    "source_url": "https://x.com/SimplyAnnisa/status/2060391280736350533",
+    "cluster": {
+      "id": "clu_d9d496746439422b",
+      "name": "Fantasy Book Cover Prompts",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_6a18d0b011c8496c",
+        "name": "fantasy book cover",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c9f82f0ace264ce3",
+        "name": "dragon king",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_58b85302ac564a7d",
+        "name": "Ao Run",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_096b4f510ad54ef8",
+        "name": "Chinese mythology",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fead511fab004dd7",
+        "name": "water magic",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a0d59dc157a0421a",
+        "name": "ink wash",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0b3010d4bbd94b21",
+        "name": "vertical poster",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cf05beb85cc842fc",
+        "name": "mythological character",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_35614e5ef06844e3",
+        "name": "x-status-2060391280736350533",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Epic fantasy book cover art of Ao Run, the West Sea Dragon King. Majestic androgynous Chinese dragon king with long flowing blue hair, glowing red eyes, ornate crystalline blue dragon horns, blue gem on forehead. Wearing intricate flowing blue and silver armor dress made of water and ice, standing in turbulent ocean waves. Massive ethereal blue dragon spirit swirling behind him. Ink wash painting style mixed with digital art, Chinese landscape background with misty mountains, waterfalls, ancient temples, and torii gate. Dramatic lighting, glowing blue water magic effects, highly detailed, 8k, ultra realistic. Vertical poster layout. Title text \"AO RUN\" large at top in blue marble texture, subtitle \"THE WEST SEA DRAGON KING\" below. Quote text and Chinese/Japanese calligraphy characters on sides. Tagline \"THE TIDE REMEMBERS. POWER ENDURES.\" at bottom. Cinematic, mythological, regal atmosphere",
+        "is_primary": true,
+        "id": "prm_8a07e0e2fe464d19",
+        "item_id": "itm_6c3553aeda9647c3",
+        "created_at": "2026-05-29T22:39:14.247741+00:00",
+        "updated_at": "2026-05-29T22:39:14.247741+00:00"
+      }
+    ],
+    "prompt_snippet": "Epic fantasy book cover art of Ao Run, the West Sea Dragon King. Majestic androgynous Chinese dragon king with long flowing blue hair, glowing red eyes, ornate crystalline blue dragon horns, blue gem on forehead. Wearing",
+    "first_image": {
+      "id": "img_19cf19ab6b9c406d",
+      "item_id": "itm_6c3553aeda9647c3",
+      "original_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+      "thumb_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+      "preview_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+      "remote_url": null,
+      "width": 720,
+      "height": 1279,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-29T22:39:14.523165+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-29T22:39:14.247741+00:00",
+    "created_at": "2026-05-29T22:39:14.247741+00:00",
+    "images": [
+      {
+        "id": "img_19cf19ab6b9c406d",
+        "item_id": "itm_6c3553aeda9647c3",
+        "original_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+        "thumb_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+        "preview_path": "demo-data/media/img_19cf19ab6b9c406d.webp",
+        "remote_url": null,
+        "width": 720,
+        "height": 1279,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-29T22:39:14.523165+00:00"
+      },
+      {
+        "id": "img_097b9aee2a9b44f2",
+        "item_id": "itm_6c3553aeda9647c3",
+        "original_path": "demo-data/media/img_097b9aee2a9b44f2.webp",
+        "thumb_path": "demo-data/media/img_097b9aee2a9b44f2.webp",
+        "preview_path": "demo-data/media/img_097b9aee2a9b44f2.webp",
+        "remote_url": null,
+        "width": 720,
+        "height": 1279,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-29T22:39:14.725367+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/SimplyAnnisa/status/2060391280736350533\n\nAuthor: @SimplyAnnisa\n\nTweet intro:\nGPT IMAGE 2 on CHAT GPT:",
+    "author": "@SimplyAnnisa"
+  },
+  {
+    "id": "itm_ce9cd0dc972d4cea",
+    "title": "Retail Typography Product Campaign System Prompt",
+    "slug": "retail-typography-product-campaign-system-prompt",
+    "model": "Nano Banana 2",
+    "source_name": "X / @Diplomeme",
+    "source_url": "https://x.com/Diplomeme/status/2060433950540251645",
+    "cluster": {
+      "id": "clu_8891887641cd48da",
+      "name": "Brand & Advertising Posters",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_9291afdf52dd4b21",
+        "name": "retail campaign",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6c0f0a369ba841ef",
+        "name": "typography poster",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_61cde98ac53841f3",
+        "name": "product typography",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_153e1b791f814322",
+        "name": "OOH billboard",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0cfdf48e2c874c33",
+        "name": "brand advertising",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_907379e90f4b4d35",
+        "name": "seasonal sale",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8bb14e8697094a64",
+        "name": "IKEA",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2103afe2b87846de",
+        "name": "7-Eleven",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a30ec02354c642fa",
+        "name": "Target",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4e1b34c64dc34ea9",
+        "name": "Walmart",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0699ff19f21943a7",
+        "name": "Nano Banana 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cfa540ce0b084360",
+        "name": "x-status-2060433950540251645",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Prompts:\nFORMAT:\n4:5 vertical ultra-premium seasonal retail campaign\nIKEA global creative direction quality\nScandinavian design billboard system\n8K\n\nCORE IDEA:\n\nTo bring something new in,\nsomething old must leave.\n\nMake room.\n\nVISUAL:\n\nMassive typography:\n\nMAKE\nROOM.\n\noccupying nearly entire composition.\n\nUltra-bold.\n\nArchitectural.\n\nScandinavian scale.\n\nTypography feels like furniture.\n\nNot graphic design.\n\nIKEA TWIST:\n\nThe letters themselves are modular.\n\nBuilt from furniture pieces.\n\nShelves.\nTables.\nStorage units.\nPanels.\n\nSubtle.\n\nNot obvious.\n\nWhen viewed closely:\n\nthe typography IS furniture.\n\nINSIDE THE LETTERS:\n\nCarefully integrated IKEA products:\n\n- lamp\n- chair\n- storage box\n- bedding\n- side table\n\nAll embedded naturally.\n\nNothing floating.\n\nNothing exploding.\n\nEverything organized.\n\nVery IKEA.\n\nBACKGROUND:\n\nPure IKEA blue.\n\nFlat.\n\nConfident.\n\nNo gradients.\n\nNo effects.\n\nHuge negative space.\n\nYELLOW IKEA SYSTEM:\n\nSubtle IKEA yellow accents:\n\n- offer\n- dividers\n- CTA\n- icon system\n\nVery controlled.\n\nOFFER:\n\nUP TO\n\n70%\n\nOFF\n\nbottom-left\n\nclean.\n\nminimal.\n\nsmall.\n\nBecause design remains hero.\n\nLOGO:\n\nTiny IKEA logo.\n\nTop-left.\n\nBADGE:\n\nEND OF SEASON\n\nsmall yellow capsule badge\n\ntop-right\n\ninspired by IKEA promotional systems.\n\nBOTTOM ICON STRIP:\n\nLiving Room\nBedroom\nStorage\nWorkspace\nLighting\n\nMinimal line icons.\n\nCOPY:\n\nMAKE ROOM.\n\nfor what's next.\n\nCTA:\n\nShop Now\n\nikea . Com\n\nFEEL:\n\nIKEA\n+\nMuji\n+\nApple\n+\nScandinavian editorial design\n\nNot a sale poster.\n\nA design campaign\nthat happens to contain a sale.\n\nPrompt 2 : \n\nFORMAT:\n4:5 vertical ultra-premium convenience retail campaign\nGlobal OOH billboard quality\n7-Eleven internal creative direction\nFashion-street retail advertising\n8K\n\nCORE IDEA:\n\nThe season ends.\n\nWe're still here.\n\nVISUAL:\n\nMassive typography:\n\nSTILL\nOPEN.\n\noccupying nearly entire frame.\n\nUltra-bold.\n\nArchitectural.\n\nStreet-scale.\n\nTypography dominates everything.\n\n7-ELEVEN TWIST:\n\nThe letters are illuminated from within.\n\nLike a convenience store at night.\n\nSubtle green-orange-red glow emerging from typography edges.\n\nInspired by actual 7-Eleven storefront lighting.\n\nINSIDE THE LETTERS:\n\nCarefully embedded convenience essentials:\n\n- coffee cup\n- Slurpee\n- snack bag\n- sandwich\n- headphones\n- phone charger\n\nNot luxury products.\n\nNot furniture.\n\nNot fashion.\n\nThings people actually buy at 2AM.\n\nBACKGROUND:\n\nDeep night black.\n\nVery subtle dark green undertone.\n\nHuge negative space.\n\nFeels like:\n\ncity at 2:13am.\n\nICONIC BRAND SYSTEM:\n\nLarge subtle 7-Eleven stripe system.\n\nGreen.\nOrange.\nRed.\n\nRunning horizontally behind typography.\n\nVery faint.\n\nActs as composition structure.\n\nOFFER:\n\nUP TO\n\n50%\n\nOFF\n\nsmall.\n\nbottom-left.\n\nBecause availability remains hero.\n\nLOGO:\n\nTiny 7-Eleven logo.\n\nTop-left.\n\nBADGE:\n\n24 HOURS\n\nsmall illuminated badge\n\ntop-right.\n\nInspired by actual store signage.\n\nBOTTOM ICON STRIP:\n\nCoffee\nSnacks\nDrinks\nEssentials\nLate Night\n\nMinimal icon system.\n\nCOPY: \n\nSTILL OPEN.\n\nwhen life isn't.\n\nCTA:\n\nShop Now\n\n7-eleven . Com\n\nFEEL:\n\n7-Eleven\n+\nA24 night photography\n+\nstreetwear billboard design\n+\nconvenience culture\n\nNot a sale poster.\n\nA lifestyle campaign\nabout being available.\n\n---\n\nFORMAT:\n4:5 vertical ultra-premium seasonal retail campaign\nTarget internal creative team quality\nFashion-retail billboard system\n8K\n\nCORE IDEA:\n\nThe season's most desirable objects\nare leaving.\n\nGet them before they're gone.\n\nVISUAL:\n\nMassive typography:\n\nDESIGNED\nTO GO.\n\noccupying nearly 80% of frame.\n\nUltra-bold.\n\nWhite.\n\nArchitectural.\n\nFashion-campaign scale.\n\nTARGET TWIST:\n\nThe typography is carved open.\n\nInside the letters:\n\npremium Target categories emerge.\n\nCurated carefully.\n\nNOT random retail products.\n\nOnly elevated Target-style items:\n\n- designer lamp\n- modern chair\n- neutral hoodie\n- skincare product\n- headphones\n\nEverything feels curated.\n\nNot discounted.\n\nBACKGROUND:\n\nPure Target red.\n\nFlat.\n\nConfident.\n\nNo gradients.\n\nNo visual clutter.\n\nICONIC TARGET SYSTEM:\n\nLarge subtle bullseye integrated behind typography.\n\nAlmost invisible.\n\nTone-on-tone red.\n\nActs as composition structure.\n\nOFFER:\n\nUP TO\n\n70%\n\nOFF\n\nSmall.\n\nElegant.\n\nBottom-left.\n\nBecause the campaign remains the hero.\n\nLOGO:\n\nTiny Target logo.\n\nTop-left.\n\nBADGE:\n\nTARGET CIRCLE WEEK\n\nsmall circular badge\n\ntop-right.\n\nIntegrated naturally.\n\nInspired by real Target campaign behavior.\n\nFORMAT:\n4:5 vertical ultra-premium seasonal retail campaign\nGlobal OOH quality\nLuxury retail branding\n8K\n\nCORE IDEA:\n\nThe season is being cleared away.\n\nLiterally.\n\nVISUAL:\n\nMassive typography:\n\nEND\nOF\nSEASON\n\nstacked vertically.\n\nTypography occupies 75% of canvas.\n\nUltra-bold.\n\nWhite.\n\nBrutal.\n\nFashion-campaign scale.\n\nSURREAL RETAIL TWIST:\n\nThe letters themselves are breaking apart.\n\nFrom the typography:\n\nproducts emerge.\n\nTiny.\n\nCurated.\n\nPremium.\n\n- jacket\n- chair\n- sneaker\n- lamp\n- headphones\n\nAs if the sale is releasing inventory\nfrom inside the typography.\n\nNOT floating randomly.\n\nIntegrated into the design system.\n\nBACKGROUND:\n\nPure Walmart blue.\n\nNothing else.\n\nNo gradients.\n\nNo effects.\n\nJust confidence.\n\nOFFER:\n\nUp to\n\n50%\n\nsmall.\n\nPlaced elegantly.\n\nBecause the campaign is stronger than the discount.\n\nLOGO:\n\nTiny Walmart logo.\n\nTop left.\n\nBOTTOM:\n\nEND OF SEASON EVENT\n\nShop now\n\nwalmart . Com\n\nFEEL:\n\nJacquemus billboard\n+\nApple typography\n+\nWalmart retail scale\n\nNot a sale poster.\n\nA retail fashion campaign.\n\nCreate it",
+        "is_primary": true,
+        "id": "prm_92a347030ed24701",
+        "item_id": "itm_ce9cd0dc972d4cea",
+        "created_at": "2026-05-29T22:35:12.803602+00:00",
+        "updated_at": "2026-05-29T22:35:12.803602+00:00"
+      }
+    ],
+    "prompt_snippet": "Prompts:\nFORMAT:\n4:5 vertical ultra-premium seasonal retail campaign\nIKEA global creative direction quality\nScandinavian design billboard system\n8K\n\nCORE IDEA:\n\nTo bring something new in,\nsomething old must leave.\n\nMake ",
+    "first_image": {
+      "id": "img_a559b1477be04e7f",
+      "item_id": "itm_ce9cd0dc972d4cea",
+      "original_path": "demo-data/media/img_a559b1477be04e7f.webp",
+      "thumb_path": "demo-data/media/img_a559b1477be04e7f.webp",
+      "preview_path": "demo-data/media/img_a559b1477be04e7f.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-29T22:35:13.657055+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-29T22:35:12.803602+00:00",
+    "created_at": "2026-05-29T22:35:12.803602+00:00",
+    "images": [
+      {
+        "id": "img_a559b1477be04e7f",
+        "item_id": "itm_ce9cd0dc972d4cea",
+        "original_path": "demo-data/media/img_a559b1477be04e7f.webp",
+        "thumb_path": "demo-data/media/img_a559b1477be04e7f.webp",
+        "preview_path": "demo-data/media/img_a559b1477be04e7f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-29T22:35:13.657055+00:00"
+      },
+      {
+        "id": "img_c1521597d57c4199",
+        "item_id": "itm_ce9cd0dc972d4cea",
+        "original_path": "demo-data/media/img_c1521597d57c4199.webp",
+        "thumb_path": "demo-data/media/img_c1521597d57c4199.webp",
+        "preview_path": "demo-data/media/img_c1521597d57c4199.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-29T22:35:14.237079+00:00"
+      },
+      {
+        "id": "img_d59ccaa80b4e490b",
+        "item_id": "itm_ce9cd0dc972d4cea",
+        "original_path": "demo-data/media/img_d59ccaa80b4e490b.webp",
+        "thumb_path": "demo-data/media/img_d59ccaa80b4e490b.webp",
+        "preview_path": "demo-data/media/img_d59ccaa80b4e490b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-29T22:35:14.669171+00:00"
+      },
+      {
+        "id": "img_0989e37235f74f69",
+        "item_id": "itm_ce9cd0dc972d4cea",
+        "original_path": "demo-data/media/img_0989e37235f74f69.webp",
+        "thumb_path": "demo-data/media/img_0989e37235f74f69.webp",
+        "preview_path": "demo-data/media/img_0989e37235f74f69.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-29T22:35:15.000280+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Diplomeme/status/2060433950540251645\n\nAuthor: @Diplomeme\n\nThread prompt replies: https://x.com/Diplomeme/status/2060434879691776446 and https://x.com/Diplomeme/status/2060435346601758720\n\nOriginal tweet text:\nNano Banana 2 Prompt share \n\nBuilt a retail campaign system where products don’t sit beside the message they become the message.\n\nTry prompt : ⏬",
+    "author": "@Diplomeme"
+  },
+  {
+    "id": "itm_87a1ee577b1c4d07",
+    "title": "Minimal Monochrome Streetwear Sticker Prompt",
+    "slug": "minimal-monochrome-streetwear-sticker-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / @aleenaamiir",
+    "source_url": "https://x.com/aleenaamiir/status/2060353531866124695",
+    "cluster": {
+      "id": "clu_9301697d3d314f29",
+      "name": "Character Sticker Sheets",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_36d4089c74474950",
+        "name": "sticker art",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8bb8ca7eae264de1",
+        "name": "monochrome illustration",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b15e4a4e0714487d",
+        "name": "streetwear branding",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2dd628aec6a249c6",
+        "name": "bold outlines",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5ff9853e66c84bb4",
+        "name": "accent color",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8c18d68465a04616",
+        "name": "minimal sticker",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1b1c0a263ec34f14",
+        "name": "template",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7cf1bb0b3f2548e1",
+        "name": "x-status-2060353531866124695",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Minimal monochrome sticker illustration of [SUBJECT], bold black outlines, tiny accent colors, modern streetwear branding style.",
+        "is_primary": true,
+        "id": "prm_d8452ff4a07e4f2d",
+        "item_id": "itm_87a1ee577b1c4d07",
+        "created_at": "2026-05-29T22:31:00.695124+00:00",
+        "updated_at": "2026-05-29T22:31:00.695124+00:00"
+      }
+    ],
+    "prompt_snippet": "Minimal monochrome sticker illustration of [SUBJECT], bold black outlines, tiny accent colors, modern streetwear branding style.",
+    "first_image": {
+      "id": "img_c5eca0c318434b0e",
+      "item_id": "itm_87a1ee577b1c4d07",
+      "original_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+      "thumb_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+      "preview_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-29T22:31:00.945925+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-29T22:31:00.695124+00:00",
+    "created_at": "2026-05-29T22:31:00.695124+00:00",
+    "images": [
+      {
+        "id": "img_c5eca0c318434b0e",
+        "item_id": "itm_87a1ee577b1c4d07",
+        "original_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+        "thumb_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+        "preview_path": "demo-data/media/img_c5eca0c318434b0e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-29T22:31:00.945925+00:00"
+      },
+      {
+        "id": "img_450f940405234482",
+        "item_id": "itm_87a1ee577b1c4d07",
+        "original_path": "demo-data/media/img_450f940405234482.webp",
+        "thumb_path": "demo-data/media/img_450f940405234482.webp",
+        "preview_path": "demo-data/media/img_450f940405234482.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-29T22:31:01.206548+00:00"
+      },
+      {
+        "id": "img_424f6ff3bac447c5",
+        "item_id": "itm_87a1ee577b1c4d07",
+        "original_path": "demo-data/media/img_424f6ff3bac447c5.webp",
+        "thumb_path": "demo-data/media/img_424f6ff3bac447c5.webp",
+        "preview_path": "demo-data/media/img_424f6ff3bac447c5.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-29T22:31:01.391615+00:00"
+      },
+      {
+        "id": "img_6dcef3fa1a8f4e47",
+        "item_id": "itm_87a1ee577b1c4d07",
+        "original_path": "demo-data/media/img_6dcef3fa1a8f4e47.webp",
+        "thumb_path": "demo-data/media/img_6dcef3fa1a8f4e47.webp",
+        "preview_path": "demo-data/media/img_6dcef3fa1a8f4e47.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-29T22:31:01.575964+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/aleenaamiir/status/2060353531866124695\n\nAuthor: @aleenaamiir\n\nOriginal tweet text:\nThe easiest way to create trendy sticker art.\n\nPROMPT ↓\n“Minimal monochrome sticker illustration of [SUBJECT], bold black outlines, tiny accent colors, modern streetwear branding style.”",
+    "author": "@aleenaamiir"
+  },
+  {
+    "id": "itm_17a7698479c84271",
+    "title": "少儿科幻科普水果剖面图 Prompt",
+    "slug": "少儿科幻科普水果剖面图-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / @Xuhuicai888",
+    "source_url": "https://x.com/Xuhuicai888/status/2060382156883378498",
+    "cluster": {
+      "id": "clu_dbc03637a7ae4bd7",
+      "name": "Education & Infographics",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_30d482f8e32b43fb",
+        "name": "children science",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cbdd9a9a64094d6e",
+        "name": "fruit cross-section",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_bc3cb8e46b154f69",
+        "name": "educational infographic",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_172e8c1c43a7481b",
+        "name": "science poster",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_dd6eb83bf1d84a55",
+        "name": "knowledge labels",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e5f8e8c261d34a20",
+        "name": "sci-fi education",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_005a5fe76ef54c6e",
+        "name": "reconstructed-prompt",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_583180c53dec4bed",
+        "name": "x-status-2060382156883378498",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "生成一張少兒科幻科普風格的水果剖面圖海報。\n\n主題：[水果名稱]，畫面需要同時展示水果的外部形態、內部剖面結構、功能分區和知識標註。整體面向兒童科普讀者，畫面有趣、清晰、富有探索感，讓小朋友一看就入迷。\n\n畫面要求：\n- 主體水果以大幅剖面圖呈現，保留真實外觀，同時切開展示內部組織結構。\n- 用科幻實驗室 / 未來百科圖鑑的方式組織信息，加入發光標註線、半透明信息框、結構編號和功能說明。\n- 清晰區分外皮、果肉、果核 / 種子、汁液通道、營養區域、香氣區域等功能分區。\n- 在畫面周圍加入簡潔知識標籤，說明口感、營養、顏色、成長環境、趣味冷知識。\n- 視覺風格適合少兒科普書、科學展板、兒童百科封面和課堂展示。\n- 構圖完整，信息密度豐富但不擁擠，文字排版規整，圖文關係清楚。\n\n設計風格：可愛但不幼稚，明亮清爽，未來科幻感，高清商業插畫質感，精緻知識圖譜，兒童科學海報，3D 立體剖面，柔和光影，乾淨背景，細節豐富。\n\n輸出比例：參考樣圖，豎版科普海報。",
+        "is_primary": true,
+        "id": "prm_cd862aaabccf4e2b",
+        "item_id": "itm_17a7698479c84271",
+        "created_at": "2026-05-29T22:26:50.406567+00:00",
+        "updated_at": "2026-05-29T22:26:50.406567+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "生成一张少儿科幻科普风格的水果剖面图海报。\n\n主题：[水果名称]，画面需要同时展示水果的外部形态、内部剖面结构、功能分区和知识标注。整体面向儿童科普读者，画面有趣、清晰、富有探索感，让小朋友一看就入迷。\n\n画面要求：\n- 主体水果以大幅剖面图呈现，保留真实外观，同时切开展示内部组织结构。\n- 用科幻实验室 / 未来百科图鉴的方式组织信息，加入发光标注线、半透明信息框、结构编号和功能说明。\n- 清晰区分外皮、果肉、果核 / 种子、汁液通道、营养区域、香气区域等功能分区。\n- 在画面周围加入简洁知识标签，说明口感、营养、颜色、成长环境、趣味冷知识。\n- 视觉风格适合少儿科普书、科学展板、儿童百科封面和课堂展示。\n- 构图完整，信息密度丰富但不拥挤，文字排版规整，图文关系清楚。\n\n设计风格：可爱但不幼稚，明亮清爽，未来科幻感，高清商业插画质感，精致知识图谱，儿童科学海报，3D 立体剖面，柔和光影，干净背景，细节丰富。\n\n输出比例：参考样图，竖版科普海报。",
+        "is_primary": false,
+        "id": "prm_6dd1320959a84017",
+        "item_id": "itm_17a7698479c84271",
+        "created_at": "2026-05-29T22:26:50.406567+00:00",
+        "updated_at": "2026-05-29T22:26:50.406567+00:00"
+      }
+    ],
+    "prompt_snippet": "生成一張少兒科幻科普風格的水果剖面圖海報。\n\n主題：[水果名稱]，畫面需要同時展示水果的外部形態、內部剖面結構、功能分區和知識標註。整體面向兒童科普讀者，畫面有趣、清晰、富有探索感，讓小朋友一看就入迷。\n\n畫面要求：\n- 主體水果以大幅剖面圖呈現，保留真實外觀，同時切開展示內部組織結構。\n- 用科幻實驗室 / 未來百科圖鑑的方式組織信息，加入發光標註線、半透明信息框、結構編號和功能說明。\n- 清晰區分外皮、果肉、果核 / 種子、汁液通道",
+    "first_image": {
+      "id": "img_1a51ab82eff24121",
+      "item_id": "itm_17a7698479c84271",
+      "original_path": "demo-data/media/img_1a51ab82eff24121.webp",
+      "thumb_path": "demo-data/media/img_1a51ab82eff24121.webp",
+      "preview_path": "demo-data/media/img_1a51ab82eff24121.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-29T22:26:50.446441+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-29T22:26:50.406567+00:00",
+    "created_at": "2026-05-29T22:26:50.406567+00:00",
+    "images": [
+      {
+        "id": "img_1a51ab82eff24121",
+        "item_id": "itm_17a7698479c84271",
+        "original_path": "demo-data/media/img_1a51ab82eff24121.webp",
+        "thumb_path": "demo-data/media/img_1a51ab82eff24121.webp",
+        "preview_path": "demo-data/media/img_1a51ab82eff24121.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-29T22:26:50.446441+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Xuhuicai888/status/2060382156883378498\n\nAuthor: @Xuhuicai888\n\nOriginal tweet text:\n用 ChatGPT-Image2 做【创意设计系列】 \n少儿科幻科普——水果【剖面图】\n小朋友的最爱！   \n📷展示出外部形态 + 内部结构 + 功能分区 + 知识标注的完整图    很nice，一看就入迷。\n图片比例参考样图\n\nPrompt reconstructed from the tweet direction and reference image.",
+    "author": "@Xuhuicai888"
+  },
+  {
     "id": "itm_8d62def93edd463e",
     "title": "Cloud Logo Series Brand Poster Prompt",
     "slug": "cloud-logo-series-brand-poster-prompt",

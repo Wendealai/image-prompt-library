@@ -141,14 +141,14 @@ main{max-width:1680px;margin:0 auto;padding:26px 30px 88px}.app.explore-mode{hei
 .filter-button{height:42px;border-radius:14px;padding:0 12px;background:rgba(255,255,255,.72);border:1px solid rgba(226,221,208,.86);font-weight:850}
 .filter-button.active{background:#f0ebff;border-color:#ded5ff;box-shadow:none}
 .iconbtn{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid rgba(226,221,208,.86)}
-.status-row{justify-content:flex-start;margin:8px auto 0}
-.active-filter-strip{gap:7px}
+.status-row{justify-content:space-between;margin:8px auto 0;min-height:29px}
+.active-filter-strip{gap:7px;flex:1 1 auto}
 .soft-chip,.active-filter{padding:7px 10px;border-radius:12px;font-size:12px;font-weight:800}
 .view-dock{gap:6px;padding:3px;border:1px solid rgba(226,221,208,.7);border-radius:16px;background:rgba(255,255,255,.58)}
 .toggle{gap:2px;padding:2px;border-radius:12px;background:transparent}
 .toggle button{border-radius:10px;padding:7px 10px;font-size:12px;font-weight:850}
 .toggle .active,.tabs .active{box-shadow:none;border:1px solid rgba(226,221,208,.88)}
-.cards-sort-toggle{padding:2px;border-radius:12px;background:transparent;border-color:rgba(226,221,208,.68)}
+.cards-sort-toggle{flex:0 0 auto;padding:2px;border-radius:12px;background:rgba(255,255,255,.42);border-color:rgba(226,221,208,.68)}
 .cards-sort-toggle button{border-radius:9px;padding:6px 8px;font-size:11px}
 main{padding-top:20px}
 .app.explore-mode .app-main{padding:12px 24px 20px}

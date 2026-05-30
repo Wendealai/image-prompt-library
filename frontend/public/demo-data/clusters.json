@@ -206,8 +206,9 @@
     "name": "Brand & Advertising Posters",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 2,
     "preview_images": [
+      "demo-data/media/img_a559b1477be04e7f.webp",
       "demo-data/media/img_d613f0c6f22b4a93.webp"
     ]
   },
@@ -321,8 +322,9 @@
     "name": "Character Sticker Sheets",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_c5eca0c318434b0e.webp",
       "demo-data/media/img_49bedd31946a4d4c.webp",
       "demo-data/media/img_e6eaedf12960420a.webp"
     ]
@@ -626,12 +628,12 @@
     "name": "Education & Infographics",
     "description": null,
     "sort_order": 0,
-    "count": 19,
+    "count": 20,
     "preview_images": [
+      "demo-data/media/img_1a51ab82eff24121.webp",
       "demo-data/media/img_6f6f709c44194fcf.webp",
       "demo-data/media/img_32328ad1bc2247ec.webp",
-      "demo-data/media/img_4bbc331a75c8430e.webp",
-      "demo-data/media/img_364b7976a39e4300.webp"
+      "demo-data/media/img_4bbc331a75c8430e.webp"
     ]
   },
   {
@@ -662,6 +664,16 @@
     "count": 1,
     "preview_images": [
       "demo-data/media/img_8420b42f2b694fae.webp"
+    ]
+  },
+  {
+    "id": "clu_d9d496746439422b",
+    "name": "Fantasy Book Cover Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_19cf19ab6b9c406d.webp"
     ]
   },
   {
@@ -714,8 +726,9 @@
     "name": "Food & culture infographic",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 2,
     "preview_images": [
+      "demo-data/media/img_e129cb4b01724909.webp",
       "demo-data/media/img_7cfcc1d87be24c23.webp"
     ]
   },
@@ -930,8 +943,9 @@
     "name": "Local Store Marketing Posters",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_57db3489a0044e97.webp",
       "demo-data/media/img_5ddf2ed2c3494887.webp",
       "demo-data/media/img_cf9776e850484a71.webp"
     ]
@@ -1089,6 +1103,16 @@
     "preview_images": [
       "demo-data/media/img_11967ebaf04c46d4.webp",
       "demo-data/media/img_5909fc9899084fec.webp"
+    ]
+  },
+  {
+    "id": "clu_1d24371e590e426d",
+    "name": "Pop-Up Book & Toy Photography Prompts",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_18ffa9e52681400e.webp"
     ]
   },
   {
