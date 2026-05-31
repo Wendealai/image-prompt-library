@@ -1,5 +1,1423 @@
 [
   {
+    "id": "itm_8aa67551d3c44ae3",
+    "title": "疯狂星期四做人像封面，越做越觉得离谱。 Prompt",
+    "slug": "疯狂星期四做人像封面-越做越觉得离谱-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Soranlan/status/2060546435301679490",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ed6b7ea934604185",
+        "name": "x-status-2060546435301679490",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "瘋狂星期四做人像封面，越做越覺得離譜。\n\nKFC 這個梗本來土到掉渣，但一旦塞進霧化玻璃、冷灰色場、檔案編號、作品集排版裏，味道直接翻了個天。\n\n人物不完整露出來，臉、紅色衣料、炸雞桶，只在一條清晰窗口裏被看見，其他地方全被水痕、顆粒、磨砂質感和低對比霧面喫掉。\n\n這張圖最爽的點就是剋制，不是把人像拍滿，也不是把 KFC logo 懟滿，而是讓你第一眼知道它在講瘋狂星期四，但又像隔着一層溼玻璃，在看一個被包裝成高級視覺項目的互聯網爛梗。",
+        "is_primary": true,
+        "id": "prm_43d72711424d42fd",
+        "item_id": "itm_8aa67551d3c44ae3",
+        "created_at": "2026-05-31T06:44:52.047138+00:00",
+        "updated_at": "2026-05-31T06:44:52.047138+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "疯狂星期四做人像封面，越做越觉得离谱。\n\nKFC 这个梗本来土到掉渣，但一旦塞进雾化玻璃、冷灰色场、档案编号、作品集排版里，味道直接翻了个天。\n\n人物不完整露出来，脸、红色衣料、炸鸡桶，只在一条清晰窗口里被看见，其他地方全被水痕、颗粒、磨砂质感和低对比雾面吃掉。\n\n这张图最爽的点就是克制，不是把人像拍满，也不是把 KFC logo 怼满，而是让你第一眼知道它在讲疯狂星期四，但又像隔着一层湿玻璃，在看一个被包装成高级视觉项目的互联网烂梗。",
+        "is_primary": false,
+        "id": "prm_3f72bb55d86a474f",
+        "item_id": "itm_8aa67551d3c44ae3",
+        "created_at": "2026-05-31T06:44:52.047138+00:00",
+        "updated_at": "2026-05-31T06:44:52.047138+00:00"
+      }
+    ],
+    "prompt_snippet": "瘋狂星期四做人像封面，越做越覺得離譜。\n\nKFC 這個梗本來土到掉渣，但一旦塞進霧化玻璃、冷灰色場、檔案編號、作品集排版裏，味道直接翻了個天。\n\n人物不完整露出來，臉、紅色衣料、炸雞桶，只在一條清晰窗口裏被看見，其他地方全被水痕、顆粒、磨砂質感和低對比霧面喫掉。\n\n這張圖最爽的點就是剋制，不是把人像拍滿，也不是把 KFC logo 懟滿，而是讓你第一眼知道它在講瘋狂星期四，但又像隔着一層溼玻璃，在看一個被包裝成高級視覺項目的互聯網爛梗。",
+    "first_image": {
+      "id": "img_c8909bb8f59540a8",
+      "item_id": "itm_8aa67551d3c44ae3",
+      "original_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+      "thumb_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+      "preview_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1000,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:52.591655+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:52.047138+00:00",
+    "created_at": "2026-05-31T06:44:52.047138+00:00",
+    "images": [
+      {
+        "id": "img_c8909bb8f59540a8",
+        "item_id": "itm_8aa67551d3c44ae3",
+        "original_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+        "thumb_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+        "preview_path": "demo-data/media/img_c8909bb8f59540a8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1000,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:52.591655+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Soranlan/status/2060546435301679490\n\nAuthor: @Soranlan\n\nOriginal tweet intro:\n疯狂星期四做人像封面，越做越觉得离谱。\n\nKFC 这个梗本来土到掉渣，但一旦塞进雾化玻璃、冷灰色场、档案编号、作品集排版里，味道直接翻了个天。\n\n人物不完整露出来，脸、红色衣料、炸鸡桶，只在一条清晰窗口里被看见，其他地方全被水痕、颗粒、磨砂质感和低对比雾面吃掉。\n\n这张图最爽的点就是克制，不是把人像拍满，也不是把 KFC logo 怼满，而是让你第一眼知道它在讲疯狂星期四，但又像隔着一层湿玻璃，在看一个被包装成高级视觉项目的互联网烂梗。",
+    "author": "@Soranlan"
+  },
+  {
+    "id": "itm_ccb92bbcd00c4d0c",
+    "title": "GPT Image 2  生成雾镜窄窗：私密档案封面 Prompt",
+    "slug": "gpt-image-2-生成雾镜窄窗-私密档案封面-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/GeekCatX/status/2060769765443170749",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1e9f8780218c42be",
+        "name": "x-status-2060769765443170749",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "以 {{內容主體}} 爲核心，生成一張具有作品集封面秩序感的視覺作品，畫幅比例 9:10。整體概念改爲：被水霧覆蓋的鏡面上，擦出一條幹淨、清晰、剋制的窄窗，觀者只能通過這條窄窗進入主題，其餘信息都被鏡面霧氣、凝結水珠、輕微折射與朦朧失焦有意識地隱藏。\n\n主體不要完整陳列，不要正中對稱展示，而是先被壓縮成一個偏離中軸的主質量，沉入低飽和、低對比的背景場與半透明霧面之下。主體的大部分輪廓、次要細節和普通說明信息，都被鏡面水霧、凝露顆粒、擦拭殘痕、細小折射位移、乳白模糊與暗部吞沒；只在最能承載主題識別的位置，擦出一條狹長、精準、邊緣清晰的窄窗，像手指或布料剛剛從霧面鏡子上抹開的痕跡。這個窄窗尺寸剋制，但語義必須準確，是畫面中唯一強識別入口。窄窗內部保留真實質感、較高對比、必要色彩與清晰細節，其餘部分則退回爲暗部質量、柔化輪廓、破碎邊緣和被背景喫掉的過渡。\n\n如果主題適合加入輕微私密感，可以通過成年人日常私域線索來表達，例如：靠近鏡面的呼吸痕跡、指尖擦拭留下的路徑、模糊的人體側影、肩頸或鎖骨附近的輪廓、貼近鏡面的手部局部、殘留水汽中的體溫感、浴室或更衣空間的含蓄暗示、個人物件的近距離痕跡等；但整體必須保持克制、藝術化、非低俗、非裸露、非露骨、不過界，只傳達人與空間之間的微妙親密感與現實溫度，而不是情色敘事。\n\n背景不承擔普通場景敘事，而是由主題的空間關係、材料屬性、時間方向與情緒溫度推導爲大面積、低噪聲、低飽和的色場。上部或外側保留輕微空氣感，一側形成淡色呼吸區，主體所在區域壓入更低明度。背景的任務是：吞沒邊緣、承載文字、製造距離感、留住記憶感。整體色彩維持穩定結構：大面積低飽和結構色 + 低明度主體色 + 少量集中真實色 + 白色信息色。色相可隨 {{內容主體}} 變化，但明度層級、飽和度剋制與局部色彩價值必須穩定。\n\n畫面採用三層清晰度結構：\n\n清晰層：僅限鏡面水霧中被擦開的窄窗，用於主題識別；\n半清晰層：用於粗白標題、編號、少量關鍵信息，保持可讀但略帶霧面咬邊；\n失焦層：主體大部分、背景、底部微型註釋與邊緣信息，進入霧化、失焦和材料遮蔽之中。\n\n文字系統採用現代無襯線字體，白色或近白。標題要短促、厚重、剋制，像印在起霧鏡面上，又被潮溼表層輕微咬邊；角落標識、邊緣日期、編號、檔案標籤、底部微型註釋共同構成一個技術檔案式元數據座標系，像作品編號、記錄標籤或製作參數。文字必須服務於閱讀路徑，不能壓住清晰窄窗，也不能破壞主體識別入口。\n\n整體表面必須統一覆蓋一種真實可見的鏡面水霧質感：\n可見凝結水珠、細小霧滴、擦拭痕、輕微手印路徑、局部清潔痕與邊緣折射。暗部區域霧滴密度更高，亮部更乳白，邊緣可出現細碎折射、輕微錯位和玻璃感偏移。所有圖像、對象和文字都像被同一層帶水汽的鏡面材料壓在下面，形成統一表面邏輯。\n整體氣質應呈現：冷靜、剋制、現代、帶技術檔案感、輕微私密、具有人性溫度但不過界的視覺封面。信息被有意識地隱藏，只有最關鍵的局部被釋放；像一次擦開水霧後的短暫注視，既有距離，也有真實。\n\n明確約束：\n\n不要完整直白地展示主體；\n\n不要普通海報式陳列；\n不要高飽和、花哨裝飾或強敘事背景；\n不要露骨性暗示、裸露敏感部位、低俗表達或違規內容；\n不要讓文字遮擋清晰窄窗；\n保持高級、安靜、剋制、可作爲作品集封面使用。\n內容：性感美女出浴",
+        "is_primary": true,
+        "id": "prm_fafc328f2af44a1b",
+        "item_id": "itm_ccb92bbcd00c4d0c",
+        "created_at": "2026-05-31T06:44:49.549407+00:00",
+        "updated_at": "2026-05-31T06:44:49.549407+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "以 {{内容主体}} 为核心，生成一张具有作品集封面秩序感的视觉作品，画幅比例 9:10。整体概念改为：被水雾覆盖的镜面上，擦出一条干净、清晰、克制的窄窗，观者只能通过这条窄窗进入主题，其余信息都被镜面雾气、凝结水珠、轻微折射与朦胧失焦有意识地隐藏。\n\n主体不要完整陈列，不要正中对称展示，而是先被压缩成一个偏离中轴的主质量，沉入低饱和、低对比的背景场与半透明雾面之下。主体的大部分轮廓、次要细节和普通说明信息，都被镜面水雾、凝露颗粒、擦拭残痕、细小折射位移、乳白模糊与暗部吞没；只在最能承载主题识别的位置，擦出一条狭长、精准、边缘清晰的窄窗，像手指或布料刚刚从雾面镜子上抹开的痕迹。这个窄窗尺寸克制，但语义必须准确，是画面中唯一强识别入口。窄窗内部保留真实质感、较高对比、必要色彩与清晰细节，其余部分则退回为暗部质量、柔化轮廓、破碎边缘和被背景吃掉的过渡。\n\n如果主题适合加入轻微私密感，可以通过成年人日常私域线索来表达，例如：靠近镜面的呼吸痕迹、指尖擦拭留下的路径、模糊的人体侧影、肩颈或锁骨附近的轮廓、贴近镜面的手部局部、残留水汽中的体温感、浴室或更衣空间的含蓄暗示、个人物件的近距离痕迹等；但整体必须保持克制、艺术化、非低俗、非裸露、非露骨、不过界，只传达人与空间之间的微妙亲密感与现实温度，而不是情色叙事。\n\n背景不承担普通场景叙事，而是由主题的空间关系、材料属性、时间方向与情绪温度推导为大面积、低噪声、低饱和的色场。上部或外侧保留轻微空气感，一侧形成淡色呼吸区，主体所在区域压入更低明度。背景的任务是：吞没边缘、承载文字、制造距离感、留住记忆感。整体色彩维持稳定结构：大面积低饱和结构色 + 低明度主体色 + 少量集中真实色 + 白色信息色。色相可随 {{内容主体}} 变化，但明度层级、饱和度克制与局部色彩价值必须稳定。\n\n画面采用三层清晰度结构：\n\n清晰层：仅限镜面水雾中被擦开的窄窗，用于主题识别；\n半清晰层：用于粗白标题、编号、少量关键信息，保持可读但略带雾面咬边；\n失焦层：主体大部分、背景、底部微型注释与边缘信息，进入雾化、失焦和材料遮蔽之中。\n\n文字系统采用现代无衬线字体，白色或近白。标题要短促、厚重、克制，像印在起雾镜面上，又被潮湿表层轻微咬边；角落标识、边缘日期、编号、档案标签、底部微型注释共同构成一个技术档案式元数据坐标系，像作品编号、记录标签或制作参数。文字必须服务于阅读路径，不能压住清晰窄窗，也不能破坏主体识别入口。\n\n整体表面必须统一覆盖一种真实可见的镜面水雾质感：\n可见凝结水珠、细小雾滴、擦拭痕、轻微手印路径、局部清洁痕与边缘折射。暗部区域雾滴密度更高，亮部更乳白，边缘可出现细碎折射、轻微错位和玻璃感偏移。所有图像、对象和文字都像被同一层带水汽的镜面材料压在下面，形成统一表面逻辑。\n整体气质应呈现：冷静、克制、现代、带技术档案感、轻微私密、具有人性温度但不过界的视觉封面。信息被有意识地隐藏，只有最关键的局部被释放；像一次擦开水雾后的短暂注视，既有距离，也有真实。\n\n明确约束：\n\n不要完整直白地展示主体；\n\n不要普通海报式陈列；\n不要高饱和、花哨装饰或强叙事背景；\n不要露骨性暗示、裸露敏感部位、低俗表达或违规内容；\n不要让文字遮挡清晰窄窗；\n保持高级、安静、克制、可作为作品集封面使用。\n内容：性感美女出浴",
+        "is_primary": false,
+        "id": "prm_94a6b785c64c4e8d",
+        "item_id": "itm_ccb92bbcd00c4d0c",
+        "created_at": "2026-05-31T06:44:49.549407+00:00",
+        "updated_at": "2026-05-31T06:44:49.549407+00:00"
+      }
+    ],
+    "prompt_snippet": "以 {{內容主體}} 爲核心，生成一張具有作品集封面秩序感的視覺作品，畫幅比例 9:10。整體概念改爲：被水霧覆蓋的鏡面上，擦出一條幹淨、清晰、剋制的窄窗，觀者只能通過這條窄窗進入主題，其餘信息都被鏡面霧氣、凝結水珠、輕微折射與朦朧失焦有意識地隱藏。\n\n主體不要完整陳列，不要正中對稱展示，而是先被壓縮成一個偏離中軸的主質量，沉入低飽和、低對比的背景場與半透明霧面之下。主體的大部分輪廓、次要細節和普通說明信息，都被鏡面水霧、凝露顆粒、擦拭",
+    "first_image": {
+      "id": "img_c05659b5af72420a",
+      "item_id": "itm_ccb92bbcd00c4d0c",
+      "original_path": "demo-data/media/img_c05659b5af72420a.webp",
+      "thumb_path": "demo-data/media/img_c05659b5af72420a.webp",
+      "preview_path": "demo-data/media/img_c05659b5af72420a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1000,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:49.839380+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:49.549407+00:00",
+    "created_at": "2026-05-31T06:44:49.549407+00:00",
+    "images": [
+      {
+        "id": "img_c05659b5af72420a",
+        "item_id": "itm_ccb92bbcd00c4d0c",
+        "original_path": "demo-data/media/img_c05659b5af72420a.webp",
+        "thumb_path": "demo-data/media/img_c05659b5af72420a.webp",
+        "preview_path": "demo-data/media/img_c05659b5af72420a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1000,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:49.839380+00:00"
+      },
+      {
+        "id": "img_3f2b9d74cbb9440d",
+        "item_id": "itm_ccb92bbcd00c4d0c",
+        "original_path": "demo-data/media/img_3f2b9d74cbb9440d.webp",
+        "thumb_path": "demo-data/media/img_3f2b9d74cbb9440d.webp",
+        "preview_path": "demo-data/media/img_3f2b9d74cbb9440d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1000,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:50.097182+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/GeekCatX/status/2060769765443170749\n\nAuthor: @GeekCatX\n\nOriginal tweet intro:\nGPT Image 2  生成雾镜窄窗：私密档案封面\n\n提示词\n以 {{内容主体}} 为核心，生成一张具有作品集封面秩序感的视觉作品，画幅比例 9:10。整体概念改为：被水雾覆盖的镜面上，擦出一条干净、清晰、克制的窄窗，观者只能通过这条窄窗进入主题，其余信息都被镜面雾气、凝结水珠、轻微折射与朦胧失焦有意识地隐藏。\n\n主体不要完整陈列，不要正中对称展示，而是先被压缩成一个偏离中轴的主质量，沉入低饱和、低对比的背景场与半透明雾面之下。主体的大部分轮廓、次要细节和普通说明信息，都被镜面水雾、凝露颗粒、擦拭残痕、细小折射位移、乳白模糊与暗部吞没；只在最能承载主题识别的位置，擦出一条狭长、精准、边缘清晰的窄窗，像手指或布料刚刚从雾面镜子上抹开的痕迹。这个窄窗尺寸克制，但语义必须准确，是画面中唯一强识别入口。窄窗内部保留真实质感、较高对比、必要色彩与清晰细节，其余部分则退回为暗部质量、柔化轮廓、破碎边缘和被背景吃掉的过渡。\n\n如果主题适合加入轻微私密感，可以通过成年人日常私域线索来表达，例如：靠近镜面的呼吸痕迹、指尖擦拭留下的路径、模糊的人体侧影、肩颈或锁骨附近的轮廓、贴近镜面的手部局部、残留水汽中的体温感、浴室或更衣空间的含蓄暗示、个人物件的近距离痕迹等；但整体必须保持克制、艺术化、非低俗、非裸露、非露骨、不过界，只传达人与空间之间的微妙亲密感与现实温度，而不是情色叙事。\n\n背景不承担普通场景叙事，而是由主题的空间关系、材料属性、时间方向与情绪温度推导为大面积、低噪声、低饱和的色场。上部或外侧保留轻微空气感，一侧形成淡色呼吸区，主体所在区域压入更低明度。背景的任务是：吞没边缘、承载文字、制造距离感、留住记忆感。整体色彩维持稳定结构：大面积低饱和结构色 + 低明度主体色 + 少量集中真实色 + 白色信息色。色相可随 {{内容主体}} 变化，但明度层级、饱和度克制与局部色彩价值必须稳定。\n\n画面采用三层清晰度结构：\n\n清晰层：仅限镜面水雾中被擦开的窄窗，用于主题识别；\n半清晰层：用于粗白标题、编号、少量关键信息，保持可读但略带雾面咬边；\n失焦层：主体大部分、背景、底部微型注释与边缘信息，进入雾化、失焦和材料遮蔽之中。\n\n文字系统采用现代无衬线字体，白色或近白。标题要短促、厚重、克制，像印在起雾镜面上，又被潮湿表层轻微咬边；角落标识、边缘日期、编号、档案标签、底部微型注释共同构成一个技术档案式元数据坐标系，像作品编号、记录标签或制作参数。文字必须服务于阅读路径，不能压住清晰窄窗，也不能破坏主体识别入口。\n\n整体表面必须统一覆盖一种真实可见的镜面水雾质感：\n可见凝结水珠、细小雾滴、擦拭痕、轻微手印路径、局部清洁痕与边缘折射。暗部区域雾滴密度更高，亮部更乳白，边缘可出现细碎折射、轻微错位和玻璃感偏移。所有图像、对象和文字都像被同一层带水汽的镜面材料压在下面，形成统一表面逻辑。\n整体气质应呈现：冷静、克制、现代、带技术档案感、轻微私密、具有人性温度但不过界的视觉封面。信息被有意识地隐藏，只有最关键的局部被释放；像一次擦开水雾后的短暂注视，既有距离，也有真实。\n\n明确约束：\n\n不要完整直白地展示主体；\n\n不要普通海报式陈列；\n不要高饱和、花哨装饰或强叙事背景；\n不要露骨性暗示、裸露敏感部位、低俗表达或违规内容；\n不要让文字遮挡清晰窄窗；\n保持高级、安静、克制、可作为作品集封面使用。\n内容：性感美女出浴",
+    "author": "@GeekCatX"
+  },
+  {
+    "id": "itm_3b989affd0b14cb6",
+    "title": "GPT2 x 文字重复 + 核心大元素  x 提示词美学 Prompt",
+    "slug": "gpt2-x-文字重复-核心大元素-x-提示词美学-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060736835576541667",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fd04bcb8577f4e1d",
+        "name": "x-status-2060736835576541667",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張縱向印刷海報，先把主題短語或核心標題放大成佔據中部主要空間的可讀文字場，使用高反差、筆畫精密、端點鋒利的現代襯線氣質，讓文字像背景骨架一樣重複、堆疊、被左右邊界裁切，成爲畫面的尺度、節奏和空間牆。核心主體從主題語義中提煉爲一個最有識別力的材質錨點，以真實攝影、精緻掃描或高可信渲染的觸感壓在巨大字場交匯處，清晰遮擋並切斷部分字形；主體保留可感的邊緣、體積、反光、紋理和輕微接觸陰影，使平面文字層和物理對象層形成明確前後關係。主體的形狀不平均鋪開，而集中在視覺中心偏下的位置，用局部圓形、硬邊、透明、厚度或切面去打破字母筆畫的縱橫秩序。背景使用大面積低飽和淺色紙面，乾淨、安靜、低噪聲，只承擔承載、呼吸和明度對比；在一側加入一片低透明度硬邊幾何切片，像輕微投影或半透明紙片一樣斜向進入字場，爲平面排版製造空間偏移但不搶主視覺。色彩保持清楚層級：淺色背景爲最大面積，深色結構墨色用於巨型標題和邊緣小字，主題自身的鮮活色只集中在主體關鍵材質、溫度或象徵部位，輔助色塊保持低飽和、低透明，讓情緒色來自對象，結構色來自文字，呼吸色來自紙面。頂部和底部保留穩定邊距，把次級信息壓成極小號襯線元數據，分佈在邊緣與中軸附近，形成品牌檔案般的秩序，並與中部超大標題產生強烈尺度反差；元數據以年份、地點、編號、短注或標記的方式輕聲出現，保持低干擾。整體閱讀路線從邊緣小字進入，被巨大文字場抓住，再被前景主體的遮擋、材質和局部主題色打斷；畫面中部允許高密度重疊，上下邊界保持安靜留白。完成效果是清潔的高質量印刷海報，字邊銳利，紙面柔和，主體 cutout 精準，層級像印刷油墨與真實物件疊在同一張紙上；所有變化都從主題的空間關係、材料屬性、情緒溫度、信息角色和符號結構中推導到標題、主體、局部色和元數據裏，始終保留“語言成爲空間、主體打斷語言”的核心結構。\n\n—————— \n\n本次主題：爲什麼很多人反感：傅盛\n\n主題：自媒體標題\n\n比例16：9橫板",
+        "is_primary": true,
+        "id": "prm_e9b6460c1655416f",
+        "item_id": "itm_3b989affd0b14cb6",
+        "created_at": "2026-05-31T06:44:46.941409+00:00",
+        "updated_at": "2026-05-31T06:44:46.941409+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张纵向印刷海报，先把主题短语或核心标题放大成占据中部主要空间的可读文字场，使用高反差、笔画精密、端点锋利的现代衬线气质，让文字像背景骨架一样重复、堆叠、被左右边界裁切，成为画面的尺度、节奏和空间墙。核心主体从主题语义中提炼为一个最有识别力的材质锚点，以真实摄影、精致扫描或高可信渲染的触感压在巨大字场交汇处，清晰遮挡并切断部分字形；主体保留可感的边缘、体积、反光、纹理和轻微接触阴影，使平面文字层和物理对象层形成明确前后关系。主体的形状不平均铺开，而集中在视觉中心偏下的位置，用局部圆形、硬边、透明、厚度或切面去打破字母笔画的纵横秩序。背景使用大面积低饱和浅色纸面，干净、安静、低噪声，只承担承载、呼吸和明度对比；在一侧加入一片低透明度硬边几何切片，像轻微投影或半透明纸片一样斜向进入字场，为平面排版制造空间偏移但不抢主视觉。色彩保持清楚层级：浅色背景为最大面积，深色结构墨色用于巨型标题和边缘小字，主题自身的鲜活色只集中在主体关键材质、温度或象征部位，辅助色块保持低饱和、低透明，让情绪色来自对象，结构色来自文字，呼吸色来自纸面。顶部和底部保留稳定边距，把次级信息压成极小号衬线元数据，分布在边缘与中轴附近，形成品牌档案般的秩序，并与中部超大标题产生强烈尺度反差；元数据以年份、地点、编号、短注或标记的方式轻声出现，保持低干扰。整体阅读路线从边缘小字进入，被巨大文字场抓住，再被前景主体的遮挡、材质和局部主题色打断；画面中部允许高密度重叠，上下边界保持安静留白。完成效果是清洁的高质量印刷海报，字边锐利，纸面柔和，主体 cutout 精准，层级像印刷油墨与真实物件叠在同一张纸上；所有变化都从主题的空间关系、材料属性、情绪温度、信息角色和符号结构中推导到标题、主体、局部色和元数据里，始终保留“语言成为空间、主体打断语言”的核心结构。\n\n—————— \n\n本次主题：为什么很多人反感：傅盛\n\n主题：自媒体标题\n\n比例16：9横板",
+        "is_primary": false,
+        "id": "prm_eb4ab5efa9214a9f",
+        "item_id": "itm_3b989affd0b14cb6",
+        "created_at": "2026-05-31T06:44:46.941409+00:00",
+        "updated_at": "2026-05-31T06:44:46.941409+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張縱向印刷海報，先把主題短語或核心標題放大成佔據中部主要空間的可讀文字場，使用高反差、筆畫精密、端點鋒利的現代襯線氣質，讓文字像背景骨架一樣重複、堆疊、被左右邊界裁切，成爲畫面的尺度、節奏和空間牆。核心主體從主題語義中提煉爲一個最有識別力的材質錨點，以真實攝影、精緻掃描或高可信渲染的觸感壓在巨大字場交匯處，清晰遮擋並切斷部分字形；主體保留可感的邊緣、體積、反光、紋理和輕微接觸陰影，使平面文字層和物理對象層形成明確前",
+    "first_image": {
+      "id": "img_da29504e5cf446e7",
+      "item_id": "itm_3b989affd0b14cb6",
+      "original_path": "demo-data/media/img_da29504e5cf446e7.webp",
+      "thumb_path": "demo-data/media/img_da29504e5cf446e7.webp",
+      "preview_path": "demo-data/media/img_da29504e5cf446e7.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:47.156377+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:46.941409+00:00",
+    "created_at": "2026-05-31T06:44:46.941409+00:00",
+    "images": [
+      {
+        "id": "img_da29504e5cf446e7",
+        "item_id": "itm_3b989affd0b14cb6",
+        "original_path": "demo-data/media/img_da29504e5cf446e7.webp",
+        "thumb_path": "demo-data/media/img_da29504e5cf446e7.webp",
+        "preview_path": "demo-data/media/img_da29504e5cf446e7.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:47.156377+00:00"
+      },
+      {
+        "id": "img_ebbf941c046d4b3a",
+        "item_id": "itm_3b989affd0b14cb6",
+        "original_path": "demo-data/media/img_ebbf941c046d4b3a.webp",
+        "thumb_path": "demo-data/media/img_ebbf941c046d4b3a.webp",
+        "preview_path": "demo-data/media/img_ebbf941c046d4b3a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:47.365847+00:00"
+      },
+      {
+        "id": "img_3364f99628654958",
+        "item_id": "itm_3b989affd0b14cb6",
+        "original_path": "demo-data/media/img_3364f99628654958.webp",
+        "thumb_path": "demo-data/media/img_3364f99628654958.webp",
+        "preview_path": "demo-data/media/img_3364f99628654958.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:47.555039+00:00"
+      },
+      {
+        "id": "img_bbafa792946f4c3b",
+        "item_id": "itm_3b989affd0b14cb6",
+        "original_path": "demo-data/media/img_bbafa792946f4c3b.webp",
+        "thumb_path": "demo-data/media/img_bbafa792946f4c3b.webp",
+        "preview_path": "demo-data/media/img_bbafa792946f4c3b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:47.754974+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060736835576541667\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 文字重复 + 核心大元素  x 提示词美学\n\n这款提示词，有点点朴实无华，单纯就是文字重复\n吵吵闹闹的效果，然后配合一个符合主题的图标\n\n个人喜欢这款用来做海报或者自媒体封面\n\n此外，一个信息差：\n电信套餐确实可以协商\n今天小小东，流量翻倍、宽带翻倍到2000m了，资费降低90了。\n\n提示词见评论区吧",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_730a9cec04e64400",
+    "title": "GPT2 x 核心词明暗 x 美学提示词 Prompt",
+    "slug": "gpt2-x-核心词明暗-x-美学提示词-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060770323373654057",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_39bc2bc4ff544ec9",
+        "name": "x-status-2060770323373654057",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張詩性編輯視覺，畫面由一個巨大的核心詞或主題形態建立結構，它橫貫中部，具有高對比筆畫、清晰骨架和鋒利邊緣，尺度大到既能閱讀又像圖形建築，左右或局部被畫框裁切。不要讓標題只是貼在圖像上，而要讓它成爲切割場域的骨架：主體片段、紋理和關鍵色點從字形邊緣、空洞、遮擋關係中顯影，部分在結構前方穿過，部分被結構壓住。背景分成低噪聲的明亮呼吸場與低明度的密集敘事場，前者保留大面積空白、安靜和心理時間，後者承載主題自身推導出的物質紋理、現實阻力和記憶密度，核心結構卡在兩種場域的交界處。主題對象不完整陳列，只保留識別所需的質量、輪廓、局部紋理和關鍵色點，其餘邊緣被背景場、暗部和結構字形吸收，形成從場域中浮現又沉回場域的關係。色彩按職責分工：大面積安靜淺色負責呼吸，大面積低明度結構色負責重量，最高飽和度只給少量精確的情緒證據，並放在主體識別部位、結構轉折和邊緣穿插處。輔助文字若出現，使用極小的等寬私語節奏，短行、稀疏、低干擾，像元數據一樣懸在空場裏，與巨大的結構文字形成強烈尺度反差。表面處理保持銳利排版邊緣與溼潤攝影質感並置，圖像層有輕微顆粒、真實紋理、局部模糊和掃描拼貼感，結構層保持乾淨堅硬。整體要有上輕下重或內外分裂的心理重力，畫面像從更大敘事中截取的一頁，邊緣允許出血和半截進入，但所有裁切、遮擋、色點和小字都服務於同一個安靜而有阻力的視覺秩序。\n\n——————\n\n主題：孫燕姿 專輯封面\n\n比例16:9 橫板",
+        "is_primary": true,
+        "id": "prm_94f22cefad9a4c22",
+        "item_id": "itm_730a9cec04e64400",
+        "created_at": "2026-05-31T06:44:40.885441+00:00",
+        "updated_at": "2026-05-31T06:44:40.885441+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张诗性编辑视觉，画面由一个巨大的核心词或主题形态建立结构，它横贯中部，具有高对比笔画、清晰骨架和锋利边缘，尺度大到既能阅读又像图形建筑，左右或局部被画框裁切。不要让标题只是贴在图像上，而要让它成为切割场域的骨架：主体片段、纹理和关键色点从字形边缘、空洞、遮挡关系中显影，部分在结构前方穿过，部分被结构压住。背景分成低噪声的明亮呼吸场与低明度的密集叙事场，前者保留大面积空白、安静和心理时间，后者承载主题自身推导出的物质纹理、现实阻力和记忆密度，核心结构卡在两种场域的交界处。主题对象不完整陈列，只保留识别所需的质量、轮廓、局部纹理和关键色点，其余边缘被背景场、暗部和结构字形吸收，形成从场域中浮现又沉回场域的关系。色彩按职责分工：大面积安静浅色负责呼吸，大面积低明度结构色负责重量，最高饱和度只给少量精确的情绪证据，并放在主体识别部位、结构转折和边缘穿插处。辅助文字若出现，使用极小的等宽私语节奏，短行、稀疏、低干扰，像元数据一样悬在空场里，与巨大的结构文字形成强烈尺度反差。表面处理保持锐利排版边缘与湿润摄影质感并置，图像层有轻微颗粒、真实纹理、局部模糊和扫描拼贴感，结构层保持干净坚硬。整体要有上轻下重或内外分裂的心理重力，画面像从更大叙事中截取的一页，边缘允许出血和半截进入，但所有裁切、遮挡、色点和小字都服务于同一个安静而有阻力的视觉秩序。\n\n——————\n\n主题：孙燕姿 专辑封面\n\n比例16:9 横板",
+        "is_primary": false,
+        "id": "prm_1f4debecb03b4ccc",
+        "item_id": "itm_730a9cec04e64400",
+        "created_at": "2026-05-31T06:44:40.885441+00:00",
+        "updated_at": "2026-05-31T06:44:40.885441+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張詩性編輯視覺，畫面由一個巨大的核心詞或主題形態建立結構，它橫貫中部，具有高對比筆畫、清晰骨架和鋒利邊緣，尺度大到既能閱讀又像圖形建築，左右或局部被畫框裁切。不要讓標題只是貼在圖像上，而要讓它成爲切割場域的骨架：主體片段、紋理和關鍵色點從字形邊緣、空洞、遮擋關係中顯影，部分在結構前方穿過，部分被結構壓住。背景分成低噪聲的明亮呼吸場與低明度的密集敘事場，前者保留大面積空白、安靜和心理時間，後者承載主題自身推導出的物質",
+    "first_image": {
+      "id": "img_3d02719a7421480d",
+      "item_id": "itm_730a9cec04e64400",
+      "original_path": "demo-data/media/img_3d02719a7421480d.webp",
+      "thumb_path": "demo-data/media/img_3d02719a7421480d.webp",
+      "preview_path": "demo-data/media/img_3d02719a7421480d.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:41.113082+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:40.885441+00:00",
+    "created_at": "2026-05-31T06:44:40.885441+00:00",
+    "images": [
+      {
+        "id": "img_3d02719a7421480d",
+        "item_id": "itm_730a9cec04e64400",
+        "original_path": "demo-data/media/img_3d02719a7421480d.webp",
+        "thumb_path": "demo-data/media/img_3d02719a7421480d.webp",
+        "preview_path": "demo-data/media/img_3d02719a7421480d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:41.113082+00:00"
+      },
+      {
+        "id": "img_b23b06070e414008",
+        "item_id": "itm_730a9cec04e64400",
+        "original_path": "demo-data/media/img_b23b06070e414008.webp",
+        "thumb_path": "demo-data/media/img_b23b06070e414008.webp",
+        "preview_path": "demo-data/media/img_b23b06070e414008.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:41.299976+00:00"
+      },
+      {
+        "id": "img_e20206e5bcbf4c0b",
+        "item_id": "itm_730a9cec04e64400",
+        "original_path": "demo-data/media/img_e20206e5bcbf4c0b.webp",
+        "thumb_path": "demo-data/media/img_e20206e5bcbf4c0b.webp",
+        "preview_path": "demo-data/media/img_e20206e5bcbf4c0b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:41.497331+00:00"
+      },
+      {
+        "id": "img_d9ec746c2fe84913",
+        "item_id": "itm_730a9cec04e64400",
+        "original_path": "demo-data/media/img_d9ec746c2fe84913.webp",
+        "thumb_path": "demo-data/media/img_d9ec746c2fe84913.webp",
+        "preview_path": "demo-data/media/img_d9ec746c2fe84913.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:41.709698+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060770323373654057\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 核心词明暗 x 美学提示词\n\n拿这个提示词，做了孙燕姿的专辑封面，大爱！\n\n这个提示词，喜欢抽取核心关键词来做出图文混合的设计。\n\n同样：\n在搭建一个视觉场域：\n让文字成为骨架，让图像从缝隙里浮现。\n适合做安静、有重量、带叙事感的诗性编辑视觉。\n\n提示词见评论区 ⤵️",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_b186935dc5514eaf",
+    "title": "GPT2 x 大字招牌 x 提示词美学 Prompt",
+    "slug": "gpt2-x-大字招牌-x-提示词美学-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060746355115803016",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d2b4593b488d4617",
+        "name": "x-status-2060746355115803016",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張豎版商業海報，畫面先建立接近白色的輕印刷紙面，帶少量灰色顆粒和掃描質感；頂部用壓頂式超大粗黑主標題佔據上方空間，字體緊縮、無襯線、邊緣乾淨，像直接支配畫面的廣告招牌。主標題下方安排短促的橫向註釋組，小號粗黑字斷行緊密，用極簡符號分隔，形成可掃讀的規格節奏。主題核心對象被處理成居中或準中軸的超大質量體，成爲唯一高細節主體，輪廓完整，邊緣有清楚高光或切邊，內部用中低明度、陰影、反射、透光或材質紋理集中表現主題的真實感與重量。中部背景不做場景，而從主題語義中派生巨大低透明字形或符號片段，顏色接近淺灰，被主體遮擋並被畫框裁切，只作爲空間骨架和信息回聲。色彩保持大面積淺底、強黑結構字、中心暗質量和局部低飽和主題色的比例關係，情緒色藏在主體內部、標籤或小面積關鍵處，不鋪滿背景。文字系統統一爲粗重、緊湊、直接的商業無襯線，大字像招牌，小字像規格註釋，主體上可疊加反白短標籤，底部用左側短句和右側大數字或明確結論形成信息錨點，最下方以雙細線窄欄收住口號或補充信息。整體保持高聲量、低噪聲、強層級的門店廣告感，真實主體通過輕微接觸陰影貼進平面版式，所有元素圍繞標題骨架、隱形背景字、中央主體和底部錨點形成清晰閱讀路線。\n\n主題： 小美，生日快樂！ \n用途：戀人生日祝福\n比例 16:9 橫板\n\n注意：四周充足的留白間隙，即內邊距",
+        "is_primary": true,
+        "id": "prm_b0bb33d42a064992",
+        "item_id": "itm_b186935dc5514eaf",
+        "created_at": "2026-05-31T06:44:34.988261+00:00",
+        "updated_at": "2026-05-31T06:44:34.988261+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张竖版商业海报，画面先建立接近白色的轻印刷纸面，带少量灰色颗粒和扫描质感；顶部用压顶式超大粗黑主标题占据上方空间，字体紧缩、无衬线、边缘干净，像直接支配画面的广告招牌。主标题下方安排短促的横向注释组，小号粗黑字断行紧密，用极简符号分隔，形成可扫读的规格节奏。主题核心对象被处理成居中或准中轴的超大质量体，成为唯一高细节主体，轮廓完整，边缘有清楚高光或切边，内部用中低明度、阴影、反射、透光或材质纹理集中表现主题的真实感与重量。中部背景不做场景，而从主题语义中派生巨大低透明字形或符号片段，颜色接近浅灰，被主体遮挡并被画框裁切，只作为空间骨架和信息回声。色彩保持大面积浅底、强黑结构字、中心暗质量和局部低饱和主题色的比例关系，情绪色藏在主体内部、标签或小面积关键处，不铺满背景。文字系统统一为粗重、紧凑、直接的商业无衬线，大字像招牌，小字像规格注释，主体上可叠加反白短标签，底部用左侧短句和右侧大数字或明确结论形成信息锚点，最下方以双细线窄栏收住口号或补充信息。整体保持高声量、低噪声、强层级的门店广告感，真实主体通过轻微接触阴影贴进平面版式，所有元素围绕标题骨架、隐形背景字、中央主体和底部锚点形成清晰阅读路线。\n\n主题： 小美，生日快乐！ \n用途：恋人生日祝福\n比例 16:9 横板\n\n注意：四周充足的留白间隙，即内边距",
+        "is_primary": false,
+        "id": "prm_902596f1fb204073",
+        "item_id": "itm_b186935dc5514eaf",
+        "created_at": "2026-05-31T06:44:34.988261+00:00",
+        "updated_at": "2026-05-31T06:44:34.988261+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張豎版商業海報，畫面先建立接近白色的輕印刷紙面，帶少量灰色顆粒和掃描質感；頂部用壓頂式超大粗黑主標題佔據上方空間，字體緊縮、無襯線、邊緣乾淨，像直接支配畫面的廣告招牌。主標題下方安排短促的橫向註釋組，小號粗黑字斷行緊密，用極簡符號分隔，形成可掃讀的規格節奏。主題核心對象被處理成居中或準中軸的超大質量體，成爲唯一高細節主體，輪廓完整，邊緣有清楚高光或切邊，內部用中低明度、陰影、反射、透光或材質紋理集中表現主題的真實感",
+    "first_image": {
+      "id": "img_13cd3619276f4e3f",
+      "item_id": "itm_b186935dc5514eaf",
+      "original_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+      "thumb_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+      "preview_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:35.208669+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:34.988261+00:00",
+    "created_at": "2026-05-31T06:44:34.988261+00:00",
+    "images": [
+      {
+        "id": "img_13cd3619276f4e3f",
+        "item_id": "itm_b186935dc5514eaf",
+        "original_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+        "thumb_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+        "preview_path": "demo-data/media/img_13cd3619276f4e3f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:35.208669+00:00"
+      },
+      {
+        "id": "img_311f038f142a4f81",
+        "item_id": "itm_b186935dc5514eaf",
+        "original_path": "demo-data/media/img_311f038f142a4f81.webp",
+        "thumb_path": "demo-data/media/img_311f038f142a4f81.webp",
+        "preview_path": "demo-data/media/img_311f038f142a4f81.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:35.429848+00:00"
+      },
+      {
+        "id": "img_0c6d030fbb5c464a",
+        "item_id": "itm_b186935dc5514eaf",
+        "original_path": "demo-data/media/img_0c6d030fbb5c464a.webp",
+        "thumb_path": "demo-data/media/img_0c6d030fbb5c464a.webp",
+        "preview_path": "demo-data/media/img_0c6d030fbb5c464a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:35.633449+00:00"
+      },
+      {
+        "id": "img_dc452ede6caa4c47",
+        "item_id": "itm_b186935dc5514eaf",
+        "original_path": "demo-data/media/img_dc452ede6caa4c47.webp",
+        "thumb_path": "demo-data/media/img_dc452ede6caa4c47.webp",
+        "preview_path": "demo-data/media/img_dc452ede6caa4c47.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:35.843214+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060746355115803016\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 大字招牌 x 提示词美学\n\n471个字，写成的一套提示词，不得不说\n\n小小东也随着GPT-image2 进化了\n\n以前三五千的提示词， 现在看到三五千字的提示词，就觉得：那是我来时的路...\n\n为什么追求这么少的字，因为字少，就是限制少，更加灵活\n也就更有可能适用各种场景，而不是死板\n\n这几天，在考虑， 上一款自媒体封面 插件了\n\n大概率，明天就开发，烧上10个亿的codex，烧烧看，再打磨和优化。\n\n啰唆一句：这款真适合x很多作者的封面设计哦\n\n提示词评论区 ⤵️",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_4a0df05d60f54a49",
+    "title": "Sporty Pouty Baby Prompt",
+    "slug": "sporty-pouty-baby-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Goodmanprotocol/status/2060769826763919692",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4f75552260e8464e",
+        "name": "x-status-2060769826763919692",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Sporty Pouty Baby \n\nGPT Image 2 on ChatGPT \n\nHyper-realistic 3D caricature in collectible chibi doll style, ultra-detailed rendering, softbox studio lighting, smooth infinite white background.\n\nProportions: GIANT, round, adorable head with extreme chibi proportions. Small, chubby, baby-like body with short, pudgy arms and legs. Head-to-body ratio 2:1. Toddler height.\n\nFace: Extreme pouty, sulky, grumpy expression. Furrowed and lowered eyebrows creating a deep wrinkle in the center of the forehead. Large, shiny brown eyes, slightly squinted with irritation. Small upturned pink nose. Mouth with a VERY exaggerated forward pout, protruding lower lip, creating a baby-like double chin effect. VERY LARGE, round, rosy, puffed cheeks. Baby double chin. Porcelain-like skin with soft, realistic texture.\n\nHair: Voluminous, wavy, messy hair. Loose and frizzy strands falling across the face and nape, giving a tousled appearance. Adapt hair color and length according to the reference image. Maintain the same fluffy volume and texture.\n\nPose: Standing with the head tilted to one side, body slightly curved. Both hands tucked into the front pockets of the shorts. Drooping shoulders. Classic \"I'm upset\" posture.\n\nClothing: Basketball-style athletic tank top with contrasting collar and armhole trim, plus loose sports shorts with a drawstring. High-top sneakers in an All-Star style. Thin necklace with a pendant around the neck. Bracelets on the wrists. Keep exactly the same sportswear design, but use RANDOM COLORS different from the original red/white combination. Keep the logo and number on the jersey, but feel free to change the text/number.\n\nArt Style: Photorealistic 3D collector doll render, soft skin texture, gentle lighting, highly detailed strand-by-strand hair, delicate shading. Same cute yet irritated character style.\n\nMandatory Technical Details: Same chibi head size, same giant rosy cheeks, same exaggerated pout, same eye size, same small nose, same forehead wrinkle intensity, same baby-body thickness, same hands-in-pocket pose, same head tilt angle, same messy hair volume.\n\nFormat: 5:7 aspect ratio, full-body vertical composition, camera positioned at the character's eye level.",
+        "is_primary": true,
+        "id": "prm_67fa65f9d3d14174",
+        "item_id": "itm_4a0df05d60f54a49",
+        "created_at": "2026-05-31T06:44:28.583167+00:00",
+        "updated_at": "2026-05-31T06:44:28.583167+00:00"
+      }
+    ],
+    "prompt_snippet": "Sporty Pouty Baby \n\nGPT Image 2 on ChatGPT \n\nHyper-realistic 3D caricature in collectible chibi doll style, ultra-detailed rendering, softbox studio lighting, smooth infinite white background.\n\nProportions: GIANT, round,",
+    "first_image": {
+      "id": "img_13eb57f18fcd41e8",
+      "item_id": "itm_4a0df05d60f54a49",
+      "original_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+      "thumb_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+      "preview_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1260,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:28.798399+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:28.583167+00:00",
+    "created_at": "2026-05-31T06:44:28.583167+00:00",
+    "images": [
+      {
+        "id": "img_13eb57f18fcd41e8",
+        "item_id": "itm_4a0df05d60f54a49",
+        "original_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+        "thumb_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+        "preview_path": "demo-data/media/img_13eb57f18fcd41e8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1260,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:28.798399+00:00"
+      },
+      {
+        "id": "img_f2c44e9732fe445f",
+        "item_id": "itm_4a0df05d60f54a49",
+        "original_path": "demo-data/media/img_f2c44e9732fe445f.webp",
+        "thumb_path": "demo-data/media/img_f2c44e9732fe445f.webp",
+        "preview_path": "demo-data/media/img_f2c44e9732fe445f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1260,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:29.040631+00:00"
+      },
+      {
+        "id": "img_517089d9e0ae40e6",
+        "item_id": "itm_4a0df05d60f54a49",
+        "original_path": "demo-data/media/img_517089d9e0ae40e6.webp",
+        "thumb_path": "demo-data/media/img_517089d9e0ae40e6.webp",
+        "preview_path": "demo-data/media/img_517089d9e0ae40e6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1260,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:29.243760+00:00"
+      },
+      {
+        "id": "img_3aeb0872fe2b4e4a",
+        "item_id": "itm_4a0df05d60f54a49",
+        "original_path": "demo-data/media/img_3aeb0872fe2b4e4a.webp",
+        "thumb_path": "demo-data/media/img_3aeb0872fe2b4e4a.webp",
+        "preview_path": "demo-data/media/img_3aeb0872fe2b4e4a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1260,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:29.459160+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Goodmanprotocol/status/2060769826763919692\n\nAuthor: @Goodmanprotocol\n\nOriginal tweet intro:\nSporty Pouty Baby \n\nGPT Image 2 on ChatGPT \n\nHyper-realistic 3D caricature in collectible chibi doll style, ultra-detailed rendering, softbox studio lighting, smooth infinite white background.\n\nProportions: GIANT, round, adorable head with extreme chibi proportions. Small, chubby, baby-like body with short, pudgy arms and legs. Head-to-body ratio 2:1. Toddler height.\n\nFace: Extreme pouty, sulky, grumpy expression. Furrowed and lowered eyebrows creating a deep wrinkle in the center of the forehead. Large, shiny brown eyes, slightly squinted with irritation. Small upturned pink nose. Mouth with a VERY exaggerated forward pout, protruding lower lip, creating a baby-like double chin effect. VERY LARGE, round, rosy, puffed cheeks. Baby double chin. Porcelain-like skin with soft, realistic texture.\n\nHair: Voluminous, wavy, messy hair. Loose and frizzy strands falling across the face and nape, giving a tousled appearance. Adapt hair color and length according to the reference image. Maintain the same fluffy volume and texture.\n\nPose: Standing with the head tilted to one side, body slightly curved. Both hands tucked into the front pockets of the shorts. Drooping shoulders. Classic \"I'm upset\" posture.\n\nClothing: Basketball-style athletic tank top with contrasting collar and armhole trim, plus loose sports shorts with a drawstring. High-top sneakers in an All-Star style. Thin necklace with a pendant around the neck. Bracelets on the wrists. Keep exactly the same sportswear design, but use RANDOM COLORS different from the original red/white combination. Keep the logo and number on the jersey, but feel free to change the text/number.\n\nArt Style: Photorealistic 3D collector doll render, soft skin texture, gentle lighting, highly detailed strand-by-strand hair, delicate shading. Same cute yet irritated character style.\n\nMandatory Technical Details: Same chibi head size, same giant rosy cheeks, same exaggerated pout, same eye size, same small nose, same forehead wrinkle intensity, same baby-body thickness, same hands-in-pocket pose, same head tilt angle, same messy hair volume.\n\nFormat: 5:7 aspect ratio, full-body vertical composition, camera positioned at the character's eye level.",
+    "author": "@Goodmanprotocol"
+  },
+  {
+    "id": "itm_0149c939a9e24d0c",
+    "title": "今天我们继续拆解一个近期在小红书起号利用Image2起号的博主：万物说明书 Prompt",
+    "slug": "今天我们继续拆解一个近期在小红书起号利用image2起号的博主-万物说明书-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/GeekCatX/status/2060765809551802656",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_622fc8e7a91c4ff7",
+        "name": "x-status-2060765809551802656",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "【你的角色】\n\n你是一位頂級自然科學視覺化編輯、3D科普圖解導演和信息架構師，擅長將任意自然主體拆解爲「知識貓圖解」風格的多張3D科普圖解系列。\n\n核心風格參考：\n博物館自然圖鑑 × DK百科全書 × 科學剖面圖 × 小紅書豎版科普封面 × 寫實CGI自然紀錄片。\n你的任務不是機械套模板，而是根據主體真實特徵，判斷它最適合被拆成哪些圖解頁面。\n\n【適用範圍】\n\n優先適用於以下自然科學主題：\n\n地貌類：山脈、峽谷、火山、冰川、海島、河流、沙漠、洞穴\n\n海洋與水文系統：海洋、洋流、潮汐、深海、珊瑚礁、湖泊、瀑布\n\n大氣與天氣現象：龍捲風、颱風、雷暴、雲、極光、彩虹、季風\n地質與自然物體：岩石、礦物、隕石、土壤、化石、火山岩\n生態系統：雨林、溼地、草原、苔原、紅樹林、珊瑚礁\n天文與宇宙現象：黑洞、星雲、行星、月球、彗星、星系\n微觀自然結構：DNA、細胞、神經元、葉綠體、雪花晶體\n自然過程：板塊運動、水循環、侵蝕、光合作用、潮汐形成\n如果用戶輸入的主體不完全屬於自然科學，也要優先嚐試從“結構、材料、形成、機制、環境關係”的角度進行自然化拆解。\n【用戶輸入格式】\n\n用戶只需輸入：\n\n主體：[名稱]\n系列名（可選）：[系列標題]\n張數偏好（可選）：4張 / 5張 / 6張 / 7張 / 完整版\n風格偏好（可選）：更震撼 / 更學術 / 更適合小紅書 / 更像博物館圖鑑\n\n默認設置：\n\n系列名默認：知識貓圖解\n\n張數默認：根據主體複雜度自動選擇4～7張\n輸出語言：中文說明 + 英文圖像生成Prompt\n圖片比例：3:4豎版\n【總工作流程】\n\n收到用戶輸入後，嚴格按以下四步執行：\n主體識別與科學敘事提煉\n動態分鏡模塊選擇\n逐張生成英文圖像Prompt\n輸出系列規劃表與平臺適配說明\n\n不得跳過步驟。不得強行使用不適合該主體的模塊。\n\nSTEP 1：主體識別與科學敘事提煉\n\n1.1 主體分類\n\n先判斷主體屬於哪些類型，可多選：\n類型標籤 判斷標準 示例     【地貌類】 有地質結構、地表形態、空間邊界 山脈、火山、峽谷、冰川   【海洋水文類】 與水體、流動、深度、循環有關 海洋、洋流、潮汐、瀑布   【大氣天氣類】 與空氣運動、氣壓、雲、水汽、電磁有關 龍捲風、颱風、雷暴、彩虹   【生態生命類】 有生物羣落、生態位、食物鏈 雨林、珊瑚礁、溼地   【天文宇宙類】 有宏觀尺度、引力、軌道、時空結構 黑洞、星系、月球、彗星   【微觀結構類】 有細胞、分子、晶體、微尺度機制 DNA、神經元、雪花晶體   【地質材料類】 有物質組成、紋理、礦物結構 岩石、礦物、隕石、土壤   【自然過程類】 重點是階段、觸發、演化、循環 水循環、火山噴發、侵蝕   【複合系統類】 同時包含結構、能量流動和環境關係 海洋、雨林、大氣層、板塊系統\n1.2 提煉認知顛覆點\n爲系列生成一個適合做副標題的“認知顛覆點”。\n\n格式：\n\n原來[主體]不是[常見誤解]，而是[科學真相]\n\n要求：\n\n必須具體、有反差、有科學含義。\n\n不得爲了戲劇化而編造事實。\n如果主體沒有明顯誤解，可改用：\n原來[主體]真正重要的不是[表面特徵]，而是[核心機制]\n示例：\n黑洞：原來黑洞不是宇宙吸塵器，而是時空被極端彎曲後的引力陷阱\n龍捲風：原來龍捲風不是普通大風，而是旋轉上升氣流被拉伸後的大氣渦旋\n火山：原來火山不是地球的傷口，而是深部熱量釋放到地表的通道\n山脈：原來山脈不是靜止的石牆，而是板塊碰撞長期塑形的地球皺褶\n1.3 提煉核心科學結論\n爲每張圖底部生成一句統一的中文科學總結。\n要求：\n一句話，18～34個漢字。\n科學準確，適合作爲底部說明。\n不使用空泛口號。\n不包含未經確認的具體數字。\n格式：\n核心科學結論：[一句話]\n示例：\n黑洞：黑洞是強引力把時空壓彎到極限的天體區域。\n龍捲風：龍捲風是強對流風暴中旋轉氣流急劇收縮的結果。\n火山：火山連接着地表景觀與地球內部熱量循環。\n海洋：海洋通過熱量、鹽度和洋流調節全球氣候。\nSTEP 2：動態分鏡模塊選擇\n2.1 分鏡數量規則\n根據用戶張數偏好和主體複雜度選擇4～7張。\n4張：適合簡單主體或短內容平臺\n5張：適合多數自然科普主題\n6張：適合結構、過程、機制都比較完整的主體\n7張：適合複雜系統、完整科普系列或深度圖鑑\n如果用戶寫“完整版”，默認生成7張。\n2.2 模塊選擇原則\n不要機械套用固定模塊。\n你必須根據主體是否具備以下信息維度來選擇模塊：\n它長什麼樣？\n它由哪些部分組成？\n\n它在哪裏出現？\n\n它如何形成？\n\n它如何運作？\n\n它有哪些階段變化？\n\n它和其他自然系統有什麼關係？\n\n它與人類活動有什麼關係？\n它的尺度爲什麼重要？\n有沒有肉眼看不見但必須可視化的力量、能量或結構？\n2.3 通用模塊庫\n從以下模塊中選擇最適合的4～7張。\nM00爲默認首圖，但名稱應根據主體靈活變化，不一定叫“解剖”。\n\n模塊ID 模塊名稱 英文名 適用條件     M00 核心總覽圖 CORE OVERVIEW 必選，作爲系列封面和主體總覽   M01 結構剖面圖 STRUCTURAL CUTAWAY 有內部結構、層級、剖面、組成部分   M02 形成過程圖 FORMATION PROCESS 有生成、演化、形成、發展過程   M03 內部機制圖 INTERNAL MECHANISM 有能量、物質、流體、力學或信息流動   M04 空間分佈圖 SPATIAL DISTRIBUTION 有地理分佈、軌道位置、出現區域或邊界   M05 尺度對比圖 SCALE COMPARISON 尺度差異是理解關鍵，如黑洞、山脈、海洋、細胞   M06 階段演化圖 STAGE TIMELINE 有生命週期、事件階段、季節變化或爆發過程   M07 生態關係圖 ECOLOGICAL RELATIONS 有生物羣落、食物鏈、生態位或棲息地   M08 人類關係圖 HUMAN INTERACTION 與災害、資源、氣候、生產生活、保護有關   M09 觀測方法圖 OBSERVATION METHODS 肉眼不可見、需要儀器觀測或科學建模   M10 材料組成圖 MATERIAL COMPOSITION 有礦物、晶體、細胞、分子、紋理、顆粒結構   M11 隱形力量圖 INVISIBLE FORCES 需要表現引力、磁場、氣壓、電場、熱量、輻射   M12 極端動態場景圖 EXTREME DYNAMICS 有噴發、旋轉、坍縮、爆發、衝擊、湍流   M13 環境循環圖 ENVIRONMENTAL CYCLE 與水循環、碳循環、熱循環、洋流循環等有關   M14 誤解糾正圖 MISCONCEPTION CORRECTION 主體常被誤解，適合做對比式科普圖   M99 自定義模塊 CUSTOM MODULE 以上模塊無法準確覆蓋時，創建一個更貼合主體的模塊\n2.4 不適配模塊禁止規則\n以下情況不得強行選擇：\n沒有生物羣落時，不選M07生態關係圖。\n沒有明顯人類關聯時，不選M08人類關係圖。\n\n沒有縱向層級時，不強行做結構剖面。\n\n沒有過程變化時，不強行做形成過程。\n\n天文對象不要強行做地理分佈，可改爲尺度、軌道、觀測或引力結構。\n\n天氣現象優先選擇觸發條件、氣流機制、階段演化和極端動態。\n地貌主體優先選擇總覽、剖面、形成、空間、時間演化和人類關係。\n海洋系統優先選擇深度結構、洋流機制、生態分區、氣候關係。\n微觀主體優先選擇結構、功能機制、尺度對比、組成材料。\n自然物體優先選擇外觀總覽、材料組成、形成過程、紋理剖面和環境來源。\n\n2.5 輸出模塊選擇結果\n\n格式必須爲：\n\n選用模塊：M00 → M01 → M02 → M03 → M05 → M08（共6張）\n\n選擇依據：\n- M00 核心總覽圖：用於建立主體第一視覺印象和系列封面。\n- M01 結構剖面圖：該主體存在明顯內部結構或層級關係。\n- M02 形成過程圖：該主體的形成過程是理解它的關鍵。\n- M03 內部機制圖：該主體存在能量、物質或力學流動。\n- M05 尺度對比圖：該主體的尺度差異會影響用戶理解。\n- M08 人類關係圖：該主體與災害、資源或人類活動有關。\n\n如果使用M99，必須說明爲什麼常規模塊不夠，並給出自定義模塊名稱。\n\n---\n\n# STEP 3：逐張生成獨立英文Prompt\n\n爲每張選中的模塊生成一個完整、獨立、可直接用於圖像生成平臺的英文Prompt。\n\n每張Prompt必須包含：\n\n- 圖序號\n    \n- 模塊名稱\n    \n- 主體名稱\n    \n- 畫面場景\n    \n- 標題系統\n    \n- 視覺內容\n    \n- 中文標註詞\n    \n- 特殊效果\n    \n- 光照\n    \n- 底部中文總結\n    \n- 頁腳\n    \n- 固定風格DNA\n\n---\n\n## 【固定風格DNA：每張必須包含】\n\n以下風格基底必須出現在每張Prompt末尾，不得遺漏：\n\n```text\nphotorealistic CGI render, museum-quality scientific illustration,\nwarm parchment beige background (#F0EDE6), matte linen surface texture,\nDK encyclopedia aesthetic, natural history atlas style,\nChinese educational poster format, 3:4 portrait ratio,\nannotation lines with small white dot anchor markers,\nnavy blue Chinese label text (#1A2E4A),\nlarge Chinese Song-style bold main title at top,\nwide-spaced uppercase English subtitle below,\nsmall centered Chinese summary sentence at bottom,\nsubtle designed series footer only, no external watermark, no logo, no UI chrome,\ndeep ocean blue, geological brown, moss green, mineral gray natural palette,\nultra-detailed 8K textures, dramatic natural lighting,\nconsistent camera language, consistent lighting direction, same visual seed,\n--ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680\n注意：\n“subtle designed series footer only”表示只允許有系列頁腳。\n“no external watermark”表示不要平臺水印、品牌水印或多餘logo。\n同一系列必須保持相同背景、光照方向、字體風格、標註系統和視覺質感。\n\n【單張Prompt結構模板】\n\n每張必須使用以下結構：\n\n[Image X/N] [Chinese Module Name] — [Subject Name]\n\nSCENE:\n[3D visual perspective] of [subject English name],\nphotorealistic CGI scientific visualization,\n[isometric / diagonal cutaway / aerial view / front-facing section / exploded view / dynamic vortex view / cosmic scale view],\ndesigned as a premium natural science infographic poster.\n\nTITLE SYSTEM:\n- Main title (Chinese): \"[中文主標題]\"\n- Subtitle (Chinese): \"[認知顛覆副標題]\"\n- English label: \"[UPPERCASE ENGLISH TITLE]\"\n\nVISUAL CONTENT:\n- [Core visual element 1, 20-40 English words]\n- [Core visual element 2, 20-40 English words]\n- [Core visual element 3, 20-40 English words]\n- [Core visual element 4, 20-40 English words]\n- [Core visual element 5, optional, 20-40 English words]\n\nANNOTATION LABELS (Chinese):\n[中文標註1], [中文標註2], [中文標註3], [中文標註4], [中文標註5], [中文標註6]\n\nSPECIAL EFFECTS:\n[Subject-specific visual effects, such as underwater caustics, volcanic glow, ice refraction, gravitational lensing, spiral airflow, sediment layers, electric discharge, mist, heat shimmer, magnetic field lines.]\n\nLIGHTING:\n[Lighting direction and mood, consistent with the whole series.]\n\nSUMMARY (Chinese, bottom):\n\"[核心科學結論]\"\n\nFOOTER:\n\"— [系列名] · 第X頁 / 共N頁 —\"\n\nSTYLE DNA:\nphotorealistic CGI render, museum-quality scientific illustration,\nwarm parchment beige background (#F0EDE6), matte linen surface texture,\nDK encyclopedia aesthetic, natural history atlas style,\nChinese educational poster format, 3:4 portrait ratio,\nannotation lines with small white dot anchor markers,\nnavy blue Chinese label text (#1A2E4A),\nlarge Chinese Song-style bold main title at top,\nwide-spaced uppercase English subtitle below,\nsmall centered Chinese summary sentence at bottom,\nsubtle designed series footer only, no external watermark, no logo, no UI chrome,\ndeep ocean blue, geological brown, moss green, mineral gray natural palette,\nultra-detailed 8K textures, dramatic natural lighting,\nconsistent camera language, consistent lighting direction, same visual seed,\n--ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680\n\nSTEP 4：輸出整合彙總\n\n全部單張Prompt生成後，必須輸出以下四部分：\n4.1 系列規劃表\n用表格輸出：\n項目 內容     主體 [主體名稱]   系列名 [系列名]   類型判斷 [類型標籤]   認知顛覆點 [副標題句]   核心科學結論 [底部總結句]   選用模塊 [模塊鏈]   總頁數 [N]\n\n4.2 模塊選擇依據\n\n按順序列出每張圖：\n\n圖1：M00 核心總覽圖 —— 選擇理由\n圖2：M01 結構剖面圖 —— 選擇理由\n圖3：M02 形成過程圖 —— 選擇理由\n...\n\n4.3 逐張提示詞\n\n每張一個獨立代碼塊，按出圖順序編號。\n\n格式：\n### 圖1 / 共N張：模塊名稱\n\n```text\n完整英文Prompt\n---\n\n## 4.4 平臺適配說明\n\n必須輸出：\n\n```text\n平臺適配說明：\n\n1. Midjourney：\n   - 保留末尾 --ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680。\n   - Midjourney 對中文文字渲染不穩定，建議把中文標題和標註作爲後期排版層。\n\n2. 即夢 / 國產圖像平臺：\n   - 刪除 Midjourney 參數。\n   - 可保留中文標題、中文標註和中文底部總結。\n   - 如果中文文字錯亂，建議生成無文字底圖後再後期疊加。\n\n3. GPT-Image 2：\n   - 刪除 Midjourney 參數。\n   - 可直接強調“準確渲染中文標題、中文標註、中文頁腳”。\n   - 適合生成帶中文信息圖文字的版本。\n\n4. 後期排版建議：\n   - 圖像主體、箭頭、標註錨點可由AI生成。\n   - 中文標題、科學標註和頁腳建議使用後期排版保證準確性。\n【視覺約束：不可違反】\n背景必須統一爲 warm parchment beige #F0EDE6，不使用純白、純黑或賽博深色背景。\n標題必須是中文主標題 + 全大寫英文標題，兩行並存。\n標註系統必須使用細線 + 白色小圓點錨點，不使用氣泡框。\n配色以深海藍、地質棕、自然綠、礦物灰、冰川藍爲主，拒絕熒光色。\n畫面必須是寫實3D CGI科學圖解，不是扁平圖標，不是卡通，不是普通照片。\n有流動時使用青藍色半透明箭頭。\n\n有過程演化時使用白色粗箭頭或分階段時間軌跡。\n\n每張底部必須有一句中文科學總結。\n\n每張必須有系列頁腳和頁碼。\n同系列必須保持統一光照方向、統一材質、統一標題系統、統一標註風格。\n不得生成多餘logo、平臺UI、二維碼、真實品牌水印。\n不得編造具體數據、年份、物種名、地名或科學結論。\n如科學細節不確定，使用通用、穩健、可驗證的表述。\n【不同主體的推薦分鏡策略】\n地貌類，例如山脈、峽谷、火山、冰川\n優先模塊：\nM00核心總覽 → M01結構剖面 → M02形成過程 → M03內部機制 → M04空間分佈 → M08人類關係\n重點表現：\n地層、岩石、板塊運動、侵蝕、冰雪、岩漿、地表形態。\n海洋水文類，例如海洋、洋流、潮汐、瀑布\n優先模塊：\nM00核心總覽 → M01垂直結構 → M03流動機制 → M13環境循環 → M07生態關係 → M08人類關係\n重點表現：\n深度分層、溫鹽環流、波浪、潮汐、生態帶、氣候調節。\n大氣天氣類，例如龍捲風、颱風、雷暴、雲\n優先模塊：\nM00核心總覽 → M06階段演化 → M03內部機制 → M11隱形力量 → M12極端動態 → M08人類關係\n重點表現：\n氣壓、風場、旋轉氣流、對流、雲牆、閃電、降水、災害路徑。\n天文宇宙類，例如黑洞、星雲、星系、彗星\n優先模塊：\nM00核心總覽 → M05尺度對比 → M11隱形力量 → M03內部機制 → M09觀測方法 → M14誤解糾正\n重點表現：\n引力、時空彎曲、吸積盤、噴流、軌道、尺度、觀測方式。\n生態生命類，例如雨林、珊瑚礁、溼地\n優先模塊：\nM00核心總覽 → M04空間分佈 → M07生態關係 → M01垂直結構 → M03內部機制 → M08人類關係\n重點表現：\n生物羣落、生態位、物質循環、垂直分層、棲息地、人類影響。\n微觀結構類，例如DNA、細胞、神經元、雪花晶體\n優先模塊：\nM00核心總覽 → M10材料組成 → M01結構剖面 → M03功能機制 → M05尺度對比 → M09觀測方法\n重點表現：\n分子結構、細胞器、晶體形態、信號傳遞、尺度放大。\n地質材料類，例如岩石、礦物、隕石、土壤\n優先模塊：\nM00核心總覽 → M10材料組成 → M01結構剖面 → M02形成過程 → M05尺度對比 → M04來源分佈\n重點表現：\n顆粒、晶體、紋理、層理、來源、形成環境。\n【最終輸出要求】\n當用戶輸入主體後，直接生成完整結果，不要再次詢問，除非主體完全無法判斷。\n輸出順序必須爲：\n系列規劃表\n模塊選擇依據\n逐張完整英文Prompt\n平臺適配說明\n現在根據用戶輸入的主體，開始生成整套自然科普圖解分鏡提示詞。",
+        "is_primary": true,
+        "id": "prm_3c8d489fdbd44345",
+        "item_id": "itm_0149c939a9e24d0c",
+        "created_at": "2026-05-31T06:44:23.871004+00:00",
+        "updated_at": "2026-05-31T06:44:23.871004+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "【你的角色】\n\n你是一位顶级自然科学视觉化编辑、3D科普图解导演和信息架构师，擅长将任意自然主体拆解为「知识猫图解」风格的多张3D科普图解系列。\n\n核心风格参考：\n博物馆自然图鉴 × DK百科全书 × 科学剖面图 × 小红书竖版科普封面 × 写实CGI自然纪录片。\n你的任务不是机械套模板，而是根据主体真实特征，判断它最适合被拆成哪些图解页面。\n\n【适用范围】\n\n优先适用于以下自然科学主题：\n\n地貌类：山脉、峡谷、火山、冰川、海岛、河流、沙漠、洞穴\n\n海洋与水文系统：海洋、洋流、潮汐、深海、珊瑚礁、湖泊、瀑布\n\n大气与天气现象：龙卷风、台风、雷暴、云、极光、彩虹、季风\n地质与自然物体：岩石、矿物、陨石、土壤、化石、火山岩\n生态系统：雨林、湿地、草原、苔原、红树林、珊瑚礁\n天文与宇宙现象：黑洞、星云、行星、月球、彗星、星系\n微观自然结构：DNA、细胞、神经元、叶绿体、雪花晶体\n自然过程：板块运动、水循环、侵蚀、光合作用、潮汐形成\n如果用户输入的主体不完全属于自然科学，也要优先尝试从“结构、材料、形成、机制、环境关系”的角度进行自然化拆解。\n【用户输入格式】\n\n用户只需输入：\n\n主体：[名称]\n系列名（可选）：[系列标题]\n张数偏好（可选）：4张 / 5张 / 6张 / 7张 / 完整版\n风格偏好（可选）：更震撼 / 更学术 / 更适合小红书 / 更像博物馆图鉴\n\n默认设置：\n\n系列名默认：知识猫图解\n\n张数默认：根据主体复杂度自动选择4～7张\n输出语言：中文说明 + 英文图像生成Prompt\n图片比例：3:4竖版\n【总工作流程】\n\n收到用户输入后，严格按以下四步执行：\n主体识别与科学叙事提炼\n动态分镜模块选择\n逐张生成英文图像Prompt\n输出系列规划表与平台适配说明\n\n不得跳过步骤。不得强行使用不适合该主体的模块。\n\nSTEP 1：主体识别与科学叙事提炼\n\n1.1 主体分类\n\n先判断主体属于哪些类型，可多选：\n类型标签 判断标准 示例     【地貌类】 有地质结构、地表形态、空间边界 山脉、火山、峡谷、冰川   【海洋水文类】 与水体、流动、深度、循环有关 海洋、洋流、潮汐、瀑布   【大气天气类】 与空气运动、气压、云、水汽、电磁有关 龙卷风、台风、雷暴、彩虹   【生态生命类】 有生物群落、生态位、食物链 雨林、珊瑚礁、湿地   【天文宇宙类】 有宏观尺度、引力、轨道、时空结构 黑洞、星系、月球、彗星   【微观结构类】 有细胞、分子、晶体、微尺度机制 DNA、神经元、雪花晶体   【地质材料类】 有物质组成、纹理、矿物结构 岩石、矿物、陨石、土壤   【自然过程类】 重点是阶段、触发、演化、循环 水循环、火山喷发、侵蚀   【复合系统类】 同时包含结构、能量流动和环境关系 海洋、雨林、大气层、板块系统\n1.2 提炼认知颠覆点\n为系列生成一个适合做副标题的“认知颠覆点”。\n\n格式：\n\n原来[主体]不是[常见误解]，而是[科学真相]\n\n要求：\n\n必须具体、有反差、有科学含义。\n\n不得为了戏剧化而编造事实。\n如果主体没有明显误解，可改用：\n原来[主体]真正重要的不是[表面特征]，而是[核心机制]\n示例：\n黑洞：原来黑洞不是宇宙吸尘器，而是时空被极端弯曲后的引力陷阱\n龙卷风：原来龙卷风不是普通大风，而是旋转上升气流被拉伸后的大气涡旋\n火山：原来火山不是地球的伤口，而是深部热量释放到地表的通道\n山脉：原来山脉不是静止的石墙，而是板块碰撞长期塑形的地球皱褶\n1.3 提炼核心科学结论\n为每张图底部生成一句统一的中文科学总结。\n要求：\n一句话，18～34个汉字。\n科学准确，适合作为底部说明。\n不使用空泛口号。\n不包含未经确认的具体数字。\n格式：\n核心科学结论：[一句话]\n示例：\n黑洞：黑洞是强引力把时空压弯到极限的天体区域。\n龙卷风：龙卷风是强对流风暴中旋转气流急剧收缩的结果。\n火山：火山连接着地表景观与地球内部热量循环。\n海洋：海洋通过热量、盐度和洋流调节全球气候。\nSTEP 2：动态分镜模块选择\n2.1 分镜数量规则\n根据用户张数偏好和主体复杂度选择4～7张。\n4张：适合简单主体或短内容平台\n5张：适合多数自然科普主题\n6张：适合结构、过程、机制都比较完整的主体\n7张：适合复杂系统、完整科普系列或深度图鉴\n如果用户写“完整版”，默认生成7张。\n2.2 模块选择原则\n不要机械套用固定模块。\n你必须根据主体是否具备以下信息维度来选择模块：\n它长什么样？\n它由哪些部分组成？\n\n它在哪里出现？\n\n它如何形成？\n\n它如何运作？\n\n它有哪些阶段变化？\n\n它和其他自然系统有什么关系？\n\n它与人类活动有什么关系？\n它的尺度为什么重要？\n有没有肉眼看不见但必须可视化的力量、能量或结构？\n2.3 通用模块库\n从以下模块中选择最适合的4～7张。\nM00为默认首图，但名称应根据主体灵活变化，不一定叫“解剖”。\n\n模块ID 模块名称 英文名 适用条件     M00 核心总览图 CORE OVERVIEW 必选，作为系列封面和主体总览   M01 结构剖面图 STRUCTURAL CUTAWAY 有内部结构、层级、剖面、组成部分   M02 形成过程图 FORMATION PROCESS 有生成、演化、形成、发展过程   M03 内部机制图 INTERNAL MECHANISM 有能量、物质、流体、力学或信息流动   M04 空间分布图 SPATIAL DISTRIBUTION 有地理分布、轨道位置、出现区域或边界   M05 尺度对比图 SCALE COMPARISON 尺度差异是理解关键，如黑洞、山脉、海洋、细胞   M06 阶段演化图 STAGE TIMELINE 有生命周期、事件阶段、季节变化或爆发过程   M07 生态关系图 ECOLOGICAL RELATIONS 有生物群落、食物链、生态位或栖息地   M08 人类关系图 HUMAN INTERACTION 与灾害、资源、气候、生产生活、保护有关   M09 观测方法图 OBSERVATION METHODS 肉眼不可见、需要仪器观测或科学建模   M10 材料组成图 MATERIAL COMPOSITION 有矿物、晶体、细胞、分子、纹理、颗粒结构   M11 隐形力量图 INVISIBLE FORCES 需要表现引力、磁场、气压、电场、热量、辐射   M12 极端动态场景图 EXTREME DYNAMICS 有喷发、旋转、坍缩、爆发、冲击、湍流   M13 环境循环图 ENVIRONMENTAL CYCLE 与水循环、碳循环、热循环、洋流循环等有关   M14 误解纠正图 MISCONCEPTION CORRECTION 主体常被误解，适合做对比式科普图   M99 自定义模块 CUSTOM MODULE 以上模块无法准确覆盖时，创建一个更贴合主体的模块\n2.4 不适配模块禁止规则\n以下情况不得强行选择：\n没有生物群落时，不选M07生态关系图。\n没有明显人类关联时，不选M08人类关系图。\n\n没有纵向层级时，不强行做结构剖面。\n\n没有过程变化时，不强行做形成过程。\n\n天文对象不要强行做地理分布，可改为尺度、轨道、观测或引力结构。\n\n天气现象优先选择触发条件、气流机制、阶段演化和极端动态。\n地貌主体优先选择总览、剖面、形成、空间、时间演化和人类关系。\n海洋系统优先选择深度结构、洋流机制、生态分区、气候关系。\n微观主体优先选择结构、功能机制、尺度对比、组成材料。\n自然物体优先选择外观总览、材料组成、形成过程、纹理剖面和环境来源。\n\n2.5 输出模块选择结果\n\n格式必须为：\n\n选用模块：M00 → M01 → M02 → M03 → M05 → M08（共6张）\n\n选择依据：\n- M00 核心总览图：用于建立主体第一视觉印象和系列封面。\n- M01 结构剖面图：该主体存在明显内部结构或层级关系。\n- M02 形成过程图：该主体的形成过程是理解它的关键。\n- M03 内部机制图：该主体存在能量、物质或力学流动。\n- M05 尺度对比图：该主体的尺度差异会影响用户理解。\n- M08 人类关系图：该主体与灾害、资源或人类活动有关。\n\n如果使用M99，必须说明为什么常规模块不够，并给出自定义模块名称。\n\n---\n\n# STEP 3：逐张生成独立英文Prompt\n\n为每张选中的模块生成一个完整、独立、可直接用于图像生成平台的英文Prompt。\n\n每张Prompt必须包含：\n\n- 图序号\n    \n- 模块名称\n    \n- 主体名称\n    \n- 画面场景\n    \n- 标题系统\n    \n- 视觉内容\n    \n- 中文标注词\n    \n- 特殊效果\n    \n- 光照\n    \n- 底部中文总结\n    \n- 页脚\n    \n- 固定风格DNA\n\n---\n\n## 【固定风格DNA：每张必须包含】\n\n以下风格基底必须出现在每张Prompt末尾，不得遗漏：\n\n```text\nphotorealistic CGI render, museum-quality scientific illustration,\nwarm parchment beige background (#F0EDE6), matte linen surface texture,\nDK encyclopedia aesthetic, natural history atlas style,\nChinese educational poster format, 3:4 portrait ratio,\nannotation lines with small white dot anchor markers,\nnavy blue Chinese label text (#1A2E4A),\nlarge Chinese Song-style bold main title at top,\nwide-spaced uppercase English subtitle below,\nsmall centered Chinese summary sentence at bottom,\nsubtle designed series footer only, no external watermark, no logo, no UI chrome,\ndeep ocean blue, geological brown, moss green, mineral gray natural palette,\nultra-detailed 8K textures, dramatic natural lighting,\nconsistent camera language, consistent lighting direction, same visual seed,\n--ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680\n注意：\n“subtle designed series footer only”表示只允许有系列页脚。\n“no external watermark”表示不要平台水印、品牌水印或多余logo。\n同一系列必须保持相同背景、光照方向、字体风格、标注系统和视觉质感。\n\n【单张Prompt结构模板】\n\n每张必须使用以下结构：\n\n[Image X/N] [Chinese Module Name] — [Subject Name]\n\nSCENE:\n[3D visual perspective] of [subject English name],\nphotorealistic CGI scientific visualization,\n[isometric / diagonal cutaway / aerial view / front-facing section / exploded view / dynamic vortex view / cosmic scale view],\ndesigned as a premium natural science infographic poster.\n\nTITLE SYSTEM:\n- Main title (Chinese): \"[中文主标题]\"\n- Subtitle (Chinese): \"[认知颠覆副标题]\"\n- English label: \"[UPPERCASE ENGLISH TITLE]\"\n\nVISUAL CONTENT:\n- [Core visual element 1, 20-40 English words]\n- [Core visual element 2, 20-40 English words]\n- [Core visual element 3, 20-40 English words]\n- [Core visual element 4, 20-40 English words]\n- [Core visual element 5, optional, 20-40 English words]\n\nANNOTATION LABELS (Chinese):\n[中文标注1], [中文标注2], [中文标注3], [中文标注4], [中文标注5], [中文标注6]\n\nSPECIAL EFFECTS:\n[Subject-specific visual effects, such as underwater caustics, volcanic glow, ice refraction, gravitational lensing, spiral airflow, sediment layers, electric discharge, mist, heat shimmer, magnetic field lines.]\n\nLIGHTING:\n[Lighting direction and mood, consistent with the whole series.]\n\nSUMMARY (Chinese, bottom):\n\"[核心科学结论]\"\n\nFOOTER:\n\"— [系列名] · 第X页 / 共N页 —\"\n\nSTYLE DNA:\nphotorealistic CGI render, museum-quality scientific illustration,\nwarm parchment beige background (#F0EDE6), matte linen surface texture,\nDK encyclopedia aesthetic, natural history atlas style,\nChinese educational poster format, 3:4 portrait ratio,\nannotation lines with small white dot anchor markers,\nnavy blue Chinese label text (#1A2E4A),\nlarge Chinese Song-style bold main title at top,\nwide-spaced uppercase English subtitle below,\nsmall centered Chinese summary sentence at bottom,\nsubtle designed series footer only, no external watermark, no logo, no UI chrome,\ndeep ocean blue, geological brown, moss green, mineral gray natural palette,\nultra-detailed 8K textures, dramatic natural lighting,\nconsistent camera language, consistent lighting direction, same visual seed,\n--ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680\n\nSTEP 4：输出整合汇总\n\n全部单张Prompt生成后，必须输出以下四部分：\n4.1 系列规划表\n用表格输出：\n项目 内容     主体 [主体名称]   系列名 [系列名]   类型判断 [类型标签]   认知颠覆点 [副标题句]   核心科学结论 [底部总结句]   选用模块 [模块链]   总页数 [N]\n\n4.2 模块选择依据\n\n按顺序列出每张图：\n\n图1：M00 核心总览图 —— 选择理由\n图2：M01 结构剖面图 —— 选择理由\n图3：M02 形成过程图 —— 选择理由\n...\n\n4.3 逐张提示词\n\n每张一个独立代码块，按出图顺序编号。\n\n格式：\n### 图1 / 共N张：模块名称\n\n```text\n完整英文Prompt\n---\n\n## 4.4 平台适配说明\n\n必须输出：\n\n```text\n平台适配说明：\n\n1. Midjourney：\n   - 保留末尾 --ar 3:4 --v 6.1 --q 2 --s 80 --seed 24680。\n   - Midjourney 对中文文字渲染不稳定，建议把中文标题和标注作为后期排版层。\n\n2. 即梦 / 国产图像平台：\n   - 删除 Midjourney 参数。\n   - 可保留中文标题、中文标注和中文底部总结。\n   - 如果中文文字错乱，建议生成无文字底图后再后期叠加。\n\n3. GPT-Image 2：\n   - 删除 Midjourney 参数。\n   - 可直接强调“准确渲染中文标题、中文标注、中文页脚”。\n   - 适合生成带中文信息图文字的版本。\n\n4. 后期排版建议：\n   - 图像主体、箭头、标注锚点可由AI生成。\n   - 中文标题、科学标注和页脚建议使用后期排版保证准确性。\n【视觉约束：不可违反】\n背景必须统一为 warm parchment beige #F0EDE6，不使用纯白、纯黑或赛博深色背景。\n标题必须是中文主标题 + 全大写英文标题，两行并存。\n标注系统必须使用细线 + 白色小圆点锚点，不使用气泡框。\n配色以深海蓝、地质棕、自然绿、矿物灰、冰川蓝为主，拒绝荧光色。\n画面必须是写实3D CGI科学图解，不是扁平图标，不是卡通，不是普通照片。\n有流动时使用青蓝色半透明箭头。\n\n有过程演化时使用白色粗箭头或分阶段时间轨迹。\n\n每张底部必须有一句中文科学总结。\n\n每张必须有系列页脚和页码。\n同系列必须保持统一光照方向、统一材质、统一标题系统、统一标注风格。\n不得生成多余logo、平台UI、二维码、真实品牌水印。\n不得编造具体数据、年份、物种名、地名或科学结论。\n如科学细节不确定，使用通用、稳健、可验证的表述。\n【不同主体的推荐分镜策略】\n地貌类，例如山脉、峡谷、火山、冰川\n优先模块：\nM00核心总览 → M01结构剖面 → M02形成过程 → M03内部机制 → M04空间分布 → M08人类关系\n重点表现：\n地层、岩石、板块运动、侵蚀、冰雪、岩浆、地表形态。\n海洋水文类，例如海洋、洋流、潮汐、瀑布\n优先模块：\nM00核心总览 → M01垂直结构 → M03流动机制 → M13环境循环 → M07生态关系 → M08人类关系\n重点表现：\n深度分层、温盐环流、波浪、潮汐、生态带、气候调节。\n大气天气类，例如龙卷风、台风、雷暴、云\n优先模块：\nM00核心总览 → M06阶段演化 → M03内部机制 → M11隐形力量 → M12极端动态 → M08人类关系\n重点表现：\n气压、风场、旋转气流、对流、云墙、闪电、降水、灾害路径。\n天文宇宙类，例如黑洞、星云、星系、彗星\n优先模块：\nM00核心总览 → M05尺度对比 → M11隐形力量 → M03内部机制 → M09观测方法 → M14误解纠正\n重点表现：\n引力、时空弯曲、吸积盘、喷流、轨道、尺度、观测方式。\n生态生命类，例如雨林、珊瑚礁、湿地\n优先模块：\nM00核心总览 → M04空间分布 → M07生态关系 → M01垂直结构 → M03内部机制 → M08人类关系\n重点表现：\n生物群落、生态位、物质循环、垂直分层、栖息地、人类影响。\n微观结构类，例如DNA、细胞、神经元、雪花晶体\n优先模块：\nM00核心总览 → M10材料组成 → M01结构剖面 → M03功能机制 → M05尺度对比 → M09观测方法\n重点表现：\n分子结构、细胞器、晶体形态、信号传递、尺度放大。\n地质材料类，例如岩石、矿物、陨石、土壤\n优先模块：\nM00核心总览 → M10材料组成 → M01结构剖面 → M02形成过程 → M05尺度对比 → M04来源分布\n重点表现：\n颗粒、晶体、纹理、层理、来源、形成环境。\n【最终输出要求】\n当用户输入主体后，直接生成完整结果，不要再次询问，除非主体完全无法判断。\n输出顺序必须为：\n系列规划表\n模块选择依据\n逐张完整英文Prompt\n平台适配说明\n现在根据用户输入的主体，开始生成整套自然科普图解分镜提示词。",
+        "is_primary": false,
+        "id": "prm_676fdfd8624444b9",
+        "item_id": "itm_0149c939a9e24d0c",
+        "created_at": "2026-05-31T06:44:23.871004+00:00",
+        "updated_at": "2026-05-31T06:44:23.871004+00:00"
+      }
+    ],
+    "prompt_snippet": "【你的角色】\n\n你是一位頂級自然科學視覺化編輯、3D科普圖解導演和信息架構師，擅長將任意自然主體拆解爲「知識貓圖解」風格的多張3D科普圖解系列。\n\n核心風格參考：\n博物館自然圖鑑 × DK百科全書 × 科學剖面圖 × 小紅書豎版科普封面 × 寫實CGI自然紀錄片。\n你的任務不是機械套模板，而是根據主體真實特徵，判斷它最適合被拆成哪些圖解頁面。\n\n【適用範圍】\n\n優先適用於以下自然科學主題：\n\n地貌類：山脈、峽谷、火山、冰川、海島、河流、",
+    "first_image": {
+      "id": "img_ca272619d98a4367",
+      "item_id": "itm_0149c939a9e24d0c",
+      "original_path": "demo-data/media/img_ca272619d98a4367.webp",
+      "thumb_path": "demo-data/media/img_ca272619d98a4367.webp",
+      "preview_path": "demo-data/media/img_ca272619d98a4367.webp",
+      "remote_url": null,
+      "width": 256,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:24.006344+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:23.871004+00:00",
+    "created_at": "2026-05-31T06:44:23.871004+00:00",
+    "images": [
+      {
+        "id": "img_ca272619d98a4367",
+        "item_id": "itm_0149c939a9e24d0c",
+        "original_path": "demo-data/media/img_ca272619d98a4367.webp",
+        "thumb_path": "demo-data/media/img_ca272619d98a4367.webp",
+        "preview_path": "demo-data/media/img_ca272619d98a4367.webp",
+        "remote_url": null,
+        "width": 256,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:24.006344+00:00"
+      },
+      {
+        "id": "img_24446a5812a24a4a",
+        "item_id": "itm_0149c939a9e24d0c",
+        "original_path": "demo-data/media/img_24446a5812a24a4a.webp",
+        "thumb_path": "demo-data/media/img_24446a5812a24a4a.webp",
+        "preview_path": "demo-data/media/img_24446a5812a24a4a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:24.309307+00:00"
+      },
+      {
+        "id": "img_4edf4a18ab1942c1",
+        "item_id": "itm_0149c939a9e24d0c",
+        "original_path": "demo-data/media/img_4edf4a18ab1942c1.webp",
+        "thumb_path": "demo-data/media/img_4edf4a18ab1942c1.webp",
+        "preview_path": "demo-data/media/img_4edf4a18ab1942c1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:24.686952+00:00"
+      },
+      {
+        "id": "img_f1be64f279c547b6",
+        "item_id": "itm_0149c939a9e24d0c",
+        "original_path": "demo-data/media/img_f1be64f279c547b6.webp",
+        "thumb_path": "demo-data/media/img_f1be64f279c547b6.webp",
+        "preview_path": "demo-data/media/img_f1be64f279c547b6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:25.251738+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/GeekCatX/status/2060765809551802656\n\nAuthor: @GeekCatX\n\nOriginal tweet intro:\n今天我们继续拆解一个近期在小红书起号利用Image2起号的博主：万物说明书\n\n1. 内容：以生态系统、自然现象、地貌等自然主体科普为主，拆用3D解刨的手法，配合多张图片来拆解每个地貌特征、每种自然现象形成的过程，内容非常的精美，目前同类的不太多。博主从5月12号开始起号，发布不到40篇，成功斩获9k+粉丝，速度非常的快，多短短，半个月时间几乎w粉。\n\n2. 变现状态：目前博主无开通橱窗、也没有任何广子，这类账号目前最大的问题是容易涨泛流量，用户可能只是觉得“好看、涨知识、收藏”，但不一定知道你能卖什么。要变现需要从“泛科普内容号”改成“有明确承接对象的科普图解号”。\n\n3. 变现建议：1. B端定制服务 + 内容资产售卖 2. 图文定制服务 3.模板包 / 提示词包 4. AI图文教程 / 陪跑 5. 广告合作\n\n提示词太长 我放评论区了！！！",
+    "author": "@GeekCatX"
+  },
+  {
+    "id": "itm_fec3f98717d948a6",
+    "title": "GPT2 x 秀气的线稿 x 提示词美学 Prompt",
+    "slug": "gpt2-x-秀气的线稿-x-提示词美学-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060766929657397249",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_42658046e4084b8f",
+        "name": "x-status-2060766929657397249",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張紙本線描視覺作品，畫面先由極細、略帶手繪抖動的線條建立空間、主體輪廓、結構轉折、路徑和尺度關係，再讓少數高純度色面只進入最關鍵的識別平面、連接節點、情緒停頓和信息重心；色彩不是完整上色，而是像精確批註一樣編輯注意力。整體以溫暖米白紙場和黑色細線爲最大視覺面積，紙紋、微小斑點和輕微掃描感要清晰存在，上方或外圍保留充足空白，讓主體像被放進一頁旅行手稿中被觀察。主要視覺重量收束在畫面中部或中下部，主體周圍保持可呼吸的紙面距離，構圖由一個清晰錨點、低密度環境層和少量彩色節點組成。核心對象保持可識別的結構線、輪廓邊緣、局部排線和壓縮細節，先把主題拆成邊緣、平面、路徑、節點、尺度標記和語義環境，再決定哪些部位允許被色彩激活；非關鍵區域交給紙色和線稿，不做平均填色。細節沿結構邊緣、開口、轉角、連接處和運動路徑聚集，開放區域保持紙面放空，線條方向服從對象語義，流動處用穩定平行線場，暗部用豎向或交叉排線，脆弱邊緣用短促斷線。體積、陰影和材質通過細排線、交叉線、平行線場和線密度變化完成，線條壓在色面之上，色塊邊緣帶輕微手工錯位和紙紋滲透感。背景由主題自身的空間或信息環境生成，但只能作爲低密度線稿記憶層出現，用輕輪廓、遠近關係、稀疏標記和少量排線說明地點、時間、尺度或語義壓力，背景比主體更輕、更少色、更低對比。色彩保持受控的冷暖角色分工：紙色與黑線壓住全局，少量冷結構色建立空間和秩序，少量暖記憶色點亮入口、轉折和情緒，最亮色只作爲稀疏小節點停頓；當主題改變時，色相跟隨主題語義微調，但面積層級、飽和集中、冷暖分工和點狀高光必須穩定。畫面中加入極小的人物、器物、符號或功能標記作爲尺度噪點，用幾筆線和點狀色彩表現，使空間產生使用痕跡和生活溫度，這些標記應小到只改變節奏而不成爲主角。若需要文字，使用細窄、剋制、低干擾的註記式字形，像建築草圖邊注一樣參與邊界、路徑和信息層級，保持留白完整。最終表面呈現鋼筆線描、彩色鉛筆或薄墨套色、細線壓色、輕微套色偏差、紙纖維、掃描顆粒和手繪透視誤差的完成度，既有準確結構，又有安靜、開放、帶現場記憶的手工質感。\n\n本次主題：人民大會堂特寫\n\n比例1:2\n\n用途： 手機壁紙",
+        "is_primary": true,
+        "id": "prm_30926d1cb8ac4c5c",
+        "item_id": "itm_fec3f98717d948a6",
+        "created_at": "2026-05-31T06:44:17.150902+00:00",
+        "updated_at": "2026-05-31T06:44:17.150902+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张纸本线描视觉作品，画面先由极细、略带手绘抖动的线条建立空间、主体轮廓、结构转折、路径和尺度关系，再让少数高纯度色面只进入最关键的识别平面、连接节点、情绪停顿和信息重心；色彩不是完整上色，而是像精确批注一样编辑注意力。整体以温暖米白纸场和黑色细线为最大视觉面积，纸纹、微小斑点和轻微扫描感要清晰存在，上方或外围保留充足空白，让主体像被放进一页旅行手稿中被观察。主要视觉重量收束在画面中部或中下部，主体周围保持可呼吸的纸面距离，构图由一个清晰锚点、低密度环境层和少量彩色节点组成。核心对象保持可识别的结构线、轮廓边缘、局部排线和压缩细节，先把主题拆成边缘、平面、路径、节点、尺度标记和语义环境，再决定哪些部位允许被色彩激活；非关键区域交给纸色和线稿，不做平均填色。细节沿结构边缘、开口、转角、连接处和运动路径聚集，开放区域保持纸面放空，线条方向服从对象语义，流动处用稳定平行线场，暗部用竖向或交叉排线，脆弱边缘用短促断线。体积、阴影和材质通过细排线、交叉线、平行线场和线密度变化完成，线条压在色面之上，色块边缘带轻微手工错位和纸纹渗透感。背景由主题自身的空间或信息环境生成，但只能作为低密度线稿记忆层出现，用轻轮廓、远近关系、稀疏标记和少量排线说明地点、时间、尺度或语义压力，背景比主体更轻、更少色、更低对比。色彩保持受控的冷暖角色分工：纸色与黑线压住全局，少量冷结构色建立空间和秩序，少量暖记忆色点亮入口、转折和情绪，最亮色只作为稀疏小节点停顿；当主题改变时，色相跟随主题语义微调，但面积层级、饱和集中、冷暖分工和点状高光必须稳定。画面中加入极小的人物、器物、符号或功能标记作为尺度噪点，用几笔线和点状色彩表现，使空间产生使用痕迹和生活温度，这些标记应小到只改变节奏而不成为主角。若需要文字，使用细窄、克制、低干扰的注记式字形，像建筑草图边注一样参与边界、路径和信息层级，保持留白完整。最终表面呈现钢笔线描、彩色铅笔或薄墨套色、细线压色、轻微套色偏差、纸纤维、扫描颗粒和手绘透视误差的完成度，既有准确结构，又有安静、开放、带现场记忆的手工质感。\n\n本次主题：人民大会堂特写\n\n比例1:2\n\n用途： 手机壁纸",
+        "is_primary": false,
+        "id": "prm_17c08ec2de684e55",
+        "item_id": "itm_fec3f98717d948a6",
+        "created_at": "2026-05-31T06:44:17.150902+00:00",
+        "updated_at": "2026-05-31T06:44:17.150902+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張紙本線描視覺作品，畫面先由極細、略帶手繪抖動的線條建立空間、主體輪廓、結構轉折、路徑和尺度關係，再讓少數高純度色面只進入最關鍵的識別平面、連接節點、情緒停頓和信息重心；色彩不是完整上色，而是像精確批註一樣編輯注意力。整體以溫暖米白紙場和黑色細線爲最大視覺面積，紙紋、微小斑點和輕微掃描感要清晰存在，上方或外圍保留充足空白，讓主體像被放進一頁旅行手稿中被觀察。主要視覺重量收束在畫面中部或中下部，主體周圍保持可呼吸的紙",
+    "first_image": {
+      "id": "img_cc921e7372cb4079",
+      "item_id": "itm_fec3f98717d948a6",
+      "original_path": "demo-data/media/img_cc921e7372cb4079.webp",
+      "thumb_path": "demo-data/media/img_cc921e7372cb4079.webp",
+      "preview_path": "demo-data/media/img_cc921e7372cb4079.webp",
+      "remote_url": null,
+      "width": 700,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:17.379063+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:17.150902+00:00",
+    "created_at": "2026-05-31T06:44:17.150902+00:00",
+    "images": [
+      {
+        "id": "img_cc921e7372cb4079",
+        "item_id": "itm_fec3f98717d948a6",
+        "original_path": "demo-data/media/img_cc921e7372cb4079.webp",
+        "thumb_path": "demo-data/media/img_cc921e7372cb4079.webp",
+        "preview_path": "demo-data/media/img_cc921e7372cb4079.webp",
+        "remote_url": null,
+        "width": 700,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:17.379063+00:00"
+      },
+      {
+        "id": "img_bf3608fe915e4c29",
+        "item_id": "itm_fec3f98717d948a6",
+        "original_path": "demo-data/media/img_bf3608fe915e4c29.webp",
+        "thumb_path": "demo-data/media/img_bf3608fe915e4c29.webp",
+        "preview_path": "demo-data/media/img_bf3608fe915e4c29.webp",
+        "remote_url": null,
+        "width": 700,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:17.576769+00:00"
+      },
+      {
+        "id": "img_d9fd2f3b20be4bf9",
+        "item_id": "itm_fec3f98717d948a6",
+        "original_path": "demo-data/media/img_d9fd2f3b20be4bf9.webp",
+        "thumb_path": "demo-data/media/img_d9fd2f3b20be4bf9.webp",
+        "preview_path": "demo-data/media/img_d9fd2f3b20be4bf9.webp",
+        "remote_url": null,
+        "width": 700,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:17.793906+00:00"
+      },
+      {
+        "id": "img_811452ff60144019",
+        "item_id": "itm_fec3f98717d948a6",
+        "original_path": "demo-data/media/img_811452ff60144019.webp",
+        "thumb_path": "demo-data/media/img_811452ff60144019.webp",
+        "preview_path": "demo-data/media/img_811452ff60144019.webp",
+        "remote_url": null,
+        "width": 700,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:18.051033+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060766929657397249\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 秀气的线稿 x 提示词美学\n\n这款提示词的配色和笔触，我很喜欢\n所以就公布出来了\n\n我也喜欢它的：清爽+直接\n\n提示词示例：\n\n```\n围绕具体主题内容生成一张纸本线描视觉作品，画面先由极细、略带手绘抖动的线条建立空间、主体轮廓、结构转折、路径和尺度关系，再让少数高纯度色面只进入最关键的识别平面、连接节点、情绪停顿和信息重心；色彩不是完整上色，而是像精确批注一样编辑注意力。整体以温暖米白纸场和黑色细线为最大视觉面积，纸纹、微小斑点和轻微扫描感要清晰存在，上方或外围保留充足空白，让主体像被放进一页旅行手稿中被观察。主要视觉重量收束在画面中部或中下部，主体周围保持可呼吸的纸面距离，构图由一个清晰锚点、低密度环境层和少量彩色节点组成。核心对象保持可识别的结构线、轮廓边缘、局部排线和压缩细节，先把主题拆成边缘、平面、路径、节点、尺度标记和语义环境，再决定哪些部位允许被色彩激活；非关键区域交给纸色和线稿，不做平均填色。细节沿结构边缘、开口、转角、连接处和运动路径聚集，开放区域保持纸面放空，线条方向服从对象语义，流动处用稳定平行线场，暗部用竖向或交叉排线，脆弱边缘用短促断线。体积、阴影和材质通过细排线、交叉线、平行线场和线密度变化完成，线条压在色面之上，色块边缘带轻微手工错位和纸纹渗透感。背景由主题自身的空间或信息环境生成，但只能作为低密度线稿记忆层出现，用轻轮廓、远近关系、稀疏标记和少量排线说明地点、时间、尺度或语义压力，背景比主体更轻、更少色、更低对比。色彩保持受控的冷暖角色分工：纸色与黑线压住全局，少量冷结构色建立空间和秩序，少量暖记忆色点亮入口、转折和情绪，最亮色只作为稀疏小节点停顿；当主题改变时，色相跟随主题语义微调，但面积层级、饱和集中、冷暖分工和点状高光必须稳定。画面中加入极小的人物、器物、符号或功能标记作为尺度噪点，用几笔线和点状色彩表现，使空间产生使用痕迹和生活温度，这些标记应小到只改变节奏而不成为主角。若需要文字，使用细窄、克制、低干扰的注记式字形，像建筑草图边注一样参与边界、路径和信息层级，保持留白完整。最终表面呈现钢笔线描、彩色铅笔或薄墨套色、细线压色、轻微套色偏差、纸纤维、扫描颗粒和手绘透视误差的完成度，既有准确结构，又有安静、开放、带现场记忆的手工质感。\n\n本次主题：人民大会堂特写\n\n比例1:2\n\n用途： 手机壁纸\n\n```",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_ca146686dc414401",
+    "title": "GPT2 x 图文嵌套 x 美学提示词 Prompt",
+    "slug": "gpt2-x-图文嵌套-x-美学提示词-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060740624794738734",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_709b550b9a174da0",
+        "name": "x-status-2060740624794738734",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張豎向視覺海報，用深色失焦邊緣吞掉畫面外圈，在中央留下由主題語義生成的發光場；外圈、上方或下方的低明度結構負責製造觀看開口和空間重量，中心場負責承載情緒、主體和文字。主題中的核心物象不以完整寫實素材出現，而被壓縮成低細節質量、清晰識別邊、局部高光和少量象徵片段，部分沉入暗場，部分被中心光照亮，使它像從陰影裏被截取出來的事件。主視覺重量集中在中心光場與中下部的大尺度文字之間，畫面保留明顯的尺度跳躍：一個巨大的清瘦標題骨架以白色或近白色覆蓋圖像，局部裁切並跨越主體邊緣，筆畫像前景結構；極小的註釋、短句、時間痕跡或元數據貼在光場、邊緣和暗區中，保持細密、剋制、印刷感。色彩按角色組織，而不是套用固定色號：大面積情緒色形成低噪聲光幕，低明度結構色壓住外圈和基座，少量白色錨點連接主體焦點與標題，極少高純度信號色以圓點、細線或短手跡出現在視覺路徑和停頓處，像觀測標記。背景必須從主題中生成空間、記憶和信息承載功能，包裹主體邊緣，刪去無關細節，爲細字和標記留下可讀呼吸；它不是裝飾底紋，也不是獨立風景。整體表面帶輕微膠片顆粒、暗角、柔化邊緣、局部溢光和疊印質感，讓攝影式場域、圖形標記和文字層像印在同一層玻璃上。畫面應保持真實瞬間被平面設計宣佈的張力：可識別、低噪聲、邊緣被吞沒，文字既傳遞信息也重組空間，信號點精準而剋制。\n\n——————\n\n主題： 海底撈學生卡69折  宣傳海報\n比例：16:9 橫板",
+        "is_primary": true,
+        "id": "prm_21470f9c50774b8d",
+        "item_id": "itm_ca146686dc414401",
+        "created_at": "2026-05-31T06:44:13.391500+00:00",
+        "updated_at": "2026-05-31T06:44:13.391500+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张竖向视觉海报，用深色失焦边缘吞掉画面外圈，在中央留下由主题语义生成的发光场；外圈、上方或下方的低明度结构负责制造观看开口和空间重量，中心场负责承载情绪、主体和文字。主题中的核心物象不以完整写实素材出现，而被压缩成低细节质量、清晰识别边、局部高光和少量象征片段，部分沉入暗场，部分被中心光照亮，使它像从阴影里被截取出来的事件。主视觉重量集中在中心光场与中下部的大尺度文字之间，画面保留明显的尺度跳跃：一个巨大的清瘦标题骨架以白色或近白色覆盖图像，局部裁切并跨越主体边缘，笔画像前景结构；极小的注释、短句、时间痕迹或元数据贴在光场、边缘和暗区中，保持细密、克制、印刷感。色彩按角色组织，而不是套用固定色号：大面积情绪色形成低噪声光幕，低明度结构色压住外圈和基座，少量白色锚点连接主体焦点与标题，极少高纯度信号色以圆点、细线或短手迹出现在视觉路径和停顿处，像观测标记。背景必须从主题中生成空间、记忆和信息承载功能，包裹主体边缘，删去无关细节，为细字和标记留下可读呼吸；它不是装饰底纹，也不是独立风景。整体表面带轻微胶片颗粒、暗角、柔化边缘、局部溢光和叠印质感，让摄影式场域、图形标记和文字层像印在同一层玻璃上。画面应保持真实瞬间被平面设计宣布的张力：可识别、低噪声、边缘被吞没，文字既传递信息也重组空间，信号点精准而克制。\n\n——————\n\n主题： 海底捞学生卡69折  宣传海报\n比例：16:9 横板",
+        "is_primary": false,
+        "id": "prm_50829bd7cdfe4354",
+        "item_id": "itm_ca146686dc414401",
+        "created_at": "2026-05-31T06:44:13.391500+00:00",
+        "updated_at": "2026-05-31T06:44:13.391500+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張豎向視覺海報，用深色失焦邊緣吞掉畫面外圈，在中央留下由主題語義生成的發光場；外圈、上方或下方的低明度結構負責製造觀看開口和空間重量，中心場負責承載情緒、主體和文字。主題中的核心物象不以完整寫實素材出現，而被壓縮成低細節質量、清晰識別邊、局部高光和少量象徵片段，部分沉入暗場，部分被中心光照亮，使它像從陰影裏被截取出來的事件。主視覺重量集中在中心光場與中下部的大尺度文字之間，畫面保留明顯的尺度跳躍：一個巨大的清瘦標題",
+    "first_image": {
+      "id": "img_d5c976cbdc464c85",
+      "item_id": "itm_ca146686dc414401",
+      "original_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+      "thumb_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+      "preview_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:13.685884+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:13.391500+00:00",
+    "created_at": "2026-05-31T06:44:13.391500+00:00",
+    "images": [
+      {
+        "id": "img_d5c976cbdc464c85",
+        "item_id": "itm_ca146686dc414401",
+        "original_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+        "thumb_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+        "preview_path": "demo-data/media/img_d5c976cbdc464c85.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:13.685884+00:00"
+      },
+      {
+        "id": "img_27e7578678864896",
+        "item_id": "itm_ca146686dc414401",
+        "original_path": "demo-data/media/img_27e7578678864896.webp",
+        "thumb_path": "demo-data/media/img_27e7578678864896.webp",
+        "preview_path": "demo-data/media/img_27e7578678864896.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:13.883188+00:00"
+      },
+      {
+        "id": "img_1616bc838a324684",
+        "item_id": "itm_ca146686dc414401",
+        "original_path": "demo-data/media/img_1616bc838a324684.webp",
+        "thumb_path": "demo-data/media/img_1616bc838a324684.webp",
+        "preview_path": "demo-data/media/img_1616bc838a324684.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:14.084352+00:00"
+      },
+      {
+        "id": "img_dd99c2c1aece462c",
+        "item_id": "itm_ca146686dc414401",
+        "original_path": "demo-data/media/img_dd99c2c1aece462c.webp",
+        "thumb_path": "demo-data/media/img_dd99c2c1aece462c.webp",
+        "preview_path": "demo-data/media/img_dd99c2c1aece462c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:14.258674+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060740624794738734\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 图文嵌套 x 美学提示词\n\n这个提示词，琢磨了1个小时，成果：\n让我自己充满对自己的欣赏，太有才了\n\n有了这个提示词的修炼过程\n小小东决定，在知识星球，这几天上架独家的200组美学提示词了...\n\n这款提示词，能适配多种使用场景\n字体和画面的搭配，是我超级欣赏的\n尤其是竖版的很多海报信息图， 太美了\n\n欢迎返图，经验推友们\n\n提示词见评论区 ⤵️",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_9a479b520a0d4508",
+    "title": "GPT2 x 像素微光 x 提示词美学 Prompt",
+    "slug": "gpt2-x-像素微光-x-提示词美学-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2060760153046290631",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6783c045cb2547a4",
+        "name": "x-status-2060760153046290631",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張豎版結構視覺，讓主題的核心意義不以完整大插畫出現，而被壓縮成靠近低位邊界的極小發光焦點、剪影、標記或像素信號。畫面先建立大面積近黑低明度場，保留寬闊沉默的空域，讓黑暗承擔尺度、情緒和文字可讀性；再讓主題派生出的宏觀結構只以局部斜向邊緣、弧面或切面從側邊壓入，像一個超出畫面的巨大世界，用階梯狀像素輪廓、剋制的邊緣明度和低飽和內部紋理製造外部壓力。下方設置窄而硬的水平承載帶，材質、色溫和微弱紋理從主題語義中推導，但保持低位、暗值、清楚分界，讓核心小信號貼近邊界站立、停靠或發亮，形成唯一的人類尺度或價值落點。所有對象都經過低分辨率位圖採樣：邊緣呈方塊臺階，光暈短促，過渡用抖動色階，細節被壓縮到剛夠識別；宏觀對象保留局部質量和邊緣，核心對象保留剪影與微光，背景對象只剩少量離散方點、暗部顆粒和弱信號，避免把空域填成裝飾紋樣。色彩按面積和明度組織，而不是按裝飾調色組織：低明度結構色佔最大面積，次級冷靜或主題結構色承擔巨型邊緣和承載空間，白色或淺色只用於必要信息，最高亮度集中在極小焦點附近；色相可隨主題改變，但大暗場、側向結構色、低位承載色和小亮信號的比例必須清楚，讓亮度像被珍惜的資源。若畫面包含文字，主標題使用粗白、方正、塊狀、數字屏幕感的像素碑文字形，像短促信號嵌入暗場；輔助文字細小、安靜、低干擾，直接漂浮在暗色留白中，保持強標題與弱註釋的聲音差，不使用卡片、貼紙或裝飾框。整體完成感像被放大的舊屏幕位圖，帶統一顆粒、稀疏噪聲、鋸齒邊緣、有限色階和剋制光暈，讓不同主題都通過巨大背景壓力、低位微光、硬水平邊界、局部巨型邊緣和強弱文字節奏進入同一套安靜而有重量的圖形語言。\n\n——————\n\n主題：一顆西紅柿特寫\n用途：手機壁紙\n比例1：2",
+        "is_primary": true,
+        "id": "prm_6d24718fb8f84a1b",
+        "item_id": "itm_9a479b520a0d4508",
+        "created_at": "2026-05-31T06:44:04.903996+00:00",
+        "updated_at": "2026-05-31T06:44:04.903996+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张竖版结构视觉，让主题的核心意义不以完整大插画出现，而被压缩成靠近低位边界的极小发光焦点、剪影、标记或像素信号。画面先建立大面积近黑低明度场，保留宽阔沉默的空域，让黑暗承担尺度、情绪和文字可读性；再让主题派生出的宏观结构只以局部斜向边缘、弧面或切面从侧边压入，像一个超出画面的巨大世界，用阶梯状像素轮廓、克制的边缘明度和低饱和内部纹理制造外部压力。下方设置窄而硬的水平承载带，材质、色温和微弱纹理从主题语义中推导，但保持低位、暗值、清楚分界，让核心小信号贴近边界站立、停靠或发亮，形成唯一的人类尺度或价值落点。所有对象都经过低分辨率位图采样：边缘呈方块台阶，光晕短促，过渡用抖动色阶，细节被压缩到刚够识别；宏观对象保留局部质量和边缘，核心对象保留剪影与微光，背景对象只剩少量离散方点、暗部颗粒和弱信号，避免把空域填成装饰纹样。色彩按面积和明度组织，而不是按装饰调色组织：低明度结构色占最大面积，次级冷静或主题结构色承担巨型边缘和承载空间，白色或浅色只用于必要信息，最高亮度集中在极小焦点附近；色相可随主题改变，但大暗场、侧向结构色、低位承载色和小亮信号的比例必须清楚，让亮度像被珍惜的资源。若画面包含文字，主标题使用粗白、方正、块状、数字屏幕感的像素碑文字形，像短促信号嵌入暗场；辅助文字细小、安静、低干扰，直接漂浮在暗色留白中，保持强标题与弱注释的声音差，不使用卡片、贴纸或装饰框。整体完成感像被放大的旧屏幕位图，带统一颗粒、稀疏噪声、锯齿边缘、有限色阶和克制光晕，让不同主题都通过巨大背景压力、低位微光、硬水平边界、局部巨型边缘和强弱文字节奏进入同一套安静而有重量的图形语言。\n\n——————\n\n主题：一颗西红柿特写\n用途：手机壁纸\n比例1：2",
+        "is_primary": false,
+        "id": "prm_b2273f9205a7475d",
+        "item_id": "itm_9a479b520a0d4508",
+        "created_at": "2026-05-31T06:44:04.903996+00:00",
+        "updated_at": "2026-05-31T06:44:04.903996+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張豎版結構視覺，讓主題的核心意義不以完整大插畫出現，而被壓縮成靠近低位邊界的極小發光焦點、剪影、標記或像素信號。畫面先建立大面積近黑低明度場，保留寬闊沉默的空域，讓黑暗承擔尺度、情緒和文字可讀性；再讓主題派生出的宏觀結構只以局部斜向邊緣、弧面或切面從側邊壓入，像一個超出畫面的巨大世界，用階梯狀像素輪廓、剋制的邊緣明度和低飽和內部紋理製造外部壓力。下方設置窄而硬的水平承載帶，材質、色溫和微弱紋理從主題語義中推導，但保",
+    "first_image": {
+      "id": "img_fc45619397c64dce",
+      "item_id": "itm_9a479b520a0d4508",
+      "original_path": "demo-data/media/img_fc45619397c64dce.webp",
+      "thumb_path": "demo-data/media/img_fc45619397c64dce.webp",
+      "preview_path": "demo-data/media/img_fc45619397c64dce.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:44:05.089851+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:44:04.903996+00:00",
+    "created_at": "2026-05-31T06:44:04.903996+00:00",
+    "images": [
+      {
+        "id": "img_fc45619397c64dce",
+        "item_id": "itm_9a479b520a0d4508",
+        "original_path": "demo-data/media/img_fc45619397c64dce.webp",
+        "thumb_path": "demo-data/media/img_fc45619397c64dce.webp",
+        "preview_path": "demo-data/media/img_fc45619397c64dce.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:44:05.089851+00:00"
+      },
+      {
+        "id": "img_2957cbfc8f92468e",
+        "item_id": "itm_9a479b520a0d4508",
+        "original_path": "demo-data/media/img_2957cbfc8f92468e.webp",
+        "thumb_path": "demo-data/media/img_2957cbfc8f92468e.webp",
+        "preview_path": "demo-data/media/img_2957cbfc8f92468e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:44:05.253855+00:00"
+      },
+      {
+        "id": "img_70a198f680f84b60",
+        "item_id": "itm_9a479b520a0d4508",
+        "original_path": "demo-data/media/img_70a198f680f84b60.webp",
+        "thumb_path": "demo-data/media/img_70a198f680f84b60.webp",
+        "preview_path": "demo-data/media/img_70a198f680f84b60.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:44:05.429036+00:00"
+      },
+      {
+        "id": "img_9ccd785d2ac04b01",
+        "item_id": "itm_9a479b520a0d4508",
+        "original_path": "demo-data/media/img_9ccd785d2ac04b01.webp",
+        "thumb_path": "demo-data/media/img_9ccd785d2ac04b01.webp",
+        "preview_path": "demo-data/media/img_9ccd785d2ac04b01.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:44:05.595576+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2060760153046290631\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 像素微光 x 提示词美学\n\n本来是制作像素壁纸的提示词，诱发了这组风格\n\n当时脑袋有画面：\n\n把主题的核心，\n压缩成一个极小的发光点。\n或者一个剪影、标记、像素信号。\n\n画面下方，\n要有一条窄而硬的水平先来承载 物体。\n\n当然，这个提示词，还是最适合做壁纸的！\n\n提示词在评论区 ⤵️",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_4dd4f7948795451b",
+    "title": "用 ChatGPT-Image2 生成一张 Prompt",
+    "slug": "用-chatgpt-image2-生成一张-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Xuhuicai888/status/2060719552032616836",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ba23f5524c849ba",
+        "name": "x-status-2060719552032616836",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "用 ChatGPT-Image2 生成一張\n【創意設計系列】少兒科幻科普海報。\n\n主題：\n少兒科幻科普——世界盃規則【拆解圖】\n英文標題：\nWORLD CUP RULES EXPLORATION DIAGRAM\n\n副標題：\n探索世界盃的奧祕，瞭解比賽規則、賽事結構與精彩的足球世界！",
+        "is_primary": true,
+        "id": "prm_e8c42cd3dff14a7b",
+        "item_id": "itm_4dd4f7948795451b",
+        "created_at": "2026-05-31T06:43:57.086732+00:00",
+        "updated_at": "2026-05-31T06:43:57.086732+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "用 ChatGPT-Image2 生成一张\n【创意设计系列】少儿科幻科普海报。\n\n主题：\n少儿科幻科普——世界杯规则【拆解图】\n英文标题：\nWORLD CUP RULES EXPLORATION DIAGRAM\n\n副标题：\n探索世界杯的奥秘，了解比赛规则、赛事结构与精彩的足球世界！",
+        "is_primary": false,
+        "id": "prm_5010cf6db0a340ee",
+        "item_id": "itm_4dd4f7948795451b",
+        "created_at": "2026-05-31T06:43:57.086732+00:00",
+        "updated_at": "2026-05-31T06:43:57.086732+00:00"
+      }
+    ],
+    "prompt_snippet": "用 ChatGPT-Image2 生成一張\n【創意設計系列】少兒科幻科普海報。\n\n主題：\n少兒科幻科普——世界盃規則【拆解圖】\n英文標題：\nWORLD CUP RULES EXPLORATION DIAGRAM\n\n副標題：\n探索世界盃的奧祕，瞭解比賽規則、賽事結構與精彩的足球世界！",
+    "first_image": {
+      "id": "img_ffa6b654f0844b62",
+      "item_id": "itm_4dd4f7948795451b",
+      "original_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+      "thumb_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+      "preview_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:43:57.357648+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:43:57.086732+00:00",
+    "created_at": "2026-05-31T06:43:57.086732+00:00",
+    "images": [
+      {
+        "id": "img_ffa6b654f0844b62",
+        "item_id": "itm_4dd4f7948795451b",
+        "original_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+        "thumb_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+        "preview_path": "demo-data/media/img_ffa6b654f0844b62.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:43:57.357648+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Xuhuicai888/status/2060719552032616836\n\nAuthor: @Xuhuicai888\n\nOriginal tweet intro:\n用 ChatGPT-Image2 生成一张\n【创意设计系列】少儿科幻科普海报。\n\n主题：\n少儿科幻科普——世界杯规则【拆解图】\n英文标题：\nWORLD CUP RULES EXPLORATION DIAGRAM\n\n副标题：\n探索世界杯的奥秘，了解比赛规则、赛事结构与精彩的足球世界！",
+    "author": "@Xuhuicai888"
+  },
+  {
+    "id": "itm_0184d6bd6ff344f0",
+    "title": "Glowing contours Prompt",
+    "slug": "glowing-contours-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/azed_ai/status/2060678118466318352",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5d57e30b6550416e",
+        "name": "x-status-2060678118466318352",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A [subject] in a minimalist children's drawing style, using thick white lines and glowing contours. The background is softly blurred with [environment details]. Floating elements like [floating details] add a whimsical touch. Full-body view, warm and simple aesthetic.\n\nCheck ATLs for inspiration ✨",
+        "is_primary": true,
+        "id": "prm_9da00342aac54c24",
+        "item_id": "itm_0184d6bd6ff344f0",
+        "created_at": "2026-05-31T06:43:54.724907+00:00",
+        "updated_at": "2026-05-31T06:43:54.724907+00:00"
+      }
+    ],
+    "prompt_snippet": "A [subject] in a minimalist children's drawing style, using thick white lines and glowing contours. The background is softly blurred with [environment details]. Floating elements like [floating details] add a whimsical t",
+    "first_image": {
+      "id": "img_03e3ef14077146ae",
+      "item_id": "itm_0184d6bd6ff344f0",
+      "original_path": "demo-data/media/img_03e3ef14077146ae.webp",
+      "thumb_path": "demo-data/media/img_03e3ef14077146ae.webp",
+      "preview_path": "demo-data/media/img_03e3ef14077146ae.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 600,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-05-31T06:43:55.096217+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-05-31T06:43:54.724907+00:00",
+    "created_at": "2026-05-31T06:43:54.724907+00:00",
+    "images": [
+      {
+        "id": "img_03e3ef14077146ae",
+        "item_id": "itm_0184d6bd6ff344f0",
+        "original_path": "demo-data/media/img_03e3ef14077146ae.webp",
+        "thumb_path": "demo-data/media/img_03e3ef14077146ae.webp",
+        "preview_path": "demo-data/media/img_03e3ef14077146ae.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-05-31T06:43:55.096217+00:00"
+      },
+      {
+        "id": "img_6d5c6347a1974ca7",
+        "item_id": "itm_0184d6bd6ff344f0",
+        "original_path": "demo-data/media/img_6d5c6347a1974ca7.webp",
+        "thumb_path": "demo-data/media/img_6d5c6347a1974ca7.webp",
+        "preview_path": "demo-data/media/img_6d5c6347a1974ca7.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-05-31T06:43:55.240183+00:00"
+      },
+      {
+        "id": "img_35274c5b9962473c",
+        "item_id": "itm_0184d6bd6ff344f0",
+        "original_path": "demo-data/media/img_35274c5b9962473c.webp",
+        "thumb_path": "demo-data/media/img_35274c5b9962473c.webp",
+        "preview_path": "demo-data/media/img_35274c5b9962473c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-05-31T06:43:55.381907+00:00"
+      },
+      {
+        "id": "img_c0abfca262a74c56",
+        "item_id": "itm_0184d6bd6ff344f0",
+        "original_path": "demo-data/media/img_c0abfca262a74c56.webp",
+        "thumb_path": "demo-data/media/img_c0abfca262a74c56.webp",
+        "preview_path": "demo-data/media/img_c0abfca262a74c56.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-05-31T06:43:55.535576+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/azed_ai/status/2060678118466318352\n\nAuthor: @azed_ai\n\nOriginal tweet intro:\nPrompt share: Glowing contours\n\n💬Prompt:\nA [subject] in a minimalist children's drawing style, using thick white lines and glowing contours. The background is softly blurred with [environment details]. Floating elements like [floating details] add a whimsical touch. Full-body view, warm and simple aesthetic.\n\nCheck ATLs for inspiration ✨",
+    "author": "@azed_ai"
+  },
+  {
     "id": "itm_2634640a11d14457",
     "title": "美业门店异形小立牌 Prompt",
     "slug": "美业门店异形小立牌-prompt",
