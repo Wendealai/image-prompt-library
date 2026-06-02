@@ -1,5 +1,3339 @@
 [
   {
+    "id": "itm_f8d7911776c0457d",
+    "title": "Playful Inflated 3D Typography Objects Prompt",
+    "slug": "new-variation-with-chatgpt-images-2-0-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/umesh_ai/status/2061344804907413700",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ebfd7e06f72946a6",
+        "name": "x-status-2061344804907413700",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a playful 3D typography object illustration on a clean white studio background. Use glossy inflated, rounded, toy-like letters with soft bevels, bright primary colors, and subtle plastic/clay material. Transform the key words into the physical structure of the subject: for example, colorful letters forming a light bulb, bicycle, backpack, or bus-stop scene. Integrate simple cute 3D character or object elements where useful, keeping the composition friendly, educational, and high-clarity.\n\nDesign requirements:\n- Large readable words are the main sculptural object, not flat text.\n- Use saturated blue, yellow, red, green, orange, pink, or cyan with soft studio shadows.\n- Keep forms rounded, puffy, tactile, and child-friendly.\n- Add small motion marks or simple props to reinforce the concept.\n- Center the object with plenty of negative space and a polished commercial 3D render finish.\n- Avoid clutter, realistic grit, dark backgrounds, or thin typography.",
+        "is_primary": true,
+        "id": "prm_4788f9a7ea004936",
+        "item_id": "itm_f8d7911776c0457d",
+        "created_at": "2026-06-02T13:15:03.855084+00:00",
+        "updated_at": "2026-06-02T13:26:22Z"
+      }
+    ],
+    "prompt_snippet": "Create a playful 3D typography object illustration on a clean white studio background. Use glossy inflated, rounded, toy-like letters with soft bevels, bright primary colors, and subtle plastic/clay material. Transform t",
+    "first_image": {
+      "id": "img_481b378b15d94ba8",
+      "item_id": "itm_f8d7911776c0457d",
+      "original_path": "demo-data/media/img_481b378b15d94ba8.webp",
+      "thumb_path": "demo-data/media/img_481b378b15d94ba8.webp",
+      "preview_path": "demo-data/media/img_481b378b15d94ba8.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 675,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:15:04.058014+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:26:22Z",
+    "created_at": "2026-06-02T13:15:03.855084+00:00",
+    "images": [
+      {
+        "id": "img_481b378b15d94ba8",
+        "item_id": "itm_f8d7911776c0457d",
+        "original_path": "demo-data/media/img_481b378b15d94ba8.webp",
+        "thumb_path": "demo-data/media/img_481b378b15d94ba8.webp",
+        "preview_path": "demo-data/media/img_481b378b15d94ba8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:15:04.058014+00:00"
+      },
+      {
+        "id": "img_511dbf20082040bf",
+        "item_id": "itm_f8d7911776c0457d",
+        "original_path": "demo-data/media/img_511dbf20082040bf.webp",
+        "thumb_path": "demo-data/media/img_511dbf20082040bf.webp",
+        "preview_path": "demo-data/media/img_511dbf20082040bf.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:15:04.270132+00:00"
+      },
+      {
+        "id": "img_65fde68ad54045da",
+        "item_id": "itm_f8d7911776c0457d",
+        "original_path": "demo-data/media/img_65fde68ad54045da.webp",
+        "thumb_path": "demo-data/media/img_65fde68ad54045da.webp",
+        "preview_path": "demo-data/media/img_65fde68ad54045da.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-02T13:15:04.504976+00:00"
+      },
+      {
+        "id": "img_122f9ee589564c6a",
+        "item_id": "itm_f8d7911776c0457d",
+        "original_path": "demo-data/media/img_122f9ee589564c6a.webp",
+        "thumb_path": "demo-data/media/img_122f9ee589564c6a.webp",
+        "preview_path": "demo-data/media/img_122f9ee589564c6a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-02T13:15:04.783972+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/umesh_ai/status/2061344804907413700\n\nAuthor: @umesh_ai\n\nPrompt source note:\nThe public X post only says \"New variation with ChatGPT Images 2.0!\" and the visible thread does not expose a prompt. This entry reconstructs a reusable prompt brief from the four visible outputs: inflated colorful 3D typography forming a light bulb, bicycle scene, backpack, and bus-stop object.\n\nOriginal tweet intro:\nNew variation with ChatGPT Images 2.0!",
+    "author": "@umesh_ai"
+  },
+  {
+    "id": "itm_15664dcd2ad14f57",
+    "title": "3x3 brand identity grid Prompt",
+    "slug": "3x3-brand-identity-grid-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2016511852927438909/3x3-brand-identity-grid",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b5ab56d1c54e4b91",
+        "name": "aiistudio-2016511852927438909",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "[brand name], complete brand identity grid, 3x3 layout, nine tiles showing a full cohesive brand system, light gray seamless background, soft diffused studio lighting, subtle shadows, clean modern minimal style, consistent color palette of [color1] [color2] [color3], high-end studio mockups, ultra-realistic, 8k, 1:1,\ntile 1 primary logo lockup on paper card,\ntile 2 secondary logo mark and monogram variations,\ntile 3 color palette swatches and typography specimen poster,\ntile 4 packaging mockup for [product 1],\ntile 5 hero product photo for [product 2],\ntile 6 set of three products for [product 3] in different sizes,\ntile 7 stationery mockups business card letterhead envelope,\ntile 8 social media post mockups and phone screen UI preview,\ntile 9 lifestyle scene featuring [product 1] with props matching the brand,\nno people, no readable real-world brand names, no watermark.",
+        "is_primary": true,
+        "id": "prm_6ca70d1e5ae7477c",
+        "item_id": "itm_15664dcd2ad14f57",
+        "created_at": "2026-06-02T13:24:11.854620+00:00",
+        "updated_at": "2026-06-02T13:24:11.854620+00:00"
+      }
+    ],
+    "prompt_snippet": "[brand name], complete brand identity grid, 3x3 layout, nine tiles showing a full cohesive brand system, light gray seamless background, soft diffused studio lighting, subtle shadows, clean modern minimal style, consiste",
+    "first_image": {
+      "id": "img_cd6564e0bf664658",
+      "item_id": "itm_15664dcd2ad14f57",
+      "original_path": "demo-data/media/img_cd6564e0bf664658.webp",
+      "thumb_path": "demo-data/media/img_cd6564e0bf664658.webp",
+      "preview_path": "demo-data/media/img_cd6564e0bf664658.webp",
+      "remote_url": null,
+      "width": 866,
+      "height": 1199,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:12.023051+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:11.854620+00:00",
+    "created_at": "2026-06-02T13:24:11.854620+00:00",
+    "images": [
+      {
+        "id": "img_cd6564e0bf664658",
+        "item_id": "itm_15664dcd2ad14f57",
+        "original_path": "demo-data/media/img_cd6564e0bf664658.webp",
+        "thumb_path": "demo-data/media/img_cd6564e0bf664658.webp",
+        "preview_path": "demo-data/media/img_cd6564e0bf664658.webp",
+        "remote_url": null,
+        "width": 866,
+        "height": 1199,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:12.023051+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2016511852927438909/3x3-brand-identity-grid\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_010545f4e87b4c89",
+    "title": "Felt isometric WFH diorama Prompt",
+    "slug": "felt-isometric-wfh-diorama-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2032155937532772551/felt-isometric-wfh-diorama",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8d0e9c2b81024d76",
+        "name": "aiistudio-2032155937532772551",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Generate a 3D isometric diorama illustration of [CHARACTER] working from home at a desk with a laptop and a window. Handmade felt appearance with rounded polished shapes, enclosed in a hexagonal rounded cube frame. The room decor, colours, furniture, wall art, and accessories are all instantly recognisable to [CHARACTER] — reflecting their signature style, iconic items, outfit, and personality. Warm soft lighting, clean white background, 1080x1080, photorealistic quality. No text labels or signs on the base.",
+        "is_primary": true,
+        "id": "prm_29ece8f57804425a",
+        "item_id": "itm_010545f4e87b4c89",
+        "created_at": "2026-06-02T13:24:10.951862+00:00",
+        "updated_at": "2026-06-02T13:24:10.951862+00:00"
+      }
+    ],
+    "prompt_snippet": "Generate a 3D isometric diorama illustration of [CHARACTER] working from home at a desk with a laptop and a window. Handmade felt appearance with rounded polished shapes, enclosed in a hexagonal rounded cube frame. The r",
+    "first_image": {
+      "id": "img_449631f9d534456f",
+      "item_id": "itm_010545f4e87b4c89",
+      "original_path": "demo-data/media/img_449631f9d534456f.webp",
+      "thumb_path": "demo-data/media/img_449631f9d534456f.webp",
+      "preview_path": "demo-data/media/img_449631f9d534456f.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:11.257915+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:10.951862+00:00",
+    "created_at": "2026-06-02T13:24:10.951862+00:00",
+    "images": [
+      {
+        "id": "img_449631f9d534456f",
+        "item_id": "itm_010545f4e87b4c89",
+        "original_path": "demo-data/media/img_449631f9d534456f.webp",
+        "thumb_path": "demo-data/media/img_449631f9d534456f.webp",
+        "preview_path": "demo-data/media/img_449631f9d534456f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:11.257915+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2032155937532772551/felt-isometric-wfh-diorama\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_c009a030d5eb4d4e",
+    "title": "Cinematic lighting king v2 Prompt",
+    "slug": "cinematic-lighting-king-v2-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2044775603145224640/cinematic-lighting-king-v2",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_7067e6c185d8476b",
+        "name": "aiistudio-2044775603145224640",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Close-up portrait of a woman (Same face as reference image)looking directly at the camera. Her face and neck are mostly obscured by deep shadow. A single, narrow horizontal band of light cuts across her face, illuminating only her eyes and the bridge of his nose. He has a strong, defined jawline and short, textured hair. She is wearing a simple black shirt. The background is a plain, overcast grayish-blue sky. Dramatic, high-contrast lighting creates a moody, cinematic atmosphere.",
+        "is_primary": true,
+        "id": "prm_bad38b56c96c43b1",
+        "item_id": "itm_c009a030d5eb4d4e",
+        "created_at": "2026-06-02T13:24:10.025063+00:00",
+        "updated_at": "2026-06-02T13:24:10.025063+00:00"
+      }
+    ],
+    "prompt_snippet": "Close-up portrait of a woman (Same face as reference image)looking directly at the camera. Her face and neck are mostly obscured by deep shadow. A single, narrow horizontal band of light cuts across her face, illuminatin",
+    "first_image": {
+      "id": "img_1a70e7214c6448d3",
+      "item_id": "itm_c009a030d5eb4d4e",
+      "original_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+      "thumb_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+      "preview_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+      "remote_url": null,
+      "width": 896,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:10.189200+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:10.025063+00:00",
+    "created_at": "2026-06-02T13:24:10.025063+00:00",
+    "images": [
+      {
+        "id": "img_1a70e7214c6448d3",
+        "item_id": "itm_c009a030d5eb4d4e",
+        "original_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+        "thumb_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+        "preview_path": "demo-data/media/img_1a70e7214c6448d3.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:10.189200+00:00"
+      },
+      {
+        "id": "img_9ad7601ea46b4232",
+        "item_id": "itm_c009a030d5eb4d4e",
+        "original_path": "demo-data/media/img_9ad7601ea46b4232.webp",
+        "thumb_path": "demo-data/media/img_9ad7601ea46b4232.webp",
+        "preview_path": "demo-data/media/img_9ad7601ea46b4232.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:24:10.360518+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2044775603145224640/cinematic-lighting-king-v2\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_a4c0d7bb99cb4c2a",
+    "title": "Pixar 3d style car shot Prompt",
+    "slug": "pixar-3d-style-car-shot-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2043020207447310430/pixar-3d-style-car-shot",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b1baf6929114cea",
+        "name": "aiistudio-2043020207447310430",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Transform the person from the attached photo into a smooth stylized 3D cartoon character in the same style as the reference. Keep all real facial features fully recognizable but translated into exaggerated proportions (elongated head, big eyelids, soft rounded shapes). Skin should look glossy and plastic-like with clean gradients and subtle highlights. Use soft studio lighting, a solid [COLOR] color background, and high-end Pixar- inspired rendering. Simplify details, add gentle rim light, and preserve the person's hairstyle and accessories in stylized form. The final look must match the clean polished 3D aesthetic of the reference,  4:5 dimension.",
+        "is_primary": true,
+        "id": "prm_9c20f79df2e04f96",
+        "item_id": "itm_a4c0d7bb99cb4c2a",
+        "created_at": "2026-06-02T13:24:08.917122+00:00",
+        "updated_at": "2026-06-02T13:24:08.917122+00:00"
+      }
+    ],
+    "prompt_snippet": "Transform the person from the attached photo into a smooth stylized 3D cartoon character in the same style as the reference. Keep all real facial features fully recognizable but translated into exaggerated proportions (e",
+    "first_image": {
+      "id": "img_40cc98d6cbce4f7a",
+      "item_id": "itm_a4c0d7bb99cb4c2a",
+      "original_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+      "thumb_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+      "preview_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:09.124780+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:08.917122+00:00",
+    "created_at": "2026-06-02T13:24:08.917122+00:00",
+    "images": [
+      {
+        "id": "img_40cc98d6cbce4f7a",
+        "item_id": "itm_a4c0d7bb99cb4c2a",
+        "original_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+        "thumb_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+        "preview_path": "demo-data/media/img_40cc98d6cbce4f7a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:09.124780+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2043020207447310430/pixar-3d-style-car-shot\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_44a1de0f21894c65",
+    "title": "Polymer clay character figurine Prompt",
+    "slug": "polymer-clay-character-figurine-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2009285406303387993/polymer-clay-character-figurine",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_45d6e1f830064217",
+        "name": "aiistudio-2009285406303387993",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a stylized miniature model of [CHARACTERS] shaped entirely from soft polymer clay. The figure has rounded, childlike anatomy — large head, small body, and simplified details that feel friendly and handcrafted. Its outfit and accessories match [CHARACTERS]’ iconic look, modeled with smooth curves and lively, saturated tones.\nThe material appears dry and tactile, with a powdery matte finish and subtle surface texture—avoid gloss, shine, or reflections. Lighting should be gentle and even, wrapping softly around the form with faint ambient shading to reveal volume.\nPresent the figurine standing upright, slightly turned toward the right, framed in a minimal off-white environment with a smooth floor and faint contact shadow beneath. The overall composition feels calm, neat, and balanced—like a clay sculpture photographed for a design catalog.",
+        "is_primary": true,
+        "id": "prm_98bce72163f149dc",
+        "item_id": "itm_44a1de0f21894c65",
+        "created_at": "2026-06-02T13:24:08.133751+00:00",
+        "updated_at": "2026-06-02T13:24:08.133751+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a stylized miniature model of [CHARACTERS] shaped entirely from soft polymer clay. The figure has rounded, childlike anatomy — large head, small body, and simplified details that feel friendly and handcrafted. Its",
+    "first_image": {
+      "id": "img_f43f3f2e51d643f1",
+      "item_id": "itm_44a1de0f21894c65",
+      "original_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+      "thumb_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+      "preview_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:08.322768+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:08.133751+00:00",
+    "created_at": "2026-06-02T13:24:08.133751+00:00",
+    "images": [
+      {
+        "id": "img_f43f3f2e51d643f1",
+        "item_id": "itm_44a1de0f21894c65",
+        "original_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+        "thumb_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+        "preview_path": "demo-data/media/img_f43f3f2e51d643f1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:08.322768+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2009285406303387993/polymer-clay-character-figurine\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_95921c8b7b994d84",
+    "title": "Ballpoint pen caricature Prompt",
+    "slug": "ballpoint-pen-caricature-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2007052918491582639/ballpoint-pen-caricature",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_842bc9ed104647c6",
+        "name": "aiistudio-2007052918491582639",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A detailed ballpoint pen sketch of [CHARACTER] drawn on checkered notebook paper, 1080x1080. The drawing style is expressive and textured, showing fine pen strokes and cross-hatching. [CHARACTER] is depicted with slightly exaggerated proportions — big expressive eyes and distinctive features — in a humorous but artistic caricature style. The background is simple checkered paper with no logos or text, giving it a clean hand-drawn notebook look",
+        "is_primary": true,
+        "id": "prm_f2ed1e5ad5444f1e",
+        "item_id": "itm_95921c8b7b994d84",
+        "created_at": "2026-06-02T13:24:07.146993+00:00",
+        "updated_at": "2026-06-02T13:24:07.146993+00:00"
+      }
+    ],
+    "prompt_snippet": "A detailed ballpoint pen sketch of [CHARACTER] drawn on checkered notebook paper, 1080x1080. The drawing style is expressive and textured, showing fine pen strokes and cross-hatching. [CHARACTER] is depicted with slightl",
+    "first_image": {
+      "id": "img_8f94b0940aac4ab4",
+      "item_id": "itm_95921c8b7b994d84",
+      "original_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+      "thumb_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+      "preview_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:07.439525+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:07.146993+00:00",
+    "created_at": "2026-06-02T13:24:07.146993+00:00",
+    "images": [
+      {
+        "id": "img_8f94b0940aac4ab4",
+        "item_id": "itm_95921c8b7b994d84",
+        "original_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+        "thumb_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+        "preview_path": "demo-data/media/img_8f94b0940aac4ab4.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:07.439525+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2007052918491582639/ballpoint-pen-caricature\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_e0e2c777fb004da0",
+    "title": "Country figures mirror selfie Prompt",
+    "slug": "country-figures-mirror-selfie-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2033551007062409422/country-figures-mirror-selfie",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_74d1370cf4f44584",
+        "name": "aiistudio-2033551007062409422",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "High-quality stylized 3D CGI Pixar-style render, vertical 3:4 composition, three most iconic and recognizable cultural figures from [COUNTRY] captured as a chaotic and joyful bathroom mirror selfie; the most visually striking figure holds the large vintage camera up toward the mirror in their most authentic traditional costume, the remaining figures squeezed tightly into the frame each wearing their most iconic outfit and showing their most signature expression or pose; everyone crammed together filling the entire mirror frame with faces large and close to the camera, tightly packed with no empty space, chaotic crowded energy; facial proportions gently stylized in Disney/Pixar animation style with expressive eyes while faithfully preserving each character's most authentic cultural costume and recognizable traits; the bathroom mirror has realistic toothpaste splatters and water droplets; the reflection shows bold black Pixar-style lettering reading \"[COUNTRY]❤️\"; the bathroom background is styled to match the cultural identity of [COUNTRY] with authentic thematic props, traditional decorations and iconic landmark easter eggs placed naturally around the scene; lighting combines soft ambient bathroom lighting with a bright camera flash reflecting in the mirror; warm Pixar-style color grading, ultra-detailed 4K render, no watermark",
+        "is_primary": true,
+        "id": "prm_2cf409f9f0484197",
+        "item_id": "itm_e0e2c777fb004da0",
+        "created_at": "2026-06-02T13:24:06.123377+00:00",
+        "updated_at": "2026-06-02T13:24:06.123377+00:00"
+      }
+    ],
+    "prompt_snippet": "High-quality stylized 3D CGI Pixar-style render, vertical 3:4 composition, three most iconic and recognizable cultural figures from [COUNTRY] captured as a chaotic and joyful bathroom mirror selfie; the most visually str",
+    "first_image": {
+      "id": "img_c13366107152434d",
+      "item_id": "itm_e0e2c777fb004da0",
+      "original_path": "demo-data/media/img_c13366107152434d.webp",
+      "thumb_path": "demo-data/media/img_c13366107152434d.webp",
+      "preview_path": "demo-data/media/img_c13366107152434d.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:06.398581+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:06.123377+00:00",
+    "created_at": "2026-06-02T13:24:06.123377+00:00",
+    "images": [
+      {
+        "id": "img_c13366107152434d",
+        "item_id": "itm_e0e2c777fb004da0",
+        "original_path": "demo-data/media/img_c13366107152434d.webp",
+        "thumb_path": "demo-data/media/img_c13366107152434d.webp",
+        "preview_path": "demo-data/media/img_c13366107152434d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:06.398581+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2033551007062409422/country-figures-mirror-selfie\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_3e211d47965846ec",
+    "title": "LEGO Technic real car twin Prompt",
+    "slug": "lego-technic-real-car-twin-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2030236225815416875/lego-technic-real-car-twin",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_13eac48cd7d6469e",
+        "name": "aiistudio-2030236225815416875",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Ultra-detailed studio product render of a LEGO Technic style vehicle model based precisely on the next uploaded reference photo. The LEGO build must replicate the real vehicle’s exact shape, proportions, bodylines, color scheme, headlights, grille design, wheels, and overall silhouette while constructed entirely from realistic LEGO Technic pieces and panels.\nThe vehicle is displayed in a clean professional product photography studio setup, placed on a smooth matte surface. Behind the car stands a large LEGO Technic product box, slightly blurred but clearly recognizable as a premium building kit package.\nThe vehicle features aggressive widebody styling, large sport wheels, low stance, detailed front splitter, and a roof rack cargo box built from LEGO elements, maintaining the same design style as the reference vehicle.\nIn front of the vehicle on the table are organized LEGO Technic components and tools, including small tires, axles, connectors, battery modules, rods, mechanical pieces, scissors, and miniature assembly tools, arranged neatly like a build kit.\nLighting is soft cinematic studio lighting with subtle reflections on the LEGO plastic surfaces, ultra-sharp details, shallow depth of field, realistic shadows, premium commercial product photography style.\nComposition: hero angle slightly from the front side, emphasizing the vehicle's shape and mechanical LEGO structure.\nHyper-realistic materials, crisp textures, ultra detailed LEGO plastic surface, ray-traced reflections.\n8K resolution, ultra sharp, photorealistic render, cinematic lighting, professional product shot\nAspect Ratio 9:16",
+        "is_primary": true,
+        "id": "prm_3b16a5286c6d4021",
+        "item_id": "itm_3e211d47965846ec",
+        "created_at": "2026-06-02T13:24:05.129993+00:00",
+        "updated_at": "2026-06-02T13:24:05.129993+00:00"
+      }
+    ],
+    "prompt_snippet": "Ultra-detailed studio product render of a LEGO Technic style vehicle model based precisely on the next uploaded reference photo. The LEGO build must replicate the real vehicle’s exact shape, proportions, bodylines, color",
+    "first_image": {
+      "id": "img_938f5d6fef2d454a",
+      "item_id": "itm_3e211d47965846ec",
+      "original_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+      "thumb_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+      "preview_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+      "remote_url": null,
+      "width": 675,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:05.288785+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:05.129993+00:00",
+    "created_at": "2026-06-02T13:24:05.129993+00:00",
+    "images": [
+      {
+        "id": "img_938f5d6fef2d454a",
+        "item_id": "itm_3e211d47965846ec",
+        "original_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+        "thumb_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+        "preview_path": "demo-data/media/img_938f5d6fef2d454a.webp",
+        "remote_url": null,
+        "width": 675,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:05.288785+00:00"
+      },
+      {
+        "id": "img_fd312ddf452f496f",
+        "item_id": "itm_3e211d47965846ec",
+        "original_path": "demo-data/media/img_fd312ddf452f496f.webp",
+        "thumb_path": "demo-data/media/img_fd312ddf452f496f.webp",
+        "preview_path": "demo-data/media/img_fd312ddf452f496f.webp",
+        "remote_url": null,
+        "width": 670,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:24:05.436652+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2030236225815416875/lego-technic-real-car-twin\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_fff6018d126c4f20",
+    "title": "Vintage French New Wave movie poster Prompt",
+    "slug": "vintage-french-new-wave-movie-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2052599554672091368/vintage-french-new-wave-movie-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_5e2243ffef1142fa",
+        "name": "aiistudio-2052599554672091368",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Vintage French New Wave movie poster, inspired by 1960s Jean-Luc Godard cinema, monochrome portrait of a rebellious woman holding a cigarette, messy bangs, confident expression, torn paper collage layout, distressed paper texture, retro typography, bold red blue and black color blocks, old newspaper clippings, cinematic Paris street photography, grainy black-and-white aesthetic, film strip elements, romantic noir atmosphere, high contrast lighting, handmade poster design, worn edges, analog film texture, artistic European arthouse vibe, layered mixed-media composition, 1960s magazine print style, dramatic and stylish composition, ultra detailed, vintage print imperfections.",
+        "is_primary": true,
+        "id": "prm_c5081c29e97a480d",
+        "item_id": "itm_fff6018d126c4f20",
+        "created_at": "2026-06-02T13:24:03.395639+00:00",
+        "updated_at": "2026-06-02T13:24:03.395639+00:00"
+      }
+    ],
+    "prompt_snippet": "Vintage French New Wave movie poster, inspired by 1960s Jean-Luc Godard cinema, monochrome portrait of a rebellious woman holding a cigarette, messy bangs, confident expression, torn paper collage layout, distressed pape",
+    "first_image": {
+      "id": "img_f15400098dd34155",
+      "item_id": "itm_fff6018d126c4f20",
+      "original_path": "demo-data/media/img_f15400098dd34155.webp",
+      "thumb_path": "demo-data/media/img_f15400098dd34155.webp",
+      "preview_path": "demo-data/media/img_f15400098dd34155.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:03.705054+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:03.395639+00:00",
+    "created_at": "2026-06-02T13:24:03.395639+00:00",
+    "images": [
+      {
+        "id": "img_f15400098dd34155",
+        "item_id": "itm_fff6018d126c4f20",
+        "original_path": "demo-data/media/img_f15400098dd34155.webp",
+        "thumb_path": "demo-data/media/img_f15400098dd34155.webp",
+        "preview_path": "demo-data/media/img_f15400098dd34155.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:03.705054+00:00"
+      },
+      {
+        "id": "img_2107bc22ae8c41b8",
+        "item_id": "itm_fff6018d126c4f20",
+        "original_path": "demo-data/media/img_2107bc22ae8c41b8.webp",
+        "thumb_path": "demo-data/media/img_2107bc22ae8c41b8.webp",
+        "preview_path": "demo-data/media/img_2107bc22ae8c41b8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:24:03.992417+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2052599554672091368/vintage-french-new-wave-movie-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_7b0a6c74e2914c33",
+    "title": "Editorial magazine cover all-black fashion Prompt",
+    "slug": "editorial-magazine-cover-all-black-fashion-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2053326894121324818/editorial-magazine-cover-all-black-fashion",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2334deb3ba044de1",
+        "name": "aiistudio-2053326894121324818",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Ultra realistic fashion editorial magazine cover featuring [REFERENCE PERSON] sitting confidently on a low wooden pallet bench in a modern creative studio environment. Subject wears an all black minimalist outfit consisting of a black denim jacket, oversized black pants, black t shirt, and black Converse style sneakers with white laces and rubber soles. Relaxed wide leg sitting posture, leaning slightly forward with one elbow resting on the knee and one finger touching the side of the temple, making direct eye contact with the camera. Expression is calm, intelligent, creative, and self assured.\nBackground features a matte black wall with colorful geometric vertical wooden art panels behind the subject, creating an artistic modern studio aesthetic. Warm cinematic indoor lighting softly illuminates the face and clothing while maintaining deep shadows and dramatic editorial contrast. Natural woven textured rug on the floor, cozy luxury creative studio vibe.\nMagazine cover layout with ONLY ONE typography element: giant bold beige text at the top reading “SHAMUS” in huge condensed sans serif font covering most of the upper background. No other text anywhere on the cover. No profile name, no bio text, no quote text, no labels, no follower count, no social media handles, no headlines, no dates, no magazine captions, no small typography, no extra words, no watermarks. The word “SHAMUS” must be the only visible text in the entire composition.\nColor palette includes deep black, warm beige, muted orange, brown, teal, and cinematic earthy tones. Composition is centered and symmetrical with a premium fashion magazine aesthetic inspired by GQ editorials, luxury streetwear campaigns, modern creator branding, and cinematic portrait photography.\nShot on 50mm lens, shallow depth of field, ultra detailed skin texture, realistic fabric folds, soft cinematic shadows, photorealistic lighting, luxury editorial photography, clean typography design, professional magazine cover composition, high detail, 8K, premium cinematic grading.",
+        "is_primary": true,
+        "id": "prm_e590715092df46d0",
+        "item_id": "itm_7b0a6c74e2914c33",
+        "created_at": "2026-06-02T13:24:02.005397+00:00",
+        "updated_at": "2026-06-02T13:24:02.005397+00:00"
+      }
+    ],
+    "prompt_snippet": "Ultra realistic fashion editorial magazine cover featuring [REFERENCE PERSON] sitting confidently on a low wooden pallet bench in a modern creative studio environment. Subject wears an all black minimalist outfit consist",
+    "first_image": {
+      "id": "img_e481dabb4d6d4f8c",
+      "item_id": "itm_7b0a6c74e2914c33",
+      "original_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+      "thumb_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+      "preview_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1255,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:02.359036+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:02.005397+00:00",
+    "created_at": "2026-06-02T13:24:02.005397+00:00",
+    "images": [
+      {
+        "id": "img_e481dabb4d6d4f8c",
+        "item_id": "itm_7b0a6c74e2914c33",
+        "original_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+        "thumb_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+        "preview_path": "demo-data/media/img_e481dabb4d6d4f8c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1255,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:02.359036+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2053326894121324818/editorial-magazine-cover-all-black-fashion\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_bca0deb4c00b4e4a",
+    "title": "Playful kids fashion editorial poster Prompt",
+    "slug": "playful-kids-fashion-editorial-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2053761999583297716/playful-kids-fashion-editorial-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b4c25720493a47ff",
+        "name": "aiistudio-2053761999583297716",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a premium playful kids-fashion editorial poster for [BRAND NAME].\nTOPIC:\n[KIDS FASHION / CHILDHOOD CAMPAIGN]\nSTYLE & ART DIRECTION:\nCute playful studio aesthetic\nKorean kids-fashion photography style\nMonochromatic color-coordinated composition\nMinimal lifestyle editorial branding\nBright cheerful atmosphere\nPinterest-inspired kids campaign\nSoft studio photography\nFun doodle typography design\nModern children-brand commercial aesthetic\nClean playful composition\nMAIN SUBJECT:\nA realistic happy child prominently seated or posed in the center\nCoordinated fashion outfit matching the props and background\nCute expressive smile and playful emotion\nFashionable kids styling\nA large playful prop integrated into the composition (telephone / toy / chair / object)\nPremium realistic children photography\nBright emotional atmosphere\nSoft realistic shadows beneath all objects\nStrong color harmony across all elements\nLAYOUT & COMPOSITION:\nSame exact playful editorial composition and structure as the reference design\nChild centered prominently\nSingle-color studio background\nLarge playful typography integrated into the composition\nHand-drawn doodles and sketch graphics around the subject\nSpacious clean layout\nMinimal visual clutter\nPinterest-style commercial hierarchy\nSoft balanced composition\nTEXT & TYPOGRAPHY:\nPlayful handwritten typography\nRounded children-brand fonts\nFun doodle text style\nCute lifestyle-brand hierarchy\nMain playful text:\n\"[MAIN PLAYFUL TEXT]\"\nSmall supporting text:\n\"[KIDS CAMPAIGN TAGLINE]\"\nDEPTH & LIGHTING:\nSoft studio lighting\nBright cheerful shadows\nSmooth realistic skin tones\nHigh-key photography atmosphere\nSoft editorial depth\nPremium commercial reflections\nEXTRA DESIGN DETAILS:\nHand-drawn doodles\nSpeech bubbles\nCute sketch lines\nMinimal playful icons\nScribble graphics\nFun childlike visual accents\nLifestyle decorative typography\nCOLOR PALETTE:\n[PRIMARY MONOCHROMATIC COLOR]\nSoft pastel accents\nWhite playful typography\nCoordinated fashion tones\nQUALITY:\nUltra realistic kids photography\nPremium children-brand campaign\nPinterest-quality editorial design\nBehance-level playful composition\nSame exact visual identity and layout as the reference\nUltra high resolution",
+        "is_primary": true,
+        "id": "prm_e5976f1c701c4afc",
+        "item_id": "itm_bca0deb4c00b4e4a",
+        "created_at": "2026-06-02T13:24:00.793334+00:00",
+        "updated_at": "2026-06-02T13:24:00.793334+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a premium playful kids-fashion editorial poster for [BRAND NAME].\nTOPIC:\n[KIDS FASHION / CHILDHOOD CAMPAIGN]\nSTYLE & ART DIRECTION:\nCute playful studio aesthetic\nKorean kids-fashion photography style\nMonochromatic",
+    "first_image": {
+      "id": "img_b57be8ff26fc4199",
+      "item_id": "itm_bca0deb4c00b4e4a",
+      "original_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+      "thumb_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+      "preview_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:24:00.992585+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:24:00.793334+00:00",
+    "created_at": "2026-06-02T13:24:00.793334+00:00",
+    "images": [
+      {
+        "id": "img_b57be8ff26fc4199",
+        "item_id": "itm_bca0deb4c00b4e4a",
+        "original_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+        "thumb_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+        "preview_path": "demo-data/media/img_b57be8ff26fc4199.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:24:00.992585+00:00"
+      },
+      {
+        "id": "img_bcab633d10684013",
+        "item_id": "itm_bca0deb4c00b4e4a",
+        "original_path": "demo-data/media/img_bcab633d10684013.webp",
+        "thumb_path": "demo-data/media/img_bcab633d10684013.webp",
+        "preview_path": "demo-data/media/img_bcab633d10684013.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:24:01.183542+00:00"
+      },
+      {
+        "id": "img_e7d2e443cd2d4863",
+        "item_id": "itm_bca0deb4c00b4e4a",
+        "original_path": "demo-data/media/img_e7d2e443cd2d4863.webp",
+        "thumb_path": "demo-data/media/img_e7d2e443cd2d4863.webp",
+        "preview_path": "demo-data/media/img_e7d2e443cd2d4863.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-02T13:24:01.383299+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2053761999583297716/playful-kids-fashion-editorial-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_eaf8a3cddadb4502",
+    "title": "Queen of Spades sorcerer movie poster Prompt",
+    "slug": "queen-of-spades-sorcerer-movie-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2054970407451820144/queen-of-spades-sorcerer-movie-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fd1d827a085a43f2",
+        "name": "aiistudio-2054970407451820144",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A hyper-realistic cinematic movie poster of a powerful female sorcerer with the same facial structure and likeness as the uploaded reference photo, bursting through a cracked Queen of Spades playing card.\nThe card explodes outward with stone fragments, dust, and debris frozen mid-air.\nShe wears an ornate royal maroon and gold embroidered medieval fantasy jacket, rich fabric textures, intricate detailing, regal and mystical.The sorcerer extends one hand forward toward the viewer, fingers glowing with intense magical energy, subtle golden sparks and dark arcane aura surrounding the hand.\nIntense piercing gaze, confident and dominant expression, cinematic hero framing.\nDramatic chiaroscuro lighting, dark moody background, volumetric light rays, ultra-detailed textures, shallow cinematic depth of field.\nPhotorealistic face, epic fantasy realism, movie poster composition, high contrast, dynamic motion, dust particles, masterpiece quality, ultra-sharp focus, 8K resolution, cinematic color grading.",
+        "is_primary": true,
+        "id": "prm_49341b9009dd4702",
+        "item_id": "itm_eaf8a3cddadb4502",
+        "created_at": "2026-06-02T13:23:58.943590+00:00",
+        "updated_at": "2026-06-02T13:23:58.943590+00:00"
+      }
+    ],
+    "prompt_snippet": "A hyper-realistic cinematic movie poster of a powerful female sorcerer with the same facial structure and likeness as the uploaded reference photo, bursting through a cracked Queen of Spades playing card.\nThe card explod",
+    "first_image": {
+      "id": "img_7f648ea9b0094eeb",
+      "item_id": "itm_eaf8a3cddadb4502",
+      "original_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+      "thumb_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+      "preview_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1349,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:59.291961+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:58.943590+00:00",
+    "created_at": "2026-06-02T13:23:58.943590+00:00",
+    "images": [
+      {
+        "id": "img_7f648ea9b0094eeb",
+        "item_id": "itm_eaf8a3cddadb4502",
+        "original_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+        "thumb_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+        "preview_path": "demo-data/media/img_7f648ea9b0094eeb.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1349,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:59.291961+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2054970407451820144/queen-of-spades-sorcerer-movie-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_4b9126dd411c460d",
+    "title": "Floating green luxury handbag ad poster Prompt",
+    "slug": "floating-green-luxury-handbag-ad-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2055877438396071947/floating-green-luxury-handbag-ad-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_65a9d7fa863f4369",
+        "name": "aiistudio-2055877438396071947",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Generate a breathtaking luxury product advertisment of hand bag for girls, be creative with proper text and a big perfectly merged background thick and big font in the background,\nThe overall texture should be Greenish, the text font should be perfectly merged and the bag should be floating in the air the background and the product also,\nShowcase your perfect cinematic and graphics designing skills",
+        "is_primary": true,
+        "id": "prm_02dfc45474b543b6",
+        "item_id": "itm_4b9126dd411c460d",
+        "created_at": "2026-06-02T13:23:57.934542+00:00",
+        "updated_at": "2026-06-02T13:23:57.934542+00:00"
+      }
+    ],
+    "prompt_snippet": "Generate a breathtaking luxury product advertisment of hand bag for girls, be creative with proper text and a big perfectly merged background thick and big font in the background,\nThe overall texture should be Greenish, ",
+    "first_image": {
+      "id": "img_fed2c422e7b647f9",
+      "item_id": "itm_4b9126dd411c460d",
+      "original_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+      "thumb_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+      "preview_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1274,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:58.204670+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:57.934542+00:00",
+    "created_at": "2026-06-02T13:23:57.934542+00:00",
+    "images": [
+      {
+        "id": "img_fed2c422e7b647f9",
+        "item_id": "itm_4b9126dd411c460d",
+        "original_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+        "thumb_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+        "preview_path": "demo-data/media/img_fed2c422e7b647f9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1274,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:58.204670+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2055877438396071947/floating-green-luxury-handbag-ad-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_5b054ec07eae49f4",
+    "title": "Monochrome streetwear editorial poster portrait Prompt",
+    "slug": "monochrome-streetwear-editorial-poster-portrait-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2056042661841449095/monochrome-streetwear-editorial-poster-portrait",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e9b9768a87ce4f86",
+        "name": "aiistudio-2056042661841449095",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Use my uploaded image as the face reference.\nCreate a bold monochrome streetwear editorial poster featuring the uploaded person in oversized urban fashion, relaxed stance, hands in pockets, layered baggy clothing, sneakers, and confident rebellious attitude. Main theme keyword: \"[KEYWORD]\". Use giant condensed typography behind the subject, handwritten signature-style script overlay, minimalist white studio background, gritty texture details, cinematic shadows, and luxury music-magazine aesthetics inspired by modern fashion campaigns. Black-and-white high-contrast photography style, full-body composition, eye-level angle, 85mm lens, ultra-sharp detail, soft studio lighting with subtle grain, premium viral poster design optimized for fashion and music culture content.",
+        "is_primary": true,
+        "id": "prm_02bc334df5c54158",
+        "item_id": "itm_5b054ec07eae49f4",
+        "created_at": "2026-06-02T13:23:57.075969+00:00",
+        "updated_at": "2026-06-02T13:23:57.075969+00:00"
+      }
+    ],
+    "prompt_snippet": "Use my uploaded image as the face reference.\nCreate a bold monochrome streetwear editorial poster featuring the uploaded person in oversized urban fashion, relaxed stance, hands in pockets, layered baggy clothing, sneake",
+    "first_image": {
+      "id": "img_6a4f7337ff3043d2",
+      "item_id": "itm_5b054ec07eae49f4",
+      "original_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+      "thumb_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+      "preview_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:57.317806+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:57.075969+00:00",
+    "created_at": "2026-06-02T13:23:57.075969+00:00",
+    "images": [
+      {
+        "id": "img_6a4f7337ff3043d2",
+        "item_id": "itm_5b054ec07eae49f4",
+        "original_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+        "thumb_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+        "preview_path": "demo-data/media/img_6a4f7337ff3043d2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:57.317806+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2056042661841449095/monochrome-streetwear-editorial-poster-portrait\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_057237dbbff54020",
+    "title": "Korean K-drama subway crowd poster portrait Prompt",
+    "slug": "korean-k-drama-subway-crowd-poster-portrait-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2056019930051674455/korean-k-drama-subway-crowd-poster-portrait",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1ecb645416f54322",
+        "name": "aiistudio-2056019930051674455",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A melancholic Korean psychological drama poster featuring a beautiful young woman with facial features, expression, and proportions preserved exactly as in the original reference photograph. Do not alter identity or proportions. She has long soft black hair styled in a messy, undone bun with stray strands framing her face, pale skin, and a calm but emotionally exhausted expression while staring directly upward into the camera. She wears a loose, oversized burgundy knit sweater and simple dark grey leggings with worn-out white sneakers. She is clutching a well-loved, slightly battered paperback novel to her chest. The camera angle is positioned from a high overhead perspective, looking down toward her while dozens of commuters blur around her with heavy long-exposure motion trails, creating a feeling of isolation and emotional detachment. The environment features cold gray subway tiles, muted city tones, and cinematic atmospheric blur. At the top of the poster, elegant Korean typography reads: \"군중 속의 속삭임 (Gunjung Sogui Soksagim - Whispers in the Crowd)\". Below, large dramatic Korean title typography dominates the center composition in white textured lettering. The image contains soft cinematic haze, subtle analog grain, realistic motion blur, muted warm-beige grading, emotional K-drama aesthetics, delicate skin texture, and realistic shallow depth of field. Shot on a Sony A7R IV using a 50mm lens with slow shutter speed, soft tungsten subway lighting, cinematic realism, luxury Korean drama poster composition",
+        "is_primary": true,
+        "id": "prm_20d89cd65e684c4e",
+        "item_id": "itm_057237dbbff54020",
+        "created_at": "2026-06-02T13:23:56.027929+00:00",
+        "updated_at": "2026-06-02T13:23:56.027929+00:00"
+      }
+    ],
+    "prompt_snippet": "A melancholic Korean psychological drama poster featuring a beautiful young woman with facial features, expression, and proportions preserved exactly as in the original reference photograph. Do not alter identity or prop",
+    "first_image": {
+      "id": "img_8f3d519615ca402b",
+      "item_id": "itm_057237dbbff54020",
+      "original_path": "demo-data/media/img_8f3d519615ca402b.webp",
+      "thumb_path": "demo-data/media/img_8f3d519615ca402b.webp",
+      "preview_path": "demo-data/media/img_8f3d519615ca402b.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1350,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:56.268228+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:56.027929+00:00",
+    "created_at": "2026-06-02T13:23:56.027929+00:00",
+    "images": [
+      {
+        "id": "img_8f3d519615ca402b",
+        "item_id": "itm_057237dbbff54020",
+        "original_path": "demo-data/media/img_8f3d519615ca402b.webp",
+        "thumb_path": "demo-data/media/img_8f3d519615ca402b.webp",
+        "preview_path": "demo-data/media/img_8f3d519615ca402b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:56.268228+00:00"
+      },
+      {
+        "id": "img_843fc5c282624b46",
+        "item_id": "itm_057237dbbff54020",
+        "original_path": "demo-data/media/img_843fc5c282624b46.webp",
+        "thumb_path": "demo-data/media/img_843fc5c282624b46.webp",
+        "preview_path": "demo-data/media/img_843fc5c282624b46.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1350,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:23:56.486879+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2056019930051674455/korean-k-drama-subway-crowd-poster-portrait\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_e7d401b520b94e52",
+    "title": "Child me meets present me side-by-side Prompt",
+    "slug": "child-me-meets-present-me-side-by-side-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2059048918978351303/child-me-meets-present-me-side-by-side",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_a9401c2b49984073",
+        "name": "aiistudio-2059048918978351303",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a picture with the following details:\nOn the left: a child version of me looking with an innocent smile to the right, with 1997 written above wearing a light grey tshirt and blue jeans.\nOn the right: A present version of me(match face) sits with her hands under her chin and looks at the child with a calm smile, with \"2026\" written above. Wearing a white tshirt and blue jeans.\nStudio background: plain and soft (studio background)\nThe lighting: Soft, cinematic, warm (even a black-and-white photo). Style: Professional, minimal, emotional photography, focusing on feelings and visual communication between the two versions.\nMake the picture look so real like a real photoshoot.\nKeep my original features without changing.\nphoto size 4:5",
+        "is_primary": true,
+        "id": "prm_659f67efd0184ff7",
+        "item_id": "itm_e7d401b520b94e52",
+        "created_at": "2026-06-02T13:23:54.788764+00:00",
+        "updated_at": "2026-06-02T13:23:54.788764+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a picture with the following details:\nOn the left: a child version of me looking with an innocent smile to the right, with 1997 written above wearing a light grey tshirt and blue jeans.\nOn the right: A present ver",
+    "first_image": {
+      "id": "img_4dc55627b0fd4513",
+      "item_id": "itm_e7d401b520b94e52",
+      "original_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+      "thumb_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+      "preview_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:55.053424+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:54.788764+00:00",
+    "created_at": "2026-06-02T13:23:54.788764+00:00",
+    "images": [
+      {
+        "id": "img_4dc55627b0fd4513",
+        "item_id": "itm_e7d401b520b94e52",
+        "original_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+        "thumb_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+        "preview_path": "demo-data/media/img_4dc55627b0fd4513.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:55.053424+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2059048918978351303/child-me-meets-present-me-side-by-side\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_5ed7b193f1b14c54",
+    "title": "Conceptual Chinese typography poster Prompt",
+    "slug": "conceptual-chinese-typography-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2048630851051892985/conceptual-chinese-typography-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_1c1710cf88fc4909",
+        "name": "aiistudio-2048630851051892985",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "English\nOriginal\nPremium concept poster, vertical 3:4. The core text is [input text].\nFirst deeply understand the surface meaning, deeper symbolism, emotional temperament, cultural associations, sense of fate, and implicit tension of '[input text],' then decide the most suitable visual style, composition, color temperament, and visual metaphor for it.\nThe visual style must be auto-generated by the meaning of the words — do not mechanically apply a unified template. Each word should have a unique visual language matching its own connotation.\nIn the image, a huge Chinese main title '[input text]' must be the absolute subject — character forms clear and complete, no typos or missing strokes, occupying most of the canvas, forming the strongest first visual.\nDo not make ordinary illustrations; do not just depict character appearance.\nDistill the most accurate, most representative visual metaphor, letting figures, objects, spaces, or symbols relate to the big text, so the viewer instantly feels why this word is expressed this way.\nThe overall temperament should be premium, minimalist, restrained, exhibition-grade — strong typography, strong metaphor, strong emotion, strong recall.\nBased on the word meaning, automatically choose a colder, more poetic, more tragic, sharper, more tender, or more solemn visual style.\nColors should also auto-adjust to the meaning while keeping an overall premium and restrained quality.\nKeep only three small text areas:\nTop-left: 2–4 keywords\nRight side, vertical: a fate-tinged short sentence\nBottom-left: a viral-spread summary line\nFew elements, accurate concept, restrained negative space.\nText is the first visual, the metaphorical image is the second visual, small text is the third visual.\nNo crowding, no cheap-ad feel, no extra English, no explanatory long copy.\nThe final result should look like an exhibition-grade literary-character or concept-themed poster, truly visualizing the spiritual state and cultural meaning behind '[input text].'",
+        "is_primary": true,
+        "id": "prm_a0dca7cc0a0541f7",
+        "item_id": "itm_5ed7b193f1b14c54",
+        "created_at": "2026-06-02T13:23:53.670191+00:00",
+        "updated_at": "2026-06-02T13:23:53.670191+00:00"
+      }
+    ],
+    "prompt_snippet": "English\nOriginal\nPremium concept poster, vertical 3:4. The core text is [input text].\nFirst deeply understand the surface meaning, deeper symbolism, emotional temperament, cultural associations, sense of fate, and implic",
+    "first_image": {
+      "id": "img_8391c9d0bbd4453c",
+      "item_id": "itm_5ed7b193f1b14c54",
+      "original_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+      "thumb_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+      "preview_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:53.913409+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:53.670191+00:00",
+    "created_at": "2026-06-02T13:23:53.670191+00:00",
+    "images": [
+      {
+        "id": "img_8391c9d0bbd4453c",
+        "item_id": "itm_5ed7b193f1b14c54",
+        "original_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+        "thumb_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+        "preview_path": "demo-data/media/img_8391c9d0bbd4453c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:53.913409+00:00"
+      },
+      {
+        "id": "img_7bb131ed027c44ea",
+        "item_id": "itm_5ed7b193f1b14c54",
+        "original_path": "demo-data/media/img_7bb131ed027c44ea.webp",
+        "thumb_path": "demo-data/media/img_7bb131ed027c44ea.webp",
+        "preview_path": "demo-data/media/img_7bb131ed027c44ea.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:23:54.163430+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2048630851051892985/conceptual-chinese-typography-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_58587e0baae44111",
+    "title": "Editorial poster Prompt",
+    "slug": "editorial-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2018707915008618763/editorial-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_55e1e977a3854fc4",
+        "name": "aiistudio-2018707915008618763",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A studio-style close-up editorial portrait of a person with strong, well-defined facial features and slightly imperfect, natural skin texture. The subject wears a black tailored turtleneck with sharp, clean lines, layered under a high-collared black jacket in a minimalist contemporary fashion style.The subject wears semi-transparent orange acetate sunglasses — rectangular frames with softly rounded edges, glossy finish, and amber gradient lenses — serving as the only colored element in the image.Color concept: selective color photography — monochrome black-and-white image with only the sunglasses in vivid orange.\nMood is calm and confident, serious expression, direct gaze into the camera.\nLighting is soft frontal studio light with gentle shadows, even skin tones, cinematic contrast, and visible natural skin texture. Shot on a professional portrait camera, f/2.0, ISO 100, 1/125s. High resolution, ultra-sharp focus on the face.\nStyle: editorial luxury fashion portrait, photorealistic, professional studio photography, no illustration, no painterly effects.",
+        "is_primary": true,
+        "id": "prm_8129c46c84034148",
+        "item_id": "itm_58587e0baae44111",
+        "created_at": "2026-06-02T13:23:52.205487+00:00",
+        "updated_at": "2026-06-02T13:23:52.205487+00:00"
+      }
+    ],
+    "prompt_snippet": "A studio-style close-up editorial portrait of a person with strong, well-defined facial features and slightly imperfect, natural skin texture. The subject wears a black tailored turtleneck with sharp, clean lines, layere",
+    "first_image": {
+      "id": "img_c10316c4c1584049",
+      "item_id": "itm_58587e0baae44111",
+      "original_path": "demo-data/media/img_c10316c4c1584049.webp",
+      "thumb_path": "demo-data/media/img_c10316c4c1584049.webp",
+      "preview_path": "demo-data/media/img_c10316c4c1584049.webp",
+      "remote_url": null,
+      "width": 670,
+      "height": 1199,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:23:52.366745+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:23:52.205487+00:00",
+    "created_at": "2026-06-02T13:23:52.205487+00:00",
+    "images": [
+      {
+        "id": "img_c10316c4c1584049",
+        "item_id": "itm_58587e0baae44111",
+        "original_path": "demo-data/media/img_c10316c4c1584049.webp",
+        "thumb_path": "demo-data/media/img_c10316c4c1584049.webp",
+        "preview_path": "demo-data/media/img_c10316c4c1584049.webp",
+        "remote_url": null,
+        "width": 670,
+        "height": 1199,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:23:52.366745+00:00"
+      },
+      {
+        "id": "img_750aa83dfea74968",
+        "item_id": "itm_58587e0baae44111",
+        "original_path": "demo-data/media/img_750aa83dfea74968.webp",
+        "thumb_path": "demo-data/media/img_750aa83dfea74968.webp",
+        "preview_path": "demo-data/media/img_750aa83dfea74968.webp",
+        "remote_url": null,
+        "width": 670,
+        "height": 1199,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:23:52.503728+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2018707915008618763/editorial-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_3f215f2414f64977",
+    "title": "Minimalist architecture art poster Prompt",
+    "slug": "minimalist-architecture-art-poster-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2051977189122576867/minimalist-architecture-art-poster",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8a133b4dfd734ca1",
+        "name": "aiistudio-2051977189122576867",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "English\nOriginal\nUsing a famous building [building name] as the scene, create a high-end minimalist poster.\nThe center of the poster is an illustrated representation of the building. The background features a single word in a huge bold design-style English typeface that matches the building's character, surrounded by smaller text describing the building's design philosophy.\nThe overall presentation is an extremely high-end artistic poster.\nThe color palette is restrained and understated, with elements that combine with the building, for example forming part of the building's structural components or extending outward as part of the building's overall silhouette.",
+        "is_primary": true,
+        "id": "prm_5d9fe9a65e2a4b78",
+        "item_id": "itm_3f215f2414f64977",
+        "created_at": "2026-06-02T13:22:17.065574+00:00",
+        "updated_at": "2026-06-02T13:22:17.065574+00:00"
+      }
+    ],
+    "prompt_snippet": "English\nOriginal\nUsing a famous building [building name] as the scene, create a high-end minimalist poster.\nThe center of the poster is an illustrated representation of the building. The background features a single word",
+    "first_image": {
+      "id": "img_c3d7daea53fa4bd3",
+      "item_id": "itm_3f215f2414f64977",
+      "original_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+      "thumb_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+      "preview_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1271,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:22:17.332827+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:22:17.065574+00:00",
+    "created_at": "2026-06-02T13:22:17.065574+00:00",
+    "images": [
+      {
+        "id": "img_c3d7daea53fa4bd3",
+        "item_id": "itm_3f215f2414f64977",
+        "original_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+        "thumb_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+        "preview_path": "demo-data/media/img_c3d7daea53fa4bd3.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1271,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:22:17.332827+00:00"
+      },
+      {
+        "id": "img_bc2183076dbd44a0",
+        "item_id": "itm_3f215f2414f64977",
+        "original_path": "demo-data/media/img_bc2183076dbd44a0.webp",
+        "thumb_path": "demo-data/media/img_bc2183076dbd44a0.webp",
+        "preview_path": "demo-data/media/img_bc2183076dbd44a0.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1271,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:22:17.554257+00:00"
+      },
+      {
+        "id": "img_08c5cf4a0121495f",
+        "item_id": "itm_3f215f2414f64977",
+        "original_path": "demo-data/media/img_08c5cf4a0121495f.webp",
+        "thumb_path": "demo-data/media/img_08c5cf4a0121495f.webp",
+        "preview_path": "demo-data/media/img_08c5cf4a0121495f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1271,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-02T13:22:17.786809+00:00"
+      },
+      {
+        "id": "img_3d9cc1eaae0042b6",
+        "item_id": "itm_3f215f2414f64977",
+        "original_path": "demo-data/media/img_3d9cc1eaae0042b6.webp",
+        "thumb_path": "demo-data/media/img_3d9cc1eaae0042b6.webp",
+        "preview_path": "demo-data/media/img_3d9cc1eaae0042b6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1271,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-02T13:22:18.037367+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2051977189122576867/minimalist-architecture-art-poster\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_6187fba881444175",
+    "title": "Anime propaganda poster collage Prompt",
+    "slug": "anime-propaganda-poster-collage-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "aiiStudio",
+    "source_url": "https://aiistudio.com/prompt/2051207505276260792/anime-propaganda-poster-collage",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_6909d0bff6784118",
+        "name": "aiiStudio",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_dacd7ebe62c748f5",
+        "name": "aiistudio-2051207505276260792",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "{\n\"type\": \"image_prompt\",\n\"title\": \"Naruto Propaganda Poster\",\n\"subject\": {\n\"character\": \"Naruto\",\n\"source\": \"Naruto anime\",\n\"focus\": \"iconic propaganda-style artistic reinterpretation\"\n},\n\"composition\": {\n\"structure\": {\n\"top_section\": {\n\"description\": \"Large iconic visual of Naruto's head, facial features, mask-like framing or half-body silhouette\",\n\"purpose\": \"dominant symbolic focal point\"\n},\n\"middle_to_bottom_section\": {\n\"description\": \"Full-body Naruto in stable stance or light dynamic motion\",\n\"purpose\": \"secondary narrative subject and central grounding element\"\n}\n},\n\"layout\": {\n\"style\": \"hierarchical visual composition\",\n\"balance\": \"center-weighted with left-right narrative tension\",\n\"format\": \"A4 vertical poster\"\n}\n},\n\"visual_style\": {\n\"techniques\": [\n\"double exposure\",\n\"narrative collage\",\n\"layered visual storytelling\"\n],\n\"elements\": {\n\"background_layers\": [\n\"cloud textures\",\n\"ink wash effects\",\n\"white negative space fields\",\n\"environmental backgrounds\"\n],\n\"collage_elements\": [\n\"secondary character fragments\",\n\"action micro-scenes\",\n\"symbolic objects\",\n\"environment overlays\"\n]\n},\n\"aesthetic\": {\n\"tone\": \"poetic Eastern aesthetic\",\n\"finish\": [\n\"ink diffusion edges\",\n\"soft blur transitions\",\n\"visual fragmentation effects\"\n],\n\"color_style\": \"pop, vibrant, striking contrast colors\",\n\"quality\": \"premium, cinematic, refined\"\n}\n},\n\"composition_flow\": {\n\"guiding_line\": \"vertical flowing visual path connecting top silhouette, collage layers, and full character\",\n\"visual_continuity\": true\n},\n\"design_principles\": [\n\"high negative space usage\",\n\"strong visual hierarchy\",\n\"narrative depth through layering\",\n\"poster-series visual language\",\n\"strong focal impact\"\n]\n}",
+        "is_primary": true,
+        "id": "prm_a4f4a3c730924296",
+        "item_id": "itm_6187fba881444175",
+        "created_at": "2026-06-02T13:22:14.566974+00:00",
+        "updated_at": "2026-06-02T13:22:14.566974+00:00"
+      }
+    ],
+    "prompt_snippet": "{\n\"type\": \"image_prompt\",\n\"title\": \"Naruto Propaganda Poster\",\n\"subject\": {\n\"character\": \"Naruto\",\n\"source\": \"Naruto anime\",\n\"focus\": \"iconic propaganda-style artistic reinterpretation\"\n},\n\"composition\": {\n\"structure\": {",
+    "first_image": {
+      "id": "img_d68b9dd7e87c4850",
+      "item_id": "itm_6187fba881444175",
+      "original_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+      "thumb_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+      "preview_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1201,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:22:14.913964+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:22:14.566974+00:00",
+    "created_at": "2026-06-02T13:22:14.566974+00:00",
+    "images": [
+      {
+        "id": "img_d68b9dd7e87c4850",
+        "item_id": "itm_6187fba881444175",
+        "original_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+        "thumb_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+        "preview_path": "demo-data/media/img_d68b9dd7e87c4850.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1201,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:22:14.913964+00:00"
+      },
+      {
+        "id": "img_6c159b6775324b2a",
+        "item_id": "itm_6187fba881444175",
+        "original_path": "demo-data/media/img_6c159b6775324b2a.webp",
+        "thumb_path": "demo-data/media/img_6c159b6775324b2a.webp",
+        "preview_path": "demo-data/media/img_6c159b6775324b2a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1201,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:22:15.253531+00:00"
+      }
+    ],
+    "notes": "Original X status: https://aiistudio.com/prompt/2051207505276260792/anime-propaganda-poster-collage\n\nImported from public aiiStudio prompt page.",
+    "author": null
+  },
+  {
+    "id": "itm_e36ac99440c0463f",
+    "title": "GPT image 2 Prompt",
+    "slug": "gpt-image-2-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Naiknelofar788/status/2061504832121528766",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_92e9f197e10c41d0",
+        "name": "x-status-2061504832121528766",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a realistic handmade enamel souvenir magnet inspired by the uploaded scene.\n\n• A collectible magnet for premium travel\n\n• Realistic three-dimensional metal depth\n\n• deepened areas of enamel\n\n• embossed metal edges made of gold\n\n• Soft glare and studio lighting\n\n• Realistic enamel texture\n\n• Gentle soft shadows\n\nimportant:\n\n• Ultra-thin selective gold contours only\n\n• Avoid emphasizing every detail.\n\n• Avoid large frames or stickers\n\n• NOT a flat illustration\n\n• NOT vector graphics\n\n• NOT a cartoon\n\n• The picture should depict a person, not just a landscape.\n\n• The background color of the image you are creating should be similar to one of the dominant colors in the image I sent.\n\ncomposition:\n\n• Focus on landscapes, architecture and landscape\n\nshape: • organic sculptural silhouette that repeats the landmark; • elegant asymmetrical contour; • absence of square or rectangular framing;\n\nGENERAL STYLE: • a cinematic luxury tourist souvenir; • refined minimalism; • an aesthetic handmade enamel magnet; • the quality of collectible souvenirs in museum stores.\n\nprinting house:\n\nAdd elegant serif typography under the magnet.\n\nTypographic style:\n\n* Luxurious editorial serif\n\n* Fine elegant font\n\n* capital letters\n\n* a very wide interval between them\n\n* Center alignment\n\n* minimalistic aesthetics of travel posters\n\n* Calm luxury branding style\n\nThe hierarchy of the text:\n\n* The name of the main settlement is enlarged: and corresponds to the image",
+        "is_primary": true,
+        "id": "prm_e237243709874a2a",
+        "item_id": "itm_e36ac99440c0463f",
+        "created_at": "2026-06-02T13:15:11.021585+00:00",
+        "updated_at": "2026-06-02T13:15:11.021585+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a realistic handmade enamel souvenir magnet inspired by the uploaded scene.\n\n• A collectible magnet for premium travel\n\n• Realistic three-dimensional metal depth\n\n• deepened areas of enamel\n\n• embossed metal edges",
+    "first_image": {
+      "id": "img_8af997979f75425b",
+      "item_id": "itm_e36ac99440c0463f",
+      "original_path": "demo-data/media/img_8af997979f75425b.webp",
+      "thumb_path": "demo-data/media/img_8af997979f75425b.webp",
+      "preview_path": "demo-data/media/img_8af997979f75425b.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:15:11.457899+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:15:11.021585+00:00",
+    "created_at": "2026-06-02T13:15:11.021585+00:00",
+    "images": [
+      {
+        "id": "img_8af997979f75425b",
+        "item_id": "itm_e36ac99440c0463f",
+        "original_path": "demo-data/media/img_8af997979f75425b.webp",
+        "thumb_path": "demo-data/media/img_8af997979f75425b.webp",
+        "preview_path": "demo-data/media/img_8af997979f75425b.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:15:11.457899+00:00"
+      },
+      {
+        "id": "img_fa5dcf435bd74b01",
+        "item_id": "itm_e36ac99440c0463f",
+        "original_path": "demo-data/media/img_fa5dcf435bd74b01.webp",
+        "thumb_path": "demo-data/media/img_fa5dcf435bd74b01.webp",
+        "preview_path": "demo-data/media/img_fa5dcf435bd74b01.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:15:11.745308+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Naiknelofar788/status/2061504832121528766\n\nAuthor: @Naiknelofar788\n\nOriginal tweet intro:\nGPT image 2 \n\nprompt: \n\nCreate a realistic handmade enamel souvenir magnet inspired by the uploaded scene.\n\n• A collectible magnet for premium travel\n\n• Realistic three-dimensional metal depth\n\n• deepened areas of enamel\n\n• embossed metal edges made of gold\n\n• Soft glare and studio lighting\n\n• Realistic enamel texture\n\n• Gentle soft shadows\n\nimportant:\n\n• Ultra-thin selective gold contours only\n\n• Avoid emphasizing every detail.\n\n• Avoid large frames or stickers\n\n• NOT a flat illustration\n\n• NOT vector graphics\n\n• NOT a cartoon\n\n• The picture should depict a person, not just a landscape.\n\n• The background color of the image you are creating should be similar to one of the dominant colors in the image I sent.\n\ncomposition:\n\n• Focus on landscapes, architecture and landscape\n\nshape: • organic sculptural silhouette that repeats the landmark; • elegant asymmetrical contour; • absence of square or rectangular framing;\n\nGENERAL STYLE: • a cinematic luxury tourist souvenir; • refined minimalism; • an aesthetic handmade enamel magnet; • the quality of collectible souvenirs in museum stores.\n\nprinting house:\n\nAdd elegant serif typography under the magnet.\n\nTypographic style:\n\n* Luxurious editorial serif\n\n* Fine elegant font\n\n* capital letters\n\n* a very wide interval between them\n\n* Center alignment\n\n* minimalistic aesthetics of travel posters\n\n* Calm luxury branding style\n\nThe hierarchy of the text:\n\n* The name of the main settlement is enlarged: and corresponds to the image",
+    "author": "@Naiknelofar788"
+  },
+  {
+    "id": "itm_2adf04983d8c4820",
+    "title": "yooo, GPT Image 2 on ChatGPT turns a whole timel Prompt",
+    "slug": "yooo-gpt-image-2-on-chatgpt-turns-a-whole-timel-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/iamaiistudio/status/2061494256087523353",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c554defc212f49ff",
+        "name": "x-status-2061494256087523353",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Build a polished isometric miniature 3D diorama that shows the evolution of [TOPIC] from [START ERA] through [MODERN ERA]. Use a 45-degree top-down camera angle and a horizontally stepped display base split into distinct time periods. Give the scene soft, refined materials with realistic PBR shading and neutral, evenly balanced lighting.\n\nIn every era section, include period-specific objects, tools, environments, or technologies. Add tiny stylized people interacting with each stage, with detailed facial features. Use subtle arrows or dividers to make the chronological flow clear.\n\nKeep the background a solid [BACKGROUND COLOR]. Place bold top-center text reading [TOPIC]. Under it, add \"From [START ERA] to [MODERN ERA].\" Add a minimal timeline icon below. Make all text automatically adapt for contrast.\n\n#AIart #GPTImage2",
+        "is_primary": true,
+        "id": "prm_33f20965b27a45b7",
+        "item_id": "itm_2adf04983d8c4820",
+        "created_at": "2026-06-02T13:15:08.054654+00:00",
+        "updated_at": "2026-06-02T13:15:08.054654+00:00"
+      }
+    ],
+    "prompt_snippet": "Build a polished isometric miniature 3D diorama that shows the evolution of [TOPIC] from [START ERA] through [MODERN ERA]. Use a 45-degree top-down camera angle and a horizontally stepped display base split into distinct",
+    "first_image": {
+      "id": "img_4e4943e487124979",
+      "item_id": "itm_2adf04983d8c4820",
+      "original_path": "demo-data/media/img_4e4943e487124979.webp",
+      "thumb_path": "demo-data/media/img_4e4943e487124979.webp",
+      "preview_path": "demo-data/media/img_4e4943e487124979.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 491,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:15:08.428629+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:15:08.054654+00:00",
+    "created_at": "2026-06-02T13:15:08.054654+00:00",
+    "images": [
+      {
+        "id": "img_4e4943e487124979",
+        "item_id": "itm_2adf04983d8c4820",
+        "original_path": "demo-data/media/img_4e4943e487124979.webp",
+        "thumb_path": "demo-data/media/img_4e4943e487124979.webp",
+        "preview_path": "demo-data/media/img_4e4943e487124979.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 491,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:15:08.428629+00:00"
+      },
+      {
+        "id": "img_d2e11ef6c87b4ebc",
+        "item_id": "itm_2adf04983d8c4820",
+        "original_path": "demo-data/media/img_d2e11ef6c87b4ebc.webp",
+        "thumb_path": "demo-data/media/img_d2e11ef6c87b4ebc.webp",
+        "preview_path": "demo-data/media/img_d2e11ef6c87b4ebc.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 491,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:15:08.616765+00:00"
+      },
+      {
+        "id": "img_a35b2388e7604c04",
+        "item_id": "itm_2adf04983d8c4820",
+        "original_path": "demo-data/media/img_a35b2388e7604c04.webp",
+        "thumb_path": "demo-data/media/img_a35b2388e7604c04.webp",
+        "preview_path": "demo-data/media/img_a35b2388e7604c04.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 491,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-02T13:15:08.769288+00:00"
+      },
+      {
+        "id": "img_b468e977e80b4cac",
+        "item_id": "itm_2adf04983d8c4820",
+        "original_path": "demo-data/media/img_b468e977e80b4cac.webp",
+        "thumb_path": "demo-data/media/img_b468e977e80b4cac.webp",
+        "preview_path": "demo-data/media/img_b468e977e80b4cac.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 502,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-02T13:15:08.918909+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/iamaiistudio/status/2061494256087523353\n\nAuthor: @iamaiistudio\n\nOriginal tweet intro:\nyooo, GPT Image 2 on ChatGPT turns a whole timeline into a tiny museum scene and it goes crazy\n\nFull prompt: \n\nprompt:\n\nBuild a polished isometric miniature 3D diorama that shows the evolution of [TOPIC] from [START ERA] through [MODERN ERA]. Use a 45-degree top-down camera angle and a horizontally stepped display base split into distinct time periods. Give the scene soft, refined materials with realistic PBR shading and neutral, evenly balanced lighting.\n\nIn every era section, include period-specific objects, tools, environments, or technologies. Add tiny stylized people interacting with each stage, with detailed facial features. Use subtle arrows or dividers to make the chronological flow clear.\n\nKeep the background a solid [BACKGROUND COLOR]. Place bold top-center text reading [TOPIC]. Under it, add \"From [START ERA] to [MODERN ERA].\" Add a minimal timeline icon below. Make all text automatically adapt for contrast.\n\n#AIart #GPTImage2",
+    "author": "@iamaiistudio"
+  },
+  {
+    "id": "itm_f41da3ef3c344b4a",
+    "title": "再次惊叹于GPT image2的审美！ Prompt",
+    "slug": "再次惊叹于gpt-image2的审美-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/yyyole/status/2061644933287838180",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d67f0c327fd14f7c",
+        "name": "x-status-2061644933287838180",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "一張極簡主義現代雜誌風格插畫，主體爲[xxx]。畫面以乾淨流暢的線條塑造形象，造型簡潔但富有美感，背景保留大面積留白，配色以柔和中性色爲主，並加入少量鮮豔色彩作爲視覺焦點。整體構圖精緻平衡，氛圍優雅清新，具有高級雜誌插畫與現代藝術海報質感，無文字。",
+        "is_primary": true,
+        "id": "prm_87ba86d0ff5f4a27",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "created_at": "2026-06-02T13:14:59.069341+00:00",
+        "updated_at": "2026-06-02T13:14:59.069341+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "一张极简主义现代杂志风格插画，主体为[xxx]。画面以干净流畅的线条塑造形象，造型简洁但富有美感，背景保留大面积留白，配色以柔和中性色为主，并加入少量鲜艳色彩作为视觉焦点。整体构图精致平衡，氛围优雅清新，具有高级杂志插画与现代艺术海报质感，无文字。",
+        "is_primary": false,
+        "id": "prm_a877a4a4792c4f52",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "created_at": "2026-06-02T13:14:59.069341+00:00",
+        "updated_at": "2026-06-02T13:14:59.069341+00:00"
+      }
+    ],
+    "prompt_snippet": "一張極簡主義現代雜誌風格插畫，主體爲[xxx]。畫面以乾淨流暢的線條塑造形象，造型簡潔但富有美感，背景保留大面積留白，配色以柔和中性色爲主，並加入少量鮮豔色彩作爲視覺焦點。整體構圖精緻平衡，氛圍優雅清新，具有高級雜誌插畫與現代藝術海報質感，無文字。",
+    "first_image": {
+      "id": "img_484873a87ee04394",
+      "item_id": "itm_f41da3ef3c344b4a",
+      "original_path": "demo-data/media/img_484873a87ee04394.webp",
+      "thumb_path": "demo-data/media/img_484873a87ee04394.webp",
+      "preview_path": "demo-data/media/img_484873a87ee04394.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1125,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-02T13:14:59.513557+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-02T13:14:59.069341+00:00",
+    "created_at": "2026-06-02T13:14:59.069341+00:00",
+    "images": [
+      {
+        "id": "img_484873a87ee04394",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "original_path": "demo-data/media/img_484873a87ee04394.webp",
+        "thumb_path": "demo-data/media/img_484873a87ee04394.webp",
+        "preview_path": "demo-data/media/img_484873a87ee04394.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-02T13:14:59.513557+00:00"
+      },
+      {
+        "id": "img_bbed04bc1e7f48fe",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "original_path": "demo-data/media/img_bbed04bc1e7f48fe.webp",
+        "thumb_path": "demo-data/media/img_bbed04bc1e7f48fe.webp",
+        "preview_path": "demo-data/media/img_bbed04bc1e7f48fe.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-02T13:14:59.986212+00:00"
+      },
+      {
+        "id": "img_ef2eb12dc6b649c1",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "original_path": "demo-data/media/img_ef2eb12dc6b649c1.webp",
+        "thumb_path": "demo-data/media/img_ef2eb12dc6b649c1.webp",
+        "preview_path": "demo-data/media/img_ef2eb12dc6b649c1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-02T13:15:00.203479+00:00"
+      },
+      {
+        "id": "img_6ab62bee30d24640",
+        "item_id": "itm_f41da3ef3c344b4a",
+        "original_path": "demo-data/media/img_6ab62bee30d24640.webp",
+        "thumb_path": "demo-data/media/img_6ab62bee30d24640.webp",
+        "preview_path": "demo-data/media/img_6ab62bee30d24640.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-02T13:15:00.431268+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/yyyole/status/2061644933287838180\n\nAuthor: @yyyole\n\nOriginal tweet intro:\n再次惊叹于GPT image2的审美！\n我太喜欢这个插画风格了！\n\n安静、柔和、精致、克制。\n非常适合做儿童插画绘本！\n\n提示词：\n一张极简主义现代杂志风格插画，主体为[xxx]。画面以干净流畅的线条塑造形象，造型简洁但富有美感，背景保留大面积留白，配色以柔和中性色为主，并加入少量鲜艳色彩作为视觉焦点。整体构图精致平衡，氛围优雅清新，具有高级杂志插画与现代艺术海报质感，无文字。",
+    "author": "@yyyole"
+  },
+  {
+    "id": "itm_75829609c1cd4f98",
+    "title": "🫀📚 The Human Heart: powering life, one beat at a Prompt",
+    "slug": "the-human-heart-powering-life-one-beat-at-a-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/noorwithwifi/status/2061412898484937164",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_27923c506e4b48de",
+        "name": "x-status-2061412898484937164",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Handwritten biology infographic on lined notebook page titled “The Human Heart: The Engine That Keeps Life Moving”. Neatly organized physiology study notes with colorful headings, diagrams, charts, and highlights. Heart is a four-chamber muscular organ, fist-sized, pumping ~7,000 L blood/day and ~100,000 beats/day. Central color-coded heart diagram: blue right side deoxygenated (vena cava, right atrium, tricuspid valve, right ventricle, pulmonary artery) and red left side oxygenated (pulmonary veins, left atrium, mitral valve, left ventricle, aorta, septum). Blood flow arrows show body→heart→lungs→heart→body loop. Includes valve notes (tricuspid, mitral, semilunar), cardiac cycle (atrial systole, ventricular systole, diastole) with 60–100 bpm and ~0.8s per beat. Coronary circulation shows heart’s own blood supply and warns blockage causes heart attack. Blood composition pie chart: plasma 55%, formed elements 45% (RBCs oxygen transport, WBCs immunity, platelets clotting). Comparison table contrasts right vs left heart (deoxygenated vs oxygenated, body vs lungs, low vs high pressure). Mnemonic: R returns to lungs, L leaves to body. Exam highlights: myogenic heart, pericardium, septum, aorta, capillaries. Health icons: exercise, diet, sleep, no smoking, stress management. Ends with motivational quote about better life through a healthy heart.",
+        "is_primary": true,
+        "id": "prm_74459aa976cc486a",
+        "item_id": "itm_75829609c1cd4f98",
+        "created_at": "2026-06-01T14:18:45.991256+00:00",
+        "updated_at": "2026-06-01T14:18:45.991256+00:00"
+      }
+    ],
+    "prompt_snippet": "Handwritten biology infographic on lined notebook page titled “The Human Heart: The Engine That Keeps Life Moving”. Neatly organized physiology study notes with colorful headings, diagrams, charts, and highlights. Heart ",
+    "first_image": {
+      "id": "img_2e5df977dafb46ec",
+      "item_id": "itm_75829609c1cd4f98",
+      "original_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+      "thumb_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+      "preview_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+      "remote_url": null,
+      "width": 720,
+      "height": 1080,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T14:18:46.403555+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T14:18:45.991256+00:00",
+    "created_at": "2026-06-01T14:18:45.991256+00:00",
+    "images": [
+      {
+        "id": "img_2e5df977dafb46ec",
+        "item_id": "itm_75829609c1cd4f98",
+        "original_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+        "thumb_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+        "preview_path": "demo-data/media/img_2e5df977dafb46ec.webp",
+        "remote_url": null,
+        "width": 720,
+        "height": 1080,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T14:18:46.403555+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/noorwithwifi/status/2061412898484937164\n\nAuthor: @noorwithwifi\n\nOriginal tweet intro:\n🫀📚 The Human Heart: powering life, one beat at a time.\n\nPrompt: Handwritten biology infographic on lined notebook page titled “The Human Heart: The Engine That Keeps Life Moving”. Neatly organized physiology study notes with colorful headings, diagrams, charts, and highlights. Heart is a four-chamber muscular organ, fist-sized, pumping ~7,000 L blood/day and ~100,000 beats/day. Central color-coded heart diagram: blue right side deoxygenated (vena cava, right atrium, tricuspid valve, right ventricle, pulmonary artery) and red left side oxygenated (pulmonary veins, left atrium, mitral valve, left ventricle, aorta, septum). Blood flow arrows show body→heart→lungs→heart→body loop. Includes valve notes (tricuspid, mitral, semilunar), cardiac cycle (atrial systole, ventricular systole, diastole) with 60–100 bpm and ~0.8s per beat. Coronary circulation shows heart’s own blood supply and warns blockage causes heart attack. Blood composition pie chart: plasma 55%, formed elements 45% (RBCs oxygen transport, WBCs immunity, platelets clotting). Comparison table contrasts right vs left heart (deoxygenated vs oxygenated, body vs lungs, low vs high pressure). Mnemonic: R returns to lungs, L leaves to body. Exam highlights: myogenic heart, pericardium, septum, aorta, capillaries. Health icons: exercise, diet, sleep, no smoking, stress management. Ends with motivational quote about better life through a healthy heart.",
+    "author": "@noorwithwifi"
+  },
+  {
+    "id": "itm_b8b75c3524b343ec",
+    "title": "【AI绘画每日一词】定格动画风 Prompt",
+    "slug": "ai绘画每日一词-定格动画风-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/derek_wall90176/status/2061257900262383856",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0149b7c43d4c47ef",
+        "name": "x-status-2061257900262383856",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "【AI繪畫每日一詞】定格動畫風\n\n今天這個詞，專門解決 AI 生圖裏一個很常見的問題：\n\n太像 AI 了。\n\n很多 AI 圖很精緻、很高清、很完美。\n但也正因爲太完美，反而少了一點真實的溫度。\n\n定格動畫風剛好相反。\n\n它有黏土材質、手捏痕跡、輕微不規則的邊緣，還有一種像童年動畫片一樣的柔軟感。\n\n不是追求“完美 CG”，而是故意保留手工感。\n\n這就是它容易出片的原因。\n\n---\n\n核心提示詞可以直接這樣寫：\n\n將這張人像轉換成定格動畫風格的黏土角色。人物保留原本的五官特徵、表情和姿勢，但整體看起來像由彩色黏土手工捏製而成。皮膚和服裝有柔軟圓潤的黏土質感，能看到輕微的雕刻痕跡和手作紋理。使用溫暖的攝影棚燈光，乾淨背景，畫面可愛、治癒、有手工動畫質感。\n\n核心結構是：\n\n原始人像  \n+ 保留相似度  \n+ 黏土材質  \n+ 手捏痕跡  \n+ 溫暖燈光  \n+ 乾淨背景\n\n---\n\n爲什麼它容易降低 AI 味？\n\n因爲黏土本身就不是完美材質。\n\n它不需要皮膚特別真實，也不需要邊緣特別精準。  \n輕微的不規則、手作痕跡、材質瑕疵，反而會讓畫面更可信。\n\n很多時候，AI 圖的問題不是不夠精緻，而是太精緻。\n\n定格動畫風的價值，就是把“完美”主動打碎一點。\n\n---\n\n可以怎麼變？\n\n定格全家福：  \n把一家人變成黏土角色，適合親子、家庭、紀念照。\n\n定格寵物：  \n貓狗不必追求真實毛髮，重點是圓潤、呆萌、有表情。\n\n定格美食：  \n漢堡、蛋糕、披薩、冰淇淋都很適合黏土質感。\n\n定格情侶：  \n兩個人在微縮小屋裏喝茶、看電影、做飯，溫馨感會很強。\n\n定格反派：  \n加暗色背景、低角度燈光、誇張表情，就能做出黏土動畫反派起源感。\n\n---\n\n幾個實用技巧：\n\n想保留本人特徵，加：\n\n保留五官相似度、保留原本表情、保留人物姿勢。\n\n想更有手工感，加：\n\n可見手捏痕跡、黏土雕刻紋理、輕微不規則邊緣。\n\n想更治癒，加：\n\n溫暖燈光、柔和色彩、圓潤造型、乾淨背景。\n\n想更電影感，加：\n\n微縮場景、戲劇性燈光、定格動畫電影質感、故事化構圖。\n\n---\n\n萬能公式：\n\n把【主體】轉換成定格動畫風格的黏土角色，保留【關鍵特徵】，加入【黏土材質】、【手作痕跡】、【溫暖燈光】和【微縮場景】，整體可愛、治癒、有手工動畫質感。\n\n---\n\n一句話總結：\n\n定格動畫風的魅力，不是讓畫面更真實，而是讓畫面更像“被人親手做出來”。\n\n當大家都在追求高清和完美時，有一點手工感，反而更容易讓人停下來。\n\n你覺得 AI 圖最明顯的“AI 味”是什麼？",
+        "is_primary": true,
+        "id": "prm_f1c7ee48c08a4a9d",
+        "item_id": "itm_b8b75c3524b343ec",
+        "created_at": "2026-06-01T13:41:29.578334+00:00",
+        "updated_at": "2026-06-01T13:41:29.578334+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "【AI绘画每日一词】定格动画风\n\n今天这个词，专门解决 AI 生图里一个很常见的问题：\n\n太像 AI 了。\n\n很多 AI 图很精致、很高清、很完美。\n但也正因为太完美，反而少了一点真实的温度。\n\n定格动画风刚好相反。\n\n它有黏土材质、手捏痕迹、轻微不规则的边缘，还有一种像童年动画片一样的柔软感。\n\n不是追求“完美 CG”，而是故意保留手工感。\n\n这就是它容易出片的原因。\n\n---\n\n核心提示词可以直接这样写：\n\n将这张人像转换成定格动画风格的黏土角色。人物保留原本的五官特征、表情和姿势，但整体看起来像由彩色黏土手工捏制而成。皮肤和服装有柔软圆润的黏土质感，能看到轻微的雕刻痕迹和手作纹理。使用温暖的摄影棚灯光，干净背景，画面可爱、治愈、有手工动画质感。\n\n核心结构是：\n\n原始人像  \n+ 保留相似度  \n+ 黏土材质  \n+ 手捏痕迹  \n+ 温暖灯光  \n+ 干净背景\n\n---\n\n为什么它容易降低 AI 味？\n\n因为黏土本身就不是完美材质。\n\n它不需要皮肤特别真实，也不需要边缘特别精准。  \n轻微的不规则、手作痕迹、材质瑕疵，反而会让画面更可信。\n\n很多时候，AI 图的问题不是不够精致，而是太精致。\n\n定格动画风的价值，就是把“完美”主动打碎一点。\n\n---\n\n可以怎么变？\n\n定格全家福：  \n把一家人变成黏土角色，适合亲子、家庭、纪念照。\n\n定格宠物：  \n猫狗不必追求真实毛发，重点是圆润、呆萌、有表情。\n\n定格美食：  \n汉堡、蛋糕、披萨、冰淇淋都很适合黏土质感。\n\n定格情侣：  \n两个人在微缩小屋里喝茶、看电影、做饭，温馨感会很强。\n\n定格反派：  \n加暗色背景、低角度灯光、夸张表情，就能做出黏土动画反派起源感。\n\n---\n\n几个实用技巧：\n\n想保留本人特征，加：\n\n保留五官相似度、保留原本表情、保留人物姿势。\n\n想更有手工感，加：\n\n可见手捏痕迹、黏土雕刻纹理、轻微不规则边缘。\n\n想更治愈，加：\n\n温暖灯光、柔和色彩、圆润造型、干净背景。\n\n想更电影感，加：\n\n微缩场景、戏剧性灯光、定格动画电影质感、故事化构图。\n\n---\n\n万能公式：\n\n把【主体】转换成定格动画风格的黏土角色，保留【关键特征】，加入【黏土材质】、【手作痕迹】、【温暖灯光】和【微缩场景】，整体可爱、治愈、有手工动画质感。\n\n---\n\n一句话总结：\n\n定格动画风的魅力，不是让画面更真实，而是让画面更像“被人亲手做出来”。\n\n当大家都在追求高清和完美时，有一点手工感，反而更容易让人停下来。\n\n你觉得 AI 图最明显的“AI 味”是什么？",
+        "is_primary": false,
+        "id": "prm_f4def1a0bfe64cb1",
+        "item_id": "itm_b8b75c3524b343ec",
+        "created_at": "2026-06-01T13:41:29.578334+00:00",
+        "updated_at": "2026-06-01T13:41:29.578334+00:00"
+      }
+    ],
+    "prompt_snippet": "【AI繪畫每日一詞】定格動畫風\n\n今天這個詞，專門解決 AI 生圖裏一個很常見的問題：\n\n太像 AI 了。\n\n很多 AI 圖很精緻、很高清、很完美。\n但也正因爲太完美，反而少了一點真實的溫度。\n\n定格動畫風剛好相反。\n\n它有黏土材質、手捏痕跡、輕微不規則的邊緣，還有一種像童年動畫片一樣的柔軟感。\n\n不是追求“完美 CG”，而是故意保留手工感。\n\n這就是它容易出片的原因。\n\n---\n\n核心提示詞可以直接這樣寫：\n\n將這張人像轉換成定格動畫",
+    "first_image": {
+      "id": "img_5e552fea0236485c",
+      "item_id": "itm_b8b75c3524b343ec",
+      "original_path": "demo-data/media/img_5e552fea0236485c.webp",
+      "thumb_path": "demo-data/media/img_5e552fea0236485c.webp",
+      "preview_path": "demo-data/media/img_5e552fea0236485c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:41:29.973001+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:41:29.578334+00:00",
+    "created_at": "2026-06-01T13:41:29.578334+00:00",
+    "images": [
+      {
+        "id": "img_5e552fea0236485c",
+        "item_id": "itm_b8b75c3524b343ec",
+        "original_path": "demo-data/media/img_5e552fea0236485c.webp",
+        "thumb_path": "demo-data/media/img_5e552fea0236485c.webp",
+        "preview_path": "demo-data/media/img_5e552fea0236485c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:41:29.973001+00:00"
+      },
+      {
+        "id": "img_850e78c7bfd34402",
+        "item_id": "itm_b8b75c3524b343ec",
+        "original_path": "demo-data/media/img_850e78c7bfd34402.webp",
+        "thumb_path": "demo-data/media/img_850e78c7bfd34402.webp",
+        "preview_path": "demo-data/media/img_850e78c7bfd34402.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:41:30.217906+00:00"
+      },
+      {
+        "id": "img_231d7c617cf644a9",
+        "item_id": "itm_b8b75c3524b343ec",
+        "original_path": "demo-data/media/img_231d7c617cf644a9.webp",
+        "thumb_path": "demo-data/media/img_231d7c617cf644a9.webp",
+        "preview_path": "demo-data/media/img_231d7c617cf644a9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:41:30.484268+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/derek_wall90176/status/2061257900262383856\n\nAuthor: @derek_wall90176\n\nOriginal tweet intro:\n【AI绘画每日一词】定格动画风\n\n今天这个词，专门解决 AI 生图里一个很常见的问题：\n\n太像 AI 了。\n\n很多 AI 图很精致、很高清、很完美。\n但也正因为太完美，反而少了一点真实的温度。\n\n定格动画风刚好相反。\n\n它有黏土材质、手捏痕迹、轻微不规则的边缘，还有一种像童年动画片一样的柔软感。\n\n不是追求“完美 CG”，而是故意保留手工感。\n\n这就是它容易出片的原因。\n\n---\n\n核心提示词可以直接这样写：\n\n将这张人像转换成定格动画风格的黏土角色。人物保留原本的五官特征、表情和姿势，但整体看起来像由彩色黏土手工捏制而成。皮肤和服装有柔软圆润的黏土质感，能看到轻微的雕刻痕迹和手作纹理。使用温暖的摄影棚灯光，干净背景，画面可爱、治愈、有手工动画质感。\n\n核心结构是：\n\n原始人像  \n+ 保留相似度  \n+ 黏土材质  \n+ 手捏痕迹  \n+ 温暖灯光  \n+ 干净背景\n\n---\n\n为什么它容易降低 AI 味？\n\n因为黏土本身就不是完美材质。\n\n它不需要皮肤特别真实，也不需要边缘特别精准。  \n轻微的不规则、手作痕迹、材质瑕疵，反而会让画面更可信。\n\n很多时候，AI 图的问题不是不够精致，而是太精致。\n\n定格动画风的价值，就是把“完美”主动打碎一点。\n\n---\n\n可以怎么变？\n\n定格全家福：  \n把一家人变成黏土角色，适合亲子、家庭、纪念照。\n\n定格宠物：  \n猫狗不必追求真实毛发，重点是圆润、呆萌、有表情。\n\n定格美食：  \n汉堡、蛋糕、披萨、冰淇淋都很适合黏土质感。\n\n定格情侣：  \n两个人在微缩小屋里喝茶、看电影、做饭，温馨感会很强。\n\n定格反派：  \n加暗色背景、低角度灯光、夸张表情，就能做出黏土动画反派起源感。\n\n---\n\n几个实用技巧：\n\n想保留本人特征，加：\n\n保留五官相似度、保留原本表情、保留人物姿势。\n\n想更有手工感，加：\n\n可见手捏痕迹、黏土雕刻纹理、轻微不规则边缘。\n\n想更治愈，加：\n\n温暖灯光、柔和色彩、圆润造型、干净背景。\n\n想更电影感，加：\n\n微缩场景、戏剧性灯光、定格动画电影质感、故事化构图。\n\n---\n\n万能公式：\n\n把【主体】转换成定格动画风格的黏土角色，保留【关键特征】，加入【黏土材质】、【手作痕迹】、【温暖灯光】和【微缩场景】，整体可爱、治愈、有手工动画质感。\n\n---\n\n一句话总结：\n\n定格动画风的魅力，不是让画面更真实，而是让画面更像“被人亲手做出来”。\n\n当大家都在追求高清和完美时，有一点手工感，反而更容易让人停下来。\n\n你觉得 AI 图最明显的“AI 味”是什么？",
+    "author": "@derek_wall90176"
+  },
+  {
+    "id": "itm_de483cc6b15e4613",
+    "title": "夸张漫画反应式产品海报公式 Prompt",
+    "slug": "1-我摸到一套低成本-高情绪价值的产品海报公式-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/VigoCreativeAI/status/2061384588769857810",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d3a4a902dbb74eb0",
+        "name": "x-status-2061384588769857810",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hans",
+        "text": "为指定产品生成一张「夸张漫画反应式产品海报」。适合强味觉、强体验、强感官冲击的消费品或服务，例如酸梅汽水、爆浆咖喱包、麻辣烫、冰淇淋、炸鸡、维修服务、庙会玩具等。\n\n画面结构：使用黄黑高对比漫画视觉，构建强冲击的主海报。让一个人物以夸张到位的表情和肢体反应成为情绪发动机，再用居中的产品大特写承接感官冲击。观众视线路径应清晰地从「人物表情」移动到「产品特写」，再到「短标题」和「行动暗示」。\n\n设计要求：\n- 主标题短促有力，控制在四个字以内，像漫画拟声词或强感官短句。\n- 产品大特写必须诱发食欲、爽感、爆汁感、冰感、热感或其他可被夸张放大的体验。\n- 底部加入 3-4 格漫画分镜，用来补充过程感、使用场景或体验递进。\n- 人物不需要写实，重点是夸张反应、清楚轮廓和即时情绪。\n- 整体可用于新品宣传海报、公众号 banner、小红书封面、线下门店立牌、外卖平台活动图或三图轮播种草页。\n\n请根据输入产品自动提炼最值得夸张的瞬间，用低成本但高情绪价值的商业海报方式呈现。",
+        "is_primary": true,
+        "id": "prm_9ef01605406144e6",
+        "item_id": "itm_de483cc6b15e4613",
+        "created_at": "2026-06-01T13:26:45.247119+00:00",
+        "updated_at": "2026-06-01T13:30:43Z"
+      },
+      {
+        "language": "zh_hans",
+        "text": "🧵 1/ 我摸到一套低成本、高情绪价值的产品海报公式。\n\n漫画夸张反应 × 产品大特写。\n\n不用真人拍、不用探店，一张图就能让人「看饿了」。\n\n下面拆解 👇",
+        "is_primary": false,
+        "id": "prm_db725bb16779440c",
+        "item_id": "itm_de483cc6b15e4613",
+        "created_at": "2026-06-01T13:26:45.247119+00:00",
+        "updated_at": "2026-06-01T13:26:45.247119+00:00"
+      }
+    ],
+    "prompt_snippet": "为指定产品生成一张「夸张漫画反应式产品海报」。适合强味觉、强体验、强感官冲击的消费品或服务，例如酸梅汽水、爆浆咖喱包、麻辣烫、冰淇淋、炸鸡、维修服务、庙会玩具等。\n\n画面结构：使用黄黑高对比漫画视觉，构建强冲击的主海报。让一个人物以夸张到位的表情和肢体反应成为情绪发动机，再用居中的产品大特写承接感官冲击。观众视线路径应清晰地从「人物表情」移动到「产品特写」，再到「短标题」和「行动暗示」。\n\n设计要求：\n- 主标题短促有力，控制在四个字以",
+    "first_image": {
+      "id": "img_f8ed1b80110a45bf",
+      "item_id": "itm_de483cc6b15e4613",
+      "original_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+      "thumb_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+      "preview_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:26:45.596164+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:30:43Z",
+    "created_at": "2026-06-01T13:26:45.247119+00:00",
+    "images": [
+      {
+        "id": "img_f8ed1b80110a45bf",
+        "item_id": "itm_de483cc6b15e4613",
+        "original_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+        "thumb_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+        "preview_path": "demo-data/media/img_f8ed1b80110a45bf.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:26:45.596164+00:00"
+      },
+      {
+        "id": "img_17e7259a4cd04c83",
+        "item_id": "itm_de483cc6b15e4613",
+        "original_path": "demo-data/media/img_17e7259a4cd04c83.webp",
+        "thumb_path": "demo-data/media/img_17e7259a4cd04c83.webp",
+        "preview_path": "demo-data/media/img_17e7259a4cd04c83.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:26:45.884022+00:00"
+      },
+      {
+        "id": "img_fadd5562614c4097",
+        "item_id": "itm_de483cc6b15e4613",
+        "original_path": "demo-data/media/img_fadd5562614c4097.webp",
+        "thumb_path": "demo-data/media/img_fadd5562614c4097.webp",
+        "preview_path": "demo-data/media/img_fadd5562614c4097.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:26:46.160799+00:00"
+      },
+      {
+        "id": "img_102d5cfba5f04be7",
+        "item_id": "itm_de483cc6b15e4613",
+        "original_path": "demo-data/media/img_102d5cfba5f04be7.webp",
+        "thumb_path": "demo-data/media/img_102d5cfba5f04be7.webp",
+        "preview_path": "demo-data/media/img_102d5cfba5f04be7.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T13:26:46.446448+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/VigoCreativeAI/status/2061384588769857810\n\nAuthor: @VigoCreativeAI\n\nPrompt source note:\n原帖没有提供单段可复制 prompt；此条目将 1-7 条线程拆解整理为可复用的产品海报公式 prompt brief。\n\nThread guidance:\n1/ 我摸到一套低成本、高情绪价值的产品海报公式。\n漫画夸张反应 × 产品大特写。不用真人拍、不用探店，一张图就能让人「看饿了」。\n\n2/ 适合什么产品？一句话：能被「好吃、爽、爆汁、上头、冰到、烫到」描述的消费品。酸梅汽水、爆浆咖喱包、麻辣烫、冰淇淋、炸鸡等强味觉 + 强视觉品类天然适配。\n\n3/ 名称：夸张漫画反应式产品海报。核心逻辑：人物夸张表情制造强情绪，产品特写承接感官冲击。视线路径：表情 → 产品 → 文案 → 行动。\n\n4/ 生成要点：黄黑高对比配色；漫画分镜结构；底部 3-4 格补充过程感；人物表情必须夸张；产品大特写居中且诱发食欲；标题短促有力，四个字以内。\n\n5/ 商业价值：可直接交付新品宣传海报、公众号 banner、小红书封面、线下门店立牌、外卖平台活动图、三图轮播种草页，替代真人探店和复杂拍摄。\n\n6/ 不只适合吃的。收音机维修、庙会玩具鼓等，只要产品有体验感可以放大，都能套用。关键不是品类，而是找到值得夸张的瞬间。\n\n7/ 公式：夸张人物情绪 + 产品特写 + 黄黑漫画视觉 + 短促标题 + 分镜补充 = 低成本、高情绪、可批量复用的产品海报系统。",
+    "author": "@VigoCreativeAI"
+  },
+  {
+    "id": "itm_746a57cb829e4d33",
+    "title": "Created with GPT Image 2 on Chatgpt Prompt",
+    "slug": "created-with-gpt-image-2-on-chatgpt-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/DoctorAmna11/status/2061091854154883545",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_ae2ba7d371414df2",
+        "name": "x-status-2061091854154883545",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Prompt: Ultra-detailed 3D chibi miniature diorama, inspired by Pixar and modern collectible figurines. A cute stylish girl with long brown hair, oversized round glasses, big expressive eyes, wearing a black sleeveless top with small bow details, white trouser pant , white high heels, and a luxury quilted beige shoulder bag. She is sitting confidently while taking a selfie with a smartphone.\n\nThe scene is built on a wooden desktop platform featuring a personalized social media profile board(X) , aesthetic scrapbook elements, sticky notes with motivational quotes, miniature polaroid photos, books, coffee cup, notebook, pens, star decorations, heart icons, indoor plant, and tiny chibi versions of the same character in playful poses.\n\nWarm beige and brown color palette, cozy aesthetic vibes, soft cinematic lighting, realistic textures, depth of field, ultra-realistic 3D render, high detail, premium handcrafted figurine style, cute kawaii atmosphere, social media influencer theme, collectible toy display, professional studio quality, 8K resolution. Customizable text: Username:Doctoramna11 Followers:27.7K Quote: Your own quote Social platform:X Brand name: Ai Doctor",
+        "is_primary": true,
+        "id": "prm_34043ddfda0f45a8",
+        "item_id": "itm_746a57cb829e4d33",
+        "created_at": "2026-06-01T13:13:05.622640+00:00",
+        "updated_at": "2026-06-01T13:13:05.622640+00:00"
+      }
+    ],
+    "prompt_snippet": "Prompt: Ultra-detailed 3D chibi miniature diorama, inspired by Pixar and modern collectible figurines. A cute stylish girl with long brown hair, oversized round glasses, big expressive eyes, wearing a black sleeveless to",
+    "first_image": {
+      "id": "img_6c8770e9e28245ff",
+      "item_id": "itm_746a57cb829e4d33",
+      "original_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+      "thumb_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+      "preview_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+      "remote_url": null,
+      "width": 821,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:13:06.219432+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:13:05.622640+00:00",
+    "created_at": "2026-06-01T13:13:05.622640+00:00",
+    "images": [
+      {
+        "id": "img_6c8770e9e28245ff",
+        "item_id": "itm_746a57cb829e4d33",
+        "original_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+        "thumb_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+        "preview_path": "demo-data/media/img_6c8770e9e28245ff.webp",
+        "remote_url": null,
+        "width": 821,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:13:06.219432+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/DoctorAmna11/status/2061091854154883545\n\nAuthor: @DoctorAmna11\n\nOriginal tweet intro:\nCreated with GPT Image 2 on Chatgpt \n\nPrompt: Prompt: Ultra-detailed 3D chibi miniature diorama, inspired by Pixar and modern collectible figurines. A cute stylish girl with long brown hair, oversized round glasses, big expressive eyes, wearing a black sleeveless top with small bow details, white trouser pant , white high heels, and a luxury quilted beige shoulder bag. She is sitting confidently while taking a selfie with a smartphone.\n\nThe scene is built on a wooden desktop platform featuring a personalized social media profile board(X) , aesthetic scrapbook elements, sticky notes with motivational quotes, miniature polaroid photos, books, coffee cup, notebook, pens, star decorations, heart icons, indoor plant, and tiny chibi versions of the same character in playful poses.\n\nWarm beige and brown color palette, cozy aesthetic vibes, soft cinematic lighting, realistic textures, depth of field, ultra-realistic 3D render, high detail, premium handcrafted figurine style, cute kawaii atmosphere, social media influencer theme, collectible toy display, professional studio quality, 8K resolution. Customizable text: Username:Doctoramna11 Followers:27.7K Quote: Your own quote Social platform:X Brand name: Ai Doctor",
+    "author": "@DoctorAmna11"
+  },
+  {
+    "id": "itm_bab4edfc821848ae",
+    "title": "Created these city infographic style travel post Prompt",
+    "slug": "created-these-city-infographic-style-travel-post-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Noor_ul_ain43/status/2061313008022986804",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_af6d28b2eefb4385",
+        "name": "x-status-2061313008022986804",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Created these city infographic style travel posters using GPT Images 2. \n\nPrompt ⤵️ \nA highly detailed 3D pop-up travel diorama emerging from a torn world map, featuring four iconic global cities in one epic composition: London, Tokyo, Beijing, and Dubai. Large bold white 3D city names integrated into the scene. London section includes Big Ben, Tower Bridge, London Eye, and a red double-decker bus. Tokyo section includes Tokyo Skytree, Tokyo Tower, Shinkansen bullet train, cherry blossoms, and Mount Fuji. Beijing section includes the Forbidden City, Temple of Heaven, Great Wall of China, CCTV Headquarters, and Bird’s Nest Stadium. Dubai section includes Burj Khalifa, Burj Al Arab, Dubai Frame, Atlantis The Palm, luxury yachts, and palm trees. All landmarks arranged as miniature architectural masterpieces rising from a realistic folded world map with torn paper edges. Ultra-realistic textures, photorealistic CGI, travel-poster aesthetic, studio lighting, soft shadows, depth of field, vibrant colors, clean white background, intricate details, masterpiece, 8K, premium tourism advertisement, miniature world landmark showcase, breathtaking composition.",
+        "is_primary": true,
+        "id": "prm_0a44d2beea2f435c",
+        "item_id": "itm_bab4edfc821848ae",
+        "created_at": "2026-06-01T13:12:12.106628+00:00",
+        "updated_at": "2026-06-01T13:12:12.106628+00:00"
+      }
+    ],
+    "prompt_snippet": "Created these city infographic style travel posters using GPT Images 2. \n\nPrompt ⤵️ \nA highly detailed 3D pop-up travel diorama emerging from a torn world map, featuring four iconic global cities in one epic composition:",
+    "first_image": {
+      "id": "img_787f8ab088484966",
+      "item_id": "itm_bab4edfc821848ae",
+      "original_path": "demo-data/media/img_787f8ab088484966.webp",
+      "thumb_path": "demo-data/media/img_787f8ab088484966.webp",
+      "preview_path": "demo-data/media/img_787f8ab088484966.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 720,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:12:12.454233+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:12:12.106628+00:00",
+    "created_at": "2026-06-01T13:12:12.106628+00:00",
+    "images": [
+      {
+        "id": "img_787f8ab088484966",
+        "item_id": "itm_bab4edfc821848ae",
+        "original_path": "demo-data/media/img_787f8ab088484966.webp",
+        "thumb_path": "demo-data/media/img_787f8ab088484966.webp",
+        "preview_path": "demo-data/media/img_787f8ab088484966.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 720,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:12:12.454233+00:00"
+      },
+      {
+        "id": "img_fc24616744ed4bed",
+        "item_id": "itm_bab4edfc821848ae",
+        "original_path": "demo-data/media/img_fc24616744ed4bed.webp",
+        "thumb_path": "demo-data/media/img_fc24616744ed4bed.webp",
+        "preview_path": "demo-data/media/img_fc24616744ed4bed.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 720,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:12:12.732206+00:00"
+      },
+      {
+        "id": "img_e661a69244c841bd",
+        "item_id": "itm_bab4edfc821848ae",
+        "original_path": "demo-data/media/img_e661a69244c841bd.webp",
+        "thumb_path": "demo-data/media/img_e661a69244c841bd.webp",
+        "preview_path": "demo-data/media/img_e661a69244c841bd.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 720,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:12:13.016548+00:00"
+      },
+      {
+        "id": "img_f5f8442d51b14926",
+        "item_id": "itm_bab4edfc821848ae",
+        "original_path": "demo-data/media/img_f5f8442d51b14926.webp",
+        "thumb_path": "demo-data/media/img_f5f8442d51b14926.webp",
+        "preview_path": "demo-data/media/img_f5f8442d51b14926.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 720,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T13:12:13.281710+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Noor_ul_ain43/status/2061313008022986804\n\nAuthor: @Noor_ul_ain43\n\nOriginal tweet intro:\nCreated these city infographic style travel posters using GPT Images 2. \n\nPrompt ⤵️ \nA highly detailed 3D pop-up travel diorama emerging from a torn world map, featuring four iconic global cities in one epic composition: London, Tokyo, Beijing, and Dubai. Large bold white 3D city names integrated into the scene. London section includes Big Ben, Tower Bridge, London Eye, and a red double-decker bus. Tokyo section includes Tokyo Skytree, Tokyo Tower, Shinkansen bullet train, cherry blossoms, and Mount Fuji. Beijing section includes the Forbidden City, Temple of Heaven, Great Wall of China, CCTV Headquarters, and Bird’s Nest Stadium. Dubai section includes Burj Khalifa, Burj Al Arab, Dubai Frame, Atlantis The Palm, luxury yachts, and palm trees. All landmarks arranged as miniature architectural masterpieces rising from a realistic folded world map with torn paper edges. Ultra-realistic textures, photorealistic CGI, travel-poster aesthetic, studio lighting, soft shadows, depth of field, vibrant colors, clean white background, intricate details, masterpiece, 8K, premium tourism advertisement, miniature world landmark showcase, breathtaking composition.",
+    "author": "@Noor_ul_ain43"
+  },
+  {
+    "id": "itm_b8f689c9c1fa4b4b",
+    "title": "GPT2 童话版画提示词美学 Prompt",
+    "slug": "gpt2-童话版画提示词美学-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2061365472642429063",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c60f400efc054368",
+        "name": "x-status-2061365472642429063",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "⤵️\n\n```\n以輸入圖片的主體、動作和空間關係爲核心，生成一張童話版畫式圖像。先從畫面內容裏提煉一個大面積低明度或高反差結構場，讓它成爲包裹主體的容器、路徑、框架或密度層；主體以圖形重繪替代照片式細節，被壓縮成一兩個清楚的大體塊，用鈍拙的剪影、略誇張的比例和少量關鍵邊緣保留身份、動作、功能和情緒。最重要的信息只以小面積高飽和色塊出現，集中在面部、姿態、路徑、器物功能點、環境標識或敘事焦點上，並始終被深色結構或淺色負形壓住，讓畫面鮮豔但不平均。背景從輸入內容的空間和意義中生長出來，像故事發生的外殼一樣切住主體邊緣，形成遮擋、裁切、吞沒和局部露出的結構敘事。色彩保持三層關係，大面積暗結構色負責重量和邊界，適量淺色或留白負責呼吸，小面積高飽和情緒色負責讀圖路線和故事信號；色相隨主題的情緒溫度改變，但面積比例和明度秩序保持穩定。採用平面敘事透視，用俯視壓縮、側向移動、正面框架、路徑引導、尺度跳躍或邊緣裁切組織閱讀，空間呈現繪本頁面式平面層級。線條只在功能、路徑、邊界、紋理和識別處出現，保持稀疏、手繪、略不準的細線；所有色塊保持平面，但邊緣帶幹刷、顆粒、飛白、紙紋、噴點和輕微套印錯位，像絲網印刷與粉蠟筆共同完成的手工圖像。若需要文字，讓文字成爲畫面裏的小標識、物體面板或邊緣註釋，字形圓鈍、粗細略不均、密度低，服從圖形結構。整體保持低細節高識別、暗場包裹亮色信號、可愛敘事與厚重版畫並存的同一作者語言。",
+        "is_primary": true,
+        "id": "prm_d7cbb097c3e4478e",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "created_at": "2026-06-01T13:10:30.891828+00:00",
+        "updated_at": "2026-06-01T13:10:30.891828+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "⤵️\n\n```\n以输入图片的主体、动作和空间关系为核心，生成一张童话版画式图像。先从画面内容里提炼一个大面积低明度或高反差结构场，让它成为包裹主体的容器、路径、框架或密度层；主体以图形重绘替代照片式细节，被压缩成一两个清楚的大体块，用钝拙的剪影、略夸张的比例和少量关键边缘保留身份、动作、功能和情绪。最重要的信息只以小面积高饱和色块出现，集中在面部、姿态、路径、器物功能点、环境标识或叙事焦点上，并始终被深色结构或浅色负形压住，让画面鲜艳但不平均。背景从输入内容的空间和意义中生长出来，像故事发生的外壳一样切住主体边缘，形成遮挡、裁切、吞没和局部露出的结构叙事。色彩保持三层关系，大面积暗结构色负责重量和边界，适量浅色或留白负责呼吸，小面积高饱和情绪色负责读图路线和故事信号；色相随主题的情绪温度改变，但面积比例和明度秩序保持稳定。采用平面叙事透视，用俯视压缩、侧向移动、正面框架、路径引导、尺度跳跃或边缘裁切组织阅读，空间呈现绘本页面式平面层级。线条只在功能、路径、边界、纹理和识别处出现，保持稀疏、手绘、略不准的细线；所有色块保持平面，但边缘带干刷、颗粒、飞白、纸纹、喷点和轻微套印错位，像丝网印刷与粉蜡笔共同完成的手工图像。若需要文字，让文字成为画面里的小标识、物体面板或边缘注释，字形圆钝、粗细略不均、密度低，服从图形结构。整体保持低细节高识别、暗场包裹亮色信号、可爱叙事与厚重版画并存的同一作者语言。",
+        "is_primary": false,
+        "id": "prm_7a002540d96e4a0a",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "created_at": "2026-06-01T13:10:30.891828+00:00",
+        "updated_at": "2026-06-01T13:10:30.891828+00:00"
+      }
+    ],
+    "prompt_snippet": "⤵️\n\n```\n以輸入圖片的主體、動作和空間關係爲核心，生成一張童話版畫式圖像。先從畫面內容裏提煉一個大面積低明度或高反差結構場，讓它成爲包裹主體的容器、路徑、框架或密度層；主體以圖形重繪替代照片式細節，被壓縮成一兩個清楚的大體塊，用鈍拙的剪影、略誇張的比例和少量關鍵邊緣保留身份、動作、功能和情緒。最重要的信息只以小面積高飽和色塊出現，集中在面部、姿態、路徑、器物功能點、環境標識或敘事焦點上，並始終被深色結構或淺色負形壓住，讓畫面鮮豔但",
+    "first_image": {
+      "id": "img_d60d592a9a7149ea",
+      "item_id": "itm_b8f689c9c1fa4b4b",
+      "original_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+      "thumb_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+      "preview_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 572,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:10:31.061501+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:10:30.891828+00:00",
+    "created_at": "2026-06-01T13:10:30.891828+00:00",
+    "images": [
+      {
+        "id": "img_d60d592a9a7149ea",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "original_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+        "thumb_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+        "preview_path": "demo-data/media/img_d60d592a9a7149ea.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 572,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:10:31.061501+00:00"
+      },
+      {
+        "id": "img_eb224df2862541e3",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "original_path": "demo-data/media/img_eb224df2862541e3.webp",
+        "thumb_path": "demo-data/media/img_eb224df2862541e3.webp",
+        "preview_path": "demo-data/media/img_eb224df2862541e3.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:10:31.463406+00:00"
+      },
+      {
+        "id": "img_401738d10af149a2",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "original_path": "demo-data/media/img_401738d10af149a2.webp",
+        "thumb_path": "demo-data/media/img_401738d10af149a2.webp",
+        "preview_path": "demo-data/media/img_401738d10af149a2.webp",
+        "remote_url": null,
+        "width": 600,
+        "height": 337,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:10:31.519653+00:00"
+      },
+      {
+        "id": "img_853be243d0e346e9",
+        "item_id": "itm_b8f689c9c1fa4b4b",
+        "original_path": "demo-data/media/img_853be243d0e346e9.webp",
+        "thumb_path": "demo-data/media/img_853be243d0e346e9.webp",
+        "preview_path": "demo-data/media/img_853be243d0e346e9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T13:10:31.779003+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2061365472642429063\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 童话版画 x 提示词美学\n\n这是一个稍微厚重一点点的风格\n\n同样会加入后续skills样式中\n\n提示词 ⤵️\n\n```\n以输入图片的主体、动作和空间关系为核心，生成一张童话版画式图像。先从画面内容里提炼一个大面积低明度或高反差结构场，让它成为包裹主体的容器、路径、框架或密度层；主体以图形重绘替代照片式细节，被压缩成一两个清楚的大体块，用钝拙的剪影、略夸张的比例和少量关键边缘保留身份、动作、功能和情绪。最重要的信息只以小面积高饱和色块出现，集中在面部、姿态、路径、器物功能点、环境标识或叙事焦点上，并始终被深色结构或浅色负形压住，让画面鲜艳但不平均。背景从输入内容的空间和意义中生长出来，像故事发生的外壳一样切住主体边缘，形成遮挡、裁切、吞没和局部露出的结构叙事。色彩保持三层关系，大面积暗结构色负责重量和边界，适量浅色或留白负责呼吸，小面积高饱和情绪色负责读图路线和故事信号；色相随主题的情绪温度改变，但面积比例和明度秩序保持稳定。采用平面叙事透视，用俯视压缩、侧向移动、正面框架、路径引导、尺度跳跃或边缘裁切组织阅读，空间呈现绘本页面式平面层级。线条只在功能、路径、边界、纹理和识别处出现，保持稀疏、手绘、略不准的细线；所有色块保持平面，但边缘带干刷、颗粒、飞白、纸纹、喷点和轻微套印错位，像丝网印刷与粉蜡笔共同完成的手工图像。若需要文字，让文字成为画面里的小标识、物体面板或边缘注释，字形圆钝、粗细略不均、密度低，服从图形结构。整体保持低细节高识别、暗场包裹亮色信号、可爱叙事与厚重版画并存的同一作者语言。\n```",
+    "author": "@xiaoxiaodong01"
+  },
+  {
+    "id": "itm_5c19503d22144fc8",
+    "title": "Japanese Ink Wash Sumi-e Prompt",
+    "slug": "japanese-ink-wash-sumi-e-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/azed_ai/status/2061038997552664600",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_851088ce67cf4493",
+        "name": "x-status-2061038997552664600",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A traditional Japanese ink wash painting of a [subject], created in expressive sumi-e style with flowing black ink lines and delicate [color1] and [color2] watercolor tints. The pigments softly bleed into textured rice paper, evoking a sense of serenity and timeless beauty.\n\nCheck ATLs for inspiration ✨",
+        "is_primary": true,
+        "id": "prm_1cfe39c5d95b4bc5",
+        "item_id": "itm_5c19503d22144fc8",
+        "created_at": "2026-06-01T13:08:07.102652+00:00",
+        "updated_at": "2026-06-01T13:08:07.102652+00:00"
+      }
+    ],
+    "prompt_snippet": "A traditional Japanese ink wash painting of a [subject], created in expressive sumi-e style with flowing black ink lines and delicate [color1] and [color2] watercolor tints. The pigments softly bleed into textured rice p",
+    "first_image": {
+      "id": "img_660e4b8bb58c4e6f",
+      "item_id": "itm_5c19503d22144fc8",
+      "original_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+      "thumb_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+      "preview_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 600,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:08:07.288440+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:08:07.102652+00:00",
+    "created_at": "2026-06-01T13:08:07.102652+00:00",
+    "images": [
+      {
+        "id": "img_660e4b8bb58c4e6f",
+        "item_id": "itm_5c19503d22144fc8",
+        "original_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+        "thumb_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+        "preview_path": "demo-data/media/img_660e4b8bb58c4e6f.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:08:07.288440+00:00"
+      },
+      {
+        "id": "img_71f2293f23cd46ba",
+        "item_id": "itm_5c19503d22144fc8",
+        "original_path": "demo-data/media/img_71f2293f23cd46ba.webp",
+        "thumb_path": "demo-data/media/img_71f2293f23cd46ba.webp",
+        "preview_path": "demo-data/media/img_71f2293f23cd46ba.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:08:07.434402+00:00"
+      },
+      {
+        "id": "img_2cdf27b495bc4af6",
+        "item_id": "itm_5c19503d22144fc8",
+        "original_path": "demo-data/media/img_2cdf27b495bc4af6.webp",
+        "thumb_path": "demo-data/media/img_2cdf27b495bc4af6.webp",
+        "preview_path": "demo-data/media/img_2cdf27b495bc4af6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:08:07.563645+00:00"
+      },
+      {
+        "id": "img_e70b0dbf4f454e8c",
+        "item_id": "itm_5c19503d22144fc8",
+        "original_path": "demo-data/media/img_e70b0dbf4f454e8c.webp",
+        "thumb_path": "demo-data/media/img_e70b0dbf4f454e8c.webp",
+        "preview_path": "demo-data/media/img_e70b0dbf4f454e8c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 600,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T13:08:07.692099+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/azed_ai/status/2061038997552664600\n\nAuthor: @azed_ai\n\nOriginal tweet intro:\nPrompt share: Japanese ink wash\n\n💬Prompt:\nA traditional Japanese ink wash painting of a [subject], created in expressive sumi-e style with flowing black ink lines and delicate [color1] and [color2] watercolor tints. The pigments softly bleed into textured rice paper, evoking a sense of serenity and timeless beauty.\n\nCheck ATLs for inspiration ✨",
+    "author": "@azed_ai"
+  },
+  {
+    "id": "itm_8d9407a2c6014bbe",
+    "title": "Colored Letterforms Typography Prompt",
+    "slug": "colored-letterforms-typography-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/umesh_ai/status/2061007880158068923",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4ca7be62878a4b1c",
+        "name": "x-status-2061007880158068923",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Colored Letterforms!\n\nIt's amazing what can be created with GPT Images 2.0!",
+        "is_primary": true,
+        "id": "prm_775817dbd5e94e7e",
+        "item_id": "itm_8d9407a2c6014bbe",
+        "created_at": "2026-06-01T13:06:35.675113+00:00",
+        "updated_at": "2026-06-01T13:06:35.675113+00:00"
+      }
+    ],
+    "prompt_snippet": "Colored Letterforms!\n\nIt's amazing what can be created with GPT Images 2.0!",
+    "first_image": {
+      "id": "img_119e992c74624b6e",
+      "item_id": "itm_8d9407a2c6014bbe",
+      "original_path": "demo-data/media/img_119e992c74624b6e.webp",
+      "thumb_path": "demo-data/media/img_119e992c74624b6e.webp",
+      "preview_path": "demo-data/media/img_119e992c74624b6e.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 675,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T13:06:36.048696+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T13:06:35.675113+00:00",
+    "created_at": "2026-06-01T13:06:35.675113+00:00",
+    "images": [
+      {
+        "id": "img_119e992c74624b6e",
+        "item_id": "itm_8d9407a2c6014bbe",
+        "original_path": "demo-data/media/img_119e992c74624b6e.webp",
+        "thumb_path": "demo-data/media/img_119e992c74624b6e.webp",
+        "preview_path": "demo-data/media/img_119e992c74624b6e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T13:06:36.048696+00:00"
+      },
+      {
+        "id": "img_871fac24a2734d43",
+        "item_id": "itm_8d9407a2c6014bbe",
+        "original_path": "demo-data/media/img_871fac24a2734d43.webp",
+        "thumb_path": "demo-data/media/img_871fac24a2734d43.webp",
+        "preview_path": "demo-data/media/img_871fac24a2734d43.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T13:06:36.291276+00:00"
+      },
+      {
+        "id": "img_dae2e813b8754d50",
+        "item_id": "itm_8d9407a2c6014bbe",
+        "original_path": "demo-data/media/img_dae2e813b8754d50.webp",
+        "thumb_path": "demo-data/media/img_dae2e813b8754d50.webp",
+        "preview_path": "demo-data/media/img_dae2e813b8754d50.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T13:06:36.535231+00:00"
+      },
+      {
+        "id": "img_534b3f2f637f46d1",
+        "item_id": "itm_8d9407a2c6014bbe",
+        "original_path": "demo-data/media/img_534b3f2f637f46d1.webp",
+        "thumb_path": "demo-data/media/img_534b3f2f637f46d1.webp",
+        "preview_path": "demo-data/media/img_534b3f2f637f46d1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 675,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T13:06:36.788417+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/umesh_ai/status/2061007880158068923\n\nAuthor: @umesh_ai\n\nOriginal tweet intro:\nColored Letterforms!\n\nIt's amazing what can be created with GPT Images 2.0!",
+    "author": "@umesh_ai"
+  },
+  {
+    "id": "itm_2191c47b00114f3b",
+    "title": "户外活动通知信息长图 Prompt",
+    "slug": "户外活动通知信息长图-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/VigoCreativeAI/status/2061000589207871927",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_6548abea7ce545d4",
+        "name": "x-status-2061000589207871927",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "夏天一到，戶外羣最頭疼的事——\n\n每次活動都要發一大段文字：路線、集合點、裝備清單、注意事項。發完根本沒人看。\n\n後來我把通知全做成了長圖。\n\n一張圖，所有信息都在裏面。\n\n皮划艇出海、夜騎路線、野營食譜、雪板調校——怎麼走、帶什麼、天氣怎麼樣、安全要注意什麼，一眼看完。\n\n發到羣裏，再也沒人問過\"幾點集合\"。",
+        "is_primary": true,
+        "id": "prm_f081824b93ff48e6",
+        "item_id": "itm_2191c47b00114f3b",
+        "created_at": "2026-06-01T12:41:26.726470+00:00",
+        "updated_at": "2026-06-01T12:41:26.726470+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "夏天一到，户外群最头疼的事——\n\n每次活动都要发一大段文字：路线、集合点、装备清单、注意事项。发完根本没人看。\n\n后来我把通知全做成了长图。\n\n一张图，所有信息都在里面。\n\n皮划艇出海、夜骑路线、野营食谱、雪板调校——怎么走、带什么、天气怎么样、安全要注意什么，一眼看完。\n\n发到群里，再也没人问过\"几点集合\"。",
+        "is_primary": false,
+        "id": "prm_e34db2fc7a7e47cc",
+        "item_id": "itm_2191c47b00114f3b",
+        "created_at": "2026-06-01T12:41:26.726470+00:00",
+        "updated_at": "2026-06-01T12:41:26.726470+00:00"
+      }
+    ],
+    "prompt_snippet": "夏天一到，戶外羣最頭疼的事——\n\n每次活動都要發一大段文字：路線、集合點、裝備清單、注意事項。發完根本沒人看。\n\n後來我把通知全做成了長圖。\n\n一張圖，所有信息都在裏面。\n\n皮划艇出海、夜騎路線、野營食譜、雪板調校——怎麼走、帶什麼、天氣怎麼樣、安全要注意什麼，一眼看完。\n\n發到羣裏，再也沒人問過\"幾點集合\"。",
+    "first_image": {
+      "id": "img_63ae757065874bbf",
+      "item_id": "itm_2191c47b00114f3b",
+      "original_path": "demo-data/media/img_63ae757065874bbf.webp",
+      "thumb_path": "demo-data/media/img_63ae757065874bbf.webp",
+      "preview_path": "demo-data/media/img_63ae757065874bbf.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T12:41:27.022901+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T12:41:26.726470+00:00",
+    "created_at": "2026-06-01T12:41:26.726470+00:00",
+    "images": [
+      {
+        "id": "img_63ae757065874bbf",
+        "item_id": "itm_2191c47b00114f3b",
+        "original_path": "demo-data/media/img_63ae757065874bbf.webp",
+        "thumb_path": "demo-data/media/img_63ae757065874bbf.webp",
+        "preview_path": "demo-data/media/img_63ae757065874bbf.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T12:41:27.022901+00:00"
+      },
+      {
+        "id": "img_d2262578c0ed40dd",
+        "item_id": "itm_2191c47b00114f3b",
+        "original_path": "demo-data/media/img_d2262578c0ed40dd.webp",
+        "thumb_path": "demo-data/media/img_d2262578c0ed40dd.webp",
+        "preview_path": "demo-data/media/img_d2262578c0ed40dd.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T12:41:27.278325+00:00"
+      },
+      {
+        "id": "img_1551640926f94701",
+        "item_id": "itm_2191c47b00114f3b",
+        "original_path": "demo-data/media/img_1551640926f94701.webp",
+        "thumb_path": "demo-data/media/img_1551640926f94701.webp",
+        "preview_path": "demo-data/media/img_1551640926f94701.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T12:41:27.548830+00:00"
+      },
+      {
+        "id": "img_b9eb10517e124160",
+        "item_id": "itm_2191c47b00114f3b",
+        "original_path": "demo-data/media/img_b9eb10517e124160.webp",
+        "thumb_path": "demo-data/media/img_b9eb10517e124160.webp",
+        "preview_path": "demo-data/media/img_b9eb10517e124160.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T12:41:27.829317+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/VigoCreativeAI/status/2061000589207871927\n\nAuthor: @VigoCreativeAI\n\nOriginal tweet intro:\n夏天一到，户外群最头疼的事——\n\n每次活动都要发一大段文字：路线、集合点、装备清单、注意事项。发完根本没人看。\n\n后来我把通知全做成了长图。\n\n一张图，所有信息都在里面。\n\n皮划艇出海、夜骑路线、野营食谱、雪板调校——怎么走、带什么、天气怎么样、安全要注意什么，一眼看完。\n\n发到群里，再也没人问过\"几点集合\"。",
+    "author": "@VigoCreativeAI"
+  },
+  {
+    "id": "itm_ad5088c1bb7048a7",
+    "title": "城市味觉档案 9:16 四城美食海报 Prompt",
+    "slug": "城市味觉档案-9-16-四城美食海报-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2061033073995571427",
+    "cluster": {
+      "id": "clu_8176fc2bcc034dc3",
+      "name": "Food & culture infographic",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e699ed09c04a40ce",
+        "name": "x-status-2061033073995571427",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "《城市味覺檔案》海報簡版提示詞：\n\n生成一張《城市味覺檔案 City Flavor Archive》系列海報，主題爲“One City, One Dish / 一城一菜”。\n\n城市：【城市名】\n代表菜：【菜品名】\n品牌名：【品牌名】\n主標題：【城市名】你好\n口號：【口號文案】\n印章文字：【印章文字】\n英文輔助：HELLO 【城市英文名】 / ONE CITY ONE DISH\n畫幅比例：4:5 豎版\n\n畫面要求：\n前景放置一道真實、有食慾、清晰明亮的【菜品名】，作爲畫面最大視覺主體，佔據下半部分，食材、醬汁、熱氣、配料和器皿質感要明顯，菜品要比背景更鮮明。\n\n背景使用【城市名】代表性地標建築羣，採用“主地標 + 半透明副地標 + 城市遠景”的層疊結構，形成城市舊影和地標羣氛圍。背景帶有舊紙張、舊牆面、半調網點、顆粒印刷、斑駁肌理和復古海報質感，但這些質感主要作用於背景，不要壓暗菜品。\n\n文字只保留核心信息：大標題“【城市名】你好”、菜品名、品牌名、手寫體口號、小紅印章、少量英文輔助。不要出現日期，不要堆滿小字。大標題要用亮米白或暖白書法字，和背景形成強對比。\n\n整體風格：高級餐飲品牌海報、城市風味視覺檔案、地方文化、復古印刷、地標疊影、真實美食攝影、時尚專業、有層次感。不要做成菜單、廉價促銷圖、卡通圖、四宮格或多圖合併。",
+        "is_primary": true,
+        "id": "prm_1197f88a4dcc4fcf",
+        "item_id": "itm_ad5088c1bb7048a7",
+        "created_at": "2026-06-01T12:39:37.796913+00:00",
+        "updated_at": "2026-06-01T12:39:37.796913+00:00"
+      }
+    ],
+    "prompt_snippet": "《城市味覺檔案》海報簡版提示詞：\n\n生成一張《城市味覺檔案 City Flavor Archive》系列海報，主題爲“One City, One Dish / 一城一菜”。\n\n城市：【城市名】\n代表菜：【菜品名】\n品牌名：【品牌名】\n主標題：【城市名】你好\n口號：【口號文案】\n印章文字：【印章文字】\n英文輔助：HELLO 【城市英文名】 / ONE CITY ONE DISH\n畫幅比例：4:5 豎版\n\n畫面要求：\n前景放置一道真實、有食",
+    "first_image": {
+      "id": "img_a3e3b15f1a2843e2",
+      "item_id": "itm_ad5088c1bb7048a7",
+      "original_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+      "thumb_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+      "preview_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+      "remote_url": null,
+      "width": 788,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-01T12:39:38.263799+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-01T12:39:37.796913+00:00",
+    "created_at": "2026-06-01T12:39:37.796913+00:00",
+    "images": [
+      {
+        "id": "img_a3e3b15f1a2843e2",
+        "item_id": "itm_ad5088c1bb7048a7",
+        "original_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+        "thumb_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+        "preview_path": "demo-data/media/img_a3e3b15f1a2843e2.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-01T12:39:38.263799+00:00"
+      },
+      {
+        "id": "img_517749e3be0b4fda",
+        "item_id": "itm_ad5088c1bb7048a7",
+        "original_path": "demo-data/media/img_517749e3be0b4fda.webp",
+        "thumb_path": "demo-data/media/img_517749e3be0b4fda.webp",
+        "preview_path": "demo-data/media/img_517749e3be0b4fda.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-01T12:39:38.582381+00:00"
+      },
+      {
+        "id": "img_193251805dd6432d",
+        "item_id": "itm_ad5088c1bb7048a7",
+        "original_path": "demo-data/media/img_193251805dd6432d.webp",
+        "thumb_path": "demo-data/media/img_193251805dd6432d.webp",
+        "preview_path": "demo-data/media/img_193251805dd6432d.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-01T12:39:38.893653+00:00"
+      },
+      {
+        "id": "img_8c962e5f65ec4f8e",
+        "item_id": "itm_ad5088c1bb7048a7",
+        "original_path": "demo-data/media/img_8c962e5f65ec4f8e.webp",
+        "thumb_path": "demo-data/media/img_8c962e5f65ec4f8e.webp",
+        "preview_path": "demo-data/media/img_8c962e5f65ec4f8e.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-01T12:39:39.183178+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2061033073995571427\n\nAuthor: @MrLarus\n\nOriginal tweet intro:\n💥用ChatGPT-Image2生成《城市味觉档案》，9比16视觉暴击！\n\n把城市记忆、地方菜、品牌海报、复古印刷感放进同一个画面里：\n1、成都麻婆豆腐\n2、兰州牛肉面\n3、台南蚵仔煎\n4、长沙臭豆腐\n很适合做餐饮品牌视觉、城市美食宣传、文旅主题等内容！\n\n提示词参考引用推👇",
+    "author": "@MrLarus"
+  },
+  {
     "id": "itm_8aa67551d3c44ae3",
     "title": "疯狂星期四做人像封面，越做越觉得离谱。 Prompt",
     "slug": "疯狂星期四做人像封面-越做越觉得离谱-prompt",

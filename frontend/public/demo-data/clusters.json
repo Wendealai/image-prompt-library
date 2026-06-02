@@ -726,8 +726,9 @@
     "name": "Food & culture infographic",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_a3e3b15f1a2843e2.webp",
       "demo-data/media/img_e129cb4b01724909.webp",
       "demo-data/media/img_7cfcc1d87be24c23.webp"
     ]

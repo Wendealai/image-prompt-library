@@ -183,7 +183,41 @@ def _download(url: str, destination: Path) -> None:
         destination.write_bytes(response.read())
 
 
-def _manifest_for(url: str, output_dir: Path, *, dry_run: bool) -> tuple[Path, dict[str, Any]]:
+def _prompt_override_from_item(item_id: str, library_path: Path) -> dict[str, str]:
+    import sqlite3
+
+    db_path = library_path / "db.sqlite"
+    with sqlite3.connect(db_path) as conn:
+        conn.row_factory = sqlite3.Row
+        row = conn.execute(
+            """
+            SELECT p.language, p.text, c.name AS cluster_name
+            FROM items i
+            JOIN prompts p ON p.item_id = i.id
+            LEFT JOIN clusters c ON c.id = i.cluster_id
+            WHERE i.id = ?
+            ORDER BY p.is_primary DESC, p.created_at ASC
+            LIMIT 1
+            """,
+            (item_id,),
+        ).fetchone()
+    if not row:
+        raise RuntimeError(f"Prompt source item not found: {item_id}")
+    return {
+        "prompt_language": row["language"],
+        "prompt_text": row["text"],
+        "cluster_name": row["cluster_name"] or "",
+    }
+
+
+def _manifest_for(
+    url: str,
+    output_dir: Path,
+    *,
+    dry_run: bool,
+    prompt_override: dict[str, str] | None = None,
+    title_override: str | None = None,
+) -> tuple[Path, dict[str, Any]]:
     raw = _gallery_json(url)
     tweet_meta: dict[str, Any] | None = None
     photos: list[tuple[str, dict[str, Any]]] = []
@@ -208,7 +242,7 @@ def _manifest_for(url: str, output_dir: Path, *, dry_run: bool) -> tuple[Path, d
     handle = author_data.get("name") if isinstance(author_data, dict) else None
     author = f"@{handle.lstrip('@')}" if isinstance(handle, str) and handle else None
     media_meta = [item for _, item in photos]
-    prompt = _prompt_text(tweet_meta, media_meta, status)
+    prompt = prompt_override.get("prompt_text") if prompt_override else _prompt_text(tweet_meta, media_meta, status)
     if not prompt:
         raise RuntimeError("No prompt text found.")
 
@@ -225,12 +259,13 @@ def _manifest_for(url: str, output_dir: Path, *, dry_run: bool) -> tuple[Path, d
     tags = ["X source", f"x-status-{status}", "GPT Image 2"]
     manifest = {
         "source_url": source_url,
-        "title": _title(tweet_meta, prompt, status),
+        "title": title_override or _title(tweet_meta, prompt, status),
         "author": author,
         "model": "ChatGPT Image2",
-        "prompt_language": _language(tweet_meta),
+        "prompt_language": (prompt_override or {}).get("prompt_language") or _language(tweet_meta),
         "prompt_text": prompt,
         "tweet_intro": _clean_text(tweet_meta.get("content")),
+        "cluster_name": (prompt_override or {}).get("cluster_name") or None,
         "tags": tags,
         "image_filename_prefix": f"{(handle or 'x').lstrip('@').lower()}-{status}",
         "images": images,
@@ -256,6 +291,8 @@ def main() -> int:
     parser.add_argument("--url-file", type=Path, action="append")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR / datetime.now().strftime("%Y%m%d-%H%M%S"))
     parser.add_argument("--library")
+    parser.add_argument("--prompt-from-item-id", help="Reuse the primary prompt and collection from an existing item")
+    parser.add_argument("--title", help="Override the imported item title")
     parser.add_argument("--after-import", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -266,11 +303,18 @@ def main() -> int:
 
     importer = _load_importer()
     library_path = importer._library_path(args.library)
+    prompt_override = _prompt_override_from_item(args.prompt_from_item_id, library_path) if args.prompt_from_item_id else None
     results: list[dict[str, Any]] = []
     created = 0
     for url in urls:
         try:
-            manifest_path, manifest = _manifest_for(url, args.output_dir.resolve(), dry_run=args.dry_run)
+            manifest_path, manifest = _manifest_for(
+                url,
+                args.output_dir.resolve(),
+                dry_run=args.dry_run,
+                prompt_override=prompt_override,
+                title_override=args.title,
+            )
             result: dict[str, Any] = {
                 "url": url,
                 "manifest": str(manifest_path),
