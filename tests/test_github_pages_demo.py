@@ -56,16 +56,15 @@ def test_github_pages_workflow_deploys_versioned_demo_builds():
     assert "actions/deploy-pages" in text
     assert "fetch-depth: 0" in text
     assert "LEGACY_DEMO_REF: v0.1.0-alpha" in text
+    assert "CUSTOM_DOMAIN: prompt.wendealai.com" in text
     assert "MOBILE_PREVIEW_PATH: v0.2" in text
     assert "VITE_DEMO_ASSET_VERSION=${GITHUB_SHA}" in text
-    assert "VITE_BASE_PATH=/image-prompt-library/${MOBILE_PREVIEW_PATH}/ npm run build" in text
+    assert "VITE_BASE_PATH=/ npm run build" in text
     assert "git worktree add .page-build/${LEGACY_DEMO_PATH} ${LEGACY_DEMO_REF}" in text
-    assert "VITE_BASE_PATH=/image-prompt-library/${LEGACY_DEMO_PATH}/ npm run build" in text
+    assert "VITE_BASE_PATH=/${LEGACY_DEMO_PATH}/ npm run build" in text
     assert ".pages-artifact/${MOBILE_PREVIEW_PATH}" in text
     assert ".pages-artifact/${LEGACY_DEMO_PATH}" in text
-    assert "Choose a preview" in text
-    assert "Mobile browsing preview" in text
-    assert "Original alpha demo" in text
+    assert 'echo "${CUSTOM_DOMAIN}" > .pages-artifact/CNAME' in text
     assert "path: .pages-artifact" in text
 
 

@@ -11,7 +11,7 @@ ChatGPT image generation has become good enough that the prompts are worth keepi
 
 Your library stays on your own machine: local SQLite, local image files, no accounts, no cloud sync, and no hosted database required.
 
-**Online sandbox:** <https://prompt.wendealai.com/> — a read-only GitHub Pages version chooser using public sample prompts. The current 0.2 preview is available at <https://prompt.wendealai.com/v0.2/>, with the original 0.1 alpha archived at <https://prompt.wendealai.com/v0.1/>. Sandbox images are compressed for web preview; run the app locally to create your own private full library.
+**Online sandbox:** <https://prompt.wendealai.com/> — a read-only GitHub Pages demo using public sample prompts. The current prompt library opens at the root domain, the same build remains available at <https://prompt.wendealai.com/v0.2/>, and the original 0.1 alpha is archived at <https://prompt.wendealai.com/v0.1/>. Sandbox images are compressed for web preview; run the app locally to create your own private full library.
 
 **Alpha release:** <https://github.com/EddieTYP/image-prompt-library/releases/tag/v0.2.0-alpha> — refreshes Cards browsing, mobile layout behavior, adaptive image display, and versioned public previews.
 
@@ -343,10 +343,10 @@ npm run build:demo
 npm run build:demo:v0.2
 ```
 
-The public Pages deployment is versioned:
+The public Pages deployment serves the current demo at the custom domain root while keeping versioned compatibility paths:
 
-- `/` — version chooser
-- `/v0.2/` — current 0.2 preview
+- `/` — current prompt library demo
+- `/v0.2/` — current 0.2 preview compatibility path
 - `/v0.1/` — archived 0.1 alpha demo
 
 The demos read public sample metadata from `frontend/public/demo-data/`, use compressed WebP preview images, and disable write actions. They are intended only as online sandboxes; run the local app to create and manage your own private prompt library.
