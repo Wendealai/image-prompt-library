@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/Artedeingenio/status/2061738752288903310",
+  "source_name": "X / Artedeingenio",
+  "title": "This Midjourney V7 style reference has quickly become one of my favorite",
+  "author": "OscarAI (@Artedeingenio)",
+  "model": "Midjourney V7",
+  "prompt_language": "en",
+  "prompt_text": "This Midjourney V7 style reference has quickly become one of my favorites for creating warm, story-driven illustrations:\n\n--sref 683662503\n\nThis style blends children's book illustration, urban sketching, and classic European editorial art into a visual language that feels both nostalgic and refreshingly modern.\n\nEvery scene looks spontaneous, warm, and full of life.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061738752288903310",
+    "midjourney-sref",
+    "storybook",
+    "urban-sketch"
+  ],
+  "tweet_intro": "This Midjourney V7 style reference has quickly become one of my favorites for creating warm, story-driven illustrations:\n\n--sref 683662503\n\nThis style blends children's book illustration, urban sketching, and classic European editorial art into a visual language that feels both nostalgic and refreshingly modern.\n\nEvery scene looks spontaneous, warm, and full of life.",
+  "notes": "No separate prompt label was present; imported the visible Midjourney style-reference text verbatim.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-artedeingenio-2061738752288903310",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzEXrnWQAAFVRk.jpg?name=orig",
+      "filename": "x-artedeingenio-2061738752288903310-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzEYydXAAAsEtU.jpg?name=orig",
+      "filename": "x-artedeingenio-2061738752288903310-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzEZtjWMAEVk3X.jpg?name=orig",
+      "filename": "x-artedeingenio-2061738752288903310-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzEan0XEAArJRe.jpg?name=orig",
+      "filename": "x-artedeingenio-2061738752288903310-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 5 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"phrase_01\" group=\"absorbed_keyword\" label=\"This Midjourney V7 style reference h…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]This Midjourney V7 style reference has quickly become one of my favorites for creating warm[[/slot]], story-driven illustrations:\n\n--sref 683662503\n\n[[slot id=\"phrase_03\" group=\"absorbed_keyword\" label=\"This style blends children's book il…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]This style blends children's book illustration[[/slot]], urban sketching, [[slot id=\"phrase_04\" group=\"absorbed_keyword\" label=\"and classic European editorial art i…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and classic European editorial art into a visual language that feels both nostalgic and refreshingly modern.[[/slot]]\n\n[[slot id=\"phrase_05\" group=\"absorbed_keyword\" label=\"Every scene looks spontaneous\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]Every scene looks spontaneous[[/slot]], warm, [[slot id=\"phrase_06\" group=\"absorbed_keyword\" label=\"and full of life.\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and full of life.[[/slot]]"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "source_url": "https://x.com/VigoCreativeAI/status/2061813084986216701",
+  "source_name": "X / VigoCreativeAI",
+  "title": "AI 建筑外景时装大片，可复用 Zara / COS / Theory 官网首屏风格模板",
+  "author": "Vigo Zhao (@VigoCreativeAI)",
+  "model": "GPT Image 2 / Nano Banana Pro",
+  "prompt_language": "en",
+  "prompt_text": "Create a high-end fashion campaign hero image for a modern apparel brand, inspired by Zara, COS, and Theory homepage editorials. Shoot two fashion models on monumental modernist stone stairs outside a contemporary museum or civic building. Use a low-angle wide lens, strong architectural lines, bright clear daylight, warm stone textures, clean blue sky, confident editorial poses, premium minimalist tailoring in black, ivory, camel, and sheer outer layers. Keep the composition 16:9 horizontal, ultra-photorealistic, polished commercial fashion photography, crisp fabric detail, realistic skin, controlled shadows, spacious negative sky, no logos, no text, no watermark.",
+  "cluster_name": "Fashion & Editorial",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061813084986216701",
+    "reconstructed-prompt",
+    "fashion-editorial",
+    "architecture-exterior",
+    "commercial-photography"
+  ],
+  "tweet_intro": "评论区有人问：能不能用 AI 做那种建筑外景的时装大片？\n\n就是 Zara、COS、Theory 官网首屏那种。\n\n做了一组，4 个场景，零摄影师，零模特。\n\n拆一下 👇🧵",
+  "notes": "Public fxtwitter metadata exposed the source status text and four sample images, but did not expose the comment/thread prompt. Public search also surfaced the author's AI-Visual-Prompt-Cookbook, but its Luxury Perspective Checkerboard Editorial style does not match these architecture-exterior fashion samples. This manifest therefore stores a clearly labeled reconstruction derived from the source status text and visible sample images, not a verified verbatim comment prompt.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation with provenance caveat.",
+  "image_filename_prefix": "x-vigocreativeai-2061813084986216701",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0IA4EbEAAHs0z.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061813084986216701-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0IA4EbMAAFoi9.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061813084986216701-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0IA4Ja4AAXHV2.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061813084986216701-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0IA4HaIAASncP.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061813084986216701-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status and sample images because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.66,
+    "analysis_notes": "Manual absorption. Template has 12 replaceable slots for brand reference, subject count, architecture, camera, lighting, styling, palette, composition, quality, aspect ratio, and output constraints.",
+    "marked_text": "Create a [[slot id=\"campaign_level\" group=\"style\" label=\"Campaign level\" variable_type=\"style\" input_hint=\"high-end fashion campaign, quiet luxury lookbook, premium resort campaign\" instruction=\"Replace the commercial/editorial level.\"]]high-end fashion campaign[[/slot]] hero image for a [[slot id=\"brand_type\" group=\"subject\" label=\"Brand type\" variable_type=\"subject\" input_hint=\"modern apparel brand, luxury eyewear house, minimalist footwear label\" instruction=\"Replace the brand or product category.\"]]modern apparel brand[[/slot]], inspired by [[slot id=\"brand_references\" group=\"style\" label=\"Brand references\" variable_type=\"style\" input_hint=\"Zara, COS, Theory / The Row, Toteme, Jil Sander\" instruction=\"Replace the style references while avoiding real logos.\"]]Zara, COS, and Theory homepage editorials[[/slot]]. Shoot [[slot id=\"model_count\" group=\"subject\" label=\"Model count\" variable_type=\"subject\" input_hint=\"one model, two fashion models, a small group of models\" instruction=\"Replace the number/type of people or subjects.\"]]two fashion models[[/slot]] on [[slot id=\"architecture_setting\" group=\"setting\" label=\"Architecture setting\" variable_type=\"setting\" input_hint=\"monumental stone stairs, concrete colonnade, glass museum terrace\" instruction=\"Replace the exterior architecture and location.\"]]monumental modernist stone stairs outside a contemporary museum or civic building[[/slot]]. Use a [[slot id=\"camera\" group=\"composition\" label=\"Camera\" variable_type=\"composition\" input_hint=\"low-angle wide lens, long-lens compression, eye-level editorial framing\" instruction=\"Replace camera perspective and lens language.\"]]low-angle wide lens[[/slot]], [[slot id=\"geometry\" group=\"composition\" label=\"Geometry\" variable_type=\"composition\" input_hint=\"strong architectural lines, clean horizontal terraces, rhythmic columns\" instruction=\"Replace the spatial geometry.\"]]strong architectural lines[[/slot]], [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" input_hint=\"bright clear daylight, golden-hour side light, soft overcast luxury light\" instruction=\"Replace lighting conditions.\"]]bright clear daylight[[/slot]], [[slot id=\"materials\" group=\"setting\" label=\"Materials\" variable_type=\"material\" input_hint=\"warm stone textures, smooth concrete, pale limestone and glass\" instruction=\"Replace architectural material cues.\"]]warm stone textures[[/slot]], [[slot id=\"sky\" group=\"setting\" label=\"Sky/background\" variable_type=\"setting\" input_hint=\"clean blue sky, pale overcast sky, blank white architectural void\" instruction=\"Replace background atmosphere.\"]]clean blue sky[[/slot]], [[slot id=\"poses\" group=\"subject\" label=\"Poses\" variable_type=\"composition\" input_hint=\"confident editorial poses, walking lookbook poses, quiet luxury stillness\" instruction=\"Replace model posing.\"]]confident editorial poses[[/slot]], [[slot id=\"wardrobe\" group=\"style\" label=\"Wardrobe\" variable_type=\"style\" input_hint=\"premium minimalist tailoring, sculptural linen pieces, monochrome workwear\" instruction=\"Replace wardrobe direction.\"]]premium minimalist tailoring[[/slot]] in [[slot id=\"palette\" group=\"color\" label=\"Palette\" variable_type=\"color\" input_hint=\"black, ivory, camel, and sheer outer layers / charcoal, sand, white, olive\" instruction=\"Replace color palette and fabrics.\"]]black, ivory, camel, and sheer outer layers[[/slot]]. Keep the composition [[slot id=\"aspect_ratio\" group=\"output\" label=\"Aspect ratio\" variable_type=\"constraint\" input_hint=\"16:9 horizontal, 4:5 vertical, 3:2 editorial crop\" instruction=\"Replace output aspect ratio.\"]]16:9 horizontal[[/slot]], [[slot id=\"render_quality\" group=\"quality\" label=\"Render quality\" variable_type=\"quality\" input_hint=\"ultra-photorealistic, polished commercial fashion photography, crisp fabric detail\" instruction=\"Replace final rendering quality.\"]]ultra-photorealistic, polished commercial fashion photography, crisp fabric detail[[/slot]], realistic skin, controlled shadows, spacious negative sky, [[slot id=\"constraints\" group=\"constraints\" label=\"Constraints\" variable_type=\"constraint\" input_hint=\"no logos, no text, no watermark / no brand marks, no price tags\" instruction=\"Replace output restrictions.\"]]no logos, no text, no watermark[[/slot]]."
+  }
+}

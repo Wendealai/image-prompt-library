@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062107637727334822",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "像素肌理信息图海报模板",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "围绕具体主题内容生成一张像素肌理海报。画面把主题压缩成大尺度图像场，并叠加像素颗粒、低分辨率边缘、硬切色块、马赛克台阶、方块断裂、游魂般的细线和被采样后的锯齿轮廓。主体从画幅边缘涌入并被大胆裁切，内部保留低对比影像碎片、扫描颗粒、半调噪声和材料残影；背景使用高明度纸面或冷静底色反向切入主体，形成空白刀口、曲折路径和信息窗口。色彩从主题情绪中自动提取，保持大块结构色、大块空白和少量高对比信息色之间的功能分工。文字像信息图海报的元数据，沿留白窗口、色场边界、切口节点和底部边缘分散布置，使用窄身现代无衬线字体。整体表面有丝网印刷、专色叠印、扫描输出和旧纸轻微不均匀质感，既有远距离的大图形冲击，也有近距离阅读的精密秩序。比例 16:9。",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062107637727334822",
+    "reconstructed-prompt",
+    "pixel-texture",
+    "poster"
+  ],
+  "tweet_intro": "GPT2 x 像素肌理 x 海报 x 提示词美学\n\n今日本人最佳提示词，来了\n\n就是这套像素灵感的\n\n其中的像素+一个游魂级别的线条，很靓\n\n提示词见评论区 ⤵️",
+  "notes": "Public mirrors exposed source text and sample images, but not the comment prompt. This is a clearly labeled reconstruction, informed by the quoted earlier pixel-glitch template and visible samples.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062107637727334822",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4T5NoaUAAZV3p.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062107637727334822-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4T6fnaEAAp6at.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062107637727334822-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4T7iMbwAAQB52.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062107637727334822-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4T8nFbkAAYbSy.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062107637727334822-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status, sample images, and related quoted pixel-glitch template because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.58,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "围绕[[slot id=\"theme\" group=\"concept\" label=\"主题\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]具体主题内容[[/slot]]生成一张[[slot id=\"style\" group=\"style\" label=\"风格\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]像素肌理海报[[/slot]]。画面把主题压缩成大尺度图像场，并叠加[[slot id=\"pixel_elements\" group=\"style\" label=\"像素元素\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]像素颗粒、低分辨率边缘、硬切色块、马赛克台阶、方块断裂、游魂般的细线和被采样后的锯齿轮廓[[/slot]]。主体从画幅边缘涌入并被大胆裁切，内部保留低对比影像碎片、扫描颗粒、半调噪声和材料残影；背景使用高明度纸面或冷静底色反向切入主体，形成空白刀口、曲折路径和信息窗口。色彩从主题情绪中自动提取，保持大块结构色、大块空白和少量高对比信息色之间的功能分工。文字像信息图海报的元数据，沿留白窗口、色场边界、切口节点和底部边缘分散布置，使用窄身现代无衬线字体。整体表面有丝网印刷、专色叠印、扫描输出和旧纸轻微不均匀质感，既有远距离的大图形冲击，也有近距离阅读的精密秩序。比例 [[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]16:9[[/slot]]。"
+  }
+}

@@ -24,7 +24,7 @@ def test_github_pages_demo_mode_uses_static_data_and_base_path():
     assert "demoUrl" in demo
     assert '"build:demo"' in package_json
     assert "VITE_DEMO_MODE=true" in package_json
-    assert "VITE_BASE_PATH=/image-prompt-library/" in package_json
+    assert "VITE_BASE_PATH=/" in package_json
 
 
 def test_github_pages_demo_is_read_only_and_discloses_compressed_images():
@@ -73,8 +73,8 @@ def test_package_exposes_versioned_demo_build_scripts():
     package_json = (ROOT / "package.json").read_text()
     assert '"build:demo:v0.1"' in package_json
     assert '"build:demo:v0.2"' in package_json
-    assert "VITE_BASE_PATH=/image-prompt-library/v0.1/" in package_json
-    assert "VITE_BASE_PATH=/image-prompt-library/v0.2/" in package_json
+    assert "VITE_BASE_PATH=/v0.1/" in package_json
+    assert "VITE_BASE_PATH=/v0.2/" in package_json
 
 
 def test_demo_export_script_outputs_compact_static_assets():
@@ -156,11 +156,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 1091
-    assert len(clusters) == 172
-    assert len(tags) == 2055
-    assert len(media_files) == 1810
-    assert metadata["item_count"] == 1091
+    assert len(items) == 34
+    assert len(clusters) == 13
+    assert len(tags) == 114
+    assert len(media_files) == 99
+    assert metadata["item_count"] == 34
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -187,26 +187,17 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
 
     media_files = {path.name for path in media_dir.glob("*.webp")}
 
-    assert len(referenced) == 1810
+    assert len(referenced) == 99
     assert referenced <= media_files
 
 
 def test_demo_bundle_uses_local_media_for_x_imports():
     demo_root = ROOT / "frontend" / "public" / "demo-data"
     items = json.loads((demo_root / "items.json").read_text())
-    repaired_titles = {
-        "毕业纪念画册结构化工作流 Prompt",
-        "手机屏幕跃出超写实视觉错觉 Prompt",
-        "Sketchbook Ink Watercolor Trump Caricature Prompt",
-        "中国证件照生成助手 Prompt",
-        "聚光灯 3D 夸张漫画角色 Prompt",
-        "KFC 轻食商业海报 Agent 示例 Prompt",
-        "日系住宅空间家居搭配配置清单图 Prompt",
-    }
 
-    repaired = [item for item in items if item["title"] in repaired_titles]
-    assert {item["title"] for item in repaired} == repaired_titles
-    for item in repaired:
+    x_imports = [item for item in items if (item.get("source_url") or "").startswith("https://x.com/")]
+    assert len(x_imports) == 34
+    for item in x_imports:
         first_image = item["first_image"]
         assert first_image["original_path"].startswith("demo-data/media/")
         assert first_image["thumb_path"].startswith("demo-data/media/")
@@ -218,9 +209,9 @@ def test_demo_bundle_includes_latest_production_and_sample_records():
     demo_root = ROOT / "frontend" / "public" / "demo-data"
     items_text = (demo_root / "items.json").read_text()
 
-    assert "canghe-gpt-image-2-case-460" in items_text
-    assert "goat-名人跨界漫画夸张海报-prompt" in items_text
-    assert "可爱尴尬双人-3d-设计师手办-prompt" in items_text
-    assert "高端五常大米电商品牌主视觉封面-prompt" in items_text
-    assert "sample-gpt-image-2-skill-no-162-en" in items_text
+    assert "https://x.com/xiaoxiaodong01/status/2062528444542636358" in items_text
+    assert "https://x.com/VigoCreativeAI/status/2062430783151993299" in items_text
+    assert "https://x.com/ShamsAmin56/status/2061872273041276940?s=20" in items_text
+    assert "局部破框人像中文杂志封面海报" in items_text
+    assert "真实产品参考图保真电商三图工作流" in items_text
     assert "demo-data/media/" in items_text

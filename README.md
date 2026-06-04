@@ -11,7 +11,7 @@ ChatGPT image generation has become good enough that the prompts are worth keepi
 
 Your library stays on your own machine: local SQLite, local image files, no accounts, no cloud sync, and no hosted database required.
 
-**Online sandbox:** <https://eddietyp.github.io/image-prompt-library/> — a read-only GitHub Pages version chooser using public sample prompts. The current 0.2 preview is available at <https://eddietyp.github.io/image-prompt-library/v0.2/>, with the original 0.1 alpha archived at <https://eddietyp.github.io/image-prompt-library/v0.1/>. Sandbox images are compressed for web preview; run the app locally to create your own private full library.
+**Online sandbox:** <https://prompt.wendealai.com/> — a read-only GitHub Pages version chooser using public sample prompts. The current 0.2 preview is available at <https://prompt.wendealai.com/v0.2/>, with the original 0.1 alpha archived at <https://prompt.wendealai.com/v0.1/>. Sandbox images are compressed for web preview; run the app locally to create your own private full library.
 
 **Alpha release:** <https://github.com/EddieTYP/image-prompt-library/releases/tag/v0.2.0-alpha> — refreshes Cards browsing, mobile layout behavior, adaptive image display, and versioned public previews.
 
@@ -307,7 +307,7 @@ If you want the exact cases shown in the archived GitHub Pages `v0.1` demo, impo
 ./scripts/import-demo-data.py
 ```
 
-That command imports the repo-local `frontend/public/demo-data/` bundle, which matches <https://eddietyp.github.io/image-prompt-library/v0.1/demo-data/items.json>.
+That command imports the repo-local `frontend/public/demo-data/` bundle, which matches <https://prompt.wendealai.com/v0.1/demo-data/items.json>.
 
 To import directly from the public site instead of the local bundle:
 

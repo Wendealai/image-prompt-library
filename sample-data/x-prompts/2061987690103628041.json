@@ -1,0 +1,51 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2061987690103628041",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "高密度手绘线描画面：普京肖像",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "围绕具体主题内容生成一张高密度手绘线描画面，把主题转译成由无数细线反复缠绕、交叉、覆盖后显影的空间结构。画面以强烈纵深关系组织：两侧或外围形成厚重压迫的深色线网体块，边缘可被大胆裁切，中心保留通风的高明度开放通道，让视线沿细密线束向远处收束；主体不靠完整色块塑形，而靠线条密度、方向、叠加次数和粗细变化建立体积、材质和距离。背景不是空白装饰，而是由松散游丝线、漂浮轨迹和半透明灰线构成的空气层，与密集结构形成清晰的疏密对比。色彩采用主题派生的冷静结构色作为主要线色，大面积保持干净明亮的纸面光和清透留白，灰阶线承担远景和雾化层次，少量温暖高亮只放在视觉入口或叙事焦点处，形成冷静精确但仍有生命迹象的夜行感。线条应保留手画的不稳定速度、轻微颤动和重叠误差，近处线网厚而密，远处线条变细变松，底部或前景可安排小尺度细节来校准空间尺度。整体效果像被连续笔迹织出的主题现场，复杂、紧张、透气，避免平滑矢量轮廓、均匀网格、厚重涂黑或脏旧滤镜。\n\n本次主题：普京肖像\n比例16:9",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061987690103628041",
+    "line-drawing",
+    "portrait"
+  ],
+  "tweet_intro": "GPT2 x 线条 x 提示词美学\n\n在线条美学系列， 我打算做50-100期，成为一个系列\n\n提示词：",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2061987690103628041",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2j76PbsAAzQEJ.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2061987690103628041-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2j9Z6a4AA8iYH.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2061987690103628041-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2j-vcacAAb6Ao.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2061987690103628041-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2kADjasAARmpQ.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2061987690103628041-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "围绕[[slot id=\"theme_content\" group=\"concept\" label=\"主题内容\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]具体主题内容[[/slot]]生成一张[[slot id=\"style\" group=\"style\" label=\"线描风格\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]高密度手绘线描画面[[/slot]]，把主题转译成由[[slot id=\"line_behavior\" group=\"style\" label=\"线条行为\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]无数细线反复缠绕、交叉、覆盖[[/slot]]后显影的空间结构。画面以强烈纵深关系组织：两侧或外围形成厚重压迫的深色线网体块，边缘可被大胆裁切，中心保留通风的高明度开放通道，让视线沿细密线束向远处收束；主体不靠完整色块塑形，而靠线条密度、方向、叠加次数和粗细变化建立体积、材质和距离。背景不是空白装饰，而是由松散游丝线、漂浮轨迹和半透明灰线构成的空气层，与密集结构形成清晰的疏密对比。色彩采用主题派生的冷静结构色作为主要线色，大面积保持干净明亮的纸面光和清透留白，灰阶线承担远景和雾化层次，少量温暖高亮只放在视觉入口或叙事焦点处，形成冷静精确但仍有生命迹象的夜行感。线条应保留手画的不稳定速度、轻微颤动和重叠误差，近处线网厚而密，远处线条变细变松，底部或前景可安排小尺度细节来校准空间尺度。整体效果像被连续笔迹织出的主题现场，复杂、紧张、透气，避免平滑矢量轮廓、均匀网格、厚重涂黑或脏旧滤镜。\n\n本次主题：[[slot id=\"topic\" group=\"subject\" label=\"本次主题\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]普京肖像[[/slot]]\n比例[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]16:9[[/slot]]"
+  }
+}

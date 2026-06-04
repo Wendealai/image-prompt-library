@@ -8,7 +8,14 @@ import sys
 from io import BytesIO
 from pathlib import Path
 
+from fastapi.testclient import TestClient
 from PIL import Image
+
+from backend.main import create_app
+from backend.repositories import ItemRepository
+from backend.schemas import PromptVariantValue
+from backend.services.image_generation import GeneratedImageBinary, ImageGenerationResult
+from backend.services.prompt_markup import render_marked_text
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -90,3 +97,84 @@ def test_import_x_prompt_manifest_skips_duplicate_source_url(tmp_path):
     conn = sqlite3.connect(library / "db.sqlite")
     assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 1
     assert conn.execute("SELECT COUNT(*) FROM images").fetchone()[0] == 1
+
+
+def test_nanobanana_pro_manifest_imports_template_and_can_generate(tmp_path, monkeypatch):
+    importer = load_importer()
+    library = tmp_path / "library"
+    manifest = ROOT / "sample-data" / "x-prompts" / "nanobanana-pro-bobblehead.json"
+
+    result = importer.import_manifest(manifest, library)
+
+    assert result["status"] == "created"
+    assert result["image_count"] == 1
+    assert result["template_id"]
+
+    repo = ItemRepository(library)
+    bundle = repo.get_prompt_template_bundle(result["item_id"], public_only=True)
+    assert bundle.template is not None
+    assert bundle.template.status == "ready"
+    assert bundle.template.review_status == "approved"
+    assert len(bundle.template.slots) == 14
+    assert {slot.id for slot in bundle.template.slots} >= {"subject", "outfit", "background"}
+
+    rendered_prompt, segments = render_marked_text(
+        bundle.template.marked_text,
+        [
+            PromptVariantValue(slot_id="subject", text="a cyberpunk tea master with silver hair"),
+            PromptVariantValue(slot_id="outfit", text="a black silk robe, neon teal sash, and tiny brass goggles"),
+            PromptVariantValue(slot_id="background", text="a rain-lit futuristic tea house backdrop"),
+        ],
+    )
+    assert "[SUBJECT]" not in rendered_prompt
+    assert "[OUTFIT]" not in rendered_prompt
+    assert "[BACKGROUND]" not in rendered_prompt
+    assert any(segment.changed and segment.slot_id == "subject" for segment in segments)
+
+    def fake_generate_images_from_prompt(
+        prompt: str,
+        *,
+        item_id: str | None = None,
+        title: str | None = None,
+        generation_options=None,
+        client=None,
+    ):
+        assert prompt == rendered_prompt
+        assert item_id == result["item_id"]
+        assert title == "Nanobanana Pro bobblehead collectible figurine"
+        assert generation_options == {
+            "resolution": "1024x1536",
+            "aspect_ratio": "auto",
+            "image_count": 1,
+            "style": "photoreal",
+            "output_format": "png",
+        }
+        return ImageGenerationResult(
+            status="completed",
+            job_id="job_nanobanana_pro",
+            output_text=None,
+            images=[GeneratedImageBinary(data=base64.b64decode(png_data_url().split(",", 1)[1]), mime_type="image/png", filename="generated.png")],
+        )
+
+    monkeypatch.setattr("backend.routers.prompt_templates.generate_images_from_prompt", fake_generate_images_from_prompt)
+    client = TestClient(create_app(library_path=library))
+    response = client.post(
+        f"/api/items/{result['item_id']}/generate-image",
+        json={
+            "prompt": rendered_prompt,
+            "generation": {
+                "resolution": "1024x1536",
+                "aspect_ratio": "auto",
+                "image_count": 1,
+                "style": "photoreal",
+                "output_format": "png",
+            },
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["job_id"] == "job_nanobanana_pro"
+    assert payload["run"]["prompt"] == rendered_prompt
+    assert payload["run"]["image_ids"] == [payload["images"][0]["id"]]
+    assert len(payload["item"]["images"]) == 2

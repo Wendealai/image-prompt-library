@@ -1,0 +1,39 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2061981718903689391",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "GPT Image 2 水墨节气节日海报：端午节・长沙龙舟赛 2026",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "生成一张竖版 9:16 的新中式水墨节日海报，主题为「端午节・长沙」，副标题「龙舟赛 2026」，英文小字「DRAGON BOAT FESTIVAL / CHANGSHA / 2026」。画面以大面积米白宣纸留白为底，用青绿水墨笔触形成环形江水浪涌，前景是一艘龙头龙舟与划手从右下方破浪进入画面，中景有第二艘小龙舟沿水势穿行，远景融入长沙城市天际线、青年毛泽东雕像、湘江桥影和一轮暖橙色太阳。加入粽子、艾草、香囊、红色飘带、浪花、印章与细小花草点缀。整体配色由模型根据主题智能匹配，以青绿、米白、朱红、淡金为主，国风插画、水彩晕染、细腻中文排版、节气美学、清爽高级、无水印、无多余文字。",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061981718903689391",
+    "reconstructed-prompt",
+    "gpt-image-2",
+    "chinese-poster",
+    "ink-watercolor",
+    "festival-poster"
+  ],
+  "tweet_intro": "GPT2 x 水墨 节气 x 提示词美学\n\n哇哈哈~ 整个节气或者节日海报，超级简单了\n\n从小红书上得到的这个灵感\n\n整个提示词还可以智能配色，不再只是适配各种用途\n\n提示词结构很开放，能各种用途，欢迎自行解锁\n\nGPT-image2 还是太有料了， 对它的开发永远不要停！\n\n提示词见评论区 ⤵️",
+  "notes": "Public fxtwitter metadata exposed the source status text and sample image, but did not expose the single comment prompt. Public search for the visible poster text and status did not surface a verbatim prompt. This manifest stores a clearly labeled reconstruction from the source status text, visible poster typography, and image content, not a verified verbatim comment prompt.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation with provenance caveat.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2061981718903689391",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2hCbNagAAqaWM.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2061981718903689391-1.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "基于主帖和样例图重构；公开镜像/搜索未暴露评论区原始提示词。",
+    "analysis_confidence": 0.68,
+    "analysis_notes": "Manual absorption. Template has 15 replaceable slots for poster format, theme, title text, subtitle, English microcopy, paper ground, ink gesture, foreground action, midground, city landmarks, festival objects, palette, style, typography, and constraints.",
+    "marked_text": "生成一张[[slot id=\"poster_format\" group=\"output\" label=\"海报规格\" variable_type=\"constraint\" input_hint=\"竖版 9:16、方形 1:1、横版 16:9。\" instruction=\"替换输出比例和版式。\"]]竖版 9:16[[/slot]] 的[[slot id=\"visual_style\" group=\"style\" label=\"视觉风格\" variable_type=\"style\" input_hint=\"新中式水墨节日海报、宋韵节气插画、国潮商业海报。\" instruction=\"替换整体视觉风格。\"]]新中式水墨节日海报[[/slot]]，主题为「[[slot id=\"main_title\" group=\"text\" label=\"主标题\" variable_type=\"text\" input_hint=\"端午节・长沙、中秋节・杭州、立夏・苏州。\" instruction=\"替换主标题文字。\"]]端午节・长沙[[/slot]]」，副标题「[[slot id=\"subtitle\" group=\"text\" label=\"副标题\" variable_type=\"text\" input_hint=\"龙舟赛 2026、桂花夜游 2026、节气雅集。\" instruction=\"替换副标题文字。\"]]龙舟赛 2026[[/slot]]」，英文小字「[[slot id=\"english_microcopy\" group=\"text\" label=\"英文小字\" variable_type=\"text\" input_hint=\"DRAGON BOAT FESTIVAL / CHANGSHA / 2026。\" instruction=\"替换英文辅助文字。\"]]DRAGON BOAT FESTIVAL / CHANGSHA / 2026[[/slot]]」。画面以[[slot id=\"paper_ground\" group=\"material\" label=\"纸张底色\" variable_type=\"material\" input_hint=\"大面积米白宣纸留白、淡米色棉纸肌理、浅灰宣纸底。\" instruction=\"替换背景纸张和留白。\"]]大面积米白宣纸留白[[/slot]]为底，用[[slot id=\"ink_gesture\" group=\"composition\" label=\"水墨动势\" variable_type=\"composition\" input_hint=\"青绿水墨笔触形成环形江水浪涌、淡墨山势横向铺开、朱砂云气环绕。\" instruction=\"替换主要水墨动势。\"]]青绿水墨笔触形成环形江水浪涌[[/slot]]，前景是[[slot id=\"foreground_subject\" group=\"subject\" label=\"前景主体\" variable_type=\"subject\" input_hint=\"一艘龙头龙舟与划手、荷叶上的茶席、奔跑的舞狮队伍。\" instruction=\"替换前景核心主体。\"]]一艘龙头龙舟与划手[[/slot]]从[[slot id=\"foreground_motion\" group=\"composition\" label=\"前景运动\" variable_type=\"composition\" input_hint=\"右下方破浪进入画面、左下方斜向冲出、画面底部环绕上升。\" instruction=\"替换主体运动方向。\"]]右下方破浪进入画面[[/slot]]，中景有[[slot id=\"midground_subject\" group=\"subject\" label=\"中景元素\" variable_type=\"subject\" input_hint=\"第二艘小龙舟沿水势穿行、远处人群与灯笼、亭台和拱桥。\" instruction=\"替换中景叙事元素。\"]]第二艘小龙舟沿水势穿行[[/slot]]，远景融入[[slot id=\"city_landmarks\" group=\"setting\" label=\"城市地标\" variable_type=\"setting\" input_hint=\"长沙城市天际线、青年毛泽东雕像、湘江桥影和太阳。\" instruction=\"替换城市地标和远景。\"]]长沙城市天际线、青年毛泽东雕像、湘江桥影和一轮暖橙色太阳[[/slot]]。加入[[slot id=\"festival_objects\" group=\"subject\" label=\"节日物件\" variable_type=\"subject\" input_hint=\"粽子、艾草、香囊、红色飘带、浪花、印章与细小花草。\" instruction=\"替换节日符号与装饰物。\"]]粽子、艾草、香囊、红色飘带、浪花、印章与细小花草[[/slot]]点缀。整体配色由模型根据主题智能匹配，以[[slot id=\"palette\" group=\"color\" label=\"配色\" variable_type=\"color\" input_hint=\"青绿、米白、朱红、淡金；靛蓝、月白、桂黄；墨黑、宣白、朱砂。\" instruction=\"替换主色盘。\"]]青绿、米白、朱红、淡金[[/slot]]为主，[[slot id=\"finish\" group=\"quality\" label=\"成品质感\" variable_type=\"quality\" input_hint=\"国风插画、水彩晕染、细腻中文排版、节气美学、清爽高级。\" instruction=\"替换最终风格和质量要求。\"]]国风插画、水彩晕染、细腻中文排版、节气美学、清爽高级[[/slot]]、[[slot id=\"constraints\" group=\"constraints\" label=\"限制\" variable_type=\"constraint\" input_hint=\"无水印、无多余文字、文字清晰可读。\" instruction=\"替换输出限制。\"]]无水印、无多余文字[[/slot]]。"
+  }
+}

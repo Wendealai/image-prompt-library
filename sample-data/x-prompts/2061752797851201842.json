@@ -1,0 +1,47 @@
+{
+  "source_url": "https://x.com/kingofdairyque/status/2061752797851201842",
+  "source_name": "X / kingofdairyque",
+  "title": "Traditional Korean hanok village watercolor architectural sketch",
+  "author": "simply (@kingofdairyque)",
+  "model": "GPT Image 2 / OpenArt",
+  "prompt_language": "en",
+  "prompt_text": "Traditional Korean hanok village street, watercolor architectural sketch, urban sketching masterpiece, hand-drawn ink lines with loose watercolor washes, detailed curved tiled rooftops, wooden doors and traditional architecture, soft earthy tones, beige, warm brown, gray slate roofs, subtle splatter effects, textured watercolor paper background, minimalist composition, clean white negative space, atmospheric perspective, delicate linework, travel sketchbook illustration, plein air painting style, highly detailed architecture, soft morning light, realistic proportions, elegant brush strokes, ink and wash technique, professional architectural rendering, peaceful historic alleyway, reflections on wet stone pavement, fine pen sketch details, muted color palette, artistic watercolor journal, East Asian heritage architecture, ultra detailed, high quality, watercolor and ink illustration.",
+  "cluster_name": "Travel & City",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061752797851201842",
+    "watercolor",
+    "urban-sketching",
+    "architecture"
+  ],
+  "tweet_intro": "GPT image 2 on @openart_ai \nTraditional Korean hanok village street, watercolor architectural sketch, urban sketching masterpiece, hand-drawn ink lines with loose watercolor washes, detailed curved tiled rooftops, wooden doors and traditional architecture, soft earthy tones, beige, warm brown, gray slate roofs, subtle splatter effects, textured watercolor paper background, minimalist composition, clean white negative space, atmospheric perspective, delicate linework, travel sketchbook illustration, plein air painting style, highly detailed architecture, soft morning light, realistic proportions, elegant brush strokes, ink and wash technique, professional architectural rendering, peaceful historic alleyway, reflections on wet stone pavement, fine pen sketch details, muted color palette, artistic watercolor journal, East Asian heritage architecture, ultra detailed, high quality, watercolor and ink illustration.",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-kingofdairyque-2061752797851201842",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzRPVXWIAARfas.jpg?name=orig",
+      "filename": "x-kingofdairyque-2061752797851201842-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzRPRhWsAArrHV.jpg?name=orig",
+      "filename": "x-kingofdairyque-2061752797851201842-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzRPiEXAAE8N0P.jpg?name=orig",
+      "filename": "x-kingofdairyque-2061752797851201842-3.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.93,
+    "analysis_notes": "Manual absorption. Template has 14 replaceable slots for location, medium, linework, architecture, palette, splatter, paper, composition, perspective, lighting, pavement, details, heritage, and quality.",
+    "marked_text": "[[slot id=\"location\" group=\"subject\" label=\"Location\" variable_type=\"subject\" instruction=\"Replace the architecture/location subject.\"]]Traditional Korean hanok village street[[/slot]], [[slot id=\"medium\" group=\"style\" label=\"Medium\" variable_type=\"style\" instruction=\"Replace medium.\"]]watercolor architectural sketch[[/slot]], [[slot id=\"sketch_level\" group=\"quality\" label=\"Sketch level\" variable_type=\"quality\" instruction=\"Replace sketch quality level.\"]]urban sketching masterpiece[[/slot]], [[slot id=\"linework\" group=\"style\" label=\"Linework\" variable_type=\"style\" instruction=\"Replace line and wash treatment.\"]]hand-drawn ink lines with loose watercolor washes[[/slot]], [[slot id=\"architecture_details\" group=\"subject\" label=\"Architecture details\" variable_type=\"subject\" instruction=\"Replace architectural details.\"]]detailed curved tiled rooftops, wooden doors and traditional architecture[[/slot]], [[slot id=\"palette\" group=\"color\" label=\"Palette\" variable_type=\"color\" instruction=\"Replace color palette.\"]]soft earthy tones, beige, warm brown, gray slate roofs[[/slot]], [[slot id=\"effects\" group=\"style\" label=\"Effects\" variable_type=\"style\" instruction=\"Replace watercolor effects.\"]]subtle splatter effects[[/slot]], [[slot id=\"paper\" group=\"material\" label=\"Paper\" variable_type=\"material\" instruction=\"Replace paper texture.\"]]textured watercolor paper background[[/slot]], [[slot id=\"composition\" group=\"composition\" label=\"Composition\" variable_type=\"composition\" instruction=\"Replace composition.\"]]minimalist composition, clean white negative space[[/slot]], [[slot id=\"perspective\" group=\"composition\" label=\"Perspective\" variable_type=\"composition\" instruction=\"Replace perspective.\"]]atmospheric perspective[[/slot]], delicate linework, travel sketchbook illustration, plein air painting style, highly detailed architecture, [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" instruction=\"Replace lighting.\"]]soft morning light[[/slot]], realistic proportions, elegant brush strokes, ink and wash technique, professional architectural rendering, [[slot id=\"mood_scene\" group=\"mood\" label=\"Mood scene\" variable_type=\"mood\" instruction=\"Replace scene mood.\"]]peaceful historic alleyway[[/slot]], [[slot id=\"surface_detail\" group=\"material\" label=\"Surface detail\" variable_type=\"material\" instruction=\"Replace ground/surface detail.\"]]reflections on wet stone pavement[[/slot]], fine pen sketch details, muted color palette, artistic watercolor journal, [[slot id=\"heritage\" group=\"style\" label=\"Heritage style\" variable_type=\"style\" instruction=\"Replace heritage/architecture family.\"]]East Asian heritage architecture[[/slot]], [[slot id=\"quality\" group=\"quality\" label=\"Quality\" variable_type=\"quality\" instruction=\"Replace final quality.\"]]ultra detailed, high quality, watercolor and ink illustration[[/slot]]."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "source_url": "https://x.com/VigoCreativeAI/status/2062430783151993299",
+  "source_name": "X / VigoCreativeAI",
+  "title": "真实产品参考图保真电商三图工作流",
+  "author": "Vigo Zhao (@VigoCreativeAI)",
+  "model": "Codex built-in ImageGen / Open Design skill",
+  "prompt_language": "zh_hans",
+  "prompt_text": "基于一张真实产品参考图，生成一套精简、可直接上架的电商产品图。输出包括：1）主图白底产品图，干净 1:1 packshot；2）一张细节/卖点图，聚焦产品最有价值的材质、结构或功能细节；3）一张场景图，把产品放入真实可信、符合品类调性的生活方式场景；同时输出 image-manifest.json 与预览画廊。必须以参考图为最高优先级，严格锁住产品本体的形状、颜色、材质、logo 位置、结构比例、标签文字位置和关键轮廓，不改变产品身份，不凭空捏造卖点，不在图里塞大段营销小字。整体视觉精简、真实、商业可用，适合电商详情页和上架审核。",
+  "cluster_name": "E-commerce & Product",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062430783151993299",
+    "reconstructed-prompt",
+    "ecommerce-product",
+    "reference-product",
+    "fidelity-lock",
+    "workflow-skill"
+  ],
+  "tweet_intro": "我做的电商图工作流刚被合进了 open-design @nexudotio\n\nAI 生成产品图最大的痛点：看着惊艳，一放详情页就翻车——形状变了、logo 跑了、比例失真。好看，但不能用。\n\n这个 skill 就做一件事：保真。\n\n丢一张真实产品照进去，还你一套精简、能直接上架的图：\n\n主图白底产品图\n一张细节/卖点图\n一张场景图\nimage-manifest.json + 预览画廊\n关键是它死死锁住产品本体——形状、颜色、材质、logo 位置、比例，一样都不变。不瞎编卖点，也不靠图里塞小字蒙混过关。参考图优先，不凭空捏。\n\nv1 故意做得很窄：暂时不做 SKU 矩阵，不做 20 到 30 张批量导出。接下来怎么迭代，看你们——\n\n评论区报个品类：珠宝、食品包装、服装都行。我按呼声排优先级，做好了直接提 PR 到上游。\n\n公开建造，边做边聊。",
+  "notes": "The public status describes a product-fidelity ecommerce image workflow and exposes one workflow preview image, but not a verbatim reusable prompt. This is a clearly labeled reconstruction from the status text and visible workflow preview.",
+  "image_filename_prefix": "x-vigocreativeai-2062430783151993299",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ85zX9bYAA5dyW.jpg?name=orig",
+      "filename": "x-vigocreativeai-2062430783151993299-1.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from workflow description and preview image because the status did not expose a verbatim reusable prompt.",
+    "analysis_confidence": 0.64,
+    "analysis_notes": "Manual absorption with replaceable keyword slots focused on reference-product fidelity, three-shot ecommerce output, and handoff artifacts.",
+    "marked_text": "基于[[slot id=\"reference_input\" group=\"subject\" label=\"参考输入\" variable_type=\"keyword\" instruction=\"Replace this input source while preserving the product-fidelity workflow.\"]]一张真实产品参考图[[/slot]]，生成[[slot id=\"output_set\" group=\"output\" label=\"输出套装\" variable_type=\"keyword\" instruction=\"Replace the ecommerce output package while preserving direct usability.\"]]一套精简、可直接上架的电商产品图[[/slot]]。输出包括：1）[[slot id=\"main_image\" group=\"shot\" label=\"主图\" variable_type=\"keyword\" instruction=\"Replace the main ecommerce image requirement.\"]]主图白底产品图，干净 1:1 packshot[[/slot]]；2）[[slot id=\"feature_image\" group=\"shot\" label=\"细节图\" variable_type=\"keyword\" instruction=\"Replace the feature or selling-point shot requirement.\"]]一张细节/卖点图，聚焦产品最有价值的材质、结构或功能细节[[/slot]]；3）[[slot id=\"lifestyle_image\" group=\"shot\" label=\"场景图\" variable_type=\"keyword\" instruction=\"Replace the lifestyle scene shot requirement.\"]]一张场景图，把产品放入真实可信、符合品类调性的生活方式场景[[/slot]]；同时输出 [[slot id=\"handoff_artifacts\" group=\"output\" label=\"交付物\" variable_type=\"keyword\" instruction=\"Replace the workflow handoff artifacts.\"]]image-manifest.json 与预览画廊[[/slot]]。必须以参考图为最高优先级，严格锁住[[slot id=\"fidelity_lock\" group=\"constraint\" label=\"保真锁定项\" variable_type=\"keyword\" instruction=\"Replace the fidelity constraints while keeping reference priority.\"]]产品本体的形状、颜色、材质、logo 位置、结构比例、标签文字位置和关键轮廓[[/slot]]，不改变产品身份，不凭空捏造卖点，不在图里塞大段营销小字。[[slot id=\"quality_bar\" group=\"style\" label=\"质量标准\" variable_type=\"keyword\" instruction=\"Replace the final ecommerce quality bar.\"]]整体视觉精简、真实、商业可用，适合电商详情页和上架审核[[/slot]]。"
+  }
+}

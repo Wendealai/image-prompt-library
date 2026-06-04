@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/Goodmanprotocol/status/2061688661360726476",
+  "source_name": "X / Goodmanprotocol",
+  "title": "[LANDMARK / DISTRICT], [CITY], [SEASON OR MONTH], [TIME OF DAY]. A premi",
+  "author": "Saul Goodman (@Goodmanprotocol)",
+  "model": "GPT Image 2",
+  "prompt_language": "en",
+  "prompt_text": "[LANDMARK / DISTRICT], [CITY], [SEASON OR MONTH], [TIME OF DAY].\n\nA premium urban sketch travel journal poster capturing everyday life in one of [REGION / COUNTRY]'s most beautiful cultural destinations.\n\nVisitors stroll beneath [LOCAL TREES / NATURAL ELEMENTS],\nartists sketch beside [FOUNTAINS / WATER FEATURES / PUBLIC SPACES],\nfamilies relax in shaded [COURTYARDS / PLAZAS / GARDENS],\nwhile the iconic [ARCHITECTURAL STYLE / LANDMARKS] glow softly in the [LIGHTING CONDITIONS].\n\nExpressive pen-and-ink drawing,\ntransparent watercolor washes,\nbroken contour lines,\nslightly imperfect hand-drawn perspective,\nsoft paper texture,\nlarge negative space,\nairy travel-journal composition,\nwarm natural light,\npeaceful local atmosphere,\nauthentic [CITY] daily life,\nluxury sketchbook aesthetic.\n\nRatio 4:5\n\nTypography:\n\"[CITY]\"\n\"[CUSTOM TRAVEL TAGLINE]\"",
+  "cluster_name": "Design, Posters & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061688661360726476",
+    "travel-poster",
+    "urban-sketch",
+    "watercolor"
+  ],
+  "tweet_intro": "✈️🎨 Turning the world's most beautiful cities into hand-drawn travel journal posters, one destination at a time. 🌍\n\nGPT Image 2 on ChatGPT \n\nPrompt:\n[LANDMARK / DISTRICT], [CITY], [SEASON OR MONTH], [TIME OF DAY].\n\nA premium urban sketch travel journal poster capturing everyday life in one of [REGION / COUNTRY]'s most beautiful cultural destinations.\n\nVisitors stroll beneath [LOCAL TREES / NATURAL ELEMENTS],\nartists sketch beside [FOUNTAINS / WATER FEATURES / PUBLIC SPACES],\nfamilies relax in shaded [COURTYARDS / PLAZAS / GARDENS],\nwhile the iconic [ARCHITECTURAL STYLE / LANDMARKS] glow softly in the [LIGHTING CONDITIONS].\n\nExpressive pen-and-ink drawing,\ntransparent watercolor washes,\nbroken contour lines,\nslightly imperfect hand-drawn perspective,\nsoft paper texture,\nlarge negative space,\nairy travel-journal composition,\nwarm natural light,\npeaceful local atmosphere,\nauthentic [CITY] daily life,\nluxury sketchbook aesthetic.\n\nRatio 4:5\n\nTypography:\n\"[CITY]\"\n\"[CUSTOM TRAVEL TAGLINE]\"",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-goodmanprotocol-2061688661360726476",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyW3uKbgAAmy6m.jpg?name=orig",
+      "filename": "x-goodmanprotocol-2061688661360726476-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyW3y5aYAAMvq2.jpg?name=orig",
+      "filename": "x-goodmanprotocol-2061688661360726476-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyW38hbEAA0DU_.jpg?name=orig",
+      "filename": "x-goodmanprotocol-2061688661360726476-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyW3_nbEAANQNg.jpg?name=orig",
+      "filename": "x-goodmanprotocol-2061688661360726476-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 13 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"landmark_district\" group=\"absorbed_keyword\" label=\"LANDMARK / DISTRICT\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][LANDMARK / DISTRICT][[/slot]], [[slot id=\"city\" group=\"absorbed_keyword\" label=\"CITY\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][CITY][[/slot]], [[slot id=\"season_or_month\" group=\"absorbed_keyword\" label=\"SEASON OR MONTH\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][SEASON OR MONTH][[/slot]], [[slot id=\"time_of_day\" group=\"absorbed_keyword\" label=\"TIME OF DAY\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][TIME OF DAY][[/slot]].\n\nA premium urban sketch travel journal poster capturing everyday life in one of [[slot id=\"region_country\" group=\"absorbed_keyword\" label=\"REGION / COUNTRY\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][REGION / COUNTRY][[/slot]]'s most beautiful cultural destinations.\n\nVisitors stroll beneath [[slot id=\"local_trees_natural_elements\" group=\"absorbed_keyword\" label=\"LOCAL TREES / NATURAL ELEMENTS\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][LOCAL TREES / NATURAL ELEMENTS][[/slot]],\nartists sketch beside [[slot id=\"fountains_water_features_public_spaces\" group=\"absorbed_keyword\" label=\"FOUNTAINS / WATER FEATURES / PUBLIC SPACES\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][FOUNTAINS / WATER FEATURES / PUBLIC SPACES][[/slot]],\nfamilies relax in shaded [[slot id=\"courtyards_plazas_gardens\" group=\"absorbed_keyword\" label=\"COURTYARDS / PLAZAS / GARDENS\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][COURTYARDS / PLAZAS / GARDENS][[/slot]],\nwhile the iconic [[slot id=\"architectural_style_landmarks\" group=\"absorbed_keyword\" label=\"ARCHITECTURAL STYLE / LANDMARKS\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][ARCHITECTURAL STYLE / LANDMARKS][[/slot]] glow softly in the [[slot id=\"lighting_conditions\" group=\"absorbed_keyword\" label=\"LIGHTING CONDITIONS\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][LIGHTING CONDITIONS][[/slot]].\n\nExpressive pen-and-ink drawing,\ntransparent watercolor washes,\nbroken contour lines,\nslightly imperfect hand-drawn perspective,\nsoft paper texture,\nlarge negative space,\nairy travel-journal composition,\nwarm natural light,\npeaceful local atmosphere,\nauthentic [[slot id=\"city_2\" group=\"absorbed_keyword\" label=\"CITY\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][CITY][[/slot]] daily life,\nluxury sketchbook aesthetic.\n\nRatio 4:5\n\nTypography:\n\"[[slot id=\"city_3\" group=\"absorbed_keyword\" label=\"CITY\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][CITY][[/slot]]\"\n\"[[slot id=\"custom_travel_tagline\" group=\"absorbed_keyword\" label=\"CUSTOM TRAVEL TAGLINE\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]][CUSTOM TRAVEL TAGLINE][[/slot]]\""
+  }
+}

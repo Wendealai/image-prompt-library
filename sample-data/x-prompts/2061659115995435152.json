@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/Taaruk_/status/2061659115995435152",
+  "source_name": "X / Taaruk_",
+  "title": "Ultra-detailed 3D layered papercraft anime poster",
+  "author": "Taaruk (@Taaruk_)",
+  "model": "GPT Image 2",
+  "prompt_language": "en",
+  "prompt_text": "Ultra-detailed 3D layered papercraft anime poster, dynamic anime hero emerging from intricate paper-cut waves and swirling clouds, multi-layer shadow box design, handcrafted paper sculpture aesthetic, deep dimensional cut-paper artwork, crisp layered cardstock textures, bold action pose, dramatic perspective, vibrant character colors contrasting against elegant white paper background, Japanese traditional wave patterns, ornamental cloud motifs, floating paper fragments, cinematic lighting, high depth and relief, premium collectible poster design, intricate laser-cut details, fantasy adventure theme, highly detailed typography at the bottom, embossed lettering, luxury wall art, museum-quality paper engineering, sharp focus, clean composition, masterpiece, ultra detailed, 8k, trending on ArtStation.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061659115995435152",
+    "papercraft",
+    "anime-poster",
+    "gpt-image-2"
+  ],
+  "tweet_intro": "GPT IMAGE 2 ON CHATGPT \n\nPrompt:\nUltra-detailed 3D layered papercraft anime poster, dynamic anime hero emerging from intricate paper-cut waves and swirling clouds, multi-layer shadow box design, handcrafted paper sculpture aesthetic, deep dimensional cut-paper artwork, crisp layered cardstock textures, bold action pose, dramatic perspective, vibrant character colors contrasting against elegant white paper background, Japanese traditional wave patterns, ornamental cloud motifs, floating paper fragments, cinematic lighting, high depth and relief, premium collectible poster design, intricate laser-cut details, fantasy adventure theme, highly detailed typography at the bottom, embossed lettering, luxury wall art, museum-quality paper engineering, sharp focus, clean composition, masterpiece, ultra detailed, 8k, trending on ArtStation.",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-taaruk-2061659115995435152",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJx8A9ibUAATlxp.jpg?name=orig",
+      "filename": "x-taaruk-2061659115995435152-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJx8A_jaIAAYyGv.jpg?name=orig",
+      "filename": "x-taaruk-2061659115995435152-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJx8BIXaYAAh2UB.jpg?name=orig",
+      "filename": "x-taaruk-2061659115995435152-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJx8BQ7aQAAsg6y.jpg?name=orig",
+      "filename": "x-taaruk-2061659115995435152-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.92,
+    "analysis_notes": "Manual absorption. Template has 12 replaceable slots for style, subject, structure, material, pose, perspective, palette, motifs, fragments, lighting, typography, and quality.",
+    "marked_text": "[[slot id=\"poster_style\" group=\"style\" label=\"Poster style\" variable_type=\"style\" instruction=\"Replace overall poster style.\"]]Ultra-detailed 3D layered papercraft anime poster[[/slot]], [[slot id=\"hero_subject\" group=\"subject\" label=\"Hero subject\" variable_type=\"subject\" instruction=\"Replace main hero and scene action.\"]]dynamic anime hero emerging from intricate paper-cut waves and swirling clouds[[/slot]], [[slot id=\"structure\" group=\"composition\" label=\"Structure\" variable_type=\"composition\" instruction=\"Replace structural format.\"]]multi-layer shadow box design[[/slot]], [[slot id=\"craft_style\" group=\"material\" label=\"Craft style\" variable_type=\"material\" instruction=\"Replace craft/material aesthetic.\"]]handcrafted paper sculpture aesthetic[[/slot]], [[slot id=\"paper_depth\" group=\"material\" label=\"Paper depth\" variable_type=\"material\" instruction=\"Replace depth and texture.\"]]deep dimensional cut-paper artwork, crisp layered cardstock textures[[/slot]], [[slot id=\"pose\" group=\"composition\" label=\"Pose\" variable_type=\"composition\" instruction=\"Replace pose.\"]]bold action pose[[/slot]], [[slot id=\"perspective\" group=\"composition\" label=\"Perspective\" variable_type=\"composition\" instruction=\"Replace perspective.\"]]dramatic perspective[[/slot]], [[slot id=\"color_contrast\" group=\"color\" label=\"Color contrast\" variable_type=\"color\" instruction=\"Replace palette and contrast.\"]]vibrant character colors contrasting against elegant white paper background[[/slot]], [[slot id=\"motifs\" group=\"style\" label=\"Motifs\" variable_type=\"style\" instruction=\"Replace decorative motifs.\"]]Japanese traditional wave patterns, ornamental cloud motifs[[/slot]], [[slot id=\"fragments\" group=\"effects\" label=\"Fragments\" variable_type=\"style\" instruction=\"Replace floating detail effects.\"]]floating paper fragments[[/slot]], [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" instruction=\"Replace lighting.\"]]cinematic lighting[[/slot]], high depth and relief, premium collectible poster design, intricate laser-cut details, [[slot id=\"theme\" group=\"concept\" label=\"Theme\" variable_type=\"concept\" instruction=\"Replace theme.\"]]fantasy adventure theme[[/slot]], [[slot id=\"typography\" group=\"typography\" label=\"Typography\" variable_type=\"typography\" instruction=\"Replace type treatment.\"]]highly detailed typography at the bottom, embossed lettering[[/slot]], luxury wall art, museum-quality paper engineering, sharp focus, clean composition, [[slot id=\"quality\" group=\"quality\" label=\"Quality\" variable_type=\"quality\" instruction=\"Replace final quality language.\"]]masterpiece, ultra detailed, 8k, trending on ArtStation[[/slot]]."
+  }
+}

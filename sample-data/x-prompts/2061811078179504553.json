@@ -1,0 +1,38 @@
+{
+  "source_url": "https://x.com/azed_ai/status/2061811078179504553",
+  "source_name": "X / azed_ai",
+  "title": "Foam logo mockup prompt for Adobe Firefly / Nano Banana",
+  "author": "Amira Zairi (@azed_ai)",
+  "model": "Adobe Firefly / Nano Banana",
+  "prompt_language": "en",
+  "prompt_text": "Create a premium foam logo mockup using the provided logo shape or brand mark. Rebuild the logo entirely from thick white soap foam and dense bubbly lather on a glossy black wet stone surface. Preserve the original logo silhouette and readable proportions while replacing the material with realistic foam texture, micro bubbles, wet droplets, soft rounded edges, subtle translucency, and tactile volume. Use a close-up top-down advertising product shot, high contrast black-and-white palette, clean studio reflections, sharp macro detail, square composition, no extra text, no watermark.",
+  "cluster_name": "Logo & Branding",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061811078179504553",
+    "reconstructed-prompt",
+    "foam-logo",
+    "adobe-firefly",
+    "brand-mockup"
+  ],
+  "tweet_intro": "Nano Banana prompt share\n\nCreate foam logos using this prompt 👇\n\nCreated on @AdobeFirefly",
+  "notes": "Public fxtwitter metadata exposed the source status text and sample image, but did not expose the comment prompt. Public search did not surface a verbatim prompt. This manifest stores a clearly labeled reconstruction from the source text and visible foam-logo collage, not a verified verbatim comment prompt.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation with provenance caveat.",
+  "image_filename_prefix": "x-azed-ai-2061811078179504553",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0GP3SbIAAVAwz.jpg?name=orig",
+      "filename": "x-azed-ai-2061811078179504553-1.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status and sample image because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.64,
+    "analysis_notes": "Manual absorption. Template has 12 replaceable slots for input mark, material, foam density, surface, silhouette preservation, texture, camera, palette, lighting, detail, composition, and constraints.",
+    "marked_text": "Create a [[slot id=\"mockup_level\" group=\"style\" label=\"Mockup level\" variable_type=\"style\" input_hint=\"premium foam logo mockup, playful soap logo study, luxury cleaning-brand visual\" instruction=\"Replace the mockup positioning.\"]]premium foam logo mockup[[/slot]] using the [[slot id=\"input_logo\" group=\"subject\" label=\"Input logo\" variable_type=\"subject\" input_hint=\"provided logo shape, uploaded brand mark, simple icon silhouette\" instruction=\"Replace the source mark description.\"]]provided logo shape or brand mark[[/slot]]. Rebuild the logo entirely from [[slot id=\"material\" group=\"material\" label=\"Material\" variable_type=\"material\" input_hint=\"thick white soap foam, shaving cream, cappuccino microfoam\" instruction=\"Replace the logo material.\"]]thick white soap foam[[/slot]] and [[slot id=\"foam_density\" group=\"material\" label=\"Foam density\" variable_type=\"material\" input_hint=\"dense bubbly lather, airy micro-bubbles, glossy foam clusters\" instruction=\"Replace foam density and bubble behavior.\"]]dense bubbly lather[[/slot]] on a [[slot id=\"surface\" group=\"setting\" label=\"Surface\" variable_type=\"setting\" input_hint=\"glossy black wet stone surface, dark marble tile, reflective bathroom glass\" instruction=\"Replace the background surface.\"]]glossy black wet stone surface[[/slot]]. Preserve the [[slot id=\"silhouette_rule\" group=\"constraints\" label=\"Silhouette rule\" variable_type=\"constraint\" input_hint=\"original logo silhouette and readable proportions, icon outline and clear negative spaces\" instruction=\"Replace preservation rules.\"]]original logo silhouette and readable proportions[[/slot]] while replacing the material with [[slot id=\"texture\" group=\"material\" label=\"Texture\" variable_type=\"material\" input_hint=\"realistic foam texture, micro bubbles, wet droplets, soft rounded edges\" instruction=\"Replace detailed material traits.\"]]realistic foam texture, micro bubbles, wet droplets, soft rounded edges[[/slot]], [[slot id=\"material_finish\" group=\"material\" label=\"Material finish\" variable_type=\"material\" input_hint=\"subtle translucency and tactile volume, glossy wet peaks, soft porous edges\" instruction=\"Replace the final material finish.\"]]subtle translucency, and tactile volume[[/slot]]. Use a [[slot id=\"camera\" group=\"composition\" label=\"Camera\" variable_type=\"composition\" input_hint=\"close-up top-down advertising product shot, macro side angle, cropped square detail\" instruction=\"Replace camera and shot type.\"]]close-up top-down advertising product shot[[/slot]], [[slot id=\"palette\" group=\"color\" label=\"Palette\" variable_type=\"color\" input_hint=\"high contrast black-and-white palette, white foam on cobalt tile, cream foam on charcoal\" instruction=\"Replace color palette.\"]]high contrast black-and-white palette[[/slot]], [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" input_hint=\"clean studio reflections, soft bathroom skylight, crisp commercial highlights\" instruction=\"Replace lighting/reflection cues.\"]]clean studio reflections[[/slot]], [[slot id=\"detail\" group=\"quality\" label=\"Detail\" variable_type=\"quality\" input_hint=\"sharp macro detail, tactile photoreal texture, premium product photography\" instruction=\"Replace detail/quality level.\"]]sharp macro detail[[/slot]], [[slot id=\"composition\" group=\"output\" label=\"Composition\" variable_type=\"constraint\" input_hint=\"square composition, 4:5 vertical crop, six-panel collage\" instruction=\"Replace output composition.\"]]square composition[[/slot]], [[slot id=\"constraints\" group=\"constraints\" label=\"Constraints\" variable_type=\"constraint\" input_hint=\"no extra text, no watermark, no added brand names\" instruction=\"Replace output restrictions.\"]]no extra text, no watermark[[/slot]]."
+  }
+}

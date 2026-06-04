@@ -1,0 +1,51 @@
+{
+  "source_url": "https://x.com/yyyole/status/2061848372156547353",
+  "source_name": "X / yyyole",
+  "title": "一张极简主义现代杂志风格插画，主体为[xxx]。画面以干净流畅的线条塑造形象，造型简洁但富有美感，背景保留大面积留白，配色以柔和中性色为主，并加",
+  "author": "沐阳 (@yyyole)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "一张极简主义现代杂志风格插画，主体为[xxx]。画面以干净流畅的线条塑造形象，造型简洁但富有美感，背景保留大面积留白，配色以柔和中性色为主，并加入少量鲜艳色彩作为视觉焦点。整体构图精致平衡，氛围优雅清新，具有高级杂志插画与现代艺术海报质感，无文字。",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061848372156547353",
+    "zen-still-life",
+    "minimalist-illustration"
+  ],
+  "tweet_intro": "优雅到极致的生活方式。\n同一套提示词，生成禅意的家居静物插画……",
+  "notes": "Prompt text extracted from quoted source status https://x.com/yyyole/status/2061644933287838180; sample images are from requested status.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-yyyole-2061848372156547353",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0oKDZaYAMQNRv.jpg?name=orig",
+      "filename": "x-yyyole-2061848372156547353-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0oKDga0AALZUX.jpg?name=orig",
+      "filename": "x-yyyole-2061848372156547353-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0oKDYboAASx21.jpg?name=orig",
+      "filename": "x-yyyole-2061848372156547353-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ0oKDaaYAMj3X7.jpg?name=orig",
+      "filename": "x-yyyole-2061848372156547353-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Manually refined from quoted source prompt into stable Chinese editable slots.",
+    "analysis_confidence": 0.94,
+    "analysis_notes": "Manual absorption. Template has 11 replaceable keyword slots for subject, style, linework, palette, composition, mood, finish, and text policy.",
+    "marked_text": "一张[[slot id=\"visual_style\" group=\"style\" label=\"视觉风格\" variable_type=\"style\" input_hint=\"例如：极简主义现代杂志风格、水墨节气海报、儿童绘本风格。\" instruction=\"替换整体视觉风格。\"]]极简主义现代杂志风格插画[[/slot]]，主体为[[slot id=\"subject\" group=\"subject\" label=\"主体\" variable_type=\"subject\" input_hint=\"填写要表现的人物、物品、场景或概念。\" instruction=\"替换画面主体。\"]][xxx][[/slot]]。画面以[[slot id=\"linework\" group=\"form\" label=\"线条语言\" variable_type=\"style\" input_hint=\"例如：干净流畅的线条、松弛手绘线条、精致钢笔线稿。\" instruction=\"替换形体和线条表现方式。\"]]干净流畅的线条[[/slot]]塑造形象，造型[[slot id=\"shape_language\" group=\"form\" label=\"造型气质\" variable_type=\"composition\" input_hint=\"例如：简洁但富有美感、夸张趣味、优雅克制。\" instruction=\"替换主体造型特征。\"]]简洁但富有美感[[/slot]]，背景[[slot id=\"background_space\" group=\"composition\" label=\"背景留白\" variable_type=\"composition\" input_hint=\"例如：大面积留白、柔和渐变、纸张纹理背景。\" instruction=\"替换背景空间处理。\"]]保留大面积留白[[/slot]]，配色以[[slot id=\"base_palette\" group=\"color\" label=\"基础配色\" variable_type=\"color\" input_hint=\"例如：柔和中性色、清淡水墨青绿、奶油暖色。\" instruction=\"替换主色调。\"]]柔和中性色[[/slot]]为主，并加入[[slot id=\"accent_color\" group=\"color\" label=\"点睛色\" variable_type=\"color\" input_hint=\"例如：少量朱红、亮蓝、金色、鲜艳色彩。\" instruction=\"替换视觉焦点色。\"]]少量鲜艳色彩作为视觉焦点[[/slot]]。整体构图[[slot id=\"composition\" group=\"composition\" label=\"构图\" variable_type=\"composition\" input_hint=\"例如：精致平衡、中心构图、疏密有致。\" instruction=\"替换构图节奏。\"]]精致平衡[[/slot]]，氛围[[slot id=\"mood\" group=\"mood\" label=\"氛围\" variable_type=\"mood\" input_hint=\"例如：优雅清新、安静禅意、温暖叙事。\" instruction=\"替换情绪氛围。\"]]优雅清新[[/slot]]，具有[[slot id=\"finish\" group=\"quality\" label=\"成品质感\" variable_type=\"quality\" input_hint=\"例如：高级杂志插画与现代艺术海报质感、精品绘本印刷感。\" instruction=\"替换最终成品质感。\"]]高级杂志插画与现代艺术海报质感[[/slot]]，[[slot id=\"text_policy\" group=\"constraints\" label=\"文字约束\" variable_type=\"constraint\" input_hint=\"例如：无文字、只保留标题、中文标题清晰可读。\" instruction=\"替换文字约束。\"]]无文字[[/slot]]。"
+  }
+}

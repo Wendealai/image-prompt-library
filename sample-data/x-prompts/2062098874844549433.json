@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/MrLarus/status/2062098874844549433",
+  "source_name": "X / MrLarus",
+  "title": "原创 IP 茶饮品牌商品化提案：不咖 NOCO TEA / 醒醒叶",
+  "author": "Larus Canus (@MrLarus)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "为一个原创茶饮品牌生成一套可销售、可传播的 IP 商品化提案展示板。品牌名为「不咖 NOCO TEA」，轻 IP 角色为「醒醒叶」。画面需要像真实品牌提案页面一样同时展示品牌主视觉、IP 角色系统、产品包装矩阵、电商详情页片段、办公桌冲泡场景和运动冷泡场景。整体风格清新、年轻、克制但有商业完成度，围绕无咖啡因茶饮、轻醒脑、日常陪伴、健康冷泡建立视觉系统。使用统一的品牌色、字体气质、图标语言和包装版式；让 IP 角色可爱但不幼稚，能出现在包装、贴纸、详情页和场景物料中。画面以高端电商品牌提案板形式排版，包含清晰中文标题、小标签、产品卖点、包装正反面、角色动作小样、场景图和局部放大细节。干净白底，浅绿与奶白为主色，少量活力橙或茶色点缀，真实可落地的消费品品牌视觉系统，高清，细节丰富，无水印。",
+  "cluster_name": "UI, Brand & Product",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062098874844549433",
+    "reconstructed-prompt",
+    "ip-commercialization",
+    "brand-proposal"
+  ],
+  "tweet_intro": "🤯用 ChatGPT-Image2 生成原创 IP 商品化提案，顶级生产力！🪄\n\nGPT 生成的品牌：不咖 NOCO TEA，轻 IP：醒醒叶\n从品牌主视觉、IP系统、产品包装矩阵\n到电商详情页、办公桌冲泡和运动冷泡场景\n把产品亮点和卖点做成一套可销售、可传播的视觉系统！\n\n提示词在评论区，引用推有其他案例👇",
+  "notes": "Public mirrors exposed the source status and sample images but not the comment prompt. This is a clearly labeled reconstruction from visible source text and images, not a verified verbatim prompt.",
+  "image_filename_prefix": "x-mrlarus-2062098874844549433",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4L3EZWIAAgKoA.jpg?name=orig",
+      "filename": "x-mrlarus-2062098874844549433-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4L380WQAACKLV.jpg?name=orig",
+      "filename": "x-mrlarus-2062098874844549433-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4L5qTWYAAdfN9.jpg?name=orig",
+      "filename": "x-mrlarus-2062098874844549433-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4L62MXsAAxNTv.jpg?name=orig",
+      "filename": "x-mrlarus-2062098874844549433-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status and sample images because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.62,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "为一个[[slot id=\"brand_category\" group=\"subject\" label=\"品牌品类\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]原创茶饮品牌[[/slot]]生成一套可销售、可传播的 IP 商品化提案展示板。品牌名为「[[slot id=\"brand_name\" group=\"text\" label=\"品牌名\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]不咖 NOCO TEA[[/slot]]」，轻 IP 角色为「[[slot id=\"ip_name\" group=\"subject\" label=\"IP角色\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]醒醒叶[[/slot]]」。画面需要像真实品牌提案页面一样同时展示[[slot id=\"deliverables\" group=\"composition\" label=\"展示物料\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]品牌主视觉、IP 角色系统、产品包装矩阵、电商详情页片段、办公桌冲泡场景和运动冷泡场景[[/slot]]。整体风格清新、年轻、克制但有商业完成度，围绕无咖啡因茶饮、轻醒脑、日常陪伴、健康冷泡建立视觉系统。使用统一的品牌色、字体气质、图标语言和包装版式；让 IP 角色可爱但不幼稚，能出现在包装、贴纸、详情页和场景物料中。画面以高端电商品牌提案板形式排版，包含清晰中文标题、小标签、产品卖点、包装正反面、角色动作小样、场景图和局部放大细节。干净白底，[[slot id=\"palette\" group=\"color\" label=\"主色\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]浅绿与奶白[[/slot]]为主色，少量活力橙或茶色点缀，真实可落地的消费品品牌视觉系统，高清，细节丰富，无水印。"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/azed_ai/status/2061764041115320755",
+  "source_name": "X / azed_ai",
+  "title": "Highly stylized 3D caricature character portrait",
+  "author": "Amira Zairi (@azed_ai)",
+  "model": "Nano Banana / Adobe Firefly",
+  "prompt_language": "en",
+  "prompt_text": "A highly stylized 3D caricature of [Character], with an oversized head, expressive facial features, and playful exaggeration. Rendered in a smooth, polished style with clean materials and soft ambient lighting. Minimal background to emphasize the character’s charm and presence.",
+  "cluster_name": "Character & Portrait",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061764041115320755",
+    "3d-caricature",
+    "character-portrait",
+    "nano-banana"
+  ],
+  "tweet_intro": "Prompt share: 3D\n\n💬Prompt: A highly stylized 3D caricature of [Character], with an oversized head, expressive facial features, and playful exaggeration. Rendered in a smooth, polished style with clean materials and soft ambient lighting. Minimal background to emphasize the character’s charm and presence.\n\nTry it and share yours 🔥",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-azed-ai-2061764041115320755",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzbcxPbgAAGo1f.jpg?name=orig",
+      "filename": "x-azed-ai-2061764041115320755-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzbdLzaMAAE11i.jpg?name=orig",
+      "filename": "x-azed-ai-2061764041115320755-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzbdmKaYAAn0Y8.jpg?name=orig",
+      "filename": "x-azed-ai-2061764041115320755-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzbd_waIAAqcI7.jpg?name=orig",
+      "filename": "x-azed-ai-2061764041115320755-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.93,
+    "analysis_notes": "Manual absorption. Template has 9 replaceable slots for character, caricature intensity, proportions, facial expression, exaggeration, render finish, materials, lighting, and background.",
+    "marked_text": "A [[slot id=\"style\" group=\"style\" label=\"Style\" variable_type=\"style\" instruction=\"Replace the overall character style.\"]]highly stylized 3D caricature[[/slot]] of [[slot id=\"character\" group=\"subject\" label=\"Character\" variable_type=\"subject\" instruction=\"Replace the character or subject.\"]][Character][[/slot]], with an [[slot id=\"head_proportion\" group=\"form\" label=\"Head proportion\" variable_type=\"style\" instruction=\"Replace the caricature proportion cue.\"]]oversized head[[/slot]], [[slot id=\"features\" group=\"form\" label=\"Facial features\" variable_type=\"style\" instruction=\"Replace facial feature direction.\"]]expressive facial features[[/slot]], and [[slot id=\"exaggeration\" group=\"form\" label=\"Exaggeration\" variable_type=\"style\" instruction=\"Replace the exaggeration level.\"]]playful exaggeration[[/slot]]. Rendered in a [[slot id=\"render_style\" group=\"quality\" label=\"Render style\" variable_type=\"quality\" instruction=\"Replace render finish.\"]]smooth, polished style[[/slot]] with [[slot id=\"materials\" group=\"material\" label=\"Materials\" variable_type=\"material\" instruction=\"Replace material direction.\"]]clean materials[[/slot]] and [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" instruction=\"Replace lighting.\"]]soft ambient lighting[[/slot]]. [[slot id=\"background\" group=\"setting\" label=\"Background\" variable_type=\"setting\" instruction=\"Replace background treatment.\"]]Minimal background[[/slot]] to emphasize the character’s [[slot id=\"mood\" group=\"mood\" label=\"Mood\" variable_type=\"mood\" instruction=\"Replace the mood or character presence.\"]]charm and presence[[/slot]]."
+  }
+}

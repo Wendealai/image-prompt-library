@@ -1,0 +1,42 @@
+{
+  "source_url": "https://x.com/NoOneIsHere2603/status/2061791863691161783",
+  "source_name": "X / NoOneIsHere2603",
+  "title": "Highly expressive monochrome caricature portrait sketch inspired by Tom",
+  "author": "Sheikh Sharik 2.0 (@NoOneIsHere2603)",
+  "model": "ChatGPT Image",
+  "prompt_language": "en",
+  "prompt_text": "Highly expressive monochrome caricature portrait sketch inspired by Tom Cruise and Johnny Depp, rough energetic ink linework with chaotic scribbled pen strokes and bold black ink splashes. Messy windswept textured hair, iconic rugged facial features with exaggerated yet recognizable anatomy, deep intense eyes, sharp cheekbones, subtle smirk, dramatic wrinkles and facial texture, layered rings, necklaces, and vintage bohemian fashion details. Grey marker wash shading blended with aggressive crosshatching, raw hand-drawn imperfections, loose sketchbook rendering with spontaneous gesture drawing feel. Dark artistic mood, editorial fashion-art illustration style, contemporary museum-quality portrait, dynamic cinematic lighting, ultra-detailed ink textures, playful distorted realism, abstract urban sketch aesthetic, minimal clean white background with scattered ink splatters, emotionally powerful expression, premium fine-art illustration, ultra detailed, 8K.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061791863691161783",
+    "caricature",
+    "monochrome",
+    "ink-sketch"
+  ],
+  "tweet_intro": "Image Created On Chatgpt.\n\nPrompt:\n\nHighly expressive monochrome caricature portrait sketch inspired by Tom Cruise and Johnny Depp, rough energetic ink linework with chaotic scribbled pen strokes and bold black ink splashes. Messy windswept textured hair, iconic rugged facial features with exaggerated yet recognizable anatomy, deep intense eyes, sharp cheekbones, subtle smirk, dramatic wrinkles and facial texture, layered rings, necklaces, and vintage bohemian fashion details. Grey marker wash shading blended with aggressive crosshatching, raw hand-drawn imperfections, loose sketchbook rendering with spontaneous gesture drawing feel. Dark artistic mood, editorial fashion-art illustration style, contemporary museum-quality portrait, dynamic cinematic lighting, ultra-detailed ink textures, playful distorted realism, abstract urban sketch aesthetic, minimal clean white background with scattered ink splatters, emotionally powerful expression, premium fine-art illustration, ultra detailed, 8K.",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-nooneishere2603-2061791863691161783",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz0w4caUAAygl4.jpg?name=orig",
+      "filename": "x-nooneishere2603-2061791863691161783-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz0w5ta8AAefrb.jpg?name=orig",
+      "filename": "x-nooneishere2603-2061791863691161783-2.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 12 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"phrase_01\" group=\"absorbed_keyword\" label=\"Highly expressive monochrome caricat…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]Highly expressive monochrome caricature portrait sketch inspired by Tom Cruise and Johnny Depp[[/slot]], [[slot id=\"phrase_02\" group=\"absorbed_keyword\" label=\"rough energetic ink linework with ch…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]rough energetic ink linework with chaotic scribbled pen strokes and bold black ink splashes. Messy windswept textured hair[[/slot]], [[slot id=\"phrase_03\" group=\"absorbed_keyword\" label=\"iconic rugged facial features with e…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]iconic rugged facial features with exaggerated yet recognizable anatomy[[/slot]], [[slot id=\"phrase_04\" group=\"absorbed_keyword\" label=\"deep intense eyes\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]deep intense eyes[[/slot]], sharp cheekbones, subtle smirk, [[slot id=\"phrase_05\" group=\"absorbed_keyword\" label=\"dramatic wrinkles and facial texture\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]dramatic wrinkles and facial texture[[/slot]], layered rings, necklaces, [[slot id=\"phrase_06\" group=\"absorbed_keyword\" label=\"and vintage bohemian fashion details…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and vintage bohemian fashion details. Grey marker wash shading blended with aggressive crosshatching[[/slot]], [[slot id=\"phrase_07\" group=\"absorbed_keyword\" label=\"raw hand-drawn imperfections\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]raw hand-drawn imperfections[[/slot]], [[slot id=\"phrase_08\" group=\"absorbed_keyword\" label=\"loose sketchbook rendering with spon…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]loose sketchbook rendering with spontaneous gesture drawing feel. Dark artistic mood[[/slot]], [[slot id=\"phrase_09\" group=\"absorbed_keyword\" label=\"editorial fashion-art illustration s…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]editorial fashion-art illustration style[[/slot]], [[slot id=\"phrase_10\" group=\"absorbed_keyword\" label=\"contemporary museum-quality portrait\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]contemporary museum-quality portrait[[/slot]], [[slot id=\"phrase_11\" group=\"absorbed_keyword\" label=\"dynamic cinematic lighting\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]dynamic cinematic lighting[[/slot]], [[slot id=\"phrase_12\" group=\"absorbed_keyword\" label=\"ultra-detailed ink textures\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]ultra-detailed ink textures[[/slot]], playful distorted realism, abstract urban sketch aesthetic, minimal clean white background with scattered ink splatters, emotionally powerful expression, premium fine-art illustration, ultra detailed, 8K."
+  }
+}

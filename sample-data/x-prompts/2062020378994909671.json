@@ -1,0 +1,41 @@
+{
+  "source_url": "https://x.com/MissDelulu9/status/2062020378994909671",
+  "source_name": "X / MissDelulu9",
+  "title": "Contemporary Japanese line-art photo transformation",
+  "author": "Eesha (@MissDelulu9)",
+  "model": "GPT Image 2",
+  "prompt_language": "en",
+  "prompt_text": "Transform the person in the photo into Contemporary Japanese line-art illustration, ultra detailed pen-and-ink drawing, cream yellow and ivory color palette, minimalist editorial design, refined hatching and engraving texture, clean negative space, indie magazine aesthetic, soft literary atmosphere, delicate facial features, Scandinavian simplicity mixed with Japanese graphic design, museum-quality illustration, subtle vintage print texture, elegant composition, highly detailed, 8k.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062020378994909671",
+    "line-art",
+    "photo-transformation"
+  ],
+  "tweet_intro": "GPT Image 2 on ChatGPT\n\nPrompt:\n\nTransform the person in the photo into Contemporary Japanese line-art illustration, ultra detailed pen-and-ink drawing, cream yellow and ivory color palette, minimalist editorial design, refined hatching and engraving texture, clean negative space, indie magazine aesthetic, soft literary atmosphere, delicate facial features, Scandinavian simplicity mixed with Japanese graphic design, museum-quality illustration, subtle vintage print texture, elegant composition, highly detailed, 8k.",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-missdelulu9-2062020378994909671",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3EkZOasAAgBpa.jpg?name=orig",
+      "filename": "x-missdelulu9-2062020378994909671-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3Ek-2bkAAMtr3.jpg?name=orig",
+      "filename": "x-missdelulu9-2062020378994909671-2.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "Transform the [[slot id=\"subject\" group=\"subject\" label=\"Subject\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]person in the photo[[/slot]] into [[slot id=\"style\" group=\"style\" label=\"Style\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]Contemporary Japanese line-art illustration[[/slot]], [[slot id=\"medium\" group=\"material\" label=\"Medium\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]ultra detailed pen-and-ink drawing[[/slot]], [[slot id=\"palette\" group=\"color\" label=\"Palette\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]cream yellow and ivory color palette[[/slot]], [[slot id=\"layout\" group=\"composition\" label=\"Layout\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]minimalist editorial design[[/slot]], [[slot id=\"texture\" group=\"material\" label=\"Texture\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]refined hatching and engraving texture[[/slot]], clean negative space, indie magazine aesthetic, soft literary atmosphere, delicate facial features, Scandinavian simplicity mixed with Japanese graphic design, museum-quality illustration, subtle vintage print texture, elegant composition, highly detailed, 8k."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "source_url": "https://x.com/HustleXR/status/2061776349686312978",
+  "source_name": "X / HustleXR",
+  "title": "Impasto oil painting, thick palette knife brushstrokes, highly textured",
+  "author": "zayan (@HustleXR)",
+  "model": "Gemini Nano Banana",
+  "prompt_language": "en",
+  "prompt_text": "Impasto oil painting, thick palette knife brushstrokes, highly textured canvas surface, expressive painterly rendering, visible paint buildup, vibrant yet harmonious color palette, bold color blocking, contemporary fine art portrait style, rich tonal transitions, handcrafted oil-on-canvas aesthetic, dynamic brush textures, gallery-quality artwork, impressionistic realism, tactile paint texture, artistic light interplay, loose expressive strokes, museum-grade oil painting, modern impressionist technique, high-detail traditional painting.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061776349686312978",
+    "impasto",
+    "oil-painting",
+    "portrait"
+  ],
+  "tweet_intro": "Create with Gemini nano banana \n\n Prompt ⤵️ \nImpasto oil painting, thick palette knife brushstrokes, highly textured canvas surface, expressive painterly rendering, visible paint buildup, vibrant yet harmonious color palette, bold color blocking, contemporary fine art portrait style, rich tonal transitions, handcrafted oil-on-canvas aesthetic, dynamic brush textures, gallery-quality artwork, impressionistic realism, tactile paint texture, artistic light interplay, loose expressive strokes, museum-grade oil painting, modern impressionist technique, high-detail traditional painting.",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-hustlexr-2061776349686312978",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzmqKTboAAorJX.jpg?name=orig",
+      "filename": "x-hustlexr-2061776349686312978-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzmqdnbgAA1iw3.jpg?name=orig",
+      "filename": "x-hustlexr-2061776349686312978-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJzmqbDawAAXC6N.jpg?name=orig",
+      "filename": "x-hustlexr-2061776349686312978-3.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 12 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"phrase_01\" group=\"absorbed_keyword\" label=\"Impasto oil painting\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]Impasto oil painting[[/slot]], [[slot id=\"phrase_02\" group=\"absorbed_keyword\" label=\"thick palette knife brushstrokes\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]thick palette knife brushstrokes[[/slot]], [[slot id=\"phrase_03\" group=\"absorbed_keyword\" label=\"highly textured canvas surface\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]highly textured canvas surface[[/slot]], [[slot id=\"phrase_04\" group=\"absorbed_keyword\" label=\"expressive painterly rendering\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]expressive painterly rendering[[/slot]], [[slot id=\"phrase_05\" group=\"absorbed_keyword\" label=\"visible paint buildup\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]visible paint buildup[[/slot]], [[slot id=\"phrase_06\" group=\"absorbed_keyword\" label=\"vibrant yet harmonious color palette\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]vibrant yet harmonious color palette[[/slot]], [[slot id=\"phrase_07\" group=\"absorbed_keyword\" label=\"bold color blocking\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]bold color blocking[[/slot]], [[slot id=\"phrase_08\" group=\"absorbed_keyword\" label=\"contemporary fine art portrait style\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]contemporary fine art portrait style[[/slot]], [[slot id=\"phrase_09\" group=\"absorbed_keyword\" label=\"rich tonal transitions\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]rich tonal transitions[[/slot]], [[slot id=\"phrase_10\" group=\"absorbed_keyword\" label=\"handcrafted oil-on-canvas aesthetic\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]handcrafted oil-on-canvas aesthetic[[/slot]], [[slot id=\"phrase_11\" group=\"absorbed_keyword\" label=\"dynamic brush textures\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]dynamic brush textures[[/slot]], gallery-quality artwork, impressionistic realism, [[slot id=\"phrase_14\" group=\"absorbed_keyword\" label=\"tactile paint texture\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]tactile paint texture[[/slot]], artistic light interplay, loose expressive strokes, museum-grade oil painting, modern impressionist technique, high-detail traditional painting."
+  }
+}

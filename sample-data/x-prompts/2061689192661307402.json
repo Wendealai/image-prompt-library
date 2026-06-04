@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/ShamsAmin56/status/2061689192661307402",
+  "source_name": "X / ShamsAmin56",
+  "title": "Real objects integrated with hand-drawn black ink illustration",
+  "author": "Shams (@ShamsAmin56)",
+  "model": "Nano Banana 2 / Gemini",
+  "prompt_language": "en",
+  "prompt_text": "Creative composite photograph, 9:16 vertical aspect ratio, clean minimalist white background, studio lighting, high detail, sharp focus.\n\nA real-life [EVERYDAY OBJECT] is physically placed and perfectly integrated as a key part of a hand-drawn black ink cartoon illustration. The drawing is simple, expressive line art with minimal shading, like a quick sketch on paper.\n\nThe [OBJECT] represents [CLEVER PART OF THE SCENE - e.g. hair, weapon, body part, clothing, etc.], cleverly completing the visual pun or concept. The cartoon character interacts dynamically with the object in a humorous, meaningful, or surprising way.\n\nPhotorealistic object + bold black line drawing style, perfect seamless blend between real object and illustration, clean negative space, artistic and witty concept, high quality product photography mixed with doodle art.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061689192661307402",
+    "real-object-doodle",
+    "hand-drawn-illustration",
+    "nano-banana-2"
+  ],
+  "tweet_intro": "Real Objects + Hand-Drawn Illustrations.\n\nNano Banana 2 on Gemini\n\n• Prompt & How to use:\n\nCreative composite photograph, 9:16 vertical aspect ratio, clean minimalist white background, studio lighting, high detail, sharp focus.\n\nA real-life [EVERYDAY OBJECT] is physically placed and perfectly integrated as a key part of a hand-drawn black ink cartoon illustration. The drawing is simple, expressive line art with minimal shading, like a quick sketch on paper.\n\nThe [OBJECT] represents [CLEVER PART OF THE SCENE - e.g. hair, weapon, body part, clothing, etc.], cleverly completing the visual pun or concept. The cartoon character interacts dynamically with the object in a humorous, meaningful, or surprising way.\n\nPhotorealistic object + bold black line drawing style, perfect seamless blend between real object and illustration, clean negative space, artistic and witty concept, high quality product photography mixed with doodle art.\n\n• How to edit super easy\n\nJust replace the placeholders:\n\n[EVERYDAY OBJECT] → what real thing you'll use (tomato, onion, chips, etc.)\n\n[CLEVER PART OF THE SCENE] → what the object becomes in the drawing\nThen customize the character and concept",
+  "notes": "Prompt text extracted from requested status body. Usage notes are preserved in tweet_intro; primary prompt_text contains the direct generation prompt.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-shamsamin56-2061689192661307402",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyXZGJWsAANjoS.jpg?name=orig",
+      "filename": "x-shamsamin56-2061689192661307402-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyXZI0XoAAnQLT.jpg?name=orig",
+      "filename": "x-shamsamin56-2061689192661307402-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyXZKQXQAAXqrN.jpg?name=orig",
+      "filename": "x-shamsamin56-2061689192661307402-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJyXZOkXkAAsEcs.jpg?name=orig",
+      "filename": "x-shamsamin56-2061689192661307402-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.94,
+    "analysis_notes": "Manual absorption. Template has 13 replaceable slots for format, aspect ratio, background, lighting, object, integration role, illustration style, drawing detail, concept role, interaction, mood, blend, and quality.",
+    "marked_text": "[[slot id=\"format\" group=\"style\" label=\"Format\" variable_type=\"style\" instruction=\"Replace the overall format.\"]]Creative composite photograph[[/slot]], [[slot id=\"aspect_ratio\" group=\"output\" label=\"Aspect ratio\" variable_type=\"constraint\" instruction=\"Replace output ratio.\"]]9:16 vertical aspect ratio[[/slot]], [[slot id=\"background\" group=\"setting\" label=\"Background\" variable_type=\"setting\" instruction=\"Replace background.\"]]clean minimalist white background[[/slot]], [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" instruction=\"Replace lighting.\"]]studio lighting[[/slot]], [[slot id=\"detail\" group=\"quality\" label=\"Detail\" variable_type=\"quality\" instruction=\"Replace quality/detail cues.\"]]high detail, sharp focus[[/slot]].\n\nA real-life [[slot id=\"everyday_object\" group=\"subject\" label=\"Everyday object\" variable_type=\"subject\" instruction=\"Replace the physical object.\"]][EVERYDAY OBJECT][[/slot]] is physically placed and perfectly integrated as a key part of a [[slot id=\"illustration_style\" group=\"style\" label=\"Illustration style\" variable_type=\"style\" instruction=\"Replace the drawing style.\"]]hand-drawn black ink cartoon illustration[[/slot]]. The drawing is [[slot id=\"line_style\" group=\"style\" label=\"Line style\" variable_type=\"style\" instruction=\"Replace line/drawing treatment.\"]]simple, expressive line art with minimal shading[[/slot]], like a [[slot id=\"paper_feel\" group=\"material\" label=\"Paper feel\" variable_type=\"material\" instruction=\"Replace sketch surface feel.\"]]quick sketch on paper[[/slot]].\n\nThe [[slot id=\"object_label\" group=\"subject\" label=\"Object label\" variable_type=\"subject\" instruction=\"Replace the object label used in the role sentence.\"]][OBJECT][[/slot]] represents [[slot id=\"clever_part\" group=\"concept\" label=\"Clever part\" variable_type=\"concept\" instruction=\"Replace what the object becomes in the drawing.\"]][CLEVER PART OF THE SCENE - e.g. hair, weapon, body part, clothing, etc.][[/slot]], cleverly completing the [[slot id=\"concept\" group=\"concept\" label=\"Concept\" variable_type=\"concept\" instruction=\"Replace the conceptual role.\"]]visual pun or concept[[/slot]]. The cartoon character interacts dynamically with the object in a [[slot id=\"interaction_mood\" group=\"mood\" label=\"Interaction mood\" variable_type=\"mood\" instruction=\"Replace interaction mood.\"]]humorous, meaningful, or surprising way[[/slot]].\n\n[[slot id=\"blend\" group=\"style\" label=\"Blend\" variable_type=\"style\" instruction=\"Replace the blend style.\"]]Photorealistic object + bold black line drawing style[[/slot]], [[slot id=\"seamless_quality\" group=\"quality\" label=\"Seamless quality\" variable_type=\"quality\" instruction=\"Replace integration quality.\"]]perfect seamless blend between real object and illustration[[/slot]], [[slot id=\"finish\" group=\"quality\" label=\"Finish\" variable_type=\"quality\" instruction=\"Replace final quality and mood.\"]]clean negative space, artistic and witty concept, high quality product photography mixed with doodle art[[/slot]]."
+  }
+}

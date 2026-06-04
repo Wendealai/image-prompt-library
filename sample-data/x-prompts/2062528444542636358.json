@@ -1,0 +1,44 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062528444542636358",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "局部破框人像中文杂志封面海报",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "生成一张竖版中文人物杂志封面海报，主题是一位具有时代感的华语男演员肖像。画面以人像和矩形达成错位感：人物半身肖像从浅色半透明矩形色块中局部破框，肩部和头部自然越过几何边界，形成真实人像与平面设计之间的空间层次。背景为米白纸张肌理和大面积留白，整体低对比、克制、文艺、带一点东方杂志封面气质。版式使用超大中文姓名标题、细长英文拼音、期刊编号、日期、竖排短句、目录式小字和极简装饰线，文字要像专业中文杂志封面排版，保持清晰、疏朗、有呼吸感。人物光线柔和自然，肤色真实，服装简洁，边缘可有轻微雾化或淡墨晕染，但五官必须清楚。整体风格：局部破框、人物封面、柔和几何色窗、大留白、低对比纹理、细长排版，高级中文刊物设计，竖版 3:4，无水印。",
+  "cluster_name": "Poster & Editorial",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062528444542636358",
+    "reconstructed-prompt",
+    "portrait-poster",
+    "partial-break-frame",
+    "chinese-magazine-cover"
+  ],
+  "quote_url": "https://x.com/xiaoxiaodong01/status/2058018197698416862",
+  "tweet_intro": "GPT x 局部破框 x 人像 x 美学提示词\n\n在月亮岛散步的时候，想到中餐厅在岛上拍\n想到明星，就想到了用这个逻辑，做一组升级的提示词\n\n主打特色就是：人像和矩形达成一种错位感\n\n提示词在评论区，拿词记得返图",
+  "notes": "Public mirrors exposed the source status text, quoted earlier local-break-frame template, and two sample images, but did not expose the comment prompt. This is a clearly labeled reconstruction from source text, quote text, and visible images.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062528444542636358",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ-SgoTaAAA8lIr.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062528444542636358-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ-SmMWaAAACxNF.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062528444542636358-2.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status, quoted earlier template, and sample images because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.66,
+    "analysis_notes": "Manual absorption with replaceable keyword slots for subject, partial-frame composition, editorial layout, typography, and output format.",
+    "marked_text": "生成一张[[slot id=\"format\" group=\"output\" label=\"画面格式\" variable_type=\"keyword\" instruction=\"Replace the poster format while preserving the layout logic.\"]]竖版中文人物杂志封面海报[[/slot]]，主题是[[slot id=\"subject\" group=\"subject\" label=\"人物主题\" variable_type=\"keyword\" instruction=\"Replace the portrait subject.\"]]一位具有时代感的华语男演员肖像[[/slot]]。画面以[[slot id=\"core_relation\" group=\"composition\" label=\"核心错位关系\" variable_type=\"keyword\" instruction=\"Replace the core spatial relationship while keeping the break-frame concept.\"]]人像和矩形达成错位感[[/slot]]：人物半身肖像从[[slot id=\"geometry\" group=\"composition\" label=\"几何色窗\" variable_type=\"keyword\" instruction=\"Replace the geometric framing element.\"]]浅色半透明矩形色块[[/slot]]中局部破框，肩部和头部自然越过几何边界，形成真实人像与平面设计之间的空间层次。背景为[[slot id=\"background\" group=\"style\" label=\"背景质感\" variable_type=\"keyword\" instruction=\"Replace the background texture and whitespace treatment.\"]]米白纸张肌理和大面积留白[[/slot]]，整体低对比、克制、文艺、带一点东方杂志封面气质。版式使用[[slot id=\"typography\" group=\"typography\" label=\"文字系统\" variable_type=\"keyword\" instruction=\"Replace the typography system.\"]]超大中文姓名标题、细长英文拼音、期刊编号、日期、竖排短句、目录式小字和极简装饰线[[/slot]]，文字要像专业中文杂志封面排版，保持清晰、疏朗、有呼吸感。人物光线柔和自然，肤色真实，服装简洁，边缘可有轻微雾化或淡墨晕染，但五官必须清楚。整体风格：[[slot id=\"style_keywords\" group=\"style\" label=\"风格关键词\" variable_type=\"keyword\" instruction=\"Replace the final style keyword stack.\"]]局部破框、人物封面、柔和几何色窗、大留白、低对比纹理、细长排版，高级中文刊物设计[[/slot]]，[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace the output ratio.\"]]竖版 3:4[[/slot]]，无水印。"
+  }
+}

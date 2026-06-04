@@ -1,0 +1,37 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062070752464289973",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "粗粝拼贴碎纸风封面海报模板",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "以具体主题内容为核心生成一张粗粝拼贴碎纸风封面海报。画面由高纯度背景色、撕裂纸片、扫描颗粒、碎纸边缘、手工拼贴痕迹和主题局部共同构成；不要建立完整写实场景，而是把主题拆成可识别的局部、符号、边缘、色点和纸片层级。主体从裂隙、遮挡和纸片堆叠中显现，局部被撕纸边吞没，形成被发现、被遮住、被拼贴重组的视觉阻力。色彩需要根据主题自动推导，背景色要强烈且干净，内部世界可以使用高密度主题色、暗色锚点和少量高饱和情绪色。加入不规则碎纸、胶带感、印刷错位、扫描噪点、粗线描和低声文字信息；文字只作为题名、编号、短句和微型注脚，不抢主视觉。整体适合自媒体封面、文化海报、音乐封面或观点文章头图，16:9 横版，强图形冲击，粗粝但有秩序，无水印。",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062070752464289973",
+    "reconstructed-prompt",
+    "rough-collage",
+    "paper-tear"
+  ],
+  "tweet_intro": "GPT2 x 粗粝拼贴 x 碎纸风 x 提示词美学\n\n逼迫自己，进化了这种拼贴风格\n\n让其更强大和智能了\n\n尤其是颜色和主题理解方面\n\n喜欢这种风格的， 可以拿去做自媒体封面，也成\n\n提示词见评论区吧⤵️",
+  "notes": "Public mirrors exposed source text and one sample image, but not the comment prompt. This is a clearly labeled reconstruction, informed by the quoted earlier tear-paper prompt but adapted to the requested rough collage/shredded-paper style.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062070752464289973",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3yZ4obUAAZfr2.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062070752464289973-1.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status, sample image, and related quoted template because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.58,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "以[[slot id=\"theme\" group=\"concept\" label=\"主题\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]具体主题内容[[/slot]]为核心生成一张[[slot id=\"style\" group=\"style\" label=\"风格\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]粗粝拼贴碎纸风封面海报[[/slot]]。画面由[[slot id=\"ingredients\" group=\"style\" label=\"拼贴元素\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]高纯度背景色、撕裂纸片、扫描颗粒、碎纸边缘、手工拼贴痕迹和主题局部[[/slot]]共同构成；不要建立完整写实场景，而是把主题拆成可识别的局部、符号、边缘、色点和纸片层级。主体从裂隙、遮挡和纸片堆叠中显现，局部被撕纸边吞没，形成被发现、被遮住、被拼贴重组的视觉阻力。色彩需要根据主题自动推导，背景色要强烈且干净，内部世界可以使用高密度主题色、暗色锚点和少量高饱和情绪色。加入不规则碎纸、胶带感、印刷错位、扫描噪点、粗线描和低声文字信息；文字只作为题名、编号、短句和微型注脚，不抢主视觉。整体适合自媒体封面、文化海报、音乐封面或观点文章头图，[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]16:9 横版[[/slot]]，强图形冲击，粗粝但有秩序，无水印。"
+  }
+}

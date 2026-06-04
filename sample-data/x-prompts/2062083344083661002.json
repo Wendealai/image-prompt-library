@@ -1,0 +1,51 @@
+{
+  "source_url": "https://x.com/yyyole/status/2062083344083661002",
+  "source_name": "X / yyyole",
+  "title": "东方庭院夏日手绘插画风格",
+  "author": "沐阳 (@yyyole)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "【主体/场景]，东方庭院手绘插画风格，夏日阳光，树影斑驳，白墙灰瓦，绿植繁茂，石板路，盆栽花木，柔和水彩厚涂质感，动画电影背景美术，轻微俯视构图，明亮通透，色彩清新淡雅，浅绿、奶白、灰蓝、暖黄色调，安静治愈，生活气息，小人物点缀，细腻手绘笔触，温柔光影，无文字，无水印。",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062083344083661002",
+    "courtyard-illustration",
+    "summer"
+  ],
+  "tweet_intro": "夏天，是一个极繁的季节。\n如果你一直生活在城市，那永远不会怀念夏天！\n\n这也是我喜欢的手绘插画风格，\nGPT image2的审美依然在线！",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-yyyole-2062083344083661002",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ38rofa8AALomz.jpg?name=orig",
+      "filename": "x-yyyole-2062083344083661002-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ38uSjbQAAnkcr.jpg?name=orig",
+      "filename": "x-yyyole-2062083344083661002-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ38w0_bQAABzh7.jpg?name=orig",
+      "filename": "x-yyyole-2062083344083661002-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ38y8Ba8AAEJ4W.jpg?name=orig",
+      "filename": "x-yyyole-2062083344083661002-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "[[slot id=\"subject_scene\" group=\"subject\" label=\"主体/场景\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]【主体/场景][[/slot]]，[[slot id=\"style\" group=\"style\" label=\"插画风格\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]东方庭院手绘插画风格[[/slot]]，[[slot id=\"lighting\" group=\"lighting\" label=\"光影\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]夏日阳光，树影斑驳[[/slot]]，[[slot id=\"scene_elements\" group=\"setting\" label=\"场景元素\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]白墙灰瓦，绿植繁茂，石板路，盆栽花木[[/slot]]，柔和水彩厚涂质感，动画电影背景美术，轻微俯视构图，明亮通透，色彩清新淡雅，[[slot id=\"palette\" group=\"color\" label=\"配色\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]浅绿、奶白、灰蓝、暖黄色调[[/slot]]，安静治愈，生活气息，小人物点缀，细腻手绘笔触，温柔光影，[[slot id=\"constraints\" group=\"constraints\" label=\"限制\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]无文字，无水印[[/slot]]。"
+  }
+}

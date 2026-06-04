@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/VigoCreativeAI/status/2062066404048904213",
+  "source_name": "X / VigoCreativeAI",
+  "title": "高端家具品牌首屏视觉：设计师椅子",
+  "author": "Vigo Zhao (@VigoCreativeAI)",
+  "model": "GPT Image 2 / Nano Banana Pro",
+  "prompt_language": "zh_hans",
+  "prompt_text": "生成一张高端家具品牌首屏视觉，主题是一把价值感极高的设计师椅子。不要把椅子拍成普通商品图，而要拍成“设计品”：椅子作为空间中的雕塑主体，置于极简建筑室内或高级艺廊环境中，周围有大面积留白、天然石材或微水泥墙面、柔和天光、低饱和高级色和精确阴影。镜头使用低机位或平视的建筑摄影构图，强调椅子的轮廓、材质、曲线、结构比例和触感。画面要像高端家具品牌官网首屏，安静、克制、昂贵、有策展感，保留清晰的产品细节和可购买欲。可加入极少量精致标题文字和品牌式短句，但不要出现真实品牌 logo。16:9 横版，超写实商业摄影，杂志级室内设计美学，无水印。",
+  "cluster_name": "UI, Brand & Product",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062066404048904213",
+    "reconstructed-prompt",
+    "furniture-hero",
+    "interior-photography"
+  ],
+  "tweet_intro": "一把椅子怎么让人觉得值两万？\n\n不是拍清楚。是拍成「设计品」。\n\n我用 AI 做了一组高端家具品牌的首屏视觉，拆一下这类图到底在卖什么 👇🧵",
+  "notes": "Public mirrors exposed the source status text and four sample images, but did not expose the thread prompt. This is a clearly labeled reconstruction from source text and visible images.",
+  "image_filename_prefix": "x-vigocreativeai-2062066404048904213",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3uc6gaAAAJE3P.jpg?name=orig",
+      "filename": "x-vigocreativeai-2062066404048904213-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3uc6dakAA2CoU.jpg?name=orig",
+      "filename": "x-vigocreativeai-2062066404048904213-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3uc6fbcAAhzN8.jpg?name=orig",
+      "filename": "x-vigocreativeai-2062066404048904213-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3uc6fbUAA2CbV.jpg?name=orig",
+      "filename": "x-vigocreativeai-2062066404048904213-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source status and sample images because the thread prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.66,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "生成一张[[slot id=\"hero_type\" group=\"style\" label=\"首屏类型\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]高端家具品牌首屏视觉[[/slot]]，主题是[[slot id=\"product\" group=\"subject\" label=\"产品\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]一把价值感极高的设计师椅子[[/slot]]。不要把椅子拍成普通商品图，而要拍成“设计品”：椅子作为空间中的雕塑主体，置于[[slot id=\"environment\" group=\"setting\" label=\"环境\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]极简建筑室内或高级艺廊环境[[/slot]]中，周围有大面积留白、[[slot id=\"materials_lighting\" group=\"lighting\" label=\"材质光影\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]天然石材或微水泥墙面、柔和天光、低饱和高级色和精确阴影[[/slot]]。镜头使用低机位或平视的建筑摄影构图，强调椅子的轮廓、材质、曲线、结构比例和触感。画面要像高端家具品牌官网首屏，安静、克制、昂贵、有策展感，保留清晰的产品细节和可购买欲。可加入极少量精致标题文字和品牌式短句，但不要出现真实品牌 logo。[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]16:9 横版[[/slot]]，超写实商业摄影，杂志级室内设计美学，无水印。"
+  }
+}

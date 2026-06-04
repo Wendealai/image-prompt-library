@@ -1,0 +1,41 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062068756877353103",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "GPT Image 2 同心圆波纹图形海报：杨贵妃与荔枝",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "围绕具体主题内容生成一张强图形感的视觉作品：让整个画面被一个偏离中心的视觉原点统摄，所有结构、空间和情绪都从这个原点以密集同心波纹向外扩散，波纹不是装饰纹理，而是画面的骨架与叙事压力。主体保持极小尺度，以清晰剪影化的主题核心符号出现，停在波心附近一条干净利落的几何边界上，使宏大的波场与微小主体形成强烈比例反差。空间由大面积色块切分成清楚场域，边界带有果断的几何偏移并严格服务于波心位置和阅读动线；同心线条跨越所有场域，线距均匀、边缘带细微浮雕和丝网印刷般的颗粒起伏，让平面图形产生可触摸的深度。色彩从主题自身的材质、情绪和叙事中提取，保留大面积清晰结构色、少量高亮情绪色、深浅明确的明暗阶梯和干净高饱和的对比关系，整体明亮、清透、冷静而有能量，避免浑浊灰化。画面要有精确的几何秩序、强烈的视觉记忆点和安静的孤独感，使观看者先被扩散波纹吸入，再落到波心旁的微小主体。\n\n本次主题：杨贵妃与荔枝\n\n比例9:10",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062068756877353103",
+    "concentric-waves",
+    "graphic-poster"
+  ],
+  "tweet_intro": "GPT2 x 同心圆 x 波 x 提示词美学\n\n用圆形当核心元素来呈现  各种主题\n\nGPT-image2这方面，还是有一手的\n\n还是有一小小的被它惊艳到\n\n提示词如下 ⤵️",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062068756877353103",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3wMjsacAAy-_G.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062068756877353103-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ3wPimaIAANLaP.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062068756877353103-2.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "围绕[[slot id=\"theme_content\" group=\"concept\" label=\"主题内容\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]具体主题内容[[/slot]]生成一张强图形感的视觉作品：让整个画面被一个[[slot id=\"origin\" group=\"composition\" label=\"视觉原点\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]偏离中心的视觉原点[[/slot]]统摄，所有结构、空间和情绪都从这个原点以[[slot id=\"wave_structure\" group=\"composition\" label=\"波纹结构\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]密集同心波纹[[/slot]]向外扩散，波纹不是装饰纹理，而是画面的骨架与叙事压力。主体保持[[slot id=\"subject_scale\" group=\"composition\" label=\"主体尺度\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]极小尺度[[/slot]]，以清晰剪影化的主题核心符号出现，停在波心附近一条干净利落的几何边界上，使宏大的波场与微小主体形成强烈比例反差。空间由大面积色块切分成清楚场域，边界带有果断的几何偏移并严格服务于波心位置和阅读动线；同心线条跨越所有场域，线距均匀、边缘带细微浮雕和丝网印刷般的颗粒起伏，让平面图形产生可触摸的深度。色彩从主题自身的材质、情绪和叙事中提取，保留大面积清晰结构色、少量高亮情绪色、深浅明确的明暗阶梯和干净高饱和的对比关系，整体明亮、清透、冷静而有能量，避免浑浊灰化。画面要有精确的几何秩序、强烈的视觉记忆点和安静的孤独感，使观看者先被扩散波纹吸入，再落到波心旁的微小主体。\n\n本次主题：[[slot id=\"topic\" group=\"subject\" label=\"本次主题\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]杨贵妃与荔枝[[/slot]]\n\n比例[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]9:10[[/slot]]"
+  }
+}

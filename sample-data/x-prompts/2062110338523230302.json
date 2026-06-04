@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/liyue_ai/status/2062110338523230302",
+  "source_name": "X / liyue_ai",
+  "title": "线下餐饮门店营销物料品牌展示板模板",
+  "author": "李岳 (@liyue_ai)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "生成一张线下餐饮门店营销物料品牌展示板，品牌名称为「[品牌名称]」，餐饮品类为「[餐饮品类]」，主打产品为「[主打产品]」。展示板需要把门店外观、门头招牌、菜单设计、产品包装、亚克力桌牌、开业海报、社交媒体宣传图统一放进一张完整的品牌系统页面里，而不是单独海报。请自动补全品牌风格、品牌色、字体气质、图形元素和物料编号，让所有物料看起来属于同一个真实可落地的线下门店。版面像专业品牌提案板，包含编号 01-06、清晰中文小标题、局部放大细节、真实店铺场景和物料陈列。风格现代、干净、适合社交传播，同时兼顾门店实际落地，高清商业设计展示，统一配色，真实材质，清晰文字，无水印。",
+  "cluster_name": "UI, Brand & Product",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062110338523230302",
+    "reconstructed-prompt",
+    "restaurant-branding",
+    "marketing-materials"
+  ],
+  "tweet_intro": "兄弟们\n这次用「线下餐饮门店营销物料」模板做了一组奶茶品牌物料展示板。\n\n这套提示词的重点不是单独生成一张海报，而是把门店外观、菜单、包装、亚克力站牌、开业海报统一放进一张品牌展示板里，让整体看起来像真实可落地的门店品牌系统。\n\n提示词见引用贴。",
+  "notes": "Public mirrors exposed the source status and images, plus a related quoted template description, but not the exact comment prompt. This is a clearly labeled reconstruction from source/quote text and sample images.",
+  "image_filename_prefix": "x-liyue-ai-2062110338523230302",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4U02cawAAQ0hc.jpg?name=orig",
+      "filename": "x-liyue-ai-2062110338523230302-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4U1wBa0AEI7mM.jpg?name=orig",
+      "filename": "x-liyue-ai-2062110338523230302-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4WTYRbcAA5S0K.jpg?name=orig",
+      "filename": "x-liyue-ai-2062110338523230302-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ4WTzvboAAI1dQ.jpg?name=orig",
+      "filename": "x-liyue-ai-2062110338523230302-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Reconstructed from source and quote descriptions because the comment prompt was not exposed through public mirrors/search.",
+    "analysis_confidence": 0.64,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "生成一张[[slot id=\"board_type\" group=\"style\" label=\"展示板类型\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]线下餐饮门店营销物料品牌展示板[[/slot]]，品牌名称为「[[slot id=\"brand_name\" group=\"text\" label=\"品牌名称\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]][品牌名称][[/slot]]」，餐饮品类为「[[slot id=\"category\" group=\"subject\" label=\"餐饮品类\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]][餐饮品类][[/slot]]」，主打产品为「[[slot id=\"hero_product\" group=\"subject\" label=\"主打产品\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]][主打产品][[/slot]]」。展示板需要把[[slot id=\"materials\" group=\"composition\" label=\"物料清单\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]门店外观、门头招牌、菜单设计、产品包装、亚克力桌牌、开业海报、社交媒体宣传图[[/slot]]统一放进一张完整的品牌系统页面里，而不是单独海报。请自动补全品牌风格、品牌色、字体气质、图形元素和物料编号，让所有物料看起来属于同一个真实可落地的线下门店。版面像专业品牌提案板，包含[[slot id=\"numbering\" group=\"text\" label=\"物料编号\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]编号 01-06[[/slot]]、清晰中文小标题、局部放大细节、真实店铺场景和物料陈列。风格现代、干净、适合社交传播，同时兼顾门店实际落地，高清商业设计展示，统一配色，真实材质，清晰文字，无水印。"
+  }
+}

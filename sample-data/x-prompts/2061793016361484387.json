@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/Noor_ul_ain43/status/2061793016361484387",
+  "source_name": "X / Noor_ul_ain43",
+  "title": "A funny celebrity caricature portrait series in a minimalist ink-and-wat",
+  "author": "Noor 🌸 (@Noor_ul_ain43)",
+  "model": "GPT Images 2",
+  "prompt_language": "en",
+  "prompt_text": "A funny celebrity caricature portrait series in a minimalist ink-and-watercolor sketch style on a clean off-white paper background. Four separate portraits of Elon Musk, Donald Trump, Cristiano Ronaldo, and Virat Kohli. Each character has exaggerated facial features, oversized ears, playful crossed eyes, goofy smirks, exaggerated expressions, messy sketch lines, loose ink strokes, watercolor splashes, imperfect hand-drawn details, expressive brushwork, humorous personality, cream paper texture, black clothing or iconic outfit elements, high-detail caricature art, whimsical editorial illustration, modern sketchbook aesthetic, white negative space, quirky and charming, viral social media art, 4K ultra-detailed.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061793016361484387",
+    "caricature",
+    "ink-watercolor",
+    "sketchbook"
+  ],
+  "tweet_intro": "Turned some of the world's biggest icons into hilarious sketchbook caricatures. All created using GPT Images 2\n\nPrompt ⤵️ \nA funny celebrity caricature portrait series in a minimalist ink-and-watercolor sketch style on a clean off-white paper background. Four separate portraits of Elon Musk, Donald Trump, Cristiano Ronaldo, and Virat Kohli. Each character has exaggerated facial features, oversized ears, playful crossed eyes, goofy smirks, exaggerated expressions, messy sketch lines, loose ink strokes, watercolor splashes, imperfect hand-drawn details, expressive brushwork, humorous personality, cream paper texture, black clothing or iconic outfit elements, high-detail caricature art, whimsical editorial illustration, modern sketchbook aesthetic, white negative space, quirky and charming, viral social media art, 4K ultra-detailed.",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-noor_ul_ain43-2061793016361484387",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz1z_Mb0AAaTrL.jpg?name=orig",
+      "filename": "x-noor_ul_ain43-2061793016361484387-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz10BKaMAAyRJy.jpg?name=orig",
+      "filename": "x-noor_ul_ain43-2061793016361484387-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz10DFbcAArjkY.jpg?name=orig",
+      "filename": "x-noor_ul_ain43-2061793016361484387-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJz10G-a4AA3y18.jpg?name=orig",
+      "filename": "x-noor_ul_ain43-2061793016361484387-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 12 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"phrase_01\" group=\"absorbed_keyword\" label=\"A funny celebrity caricature portrai…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]A funny celebrity caricature portrait series in a minimalist ink-and-watercolor sketch style on a clean off-white paper background. Four separate portraits of Elon Musk[[/slot]], Donald Trump, Cristiano Ronaldo, [[slot id=\"phrase_03\" group=\"absorbed_keyword\" label=\"and Virat Kohli. Each character has …\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and Virat Kohli. Each character has exaggerated facial features[[/slot]], oversized ears, [[slot id=\"phrase_04\" group=\"absorbed_keyword\" label=\"playful crossed eyes\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]playful crossed eyes[[/slot]], goofy smirks, exaggerated expressions, [[slot id=\"phrase_06\" group=\"absorbed_keyword\" label=\"messy sketch lines\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]messy sketch lines[[/slot]], [[slot id=\"phrase_07\" group=\"absorbed_keyword\" label=\"loose ink strokes\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]loose ink strokes[[/slot]], watercolor splashes, [[slot id=\"phrase_09\" group=\"absorbed_keyword\" label=\"imperfect hand-drawn details\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]imperfect hand-drawn details[[/slot]], expressive brushwork, humorous personality, [[slot id=\"phrase_12\" group=\"absorbed_keyword\" label=\"cream paper texture\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]cream paper texture[[/slot]], [[slot id=\"phrase_13\" group=\"absorbed_keyword\" label=\"black clothing or iconic outfit elem…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]black clothing or iconic outfit elements[[/slot]], [[slot id=\"phrase_14\" group=\"absorbed_keyword\" label=\"high-detail caricature art\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]high-detail caricature art[[/slot]], [[slot id=\"phrase_15\" group=\"absorbed_keyword\" label=\"whimsical editorial illustration\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]whimsical editorial illustration[[/slot]], [[slot id=\"phrase_16\" group=\"absorbed_keyword\" label=\"modern sketchbook aesthetic\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]modern sketchbook aesthetic[[/slot]], [[slot id=\"phrase_17\" group=\"absorbed_keyword\" label=\"white negative space\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]white negative space[[/slot]], quirky and charming, viral social media art, 4K ultra-detailed."
+  }
+}

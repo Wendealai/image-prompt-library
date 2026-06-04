@@ -16,13 +16,15 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Any
+from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from backend.repositories import ItemRepository, StoredImageInput
+from backend.repositories import ItemRepository, StoredImageInput, now
 from backend.schemas import ItemCreate, PromptIn
 from backend.services.image_store import store_image
+from backend.services.prompt_markup import validate_marked_prompt
 
 
 def _library_path(configured: str | None) -> Path:
@@ -92,7 +94,13 @@ def _bytes_from_image_entry(entry: dict[str, Any], manifest_dir: Path) -> tuple[
             image_path = manifest_dir / image_path
         content_type = entry.get("content_type") if isinstance(entry.get("content_type"), str) else None
         return image_path.read_bytes(), content_type, image_path.name
-    raise SystemExit("Each image needs one of `data_url`, `base64`, or `path`.")
+    image_url = entry.get("image_url") or entry.get("url")
+    if isinstance(image_url, str) and image_url.strip().startswith(("http://", "https://")):
+        with urlopen(image_url.strip(), timeout=30) as response:
+            content_type = response.headers.get("content-type")
+            filename = entry.get("filename") if isinstance(entry.get("filename"), str) else Path(image_url).name
+            return response.read(), content_type, filename
+    raise SystemExit("Each image needs one of `data_url`, `base64`, `path`, `image_url`, or `url`.")
 
 
 def _duplicate_item(library_path: Path, source_url: str) -> dict[str, str] | None:
@@ -102,7 +110,18 @@ def _duplicate_item(library_path: Path, source_url: str) -> dict[str, str] | Non
     with sqlite3.connect(db_path) as conn:
         conn.row_factory = sqlite3.Row
         row = conn.execute(
-            "SELECT id,title FROM items WHERE source_url=? AND archived=0",
+            """
+            SELECT
+                items.id,
+                items.title,
+                COUNT(DISTINCT images.id) AS image_count,
+                COUNT(DISTINCT prompt_templates.id) AS template_count
+            FROM items
+            LEFT JOIN images ON images.item_id = items.id
+            LEFT JOIN prompt_templates ON prompt_templates.item_id = items.id
+            WHERE items.source_url=? AND items.archived=0
+            GROUP BY items.id, items.title
+            """,
             (source_url,),
         ).fetchone()
     return dict(row) if row else None
@@ -128,16 +147,70 @@ def _notes(data: dict[str, Any], source_url: str, author: str | None) -> str:
     return "\n\n".join(parts)
 
 
+def _optional_float(data: dict[str, Any], key: str) -> float | None:
+    value = data.get(key)
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise SystemExit(f"Manifest field `{key}` must be a number.") from exc
+
+
+def _save_prompt_template_if_present(
+    *,
+    repo: ItemRepository,
+    item_id: str,
+    prompt_text: str,
+    prompt_language: str,
+    data: dict[str, Any],
+) -> str | None:
+    raw_template = data.get("prompt_template")
+    if raw_template is None:
+        return None
+    if not isinstance(raw_template, dict):
+        raise SystemExit("Manifest field `prompt_template` must be an object.")
+
+    marked_text = _required_text(raw_template, "marked_text")
+    slots = validate_marked_prompt(prompt_text.strip(), marked_text)
+    status = _optional_text(raw_template, "status") or "ready"
+    review_status = _optional_text(raw_template, "review_status") or "pending_review"
+    if status not in {"draft", "ready", "stale", "failed"}:
+        raise SystemExit("Manifest field `prompt_template.status` must be draft, ready, stale, or failed.")
+    if review_status not in {"pending_review", "approved", "rejected"}:
+        raise SystemExit("Manifest field `prompt_template.review_status` must be pending_review, approved, or rejected.")
+
+    reviewed_at = None
+    if review_status in {"approved", "rejected"}:
+        reviewed_at = now()
+
+    template = repo.save_prompt_template(
+        item_id=item_id,
+        source_language=_optional_text(raw_template, "source_language") or prompt_language,
+        raw_text_snapshot=prompt_text.strip(),
+        marked_text=marked_text,
+        slots=slots,
+        status=status,
+        review_status=review_status,
+        review_notes=_optional_text(raw_template, "review_notes"),
+        reviewed_at=reviewed_at,
+        analysis_confidence=_optional_float(raw_template, "analysis_confidence"),
+        analysis_notes=_optional_text(raw_template, "analysis_notes"),
+    )
+    return template.id
+
+
 def import_manifest(manifest_path: Path, library_path: Path) -> dict[str, Any]:
     data = _read_manifest(manifest_path)
     source_url = _required_text(data, "source_url")
     existing = _duplicate_item(library_path, source_url)
-    if existing:
+    raw_template = data.get("prompt_template")
+    if existing and existing["image_count"] and (raw_template is None or existing["template_count"]):
         return {
             "status": "exists",
             "item_id": existing["id"],
             "title": existing["title"],
-            "image_count": None,
+            "image_count": existing["image_count"],
         }
 
     images = data.get("images")
@@ -153,52 +226,69 @@ def import_manifest(manifest_path: Path, library_path: Path) -> dict[str, Any]:
     slug_prefix = _optional_text(data, "image_filename_prefix") or re.sub(r"[^a-zA-Z0-9]+", "-", title.lower()).strip("-") or "x-prompt"
 
     repo = ItemRepository(library_path)
-    item = repo.create_item(
-        ItemCreate(
-            title=title,
-            model=model,
-            media_type=_optional_text(data, "media_type") or "image",
-            source_name=source_name,
-            source_url=source_url,
-            author=author,
-            cluster_name=_optional_text(data, "cluster_name"),
-            rating=int(data.get("rating") or 0),
-            favorite=bool(data.get("favorite") or False),
-            notes=_notes(data, source_url, author),
-            tags=_string_list(data.get("tags"), "tags"),
-            prompts=[PromptIn(language=prompt_language, text=prompt_text, is_primary=True)],
-        ),
-        imported=True,
-    )
+    item_id = existing["id"] if existing else None
+    item_title = existing["title"] if existing else title
+    if item_id is None:
+        item = repo.create_item(
+            ItemCreate(
+                title=title,
+                model=model,
+                media_type=_optional_text(data, "media_type") or "image",
+                source_name=source_name,
+                source_url=source_url,
+                author=author,
+                cluster_name=_optional_text(data, "cluster_name"),
+                rating=int(data.get("rating") or 0),
+                favorite=bool(data.get("favorite") or False),
+                notes=_notes(data, source_url, author),
+                tags=_string_list(data.get("tags"), "tags"),
+                prompts=[PromptIn(language=prompt_language, text=prompt_text, is_primary=True)],
+            ),
+            imported=True,
+        )
+        item_id = item.id
+        item_title = item.title
 
     image_ids = []
-    for index, raw_entry in enumerate(images, start=1):
-        if not isinstance(raw_entry, dict):
-            raise SystemExit("Each image entry must be an object.")
-        image_bytes, content_type, fallback_name = _bytes_from_image_entry(raw_entry, manifest_path.parent)
-        filename = raw_entry.get("filename") if isinstance(raw_entry.get("filename"), str) else None
-        if not filename:
-            filename = f"{slug_prefix}-{index}{_detect_suffix(content_type, fallback_name)}"
-        stored = store_image(library_path, image_bytes, filename)
-        record = repo.add_image(
-            item.id,
-            StoredImageInput(
-                original_path=stored.original_path,
-                thumb_path=stored.thumb_path,
-                preview_path=stored.preview_path,
-                width=stored.width,
-                height=stored.height,
-                file_sha256=stored.file_sha256,
-                role=raw_entry.get("role") if raw_entry.get("role") in {"result_image", "reference_image"} else "result_image",
-            ),
+    if not existing or not existing["image_count"]:
+        for index, raw_entry in enumerate(images, start=1):
+            if not isinstance(raw_entry, dict):
+                raise SystemExit("Each image entry must be an object.")
+            image_bytes, content_type, fallback_name = _bytes_from_image_entry(raw_entry, manifest_path.parent)
+            filename = raw_entry.get("filename") if isinstance(raw_entry.get("filename"), str) else None
+            if not filename:
+                filename = f"{slug_prefix}-{index}{_detect_suffix(content_type, fallback_name)}"
+            stored = store_image(library_path, image_bytes, filename)
+            record = repo.add_image(
+                item_id,
+                StoredImageInput(
+                    original_path=stored.original_path,
+                    thumb_path=stored.thumb_path,
+                    preview_path=stored.preview_path,
+                    width=stored.width,
+                    height=stored.height,
+                    file_sha256=stored.file_sha256,
+                    role=raw_entry.get("role") if raw_entry.get("role") in {"result_image", "reference_image"} else "result_image",
+                ),
+            )
+            image_ids.append(record.id)
+
+    template_id = None
+    if not existing or not existing["template_count"]:
+        template_id = _save_prompt_template_if_present(
+            repo=repo,
+            item_id=item_id,
+            prompt_text=prompt_text,
+            prompt_language=prompt_language,
+            data=data,
         )
-        image_ids.append(record.id)
 
     return {
-        "status": "created",
-        "item_id": item.id,
-        "title": item.title,
-        "image_count": len(image_ids),
+        "status": "updated_partial" if existing else "created",
+        "item_id": item_id,
+        "title": item_title,
+        "image_count": len(image_ids) if image_ids else existing["image_count"] if existing else 0,
+        "template_id": template_id,
     }
 
 

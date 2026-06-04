@@ -1,0 +1,12 @@
+{
+  "blocked": [
+    {
+      "sid": "2062081583927152810",
+      "url": "https://x.com/yidabuilds/status/2062081583927152810",
+      "reason": "source status only says 麦肯锡风格是真的高级 and quotes a status whose public mirror exposed no text and no media; no prompt text or sample image was available to cross-check",
+      "image_count": 0,
+      "prompt_len": 0
+    }
+  ],
+  "note": "Do not import until the quoted AdrianPunk115 source or another reliable mirror exposes both prompt text and at least one image candidate."
+}

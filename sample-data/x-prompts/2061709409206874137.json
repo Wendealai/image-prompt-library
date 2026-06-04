@@ -1,0 +1,53 @@
+{
+  "source_url": "https://x.com/VigoCreativeAI/status/2061709409206874137",
+  "source_name": "X / VigoCreativeAI",
+  "title": "冰爽爆裂型饮料产品海报，可复用地铁灯箱/便利店冰柜主视觉模板",
+  "author": "Vigo Zhao (@VigoCreativeAI)",
+  "model": "GPT Image 2 / Nano Banana Pro",
+  "prompt_language": "zh_hans",
+  "prompt_text": "生成一张 16:9 横版的冰爽爆裂型饮料商业海报，适合地铁灯箱、便利店冰柜和新品发布主视觉。画面中心是一杯或一瓶 [饮料产品]，包装正面清晰显示品牌名「[品牌名]」、主标题「[主标题]」、副标语「[副标语]」和口味信息「[口味信息]」。产品以倾斜的英雄角度置于前景，周围爆发大量真实液体飞溅、冰块、气泡、水珠和奶泡/果汁/咖啡液体动态，形成强烈速度感和清凉冲击力。背景使用巨型 3D 立体字「[背景大字]」作为空间结构，白色厚重字面、深色侧边、透视夸张，后方是高对比渐变背景。整体为超写实商业摄影 + 3D 广告海报质感，强烈边缘光、晶莹冰块反射、湿润瓶身水珠、清晰标签排版、饱和品牌主色、动感构图、专业电商主图质量。无水印，无多余文字，无真实品牌 logo。",
+  "cluster_name": "UI, Brand & Product",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061709409206874137",
+    "reconstructed-prompt",
+    "beverage-poster",
+    "product-ad",
+    "commercial-photography"
+  ],
+  "tweet_intro": "🧊 一套提示词系统，4 个饮料品牌，0 次实拍。\n\n我做了一个可复用的 AI 提示词模板，专门生成「冰爽爆裂型」产品海报——就是地铁灯箱、便利店冰柜上那种，看一眼就想拧开喝一口。\n\n拆解 👇🧵",
+  "notes": "Public fxtwitter metadata exposed the source status text and four sample images, but did not expose the thread/comment prompt. Public search did not surface a verbatim prompt for this status. This manifest stores a clearly labeled reconstruction from the source status text and visible sample images, not a verified verbatim thread prompt.\nImported through link-prompt-import absorption workflow. Prompt template was manually decomposed into replaceable keyword slots and approved for direct generation with provenance caveat.",
+  "image_filename_prefix": "x-vigocreativeai-2061709409206874137",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJypsbBasAAfW-4.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061709409206874137-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJypsa9bcAARhG_.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061709409206874137-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJypsbCagAAYEK1.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061709409206874137-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJypsb-a0AA79wX.jpg?name=orig",
+      "filename": "x-vigocreativeai-2061709409206874137-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "基于主帖和样例图重构；公开镜像/搜索未暴露线程原始提示词。",
+    "analysis_confidence": 0.68,
+    "analysis_notes": "Manual absorption. Template has 16 replaceable slots for format, poster use, product, brand text, headline, slogan, flavor, camera angle, motion effects, background type, 3D text, color, render quality, lighting, layout, and constraints.",
+    "marked_text": "生成一张 [[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"constraint\" instruction=\"替换输出比例。\"]]16:9 横版[[/slot]]的[[slot id=\"poster_type\" group=\"style\" label=\"海报类型\" variable_type=\"style\" instruction=\"替换海报类型。\"]]冰爽爆裂型饮料商业海报[[/slot]]，适合[[slot id=\"use_case\" group=\"context\" label=\"使用场景\" variable_type=\"context\" instruction=\"替换使用场景。\"]]地铁灯箱、便利店冰柜和新品发布主视觉[[/slot]]。画面中心是一杯或一瓶 [[slot id=\"product\" group=\"subject\" label=\"饮料产品\" variable_type=\"subject\" instruction=\"替换饮料产品。\"]][饮料产品][[/slot]]，包装正面清晰显示品牌名「[[slot id=\"brand_name\" group=\"text\" label=\"品牌名\" variable_type=\"text\" instruction=\"替换品牌名文字。\"]][品牌名][[/slot]]」、主标题「[[slot id=\"main_title\" group=\"text\" label=\"主标题\" variable_type=\"text\" instruction=\"替换主标题文字。\"]][主标题][[/slot]]」、副标语「[[slot id=\"slogan\" group=\"text\" label=\"副标语\" variable_type=\"text\" instruction=\"替换副标语。\"]][副标语][[/slot]]」和口味信息「[[slot id=\"flavor_text\" group=\"text\" label=\"口味信息\" variable_type=\"text\" instruction=\"替换口味信息。\"]][口味信息][[/slot]]」。产品以[[slot id=\"hero_angle\" group=\"composition\" label=\"英雄角度\" variable_type=\"composition\" instruction=\"替换产品角度。\"]]倾斜的英雄角度[[/slot]]置于前景，周围爆发大量[[slot id=\"motion_effects\" group=\"effects\" label=\"动态特效\" variable_type=\"style\" instruction=\"替换液体和清凉特效。\"]]真实液体飞溅、冰块、气泡、水珠和奶泡/果汁/咖啡液体动态[[/slot]]，形成[[slot id=\"energy\" group=\"mood\" label=\"冲击力\" variable_type=\"mood\" instruction=\"替换画面动势。\"]]强烈速度感和清凉冲击力[[/slot]]。背景使用巨型 3D 立体字「[[slot id=\"background_text\" group=\"text\" label=\"背景大字\" variable_type=\"text\" instruction=\"替换背景立体字。\"]][背景大字][[/slot]]」作为空间结构，[[slot id=\"type_style\" group=\"typography\" label=\"立体字风格\" variable_type=\"style\" instruction=\"替换 3D 字体质感。\"]]白色厚重字面、深色侧边、透视夸张[[/slot]]，后方是[[slot id=\"background\" group=\"setting\" label=\"背景\" variable_type=\"setting\" instruction=\"替换背景。\"]]高对比渐变背景[[/slot]]。整体为[[slot id=\"render_style\" group=\"quality\" label=\"成品质感\" variable_type=\"quality\" instruction=\"替换渲染质量。\"]]超写实商业摄影 + 3D 广告海报质感[[/slot]]，[[slot id=\"lighting\" group=\"lighting\" label=\"光效\" variable_type=\"lighting\" instruction=\"替换光影材质细节。\"]]强烈边缘光、晶莹冰块反射、湿润瓶身水珠[[/slot]]、[[slot id=\"layout_quality\" group=\"quality\" label=\"版面质量\" variable_type=\"quality\" instruction=\"替换版面和商业质量。\"]]清晰标签排版、饱和品牌主色、动感构图、专业电商主图质量[[/slot]]。[[slot id=\"constraints\" group=\"constraints\" label=\"限制\" variable_type=\"constraint\" instruction=\"替换输出限制。\"]]无水印，无多余文字，无真实品牌 logo[[/slot]]。"
+  }
+}

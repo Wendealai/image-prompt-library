@@ -1,0 +1,42 @@
+{
+  "source_url": "https://x.com/harboriis/status/2061699162371150270",
+  "source_name": "X / harboriis",
+  "title": "Convert this image into a soft, handcrafted paper-cut layered illustrati",
+  "author": "Harboris (@harboriis)",
+  "model": "GPT Image 2",
+  "prompt_language": "en",
+  "prompt_text": "Convert this image into a soft, handcrafted paper-cut layered illustration style, inspired by papercraft diorama aesthetics. Use smooth rounded shapes, simplified cute character proportions, and minimal facial details (dot eyes, blush cheeks) to create a warm, charming look. Apply stacked paper layers with visible depth, subtle shadows between layers, and clean cut edges that resemble laser-cut cardstock ++\n\nAdd a distinct white outer outline layer surrounding each main character, resembling a thick sticker border or white cut-paper backing, clearly separating the characters from the background. This white layer should feel like an intentional paper layer, not a glow. Use a pastel color palette with muted blues, greens, and warm neutrals, balanced and calming. Lighting should feel soft, diffused, and even, enhancing the dimensional paper layers without harsh contrast. Textures should appear matte and tactile, like thick art paper or craft foam. Overall mood: cozy, wholesome, gentle, and storybook-like, with a playful yet polished handcrafted feel suitable for modern illustration, children's books, or decorative art. Aspect ratio 4:5",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061699162371150270",
+    "papercraft",
+    "paper-cut",
+    "image-to-image"
+  ],
+  "tweet_intro": "GPT IMAGE 2 on ChatGPT\n\nPrompt:\nConvert this image into a soft, handcrafted paper-cut layered illustration style, inspired by papercraft diorama aesthetics. Use smooth rounded shapes, simplified cute character proportions, and minimal facial details (dot eyes, blush cheeks) to create a warm, charming look. Apply stacked paper layers with visible depth, subtle shadows between layers, and clean cut edges that resemble laser-cut cardstock ++\n\nAdd a distinct white outer outline layer surrounding each main character, resembling a thick sticker border or white cut-paper backing, clearly separating the characters from the background. This white layer should feel like an intentional paper layer, not a glow. Use a pastel color palette with muted blues, greens, and warm neutrals, balanced and calming. Lighting should feel soft, diffused, and even, enhancing the dimensional paper layers without harsh contrast. Textures should appear matte and tactile, like thick art paper or craft foam. Overall mood: cozy, wholesome, gentle, and storybook-like, with a playful yet polished handcrafted feel suitable for modern illustration, children's books, or decorative art. Aspect ratio 4:5",
+  "notes": "Prompt text extracted from requested status body.\nImported through link-prompt-import absorption workflow. Prompt template was deterministically decomposed into replaceable keyword slots and approved for direct generation.",
+  "image_filename_prefix": "x-harboriis-2061699162371150270",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJygcioa0AA35zH.jpg?name=orig",
+      "filename": "x-harboriis-2061699162371150270-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJygc1VbsAA3daM.jpg?name=orig",
+      "filename": "x-harboriis-2061699162371150270-2.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Deterministic absorption template generated from source prompt text.",
+    "analysis_confidence": 0.78,
+    "analysis_notes": "Deterministic link absorption. Template has 12 replaceable keyword slot(s); verify source-specific claims before publishing externally.",
+    "marked_text": "[[slot id=\"phrase_01\" group=\"absorbed_keyword\" label=\"Convert this image into a soft\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]Convert this image into a soft[[/slot]], [[slot id=\"phrase_02\" group=\"absorbed_keyword\" label=\"handcrafted paper-cut layered illust…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]handcrafted paper-cut layered illustration style[[/slot]], [[slot id=\"phrase_03\" group=\"absorbed_keyword\" label=\"inspired by papercraft diorama aesth…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]inspired by papercraft diorama aesthetics. Use smooth rounded shapes[[/slot]], [[slot id=\"phrase_04\" group=\"absorbed_keyword\" label=\"simplified cute character proportion…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]simplified cute character proportions[[/slot]], [[slot id=\"phrase_05\" group=\"absorbed_keyword\" label=\"and minimal facial details (dot eyes\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and minimal facial details (dot eyes[[/slot]], [[slot id=\"phrase_06\" group=\"absorbed_keyword\" label=\"blush cheeks) to create a warm\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]blush cheeks) to create a warm[[/slot]], [[slot id=\"phrase_07\" group=\"absorbed_keyword\" label=\"charming look. Apply stacked paper l…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]charming look. Apply stacked paper layers with visible depth[[/slot]], [[slot id=\"phrase_08\" group=\"absorbed_keyword\" label=\"subtle shadows between layers\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]subtle shadows between layers[[/slot]], [[slot id=\"phrase_09\" group=\"absorbed_keyword\" label=\"and clean cut edges that resemble la…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]and clean cut edges that resemble laser-cut cardstock ++[[/slot]]\n\n[[slot id=\"phrase_10\" group=\"absorbed_keyword\" label=\"Add a distinct white outer outline l…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]Add a distinct white outer outline layer surrounding each main character[[/slot]], [[slot id=\"phrase_11\" group=\"absorbed_keyword\" label=\"resembling a thick sticker border or…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]resembling a thick sticker border or white cut-paper backing[[/slot]], [[slot id=\"phrase_12\" group=\"absorbed_keyword\" label=\"clearly separating the characters fr…\" variable_type=\"keyword\" instruction=\"Replace or refine this extracted prompt keyword while preserving the prompt structure.\"]]clearly separating the characters from the background. This white layer should feel like an intentional paper layer[[/slot]], not a glow. Use a pastel color palette with muted blues, greens, and warm neutrals, balanced and calming. Lighting should feel soft, diffused, and even, enhancing the dimensional paper layers without harsh contrast. Textures should appear matte and tactile, like thick art paper or craft foam. Overall mood: cozy, wholesome, gentle, and storybook-like, with a playful yet polished handcrafted feel suitable for modern illustration, children's books, or decorative art. Aspect ratio 4:5"
+  }
+}

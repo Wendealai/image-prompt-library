@@ -1,0 +1,51 @@
+{
+  "source_url": "https://x.com/Noor_ul_ain43/status/2061966521585586483",
+  "source_name": "X / Noor_ul_ain43",
+  "title": "7-year-old crayon celebrity portrait caricatures",
+  "author": "Noor (@Noor_ul_ain43)",
+  "model": "GPT Image 2",
+  "prompt_language": "en",
+  "prompt_text": "A collection of four funny celebrity portraits drawn by a talented 7-year-old child using crayons and colored pencils on white textured paper. Features Elon Musk, Donald Trump, Cristiano Ronaldo, and Virat Kohli in separate portraits with exaggerated cartoon expressions, oversized eyes, funny smiles, imperfect proportions, messy sketch lines, visible wax crayon texture, uneven coloring, playful doodles, childlike handwriting, authentic elementary school art style. Bright vibrant colors, humorous caricatures, handmade look, rough outlines, adorable imperfections, naive art, scanned crayon drawing aesthetic, white background, high detail, charming and funny.",
+  "cluster_name": "Art & Illustration",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2061966521585586483",
+    "childlike-crayon",
+    "celebrity-caricature"
+  ],
+  "tweet_intro": "What if a 7-year-old kid was asked to draw the world's most famous icons? \n\nPROMPT ⤵️",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-noor-ul-ain43-2061966521585586483",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2Tm6aaMAAiC_e.jpg?name=orig",
+      "filename": "x-noor-ul-ain43-2061966521585586483-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2Tm6TacAAi_Uy.jpg?name=orig",
+      "filename": "x-noor-ul-ain43-2061966521585586483-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2Tm6ObgAAuXr9.jpg?name=orig",
+      "filename": "x-noor-ul-ain43-2061966521585586483-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ2TnCvaQAAfGB4.jpg?name=orig",
+      "filename": "x-noor-ul-ain43-2061966521585586483-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "A collection of [[slot id=\"portrait_set\" group=\"subject\" label=\"肖像组\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]four funny celebrity portraits[[/slot]] drawn by a [[slot id=\"artist_age\" group=\"style\" label=\"绘制者\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]talented 7-year-old child[[/slot]] using [[slot id=\"medium\" group=\"material\" label=\"媒介\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]crayons and colored pencils[[/slot]] on [[slot id=\"paper\" group=\"material\" label=\"纸张\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]white textured paper[[/slot]]. Features [[slot id=\"celebrities\" group=\"subject\" label=\"名人列表\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]Elon Musk, Donald Trump, Cristiano Ronaldo, and Virat Kohli[[/slot]] in separate portraits with exaggerated cartoon expressions, oversized eyes, funny smiles, imperfect proportions, messy sketch lines, visible wax crayon texture, uneven coloring, playful doodles, childlike handwriting, authentic elementary school art style. [[slot id=\"palette\" group=\"color\" label=\"配色\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]Bright vibrant colors[[/slot]], humorous caricatures, handmade look, rough outlines, adorable imperfections, naive art, scanned crayon drawing aesthetic, white background, high detail, charming and funny."
+  }
+}

@@ -14,9 +14,9 @@
     "prepare:x": "python scripts/prepare-x-import.py",
     "sync:demo-counts": "python scripts/sync-demo-counts.py --write",
     "build": "npm run typecheck && vite build",
-    "build:demo": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/ npm run typecheck && cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/ vite build",
-    "build:demo:v0.1": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/v0.1/ npm run build",
-    "build:demo:v0.2": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/image-prompt-library/v0.2/ npm run build",
+    "build:demo": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/ npm run typecheck && cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/ vite build",
+    "build:demo:v0.1": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/v0.1/ npm run build",
+    "build:demo:v0.2": "cross-env VITE_DEMO_MODE=true VITE_BASE_PATH=/v0.2/ npm run build",
     "preview": "vite preview --host 127.0.0.1 --port 5177"
   },
   "dependencies": {

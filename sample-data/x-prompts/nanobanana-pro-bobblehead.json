@@ -1,0 +1,37 @@
+{
+  "source_url": "https://x.com/ShamsAmin56/status/2061872273041276940?s=20",
+  "source_name": "X / Twitter",
+  "title": "Nanobanana Pro bobblehead collectible figurine",
+  "author": "Shams @ShamsAmin56",
+  "model": "Nanobanana Pro / GPT Image",
+  "prompt_language": "en",
+  "prompt_text": "Highly detailed caricature figurine of [SUBJECT] as a cute but intense bobblehead-style collectible statue, exaggerated oversized head with hyper-realistic facial features, deep wrinkles, fierce intense expression, slightly open mouth showing teeth, sitting relaxed in a vintage armchair, wearing [OUTFIT], dramatic colorful studio lighting, [BACKGROUND], modern collectible toy photography style, sharp focus, cinematic depth of field, extremely intricate sculpting details, realistic skin texture, professional product photography, 8k quality",
+  "cluster_name": "Photography & Real-world Screens",
+  "tags": [
+    "nanobanana",
+    "nanobanana-pro",
+    "prompt-template",
+    "bobblehead",
+    "collectible-figurine",
+    "product-photography",
+    "x-status-2061872273041276940"
+  ],
+  "tweet_intro": "Indexed public prompt for a Nanobanana Pro bobblehead-style collectible figurine.",
+  "notes": "Readable prompt index: https://www.meigen.ai/prompt/2021519254151942239\n\nAbsorption loop: this manifest imports the sample image, preserves the raw prompt, stores a reviewed prompt template with replaceable slots, and can be used with the existing /api/items/{item_id}/generate-image endpoint after rendering the final prompt.",
+  "images": [
+    {
+      "path": "../media/nanobanana-pro-bobblehead-example.jpg",
+      "filename": "nanobanana-pro-bobblehead-example.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "en",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Manually decomposed into stable generation slots from the indexed Nanobanana Pro prompt.",
+    "analysis_confidence": 0.96,
+    "analysis_notes": "Manual prompt absorption. Slots cover subject, styling contrast, collectible format, anatomy exaggeration, facial sculpting, expression, pose, outfit, lighting, background, photography style, focus/depth, sculpt/material detail, and output quality.",
+    "marked_text": "Highly detailed caricature figurine of [[slot id=\"subject\" group=\"identity\" label=\"Subject\" variable_type=\"subject\" input_hint=\"Person, character, animal, mascot, or object to turn into the figurine.\" instruction=\"Replace with the exact subject to sculpt as a caricature collectible.\"]][SUBJECT][[/slot]] as a [[slot id=\"style_contrast\" group=\"style\" label=\"Style contrast\" variable_type=\"style\" input_hint=\"Example: cute but intense, elegant but dangerous, playful but serious.\" instruction=\"Keep a two-part emotional contrast that guides the overall character read.\"]]cute but intense[[/slot]] [[slot id=\"collectible_format\" group=\"format\" label=\"Collectible format\" variable_type=\"style\" input_hint=\"Example: bobblehead-style collectible statue, vinyl toy figurine, resin desk collectible.\" instruction=\"Describe the physical collectible/toy format.\"]]bobblehead-style collectible statue[[/slot]], [[slot id=\"head_proportion\" group=\"form\" label=\"Head proportion\" variable_type=\"composition\" input_hint=\"Example: exaggerated oversized head, chibi proportions, compact heroic body.\" instruction=\"Control caricature anatomy and silhouette.\"]]exaggerated oversized head[[/slot]] with [[slot id=\"facial_sculpt\" group=\"surface\" label=\"Facial sculpt\" variable_type=\"detail\" input_hint=\"Example: hyper-realistic facial features, fine wrinkles, stylized smooth vinyl face.\" instruction=\"Define facial realism, age texture, and sculpted surface detail.\"]]hyper-realistic facial features, deep wrinkles[[/slot]], [[slot id=\"expression\" group=\"expression\" label=\"Expression\" variable_type=\"emotion\" input_hint=\"Example: fierce intense expression, calm sly grin, confident smile.\" instruction=\"Set the face and mouth expression clearly.\"]]fierce intense expression, slightly open mouth showing teeth[[/slot]], [[slot id=\"pose_and_seat\" group=\"pose\" label=\"Pose and seat\" variable_type=\"composition\" input_hint=\"Example: sitting relaxed in a vintage armchair, standing on a display base, leaning on a prop.\" instruction=\"Set body pose, chair/base, and primary prop placement.\"]]sitting relaxed in a vintage armchair[[/slot]], wearing [[slot id=\"outfit\" group=\"identity\" label=\"Outfit\" variable_type=\"style\" input_hint=\"Clothing, costume, uniform, accessories, materials, and colors.\" instruction=\"Replace with identity-anchoring clothes and accessories.\"]][OUTFIT][[/slot]], [[slot id=\"lighting\" group=\"lighting\" label=\"Lighting\" variable_type=\"lighting\" input_hint=\"Example: dramatic colorful studio lighting, softbox product lighting, neon rim light.\" instruction=\"Control product lighting, color temperature, and mood.\"]]dramatic colorful studio lighting[[/slot]], [[slot id=\"background\" group=\"environment\" label=\"Background\" variable_type=\"setting\" input_hint=\"Backdrop, scene, studio set, room, display shelf, or world context.\" instruction=\"Replace with the scene or backdrop behind the figurine.\"]][BACKGROUND][[/slot]], [[slot id=\"photography_style\" group=\"camera\" label=\"Photography style\" variable_type=\"style\" input_hint=\"Example: modern collectible toy photography style, premium product ad, macro studio shot.\" instruction=\"Define the camera/product-photo genre.\"]]modern collectible toy photography style[[/slot]], [[slot id=\"focus_depth\" group=\"camera\" label=\"Focus and depth\" variable_type=\"camera\" input_hint=\"Example: sharp focus, cinematic depth of field, macro lens bokeh.\" instruction=\"Control focus behavior and depth of field.\"]]sharp focus, cinematic depth of field[[/slot]], [[slot id=\"sculpt_material_detail\" group=\"surface\" label=\"Sculpt and material detail\" variable_type=\"detail\" input_hint=\"Example: intricate sculpting details, realistic skin texture, painted resin, vinyl material.\" instruction=\"Define surface material and sculpting detail.\"]]extremely intricate sculpting details, realistic skin texture[[/slot]], [[slot id=\"output_quality\" group=\"quality\" label=\"Output quality\" variable_type=\"quality\" input_hint=\"Example: professional product photography, 8k quality, clean commercial render.\" instruction=\"Set finishing quality and production polish.\"]]professional product photography, 8k quality[[/slot]]"
+  }
+}

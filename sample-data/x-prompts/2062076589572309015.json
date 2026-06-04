@@ -1,0 +1,51 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062076589572309015",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "汉字异构字体设计：端午",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "围绕具体主题文字生成一组高度原创的汉字字体设计，让字形本身成为主视觉。先保留每个汉字最关键的可读骨架，再把偏旁、横竖撇捺拆解为带有现代书法张力的图形零件：竖画形成稳定轴线，横画与撇捺转化为锋利楔形收口、悬浮短笔、弧形扫笔和被切削过的转折，局部笔画可以断开、错位、压缩或拉长，但必须让负形一起参与造字，使文字处在清晰可读与陌生化之间。主字占据画面最强视觉重量，四周保持克制留白，笔画密集处与空旷处形成明确疏密节奏；可加入极小的英文音译或署名作为尺度对比，位置贴近但不抢主字。色彩从主题自身的情绪、材质和文化气质中提取，保留低干扰背景场与高明度主体字的角色关系：背景可以是安静深场、柔和光影场或主题材质的低饱和暗部，主体字使用干净明亮的浅色或主题高光色，形成冷静、神秘、锋利而有记忆点的高反差。边缘要利落，厚薄变化有设计意图，转折像被折叠、切开或轻微悬浮；整体呈现为一件定制化汉字标识，实验但不潦草，东方感来自结构和笔势，不依赖传统书法装饰。\n\n本次文字：端午\n\n比例16:9",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062076589572309015",
+    "hanzi-type-design",
+    "typography"
+  ],
+  "tweet_intro": "GPT2 x 汉字异构 x 字体设计 x 提示词美学\n\n继续沉迷字体设计中\n其实英文也可以用这个提示词，出来的风格，棱角分明，有种硬气\n\n提示词⤵️",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062076589572309015",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ33jnpawAAbL4w.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062076589572309015-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ33lWeaYAAO0A4.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062076589572309015-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ33nltboAAs_0z.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062076589572309015-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HJ33tW_a8AAzZD7.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062076589572309015-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.9,
+    "analysis_notes": "Manual absorption with replaceable keyword slots.",
+    "marked_text": "围绕[[slot id=\"theme_text\" group=\"text\" label=\"主题文字\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]具体主题文字[[/slot]]生成一组[[slot id=\"type_style\" group=\"style\" label=\"字体风格\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]高度原创的汉字字体设计[[/slot]]，让字形本身成为主视觉。先保留每个汉字最关键的可读骨架，再把偏旁、横竖撇捺拆解为带有[[slot id=\"parts\" group=\"style\" label=\"笔画零件\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]现代书法张力的图形零件[[/slot]]：竖画形成稳定轴线，横画与撇捺转化为锋利楔形收口、悬浮短笔、弧形扫笔和被切削过的转折，局部笔画可以断开、错位、压缩或拉长，但必须让负形一起参与造字，使文字处在清晰可读与陌生化之间。主字占据画面最强视觉重量，四周保持克制留白，笔画密集处与空旷处形成明确疏密节奏；可加入极小的英文音译或署名作为尺度对比，位置贴近但不抢主字。色彩从主题自身的情绪、材质和文化气质中提取，保留低干扰背景场与高明度主体字的角色关系：背景可以是安静深场、柔和光影场或主题材质的低饱和暗部，主体字使用干净明亮的浅色或主题高光色，形成冷静、神秘、锋利而有记忆点的高反差。边缘要利落，厚薄变化有设计意图，转折像被折叠、切开或轻微悬浮；整体呈现为一件定制化汉字标识，实验但不潦草，东方感来自结构和笔势，不依赖传统书法装饰。\n\n本次文字：[[slot id=\"text\" group=\"text\" label=\"本次文字\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]端午[[/slot]]\n\n比例[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace this part while preserving the prompt structure.\"]]16:9[[/slot]]"
+  }
+}
