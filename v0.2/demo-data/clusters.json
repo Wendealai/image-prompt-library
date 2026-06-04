@@ -1,0 +1,142 @@
+[
+  {
+    "id": "clu_f9db4183d82b4a66",
+    "name": "Art & Illustration",
+    "description": null,
+    "sort_order": 0,
+    "count": 13,
+    "preview_images": [
+      "demo-data/media/img_188c8fa9d75e4e4a.webp",
+      "demo-data/media/img_7d09d93ff12b45c8.webp",
+      "demo-data/media/img_7b09d364430d4eaa.webp",
+      "demo-data/media/img_30cad156986a4a6a.webp"
+    ]
+  },
+  {
+    "id": "clu_168a9e86480748f1",
+    "name": "Character & Portrait",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_3ea776f90b0a4f16.webp"
+    ]
+  },
+  {
+    "id": "clu_5ea3369c3362455b",
+    "name": "Characters & Anime",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_f34536de9d7d4132.webp"
+    ]
+  },
+  {
+    "id": "clu_58bac900e676432a",
+    "name": "Design, Posters & Typography",
+    "description": null,
+    "sort_order": 0,
+    "count": 2,
+    "preview_images": [
+      "demo-data/media/img_2d69cefd261243d3.webp",
+      "demo-data/media/img_a5a857425cc44e9f.webp"
+    ]
+  },
+  {
+    "id": "clu_0113e2dee5d64108",
+    "name": "E-commerce & Product",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_bc95fdaa38904dff.webp"
+    ]
+  },
+  {
+    "id": "clu_984aa94d91a345a7",
+    "name": "Fashion & Editorial",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_eff0852a9c434111.webp"
+    ]
+  },
+  {
+    "id": "clu_67ada5e5c02c4d02",
+    "name": "Fashion, Beauty & Lifestyle",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_979ad62b60a44dd6.webp"
+    ]
+  },
+  {
+    "id": "clu_8b11ea3f078a4a62",
+    "name": "Logo & Branding",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_1abd14c9f7874669.webp"
+    ]
+  },
+  {
+    "id": "clu_8852d82f87974fbe",
+    "name": "Photography & Real-world Screens",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_5b6e882568da4b9c.webp"
+    ]
+  },
+  {
+    "id": "clu_066dbe08a9e24050",
+    "name": "Poster & Editorial",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_f4c9eb83e2b34986.webp"
+    ]
+  },
+  {
+    "id": "clu_d6c49c69ee7e42b6",
+    "name": "Poster & Typography",
+    "description": null,
+    "sort_order": 0,
+    "count": 5,
+    "preview_images": [
+      "demo-data/media/img_7f9e76ed55904e59.webp",
+      "demo-data/media/img_552c57696b3e4b3b.webp",
+      "demo-data/media/img_ebc9cd9eb63a4aeb.webp",
+      "demo-data/media/img_9a3d040b15524f84.webp"
+    ]
+  },
+  {
+    "id": "clu_9d121ce7ebf34631",
+    "name": "Travel & City",
+    "description": null,
+    "sort_order": 0,
+    "count": 1,
+    "preview_images": [
+      "demo-data/media/img_63d2eb32b73d43d5.webp"
+    ]
+  },
+  {
+    "id": "clu_f5d1b18b6cbc48dd",
+    "name": "UI, Brand & Product",
+    "description": null,
+    "sort_order": 0,
+    "count": 5,
+    "preview_images": [
+      "demo-data/media/img_099b62b6c45e4641.webp",
+      "demo-data/media/img_9fcb45ccdab54a9c.webp",
+      "demo-data/media/img_89c9dcb0f52c46cd.webp",
+      "demo-data/media/img_1fc46252da3244c0.webp"
+    ]
+  }
+]

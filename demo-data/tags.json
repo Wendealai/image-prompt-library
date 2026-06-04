@@ -1,0 +1,686 @@
+[
+  {
+    "id": "tag_be96578c09064e88",
+    "name": "3d-caricature",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_ba2e47fe26ba4b1e",
+    "name": "adobe-firefly",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e192d9fa7be04ce8",
+    "name": "anime-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f9aa545d30f646fe",
+    "name": "architecture",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_a9cef55ab9f0471f",
+    "name": "architecture-exterior",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_bd53fe423e334f92",
+    "name": "bento-infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f983462ac6944afc",
+    "name": "beverage-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4ce03c6059394eb7",
+    "name": "bobblehead",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_606542bdc38e48bd",
+    "name": "brand-mockup",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_25478d1c1fb74ca0",
+    "name": "brand-proposal",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_df13da41b4674d50",
+    "name": "caricature",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_e37964b09ed848cc",
+    "name": "celebrity-caricature",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_af6b86006ede4d47",
+    "name": "character-portrait",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f1bb0ccee0e54d7b",
+    "name": "chibi-avatar",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_db9b30933c7c4db9",
+    "name": "childlike-crayon",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_6def1f8989cc4c45",
+    "name": "chinese-magazine-cover",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3c1909a19471496d",
+    "name": "chinese-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_df48abdd6ac14c74",
+    "name": "collectible-figurine",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_25e52f098e3a453b",
+    "name": "commercial-photography",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_2fa2d0bc9a5e4d8c",
+    "name": "concentric-waves",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2262990cf54648aa",
+    "name": "courtyard-illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7fc9f891d903449d",
+    "name": "ecommerce-product",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3bf31a0b8fb44a1a",
+    "name": "fashion-editorial",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_81b344156edb43ff",
+    "name": "festival-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e4a0bacb486b43d5",
+    "name": "fidelity-lock",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_826ce536bb1e41b0",
+    "name": "foam-logo",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_283630660c514fd3",
+    "name": "furniture-hero",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_61f02e707d714c4d",
+    "name": "gpt-image-2",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_c87da080bcbc4282",
+    "name": "graphic-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_029cc71c093f461c",
+    "name": "hand-drawn-illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8e8111cace0a4590",
+    "name": "hanzi-type-design",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0f78dc7c28694ffe",
+    "name": "image-to-image",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_46d314af27ce4167",
+    "name": "impasto",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4f16091111034f10",
+    "name": "ink-sketch",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_01d0fb72737f4681",
+    "name": "ink-watercolor",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_8b5c1b727b4e45dc",
+    "name": "interior-photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1797039394bb44da",
+    "name": "ip-commercialization",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_645653298c104f0d",
+    "name": "line-art",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_f532344219dd4f22",
+    "name": "line-drawing",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0b67258271994a3d",
+    "name": "liquid-glass",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_4390ac9bfc41422b",
+    "name": "magazine-cover",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3c1050a79b7540d7",
+    "name": "marketing-materials",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d4c20879ae304042",
+    "name": "midjourney-sref",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2e74bbb3b0d74eab",
+    "name": "minimalist-illustration",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0b5f500b38874544",
+    "name": "monochrome",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_20befcfef19244aa",
+    "name": "nano-banana",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_94a5a8c8c7164957",
+    "name": "nano-banana-2",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_815166cc94874d95",
+    "name": "nanobanana",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_eb7ad775652b4ad7",
+    "name": "nanobanana-pro",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_07a00ab9c0b14d51",
+    "name": "oil-painting",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_12d3b595ae904fe7",
+    "name": "paper-cut",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_50a4ab6cffbf47eb",
+    "name": "paper-tear",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b69cd5a34cc3468c",
+    "name": "papercraft",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_d6f3e3f0e1b844f7",
+    "name": "partial-break-frame",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_91d2b6454d5340ca",
+    "name": "photo-transformation",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_350803273ff8460a",
+    "name": "pixel-texture",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_95f43a6748f74bc5",
+    "name": "portrait",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_5aa1c8eccba14cdf",
+    "name": "portrait-poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9f2ed097d6c445ed",
+    "name": "poster",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_324e09afff54491d",
+    "name": "product-ad",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8adbc7b4326c4f5f",
+    "name": "product-infographic",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_5c5e2e89984c45cd",
+    "name": "product-photography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_12091087f3a345b8",
+    "name": "prompt-template",
+    "kind": "general",
+    "count": 34
+  },
+  {
+    "id": "tag_d200aa2ca41d4315",
+    "name": "real-object-doodle",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_656f211b972942be",
+    "name": "reconstructed-prompt",
+    "kind": "general",
+    "count": 11
+  },
+  {
+    "id": "tag_e36ff226221c4465",
+    "name": "reference-product",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_1be04a9c98c74ffd",
+    "name": "restaurant-branding",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b996f37809cd4da2",
+    "name": "rough-collage",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d84d28c5cbee4df4",
+    "name": "side-by-side",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2f16d0e8b4b34585",
+    "name": "sketchbook",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cd029fd2775146f9",
+    "name": "storybook",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_aad783a3b0844650",
+    "name": "summer",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_819a433ce6c54108",
+    "name": "travel-poster",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_c93bb8112c8a402a",
+    "name": "typography",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_736b3db0d2fa4fd5",
+    "name": "urban-sketch",
+    "kind": "general",
+    "count": 2
+  },
+  {
+    "id": "tag_3ed7a661f86c4315",
+    "name": "urban-sketching",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0501d53742794fc4",
+    "name": "watercolor",
+    "kind": "general",
+    "count": 3
+  },
+  {
+    "id": "tag_deb55c1e214f43ca",
+    "name": "workflow-skill",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_88204a3d5ae348c6",
+    "name": "x-import",
+    "kind": "general",
+    "count": 33
+  },
+  {
+    "id": "tag_89461684010d414e",
+    "name": "x-status-2061649494991933766",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f8a3f96605104312",
+    "name": "x-status-2061659115995435152",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0807eaad4c454d9e",
+    "name": "x-status-2061688661360726476",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8c48f2c88dd5496c",
+    "name": "x-status-2061689192661307402",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e26cec31acfc4de4",
+    "name": "x-status-2061699162371150270",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_498a7d0fb77145b2",
+    "name": "x-status-2061709409206874137",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_56fddc9ff7c64ccf",
+    "name": "x-status-2061738752288903310",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_202e82b9a88c4d29",
+    "name": "x-status-2061748760137589126",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_01c42050a4de41be",
+    "name": "x-status-2061752797851201842",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b36060a88c5745ac",
+    "name": "x-status-2061758889624752261",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cd9b01d5af944ece",
+    "name": "x-status-2061764041115320755",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_cfccd84fcea54fb0",
+    "name": "x-status-2061776349686312978",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a59e2a468fc7444b",
+    "name": "x-status-2061780011963789403",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d91da14fb1374c2e",
+    "name": "x-status-2061791863691161783",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_92280320241e4b21",
+    "name": "x-status-2061793016361484387",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_5fb74e2f60a546a3",
+    "name": "x-status-2061811078179504553",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f0d874538d8c4fb5",
+    "name": "x-status-2061813084986216701",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_384f4d8e7286426d",
+    "name": "x-status-2061848372156547353",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_251a6b66d3634789",
+    "name": "x-status-2061872273041276940",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2989b990a78e4f09",
+    "name": "x-status-2061966521585586483",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f607153f640d4445",
+    "name": "x-status-2061981718903689391",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_5b57eaa97ff34bbe",
+    "name": "x-status-2061987690103628041",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c64d5fab955c4b47",
+    "name": "x-status-2062020378994909671",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_723e34d1c80b48d7",
+    "name": "x-status-2062043872386281548",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7c6be652304c420f",
+    "name": "x-status-2062066404048904213",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_39b1699dbae643d4",
+    "name": "x-status-2062068756877353103",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2c31ab052df04172",
+    "name": "x-status-2062070752464289973",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_a1bc38b8ebde45f8",
+    "name": "x-status-2062076589572309015",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_8cc3d2fb19574d01",
+    "name": "x-status-2062083344083661002",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_202ee510dd7148c0",
+    "name": "x-status-2062098874844549433",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_78cac4b4bc274803",
+    "name": "x-status-2062107637727334822",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7c9b89304b344c28",
+    "name": "x-status-2062110338523230302",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7ecd07d2e10f4d01",
+    "name": "x-status-2062430783151993299",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_c2a0c6c38ffe456c",
+    "name": "x-status-2062528444542636358",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_7fdc624662554e72",
+    "name": "zen-still-life",
+    "kind": "general",
+    "count": 1
+  }
+]
