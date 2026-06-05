@@ -155,11 +155,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 34
+    assert len(items) == 35
     assert len(clusters) == 13
-    assert len(tags) == 114
-    assert len(media_files) == 99
-    assert metadata["item_count"] == 34
+    assert len(tags) == 117
+    assert len(media_files) == 103
+    assert metadata["item_count"] == 35
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -186,7 +186,7 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
 
     media_files = {path.name for path in media_dir.glob("*.webp")}
 
-    assert len(referenced) == 99
+    assert len(referenced) == 103
     assert referenced <= media_files
 
 
@@ -195,7 +195,7 @@ def test_demo_bundle_uses_local_media_for_x_imports():
     items = json.loads((demo_root / "items.json").read_text())
 
     x_imports = [item for item in items if (item.get("source_url") or "").startswith("https://x.com/")]
-    assert len(x_imports) == 34
+    assert len(x_imports) == 35
     for item in x_imports:
         first_image = item["first_image"]
         assert first_image["original_path"].startswith("demo-data/media/")
@@ -209,8 +209,10 @@ def test_demo_bundle_includes_latest_production_and_sample_records():
     items_text = (demo_root / "items.json").read_text()
 
     assert "https://x.com/xiaoxiaodong01/status/2062528444542636358" in items_text
+    assert "https://x.com/xiaoxiaodong01/status/2062720334571450688" in items_text
     assert "https://x.com/VigoCreativeAI/status/2062430783151993299" in items_text
     assert "https://x.com/ShamsAmin56/status/2061872273041276940?s=20" in items_text
+    assert "清爽夏日手写字体视觉" in items_text
     assert "局部破框人像中文杂志封面海报" in items_text
     assert "真实产品参考图保真电商三图工作流" in items_text
     assert "demo-data/media/" in items_text

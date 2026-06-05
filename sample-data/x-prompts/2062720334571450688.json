@@ -1,0 +1,53 @@
+{
+  "source_url": "https://x.com/xiaoxiaodong01/status/2062720334571450688",
+  "source_name": "X / xiaoxiaodong01",
+  "title": "清爽夏日手写字体视觉",
+  "author": "小小东 (@xiaoxiaodong01)",
+  "model": "GPT Image 2",
+  "prompt_language": "zh_hans",
+  "prompt_text": "围绕具体主题内容生成一张清爽夏日手写字体视觉：背景为大面积主题派生清新配色或明亮色场，主字使用白色细长手写体，笔画流畅、带长弧线和风一样的尾巴，部分字形可穿插小号英文和装饰线。构图中央留给主字呼吸，字形之间有轻盈错位，整体像风、天气或生活方式品牌。色彩保留高饱和但干净的主色底、明亮白字、少量浅色细线，情绪清透、轻快、有通风感。关键是笔画的飘动方向和留白，不要写成厚重口号字。\n\n文字：夏日微风\n注意：黑底白字\n比例16:9",
+  "cluster_name": "Poster & Typography",
+  "tags": [
+    "x-import",
+    "prompt-template",
+    "x-status-2062720334571450688",
+    "typography",
+    "handwritten-lettering",
+    "summer",
+    "poster-design"
+  ],
+  "tweet_intro": "GPT2 x 字体设计 x 清爽手写 x 美学提示词\n\n尝试进一步简化自己的提示词\n\n用在了这套字体上面\n\n提示词：",
+  "notes": "Prompt text extracted from requested status body. Imported through link-prompt-import absorption workflow with sample images from the source status.",
+  "image_filename_prefix": "x-xiaoxiaodong01-2062720334571450688",
+  "images": [
+    {
+      "image_url": "https://pbs.twimg.com/media/HKA5PfubAAAorFh.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062720334571450688-1.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HKA5QufbsAAn5qu.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062720334571450688-2.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HKA5R_ubcAAxTfe.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062720334571450688-3.jpg",
+      "role": "result_image"
+    },
+    {
+      "image_url": "https://pbs.twimg.com/media/HKA5TXGawAAdCMX.jpg?name=orig",
+      "filename": "x-xiaoxiaodong01-2062720334571450688-4.jpg",
+      "role": "result_image"
+    }
+  ],
+  "prompt_template": {
+    "source_language": "zh_hans",
+    "status": "ready",
+    "review_status": "approved",
+    "review_notes": "Source prompt is visible in the requested status body.",
+    "analysis_confidence": 0.92,
+    "analysis_notes": "Manual absorption with replaceable keyword slots for theme, lettering style, background palette, stroke behavior, decorative details, text content, note, and aspect ratio.",
+    "marked_text": "围绕[[slot id=\"theme_content\" group=\"concept\" label=\"主题内容\" variable_type=\"keyword\" instruction=\"Replace the concrete visual theme while preserving the lettering workflow.\"]]具体主题内容[[/slot]]生成一张[[slot id=\"visual_style\" group=\"style\" label=\"字体视觉风格\" variable_type=\"keyword\" instruction=\"Replace the overall lettering visual style.\"]]清爽夏日手写字体视觉[[/slot]]：背景为[[slot id=\"background_palette\" group=\"color\" label=\"背景配色\" variable_type=\"keyword\" instruction=\"Replace the background color-field strategy.\"]]大面积主题派生清新配色或明亮色场[[/slot]]，主字使用[[slot id=\"main_lettering\" group=\"typography\" label=\"主字样式\" variable_type=\"keyword\" instruction=\"Replace the primary lettering style.\"]]白色细长手写体[[/slot]]，[[slot id=\"stroke_shape\" group=\"typography\" label=\"笔画形态\" variable_type=\"keyword\" instruction=\"Replace the stroke movement and tail shape.\"]]笔画流畅、带长弧线和风一样的尾巴[[/slot]]，部分字形可穿插[[slot id=\"decorative_details\" group=\"typography\" label=\"装饰细节\" variable_type=\"keyword\" instruction=\"Replace the small secondary type or line decorations.\"]]小号英文和装饰线[[/slot]]。构图中央留给主字呼吸，字形之间有轻盈错位，整体像[[slot id=\"brand_mood\" group=\"mood\" label=\"整体气质\" variable_type=\"keyword\" instruction=\"Replace the brand or atmosphere analogy.\"]]风、天气或生活方式品牌[[/slot]]。色彩保留[[slot id=\"color_system\" group=\"color\" label=\"色彩系统\" variable_type=\"keyword\" instruction=\"Replace the main color relationship.\"]]高饱和但干净的主色底、明亮白字、少量浅色细线[[/slot]]，情绪[[slot id=\"mood\" group=\"mood\" label=\"情绪\" variable_type=\"keyword\" instruction=\"Replace the emotional tone.\"]]清透、轻快、有通风感[[/slot]]。关键是笔画的飘动方向和留白，不要写成厚重口号字。\n\n文字：[[slot id=\"text_content\" group=\"text\" label=\"文字内容\" variable_type=\"text\" instruction=\"Replace the generated lettering text.\"]]夏日微风[[/slot]]\n注意：[[slot id=\"special_note\" group=\"constraint\" label=\"特别注意\" variable_type=\"keyword\" instruction=\"Replace the special visual constraint.\"]]黑底白字[[/slot]]\n比例[[slot id=\"aspect_ratio\" group=\"output\" label=\"比例\" variable_type=\"keyword\" instruction=\"Replace the output aspect ratio.\"]]16:9[[/slot]]"
+  }
+}

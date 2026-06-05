@@ -108,12 +108,12 @@
     "name": "Poster & Typography",
     "description": null,
     "sort_order": 0,
-    "count": 5,
+    "count": 6,
     "preview_images": [
+      "demo-data/media/img_95ad170bcb1946c0.webp",
       "demo-data/media/img_7f9e76ed55904e59.webp",
       "demo-data/media/img_552c57696b3e4b3b.webp",
-      "demo-data/media/img_ebc9cd9eb63a4aeb.webp",
-      "demo-data/media/img_9a3d040b15524f84.webp"
+      "demo-data/media/img_ebc9cd9eb63a4aeb.webp"
     ]
   },
   {
