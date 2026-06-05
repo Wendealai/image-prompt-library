@@ -180,6 +180,12 @@
     "count": 1
   },
   {
+    "id": "tag_9a40ba4fafc242eb",
+    "name": "handwritten-lettering",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_8e8111cace0a4590",
     "name": "hanzi-type-design",
     "kind": "general",
@@ -354,6 +360,12 @@
     "count": 1
   },
   {
+    "id": "tag_4b9d1a760b764deb",
+    "name": "poster-design",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_324e09afff54491d",
     "name": "product-ad",
     "kind": "general",
@@ -375,7 +387,7 @@
     "id": "tag_12091087f3a345b8",
     "name": "prompt-template",
     "kind": "general",
-    "count": 34
+    "count": 35
   },
   {
     "id": "tag_d200aa2ca41d4315",
@@ -429,7 +441,7 @@
     "id": "tag_aad783a3b0844650",
     "name": "summer",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_819a433ce6c54108",
@@ -441,7 +453,7 @@
     "id": "tag_c93bb8112c8a402a",
     "name": "typography",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_736b3db0d2fa4fd5",
@@ -471,7 +483,7 @@
     "id": "tag_88204a3d5ae348c6",
     "name": "x-import",
     "kind": "general",
-    "count": 33
+    "count": 34
   },
   {
     "id": "tag_89461684010d414e",
@@ -674,6 +686,12 @@
   {
     "id": "tag_c2a0c6c38ffe456c",
     "name": "x-status-2062528444542636358",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_0d61c1a5a78c4a1b",
+    "name": "x-status-2062720334571450688",
     "kind": "general",
     "count": 1
   },

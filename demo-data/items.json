@@ -1,5 +1,165 @@
 [
   {
+    "id": "itm_4c0510df001547c4",
+    "title": "清爽夏日手写字体视觉",
+    "slug": "清爽夏日手写字体视觉",
+    "model": "GPT Image 2",
+    "source_name": "X / xiaoxiaodong01",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2062720334571450688",
+    "cluster": {
+      "id": "clu_d6c49c69ee7e42b6",
+      "name": "Poster & Typography",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "tags": [
+      {
+        "id": "tag_88204a3d5ae348c6",
+        "name": "x-import",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_12091087f3a345b8",
+        "name": "prompt-template",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_0d61c1a5a78c4a1b",
+        "name": "x-status-2062720334571450688",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c93bb8112c8a402a",
+        "name": "typography",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9a40ba4fafc242eb",
+        "name": "handwritten-lettering",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aad783a3b0844650",
+        "name": "summer",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4b9d1a760b764deb",
+        "name": "poster-design",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體主題內容生成一張清爽夏日手寫字體視覺：背景爲大面積主題派生清新配色或明亮色場，主字使用白色細長手寫體，筆畫流暢、帶長弧線和風一樣的尾巴，部分字形可穿插小號英文和裝飾線。構圖中央留給主字呼吸，字形之間有輕盈錯位，整體像風、天氣或生活方式品牌。色彩保留高飽和但乾淨的主色底、明亮白字、少量淺色細線，情緒清透、輕快、有通風感。關鍵是筆畫的飄動方向和留白，不要寫成厚重口號字。\n\n文字：夏日微風\n注意：黑底白字\n比例16:9",
+        "is_primary": true,
+        "id": "prm_33f5eb354f29408c",
+        "item_id": "itm_4c0510df001547c4",
+        "created_at": "2026-06-05T10:44:38.560965+00:00",
+        "updated_at": "2026-06-05T10:44:38.560965+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体主题内容生成一张清爽夏日手写字体视觉：背景为大面积主题派生清新配色或明亮色场，主字使用白色细长手写体，笔画流畅、带长弧线和风一样的尾巴，部分字形可穿插小号英文和装饰线。构图中央留给主字呼吸，字形之间有轻盈错位，整体像风、天气或生活方式品牌。色彩保留高饱和但干净的主色底、明亮白字、少量浅色细线，情绪清透、轻快、有通风感。关键是笔画的飘动方向和留白，不要写成厚重口号字。\n\n文字：夏日微风\n注意：黑底白字\n比例16:9",
+        "is_primary": false,
+        "id": "prm_19a5ea71ac904c84",
+        "item_id": "itm_4c0510df001547c4",
+        "created_at": "2026-06-05T10:44:38.560965+00:00",
+        "updated_at": "2026-06-05T10:44:38.560965+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體主題內容生成一張清爽夏日手寫字體視覺：背景爲大面積主題派生清新配色或明亮色場，主字使用白色細長手寫體，筆畫流暢、帶長弧線和風一樣的尾巴，部分字形可穿插小號英文和裝飾線。構圖中央留給主字呼吸，字形之間有輕盈錯位，整體像風、天氣或生活方式品牌。色彩保留高飽和但乾淨的主色底、明亮白字、少量淺色細線，情緒清透、輕快、有通風感。關鍵是筆畫的飄動方向和留白，不要寫成厚重口號字。\n\n文字：夏日微風\n注意：黑底白字\n比例16:9",
+    "first_image": {
+      "id": "img_95ad170bcb1946c0",
+      "item_id": "itm_4c0510df001547c4",
+      "original_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+      "thumb_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+      "preview_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-05T10:44:56.673914+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-05T10:44:38.560965+00:00",
+    "created_at": "2026-06-05T10:44:38.560965+00:00",
+    "images": [
+      {
+        "id": "img_95ad170bcb1946c0",
+        "item_id": "itm_4c0510df001547c4",
+        "original_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+        "thumb_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+        "preview_path": "demo-data/media/img_95ad170bcb1946c0.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-05T10:44:56.673914+00:00"
+      },
+      {
+        "id": "img_8a36a4a3f37f4694",
+        "item_id": "itm_4c0510df001547c4",
+        "original_path": "demo-data/media/img_8a36a4a3f37f4694.webp",
+        "thumb_path": "demo-data/media/img_8a36a4a3f37f4694.webp",
+        "preview_path": "demo-data/media/img_8a36a4a3f37f4694.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-05T10:44:57.278027+00:00"
+      },
+      {
+        "id": "img_f276621c1a914de7",
+        "item_id": "itm_4c0510df001547c4",
+        "original_path": "demo-data/media/img_f276621c1a914de7.webp",
+        "thumb_path": "demo-data/media/img_f276621c1a914de7.webp",
+        "preview_path": "demo-data/media/img_f276621c1a914de7.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-05T10:44:57.779049+00:00"
+      },
+      {
+        "id": "img_c0910b63003f4dc9",
+        "item_id": "itm_4c0510df001547c4",
+        "original_path": "demo-data/media/img_c0910b63003f4dc9.webp",
+        "thumb_path": "demo-data/media/img_c0910b63003f4dc9.webp",
+        "preview_path": "demo-data/media/img_c0910b63003f4dc9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-05T10:44:58.352893+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2062720334571450688\n\nAuthor: 小小东 (@xiaoxiaodong01)\n\nOriginal tweet intro:\nGPT2 x 字体设计 x 清爽手写 x 美学提示词\n\n尝试进一步简化自己的提示词\n\n用在了这套字体上面\n\n提示词：\n\nPrompt text extracted from requested status body. Imported through link-prompt-import absorption workflow with sample images from the source status.",
+    "author": "小小东 (@xiaoxiaodong01)"
+  },
+  {
     "id": "itm_658501625d45481f",
     "title": "局部破框人像中文杂志封面海报",
     "slug": "局部破框人像中文杂志封面海报",
