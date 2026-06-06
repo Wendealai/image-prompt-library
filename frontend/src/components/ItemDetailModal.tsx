@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, Download, ExternalLink, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
-import { api, mediaUrl } from '../api/client';
+import { Check, Copy, Download, ExternalLink, Eye, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { api, isDemoMode, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
-import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaSourceItem, TagRecord } from '../types';
+import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaSourceItem, PromptImageGenerationRunRecord, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
@@ -21,12 +21,23 @@ const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
 const IMAGE_GENERATION_POLL_INTERVAL_MS = 3000;
 const IMAGE_GENERATION_POLL_ATTEMPTS = 40;
 
+type DetailPanel = 'prompt' | 'history';
+
+interface GeneratedImageHistoryEntry {
+  key: string;
+  image: ImageRecord;
+  run?: PromptImageGenerationRunRecord;
+  source: 'workflow' | 'direct';
+  createdAt?: string;
+}
+
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
 }
 
-function imageDownloadUrl(image: ImageRecord) {
-  return mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path);
+function imageDownloadUrl(item: ItemDetail, image: ImageRecord) {
+  if (isDemoMode) return mediaUrl(image.original_path || image.remote_url || image.preview_path || image.thumb_path);
+  return `/api/items/${encodeURIComponent(item.id)}/images/${encodeURIComponent(image.id)}/download`;
 }
 
 function imagePathForReference(image: ImageRecord) {
@@ -59,6 +70,12 @@ function delay(ms: number) {
   return new Promise(resolve => window.setTimeout(resolve, ms));
 }
 
+function createImageGenerationRequestId() {
+  const cryptoApi = globalThis.crypto;
+  if (cryptoApi && typeof cryptoApi.randomUUID === 'function') return cryptoApi.randomUUID();
+  return `req_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
 function readBatchId(payload: Record<string, unknown> | undefined) {
   const batchId = payload?.batchId || payload?.batch_id;
   return typeof batchId === 'string' && batchId.trim() ? batchId.trim() : '';
@@ -77,7 +94,7 @@ function imageSourceItem(image: ImageRecord, index: number, t: Translator): Nano
 }
 
 function imageDownloadFilename(item: ItemDetail, image: ImageRecord) {
-  const sourcePath = image.original_path || image.preview_path || image.thumb_path || '';
+  const sourcePath = image.original_path || image.remote_url || image.preview_path || image.thumb_path || '';
   const extensionMatch = sourcePath.match(/\.([a-z0-9]+)(?:$|\?)/i);
   const extension = (extensionMatch?.[1] || 'jpg').toLowerCase().replace('jpeg', 'jpg');
   const safeTitle = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 72) || 'prompt-image';
@@ -92,6 +109,37 @@ function dedupeImages(images: ImageRecord[]) {
     seenImageKeys.add(key);
     return true;
   });
+}
+
+function formatHistoryDate(value?: string) {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(date);
+}
+
+function buildGeneratedImageHistory(images: ImageRecord[], runs: PromptImageGenerationRunRecord[]): GeneratedImageHistoryEntry[] {
+  const runByImageId = new Map<string, PromptImageGenerationRunRecord>();
+  runs.forEach(run => run.image_ids.forEach(imageId => {
+    if (!runByImageId.has(imageId)) runByImageId.set(imageId, run);
+  }));
+  return images
+    .filter(image => (image.role || 'result_image') === 'result_image')
+    .map(image => {
+      const run = runByImageId.get(image.id);
+      return {
+        key: `${run?.id || 'direct'}-${image.id}`,
+        image,
+        run,
+        source: run ? 'workflow' : 'direct',
+        createdAt: run?.created_at || image.created_at,
+      } satisfies GeneratedImageHistoryEntry;
+    })
+    .sort((left, right) => {
+      const leftTime = left.createdAt ? new Date(left.createdAt).getTime() : 0;
+      const rightTime = right.createdAt ? new Date(right.createdAt).getTime() : 0;
+      return rightTime - leftTime;
+    });
 }
 
 function clampImageViewerScale(scale: number) {
@@ -267,6 +315,9 @@ export default function ItemDetailModal({
   const [referenceUploading, setReferenceUploading] = useState(false);
   const [selectedReferenceImageIdentities, setSelectedReferenceImageIdentities] = useState<string[]>([]);
   const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
+  const [detailPanel, setDetailPanel] = useState<DetailPanel>('prompt');
+  const [generationRuns, setGenerationRuns] = useState<PromptImageGenerationRunRecord[]>([]);
+  const [generationRunsLoading, setGenerationRunsLoading] = useState(false);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
   const referenceUploadInputRef = useRef<HTMLInputElement | null>(null);
@@ -282,6 +333,28 @@ export default function ItemDetailModal({
     if (!id) return;
     setItem(undefined);
     api.item(id).then(setItem);
+  }, [id]);
+
+  const refreshGenerationRuns = async (itemId: string) => {
+    try {
+      setGenerationRuns(await api.promptImageGenerationRuns(itemId));
+    } catch {
+      setGenerationRuns([]);
+    }
+  };
+
+  useEffect(() => {
+    if (!id) {
+      setGenerationRuns([]);
+      return;
+    }
+    let cancelled = false;
+    setGenerationRunsLoading(true);
+    api.promptImageGenerationRuns(id)
+      .then(runs => { if (!cancelled) setGenerationRuns(runs); })
+      .catch(() => { if (!cancelled) setGenerationRuns([]); })
+      .finally(() => { if (!cancelled) setGenerationRunsLoading(false); });
+    return () => { cancelled = true; };
   }, [id]);
 
   const availablePromptRecords = useMemo(() => {
@@ -326,6 +399,7 @@ export default function ItemDetailModal({
     const selected = new Set(selectedReferenceImageIdentities);
     return directReferenceCandidates.filter(image => selected.has(getImageIdentity(image)));
   }, [directReferenceCandidates, selectedReferenceImageIdentities]);
+  const generatedImageHistoryEntries = useMemo(() => buildGeneratedImageHistory(uniqueImages, generationRuns), [uniqueImages, generationRuns]);
   useEffect(() => {
     setSelectedImageIdentity(current => {
       const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
@@ -413,6 +487,7 @@ export default function ItemDetailModal({
       const result = await api.generateItemImage(item.id, {
         promptText,
         promptLanguage: lang,
+        idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`,
         wait: false,
         ...(sourceItems.length > 0 ? { sourceItems } : {}),
       });
@@ -440,6 +515,7 @@ export default function ItemDetailModal({
       setItem(updated);
       const newestImage = updated.images[updated.images.length - 1];
       if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+      void refreshGenerationRuns(item.id);
       onChanged();
       setImageGenerationFeedback({ tone: 'success', message: storedImages.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
     } catch (error) {
@@ -557,17 +633,26 @@ export default function ItemDetailModal({
   const handleImageViewerTouchEnd = () => {
     pinchGestureRef.current = null;
   };
-  const handleDownloadImage = (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+  const handleDownloadImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
     event?.stopPropagation();
     if (!item) return;
-    const href = imageDownloadUrl(image);
+    const href = imageDownloadUrl(item, image);
     if (!href) return;
-    const link = document.createElement('a');
-    link.href = href;
-    link.download = imageDownloadFilename(item, image);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    try {
+      const response = await fetch(href, { credentials: 'same-origin' });
+      if (!response.ok) throw new Error(await response.text());
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = imageDownloadFilename(item, image);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    } catch (error) {
+      window.alert(error instanceof Error && error.message ? error.message : t('saveFailed'));
+    }
   };
   const handleDeleteImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
     event?.stopPropagation();
@@ -578,11 +663,16 @@ export default function ItemDetailModal({
       const nextActiveImage = nextImages.find(candidate => getImageIdentity(candidate) !== getImageIdentity(image)) || selectPrimaryImage(nextImages);
       setItem(updated);
       setSelectedImageIdentity(nextActiveImage ? getImageIdentity(nextActiveImage) : undefined);
+      void refreshGenerationRuns(item.id);
       setImageViewerOpen(false);
       onChanged();
     } catch (error) {
       window.alert(error instanceof Error && error.message ? error.message : t('imageDeleteFailed'));
     }
+  };
+  const focusGeneratedImage = (image: ImageRecord) => {
+    setSelectedImageIdentity(getImageIdentity(image));
+    window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
   };
 
   return (
@@ -683,10 +773,33 @@ export default function ItemDetailModal({
                   )}
                 </p>
 
-                <div className="prompt-blocks" aria-label={t('promptLanguage')}>
-                  {(() => {
-                    return (
-                      <section className="prompt-block prompt-panel active">
+                <div className="detail-panel-tabs tabs" role="tablist" aria-label={t('generatedImagePanel')}>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={detailPanel === 'prompt'}
+                    className={detailPanel === 'prompt' ? 'active' : ''}
+                    onClick={() => setDetailPanel('prompt')}
+                  >
+                    {t('promptText')}
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={detailPanel === 'history'}
+                    className={detailPanel === 'history' ? 'active' : ''}
+                    onClick={() => setDetailPanel('history')}
+                  >
+                    {t('generatedImagesHistory')} <span>{generatedImageHistoryEntries.length}</span>
+                  </button>
+                </div>
+
+                {detailPanel === 'prompt' ? (
+                  <>
+                    <div className="prompt-blocks" aria-label={t('promptLanguage')}>
+                      {(() => {
+                        return (
+                          <section className="prompt-block prompt-panel active">
                         <header className="prompt-block-header">
                           <div className="prompt-language-tabs tabs" role="tablist" aria-label={t('promptLanguage')}>
                             {promptDisplayOrder.map(promptLanguage => {
@@ -790,24 +903,72 @@ export default function ItemDetailModal({
                           <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
                         )}
                       </section>
-                    );
-                  })()}
-                </div>
+                        );
+                      })()}
+                    </div>
 
-                <PromptTemplatePanel
-                  itemId={item.id}
-                  fallbackPrompt={copyText}
-                  t={t}
-                  referenceImages={uniqueImages}
-                  onCopyResult={onCopyPrompt}
-                  onImageGenerated={result => {
-                    setItem(result.item);
-                    const newestImage = result.images[result.images.length - 1];
-                    if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
-                    window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
-                    onChanged();
-                  }}
-                />
+                    <PromptTemplatePanel
+                      itemId={item.id}
+                      fallbackPrompt={copyText}
+                      t={t}
+                      referenceImages={uniqueImages}
+                      onCopyResult={onCopyPrompt}
+                      onImageGenerated={result => {
+                        setItem(result.item);
+                        const newestImage = result.images[result.images.length - 1];
+                        if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                        void refreshGenerationRuns(result.item.id);
+                        window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+                        onChanged();
+                      }}
+                    />
+                  </>
+                ) : (
+                  <section className="generated-history-panel prompt-block prompt-panel active" aria-label={t('generatedImagesHistory')}>
+                    <header className="generated-history-header">
+                      <div>
+                        <strong>{t('generatedImagesHistory')}</strong>
+                        <span>{generationRunsLoading ? t('loading') : `${generatedImageHistoryEntries.length} ${t('generatedImagesCount')}`}</span>
+                      </div>
+                    </header>
+                    {generatedImageHistoryEntries.length > 0 ? (
+                      <div className="generated-history-grid">
+                        {generatedImageHistoryEntries.map(entry => {
+                          const active = activeImage ? getImageIdentity(entry.image) === getImageIdentity(activeImage) : false;
+                          const createdAt = formatHistoryDate(entry.createdAt);
+                          return (
+                            <article className={`generated-history-card ${active ? 'active' : ''}`} key={entry.key}>
+                              <button type="button" className="generated-history-thumb" onClick={() => focusGeneratedImage(entry.image)} aria-label={t('openImageDetailViewer')}>
+                                <FallbackImage paths={imageDisplayPaths(entry.image)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
+                              </button>
+                              <div className="generated-history-meta">
+                                <strong>{entry.source === 'workflow' ? t('promptTemplateImageRunSaved') : t('generatedImageDirectRun')}</strong>
+                                {createdAt && <span>{createdAt}</span>}
+                                {entry.run?.job_id && <span>{entry.run.job_id}</span>}
+                                {entry.run?.references.length ? <span>{t('promptTemplateImageRunReferences')}: {entry.run.references.length}</span> : null}
+                              </div>
+                              <div className="generated-history-actions">
+                                <button type="button" className="modal-icon-button" onClick={() => focusGeneratedImage(entry.image)} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
+                                  <Eye size={15} />
+                                </button>
+                                <button type="button" className="modal-icon-button" onClick={event => handleDownloadImage(entry.image, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                                  <Download size={15} />
+                                </button>
+                                {showMutations && (
+                                  <button type="button" className="modal-icon-button is-danger" onClick={event => handleDeleteImage(entry.image, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                                    <Trash2 size={15} />
+                                  </button>
+                                )}
+                              </div>
+                            </article>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="generated-history-empty">{t('generatedImagesEmpty')}</p>
+                    )}
+                  </section>
+                )}
 
                 <InlineEditableTextArea className="notes-inline-edit" value={item.notes || ''} placeholder={t('addNote')} onCommit={value => commitInlineUpdate({ notes: value.trim() || null })} editable={showMutations} />
 

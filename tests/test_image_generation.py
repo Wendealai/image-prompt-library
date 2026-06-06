@@ -188,6 +188,12 @@ def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monke
     assert payload["run"]["generation_options"] == {}
     assert payload["run"]["references"] == []
     assert payload["run"]["image_ids"] == [payload["images"][0]["id"]]
+    runs_response = client.get(f"/api/items/{item_id}/image-generation-runs")
+    assert runs_response.status_code == 200
+    runs = runs_response.json()
+    assert len(runs) == 1
+    assert runs[0]["id"] == payload["run"]["id"]
+    assert runs[0]["image_ids"] == [payload["images"][0]["id"]]
 
     stored_original = library / payload["images"][0]["original_path"]
     stored_preview = library / payload["images"][0]["preview_path"]

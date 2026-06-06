@@ -11,8 +11,14 @@ def test_item_save_refreshes_visible_item_query():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
-    assert "const itemQueryLimit = view === 'cards' ? 120 : 5000" in app
+    assert "const CARDS_QUERY_PAGE_SIZE = 120" in app
+    assert "const [cardsQueryLimit, setCardsQueryLimit]" in app
+    assert "const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000" in app
+    assert "setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE)" in app
+    assert "const loadMoreCards = () =>" in app
+    assert "setCardsQueryLimit(limit => Math.min(data.total || limit + CARDS_QUERY_PAGE_SIZE, limit + CARDS_QUERY_PAGE_SIZE))" in app
     assert "useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
+    assert "onLoadMore={loadMoreCards}" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
     assert "API_PAGE_LIMIT = 1000" in hook
@@ -94,10 +100,15 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
     assert "leftColumnItems" in cards and "rightColumnItems" in cards
     assert "items.filter((_, index) => index % 2 === 0)" in cards
     assert "items.filter((_, index) => index % 2 === 1)" in cards
+    assert "loadMoreRef" in cards
+    assert "new IntersectionObserver" in cards
+    assert "rootMargin: '900px 0px'" in cards
+    assert "cards-load-sentinel" in cards
     assert "action-label" in card
     assert ".mobile-masonry-columns{display:none}" in compact_css
     assert ".desktop-cards-grid{display:block}" in compact_css
     assert ".desktop-cards-grid{display:none}" in compact_css
+    assert ".cards-load-sentinel" in compact_css
     assert ".mobile-masonry-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));" in compact_css
     assert "column-count:2" not in compact_css
     assert "grid-template-columns:repeat(3" not in compact_css
@@ -117,8 +128,19 @@ def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_ima
     assert "return uniquePaths([image?.thumb_path, image?.remote_url, image?.preview_path, image?.original_path]);" in images
     assert "return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || ''" in images
     assert "if (/^https?:\\/\\//i.test(path) || path.startsWith('data:image/')) return path;" in media
-    assert "mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path)" in detail
+    assert "mediaUrl(image.original_path || image.remote_url || image.preview_path || image.thumb_path)" in detail
     assert "mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path)" in panel
+
+
+def test_detail_download_fetches_original_attachment_instead_of_navigating_to_image():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    assert "function imageDownloadUrl(item: ItemDetail, image: ImageRecord)" in detail
+    assert "/api/items/${encodeURIComponent(item.id)}/images/${encodeURIComponent(image.id)}/download" in detail
+    assert "await fetch(href, { credentials: 'same-origin' })" in detail
+    assert "URL.createObjectURL(blob)" in detail
+    assert "link.href = objectUrl" in detail
+    assert "URL.revokeObjectURL(objectUrl)" in detail
+    assert "link.href = href" not in detail
 
 
 def test_images_use_lazy_async_decoding_defaults():
@@ -454,6 +476,7 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "imageSourceItem(image, index, t)" in detail
     assert "...(sourceItems.length > 0 ? { sourceItems } : {})" in detail
     assert "api.generateItemImage(item.id, {" in detail
+    assert "idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`" in detail
     assert "wait: false" in detail
     assert "storedImages.length === 0 && !batchId" in detail
     assert "api.itemImageGenerationStatus(item.id, batchId)" in detail
@@ -1236,6 +1259,38 @@ def test_editor_supports_multilingual_prompts_collection_suggestions_and_image_r
     assert "reference_image" in types
     assert "role?: UploadImageRole" in types
     assert "formData.set('role', role)" in local_api
+
+
+def test_detail_modal_has_generated_image_history_panel():
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
+    demo_api = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+
+    assert "type DetailPanel = 'prompt' | 'history'" in detail
+    assert "const [detailPanel, setDetailPanel]" in detail
+    assert "const [generationRuns, setGenerationRuns]" in detail
+    assert "api.promptImageGenerationRuns(id)" in detail
+    assert "buildGeneratedImageHistory(uniqueImages, generationRuns)" in detail
+    assert "generatedImageHistoryEntries" in detail
+    assert "detail-panel-tabs" in detail
+    assert "generated-history-panel" in detail
+    assert "generated-history-grid" in detail
+    assert "generated-history-card" in detail
+    assert "handleDownloadImage(entry.image" in detail
+    assert "handleDeleteImage(entry.image" in detail
+    assert "focusGeneratedImage(entry.image)" in detail
+    assert "void refreshGenerationRuns(result.item.id)" in detail
+    assert "promptImageGenerationRuns: (itemId: string)" in local_api
+    assert "/api/items/${itemId}/image-generation-runs" in local_api
+    assert "promptImageGenerationRuns: (_itemId: string) => Promise.resolve<PromptImageGenerationRunRecord[]>([])" in demo_api
+    assert "created_at?: string" in types
+    assert ".detail-panel-tabs" in css
+    assert ".generated-history-grid" in css
+    assert ".generated-history-actions" in css
+    assert "generatedImagesHistory" in i18n
 
 
 def test_frontend_prefers_result_image_for_card_and_detail_hero():

@@ -261,22 +261,35 @@ class ItemRepository:
             conn.commit()
         return self.get_prompt_image_generation_run(run_id)
 
+    def _prompt_image_generation_run_from_row(self, row) -> PromptImageGenerationRunRecord:
+        return PromptImageGenerationRunRecord(
+            id=row["id"],
+            item_id=row["item_id"],
+            prompt=row["prompt"],
+            generation_options=json.loads(row["generation_options_json"] or "{}"),
+            references=json.loads(row["references_json"] or "[]"),
+            job_id=row["job_id"],
+            status=row["status"],
+            image_ids=json.loads(row["image_ids_json"] or "[]"),
+            created_at=row["created_at"],
+        )
+
     def get_prompt_image_generation_run(self, run_id: str) -> PromptImageGenerationRunRecord:
         with connect(self.library_path) as conn:
             row = conn.execute("SELECT * FROM prompt_image_generation_runs WHERE id=?", (run_id,)).fetchone()
             if not row:
                 raise KeyError(run_id)
-            return PromptImageGenerationRunRecord(
-                id=row["id"],
-                item_id=row["item_id"],
-                prompt=row["prompt"],
-                generation_options=json.loads(row["generation_options_json"] or "{}"),
-                references=json.loads(row["references_json"] or "[]"),
-                job_id=row["job_id"],
-                status=row["status"],
-                image_ids=json.loads(row["image_ids_json"] or "[]"),
-                created_at=row["created_at"],
-            )
+            return self._prompt_image_generation_run_from_row(row)
+
+    def list_prompt_image_generation_runs(self, item_id: str, limit: int = 100) -> list[PromptImageGenerationRunRecord]:
+        with connect(self.library_path) as conn:
+            if not conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone():
+                raise KeyError(item_id)
+            rows = conn.execute(
+                "SELECT * FROM prompt_image_generation_runs WHERE item_id=? ORDER BY created_at DESC LIMIT ?",
+                (item_id, limit),
+            ).fetchall()
+            return [self._prompt_image_generation_run_from_row(row) for row in rows]
 
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None

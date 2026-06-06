@@ -140,6 +140,24 @@ def test_media_route_serves_webp_with_image_mime_type(tmp_path):
     assert response.headers["content-type"].startswith("image/webp")
 
 
+def test_image_download_route_returns_original_as_attachment(tmp_path):
+    c = client(tmp_path)
+    created = c.post("/api/items", json=create_payload()).json()
+    c.post(
+        f"/api/items/{created['id']}/images",
+        data={"role": "result_image"},
+        files={"file": ("result.png", png_bytes(), "image/png")},
+    )
+    detail = c.get(f"/api/items/{created['id']}").json()
+    image = detail["first_image"]
+    response = c.get(f"/api/items/{created['id']}/images/{image['id']}/download")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("image/png")
+    assert "attachment" in response.headers["content-disposition"]
+    assert image["id"] in response.headers["content-disposition"]
+
+
 def test_media_route_does_not_follow_allowed_dir_symlink_to_database(tmp_path):
     c = client(tmp_path)
     c.post("/api/items", json=create_payload())

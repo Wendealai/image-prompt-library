@@ -21,6 +21,7 @@ const VIEW_STORAGE_KEY = 'image-prompt-library.view_mode.v2';
 const CARDS_SORT_STORAGE_KEY = 'image-prompt-library.cards_sort_mode.v1';
 const GLOBAL_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.global_thumbnail_budget';
 const FOCUS_THUMBNAIL_BUDGET_STORAGE_KEY = 'image-prompt-library.focus_thumbnail_budget';
+const CARDS_QUERY_PAGE_SIZE = 120;
 
 function loadPreferredLanguage(): PromptLanguage {
   if (typeof window === 'undefined') return DEFAULT_PROMPT_LANGUAGE;
@@ -98,11 +99,12 @@ export default function App() {
   const [preferredLanguage, setPreferredLanguage] = useState<PromptLanguage>(loadPreferredLanguage);
   const [globalThumbnailBudget, setGlobalThumbnailBudget] = useState(() => loadNumberSetting(GLOBAL_THUMBNAIL_BUDGET_STORAGE_KEY, 100, 50, 150));
   const [focusThumbnailBudget, setFocusThumbnailBudget] = useState(() => loadNumberSetting(FOCUS_THUMBNAIL_BUDGET_STORAGE_KEY, 100, 24, 100));
+  const [cardsQueryLimit, setCardsQueryLimit] = useState(CARDS_QUERY_PAGE_SIZE);
   const [exploreFitRequestKey, setExploreFitRequestKey] = useState(0);
   const [pendingExploreUnfilterClusterId, setPendingExploreUnfilterClusterId] = useState<string>();
   const [exploreUnfilterFadePhase, setExploreUnfilterFadePhase] = useState<'out' | 'pre-in' | 'in' | 'idle'>('idle');
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
-  const itemQueryLimit = view === 'cards' ? 120 : 5000;
+  const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000;
   const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc');
   const exploreFocusedClusterId = view === 'explore'
     ? (clusterId || (dataScope.clusterId === pendingExploreUnfilterClusterId ? pendingExploreUnfilterClusterId : undefined))
@@ -113,6 +115,7 @@ export default function App() {
   const refreshClusters = () => api.clusters().then(setClusters).catch(() => setClusters([]));
   const refreshTags = () => api.tags().then(setTags).catch(() => setTags([]));
   useEffect(() => { refreshClusters(); refreshTags(); }, []);
+  useEffect(() => { setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE); }, [debouncedQ, clusterId, itemsReloadKey]);
   useEffect(() => {
     if (pendingExploreUnfilterClusterId && dataScope.clusterId !== pendingExploreUnfilterClusterId) {
       setPendingExploreUnfilterClusterId(undefined);
@@ -150,6 +153,10 @@ export default function App() {
   const updateCardsSortMode = (nextSortMode: CardsSortMode) => {
     setCardsSortMode(nextSortMode);
     window.localStorage.setItem(CARDS_SORT_STORAGE_KEY, nextSortMode);
+  };
+  const loadMoreCards = () => {
+    if (view !== 'cards' || loading || refreshing || data.items.length >= data.total) return;
+    setCardsQueryLimit(limit => Math.min(data.total || limit + CARDS_QUERY_PAGE_SIZE, limit + CARDS_QUERY_PAGE_SIZE));
   };
   const updateGlobalThumbnailBudget = (budget: number) => {
     setGlobalThumbnailBudget(budget);
@@ -192,7 +199,7 @@ export default function App() {
       {error && <div className="error">{error}</div>}
       {view === 'explore'
         ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
-        : <CardsView t={t} items={sortedCardItems} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
+        : <CardsView t={t} items={sortedCardItems} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
     </main>
     {showSelectedCollectionDock && selectedCluster && (
       <button className="selected-collection-dock" onClick={clearCluster} aria-label={`${t('collectionChip')}: ${selectedCluster.name}. ${t('close')}`}>

@@ -5,7 +5,7 @@ from dataclasses import asdict
 
 from backend.admin_auth import require_admin
 from backend.repositories import ItemRepository, StoredImageInput
-from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
 from backend.services.image_generation import ImageGenerationError, ImageGenerationUnavailable, generate_images_from_prompt
 from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
@@ -223,6 +223,14 @@ def generate_image_from_prompt(request: Request, item_id: str, payload: PromptIm
         raise HTTPException(status_code=UPSTREAM_WORKFLOW_FAILURE_STATUS, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.get("/items/{item_id}/image-generation-runs", response_model=list[PromptImageGenerationRunRecord])
+def list_image_generation_runs(request: Request, item_id: str, limit: int = Query(default=100, ge=1, le=500)):
+    try:
+        return repo(request).list_prompt_image_generation_runs(item_id, limit=limit)
+    except KeyError as exc:
+        _item_not_found(exc)
 
 
 @router.post("/admin/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)
