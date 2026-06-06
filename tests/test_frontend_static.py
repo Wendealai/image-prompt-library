@@ -110,7 +110,15 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
 
 def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_images():
     images = (ROOT / "frontend" / "src" / "utils" / "images.ts").read_text()
+    media = (ROOT / "frontend" / "src" / "api" / "media.ts").read_text()
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    panel = (ROOT / "frontend" / "src" / "components" / "PromptTemplatePanel.tsx").read_text()
+    assert "return uniquePaths([image?.preview_path, image?.remote_url, image?.original_path, image?.thumb_path]);" in images
+    assert "return uniquePaths([image?.thumb_path, image?.remote_url, image?.preview_path, image?.original_path]);" in images
     assert "return image?.preview_path || image?.remote_url || image?.original_path || image?.thumb_path || ''" in images
+    assert "if (/^https?:\\/\\//i.test(path) || path.startsWith('data:image/')) return path;" in media
+    assert "mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path)" in detail
+    assert "mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path)" in panel
 
 
 def test_images_use_lazy_async_decoding_defaults():

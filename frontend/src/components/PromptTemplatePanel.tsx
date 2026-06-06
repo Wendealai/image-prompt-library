@@ -148,11 +148,11 @@ function extractErrorDetail(error: unknown): string {
 }
 
 function imagePathForReference(image: ImageRecord): string {
-  return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+  return mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path);
 }
 
 function imageReferenceIdentity(image: ImageRecord) {
-  return image.preview_path || image.original_path || image.thumb_path || image.id;
+  return image.preview_path || image.remote_url || image.original_path || image.thumb_path || image.id;
 }
 
 function fileToBase64(file: File): Promise<string> {

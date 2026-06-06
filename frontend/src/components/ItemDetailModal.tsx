@@ -26,7 +26,7 @@ function getImageIdentity(image: ImageRecord) {
 }
 
 function imageDownloadUrl(image: ImageRecord) {
-  return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+  return mediaUrl(image.remote_url || image.original_path || image.preview_path || image.thumb_path);
 }
 
 function imagePathForReference(image: ImageRecord) {

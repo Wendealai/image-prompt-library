@@ -9,7 +9,7 @@ export function selectPrimaryImage(images: Array<ImageRecord | undefined>) {
 }
 
 export function imageDisplayPaths(image?: ImageRecord) {
-  return uniquePaths([image?.preview_path, image?.original_path, image?.thumb_path]);
+  return uniquePaths([image?.preview_path, image?.remote_url, image?.original_path, image?.thumb_path]);
 }
 
 export function imageDisplayPath(image?: ImageRecord) {
@@ -17,7 +17,7 @@ export function imageDisplayPath(image?: ImageRecord) {
 }
 
 export function imageThumbnailPaths(image?: ImageRecord) {
-  return uniquePaths([image?.thumb_path, image?.preview_path, image?.original_path]);
+  return uniquePaths([image?.thumb_path, image?.remote_url, image?.preview_path, image?.original_path]);
 }
 
 export function imageThumbnailPath(image?: ImageRecord) {
@@ -25,7 +25,7 @@ export function imageThumbnailPath(image?: ImageRecord) {
 }
 
 export function imageHeroPaths(image?: ImageRecord) {
-  return uniquePaths([image?.preview_path, image?.original_path, image?.thumb_path]);
+  return uniquePaths([image?.preview_path, image?.remote_url, image?.original_path, image?.thumb_path]);
 }
 
 export function imageHeroPath(image?: ImageRecord) {
