@@ -442,14 +442,17 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "const handleGenerateImage = async () => {" in detail
     assert "api.generateItemImage(item.id, { promptText, promptLanguage: lang })" in detail
     assert "setImageGenerationFeedback" in detail
-    assert "prompt-generate-image-icon" in detail
+    assert "prompt-direct-generate-row" in detail
+    assert "prompt-direct-generate-button" in detail
+    assert "{generatingImage ? t('generatingImage') : t('generateImage')}" in detail
     assert "prompt-image-feedback" in detail
     assert "generateItemImage: (_itemId: string" in demo_api
     assert "generateItemImage: (itemId: string" in local_api
     assert "NanobananaItemImageGenerationRequest" in types
     assert "NanobananaItemImageGenerationResult" in types
     assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
-    assert ".prompt-generate-image-icon" in css
+    assert ".prompt-direct-generate-row" in css
+    assert ".prompt-direct-generate-button" in css
     assert ".prompt-image-feedback" in css
 
 

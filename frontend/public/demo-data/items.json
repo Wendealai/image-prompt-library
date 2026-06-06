@@ -1,5 +1,954 @@
 [
   {
+    "id": "itm_91a723831cbe4e0b",
+    "title": "国际时装设计师手稿照 Prompt",
+    "slug": "国际时装设计师手稿照-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/snail_9106/status/2063134632309047536",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2352b1fe4d1c452e",
+        "name": "x-status-2063134632309047536",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9e97b27bd82f4af8",
+        "name": "fashion sketch",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "將上傳的人像照片轉換成「國際時裝設計師手稿」風格的高級視覺稿。保留人物身份、臉部結構、髮型氣質和服裝輪廓，但把畫面處理成時裝設計師工作室裏的復古手繪稿、設計草圖和雜誌插畫頁。\n\n畫面風格：線條利落、色彩乾淨、留白高級，像服裝設計師用鉛筆、細針管筆、水彩和馬克筆快速完成的人像時裝稿。人物姿態要自然、有高級感，五官可以輕微插畫化但不要失真；服裝邊緣用清晰線稿勾勒，局部保留淡彩鋪色、陰影、布料褶皺和材質提示。\n\n版面設計：在人物旁邊加入隨手寫下的英文批註、服裝結構標註、箭頭、面料說明、色卡、小號比例草圖、局部放大細節和設計師手稿符號。批註要像真實設計師筆記，內容可包括 fabric note、silhouette study、collar detail、soft drape、runway sketch、atelier draft 等。整體像復古時裝雜誌的一頁、巴黎設計工作室草稿、品牌 lookbook 概念頁。\n\n背景：米白色、淺灰、舊紙色或溫柔紙張紋理背景，帶輕微顆粒、掃描痕跡、鉛筆擦痕和紙張纖維。可以出現淡淡的網格線、紙張邊緣、膠帶痕跡或手稿裝訂感。不要使用複雜真實場景。\n\n色彩：低飽和高級配色，黑灰線稿爲主，局部加入乾淨的服裝主色、裸色、淺棕、酒紅、墨綠、海軍藍或奶油白。整體清爽、剋制、昂貴。\n\n輸出要求：豎版 3:4 或 4:5，適合小紅書頭像寫真、個人形象包裝、時尚博主封面、設計師手稿風格照片。畫面應顯得“可以賣更貴”，像定製化高級人像服務。\n\n避免：卡通頭像、廉價濾鏡、過度美顏、厚塗油畫、AI 塑料感、複雜背景、文字亂碼過多、五官完全變樣、普通照片轉素描效果。",
+        "is_primary": true,
+        "id": "prm_3e5b69502c8a40da",
+        "item_id": "itm_91a723831cbe4e0b",
+        "created_at": "2026-06-06T11:57:06.732918+00:00",
+        "updated_at": "2026-06-06T11:57:06.732918+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "将上传的人像照片转换成「国际时装设计师手稿」风格的高级视觉稿。保留人物身份、脸部结构、发型气质和服装轮廓，但把画面处理成时装设计师工作室里的复古手绘稿、设计草图和杂志插画页。\n\n画面风格：线条利落、色彩干净、留白高级，像服装设计师用铅笔、细针管笔、水彩和马克笔快速完成的人像时装稿。人物姿态要自然、有高级感，五官可以轻微插画化但不要失真；服装边缘用清晰线稿勾勒，局部保留淡彩铺色、阴影、布料褶皱和材质提示。\n\n版面设计：在人物旁边加入随手写下的英文批注、服装结构标注、箭头、面料说明、色卡、小号比例草图、局部放大细节和设计师手稿符号。批注要像真实设计师笔记，内容可包括 fabric note、silhouette study、collar detail、soft drape、runway sketch、atelier draft 等。整体像复古时装杂志的一页、巴黎设计工作室草稿、品牌 lookbook 概念页。\n\n背景：米白色、浅灰、旧纸色或温柔纸张纹理背景，带轻微颗粒、扫描痕迹、铅笔擦痕和纸张纤维。可以出现淡淡的网格线、纸张边缘、胶带痕迹或手稿装订感。不要使用复杂真实场景。\n\n色彩：低饱和高级配色，黑灰线稿为主，局部加入干净的服装主色、裸色、浅棕、酒红、墨绿、海军蓝或奶油白。整体清爽、克制、昂贵。\n\n输出要求：竖版 3:4 或 4:5，适合小红书头像写真、个人形象包装、时尚博主封面、设计师手稿风格照片。画面应显得“可以卖更贵”，像定制化高级人像服务。\n\n避免：卡通头像、廉价滤镜、过度美颜、厚涂油画、AI 塑料感、复杂背景、文字乱码过多、五官完全变样、普通照片转素描效果。",
+        "is_primary": false,
+        "id": "prm_26042a3f5a06440d",
+        "item_id": "itm_91a723831cbe4e0b",
+        "created_at": "2026-06-06T11:57:06.732918+00:00",
+        "updated_at": "2026-06-06T11:57:06.732918+00:00"
+      }
+    ],
+    "prompt_snippet": "將上傳的人像照片轉換成「國際時裝設計師手稿」風格的高級視覺稿。保留人物身份、臉部結構、髮型氣質和服裝輪廓，但把畫面處理成時裝設計師工作室裏的復古手繪稿、設計草圖和雜誌插畫頁。\n\n畫面風格：線條利落、色彩乾淨、留白高級，像服裝設計師用鉛筆、細針管筆、水彩和馬克筆快速完成的人像時裝稿。人物姿態要自然、有高級感，五官可以輕微插畫化但不要失真；服裝邊緣用清晰線稿勾勒，局部保留淡彩鋪色、陰影、布料褶皺和材質提示。\n\n版面設計：在人物旁邊加入隨手寫",
+    "first_image": {
+      "id": "img_6f78184aa0744257",
+      "item_id": "itm_91a723831cbe4e0b",
+      "original_path": "demo-data/media/img_6f78184aa0744257.webp",
+      "thumb_path": "demo-data/media/img_6f78184aa0744257.webp",
+      "preview_path": "demo-data/media/img_6f78184aa0744257.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 360,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:57:07.214398+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:57:06.732918+00:00",
+    "created_at": "2026-06-06T11:57:06.732918+00:00",
+    "images": [
+      {
+        "id": "img_6f78184aa0744257",
+        "item_id": "itm_91a723831cbe4e0b",
+        "original_path": "demo-data/media/img_6f78184aa0744257.webp",
+        "thumb_path": "demo-data/media/img_6f78184aa0744257.webp",
+        "preview_path": "demo-data/media/img_6f78184aa0744257.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 360,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:57:07.214398+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/snail_9106/status/2063134632309047536\n\nAuthor: @snail_9106\n\nOriginal tweet intro:\n这种手稿照可太高级了。引用文章：让你的照片变成「国际时装设计师手稿」。",
+    "author": "@snail_9106"
+  },
+  {
+    "id": "itm_5ddc33a0a95c42ab",
+    "title": "Colorful Balloon Wall Sign Name Prompt",
+    "slug": "colorful-balloon-wall-sign-name-prompt",
+    "model": "Midjourney",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/umesh_ai/status/2063206224452309101",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_2ef80f18bef74dce",
+        "name": "x-status-2063206224452309101",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_390d8dfbcac44865",
+        "name": "Midjourney",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_52c8373e07de4c8f",
+        "name": "wall sign",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A photograph displays a three-dimensional wall sign that reads \"[NAME]\" in plump, balloon-like letters. Each letter is glossy and colorful in a bright rainbow palette, with red, orange, yellow, green, blue, and violet tones blended across the word. The sign is mounted on an off-white wall and illuminated from above by recessed ceiling lights, casting soft shadows behind the letters. The overall look is joyful, playful, modern, and visually striking. --chaos 5 --ar 16:9 --seed 4024622140 --profile v23i2sd --stylize 50 --hd --v 8.1",
+        "is_primary": true,
+        "id": "prm_b2b73d1d786347fa",
+        "item_id": "itm_5ddc33a0a95c42ab",
+        "created_at": "2026-06-06T11:57:05.817990+00:00",
+        "updated_at": "2026-06-06T11:57:05.817990+00:00"
+      }
+    ],
+    "prompt_snippet": "A photograph displays a three-dimensional wall sign that reads \"[NAME]\" in plump, balloon-like letters. Each letter is glossy and colorful in a bright rainbow palette, with red, orange, yellow, green, blue, and violet to",
+    "first_image": {
+      "id": "img_d99335ae2eec4c39",
+      "item_id": "itm_5ddc33a0a95c42ab",
+      "original_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+      "thumb_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+      "preview_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 504,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:57:06.726374+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:57:05.817990+00:00",
+    "created_at": "2026-06-06T11:57:05.817990+00:00",
+    "images": [
+      {
+        "id": "img_d99335ae2eec4c39",
+        "item_id": "itm_5ddc33a0a95c42ab",
+        "original_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+        "thumb_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+        "preview_path": "demo-data/media/img_d99335ae2eec4c39.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 504,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:57:06.726374+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/umesh_ai/status/2063206224452309101\n\nAuthor: @umesh_ai\n\nOriginal tweet intro:\nTurn your name into wall sign with colorful balloon like letters.",
+    "author": "@umesh_ai"
+  },
+  {
+    "id": "itm_97dde8bc60044464",
+    "title": "Luxury Nigerian Traditional Wedding Invitation Prompt",
+    "slug": "luxury-nigerian-traditional-wedding-invitation-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/abs_uiux/status/2063192079417688329",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3b6d8901d19444ef",
+        "name": "x-status-2063192079417688329",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_3c6557d9fb984ee7",
+        "name": "wedding invitation",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a luxurious traditional wedding invitation card inspired by the uploaded sample, but make it more premium, elegant, clean, and modern.\n\nDesign a vertical 3:4 wedding invitation card with a soft cream/ivory textured background, subtle damask pattern, thin gold ornamental borders, and rich floral decorations around the corners. Use a luxury color palette of deep burgundy/wine, forest green, warm gold, ivory, and soft brown. Add premium floral arrangements with burgundy flowers, cream roses, gold leaves, dark green leaves, and delicate botanical accents. The design should look festive, expensive, balanced, and print-worthy.\n\nAt the top center, create a circular luxury crest/emblem with a burgundy center and gold ornate frame. Inside the emblem, write:\n\n“A & D”\n“’26”\n\nBelow the crest, arrange the invitation text in a clean centered layout with beautiful typography. Use this exact text:\n\nThe family of\nMR. & MRS. EMEKA NWOSU\nof Ikeja, Lagos State\n\n&\n\nMR. & MRS. PAUL EFFIONG\nof Lekki, Lagos State\n\nHappily request the pleasure of your presence at the\n\nTRADITIONAL\nMARRIAGE\n\nof their beloved children\n\nAmara Nwosu\n&\nDaniel Effiong\n\nscheduled to hold on\n\nSaturday,\n20th December, 2026\n\n12:00 PM\n\nVenue:\nBalmoral Convention Centre\n1A Ahmadu Bello Way, Victoria Island, Lagos State\n\nCHIEF HOST\nSir & Lady Emeka Nwosu\n\nR.S.V.P\n08034567891\n08123456789\n\nCOLOUR OF THE DAY\nWine, Gold, Ivory, Emerald Green\n\nToast\nTwo hearts, one love, forever as one.\nA & D 2026\n\nMake “TRADITIONAL MARRIAGE” the largest headline in a bold luxury serif font with burgundy and gold styling. Make the couple names “Amara Nwosu” and “Daniel Effiong” very prominent in elegant calligraphy/script font, with Amara in deep burgundy and Daniel in forest green.\n\nCreate stylish date and time panels using burgundy and green boxes with gold frames and small calendar/clock icons. Make the venue section neat and centered. At the bottom, arrange Chief Host, RSVP, Toast, and Colour of the Day in clean premium information blocks with small gold icons.\n\nEnsure all text is readable, correctly spelled, well-aligned, and beautifully spaced. The final design should look better than the sample, with a luxury Nigerian traditional marriage invitation style, elegant floral borders, gold ornaments, and a premium wedding card finish.",
+        "is_primary": true,
+        "id": "prm_8fea225499754668",
+        "item_id": "itm_97dde8bc60044464",
+        "created_at": "2026-06-06T11:57:04.844419+00:00",
+        "updated_at": "2026-06-06T11:57:04.844419+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a luxurious traditional wedding invitation card inspired by the uploaded sample, but make it more premium, elegant, clean, and modern.\n\nDesign a vertical 3:4 wedding invitation card with a soft cream/ivory texture",
+    "first_image": {
+      "id": "img_51437ba7125c4204",
+      "item_id": "itm_97dde8bc60044464",
+      "original_path": "demo-data/media/img_51437ba7125c4204.webp",
+      "thumb_path": "demo-data/media/img_51437ba7125c4204.webp",
+      "preview_path": "demo-data/media/img_51437ba7125c4204.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:57:05.810370+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:57:04.844419+00:00",
+    "created_at": "2026-06-06T11:57:04.844419+00:00",
+    "images": [
+      {
+        "id": "img_51437ba7125c4204",
+        "item_id": "itm_97dde8bc60044464",
+        "original_path": "demo-data/media/img_51437ba7125c4204.webp",
+        "thumb_path": "demo-data/media/img_51437ba7125c4204.webp",
+        "preview_path": "demo-data/media/img_51437ba7125c4204.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:57:05.810370+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/abs_uiux/status/2063192079417688329\n\nAuthor: @abs_uiux\n\nOriginal tweet intro:\nWedding invitation card prompt shared in the reply thread.",
+    "author": "@abs_uiux"
+  },
+  {
+    "id": "itm_5f4b2c945b784934",
+    "title": "高端地产暗金海报 Prompt",
+    "slug": "高端地产暗金海报-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2063149391209222580",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_b172c094a47b440c",
+        "name": "x-status-2063149391209222580",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_08c12bdaacc8422e",
+        "name": "地产海报",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "《高端地產暗金海報》提示詞：\n\n生成一張高端地產項目豎版廣告海報，畫面比例 3:4 或 4:5。\n\n這是一個完全原創的 Demo 項目，請不要使用任何真實地產公司、真實樓盤名稱、真實電話、真實地址，也不要複製參考圖中的品牌、文案、價格或版式細節。\n\n項目類型：【填寫項目類型，例如 城市院墅 / 天際大平層 / 湖山度假別墅 / 新中式院墅 / 高端公寓 / 私人會所】\n品牌名：【填寫原創品牌名】\n英文品牌名：【填寫英文品牌名】\n項目名：【填寫原創項目名】\n英文項目名：【填寫項目英文名】\n\n主標題：【填寫一句高級地產主標題，例如 城芯之上，自有庭院 / 把城市，收入一面天幕 / 把山湖，留給少數人】\n副標題：【填寫 3-4 個核心賣點，例如 低密院墅｜私屬庭院｜下沉會客廳｜城市終極改善】\n銷售信息：【填寫虛構價格、面積、席位、熱線，例如 總價約 980 萬起｜建面約 210-380㎡｜限量 12 席｜預約熱線 400-000-0000】\n地址信息：【填寫虛構地址，例如 示範區地址：城市中央生活軸 · 公園旁】\n\n整體風格爲暗黑奢華、高級地產雜誌封面感、藝術展海報感、奢侈品廣告感。背景使用深色系，例如深墨綠、石墨黑、暗藍黑、深棕黑、暗青灰，搭配啞光金、香檳金或古銅金文字。\n\n畫面中央或偏側放置一個大型抽象藝術主視覺，形態可以像山體、絲綢、岩層、雲霧、水波、建築曲面、玻璃幕牆或東方院牆的融合。主視覺要有空間縱深感、資產感和高級藝術感，不要直接畫普通樓盤效果圖，不要做成普通建築渲染圖。\n\n背景疊加非常細密的參數化網格線、建築透視線、地形等高線、空間曲線或水紋線，線條要細、暗、剋制，增強地產規劃感和空間設計感。\n\n排版採用非對稱高級雜誌版式。左上角放品牌 Logo 區和品牌名；主標題使用大號中文字體，可以豎排或分行橫排；英文項目名使用大寫無襯線字體；賣點信息用小字號邊欄排版；底部設置細長銷售信息欄，包含價格、面積、席位、熱線和地址。使用極細金色線條作爲分割線、裝飾線和信息框架。\n\n畫面要有高級紙張印刷顆粒、暗部噪點、微弱織物紋理或銅版紙質感。整體保持暗色高級、金色文字、強排版秩序、大面積暗部留白、藝術地產廣告質感。\n\n不要卡通，不要明亮促銷風，不要紅黃大字，不要普通房地產傳單，不要擁擠排版，不要廉價電商廣告感，不要過度發光，不要塑料質感，不要複製任何真實品牌與參考圖文字。",
+        "is_primary": true,
+        "id": "prm_25cc87f23ae24b0f",
+        "item_id": "itm_5f4b2c945b784934",
+        "created_at": "2026-06-06T11:57:02.615629+00:00",
+        "updated_at": "2026-06-06T11:57:02.615629+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "《高端地产暗金海报》提示词：\n\n生成一张高端地产项目竖版广告海报，画面比例 3:4 或 4:5。\n\n这是一个完全原创的 Demo 项目，请不要使用任何真实地产公司、真实楼盘名称、真实电话、真实地址，也不要复制参考图中的品牌、文案、价格或版式细节。\n\n项目类型：【填写项目类型，例如 城市院墅 / 天际大平层 / 湖山度假别墅 / 新中式院墅 / 高端公寓 / 私人会所】\n品牌名：【填写原创品牌名】\n英文品牌名：【填写英文品牌名】\n项目名：【填写原创项目名】\n英文项目名：【填写项目英文名】\n\n主标题：【填写一句高级地产主标题，例如 城芯之上，自有庭院 / 把城市，收入一面天幕 / 把山湖，留给少数人】\n副标题：【填写 3-4 个核心卖点，例如 低密院墅｜私属庭院｜下沉会客厅｜城市终极改善】\n销售信息：【填写虚构价格、面积、席位、热线，例如 总价约 980 万起｜建面约 210-380㎡｜限量 12 席｜预约热线 400-000-0000】\n地址信息：【填写虚构地址，例如 示范区地址：城市中央生活轴 · 公园旁】\n\n整体风格为暗黑奢华、高级地产杂志封面感、艺术展海报感、奢侈品广告感。背景使用深色系，例如深墨绿、石墨黑、暗蓝黑、深棕黑、暗青灰，搭配哑光金、香槟金或古铜金文字。\n\n画面中央或偏侧放置一个大型抽象艺术主视觉，形态可以像山体、丝绸、岩层、云雾、水波、建筑曲面、玻璃幕墙或东方院墙的融合。主视觉要有空间纵深感、资产感和高级艺术感，不要直接画普通楼盘效果图，不要做成普通建筑渲染图。\n\n背景叠加非常细密的参数化网格线、建筑透视线、地形等高线、空间曲线或水纹线，线条要细、暗、克制，增强地产规划感和空间设计感。\n\n排版采用非对称高级杂志版式。左上角放品牌 Logo 区和品牌名；主标题使用大号中文字体，可以竖排或分行横排；英文项目名使用大写无衬线字体；卖点信息用小字号边栏排版；底部设置细长销售信息栏，包含价格、面积、席位、热线和地址。使用极细金色线条作为分割线、装饰线和信息框架。\n\n画面要有高级纸张印刷颗粒、暗部噪点、微弱织物纹理或铜版纸质感。整体保持暗色高级、金色文字、强排版秩序、大面积暗部留白、艺术地产广告质感。\n\n不要卡通，不要明亮促销风，不要红黄大字，不要普通房地产传单，不要拥挤排版，不要廉价电商广告感，不要过度发光，不要塑料质感，不要复制任何真实品牌与参考图文字。",
+        "is_primary": false,
+        "id": "prm_4bd2bba7fdaf4103",
+        "item_id": "itm_5f4b2c945b784934",
+        "created_at": "2026-06-06T11:57:02.615629+00:00",
+        "updated_at": "2026-06-06T11:57:02.615629+00:00"
+      }
+    ],
+    "prompt_snippet": "《高端地產暗金海報》提示詞：\n\n生成一張高端地產項目豎版廣告海報，畫面比例 3:4 或 4:5。\n\n這是一個完全原創的 Demo 項目，請不要使用任何真實地產公司、真實樓盤名稱、真實電話、真實地址，也不要複製參考圖中的品牌、文案、價格或版式細節。\n\n項目類型：【填寫項目類型，例如 城市院墅 / 天際大平層 / 湖山度假別墅 / 新中式院墅 / 高端公寓 / 私人會所】\n品牌名：【填寫原創品牌名】\n英文品牌名：【填寫英文品牌名】\n項目名：",
+    "first_image": {
+      "id": "img_ff3fc333df3b4c4c",
+      "item_id": "itm_5f4b2c945b784934",
+      "original_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+      "thumb_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+      "preview_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:57:03.341749+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:57:02.615629+00:00",
+    "created_at": "2026-06-06T11:57:02.615629+00:00",
+    "images": [
+      {
+        "id": "img_ff3fc333df3b4c4c",
+        "item_id": "itm_5f4b2c945b784934",
+        "original_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+        "thumb_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+        "preview_path": "demo-data/media/img_ff3fc333df3b4c4c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:57:03.341749+00:00"
+      },
+      {
+        "id": "img_b5551cfc96904744",
+        "item_id": "itm_5f4b2c945b784934",
+        "original_path": "demo-data/media/img_b5551cfc96904744.webp",
+        "thumb_path": "demo-data/media/img_b5551cfc96904744.webp",
+        "preview_path": "demo-data/media/img_b5551cfc96904744.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:57:03.896081+00:00"
+      },
+      {
+        "id": "img_0474347bba7c467d",
+        "item_id": "itm_5f4b2c945b784934",
+        "original_path": "demo-data/media/img_0474347bba7c467d.webp",
+        "thumb_path": "demo-data/media/img_0474347bba7c467d.webp",
+        "preview_path": "demo-data/media/img_0474347bba7c467d.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-06T11:57:04.358067+00:00"
+      },
+      {
+        "id": "img_2b2919368bd24243",
+        "item_id": "itm_5f4b2c945b784934",
+        "original_path": "demo-data/media/img_2b2919368bd24243.webp",
+        "thumb_path": "demo-data/media/img_2b2919368bd24243.webp",
+        "preview_path": "demo-data/media/img_2b2919368bd24243.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-06T11:57:04.835783+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2063149391209222580\n\nAuthor: @MrLarus\n\nOriginal tweet intro:\n用 ChatGPT-Image2 生成《高端地产暗金海报》：暗色艺术主视觉 + 金色字体 + 杂志式排版。",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_a81e0097c3eb4b43",
+    "title": "CARDBOARD PAINTING Prompt",
+    "slug": "cardboard-painting-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/HustleXR/status/2063124285900951935",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_e1df88a062f1423f",
+        "name": "x-status-2063124285900951935",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "CARDBOARD PAINTING\n(LUKISAN KARDUS)\nCreated with Google Gemini nano banana \nPrompt ⤵️ \nA contemporary mixed media portrait illustration style that combines expressive, hand-drawn lines with beautiful color blocking. Featuring loose, faint pencil and ink lines that remain visible and imperfect, layered with angular brushstrokes and faceted planes of paint. The color palette is understated and subdued, dominated by warm browns, ochres, soft grays and desaturated skin tones. The texture feels raw and tactile, resembling work on rough paper or cardboard. The lighting is subtle and natural, emphasizing structure over polish. The background is original brown cardboard, with an unfinished impression at the bottom. The overall aesthetic is intimate, honest, and emotionally grounded—balancing realism with abstraction.",
+        "is_primary": true,
+        "id": "prm_3d34afc53cbc4014",
+        "item_id": "itm_a81e0097c3eb4b43",
+        "created_at": "2026-06-06T11:52:57.101461+00:00",
+        "updated_at": "2026-06-06T11:52:57.101461+00:00"
+      }
+    ],
+    "prompt_snippet": "CARDBOARD PAINTING\n(LUKISAN KARDUS)\nCreated with Google Gemini nano banana \nPrompt ⤵️ \nA contemporary mixed media portrait illustration style that combines expressive, hand-drawn lines with beautiful color blocking. Feat",
+    "first_image": {
+      "id": "img_11fb3b4ae10b41cc",
+      "item_id": "itm_a81e0097c3eb4b43",
+      "original_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+      "thumb_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+      "preview_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+      "remote_url": null,
+      "width": 896,
+      "height": 1199,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:52:57.449302+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:52:57.101461+00:00",
+    "created_at": "2026-06-06T11:52:57.101461+00:00",
+    "images": [
+      {
+        "id": "img_11fb3b4ae10b41cc",
+        "item_id": "itm_a81e0097c3eb4b43",
+        "original_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+        "thumb_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+        "preview_path": "demo-data/media/img_11fb3b4ae10b41cc.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1199,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:52:57.449302+00:00"
+      },
+      {
+        "id": "img_cb10e2f817c14d26",
+        "item_id": "itm_a81e0097c3eb4b43",
+        "original_path": "demo-data/media/img_cb10e2f817c14d26.webp",
+        "thumb_path": "demo-data/media/img_cb10e2f817c14d26.webp",
+        "preview_path": "demo-data/media/img_cb10e2f817c14d26.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1194,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:52:57.648933+00:00"
+      },
+      {
+        "id": "img_148a36e4ae834134",
+        "item_id": "itm_a81e0097c3eb4b43",
+        "original_path": "demo-data/media/img_148a36e4ae834134.webp",
+        "thumb_path": "demo-data/media/img_148a36e4ae834134.webp",
+        "preview_path": "demo-data/media/img_148a36e4ae834134.webp",
+        "remote_url": null,
+        "width": 768,
+        "height": 1376,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-06T11:52:57.860392+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/HustleXR/status/2063124285900951935\n\nAuthor: @HustleXR\n\nOriginal tweet intro:\nCARDBOARD PAINTING\n(LUKISAN KARDUS)\nCreated with Google Gemini nano banana \nPrompt ⤵️ \nA contemporary mixed media portrait illustration style that combines expressive, hand-drawn lines with beautiful color blocking. Featuring loose, faint pencil and ink lines that remain visible and imperfect, layered with angular brushstrokes and faceted planes of paint. The color palette is understated and subdued, dominated by warm browns, ochres, soft grays and desaturated skin tones. The texture feels raw and tactile, resembling work on rough paper or cardboard. The lighting is subtle and natural, emphasizing structure over polish. The background is original brown cardboard, with an unfinished impression at the bottom. The overall aesthetic is intimate, honest, and emotionally grounded—balancing realism with abstraction.",
+    "author": "@HustleXR"
+  },
+  {
+    "id": "itm_5a2862553f054ab4",
+    "title": "ChatGPTimage 生图 Prompt",
+    "slug": "chatgptimage-生图-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/ModengSir/status/2063179263742795910",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_9c6add3c0dfd4acc",
+        "name": "x-status-2063179263742795910",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "ChatGPTimage 生圖\n【城市迷你景觀貼紙變實景系列】\n\n【風格】：\n輕擬真，明亮色彩，細節豐富\n\n【元素】：\n🏫建築物：咖啡店，書店，小公寓，摩天樓\n\n🏜街景：街燈，長椅，地鐵口，公交站\n\n👫人物：騎車的人，遛狗的人，聊天的朋友\n\n🚌交通工具：自行車，小汽車，熱氣球\n\n🎨特色：貼紙可以組合成小城市街景，也可以單獨當裝飾",
+        "is_primary": true,
+        "id": "prm_27c783be157d45b2",
+        "item_id": "itm_5a2862553f054ab4",
+        "created_at": "2026-06-06T11:52:53.561708+00:00",
+        "updated_at": "2026-06-06T11:52:53.561708+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "ChatGPTimage 生图\n【城市迷你景观贴纸变实景系列】\n\n【风格】：\n轻拟真，明亮色彩，细节丰富\n\n【元素】：\n🏫建筑物：咖啡店，书店，小公寓，摩天楼\n\n🏜街景：街灯，长椅，地铁口，公交站\n\n👫人物：骑车的人，遛狗的人，聊天的朋友\n\n🚌交通工具：自行车，小汽车，热气球\n\n🎨特色：贴纸可以组合成小城市街景，也可以单独当装饰",
+        "is_primary": false,
+        "id": "prm_a46462bfea1a45f2",
+        "item_id": "itm_5a2862553f054ab4",
+        "created_at": "2026-06-06T11:52:53.561708+00:00",
+        "updated_at": "2026-06-06T11:52:53.561708+00:00"
+      }
+    ],
+    "prompt_snippet": "ChatGPTimage 生圖\n【城市迷你景觀貼紙變實景系列】\n\n【風格】：\n輕擬真，明亮色彩，細節豐富\n\n【元素】：\n🏫建築物：咖啡店，書店，小公寓，摩天樓\n\n🏜街景：街燈，長椅，地鐵口，公交站\n\n👫人物：騎車的人，遛狗的人，聊天的朋友\n\n🚌交通工具：自行車，小汽車，熱氣球\n\n🎨特色：貼紙可以組合成小城市街景，也可以單獨當裝飾",
+    "first_image": {
+      "id": "img_a0e7142f78b940b9",
+      "item_id": "itm_5a2862553f054ab4",
+      "original_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+      "thumb_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+      "preview_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:52:53.842271+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:52:53.561708+00:00",
+    "created_at": "2026-06-06T11:52:53.561708+00:00",
+    "images": [
+      {
+        "id": "img_a0e7142f78b940b9",
+        "item_id": "itm_5a2862553f054ab4",
+        "original_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+        "thumb_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+        "preview_path": "demo-data/media/img_a0e7142f78b940b9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:52:53.842271+00:00"
+      },
+      {
+        "id": "img_be61ed076d9f48bc",
+        "item_id": "itm_5a2862553f054ab4",
+        "original_path": "demo-data/media/img_be61ed076d9f48bc.webp",
+        "thumb_path": "demo-data/media/img_be61ed076d9f48bc.webp",
+        "preview_path": "demo-data/media/img_be61ed076d9f48bc.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:52:54.145554+00:00"
+      },
+      {
+        "id": "img_befa33a40d1e41ef",
+        "item_id": "itm_5a2862553f054ab4",
+        "original_path": "demo-data/media/img_befa33a40d1e41ef.webp",
+        "thumb_path": "demo-data/media/img_befa33a40d1e41ef.webp",
+        "preview_path": "demo-data/media/img_befa33a40d1e41ef.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-06T11:52:54.600223+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/ModengSir/status/2063179263742795910\n\nAuthor: @ModengSir\n\nOriginal tweet intro:\nChatGPTimage 生图\n【城市迷你景观贴纸变实景系列】\n\n【风格】：\n轻拟真，明亮色彩，细节丰富\n\n【元素】：\n🏫建筑物：咖啡店，书店，小公寓，摩天楼\n\n🏜街景：街灯，长椅，地铁口，公交站\n\n👫人物：骑车的人，遛狗的人，聊天的朋友\n\n🚌交通工具：自行车，小汽车，热气球\n\n🎨特色：贴纸可以组合成小城市街景，也可以单独当装饰",
+    "author": "@ModengSir"
+  },
+  {
+    "id": "itm_3d29278838214824",
+    "title": "GPT Image 2 on ChatGPT Prompt",
+    "slug": "gpt-image-2-on-chatgpt-prompt-8",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/harboriis/status/2063151404290814136",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_fd7554d8210443cf",
+        "name": "x-status-2063151404290814136",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Turn this photo into a chaotic funny doodle illustration, intentionally messy and low-skill, as if drawn quickly with a cheap marker, crayon, or worn-out felt pen on paper.\n\nCreate exaggerated facial features with awkward proportions, uneven eyes, oversized head, tiny body, crooked smile, and clumsy anatomy while still keeping the person recognizable. Use rough childish sketch lines, shaky hand-drawn strokes, visible scribbles, overlapping outlines, accidental marks, and random doodles around the scene. Add a simple cartoon-style background with badly drawn buildings, trees, clouds, street elements, and uneven perspective. Coloring should look careless and imperfect, with visible stroke texture, inconsistent fill areas, wax crayon texture, marker bleed, and irregular shading. Include playful imperfections like crossed-out lines, unfinished details, random arrows, tiny notes, stars, swirls, and abstract scribbles. Overall aesthetic should feel humorous, spontaneous, handmade, energetic, goofy, and intentionally unpolished, resembling a child's sketchbook mixed with absurd internet meme art. High texture detail, paper grain visible, asymmetrical composition, awkward framing, expressive doodle chaos, raw sketch energy.",
+        "is_primary": true,
+        "id": "prm_bcbe557997974d1f",
+        "item_id": "itm_3d29278838214824",
+        "created_at": "2026-06-06T11:52:49.833511+00:00",
+        "updated_at": "2026-06-06T11:52:49.833511+00:00"
+      }
+    ],
+    "prompt_snippet": "Turn this photo into a chaotic funny doodle illustration, intentionally messy and low-skill, as if drawn quickly with a cheap marker, crayon, or worn-out felt pen on paper.\n\nCreate exaggerated facial features with awkwar",
+    "first_image": {
+      "id": "img_c3da39ac3a024f23",
+      "item_id": "itm_3d29278838214824",
+      "original_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+      "thumb_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+      "preview_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+      "remote_url": null,
+      "width": 736,
+      "height": 1308,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:52:50.019151+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:52:49.833511+00:00",
+    "created_at": "2026-06-06T11:52:49.833511+00:00",
+    "images": [
+      {
+        "id": "img_c3da39ac3a024f23",
+        "item_id": "itm_3d29278838214824",
+        "original_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+        "thumb_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+        "preview_path": "demo-data/media/img_c3da39ac3a024f23.webp",
+        "remote_url": null,
+        "width": 736,
+        "height": 1308,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:52:50.019151+00:00"
+      },
+      {
+        "id": "img_e0c366cc783f439e",
+        "item_id": "itm_3d29278838214824",
+        "original_path": "demo-data/media/img_e0c366cc783f439e.webp",
+        "thumb_path": "demo-data/media/img_e0c366cc783f439e.webp",
+        "preview_path": "demo-data/media/img_e0c366cc783f439e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1072,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:52:50.413964+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/harboriis/status/2063151404290814136\n\nAuthor: @harboriis\n\nOriginal tweet intro:\nGPT Image 2 on ChatGPT\n\nPrompt:\nTurn this photo into a chaotic funny doodle illustration, intentionally messy and low-skill, as if drawn quickly with a cheap marker, crayon, or worn-out felt pen on paper.\n\nCreate exaggerated facial features with awkward proportions, uneven eyes, oversized head, tiny body, crooked smile, and clumsy anatomy while still keeping the person recognizable. Use rough childish sketch lines, shaky hand-drawn strokes, visible scribbles, overlapping outlines, accidental marks, and random doodles around the scene. Add a simple cartoon-style background with badly drawn buildings, trees, clouds, street elements, and uneven perspective. Coloring should look careless and imperfect, with visible stroke texture, inconsistent fill areas, wax crayon texture, marker bleed, and irregular shading. Include playful imperfections like crossed-out lines, unfinished details, random arrows, tiny notes, stars, swirls, and abstract scribbles. Overall aesthetic should feel humorous, spontaneous, handmade, energetic, goofy, and intentionally unpolished, resembling a child's sketchbook mixed with absurd internet meme art. High texture detail, paper grain visible, asymmetrical composition, awkward framing, expressive doodle chaos, raw sketch energy.",
+    "author": "@harboriis"
+  },
+  {
+    "id": "itm_14313c2512b44cc2",
+    "title": "🔥 This is actually insane! Prompt",
+    "slug": "this-is-actually-insane-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2063134902430687435",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d41d4e818c894f59",
+        "name": "x-status-2063134902430687435",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Prompt template:\n\nCreate a professional vertical 9:16 TikTok Live shopping overlay designed for livestream selling. The layout should feel optimized for TikTok Shop, visually clean, conversion-focused, and suitable for real livestream use.\n\nLayout requirements:\n\nAdd a slim branded top banner for logo, stream title, or campaign messaging\nLeave a large open center area for the livestream host/video feed\nInclude 1–2 floating promotional badges for offers or urgency messaging\nAdd a bottom product tray to showcase featured products during the livestream\nKeep the overall composition lightweight and modern, similar to TikTok Shop aesthetics\nAvoid heavy borders, thick frames, or bulky side panels\nMaintain strong visual hierarchy while keeping enough breathing room for the host on screen\nEnsure text areas remain readable on mobile devices\n\nTransparent area:\n\nThe main host/video area must be filled with pure #FF00FF (magenta only) as a placeholder for later transparency processing.\nDo not place decorative elements, text, or graphics inside this area.\nKeep the host area clean, open, and visually balanced with the surrounding design.\nContent placeholders:\nBrand name: [your brand name]\nMain title: [short livestream title or campaign headline]\nSubtitle: [short selling point or promotional message]\nPromotional badges: [LIVE DEAL / BEST SELLER / LIMITED OFFER / NEW DROP / FLASH SALE]\nFeatured products: [2–3 products with short labels or pricing area]\nCategory/style: [beauty / fashion / snacks / gadgets / wellness / home products]\n\nDesign direction:\n\nCreate a clean, modern, branded, and conversion-friendly design.\nThe overlay should feel premium but not overly busy.\nUse balanced spacing, soft visual emphasis, and mobile-friendly readability.\nThe design should look realistic for an actual TikTok Live shopping stream and leave enough visual space for the host to remain the focal point.\nStyle reference:\nThink of a polished TikTok Shop livestream interface with subtle branding, lightweight UI elements, modern typography, soft shadows, and visually appealing product presentation. Avoid cluttered layouts or overly aggressive promotional graphics.",
+        "is_primary": true,
+        "id": "prm_6cd9e48059bb460e",
+        "item_id": "itm_14313c2512b44cc2",
+        "created_at": "2026-06-06T11:52:46.355369+00:00",
+        "updated_at": "2026-06-06T11:52:46.355369+00:00"
+      }
+    ],
+    "prompt_snippet": "Prompt template:\n\nCreate a professional vertical 9:16 TikTok Live shopping overlay designed for livestream selling. The layout should feel optimized for TikTok Shop, visually clean, conversion-focused, and suitable for r",
+    "first_image": {
+      "id": "img_0fdf7e2467e14f02",
+      "item_id": "itm_14313c2512b44cc2",
+      "original_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+      "thumb_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+      "preview_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+      "remote_url": null,
+      "width": 788,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:52:46.690263+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:52:46.355369+00:00",
+    "created_at": "2026-06-06T11:52:46.355369+00:00",
+    "images": [
+      {
+        "id": "img_0fdf7e2467e14f02",
+        "item_id": "itm_14313c2512b44cc2",
+        "original_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+        "thumb_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+        "preview_path": "demo-data/media/img_0fdf7e2467e14f02.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:52:46.690263+00:00"
+      },
+      {
+        "id": "img_312ee694cb23454a",
+        "item_id": "itm_14313c2512b44cc2",
+        "original_path": "demo-data/media/img_312ee694cb23454a.webp",
+        "thumb_path": "demo-data/media/img_312ee694cb23454a.webp",
+        "preview_path": "demo-data/media/img_312ee694cb23454a.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:52:46.843236+00:00"
+      },
+      {
+        "id": "img_dedc362a8cfa4892",
+        "item_id": "itm_14313c2512b44cc2",
+        "original_path": "demo-data/media/img_dedc362a8cfa4892.webp",
+        "thumb_path": "demo-data/media/img_dedc362a8cfa4892.webp",
+        "preview_path": "demo-data/media/img_dedc362a8cfa4892.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-06T11:52:46.985639+00:00"
+      },
+      {
+        "id": "img_a87504f3c9344e11",
+        "item_id": "itm_14313c2512b44cc2",
+        "original_path": "demo-data/media/img_a87504f3c9344e11.webp",
+        "thumb_path": "demo-data/media/img_a87504f3c9344e11.webp",
+        "preview_path": "demo-data/media/img_a87504f3c9344e11.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-06T11:52:47.148878+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2063134902430687435\n\nAuthor: @MrLarus\n\nOriginal tweet intro:\n🔥 This is actually insane!\nI used Image2 to make TikTok Live overlay stickers.\n\nNot mockups — real transparent PNGs and area-layered PSDs you can actually edit and use for livestreams.\n\nWay easier than hunting for templates or paying for design memberships just to edit a live frame.\n\nI made 4 demo versions:\n1. Fashion Drop Live\n2. Beauty / Skincare Live\n3. Smart Gadgets Live\n4. Snack Deals Live\n\nBasic layout:\nTop banner + deal badges + product tray + large transparent host area.\n\nCould work for TikTok Shop, livestream selling, product demos, or creator commerce.\n\nWorkflow + prompt in comments 👇",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_22622fdc505e46d9",
+    "title": "GPT image 2 on chatGPT Prompt",
+    "slug": "gpt-image-2-on-chatgpt-prompt-7",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Naiknelofar788/status/2063084329778213111",
+    "cluster": null,
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_d2bd5068e9b24a51",
+        "name": "x-status-2063084329778213111",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Create a highly detailed, premium travel-art illustration featuring a hand holding a [CITY-SPECIFIC TICKET/PASS] in the foreground. The ticket acts as a portal to [CITY NAME], with a realistic miniature city scene emerging from the ticket.\n\nA signature transportation element ([CITY VEHICLE]) breaks out of the ticket frame in 3D perspective, extending toward the viewer. Behind the ticket, one iconic landmark ([HERO LANDMARK]) rises prominently and realistically, becoming the main architectural focal point.\n\nSurrounding the scene are only 3–4 clean hand-drawn doodle elements representing the city's identity, such as district names, local symbols, or famous locations. Use minimal doodles, lots of negative space, and avoid clutter.\n\nInclude tiny realistic people interacting with the scene, such as commuters, tourists, street vendors, cyclists, or photographers, scaled appropriately to create a miniature-world effect.\n\nStyle: photorealistic travel photography combined with elegant black-ink sketchbook doodles. Clean composition, premium editorial design, soft warm lighting, shallow depth of field, realistic textures, subtle shadows, Instagram-worthy travel artwork.\n\nComposition hierarchy:\n\n1. Emerging vehicle\n2. Hero landmark\n3. Ticket/pass\n4. Minimal doodle elements\n\nAvoid: crowded layouts, excessive text, too many landmarks, busy backgrounds, duplicated symbols, excessive arrows, stickers, or decorative icons.\n\nAspect ratio: 1:1 square.\nQuality: ultra-detailed, cinematic, sharp focus, professional travel poster aesthetic.",
+        "is_primary": true,
+        "id": "prm_a6c1d2b7541841cc",
+        "item_id": "itm_22622fdc505e46d9",
+        "created_at": "2026-06-06T11:52:37.221354+00:00",
+        "updated_at": "2026-06-06T11:52:37.221354+00:00"
+      }
+    ],
+    "prompt_snippet": "Create a highly detailed, premium travel-art illustration featuring a hand holding a [CITY-SPECIFIC TICKET/PASS] in the foreground. The ticket acts as a portal to [CITY NAME], with a realistic miniature city scene emergi",
+    "first_image": {
+      "id": "img_ada30279934f49d2",
+      "item_id": "itm_22622fdc505e46d9",
+      "original_path": "demo-data/media/img_ada30279934f49d2.webp",
+      "thumb_path": "demo-data/media/img_ada30279934f49d2.webp",
+      "preview_path": "demo-data/media/img_ada30279934f49d2.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-06T11:52:37.638431+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-06T11:52:37.221354+00:00",
+    "created_at": "2026-06-06T11:52:37.221354+00:00",
+    "images": [
+      {
+        "id": "img_ada30279934f49d2",
+        "item_id": "itm_22622fdc505e46d9",
+        "original_path": "demo-data/media/img_ada30279934f49d2.webp",
+        "thumb_path": "demo-data/media/img_ada30279934f49d2.webp",
+        "preview_path": "demo-data/media/img_ada30279934f49d2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-06T11:52:37.638431+00:00"
+      },
+      {
+        "id": "img_0f24d6bb82644e41",
+        "item_id": "itm_22622fdc505e46d9",
+        "original_path": "demo-data/media/img_0f24d6bb82644e41.webp",
+        "thumb_path": "demo-data/media/img_0f24d6bb82644e41.webp",
+        "preview_path": "demo-data/media/img_0f24d6bb82644e41.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-06T11:52:37.894336+00:00"
+      },
+      {
+        "id": "img_4c725db39aa446fd",
+        "item_id": "itm_22622fdc505e46d9",
+        "original_path": "demo-data/media/img_4c725db39aa446fd.webp",
+        "thumb_path": "demo-data/media/img_4c725db39aa446fd.webp",
+        "preview_path": "demo-data/media/img_4c725db39aa446fd.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-06T11:52:38.182062+00:00"
+      },
+      {
+        "id": "img_c59f4ce9fe9a41ab",
+        "item_id": "itm_22622fdc505e46d9",
+        "original_path": "demo-data/media/img_c59f4ce9fe9a41ab.webp",
+        "thumb_path": "demo-data/media/img_c59f4ce9fe9a41ab.webp",
+        "preview_path": "demo-data/media/img_c59f4ce9fe9a41ab.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-06T11:52:38.449094+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Naiknelofar788/status/2063084329778213111\n\nAuthor: @Naiknelofar788\n\nOriginal tweet intro:\nGPT image 2 on chatGPT\n\nprompt:\nCreate a highly detailed, premium travel-art illustration featuring a hand holding a [CITY-SPECIFIC TICKET/PASS] in the foreground. The ticket acts as a portal to [CITY NAME], with a realistic miniature city scene emerging from the ticket.\n\nA signature transportation element ([CITY VEHICLE]) breaks out of the ticket frame in 3D perspective, extending toward the viewer. Behind the ticket, one iconic landmark ([HERO LANDMARK]) rises prominently and realistically, becoming the main architectural focal point.\n\nSurrounding the scene are only 3–4 clean hand-drawn doodle elements representing the city's identity, such as district names, local symbols, or famous locations. Use minimal doodles, lots of negative space, and avoid clutter.\n\nInclude tiny realistic people interacting with the scene, such as commuters, tourists, street vendors, cyclists, or photographers, scaled appropriately to create a miniature-world effect.\n\nStyle: photorealistic travel photography combined with elegant black-ink sketchbook doodles. Clean composition, premium editorial design, soft warm lighting, shallow depth of field, realistic textures, subtle shadows, Instagram-worthy travel artwork.\n\nComposition hierarchy:\n\n1. Emerging vehicle\n2. Hero landmark\n3. Ticket/pass\n4. Minimal doodle elements\n\nAvoid: crowded layouts, excessive text, too many landmarks, busy backgrounds, duplicated symbols, excessive arrows, stickers, or decorative icons.\n\nAspect ratio: 1:1 square.\nQuality: ultra-detailed, cinematic, sharp focus, professional travel poster aesthetic.",
+    "author": "@Naiknelofar788"
+  },
+  {
     "id": "itm_c18cbe2b38bd41d2",
     "title": "Pulse Rifle Hybrid Infographic Prompt",
     "slug": "pulse-rifle-hybrid-infographic-prompt",

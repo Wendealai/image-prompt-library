@@ -1047,7 +1047,7 @@
     "id": "tag_f82397a0d2904cd2",
     "name": "GPT Image 2",
     "kind": "general",
-    "count": 528
+    "count": 536
   },
   {
     "id": "tag_9de1cbc51b294dd6",
@@ -1340,6 +1340,12 @@
   {
     "id": "tag_940e66aa3ab14862",
     "name": "Manga",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_390d8dfbcac44865",
+    "name": "Midjourney",
     "kind": "general",
     "count": 1
   },
@@ -2061,7 +2067,7 @@
     "id": "tag_9a6e41c4e3734883",
     "name": "X source",
     "kind": "general",
-    "count": 99
+    "count": 108
   },
   {
     "id": "tag_3a4b1c1b9197454a",
@@ -4713,7 +4719,7 @@
     "id": "tag_9e97b27bd82f4af8",
     "name": "fashion sketch",
     "kind": "general",
-    "count": 2
+    "count": 3
   },
   {
     "id": "tag_a8ebb19ff82f495a",
@@ -10536,6 +10542,12 @@
     "count": 1
   },
   {
+    "id": "tag_52c8373e07de4c8f",
+    "name": "wall sign",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_ba47ce9a36774b1e",
     "name": "wall-art",
     "kind": "general",
@@ -10635,7 +10647,7 @@
     "id": "tag_3c6557d9fb984ee7",
     "name": "wedding invitation",
     "kind": "general",
-    "count": 1
+    "count": 2
   },
   {
     "id": "tag_4ba52b1f20e44a95",
@@ -11196,6 +11208,60 @@
     "count": 1
   },
   {
+    "id": "tag_d2bd5068e9b24a51",
+    "name": "x-status-2063084329778213111",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_e1df88a062f1423f",
+    "name": "x-status-2063124285900951935",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2352b1fe4d1c452e",
+    "name": "x-status-2063134632309047536",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_d41d4e818c894f59",
+    "name": "x-status-2063134902430687435",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_b172c094a47b440c",
+    "name": "x-status-2063149391209222580",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_fd7554d8210443cf",
+    "name": "x-status-2063151404290814136",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_9c6add3c0dfd4acc",
+    "name": "x-status-2063179263742795910",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_3b6d8901d19444ef",
+    "name": "x-status-2063192079417688329",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_2ef80f18bef74dce",
+    "name": "x-status-2063206224452309101",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_1ae9a1bbda8f4ec8",
     "name": "x_import",
     "kind": "general",
@@ -11662,6 +11728,12 @@
     "name": "图生图参考",
     "kind": "general",
     "count": 4
+  },
+  {
+    "id": "tag_08c12bdaacc8422e",
+    "name": "地产海报",
+    "kind": "general",
+    "count": 1
   },
   {
     "id": "tag_619e0f6465f94db4",

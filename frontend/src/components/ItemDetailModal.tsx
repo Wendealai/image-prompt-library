@@ -258,6 +258,7 @@ export default function ItemDetailModal({
   const prompt = item?.prompts.find(promptRecord => promptRecord.language === lang);
   const resolvedPrompt = resolvePromptRecord(availablePromptRecords, lang, preferredLanguage);
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
+  const selectedPromptText = (prompt?.text || resolvedPrompt?.text || copyText).trim();
   const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
@@ -292,7 +293,7 @@ export default function ItemDetailModal({
   };
   const handleGenerateImage = async () => {
     if (!item || generatingImage) return;
-    const promptText = (prompt?.text || resolvedPrompt?.text || copyText).trim();
+    const promptText = selectedPromptText;
     if (!promptText) {
       setImageGenerationFeedback({ tone: 'error', message: t('imageGenerationNoPrompt') });
       return;
@@ -572,9 +573,6 @@ export default function ItemDetailModal({
                             })}
                           </div>
                           <span className="prompt-block-actions">
-                            <button type="button" className="prompt-generate-image-icon" onClick={handleGenerateImage} aria-label={t('generateImage')} title={t('generateImage')} disabled={generatingImage || !(prompt?.text || resolvedPrompt?.text || copyText).trim()}>
-                              <ImagePlus size={15} />
-                            </button>
                             <button type="button" className="prompt-copy-icon" onClick={() => handleCopyPrompt(prompt?.text || '')} aria-label={t('copyPrompt')} disabled={!prompt?.text}>
                               <Copy size={15} />
                             </button>
@@ -607,6 +605,12 @@ export default function ItemDetailModal({
                               {prompt?.text ? <p>{prompt.text}</p> : <span className="add-note-affordance">{t('promptText')}</span>}
                             </div>
                           )}
+                        </div>
+                        <div className="prompt-direct-generate-row">
+                          <button type="button" className="primary prompt-direct-generate-button" onClick={handleGenerateImage} disabled={generatingImage || !selectedPromptText}>
+                            <ImagePlus size={16} />
+                            <span>{generatingImage ? t('generatingImage') : t('generateImage')}</span>
+                          </button>
                         </div>
                         {(generatingImage || imageGenerationFeedback) && (
                           <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
