@@ -1,4 +1,4 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, PromptImageGenerationOptions, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBulkInitRequest, PromptTemplateReviewRequest, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, GeneratedImageHistoryList, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, PromptImageGenerationOptions, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBulkInitRequest, PromptTemplateReviewRequest, TagRecord, UploadImageRole } from '../types';
 
 export const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
 export const DEMO_ASSET_VERSION = (import.meta.env.VITE_DEMO_ASSET_VERSION || '').trim();
@@ -92,6 +92,7 @@ export const demoApi = {
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
   generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions, _references?: PromptImageReferenceInput[]) => demoAiUnavailable(),
   promptImageGenerationRuns: (_itemId: string) => Promise.resolve<PromptImageGenerationRunRecord[]>([]),
+  generatedImageHistory: (_params?: { q?: string; cluster?: string; limit?: number; offset?: number }) => Promise.resolve<GeneratedImageHistoryList>({ items: [], total: 0, limit: 0, offset: 0 }),
   generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
   itemImageGenerationStatus: (_itemId: string, _batchId: string) => demoImageGenerationUnavailable(),
   adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),

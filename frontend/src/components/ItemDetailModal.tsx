@@ -5,6 +5,7 @@ import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
 import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaSourceItem, PromptImageGenerationRunRecord, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
+import { downloadBlobFromUrl } from '../utils/downloads';
 import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
 import { PROMPT_LANGUAGE_LABELS, resolvePromptText, type PromptLanguage } from '../utils/prompts';
@@ -633,28 +634,20 @@ export default function ItemDetailModal({
   const handleImageViewerTouchEnd = () => {
     pinchGestureRef.current = null;
   };
-  const handleDownloadImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+  const handleDownloadImage = async (image: ImageRecord, event?: { preventDefault?: () => void; stopPropagation: () => void }) => {
+    event?.preventDefault?.();
     event?.stopPropagation();
     if (!item) return;
     const href = imageDownloadUrl(item, image);
     if (!href) return;
     try {
-      const response = await fetch(href, { credentials: 'same-origin' });
-      if (!response.ok) throw new Error(await response.text());
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = objectUrl;
-      link.download = imageDownloadFilename(item, image);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+      await downloadBlobFromUrl(href, imageDownloadFilename(item, image));
     } catch (error) {
       window.alert(error instanceof Error && error.message ? error.message : t('saveFailed'));
     }
   };
-  const handleDeleteImage = async (image: ImageRecord, event?: { stopPropagation: () => void }) => {
+  const handleDeleteImage = async (image: ImageRecord, event?: { preventDefault?: () => void; stopPropagation: () => void }) => {
+    event?.preventDefault?.();
     event?.stopPropagation();
     if (!item || !window.confirm(t('deleteImageConfirm'))) return;
     try {

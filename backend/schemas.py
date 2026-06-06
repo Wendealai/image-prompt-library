@@ -322,6 +322,22 @@ class PromptImageGenerationRunRecord(BaseModel):
     image_ids: List[str] = Field(default_factory=list)
     created_at: str
 
+class GeneratedImageHistoryEntry(BaseModel):
+    item_id: str
+    item_title: str
+    item_slug: str
+    item_source_url: Optional[str] = None
+    image: ImageRecord
+    run: Optional[PromptImageGenerationRunRecord] = None
+    source: Literal["workflow", "direct"] = "direct"
+    created_at: str
+
+class GeneratedImageHistoryList(BaseModel):
+    items: List[GeneratedImageHistoryEntry] = Field(default_factory=list)
+    total: int
+    limit: int
+    offset: int
+
 class PromptImageGenerationResponse(BaseModel):
     status: str = "completed"
     prompt: str

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ItemSummary } from '../types';
 import type { Translator } from '../utils/i18n';
 import ItemCard from './ItemCard';
@@ -26,9 +26,23 @@ export default function CardsView({
   onAdd?: () => void;
   onLoadMore?: () => void;
 }) {
+  const [useMobileColumns, setUseMobileColumns] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const showActions = Boolean(onFavorite && onEdit);
   const hasMore = items.length < total;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mediaQuery = window.matchMedia('(max-width: 760px)');
+    const sync = () => setUseMobileColumns(mediaQuery.matches);
+    sync();
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', sync);
+      return () => mediaQuery.removeEventListener('change', sync);
+    }
+    mediaQuery.addListener(sync);
+    return () => mediaQuery.removeListener(sync);
+  }, []);
 
   useEffect(() => {
     if (!hasMore || !onLoadMore || loadingMore) return undefined;
@@ -61,17 +75,20 @@ export default function CardsView({
 
   return (
     <>
-      <section className="cards-grid masonry-like desktop-cards-grid">
-        {items.map(renderCard)}
-      </section>
-      <section className="mobile-masonry-columns">
-        <div className="mobile-masonry-column">
-          {leftColumnItems.map(renderCard)}
-        </div>
-        <div className="mobile-masonry-column">
-          {rightColumnItems.map(renderCard)}
-        </div>
-      </section>
+      {useMobileColumns ? (
+        <section className="mobile-masonry-columns">
+          <div className="mobile-masonry-column">
+            {leftColumnItems.map(renderCard)}
+          </div>
+          <div className="mobile-masonry-column">
+            {rightColumnItems.map(renderCard)}
+          </div>
+        </section>
+      ) : (
+        <section className="cards-grid masonry-like desktop-cards-grid">
+          {items.map(renderCard)}
+        </section>
+      )}
       <div className="cards-load-sentinel" ref={loadMoreRef} aria-hidden="true">
         {hasMore ? ' ' : null}
       </div>

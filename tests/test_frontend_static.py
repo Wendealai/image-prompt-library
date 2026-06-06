@@ -22,7 +22,12 @@ def test_item_save_refreshes_visible_item_query():
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
     assert "API_PAGE_LIMIT = 1000" in hook
-    assert "nextOffsets.map(offset => api.items" in hook
+    assert "async function fetchRange" in hook
+    assert "offset: startOffset" not in hook
+    assert "limit: Math.min(API_PAGE_LIMIT, remaining)" in hook
+    assert "const growingVisibleWindow = !scopeChanged && viewLimit > data.limit" in hook
+    assert "fetchRange(q, clusterId, tag, sort, data.items.length, desiredCount - data.items.length)" in hook
+    assert "dedupeItems([...data.items, ...pages.flatMap(page => page.items)])" in hook
     assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
 
 
@@ -81,6 +86,7 @@ def test_mobile_defaults_to_cards_without_stale_pre_mobile_saved_view():
     assert "VIEW_STORAGE_KEY = 'image-prompt-library.view_mode.v2'" in app
     assert "function loadPreferredView(): ViewMode" in app
     assert "window.localStorage.getItem(VIEW_STORAGE_KEY)" in app
+    assert "savedView === 'explore' || savedView === 'cards' || savedView === 'history'" in app
     assert "window.matchMedia('(max-width: 760px)').matches" in app
     assert "return isMobileViewport ? 'cards' : 'explore'" in app
     assert "const [view, setView] = useState<ViewMode>(loadPreferredView)" in app
@@ -94,12 +100,16 @@ def test_mobile_cards_use_touch_visible_two_column_masonry():
     card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
+    assert "const [useMobileColumns, setUseMobileColumns]" in cards
+    assert "window.matchMedia('(max-width: 760px)')" in cards
+    assert "mediaQuery.addEventListener('change', sync)" in cards or "mediaQuery.addListener(sync)" in cards
     assert "desktop-cards-grid" in cards
     assert "mobile-masonry-columns" in cards
     assert "mobile-masonry-column" in cards
     assert "leftColumnItems" in cards and "rightColumnItems" in cards
     assert "items.filter((_, index) => index % 2 === 0)" in cards
     assert "items.filter((_, index) => index % 2 === 1)" in cards
+    assert "{useMobileColumns ? (" in cards
     assert "loadMoreRef" in cards
     assert "new IntersectionObserver" in cards
     assert "rootMargin: '900px 0px'" in cards
@@ -134,12 +144,15 @@ def test_card_display_uses_preview_or_original_before_thumbnail_for_adaptive_ima
 
 def test_detail_download_fetches_original_attachment_instead_of_navigating_to_image():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
+    downloads = (ROOT / "frontend" / "src" / "utils" / "downloads.ts").read_text()
     assert "function imageDownloadUrl(item: ItemDetail, image: ImageRecord)" in detail
     assert "/api/items/${encodeURIComponent(item.id)}/images/${encodeURIComponent(image.id)}/download" in detail
-    assert "await fetch(href, { credentials: 'same-origin' })" in detail
-    assert "URL.createObjectURL(blob)" in detail
-    assert "link.href = objectUrl" in detail
-    assert "URL.revokeObjectURL(objectUrl)" in detail
+    assert "downloadBlobFromUrl(href, imageDownloadFilename(item, image))" in detail
+    assert "await fetch(href, { credentials: 'same-origin' })" in downloads
+    assert "showSaveFilePicker" in downloads
+    assert "URL.createObjectURL(blob)" in downloads
+    assert "link.href = objectUrl" in downloads
+    assert "URL.revokeObjectURL(objectUrl)" in downloads
     assert "link.href = href" not in detail
 
 
@@ -1291,6 +1304,37 @@ def test_detail_modal_has_generated_image_history_panel():
     assert ".generated-history-grid" in css
     assert ".generated-history-actions" in css
     assert "generatedImagesHistory" in i18n
+
+
+def test_app_has_top_level_generated_history_view():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    toggle = (ROOT / "frontend" / "src" / "components" / "ViewToggle.tsx").read_text()
+    history_view = (ROOT / "frontend" / "src" / "components" / "GeneratedHistoryView.tsx").read_text()
+    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
+    demo_api = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = (ROOT / "frontend" / "src" / "styles.css").read_text()
+
+    assert "export type ViewMode = 'explore' | 'cards' | 'history';" in types
+    assert "export interface GeneratedImageHistoryEntry" in types
+    assert "export interface GeneratedImageHistoryList" in types
+    assert "GeneratedHistoryView" in app
+    assert "view === 'cards'" in app and "GeneratedHistoryView" in app
+    assert "view==='history'" in toggle
+    assert "t('history')" in toggle
+    assert "api.generatedImageHistory" in history_view
+    assert "handleDelete" in history_view
+    assert "handleDownload" in history_view
+    assert "downloadBlobFromUrl" in history_view
+    assert "promptTemplateImageRunSaved" in history_view
+    assert "generatedImageDirectRun" in history_view
+    assert "generatedImageHistory: (params:" in local_api
+    assert "generatedImageHistory: (_params?" in demo_api
+    assert "| 'explore' | 'cards' | 'history'" in i18n
+    assert "history: 'History'" in i18n
+    assert ".generated-library-view" in css
+    assert ".generated-library-grid" in css
 
 
 def test_frontend_prefers_result_image_for_card_and_detail_hero():

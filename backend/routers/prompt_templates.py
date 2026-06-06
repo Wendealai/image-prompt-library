@@ -5,7 +5,7 @@ from dataclasses import asdict
 
 from backend.admin_auth import require_admin
 from backend.repositories import ItemRepository, StoredImageInput
-from backend.schemas import PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
+from backend.schemas import GeneratedImageHistoryList, PromptGenerationSessionRecord, PromptImageGenerateRequest, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBatchInitResult, PromptTemplateBulkInitItemResult, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateGenerateRequest, PromptTemplateInitRequest, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptTemplateRerollRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord
 from backend.services.image_generation import ImageGenerationError, ImageGenerationUnavailable, generate_images_from_prompt
 from backend.services.image_store import store_image
 from backend.services.prompt_workflow_failures import list_prompt_workflow_failures, read_prompt_workflow_failure, record_prompt_workflow_failure, summarize_prompt_workflow_failure
@@ -231,6 +231,17 @@ def list_image_generation_runs(request: Request, item_id: str, limit: int = Quer
         return repo(request).list_prompt_image_generation_runs(item_id, limit=limit)
     except KeyError as exc:
         _item_not_found(exc)
+
+
+@router.get("/generated-image-history", response_model=GeneratedImageHistoryList)
+def list_generated_image_history(
+    request: Request,
+    q: str | None = None,
+    cluster: str | None = None,
+    limit: int = Query(default=120, ge=1, le=500),
+    offset: int = Query(default=0, ge=0),
+):
+    return repo(request).list_generated_image_history(q=q, cluster=cluster, limit=limit, offset=offset)
 
 
 @router.post("/admin/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)

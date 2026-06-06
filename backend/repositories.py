@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .schemas import ClusterRecord, GeneratedImageHistoryEntry, GeneratedImageHistoryList, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
 from .services.prompt_template_quality import normalize_prompt_template_slots, score_prompt_template
 from .services.prompt_source_prepare import prepare_prompt_template_source
 from .services.text_normalize import to_traditional
@@ -290,6 +290,130 @@ class ItemRepository:
                 (item_id, limit),
             ).fetchall()
             return [self._prompt_image_generation_run_from_row(row) for row in rows]
+
+    def list_generated_image_history(
+        self,
+        *,
+        q: str | None = None,
+        cluster: str | None = None,
+        archived: bool | None = False,
+        limit: int = 120,
+        offset: int = 0,
+    ) -> GeneratedImageHistoryList:
+        where = ["img.role='result_image'"]
+        params: list[str | int] = []
+        if archived is not None:
+            where.append("i.archived=?")
+            params.append(int(archived))
+        if cluster:
+            where.append("(i.cluster_id=? OR c.name=?)")
+            params.extend([cluster, cluster])
+        if q:
+            tokens = re.findall(r"[\w\u4e00-\u9fff]+", q)
+            like = f"%{q}%"
+            if tokens:
+                where.append(
+                    """i.id IN (
+                        SELECT item_id FROM item_search WHERE item_search MATCH ?
+                        UNION
+                        SELECT i2.id
+                        FROM items i2
+                        LEFT JOIN prompts p2 ON p2.item_id=i2.id
+                        LEFT JOIN item_tags it2 ON it2.item_id=i2.id
+                        LEFT JOIN tags t2 ON t2.id=it2.tag_id
+                        LEFT JOIN clusters c2 ON c2.id=i2.cluster_id
+                        WHERE (
+                            i2.title LIKE ?
+                            OR p2.text LIKE ?
+                            OR t2.name LIKE ?
+                            OR c2.name LIKE ?
+                            OR i2.notes LIKE ?
+                        )
+                    )"""
+                )
+                match = " ".join(part + "*" for part in tokens)
+                params.extend([match, like, like, like, like, like])
+            else:
+                where.append(
+                    """i.id IN (
+                        SELECT i2.id
+                        FROM items i2
+                        LEFT JOIN prompts p2 ON p2.item_id=i2.id
+                        LEFT JOIN item_tags it2 ON it2.item_id=i2.id
+                        LEFT JOIN tags t2 ON t2.id=it2.tag_id
+                        LEFT JOIN clusters c2 ON c2.id=i2.cluster_id
+                        WHERE (
+                            i2.title LIKE ?
+                            OR p2.text LIKE ?
+                            OR t2.name LIKE ?
+                            OR c2.name LIKE ?
+                            OR i2.notes LIKE ?
+                        )
+                    )"""
+                )
+                params.extend([like, like, like, like, like])
+        where_sql = "WHERE " + " AND ".join(where) if where else ""
+        image_keys = tuple(ImageRecord.model_fields.keys())
+        with connect(self.library_path) as conn:
+            total = conn.execute(
+                f"""
+                SELECT COUNT(*)
+                FROM images img
+                JOIN items i ON i.id=img.item_id
+                LEFT JOIN clusters c ON c.id=i.cluster_id
+                {where_sql}
+                """,
+                params,
+            ).fetchone()[0]
+            rows = conn.execute(
+                f"""
+                SELECT
+                  img.*,
+                  i.title AS item_title,
+                  i.slug AS item_slug,
+                  i.source_url AS item_source_url
+                FROM images img
+                JOIN items i ON i.id=img.item_id
+                LEFT JOIN clusters c ON c.id=i.cluster_id
+                {where_sql}
+                ORDER BY img.created_at DESC, img.sort_order DESC, i.updated_at DESC
+                LIMIT ? OFFSET ?
+                """,
+                (*params, limit, offset),
+            ).fetchall()
+            item_ids = sorted({row["item_id"] for row in rows})
+            run_by_image_id: dict[str, PromptImageGenerationRunRecord] = {}
+            if item_ids:
+                placeholders = ",".join("?" for _ in item_ids)
+                run_rows = conn.execute(
+                    f"""
+                    SELECT *
+                    FROM prompt_image_generation_runs
+                    WHERE item_id IN ({placeholders})
+                    ORDER BY created_at DESC
+                    """,
+                    item_ids,
+                ).fetchall()
+                for run_row in run_rows:
+                    run = self._prompt_image_generation_run_from_row(run_row)
+                    for image_id in run.image_ids:
+                        if image_id and image_id not in run_by_image_id:
+                            run_by_image_id[image_id] = run
+        items = []
+        for row in rows:
+            image = ImageRecord(**{key: row[key] for key in image_keys})
+            run = run_by_image_id.get(image.id)
+            items.append(GeneratedImageHistoryEntry(
+                item_id=row["item_id"],
+                item_title=row["item_title"],
+                item_slug=row["item_slug"],
+                item_source_url=row["item_source_url"],
+                image=image,
+                run=run,
+                source="workflow" if run else "direct",
+                created_at=run.created_at if run else image.created_at,
+            ))
+        return GeneratedImageHistoryList(items=items, total=total, limit=limit, offset=offset)
 
     def _cluster_from_row(self, row) -> ClusterRecord | None:
         if not row or not row["cluster_id"]: return None

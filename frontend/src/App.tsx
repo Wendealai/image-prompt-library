@@ -5,6 +5,7 @@ import TopBar from './components/TopBar';
 import FiltersPanel from './components/FiltersPanel';
 import ExploreView from './components/ExploreView';
 import CardsView from './components/CardsView';
+import GeneratedHistoryView from './components/GeneratedHistoryView';
 import ItemDetailModal from './components/ItemDetailModal';
 import ItemEditorModal from './components/ItemEditorModal';
 import ConfigPanel from './components/ConfigPanel';
@@ -36,7 +37,7 @@ function loadUiLanguage(): UiLanguage {
 function loadPreferredView(): ViewMode {
   if (typeof window === 'undefined') return 'explore';
   const savedView = window.localStorage.getItem(VIEW_STORAGE_KEY);
-  if (savedView === 'explore' || savedView === 'cards') return savedView;
+  if (savedView === 'explore' || savedView === 'cards' || savedView === 'history') return savedView;
   const isMobileViewport = window.matchMedia('(max-width: 760px)').matches;
   return isMobileViewport ? 'cards' : 'explore';
 }
@@ -199,7 +200,9 @@ export default function App() {
       {error && <div className="error">{error}</div>}
       {view === 'explore'
         ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
-        : <CardsView t={t} items={sortedCardItems} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />}
+        : view === 'cards'
+          ? <CardsView t={t} items={sortedCardItems} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />
+          : <GeneratedHistoryView t={t} q={debouncedQ} clusterId={clusterId} reloadKey={itemsReloadKey} onOpen={setDetailId} onChanged={saved} showMutations={!isDemoMode} />}
     </main>
     {showSelectedCollectionDock && selectedCluster && (
       <button className="selected-collection-dock" onClick={clearCluster} aria-label={`${t('collectionChip')}: ${selectedCluster.name}. ${t('close')}`}>

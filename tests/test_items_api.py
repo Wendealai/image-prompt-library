@@ -236,6 +236,40 @@ def test_delete_remote_generated_image_removes_record_without_file_error(tmp_pat
         assert conn.execute("SELECT COUNT(*) FROM images WHERE id=?", (remote_image.id,)).fetchone()[0] == 0
 
 
+def test_generated_image_history_lists_workflow_and_direct_results(tmp_path):
+    c = client(tmp_path)
+    workflow_item = c.post("/api/items", json=create_payload(title="Aurora Frame", cluster_name="Architecture")).json()
+    direct_item = c.post("/api/items", json=create_payload(title="Morning Poster", cluster_name="Portrait", source_url="https://example.test/direct")).json()
+    repository = ItemRepository(tmp_path / "library")
+    workflow_image = repository.add_remote_image(workflow_item["id"], "https://cdn.example.test/generated/workflow.png")
+    repository.add_prompt_image_generation_run(
+        item_id=workflow_item["id"],
+        prompt="Aurora glass tower prompt",
+        references=[{"label": "mood"}],
+        image_ids=[workflow_image.id],
+    )
+    direct_image = repository.add_remote_image(direct_item["id"], "https://cdn.example.test/generated/direct.png")
+
+    listed = c.get("/api/generated-image-history", params={"limit": 10}).json()
+    by_image_id = {entry["image"]["id"]: entry for entry in listed["items"]}
+
+    assert listed["total"] == 2
+    assert by_image_id[workflow_image.id]["item_title"] == "Aurora Frame"
+    assert by_image_id[workflow_image.id]["source"] == "workflow"
+    assert by_image_id[workflow_image.id]["run"]["image_ids"] == [workflow_image.id]
+    assert by_image_id[direct_image.id]["item_title"] == "Morning Poster"
+    assert by_image_id[direct_image.id]["source"] == "direct"
+    assert by_image_id[direct_image.id]["run"] is None
+
+    searched = c.get("/api/generated-image-history", params={"q": "Aurora"}).json()
+    assert searched["total"] == 1
+    assert searched["items"][0]["item_id"] == workflow_item["id"]
+
+    filtered = c.get("/api/generated-image-history", params={"cluster": "Portrait"}).json()
+    assert filtered["total"] == 1
+    assert filtered["items"][0]["item_id"] == direct_item["id"]
+
+
 def test_delete_shared_local_image_keeps_file_until_last_record(tmp_path):
     c = client(tmp_path)
     first = c.post("/api/items", json=create_payload(title="First")).json()
