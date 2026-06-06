@@ -174,6 +174,24 @@ def test_item_nanobanana_generation_supports_override_prompt_and_references(tmp_
     assert response.json()["terminal"] is None
 
 
+def test_item_nanobanana_async_generation_requires_batch_or_image_data(tmp_path, monkeypatch):
+    c = client(tmp_path)
+    item = c.post("/api/items", json=create_payload()).json()
+
+    def fake_request(_payload):
+        return {"ok": True, "status": "queued"}
+
+    monkeypatch.setattr(nanobanana_router, "request_article_images", fake_request)
+
+    response = c.post(
+        f"/api/items/{item['id']}/nanobanana/images",
+        json={"wait": False},
+    )
+
+    assert response.status_code == 502
+    assert response.json()["detail"] == "Nanobanana create response did not include a batchId or image data."
+
+
 def test_item_nanobanana_status_stores_completed_remote_assets_once(tmp_path, monkeypatch):
     c = client(tmp_path)
     item = c.post("/api/items", json=create_payload()).json()

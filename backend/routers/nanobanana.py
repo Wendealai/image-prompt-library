@@ -103,6 +103,11 @@ def _stored_images_from_payload(repository: ItemRepository, item_id: str, termin
     return stored
 
 
+def _batch_id_from_payload(payload: dict[str, Any]) -> str:
+    batch_id = payload.get("batchId") or payload.get("batch_id")
+    return batch_id.strip() if isinstance(batch_id, str) else ""
+
+
 @router.post("/nanobanana/article-images")
 def create_nanobanana_article_images(payload: NanobananaArticleImagesRequest):
     try:
@@ -183,7 +188,9 @@ def generate_item_images(request: Request, item_id: str, payload: NanobananaItem
     try:
         create_payload = request_article_images(article_request)
         terminal_payload = _terminal_payload(create_payload, article_request)
-        stored_images = _stored_images_from_payload(repository, item.id, terminal_payload)
+        stored_images = _stored_images_from_payload(repository, item.id, terminal_payload or create_payload)
+        if not stored_images and not article_request.wait and not _batch_id_from_payload(create_payload):
+            raise HTTPException(status_code=502, detail="Nanobanana create response did not include a batchId or image data.")
         return {
             "create": create_payload,
             "terminal": terminal_payload,

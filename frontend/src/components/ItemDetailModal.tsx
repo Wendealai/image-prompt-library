@@ -418,6 +418,9 @@ export default function ItemDetailModal({
       });
       let storedImages = result.stored_images;
       const batchId = readBatchId(result.create);
+      if (storedImages.length === 0 && !batchId) {
+        throw new Error(t('imageGenerationUnavailable'));
+      }
       if (storedImages.length === 0 && batchId) {
         setImageGenerationFeedback({ tone: 'success', message: t('imageGenerationQueued') });
         for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {

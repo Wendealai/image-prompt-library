@@ -597,6 +597,9 @@ export default function PromptTemplatePanel({
     try {
       const references = imageReferences.length > 0 ? await buildImageReferenceInputs() : [];
       const result = await api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references);
+      if (result.images.length === 0) {
+        throw new Error(t('promptTemplateImageUnavailable'));
+      }
       clearImageGenerationTimer();
       window.localStorage.setItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY, JSON.stringify(imageGenerationOptions));
       setRecentImageGenerationOptions(imageGenerationOptions);

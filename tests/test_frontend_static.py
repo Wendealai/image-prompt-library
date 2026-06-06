@@ -317,6 +317,8 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetDelete" in panel
     assert "promptTemplateImagePresetNameRequired" in panel
     assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
+    assert "if (result.images.length === 0) {" in panel
+    assert "throw new Error(t('promptTemplateImageUnavailable'));" in panel
     assert "promptTemplateGenerateImage" in panel
     assert "promptTemplateGeneratingImage" in panel
     assert "api.acceptPromptVariant(variant.id)" not in panel
@@ -445,6 +447,7 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "...(sourceItems.length > 0 ? { sourceItems } : {})" in detail
     assert "api.generateItemImage(item.id, {" in detail
     assert "wait: false" in detail
+    assert "storedImages.length === 0 && !batchId" in detail
     assert "api.itemImageGenerationStatus(item.id, batchId)" in detail
     assert "IMAGE_GENERATION_POLL_ATTEMPTS" in detail
     assert "api.uploadImage(item.id, file, 'reference_image')" in detail
