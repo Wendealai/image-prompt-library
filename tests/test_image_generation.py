@@ -76,6 +76,11 @@ def test_generate_images_from_prompt_sends_reference_images_as_source_items(monk
         payload = json.loads(request.content.decode("utf-8"))
         assert payload["mode"] == "image-to-image"
         assert payload["generation"]["strength"] == 0.6
+        assert payload["promptRaw"] == "Keep this character but change outfit"
+        assert "Keep this character but change outfit" in payload["prompt"]
+        assert "do not return, copy, or lightly re-save the reference image unchanged" in payload["prompt"]
+        assert "Reference strength: 60%" in payload["prompt"]
+        assert "primary (subject): keep pose" in payload["prompt"]
         assert payload["source"] == payload["sourceItems"][0]
         assert payload["sources"] == payload["sourceItems"]
         assert payload["sourceCount"] == 1

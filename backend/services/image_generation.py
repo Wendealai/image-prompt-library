@@ -419,6 +419,35 @@ def _generation_output_format(normalized_generation: dict[str, Any]) -> str:
     raise ImageGenerationError(f"Invalid image output format: {raw_value}")
 
 
+def _image_to_image_prompt(prompt: str, reference_items: list[dict[str, Any]], strength: float) -> str:
+    reference_lines: list[str] = []
+    for index, item in enumerate(reference_items, start=1):
+        label = str(item.get("label") or f"reference {index}").strip()
+        role = str(item.get("role") or ("subject" if index == 1 else "style")).strip()
+        note = str(item.get("note") or "").strip()
+        line = f"{index}. {label} ({role})"
+        if note:
+            line += f": {note}"
+        reference_lines.append(line)
+    reference_summary = "\n".join(reference_lines)
+    strength_percent = round(strength * 100)
+    if strength < 0.4:
+        influence = "loose influence: borrow broad cues only"
+    elif strength > 0.75:
+        influence = "close influence: preserve the requested subject/style cues, but still create a new image"
+    else:
+        influence = "balanced influence: keep useful subject/style cues while following the new prompt"
+    return (
+        f"{prompt.strip()}\n\n"
+        "Image-to-image reference instructions:\n"
+        "- Use the attached reference image(s) as guidance only; do not return, copy, or lightly re-save the reference image unchanged.\n"
+        "- Generate a new image that follows the prompt above. The final result must be visibly transformed from the input reference.\n"
+        f"- Reference strength: {strength_percent}% ({influence}).\n"
+        "- Reference roles:\n"
+        f"{reference_summary}"
+    )
+
+
 def _extract_job_id(payload: Any) -> str:
     return _pick_string_from_paths(payload, [
         ["jobId"],
@@ -604,13 +633,15 @@ def _build_generate_payload(
     mode = "image-to-image" if reference_items else "text-to-image"
     if reference_images and not reference_items:
         raise ValueError("Image-to-image requires at least one usable reference image.")
+    strength = _generation_strength(normalized_generation, has_references=bool(reference_items))
+    prompt_for_model = _image_to_image_prompt(prompt, reference_items, strength) if reference_items else prompt
     payload: dict[str, Any] = {
         "requestId": str(uuid.uuid4()),
         "mode": mode,
         "provider": os.environ.get(PROVIDER_ENV, DEFAULT_PROVIDER).strip() or DEFAULT_PROVIDER,
         "model": os.environ.get(MODEL_ENV, DEFAULT_MODEL).strip() or DEFAULT_MODEL,
         "toolModel": os.environ.get(TOOL_MODEL_ENV, DEFAULT_TOOL_MODEL).strip() or DEFAULT_TOOL_MODEL,
-        "prompt": prompt,
+        "prompt": prompt_for_model,
         "promptRaw": prompt,
         "negativePrompt": "",
         "stream": True,
@@ -624,7 +655,7 @@ def _build_generate_payload(
             "style": str(normalized_generation.get("style") or os.environ.get(STYLE_ENV, DEFAULT_STYLE)).strip() or DEFAULT_STYLE,
             "temperature": round(_generation_temperature(), 2),
             "seed": None,
-            "strength": _generation_strength(normalized_generation, has_references=bool(reference_items)),
+            "strength": strength,
         },
     }
     if reference_items:
