@@ -31,6 +31,7 @@ export interface NanobananaGeneration { resolution?: string; aspectRatio?: strin
 export interface NanobananaSourceItem { label?: string; role?: string; note?: string; imageUrl: string; mimeType?: string }
 export interface NanobananaItemImageGenerationRequest { promptText?: string; promptLanguage?: string; stylePack?: string; generation?: NanobananaGeneration; sourceItems?: NanobananaSourceItem[]; idempotencyKey?: string; wait?: boolean; timeoutMs?: number; pollIntervalMs?: number }
 export interface NanobananaItemImageGenerationResult { create: Record<string, unknown>; terminal?: Record<string, unknown> | null; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
+export interface NanobananaItemImageGenerationStatus { batch: Record<string, unknown>; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
 export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; role?: UploadImageRole; remote_url?: string }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }

@@ -172,3 +172,48 @@ def test_item_nanobanana_generation_supports_override_prompt_and_references(tmp_
     assert image["mode"] == "image-to-image"
     assert image["sourceItems"][0]["imageUrl"] == "https://example.test/reference.png"
     assert response.json()["terminal"] is None
+
+
+def test_item_nanobanana_status_stores_completed_remote_assets_once(tmp_path, monkeypatch):
+    c = client(tmp_path)
+    item = c.post("/api/items", json=create_payload()).json()
+    seen = {}
+
+    def fake_query(batch_id):
+        seen["batch_id"] = batch_id
+        return {
+            "ok": True,
+            "batch": {"batchId": batch_id, "status": "completed"},
+            "images": [
+                {
+                    "itemId": "result_image",
+                    "slot": "result_image",
+                    "status": "completed",
+                    "assets": [
+                        {
+                            "assetId": "asset_1",
+                            "url": "https://image-api.test/assets/batch_poll/result.png",
+                            "key": "nanobanana/article-images/batch_poll/result.png",
+                        }
+                    ],
+                }
+            ],
+        }
+
+    monkeypatch.setattr(nanobanana_router, "query_article_images", fake_query)
+
+    first = c.get(f"/api/items/{item['id']}/nanobanana/images/batch_poll")
+    second = c.get(f"/api/items/{item['id']}/nanobanana/images/batch_poll")
+
+    assert first.status_code == 200
+    assert second.status_code == 200
+    assert seen["batch_id"] == "batch_poll"
+    assert first.json()["stored_images"][0]["remote_url"] == "https://image-api.test/assets/batch_poll/result.png"
+    assert first.json()["mapped"]["result_image"]["url"] == "https://image-api.test/assets/batch_poll/result.png"
+    assert first.json()["stored_images"][0]["id"] == second.json()["stored_images"][0]["id"]
+    with connect(tmp_path / "library") as conn:
+        count = conn.execute(
+            "SELECT COUNT(*) FROM images WHERE item_id=? AND remote_url=?",
+            (item["id"], "https://image-api.test/assets/batch_poll/result.png"),
+        ).fetchone()[0]
+    assert count == 1

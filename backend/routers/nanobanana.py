@@ -126,6 +126,26 @@ def get_nanobanana_article_images(batch_id: str):
         _handle_nanobanana_error(exc)
 
 
+@router.get("/items/{item_id}/nanobanana/images/{batch_id}")
+def get_item_nanobanana_images(request: Request, item_id: str, batch_id: str):
+    repository = repo(request)
+    try:
+        repository.get_item(item_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Item not found") from exc
+
+    try:
+        payload = query_article_images(batch_id)
+        stored_images = _stored_images_from_payload(repository, item_id, payload)
+        return {
+            "batch": payload,
+            "mapped": map_assets_by_slot(payload),
+            "stored_images": stored_images,
+        }
+    except Exception as exc:  # noqa: BLE001
+        _handle_nanobanana_error(exc)
+
+
 @router.post("/items/{item_id}/nanobanana/images")
 def generate_item_images(request: Request, item_id: str, payload: NanobananaItemImageGenerationRequest):
     repository = repo(request)

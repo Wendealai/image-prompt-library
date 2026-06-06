@@ -18,6 +18,8 @@ const IMAGE_VIEWER_MIN_SCALE = 1;
 const IMAGE_VIEWER_MAX_SCALE = 4;
 const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;
 const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
+const IMAGE_GENERATION_POLL_INTERVAL_MS = 3000;
+const IMAGE_GENERATION_POLL_ATTEMPTS = 40;
 
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
@@ -51,6 +53,15 @@ function imageMimeTypeForReference(image: ImageRecord) {
   if (path.endsWith('.gif')) return 'image/gif';
   if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg';
   return undefined;
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => window.setTimeout(resolve, ms));
+}
+
+function readBatchId(payload: Record<string, unknown> | undefined) {
+  const batchId = payload?.batchId || payload?.batch_id;
+  return typeof batchId === 'string' && batchId.trim() ? batchId.trim() : '';
 }
 
 function imageSourceItem(image: ImageRecord, index: number, t: Translator): NanobananaSourceItem | null {
@@ -402,14 +413,32 @@ export default function ItemDetailModal({
       const result = await api.generateItemImage(item.id, {
         promptText,
         promptLanguage: lang,
+        wait: false,
         ...(sourceItems.length > 0 ? { sourceItems } : {}),
       });
+      let storedImages = result.stored_images;
+      const batchId = readBatchId(result.create);
+      if (storedImages.length === 0 && batchId) {
+        setImageGenerationFeedback({ tone: 'success', message: t('imageGenerationQueued') });
+        for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {
+          await delay(IMAGE_GENERATION_POLL_INTERVAL_MS);
+          const status = await api.itemImageGenerationStatus(item.id, batchId);
+          storedImages = status.stored_images;
+          if (storedImages.length > 0) break;
+          const nestedBatch = status.batch.batch;
+          const nestedStatus = typeof nestedBatch === 'object' && nestedBatch !== null && 'status' in nestedBatch
+            ? (nestedBatch as { status?: unknown }).status
+            : undefined;
+          const batchStatus = String(nestedStatus || status.batch.status || '');
+          if (batchStatus === 'failed') throw new Error(t('imageGenerationUnavailable'));
+        }
+      }
       const updated = await api.item(item.id);
       setItem(updated);
       const newestImage = updated.images[updated.images.length - 1];
       if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
       onChanged();
-      setImageGenerationFeedback({ tone: 'success', message: result.stored_images.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
+      setImageGenerationFeedback({ tone: 'success', message: storedImages.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
     } catch (error) {
       setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
     } finally {

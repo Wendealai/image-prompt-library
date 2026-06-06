@@ -444,6 +444,9 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "imageSourceItem(image, index, t)" in detail
     assert "...(sourceItems.length > 0 ? { sourceItems } : {})" in detail
     assert "api.generateItemImage(item.id, {" in detail
+    assert "wait: false" in detail
+    assert "api.itemImageGenerationStatus(item.id, batchId)" in detail
+    assert "IMAGE_GENERATION_POLL_ATTEMPTS" in detail
     assert "api.uploadImage(item.id, file, 'reference_image')" in detail
     assert "prompt-direct-reference-panel" in detail
     assert "prompt-direct-reference-thumb" in detail
@@ -454,9 +457,12 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "{generatingImage ? t('generatingImage') : t('generateImage')}" in detail
     assert "prompt-image-feedback" in detail
     assert "generateItemImage: (_itemId: string" in demo_api
+    assert "itemImageGenerationStatus: (_itemId: string" in demo_api
     assert "generateItemImage: (itemId: string" in local_api
+    assert "itemImageGenerationStatus: (itemId: string" in local_api
     assert "NanobananaItemImageGenerationRequest" in types
     assert "NanobananaItemImageGenerationResult" in types
+    assert "NanobananaItemImageGenerationStatus" in types
     assert "NanobananaSourceItem" in types
     assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
     assert ".prompt-direct-generate-row" in css

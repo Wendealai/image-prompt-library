@@ -92,6 +92,7 @@ export const demoApi = {
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
   generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions, _references?: PromptImageReferenceInput[]) => demoAiUnavailable(),
   generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
+  itemImageGenerationStatus: (_itemId: string, _batchId: string) => demoImageGenerationUnavailable(),
   adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),
   adminBatchInitPromptTemplates: (_payload: unknown) => demoAiUnavailable(),
   adminPromptTemplateFailures: (_limit = 50) => demoAiUnavailable(),
