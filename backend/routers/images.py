@@ -19,8 +19,16 @@ def _delete_unreferenced_image_files(library_path: Path | str, image: ImageRecor
     for rel_path in _image_file_paths(image):
         if rel_path in paths_in_use:
             continue
-        path = (library / rel_path).resolve()
-        if library not in path.parents:
+        clean_path = rel_path.strip()
+        if not clean_path or clean_path.startswith(("http://", "https://", "data:", "blob:")):
+            continue
+        try:
+            candidate = Path(clean_path)
+            path = (candidate if candidate.is_absolute() else library / candidate).resolve()
+            path.relative_to(library)
+        except (OSError, RuntimeError, ValueError):
+            continue
+        if path == library:
             continue
         try:
             path.unlink(missing_ok=True)

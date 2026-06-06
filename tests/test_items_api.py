@@ -7,6 +7,7 @@ from PIL import Image
 from backend.config import APP_VERSION
 from backend.main import create_app
 from backend.db import connect
+from backend.repositories import ItemRepository, StoredImageInput
 
 
 def client(tmp_path):
@@ -201,6 +202,50 @@ def test_image_upload_persists_result_and_reference_roles(tmp_path):
     assert reference.status_code == 200
     assert invalid.status_code == 400
     assert [image["role"] for image in detail["images"]] == ["result_image", "reference_image"]
+
+
+def test_delete_remote_generated_image_removes_record_without_file_error(tmp_path):
+    c = client(tmp_path)
+    item = c.post("/api/items", json=create_payload()).json()
+    repository = ItemRepository(tmp_path / "library")
+    remote_image = repository.add_remote_image(item["id"], "https://cdn.example.test/generated/result.png")
+
+    response = c.delete(f"/api/items/{item['id']}/images/{remote_image.id}")
+
+    assert response.status_code == 200
+    assert response.json()["images"] == []
+    with connect(tmp_path / "library") as conn:
+        assert conn.execute("SELECT COUNT(*) FROM images WHERE id=?", (remote_image.id,)).fetchone()[0] == 0
+
+
+def test_delete_shared_local_image_keeps_file_until_last_record(tmp_path):
+    c = client(tmp_path)
+    first = c.post("/api/items", json=create_payload(title="First")).json()
+    second = c.post("/api/items", json=create_payload(title="Second", source_url="https://example.test/second")).json()
+    uploaded = c.post(
+        f"/api/items/{first['id']}/images",
+        data={"role": "result_image"},
+        files={"file": ("shared.png", png_bytes(), "image/png")},
+    ).json()
+    repository = ItemRepository(tmp_path / "library")
+    duplicate = repository.add_image(
+        second["id"],
+        StoredImageInput(
+            uploaded["original_path"],
+            uploaded["thumb_path"],
+            uploaded["preview_path"],
+            width=uploaded["width"],
+            height=uploaded["height"],
+            role="result_image",
+        ),
+    )
+    original_path = tmp_path / "library" / uploaded["original_path"]
+
+    response = c.delete(f"/api/items/{first['id']}/images/{uploaded['id']}")
+
+    assert response.status_code == 200
+    assert original_path.exists()
+    assert duplicate.original_path == uploaded["original_path"]
 
 
 def test_result_image_is_primary_even_when_reference_uploaded_first(tmp_path):

@@ -1,4 +1,4 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ItemCreate, ItemDetail, ItemList, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, ImageRecord, ItemCreate, ItemDetail, ItemList, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
 import { fileFromUrl, json } from './http';
 
 export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;
@@ -15,7 +15,7 @@ function uploadImage(itemId: string, file: File, role: UploadImageRole = 'result
   const formData = new FormData();
   formData.set('file', file);
   formData.set('role', role);
-  return json(`/api/items/${itemId}/images`, { method: 'POST', body: formData });
+  return json<ImageRecord>(`/api/items/${itemId}/images`, { method: 'POST', body: formData });
 }
 
 function promptTemplateOpsParams(params: { status?: string[]; limit?: number } = {}) {

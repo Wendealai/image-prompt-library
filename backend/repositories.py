@@ -191,6 +191,42 @@ class ItemRepository:
             ),
         )
 
+    def delete_image(self, item_id: str, image_id: str) -> ImageRecord:
+        with connect(self.library_path) as conn:
+            row = conn.execute("SELECT * FROM images WHERE item_id=? AND id=?", (item_id, image_id)).fetchone()
+            if not row:
+                raise KeyError(image_id)
+            image = ImageRecord(**dict(row))
+            conn.execute("DELETE FROM images WHERE item_id=? AND id=?", (item_id, image_id))
+            conn.execute("UPDATE items SET updated_at=? WHERE id=?", (now(), item_id))
+            conn.commit()
+        return image
+
+    def image_paths_in_use(self, candidate_paths: list[str]) -> set[str]:
+        paths = [path for path in dict.fromkeys(candidate_paths) if path]
+        if not paths:
+            return set()
+        placeholders = ",".join("?" for _ in paths)
+        with connect(self.library_path) as conn:
+            rows = conn.execute(
+                f"""
+                SELECT original_path, thumb_path, preview_path
+                FROM images
+                WHERE original_path IN ({placeholders})
+                   OR thumb_path IN ({placeholders})
+                   OR preview_path IN ({placeholders})
+                """,
+                (*paths, *paths, *paths),
+            ).fetchall()
+        in_use: set[str] = set()
+        candidate_set = set(paths)
+        for row in rows:
+            for key in ("original_path", "thumb_path", "preview_path"):
+                value = row[key]
+                if value in candidate_set:
+                    in_use.add(value)
+        return in_use
+
     def add_prompt_image_generation_run(
         self,
         *,

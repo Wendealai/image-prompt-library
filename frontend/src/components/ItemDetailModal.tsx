@@ -3,7 +3,7 @@ import { Check, Copy, Download, ExternalLink, Heart, ImagePlus, Minus, Pencil, P
 import { api, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
-import type { ClusterRecord, ImageRecord, ItemDetail, TagRecord } from '../types';
+import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaSourceItem, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
 import type { Translator } from '../utils/i18n';
@@ -25,6 +25,44 @@ function getImageIdentity(image: ImageRecord) {
 
 function imageDownloadUrl(image: ImageRecord) {
   return mediaUrl(image.original_path || image.preview_path || image.thumb_path);
+}
+
+function imagePathForReference(image: ImageRecord) {
+  return image.remote_url || image.original_path || image.preview_path || image.thumb_path || '';
+}
+
+function imageUrlForReference(image: ImageRecord) {
+  const path = imagePathForReference(image);
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  const url = mediaUrl(path);
+  if (!url) return '';
+  try {
+    return new URL(url, window.location.origin).href;
+  } catch {
+    return url;
+  }
+}
+
+function imageMimeTypeForReference(image: ImageRecord) {
+  const path = imagePathForReference(image).split('?')[0].toLowerCase();
+  if (path.endsWith('.png')) return 'image/png';
+  if (path.endsWith('.webp')) return 'image/webp';
+  if (path.endsWith('.gif')) return 'image/gif';
+  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg';
+  return undefined;
+}
+
+function imageSourceItem(image: ImageRecord, index: number, t: Translator): NanobananaSourceItem | null {
+  const imageUrl = imageUrlForReference(image);
+  if (!imageUrl) return null;
+  return {
+    imageUrl,
+    mimeType: imageMimeTypeForReference(image),
+    label: index === 0 ? 'primary' : `${t('promptTemplateImageReference')} ${index + 1}`,
+    role: index === 0 ? 'subject' : 'style',
+    note: image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved'),
+  };
 }
 
 function imageDownloadFilename(item: ItemDetail, image: ImageRecord) {
@@ -215,13 +253,17 @@ export default function ItemDetailModal({
   const [imageViewerOpen, setImageViewerOpen] = useState(false);
   const [imageViewerScale, setImageViewerScale] = useState(1);
   const [generatingImage, setGeneratingImage] = useState(false);
+  const [referenceUploading, setReferenceUploading] = useState(false);
+  const [selectedReferenceImageIdentities, setSelectedReferenceImageIdentities] = useState<string[]>([]);
   const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
+  const referenceUploadInputRef = useRef<HTMLInputElement | null>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
   const lastViewerTapAtRef = useRef(0);
   const lastDefaultPromptKeyRef = useRef('');
+  const lastReferenceDefaultItemIdRef = useRef('');
 
   useEffect(() => { setLang(preferredLanguage); }, [preferredLanguage, id]);
 
@@ -262,6 +304,17 @@ export default function ItemDetailModal({
   const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
+  const directReferenceCandidates = useMemo(() => {
+    return [...uniqueImages].sort((left, right) => {
+      const leftRank = left.role === 'reference_image' ? 0 : 1;
+      const rightRank = right.role === 'reference_image' ? 0 : 1;
+      return leftRank - rightRank;
+    });
+  }, [uniqueImages]);
+  const selectedDirectReferenceImages = useMemo(() => {
+    const selected = new Set(selectedReferenceImageIdentities);
+    return directReferenceCandidates.filter(image => selected.has(getImageIdentity(image)));
+  }, [directReferenceCandidates, selectedReferenceImageIdentities]);
   useEffect(() => {
     setSelectedImageIdentity(current => {
       const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
@@ -274,6 +327,15 @@ export default function ItemDetailModal({
   useEffect(() => {
     imageViewerScaleRef.current = imageViewerScale;
   }, [imageViewerScale]);
+  useEffect(() => {
+    if (!item || lastReferenceDefaultItemIdRef.current === item.id) return;
+    setSelectedReferenceImageIdentities(uniqueImages.filter(image => image.role === 'reference_image').map(image => getImageIdentity(image)));
+    lastReferenceDefaultItemIdRef.current = item.id;
+  }, [item, uniqueImages]);
+  useEffect(() => {
+    const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
+    setSelectedReferenceImageIdentities(current => current.filter(identity => availableImageIdentities.has(identity)));
+  }, [uniqueImages]);
 
   if (!id) return null;
 
@@ -291,6 +353,39 @@ export default function ItemDetailModal({
     const copied = await copyTextToClipboard(text);
     onCopyPrompt(copied);
   };
+  const toggleDirectReferenceImage = (image: ImageRecord) => {
+    const identity = getImageIdentity(image);
+    setSelectedReferenceImageIdentities(current => (
+      current.includes(identity)
+        ? current.filter(existing => existing !== identity)
+        : [...current, identity]
+    ));
+    setImageGenerationFeedback(null);
+  };
+  const handleUploadDirectReferenceImage = async (files: FileList | null) => {
+    if (!item) return;
+    const file = Array.from(files || []).find(candidate => candidate.type.startsWith('image/'));
+    if (referenceUploadInputRef.current) referenceUploadInputRef.current.value = '';
+    if (!file) {
+      setImageGenerationFeedback({ tone: 'error', message: t('imageFileOnly') });
+      return;
+    }
+    setReferenceUploading(true);
+    setImageGenerationFeedback(null);
+    try {
+      const uploaded = await api.uploadImage(item.id, file, 'reference_image');
+      const uploadedIdentity = getImageIdentity(uploaded);
+      const updated = await api.item(item.id);
+      setItem(updated);
+      setSelectedReferenceImageIdentities(current => Array.from(new Set([...current, uploadedIdentity])));
+      setSelectedImageIdentity(uploadedIdentity);
+      onChanged();
+    } catch (error) {
+      setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('saveFailed') });
+    } finally {
+      setReferenceUploading(false);
+    }
+  };
   const handleGenerateImage = async () => {
     if (!item || generatingImage) return;
     const promptText = selectedPromptText;
@@ -301,7 +396,14 @@ export default function ItemDetailModal({
     setGeneratingImage(true);
     setImageGenerationFeedback(null);
     try {
-      const result = await api.generateItemImage(item.id, { promptText, promptLanguage: lang });
+      const sourceItems = selectedDirectReferenceImages
+        .map((image, index) => imageSourceItem(image, index, t))
+        .filter((sourceItem): sourceItem is NanobananaSourceItem => Boolean(sourceItem));
+      const result = await api.generateItemImage(item.id, {
+        promptText,
+        promptLanguage: lang,
+        ...(sourceItems.length > 0 ? { sourceItems } : {}),
+      });
       const updated = await api.item(item.id);
       setItem(updated);
       const newestImage = updated.images[updated.images.length - 1];
@@ -612,6 +714,46 @@ export default function ItemDetailModal({
                             <span>{generatingImage ? t('generatingImage') : t('generateImage')}</span>
                           </button>
                         </div>
+                        <section className="prompt-direct-reference-panel" aria-label={t('promptTemplateImageReferences')}>
+                          <div className="prompt-direct-reference-head">
+                            <div>
+                              <strong>{t('promptTemplateImageReferences')}</strong>
+                              <span>{selectedDirectReferenceImages.length > 0 ? `${selectedDirectReferenceImages.length} · ${t('promptTemplateImageToImageMode')}` : t('promptTemplateImageReferencesEmpty')}</span>
+                            </div>
+                            <input
+                              ref={referenceUploadInputRef}
+                              type="file"
+                              accept="image/*"
+                              hidden
+                              onChange={event => handleUploadDirectReferenceImage(event.currentTarget.files)}
+                            />
+                            <button type="button" className="secondary prompt-direct-reference-upload" onClick={() => referenceUploadInputRef.current?.click()} disabled={referenceUploading || generatingImage}>
+                              <ImagePlus size={14} />
+                              <span>{referenceUploading ? t('saving') : t('promptTemplateImageAddReference')}</span>
+                            </button>
+                          </div>
+                          {directReferenceCandidates.length > 0 && (
+                            <div className="prompt-direct-reference-list">
+                              {directReferenceCandidates.map(image => {
+                                const identity = getImageIdentity(image);
+                                const selected = selectedReferenceImageIdentities.includes(identity);
+                                return (
+                                  <button
+                                    type="button"
+                                    key={identity}
+                                    className={`prompt-direct-reference-thumb ${selected ? 'active' : ''}`}
+                                    onClick={() => toggleDirectReferenceImage(image)}
+                                    disabled={generatingImage || referenceUploading}
+                                    title={image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}
+                                  >
+                                    <FallbackImage paths={imageDisplayPaths(image)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
+                                    <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </section>
                         {(generatingImage || imageGenerationFeedback) && (
                           <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
                         )}

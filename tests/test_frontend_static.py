@@ -440,7 +440,14 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
 
     assert "ImagePlus" in detail
     assert "const handleGenerateImage = async () => {" in detail
-    assert "api.generateItemImage(item.id, { promptText, promptLanguage: lang })" in detail
+    assert "selectedDirectReferenceImages" in detail
+    assert "imageSourceItem(image, index, t)" in detail
+    assert "...(sourceItems.length > 0 ? { sourceItems } : {})" in detail
+    assert "api.generateItemImage(item.id, {" in detail
+    assert "api.uploadImage(item.id, file, 'reference_image')" in detail
+    assert "prompt-direct-reference-panel" in detail
+    assert "prompt-direct-reference-thumb" in detail
+    assert "referenceUploadInputRef" in detail
     assert "setImageGenerationFeedback" in detail
     assert "prompt-direct-generate-row" in detail
     assert "prompt-direct-generate-button" in detail
@@ -450,9 +457,12 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "generateItemImage: (itemId: string" in local_api
     assert "NanobananaItemImageGenerationRequest" in types
     assert "NanobananaItemImageGenerationResult" in types
+    assert "NanobananaSourceItem" in types
     assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
     assert ".prompt-direct-generate-row" in css
     assert ".prompt-direct-generate-button" in css
+    assert ".prompt-direct-reference-panel" in css
+    assert ".prompt-direct-reference-thumb.active" in css
     assert ".prompt-image-feedback" in css
 
 
