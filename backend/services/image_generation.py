@@ -138,7 +138,7 @@ def _poll_interval_seconds() -> float:
 
 
 def _poll_timeout_seconds() -> float:
-    return _float_env(POLL_TIMEOUT_ENV, 150.0, minimum=10.0)
+    return _float_env(POLL_TIMEOUT_ENV, 600.0, minimum=10.0)
 
 
 def _safe_json_parse(raw: str) -> Any:
