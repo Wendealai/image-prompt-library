@@ -1337,23 +1337,35 @@ def test_detail_modal_has_generated_image_history_panel():
     assert "const [generationRuns, setGenerationRuns]" in detail
     assert "api.promptImageGenerationRuns(id)" in detail
     assert "buildGeneratedImageHistory(uniqueImages, generationRuns)" in detail
+    assert "function resolveDirectGenerationState(status: NanobananaItemImageGenerationStatus)" in detail
     assert "generatedImageHistoryEntries" in detail
     assert "detail-panel-tabs" in detail
     assert "generated-history-panel" in detail
     assert "generated-history-grid" in detail
     assert "generated-history-card" in detail
+    assert "generated-history-error" in detail
+    assert "is-run-only" in detail
+    assert "generatedRunsCount" in detail
+    assert "entry.run?.job_id || entry.run?.batch_id" in detail
+    assert "entry.errorMessage ? <p className=\"generated-history-error\">" in detail
     assert "handleDownloadImage(entry.image" in detail
     assert "handleDeleteImage(entry.image" in detail
     assert "focusGeneratedImage(entry.image)" in detail
     assert "void refreshGenerationRuns(result.item.id)" in detail
+    assert "void refreshGenerationRuns(item.id)" in detail
     assert "promptImageGenerationRuns: (itemId: string)" in local_api
     assert "/api/items/${itemId}/image-generation-runs" in local_api
     assert "promptImageGenerationRuns: (_itemId: string) => Promise.resolve<PromptImageGenerationRunRecord[]>([])" in demo_api
     assert "created_at?: string" in types
+    assert "batch_id?: string" in types
+    assert "error_message?: string" in types
     assert ".detail-panel-tabs" in css
     assert ".generated-history-grid" in css
     assert ".generated-history-actions" in css
+    assert ".generated-history-error" in css
+    assert ".generated-history-card.is-run-only" in css
     assert "generatedImagesHistory" in i18n
+    assert "generatedRunsCount" in i18n
 
 
 def test_app_has_top_level_generated_history_view():

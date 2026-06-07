@@ -89,6 +89,10 @@ def test_item_nanobanana_generation_uses_prompt_waits_and_stores_remote_asset(tm
     body = response.json()
     assert body["stored_images"][0]["remote_url"] == "https://image-api.test/assets/batch_123/result.png"
     assert body["mapped"]["result_image"]["url"] == "https://image-api.test/assets/batch_123/result.png"
+    assert body["run"]["source"] == "direct"
+    assert body["run"]["batch_id"] == "batch_123"
+    assert body["run"]["status"] == "completed"
+    assert body["run"]["image_ids"] == [body["stored_images"][0]["id"]]
     assert seen["article"]["articleId"] == item["id"]
     assert seen["article"]["projectId"] == "image-prompt-library"
     assert seen["article"]["images"][0]["prompt"] == "A quiet studio product photo of a ceramic desk lamp."
@@ -172,6 +176,13 @@ def test_item_nanobanana_generation_supports_override_prompt_and_references(tmp_
     assert image["mode"] == "image-to-image"
     assert image["sourceItems"][0]["imageUrl"] == "https://example.test/reference.png"
     assert response.json()["terminal"] is None
+    assert response.json()["run"]["status"] == "queued"
+    assert response.json()["run"]["references"][0]["imageUrl"] == "https://example.test/reference.png"
+
+    runs = c.get(f"/api/items/{item['id']}/image-generation-runs").json()
+    assert runs[0]["source"] == "direct"
+    assert runs[0]["batch_id"] == "batch_123"
+    assert runs[0]["status"] == "queued"
 
 
 def test_item_nanobanana_async_generation_requires_batch_or_image_data(tmp_path, monkeypatch):
@@ -197,6 +208,9 @@ def test_item_nanobanana_status_stores_completed_remote_assets_once(tmp_path, mo
     item = c.post("/api/items", json=create_payload()).json()
     seen = {}
 
+    def fake_request(_payload):
+        return {"ok": True, "status": "queued", "batchId": "batch_poll"}
+
     def fake_query(batch_id):
         seen["batch_id"] = batch_id
         return {
@@ -218,8 +232,13 @@ def test_item_nanobanana_status_stores_completed_remote_assets_once(tmp_path, mo
             ],
         }
 
+    monkeypatch.setattr(nanobanana_router, "request_article_images", fake_request)
     monkeypatch.setattr(nanobanana_router, "query_article_images", fake_query)
 
+    c.post(
+        f"/api/items/{item['id']}/nanobanana/images",
+        json={"wait": False, "promptText": "Poll this exact lamp"},
+    )
     first = c.get(f"/api/items/{item['id']}/nanobanana/images/batch_poll")
     second = c.get(f"/api/items/{item['id']}/nanobanana/images/batch_poll")
 
@@ -235,3 +254,54 @@ def test_item_nanobanana_status_stores_completed_remote_assets_once(tmp_path, mo
             (item["id"], "https://image-api.test/assets/batch_poll/result.png"),
         ).fetchone()[0]
     assert count == 1
+    runs = c.get(f"/api/items/{item['id']}/image-generation-runs").json()
+    assert runs[0]["batch_id"] == "batch_poll"
+    assert runs[0]["status"] == "completed"
+    assert runs[0]["image_ids"] == [first.json()["stored_images"][0]["id"]]
+
+
+def test_item_nanobanana_status_records_failed_run_details(tmp_path, monkeypatch):
+    c = client(tmp_path)
+    item = c.post("/api/items", json=create_payload()).json()
+
+    def fake_request(_payload):
+        return {"ok": True, "status": "queued", "batchId": "batch_failed"}
+
+    def fake_query(_batch_id):
+        return {
+            "ok": True,
+            "batch": {"batchId": "batch_failed", "status": "failed"},
+            "images": [
+                {
+                    "itemId": "result_image",
+                    "slot": "result_image",
+                    "status": "failed",
+                    "error": {
+                        "code": "UPSTREAM_JOB_FAILED",
+                        "message": "The connection was aborted, perhaps the server is offline",
+                        "details": {"jobId": "129950", "status": "error"},
+                    },
+                }
+            ],
+        }
+
+    monkeypatch.setattr(nanobanana_router, "request_article_images", fake_request)
+    monkeypatch.setattr(nanobanana_router, "query_article_images", fake_query)
+
+    queued = c.post(
+        f"/api/items/{item['id']}/nanobanana/images",
+        json={"wait": False, "promptText": "Fail this direct generation"},
+    )
+    assert queued.status_code == 200
+    status = c.get(f"/api/items/{item['id']}/nanobanana/images/batch_failed")
+    assert status.status_code == 200
+    assert status.json()["stored_images"] == []
+    assert status.json()["run"]["status"] == "failed"
+    assert status.json()["run"]["error_code"] == "UPSTREAM_JOB_FAILED"
+    assert status.json()["run"]["error_message"] == "The connection was aborted, perhaps the server is offline"
+    assert status.json()["run"]["error_details"]["jobId"] == "129950"
+
+    runs = c.get(f"/api/items/{item['id']}/image-generation-runs").json()
+    assert runs[0]["batch_id"] == "batch_failed"
+    assert runs[0]["status"] == "failed"
+    assert runs[0]["error_message"] == "The connection was aborted, perhaps the server is offline"

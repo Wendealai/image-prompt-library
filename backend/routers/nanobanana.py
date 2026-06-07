@@ -108,6 +108,105 @@ def _batch_id_from_payload(payload: dict[str, Any]) -> str:
     return batch_id.strip() if isinstance(batch_id, str) else ""
 
 
+def _job_id_from_payload(payload: dict[str, Any] | None) -> str | None:
+    if not isinstance(payload, dict):
+        return None
+    for key in ("jobId", "job_id", "n8nJobId", "n8n_job_id"):
+        value = payload.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    batch = payload.get("batch")
+    if isinstance(batch, dict):
+        for key in ("jobId", "job_id", "n8nJobId", "n8n_job_id"):
+            value = batch.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+    return None
+
+
+def _generation_options_metadata(payload: NanobananaItemImageGenerationRequest) -> dict[str, Any]:
+    return payload.generation.model_dump(by_alias=True, exclude_none=True) if payload.generation else {}
+
+
+def _reference_metadata(payload: NanobananaItemImageGenerationRequest) -> list[dict[str, Any]]:
+    return [item.model_dump(by_alias=True, exclude_none=True) for item in payload.source_items]
+
+
+def _result_slot_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    mapped = map_assets_by_slot(payload)
+    result = mapped.get("result_image")
+    return result if isinstance(result, dict) else {}
+
+
+def _status_from_payload(payload: dict[str, Any]) -> str:
+    result = _result_slot_payload(payload)
+    result_status = result.get("status")
+    if isinstance(result_status, str) and result_status.strip():
+        return result_status.strip()
+    batch = payload.get("batch")
+    if isinstance(batch, dict):
+        batch_status = batch.get("status")
+        if isinstance(batch_status, str) and batch_status.strip():
+            return batch_status.strip()
+    top_level = payload.get("status")
+    if isinstance(top_level, str) and top_level.strip():
+        return top_level.strip()
+    return "queued"
+
+
+def _error_metadata_from_payload(payload: dict[str, Any]) -> tuple[str | None, str | None, dict[str, Any]]:
+    result = _result_slot_payload(payload)
+    raw_error = result.get("error")
+    if isinstance(raw_error, dict):
+        details = raw_error.get("details")
+        if isinstance(details, dict):
+            normalized_details = details
+        elif details is None:
+            normalized_details = {}
+        else:
+            normalized_details = {"raw": details}
+        code = raw_error.get("code")
+        message = raw_error.get("message")
+        return (
+            str(code).strip() or None if code is not None else None,
+            str(message).strip() or None if message is not None else None,
+            normalized_details,
+        )
+    batch = payload.get("batch")
+    if isinstance(batch, dict):
+        message = batch.get("message") or batch.get("error")
+        if isinstance(message, str) and message.strip():
+            return None, message.strip(), {}
+    return None, None, {}
+
+
+def _update_direct_generation_run(
+    repository: ItemRepository,
+    *,
+    item_id: str,
+    batch_id: str,
+    job_id: str | None = None,
+    status: str | None = None,
+    image_ids: list[str] | None = None,
+    error_code: str | None = None,
+    error_message: str | None = None,
+    error_details: dict[str, Any] | None = None,
+):
+    run = repository.find_prompt_image_generation_run_by_batch(item_id, batch_id)
+    if run is None:
+        return None
+    return repository.update_prompt_image_generation_run(
+        run.id,
+        batch_id=batch_id,
+        job_id=job_id,
+        status=status,
+        image_ids=image_ids,
+        error_code=error_code if error_code is not None else run.error_code,
+        error_message=error_message if error_message is not None else run.error_message,
+        error_details=error_details if error_details is not None else run.error_details,
+    )
+
+
 @router.post("/nanobanana/article-images")
 def create_nanobanana_article_images(payload: NanobananaArticleImagesRequest):
     try:
@@ -142,10 +241,25 @@ def get_item_nanobanana_images(request: Request, item_id: str, batch_id: str):
     try:
         payload = query_article_images(batch_id)
         stored_images = _stored_images_from_payload(repository, item_id, payload)
+        status = _status_from_payload(payload)
+        error_code, error_message, error_details = _error_metadata_from_payload(payload)
+        clear_errors = bool(stored_images) or status == "completed"
+        run = _update_direct_generation_run(
+            repository,
+            item_id=item_id,
+            batch_id=batch_id,
+            job_id=_job_id_from_payload(payload),
+            status=status,
+            image_ids=[image.id for image in stored_images],
+            error_code="" if clear_errors else error_code,
+            error_message="" if clear_errors else error_message,
+            error_details={} if clear_errors else error_details,
+        )
         return {
             "batch": payload,
             "mapped": map_assets_by_slot(payload),
             "stored_images": stored_images,
+            "run": run,
         }
     except Exception as exc:  # noqa: BLE001
         _handle_nanobanana_error(exc)
@@ -189,13 +303,33 @@ def generate_item_images(request: Request, item_id: str, payload: NanobananaItem
         create_payload = request_article_images(article_request)
         terminal_payload = _terminal_payload(create_payload, article_request)
         stored_images = _stored_images_from_payload(repository, item.id, terminal_payload or create_payload)
-        if not stored_images and not article_request.wait and not _batch_id_from_payload(create_payload):
+        batch_id = _batch_id_from_payload(create_payload)
+        if not stored_images and not article_request.wait and not batch_id:
             raise HTTPException(status_code=502, detail="Nanobanana create response did not include a batchId or image data.")
+        status_payload = terminal_payload or create_payload
+        status = _status_from_payload(status_payload)
+        error_code, error_message, error_details = _error_metadata_from_payload(status_payload)
+        clear_errors = bool(stored_images) or status == "completed"
+        run = repository.add_prompt_image_generation_run(
+            item_id=item.id,
+            prompt=prompt,
+            generation_options=_generation_options_metadata(payload),
+            references=_reference_metadata(payload),
+            source="direct",
+            batch_id=batch_id or None,
+            job_id=_job_id_from_payload(status_payload),
+            status=status,
+            image_ids=[image.id for image in stored_images],
+            error_code=None if clear_errors else error_code,
+            error_message=None if clear_errors else error_message,
+            error_details={} if clear_errors else error_details,
+        )
         return {
             "create": create_payload,
             "terminal": terminal_payload,
             "mapped": map_assets_by_slot(terminal_payload or create_payload),
             "stored_images": stored_images,
+            "run": run,
         }
     except Exception as exc:  # noqa: BLE001
         _handle_nanobanana_error(exc)

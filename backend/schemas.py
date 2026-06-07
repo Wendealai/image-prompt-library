@@ -322,9 +322,14 @@ class PromptImageGenerationRunRecord(BaseModel):
     prompt: str
     generation_options: dict[str, Any] = Field(default_factory=dict)
     references: List[dict[str, Any]] = Field(default_factory=list)
+    source: Literal["workflow", "direct"] = "workflow"
+    batch_id: Optional[str] = None
     job_id: Optional[str] = None
     status: str = "completed"
     image_ids: List[str] = Field(default_factory=list)
+    error_code: Optional[str] = None
+    error_message: Optional[str] = None
+    error_details: dict[str, Any] = Field(default_factory=dict)
     created_at: str
 
 class GeneratedImageHistoryEntry(BaseModel):

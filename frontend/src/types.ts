@@ -11,7 +11,7 @@ export interface PromptTemplateRecord { id: string; item_id: string; source_lang
 export interface PromptTemplateBundle { template?: PromptTemplateRecord; sessions: PromptGenerationSessionRecord[] }
 export interface PromptImageGenerationOptions { resolution?: string; aspect_ratio?: string; image_count?: number; style?: string; output_format?: 'jpg' | 'png'; strength?: number }
 export interface PromptImageReferenceInput { type?: 'file-base64' | 'url'; label?: string; role?: string; note?: string; mime_type?: string; image_base64?: string; image_url?: string }
-export interface PromptImageGenerationRunRecord { id: string; item_id: string; prompt: string; generation_options: Record<string, unknown>; references: Record<string, unknown>[]; job_id?: string; status: string; image_ids: string[]; created_at: string }
+export interface PromptImageGenerationRunRecord { id: string; item_id: string; prompt: string; generation_options: Record<string, unknown>; references: Record<string, unknown>[]; source?: 'workflow' | 'direct'; batch_id?: string; job_id?: string; status: string; image_ids: string[]; error_code?: string; error_message?: string; error_details?: Record<string, unknown>; created_at: string }
 export interface GeneratedImageHistoryEntry { item_id: string; item_title: string; item_slug: string; item_source_url?: string; image: ImageRecord; run?: PromptImageGenerationRunRecord; source: 'workflow' | 'direct'; created_at: string }
 export interface GeneratedImageHistoryList { items: GeneratedImageHistoryEntry[]; total: number; limit: number; offset: number }
 export interface PromptImageGenerationResponse { status: string; prompt: string; job_id?: string; images: ImageRecord[]; item: ItemDetail; run?: PromptImageGenerationRunRecord }
@@ -32,8 +32,8 @@ export interface PromptWorkflowFailureList { failures: PromptWorkflowFailureSumm
 export interface NanobananaGeneration { resolution?: string; aspectRatio?: string; imageCount?: number; quality?: 'low' | 'medium' | 'high'; outputFormat?: 'png' | 'jpeg' | 'webp'; strength?: number }
 export interface NanobananaSourceItem { label?: string; role?: string; note?: string; imageUrl: string; mimeType?: string }
 export interface NanobananaItemImageGenerationRequest { promptText?: string; promptLanguage?: string; stylePack?: string; generation?: NanobananaGeneration; sourceItems?: NanobananaSourceItem[]; idempotencyKey?: string; wait?: boolean; timeoutMs?: number; pollIntervalMs?: number }
-export interface NanobananaItemImageGenerationResult { create: Record<string, unknown>; terminal?: Record<string, unknown> | null; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
-export interface NanobananaItemImageGenerationStatus { batch: Record<string, unknown>; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[] }
+export interface NanobananaItemImageGenerationResult { create: Record<string, unknown>; terminal?: Record<string, unknown> | null; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[]; run?: PromptImageGenerationRunRecord | null }
+export interface NanobananaItemImageGenerationStatus { batch: Record<string, unknown>; mapped: Record<string, { url?: string; key?: string; [key: string]: unknown }>; stored_images: ImageRecord[]; run?: PromptImageGenerationRunRecord | null }
 export interface ImageRecord { id: string; item_id: string; original_path: string; thumb_path?: string; preview_path?: string; width?: number; height?: number; file_sha256?: string; role?: UploadImageRole; remote_url?: string; sort_order?: number; created_at?: string }
 export interface ClusterRecord { id: string; name: string; description?: string; count: number; preview_images: string[] }
 export interface TagRecord { id: string; name: string; kind: string; count: number }

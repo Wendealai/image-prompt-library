@@ -11,6 +11,7 @@ MIGRATIONS = [
     "006_item_tag_sort_order.sql",
     "007_prompt_template_quality_and_image_runs.sql",
     "008_item_use_cases.sql",
+    "009_direct_image_generation_runs.sql",
 ]
 
 MIGRATION_ALIASES = {

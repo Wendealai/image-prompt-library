@@ -3,7 +3,7 @@ import { Check, Copy, Download, ExternalLink, Eye, Heart, ImagePlus, Minus, Penc
 import { api, isDemoMode, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
-import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaSourceItem, PromptImageGenerationRunRecord, TagRecord } from '../types';
+import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaItemImageGenerationStatus, NanobananaSourceItem, PromptImageGenerationRunRecord, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { downloadBlobFromUrl } from '../utils/downloads';
 import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
@@ -26,10 +26,12 @@ type DetailPanel = 'prompt' | 'history';
 
 interface GeneratedImageHistoryEntry {
   key: string;
-  image: ImageRecord;
+  image?: ImageRecord;
   run?: PromptImageGenerationRunRecord;
   source: 'workflow' | 'direct';
   createdAt?: string;
+  status: string;
+  errorMessage?: string;
 }
 
 function getImageIdentity(image: ImageRecord) {
@@ -119,12 +121,42 @@ function formatHistoryDate(value?: string) {
   return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(date);
 }
 
+function readRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === 'object' ? value as Record<string, unknown> : null;
+}
+
+function readFirstString(...values: unknown[]) {
+  for (const value of values) {
+    if (typeof value === 'string' && value.trim()) return value.trim();
+  }
+  return '';
+}
+
+function resolveDirectGenerationState(status: NanobananaItemImageGenerationStatus) {
+  const batchPayload = readRecord(status.batch);
+  const nestedBatch = readRecord(batchPayload?.batch);
+  const mappedResult = readRecord(readRecord(status.mapped)?.result_image);
+  const error = readRecord(mappedResult?.error);
+  return {
+    batchStatus: readFirstString(nestedBatch?.status, batchPayload?.status).toLowerCase(),
+    resultStatus: readFirstString(mappedResult?.status).toLowerCase(),
+    errorMessage: readFirstString(
+      error?.message,
+      batchPayload?.message,
+      nestedBatch?.message,
+      batchPayload?.error,
+      nestedBatch?.error,
+    ),
+  };
+}
+
 function buildGeneratedImageHistory(images: ImageRecord[], runs: PromptImageGenerationRunRecord[]): GeneratedImageHistoryEntry[] {
   const runByImageId = new Map<string, PromptImageGenerationRunRecord>();
+  const imageById = new Map(images.map(image => [image.id, image]));
   runs.forEach(run => run.image_ids.forEach(imageId => {
     if (!runByImageId.has(imageId)) runByImageId.set(imageId, run);
   }));
-  return images
+  const imageEntries = images
     .filter(image => (image.role || 'result_image') === 'result_image')
     .map(image => {
       const run = runByImageId.get(image.id);
@@ -132,10 +164,23 @@ function buildGeneratedImageHistory(images: ImageRecord[], runs: PromptImageGene
         key: `${run?.id || 'direct'}-${image.id}`,
         image,
         run,
-        source: run ? 'workflow' : 'direct',
+        source: run?.source || (run ? 'workflow' : 'direct'),
         createdAt: run?.created_at || image.created_at,
+        status: run?.status || 'completed',
+        errorMessage: run?.error_message,
       } satisfies GeneratedImageHistoryEntry;
-    })
+    });
+  const runOnlyEntries = runs
+    .filter(run => !run.image_ids.some(imageId => imageById.has(imageId)))
+    .map(run => ({
+      key: `run-${run.id}`,
+      run,
+      source: run.source || 'workflow',
+      createdAt: run.created_at,
+      status: run.status,
+      errorMessage: run.error_message,
+    } satisfies GeneratedImageHistoryEntry));
+  return [...imageEntries, ...runOnlyEntries]
     .sort((left, right) => {
       const leftTime = left.createdAt ? new Date(left.createdAt).getTime() : 0;
       const rightTime = right.createdAt ? new Date(right.createdAt).getTime() : 0;
@@ -494,45 +539,45 @@ export default function ItemDetailModal({
       const sourceItems = selectedDirectReferenceImages
         .map((image, index) => imageSourceItem(image, index, t))
         .filter((sourceItem): sourceItem is NanobananaSourceItem => Boolean(sourceItem));
-      const result = await api.generateItemImage(item.id, {
-        promptText,
-        promptLanguage: lang,
-        idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`,
-        wait: false,
-        ...(sourceItems.length > 0 ? { sourceItems } : {}),
-      });
-      let storedImages = result.stored_images;
-      const batchId = readBatchId(result.create);
-      if (storedImages.length === 0 && !batchId) {
-        throw new Error(t('imageGenerationUnavailable'));
-      }
-      if (storedImages.length === 0 && batchId) {
-        setImageGenerationFeedback({ tone: 'success', message: t('imageGenerationQueued') });
-        for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {
-          await delay(IMAGE_GENERATION_POLL_INTERVAL_MS);
-          const status = await api.itemImageGenerationStatus(item.id, batchId);
-          storedImages = status.stored_images;
-          if (storedImages.length > 0) break;
-          const nestedBatch = status.batch.batch;
-          const nestedStatus = typeof nestedBatch === 'object' && nestedBatch !== null && 'status' in nestedBatch
-            ? (nestedBatch as { status?: unknown }).status
-            : undefined;
-          const batchStatus = String(nestedStatus || status.batch.status || '');
-          if (batchStatus === 'failed') throw new Error(t('imageGenerationUnavailable'));
+        const result = await api.generateItemImage(item.id, {
+          promptText,
+          promptLanguage: lang,
+          idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`,
+          wait: false,
+          ...(sourceItems.length > 0 ? { sourceItems } : {}),
+        });
+        let storedImages = result.stored_images;
+        const batchId = readBatchId(result.create);
+        void refreshGenerationRuns(item.id);
+        if (storedImages.length === 0 && !batchId) {
+          throw new Error(t('imageGenerationUnavailable'));
         }
-      }
-      const updated = await api.item(item.id);
-      setItem(updated);
+        if (storedImages.length === 0 && batchId) {
+          setImageGenerationFeedback({ tone: 'success', message: t('imageGenerationQueued') });
+          for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {
+            await delay(IMAGE_GENERATION_POLL_INTERVAL_MS);
+            const status = await api.itemImageGenerationStatus(item.id, batchId);
+            storedImages = status.stored_images;
+            if (storedImages.length > 0) break;
+            const directGenerationState = resolveDirectGenerationState(status);
+            if (directGenerationState.resultStatus === 'failed' || directGenerationState.batchStatus === 'failed') {
+              throw new Error(directGenerationState.errorMessage || t('imageGenerationUnavailable'));
+            }
+          }
+        }
+        const updated = await api.item(item.id);
+        setItem(updated);
       const newestImage = updated.images[updated.images.length - 1];
       if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
       void refreshGenerationRuns(item.id);
-      onChanged();
-      setImageGenerationFeedback({ tone: 'success', message: storedImages.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
-    } catch (error) {
-      setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
-    } finally {
-      setGeneratingImage(false);
-    }
+        onChanged();
+        setImageGenerationFeedback({ tone: 'success', message: storedImages.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
+      } catch (error) {
+        void refreshGenerationRuns(item.id);
+        setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
+      } finally {
+        setGeneratingImage(false);
+      }
   };
   const commitPrompt = (language: string, text: string) => {
     if (!item) return;
@@ -950,38 +995,49 @@ export default function ItemDetailModal({
                     <header className="generated-history-header">
                       <div>
                         <strong>{t('generatedImagesHistory')}</strong>
-                        <span>{generationRunsLoading ? t('loading') : `${generatedImageHistoryEntries.length} ${t('generatedImagesCount')}`}</span>
+                        <span>{generationRunsLoading ? t('loading') : `${generatedImageHistoryEntries.length} ${t('generatedRunsCount')}`}</span>
                       </div>
                     </header>
                     {generatedImageHistoryEntries.length > 0 ? (
                       <div className="generated-history-grid">
                         {generatedImageHistoryEntries.map(entry => {
-                          const active = activeImage ? getImageIdentity(entry.image) === getImageIdentity(activeImage) : false;
+                          const historyImage = entry.image;
+                          const active = activeImage && historyImage ? getImageIdentity(historyImage) === getImageIdentity(activeImage) : false;
                           const createdAt = formatHistoryDate(entry.createdAt);
                           return (
-                            <article className={`generated-history-card ${active ? 'active' : ''}`} key={entry.key}>
-                              <button type="button" className="generated-history-thumb" onClick={() => focusGeneratedImage(entry.image)} aria-label={t('openImageDetailViewer')}>
-                                <FallbackImage paths={imageDisplayPaths(entry.image)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
-                              </button>
+                            <article className={`generated-history-card ${active ? 'active' : ''} ${historyImage ? '' : 'is-run-only'}`} key={entry.key}>
+                              {historyImage ? (
+                                <button type="button" className="generated-history-thumb" onClick={() => focusGeneratedImage(historyImage)} aria-label={t('openImageDetailViewer')}>
+                                  <FallbackImage paths={imageDisplayPaths(historyImage)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
+                                </button>
+                              ) : (
+                                <div className="generated-history-thumb is-placeholder" aria-hidden="true">
+                                  <span className="thumb-fallback">{entry.status === 'failed' ? '!' : '...'}</span>
+                                </div>
+                              )}
                               <div className="generated-history-meta">
                                 <strong>{entry.source === 'workflow' ? t('promptTemplateImageRunSaved') : t('generatedImageDirectRun')}</strong>
                                 {createdAt && <span>{createdAt}</span>}
-                                {entry.run?.job_id && <span>{entry.run.job_id}</span>}
+                                {entry.run?.status ? <span>{entry.run.status}</span> : null}
+                                {entry.run?.job_id || entry.run?.batch_id ? <span>{entry.run?.job_id || entry.run?.batch_id}</span> : null}
                                 {entry.run?.references.length ? <span>{t('promptTemplateImageRunReferences')}: {entry.run.references.length}</span> : null}
+                                {entry.errorMessage ? <p className="generated-history-error">{entry.errorMessage}</p> : null}
                               </div>
-                              <div className="generated-history-actions">
-                                <button type="button" className="modal-icon-button" onClick={() => focusGeneratedImage(entry.image)} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
-                                  <Eye size={15} />
-                                </button>
-                                <button type="button" className="modal-icon-button" onClick={event => handleDownloadImage(entry.image, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
-                                  <Download size={15} />
-                                </button>
-                                {showMutations && (
-                                  <button type="button" className="modal-icon-button is-danger" onClick={event => handleDeleteImage(entry.image, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
-                                    <Trash2 size={15} />
+                              {historyImage ? (
+                                <div className="generated-history-actions">
+                                  <button type="button" className="modal-icon-button" onClick={() => focusGeneratedImage(historyImage)} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
+                                    <Eye size={15} />
                                   </button>
-                                )}
-                              </div>
+                                  <button type="button" className="modal-icon-button" onClick={event => handleDownloadImage(historyImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                                    <Download size={15} />
+                                  </button>
+                                  {showMutations && (
+                                    <button type="button" className="modal-icon-button is-danger" onClick={event => handleDeleteImage(historyImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                                      <Trash2 size={15} />
+                                    </button>
+                                  )}
+                                </div>
+                              ) : null}
                             </article>
                           );
                         })}

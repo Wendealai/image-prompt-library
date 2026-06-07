@@ -301,9 +301,14 @@ class ItemRepository:
         prompt: str,
         generation_options: dict | None = None,
         references: list[dict] | None = None,
+        source: str = "workflow",
+        batch_id: str | None = None,
         job_id: str | None = None,
         status: str = "completed",
         image_ids: list[str] | None = None,
+        error_code: str | None = None,
+        error_message: str | None = None,
+        error_details: dict | None = None,
     ) -> PromptImageGenerationRunRecord:
         with connect(self.library_path) as conn:
             if not conn.execute("SELECT 1 FROM items WHERE id=?", (item_id,)).fetchone():
@@ -311,17 +316,22 @@ class ItemRepository:
             run_id = new_id("igr")
             ts = now()
             conn.execute(
-                """INSERT INTO prompt_image_generation_runs(id,item_id,prompt,generation_options_json,references_json,job_id,status,image_ids_json,created_at)
-                VALUES(?,?,?,?,?,?,?,?,?)""",
+                """INSERT INTO prompt_image_generation_runs(id,item_id,prompt,generation_options_json,references_json,source,batch_id,job_id,status,image_ids_json,error_code,error_message,error_details_json,created_at)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                 (
                     run_id,
                     item_id,
                     prompt,
                     json.dumps(generation_options or {}, ensure_ascii=False),
                     json.dumps(references or [], ensure_ascii=False),
+                    source or "workflow",
+                    batch_id,
                     job_id,
                     status or "completed",
                     json.dumps(image_ids or [], ensure_ascii=False),
+                    error_code,
+                    error_message,
+                    json.dumps(error_details or {}, ensure_ascii=False),
                     ts,
                 ),
             )
@@ -335,11 +345,52 @@ class ItemRepository:
             prompt=row["prompt"],
             generation_options=json.loads(row["generation_options_json"] or "{}"),
             references=json.loads(row["references_json"] or "[]"),
+            source=row["source"] or "workflow",
+            batch_id=row["batch_id"],
             job_id=row["job_id"],
             status=row["status"],
             image_ids=json.loads(row["image_ids_json"] or "[]"),
+            error_code=row["error_code"],
+            error_message=row["error_message"],
+            error_details=json.loads(row["error_details_json"] or "{}"),
             created_at=row["created_at"],
         )
+
+    def update_prompt_image_generation_run(
+        self,
+        run_id: str,
+        *,
+        batch_id: str | None = None,
+        job_id: str | None = None,
+        status: str | None = None,
+        image_ids: list[str] | None = None,
+        error_code: str | None = None,
+        error_message: str | None = None,
+        error_details: dict | None = None,
+    ) -> PromptImageGenerationRunRecord:
+        with connect(self.library_path) as conn:
+            if not conn.execute("SELECT 1 FROM prompt_image_generation_runs WHERE id=?", (run_id,)).fetchone():
+                raise KeyError(run_id)
+            updates: dict[str, str | None] = {}
+            if batch_id is not None:
+                updates["batch_id"] = batch_id
+            if job_id is not None:
+                updates["job_id"] = job_id
+            if status is not None:
+                updates["status"] = status
+            if image_ids is not None:
+                updates["image_ids_json"] = json.dumps(image_ids, ensure_ascii=False)
+            if error_code is not None:
+                updates["error_code"] = error_code
+            if error_message is not None:
+                updates["error_message"] = error_message
+            if error_details is not None:
+                updates["error_details_json"] = json.dumps(error_details, ensure_ascii=False)
+            if updates:
+                sets = ", ".join(f"{column}=?" for column in updates)
+                conn.execute(f"UPDATE prompt_image_generation_runs SET {sets} WHERE id=?", (*updates.values(), run_id))
+                conn.commit()
+        return self.get_prompt_image_generation_run(run_id)
 
     def get_prompt_image_generation_run(self, run_id: str) -> PromptImageGenerationRunRecord:
         with connect(self.library_path) as conn:
@@ -347,6 +398,20 @@ class ItemRepository:
             if not row:
                 raise KeyError(run_id)
             return self._prompt_image_generation_run_from_row(row)
+
+    def find_prompt_image_generation_run_by_batch(self, item_id: str, batch_id: str) -> PromptImageGenerationRunRecord | None:
+        with connect(self.library_path) as conn:
+            row = conn.execute(
+                """
+                SELECT *
+                FROM prompt_image_generation_runs
+                WHERE item_id=? AND batch_id=?
+                ORDER BY created_at DESC
+                LIMIT 1
+                """,
+                (item_id, batch_id),
+            ).fetchone()
+            return self._prompt_image_generation_run_from_row(row) if row else None
 
     def list_prompt_image_generation_runs(self, item_id: str, limit: int = 100) -> list[PromptImageGenerationRunRecord]:
         with connect(self.library_path) as conn:
@@ -481,7 +546,7 @@ class ItemRepository:
                 item_source_url=row["item_source_url"],
                 image=image,
                 run=run,
-                source="workflow" if run else "direct",
+                source=run.source if run else "direct",
                 created_at=run.created_at if run else image.created_at,
             ))
         return GeneratedImageHistoryList(items=items, total=total, limit=limit, offset=offset)
