@@ -627,7 +627,10 @@ def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
-    assert "const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('explore')" in app
+    assert "function buildExploreUseCaseClusters(items: ItemSummary[])" in app
+    assert "const focusCluster = (c: ClusterRecord) => { setUseCase(c.id); updateView('explore')" in app
+    assert "clusters={exploreClusters}" in app
+    assert "items={exploreItems}" in app
     assert "focusedClusterId" in explore
     assert "constellation-focus-panel" not in explore
     assert ".constellation-focus-panel" not in css
@@ -882,7 +885,7 @@ def test_filter_refresh_keeps_stale_content_without_large_loading_flash():
     assert "pendingExploreUnfilterClusterId" in app
     assert "exploreUnfilterFadePhase" in app
     assert "'out' | 'pre-in' | 'in' | 'idle'" in app
-    assert "dataScope.clusterId === pendingExploreUnfilterClusterId" in app
+    assert "if (pendingExploreUnfilterClusterId && dataScope.clusterId !== pendingExploreUnfilterClusterId)" in app
     assert "setPendingExploreUnfilterClusterId(clusterId)" in app
     assert "setExploreUnfilterFadePhase('out')" in app
     assert "setExploreUnfilterFadePhase('pre-in')" in app
@@ -1127,7 +1130,7 @@ def test_filters_and_explore_budget_controls_match_vista_style():
     assert "Templates</h2>" not in filters
     assert "onClear" in filters and "clearCluster" in app
     assert "handleFilterSelect" in app
-    assert "view === 'explore' ? focusCluster(c) : selectCluster(c)" in app
+    assert "const handleFilterSelect = (c: ClusterRecord) => { selectCluster(c); };" in app
     assert "type=\"range\"" in config
     assert "range-setting" in config
     assert "range-ticks" in config

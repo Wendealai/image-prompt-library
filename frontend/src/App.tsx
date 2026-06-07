@@ -104,6 +104,17 @@ export function sortCardsItems(items: ItemSummary[], clusters: ClusterRecord[], 
   });
 }
 
+function buildExploreUseCaseClusters(items: ItemSummary[]) {
+  const counts = new Map<string, number>();
+  items.forEach(item => {
+    const name = item.use_case?.trim() || '其他';
+    counts.set(name, (counts.get(name) || 0) + 1);
+  });
+  return Array.from(counts.entries())
+    .map(([name, count]) => ({ id: name, name, count, preview_images: [] as string[] }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hant'));
+}
+
 function selectedCollectionNameSizeClass(name: string) {
   if (name.length > 28) return 'is-very-long';
   if (name.length > 16) return 'is-long';
@@ -137,9 +148,17 @@ export default function App() {
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
   const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000;
   const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, useCase, itemQueryLimit, itemsReloadKey, 'created_desc');
-  const exploreFocusedClusterId = view === 'explore'
-    ? (clusterId || (dataScope.clusterId === pendingExploreUnfilterClusterId ? pendingExploreUnfilterClusterId : undefined))
-    : clusterId;
+  const exploreClusters = useMemo(() => buildExploreUseCaseClusters(data.items), [data.items]);
+  const exploreClusterById = useMemo(() => new Map(exploreClusters.map(cluster => [cluster.id, cluster])), [exploreClusters]);
+  const exploreItems = useMemo(
+    () => data.items.map(item => {
+      const useCaseName = item.use_case?.trim() || '其他';
+      const exploreCluster = exploreClusterById.get(useCaseName);
+      return exploreCluster ? { ...item, cluster: exploreCluster } : item;
+    }),
+    [data.items, exploreClusterById],
+  );
+  const exploreFocusedClusterId = view === 'explore' ? useCase : clusterId;
   const selectedCluster = useMemo(() => clusters.find(c => c.id === clusterId), [clusters, clusterId]);
   const selectedUseCase = useMemo(() => useCases.find(record => record.name === useCase), [useCases, useCase]);
   const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode), [data.items, clusters, cardsSortMode]);
@@ -162,8 +181,8 @@ export default function App() {
     return undefined;
   }, [dataScope.clusterId, pendingExploreUnfilterClusterId]);
   const selectCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('cards'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); };
-  const focusCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
-  const handleFilterSelect = (c: ClusterRecord) => { view === 'explore' ? focusCluster(c) : selectCluster(c); };
+  const focusCluster = (c: ClusterRecord) => { setUseCase(c.id); updateView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
+  const handleFilterSelect = (c: ClusterRecord) => { selectCluster(c); };
   const clearCluster = () => {
     if (view === 'explore' && clusterId) {
       setPendingExploreUnfilterClusterId(clusterId);
@@ -233,7 +252,7 @@ export default function App() {
       {initialLoading && <div className="loading">{t('loading')}</div>}
       {error && <div className="error">{error}</div>}
       {view === 'explore'
-        ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
+        ? <ExploreView t={t} clusters={exploreClusters} items={exploreItems} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
         : view === 'cards'
           ? <CardsView t={t} items={dedupedCardItems} duplicateGroupsByItemId={cardDuplicateGroupsByItemId} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />
           : <GeneratedHistoryView t={t} q={debouncedQ} clusterId={clusterId} useCase={useCase} reloadKey={itemsReloadKey} onOpen={setDetailId} onChanged={saved} showMutations={!isDemoMode} />}
