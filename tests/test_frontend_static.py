@@ -27,9 +27,9 @@ def test_item_save_refreshes_visible_item_query():
     assert "offset: startOffset" not in hook
     assert "limit: Math.min(API_PAGE_LIMIT, remaining)" in hook
     assert "const growingVisibleWindow = !scopeChanged && viewLimit > data.limit" in hook
-    assert "fetchRange(q, clusterId, tag, sort, data.items.length, desiredCount - data.items.length)" in hook
+    assert "fetchRange(q, clusterId, useCase, sort, data.items.length, desiredCount - data.items.length)" in hook
     assert "dedupeItems([...data.items, ...pages.flatMap(page => page.items)])" in hook
-    assert "[q, clusterId, tag, sort, viewLimit, reloadKey]" in hook
+    assert "[q, clusterId, useCase, sort, viewLimit, reloadKey]" in hook
 
 
 def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
@@ -628,7 +628,7 @@ def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
     explore = (ROOT / "frontend" / "src" / "components" / "ExploreView.tsx").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     assert "function buildExploreUseCaseClusters(items: ItemSummary[])" in app
-    assert "const focusCluster = (c: ClusterRecord) => { setUseCase(c.id); updateView('explore')" in app
+    assert "const focusCluster = (c: ClusterRecord) => { setClusterId(undefined); setUseCase(c.id); updateView('explore')" in app
     assert "clusters={exploreClusters}" in app
     assert "items={exploreItems}" in app
     assert "focusedClusterId" in explore

@@ -7,7 +7,7 @@ const API_PAGE_LIMIT = 1000;
 type QueryScope = {
   q: string;
   clusterId?: string;
-  tag?: string;
+  useCase?: string;
   sort?: string;
   reloadKey: number;
 };
@@ -15,7 +15,7 @@ type QueryScope = {
 function sameScope(left: QueryScope, right: QueryScope) {
   return left.q === right.q
     && left.clusterId === right.clusterId
-    && left.tag === right.tag
+    && left.useCase === right.useCase
     && left.sort === right.sort
     && left.reloadKey === right.reloadKey;
 }
@@ -29,7 +29,7 @@ function dedupeItems(items: ItemSummary[]) {
   });
 }
 
-async function fetchRange(q: string, clusterId: string | undefined, tag: string | undefined, sort: string | undefined, startOffset: number, targetCount: number) {
+async function fetchRange(q: string, clusterId: string | undefined, useCase: string | undefined, sort: string | undefined, startOffset: number, targetCount: number) {
   const pages: ItemList[] = [];
   let remaining = targetCount;
   let offset = startOffset;
@@ -37,7 +37,7 @@ async function fetchRange(q: string, clusterId: string | undefined, tag: string 
     const page = await api.items({
       q,
       cluster: clusterId,
-      tag,
+      use_case: useCase,
       sort,
       limit: Math.min(API_PAGE_LIMIT, remaining),
       offset,
@@ -50,9 +50,9 @@ async function fetchRange(q: string, clusterId: string | undefined, tag: string 
   return pages;
 }
 
-export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewLimit = 100, reloadKey = 0, sort?: string) {
+export function useItemsQuery(q: string, clusterId?: string, useCase?: string, viewLimit = 100, reloadKey = 0, sort?: string) {
   const [data, setData] = useState<ItemList>({ items: [], total: 0, limit: viewLimit, offset: 0 });
-  const [dataScope, setDataScope] = useState<QueryScope>({ q: '', clusterId: undefined, tag: undefined, sort: undefined, reloadKey: 0 });
+  const [dataScope, setDataScope] = useState<QueryScope>({ q: '', clusterId: undefined, useCase: undefined, sort: undefined, reloadKey: 0 });
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -60,7 +60,7 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
 
   useEffect(() => {
     let cancelled = false;
-    const nextScope = { q, clusterId, tag, sort, reloadKey };
+    const nextScope = { q, clusterId, useCase, sort, reloadKey };
     const scopeChanged = !sameScope(dataScope, nextScope);
     const growingVisibleWindow = !scopeChanged && viewLimit > data.limit;
     const hasVisibleData = !scopeChanged && (data.items.length > 0 || data.total > 0);
@@ -76,14 +76,14 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
 
       if (!scopeChanged && growingVisibleWindow && data.items.length < data.total) {
         const desiredCount = Math.min(viewLimit, data.total);
-        const pages = await fetchRange(q, clusterId, tag, sort, data.items.length, desiredCount - data.items.length);
+        const pages = await fetchRange(q, clusterId, useCase, sort, data.items.length, desiredCount - data.items.length);
         if (pages.length === 0) return { ...data, limit: viewLimit };
         const mergedItems = dedupeItems([...data.items, ...pages.flatMap(page => page.items)]).slice(0, desiredCount);
         const lastPage = pages[pages.length - 1];
         return { ...lastPage, items: mergedItems, limit: viewLimit, offset: 0 };
       }
 
-      const pages = await fetchRange(q, clusterId, tag, sort, 0, viewLimit);
+      const pages = await fetchRange(q, clusterId, useCase, sort, 0, viewLimit);
       const firstPage = pages[0] || { items: [], total: 0, limit: viewLimit, offset: 0 };
       const items = dedupeItems(pages.flatMap(page => page.items)).slice(0, viewLimit);
       return { ...firstPage, items, limit: viewLimit, offset: 0 };
@@ -108,7 +108,7 @@ export function useItemsQuery(q: string, clusterId?: string, tag?: string, viewL
       });
 
     return () => { cancelled = true; };
-  }, [q, clusterId, tag, sort, viewLimit, reloadKey]);
+  }, [q, clusterId, useCase, sort, viewLimit, reloadKey]);
 
   return { data, loading, initialLoading, refreshing, error, dataScope };
 }

@@ -181,7 +181,7 @@ export default function App() {
     return undefined;
   }, [dataScope.clusterId, pendingExploreUnfilterClusterId]);
   const selectCluster = (c: ClusterRecord) => { setClusterId(c.id); updateView('cards'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); };
-  const focusCluster = (c: ClusterRecord) => { setUseCase(c.id); updateView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
+  const focusCluster = (c: ClusterRecord) => { setClusterId(undefined); setUseCase(c.id); updateView('explore'); setFiltersOpen(false); setPendingExploreUnfilterClusterId(undefined); setExploreUnfilterFadePhase('idle'); setExploreFitRequestKey(key => key + 1); };
   const handleFilterSelect = (c: ClusterRecord) => { selectCluster(c); };
   const clearCluster = () => {
     if (view === 'explore' && clusterId) {
