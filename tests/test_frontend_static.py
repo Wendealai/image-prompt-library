@@ -14,9 +14,11 @@ def test_item_save_refreshes_visible_item_query():
     assert "const CARDS_QUERY_PAGE_SIZE = 120" in app
     assert "const [useCase, setUseCase] = useState<string>()" in app
     assert "const [cardsQueryLimit, setCardsQueryLimit]" in app
-    assert "const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000" in app
+    assert "const shouldExpandFilteredCards = view === 'cards' && Boolean(useCase);" in app
+    assert "const itemQueryLimit = shouldExpandFilteredCards ? 5000 : view === 'cards' ? cardsQueryLimit : 5000" in app
     assert "setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE)" in app
     assert "const loadMoreCards = () =>" in app
+    assert "if (view !== 'cards' || shouldExpandFilteredCards || loading || refreshing || data.items.length >= data.total) return;" in app
     assert "setCardsQueryLimit(limit => Math.min(data.total || limit + CARDS_QUERY_PAGE_SIZE, limit + CARDS_QUERY_PAGE_SIZE))" in app
     assert "useItemsQuery(debouncedQ, clusterId, useCase, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
     assert "onLoadMore={loadMoreCards}" in app
@@ -1348,9 +1350,9 @@ def test_detail_modal_has_generated_image_history_panel():
     assert "generatedRunsCount" in detail
     assert "entry.run?.job_id || entry.run?.batch_id" in detail
     assert "entry.errorMessage ? <p className=\"generated-history-error\">" in detail
-    assert "handleDownloadImage(entry.image" in detail
-    assert "handleDeleteImage(entry.image" in detail
-    assert "focusGeneratedImage(entry.image)" in detail
+    assert "handleDownloadImage(historyImage" in detail
+    assert "handleDeleteImage(historyImage" in detail
+    assert "focusGeneratedImage(historyImage)" in detail
     assert "void refreshGenerationRuns(result.item.id)" in detail
     assert "void refreshGenerationRuns(item.id)" in detail
     assert "promptImageGenerationRuns: (itemId: string)" in local_api

@@ -146,7 +146,8 @@ export default function App() {
   const [pendingExploreUnfilterClusterId, setPendingExploreUnfilterClusterId] = useState<string>();
   const [exploreUnfilterFadePhase, setExploreUnfilterFadePhase] = useState<'out' | 'pre-in' | 'in' | 'idle'>('idle');
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
-  const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000;
+  const shouldExpandFilteredCards = view === 'cards' && Boolean(useCase);
+  const itemQueryLimit = shouldExpandFilteredCards ? 5000 : view === 'cards' ? cardsQueryLimit : 5000;
   const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, useCase, itemQueryLimit, itemsReloadKey, 'created_desc');
   const exploreClusters = useMemo(() => buildExploreUseCaseClusters(data.items), [data.items]);
   const exploreClusterById = useMemo(() => new Map(exploreClusters.map(cluster => [cluster.id, cluster])), [exploreClusters]);
@@ -209,7 +210,7 @@ export default function App() {
     window.localStorage.setItem(CARDS_SORT_STORAGE_KEY, nextSortMode);
   };
   const loadMoreCards = () => {
-    if (view !== 'cards' || loading || refreshing || data.items.length >= data.total) return;
+    if (view !== 'cards' || shouldExpandFilteredCards || loading || refreshing || data.items.length >= data.total) return;
     setCardsQueryLimit(limit => Math.min(data.total || limit + CARDS_QUERY_PAGE_SIZE, limit + CARDS_QUERY_PAGE_SIZE));
   };
   const updateGlobalThumbnailBudget = (budget: number) => {
