@@ -3,7 +3,7 @@ import { Copy, ImagePlus, RefreshCcw, Sparkles, X } from 'lucide-react';
 import { api, mediaUrl } from '../api/client';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { buildSlotValueRecord, renderMarkedPrompt } from '../utils/promptTemplate';
-import type { ImageRecord, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptRenderSegment, PromptTemplateBundle } from '../types';
+import type { ImageRecord, NanobananaItemImageGenerationStatus, NanobananaSourceItem, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptRenderSegment, PromptTemplateBundle } from '../types';
 import type { Translator } from '../utils/i18n';
 
 type LocalPromptPreview = {
@@ -51,6 +51,8 @@ const IMAGE_REFERENCE_MAX_EDGE = 1536;
 const IMAGE_REFERENCE_MAX_BYTES = 4 * 1024 * 1024;
 const IMAGE_REFERENCE_JPEG_QUALITY = 0.86;
 const IMAGE_REFERENCE_ROLE_OPTIONS = ['subject', 'style', 'composition', 'material', 'palette', 'element'] as const;
+const IMAGE_GENERATION_POLL_INTERVAL_MS = 3000;
+const IMAGE_GENERATION_POLL_ATTEMPTS = 40;
 
 type RequiredImageGenerationOptions = Omit<Required<PromptImageGenerationOptions>, 'resolution' | 'aspect_ratio' | 'style' | 'output_format'> & {
   resolution: (typeof IMAGE_RESOLUTION_OPTIONS)[number];
@@ -145,6 +147,50 @@ function extractErrorDetail(error: unknown): string {
     // Keep raw error text when the payload is not JSON.
   }
   return message;
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => window.setTimeout(resolve, ms));
+}
+
+function createImageGenerationRequestId() {
+  const cryptoApi = globalThis.crypto;
+  if (cryptoApi && typeof cryptoApi.randomUUID === 'function') return cryptoApi.randomUUID();
+  return `req_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function readBatchId(payload: Record<string, unknown> | undefined) {
+  const batchId = payload?.batchId || payload?.batch_id;
+  return typeof batchId === 'string' && batchId.trim() ? batchId.trim() : '';
+}
+
+function readRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === 'object' ? value as Record<string, unknown> : null;
+}
+
+function readFirstString(...values: unknown[]) {
+  for (const value of values) {
+    if (typeof value === 'string' && value.trim()) return value.trim();
+  }
+  return '';
+}
+
+function resolveDirectGenerationState(status: NanobananaItemImageGenerationStatus) {
+  const batchPayload = readRecord(status.batch);
+  const nestedBatch = readRecord(batchPayload?.batch);
+  const mappedResult = readRecord(readRecord(status.mapped)?.result_image);
+  const error = readRecord(mappedResult?.error);
+  return {
+    batchStatus: readFirstString(nestedBatch?.status, batchPayload?.status).toLowerCase(),
+    resultStatus: readFirstString(mappedResult?.status).toLowerCase(),
+    errorMessage: readFirstString(
+      error?.message,
+      batchPayload?.message,
+      nestedBatch?.message,
+      batchPayload?.error,
+      nestedBatch?.error,
+    ),
+  };
 }
 
 function imagePathForReference(image: ImageRecord): string {
@@ -518,6 +564,21 @@ export default function PromptTemplatePanel({
     return references;
   };
 
+  const buildDirectSourceItems = async (): Promise<NanobananaSourceItem[]> => {
+    const references = await buildImageReferenceInputs();
+    return references.map((reference, index) => ({
+      label: index === 0 ? 'primary' : reference.label?.trim() || `${t('promptTemplateImageReference')} ${index + 1}`,
+      role: reference.role?.trim() || (index === 0 ? 'subject' : 'style'),
+      note: reference.note?.trim() || undefined,
+      imageUrl: reference.image_base64
+        ? (reference.image_base64.startsWith('data:image/')
+          ? reference.image_base64
+          : `data:${reference.mime_type || 'image/png'};base64,${reference.image_base64}`)
+        : (reference.image_url || ''),
+      mimeType: reference.mime_type || undefined,
+    })).filter(reference => reference.imageUrl);
+  };
+
   const handleGenerate = async () => {
     if (!template) return;
     const nextKeyword = themeKeyword.trim();
@@ -595,17 +656,49 @@ export default function PromptTemplatePanel({
     }, IMAGE_GENERATION_STAGE_DELAY_MS);
     setFeedback(null);
     try {
-      const references = imageReferences.length > 0 ? await buildImageReferenceInputs() : [];
-      const result = await api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references);
-      if (result.images.length === 0) {
+      const sourceItems = imageReferences.length > 0 ? await buildDirectSourceItems() : [];
+      const result = await api.generateItemImage(itemId, {
+        promptText,
+        idempotencyKey: `${itemId}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`,
+        wait: false,
+        ...(sourceItems.length > 0 ? { sourceItems } : {}),
+      });
+      let storedImages = result.stored_images;
+      let latestRun = result.run || null;
+      const batchId = readBatchId(result.create);
+      if (storedImages.length === 0 && !batchId) {
         throw new Error(t('promptTemplateImageUnavailable'));
+      }
+      if (storedImages.length === 0 && batchId) {
+        for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {
+          await delay(IMAGE_GENERATION_POLL_INTERVAL_MS);
+          const status = await api.itemImageGenerationStatus(itemId, batchId);
+          storedImages = status.stored_images;
+          latestRun = status.run || latestRun;
+          if (storedImages.length > 0) break;
+          const directGenerationState = resolveDirectGenerationState(status);
+          if (directGenerationState.resultStatus === 'failed' || directGenerationState.batchStatus === 'failed') {
+            throw new Error(directGenerationState.errorMessage || t('promptTemplateImageUnavailable'));
+          }
+        }
       }
       clearImageGenerationTimer();
       window.localStorage.setItem(IMAGE_GENERATION_RECENT_OPTIONS_STORAGE_KEY, JSON.stringify(imageGenerationOptions));
       setRecentImageGenerationOptions(imageGenerationOptions);
-      setLastImageRun(result.run || null);
-      setImageGenerationState({ phase: 'success', imageCount: result.images.length });
-      onImageGenerated?.(result);
+      setLastImageRun(latestRun);
+      const updatedItem = await api.item(itemId);
+      const newImages = storedImages.length > 0
+        ? updatedItem.images.filter(image => storedImages.some(stored => stored.id === image.id))
+        : [];
+      setImageGenerationState(newImages.length > 0 ? { phase: 'success', imageCount: newImages.length } : { phase: 'queued' });
+      onImageGenerated?.({
+        status: newImages.length > 0 ? 'completed' : 'queued',
+        prompt: promptText,
+        job_id: latestRun?.job_id,
+        images: newImages,
+        item: updatedItem,
+        run: latestRun || undefined,
+      });
     } catch (error) {
       clearImageGenerationTimer();
       const message = extractErrorDetail(error) || t('promptTemplateImageUnavailable');

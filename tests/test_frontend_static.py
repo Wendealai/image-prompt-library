@@ -408,8 +408,11 @@ def test_detail_modal_includes_ai_rewrite_panel_and_prompt_template_api_hooks():
     assert "promptTemplateImagePresetSaved" in panel
     assert "promptTemplateImagePresetDelete" in panel
     assert "promptTemplateImagePresetNameRequired" in panel
-    assert "api.generateImageFromPrompt(itemId, promptText, imageGenerationOptions, references)" in panel
-    assert "if (result.images.length === 0) {" in panel
+    assert "const buildDirectSourceItems = async (): Promise<NanobananaSourceItem[]> => {" in panel
+    assert "api.generateItemImage(itemId, {" in panel
+    assert "idempotencyKey: `${itemId}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`" in panel
+    assert "api.itemImageGenerationStatus(itemId, batchId)" in panel
+    assert "resolveDirectGenerationState(status)" in panel
     assert "throw new Error(t('promptTemplateImageUnavailable'));" in panel
     assert "promptTemplateGenerateImage" in panel
     assert "promptTemplateGeneratingImage" in panel
