@@ -7,6 +7,7 @@ import type { Translator } from '../utils/i18n';
 
 export default function ItemCard({
   item,
+  duplicateCount = 1,
   t,
   onOpen,
   onFavorite,
@@ -15,6 +16,7 @@ export default function ItemCard({
   showActions = true,
 }: {
   item: ItemSummary;
+  duplicateCount?: number;
   t: Translator;
   onOpen: (id: string) => void;
   onFavorite?: (id: string) => void;
@@ -57,6 +59,7 @@ export default function ItemCard({
       ) : <div className="placeholder">{t('noImage')}</div>}
       <div className="card-body">
         <h3>{item.title}</h3>
+        {duplicateCount > 1 && <span className="card-duplicate-badge">{`P${duplicateCount}`}</span>}
       </div>
       <div className="card-actions" aria-label={t('itemActions')}>
         <button className="hover-action" onClick={copyPrompt}><Copy size={15} /> <span className="action-label">{t('copyPrompt')}</span></button>

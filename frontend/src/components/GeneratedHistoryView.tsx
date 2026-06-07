@@ -31,6 +31,7 @@ export default function GeneratedHistoryView({
   t,
   q,
   clusterId,
+  useCase,
   reloadKey,
   onOpen,
   onChanged,
@@ -39,6 +40,7 @@ export default function GeneratedHistoryView({
   t: Translator;
   q: string;
   clusterId?: string;
+  useCase?: string;
   reloadKey: number;
   onOpen: (itemId: string) => void;
   onChanged: () => void;
@@ -53,13 +55,13 @@ export default function GeneratedHistoryView({
 
   useEffect(() => {
     setLimit(HISTORY_PAGE_SIZE);
-  }, [q, clusterId, reloadKey]);
+  }, [q, clusterId, useCase, reloadKey]);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setError(undefined);
-    api.generatedImageHistory({ q, cluster: clusterId, limit, offset: 0 })
+    api.generatedImageHistory({ q, cluster: clusterId, use_case: useCase, limit, offset: 0 })
       .then(result => {
         if (!cancelled) setHistory(result);
       })
@@ -70,7 +72,7 @@ export default function GeneratedHistoryView({
         if (!cancelled) setLoading(false);
       });
     return () => { cancelled = true; };
-  }, [q, clusterId, limit, reloadKey]);
+  }, [q, clusterId, useCase, limit, reloadKey]);
 
   useEffect(() => {
     if (!hasMore || loading) return undefined;

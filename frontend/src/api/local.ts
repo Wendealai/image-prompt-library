@@ -1,4 +1,4 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, GeneratedImageHistoryList, ImageRecord, ItemCreate, ItemDetail, ItemList, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, NanobananaItemImageGenerationStatus, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, GeneratedImageHistoryList, ImageRecord, ItemCreate, ItemDetail, ItemList, NanobananaItemImageGenerationRequest, NanobananaItemImageGenerationResult, NanobananaItemImageGenerationStatus, PromptGenerationSessionRecord, PromptImageGenerationOptions, PromptImageGenerationResponse, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBatchInitRequest, PromptTemplateBatchInitResponse, PromptTemplateBulkInitRequest, PromptTemplateBulkInitResult, PromptTemplateBundle, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateReviewRequest, PromptWorkflowFailureList, PromptWorkflowFailureRecord, TagRecord, UploadImageRole, UseCaseRecord } from '../types';
 import { fileFromUrl, json } from './http';
 
 export const caseIntakeImageUrl = (url: string) => `/api/intake/image?url=${encodeURIComponent(url)}`;
@@ -50,7 +50,7 @@ export const localApi = {
   acceptPromptVariant: (variantId: string) => json<PromptGenerationSessionRecord>(`/api/prompt-variants/${variantId}/accept`, { method: 'POST' }),
   generateImageFromPrompt: (itemId: string, prompt: string, generation?: PromptImageGenerationOptions, references: PromptImageReferenceInput[] = []) => json<PromptImageGenerationResponse>(`/api/items/${itemId}/generate-image`, { method: 'POST', body: JSON.stringify({ prompt, ...(generation ? { generation } : {}), ...(references.length > 0 ? { references } : {}) }) }),
   promptImageGenerationRuns: (itemId: string) => json<PromptImageGenerationRunRecord[]>(`/api/items/${itemId}/image-generation-runs`),
-  generatedImageHistory: (params: { q?: string; cluster?: string; limit?: number; offset?: number } = {}) => json<GeneratedImageHistoryList>(`/api/generated-image-history?${itemListParams(params)}`),
+  generatedImageHistory: (params: { q?: string; cluster?: string; use_case?: string; limit?: number; offset?: number } = {}) => json<GeneratedImageHistoryList>(`/api/generated-image-history?${itemListParams(params)}`),
   generateItemImage: (itemId: string, payload: NanobananaItemImageGenerationRequest = {}) => json<NanobananaItemImageGenerationResult>(`/api/items/${itemId}/nanobanana/images`, { method: 'POST', body: JSON.stringify(payload) }),
   itemImageGenerationStatus: (itemId: string, batchId: string) => json<NanobananaItemImageGenerationStatus>(`/api/items/${itemId}/nanobanana/images/${encodeURIComponent(batchId)}`),
   adminPromptTemplateOpsItems: (params: { status?: string[]; limit?: number } = {}) => json<PromptTemplateOpsItemList>(`/api/admin/prompt-templates/ops/items?${promptTemplateOpsParams(params).toString()}`),
@@ -61,4 +61,5 @@ export const localApi = {
   adminRejectPromptTemplate: (templateId: string, payload: PromptTemplateReviewRequest = {}) => json<PromptTemplateRecord>(`/api/admin/prompt-templates/${templateId}/reject`, { method: 'POST', body: JSON.stringify(payload) }),
   clusters: () => json<ClusterRecord[]>('/api/clusters'),
   tags: () => json<TagRecord[]>('/api/tags'),
+  useCases: () => json<UseCaseRecord[]>('/api/use-cases'),
 };

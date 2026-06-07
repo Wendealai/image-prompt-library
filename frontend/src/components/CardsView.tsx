@@ -5,6 +5,7 @@ import ItemCard from './ItemCard';
 
 export default function CardsView({
   items,
+  duplicateGroupsByItemId,
   total,
   loadingMore = false,
   t,
@@ -16,6 +17,7 @@ export default function CardsView({
   onLoadMore,
 }: {
   items: ItemSummary[];
+  duplicateGroupsByItemId?: Record<string, ItemSummary[]>;
   total: number;
   loadingMore?: boolean;
   t: Translator;
@@ -70,7 +72,7 @@ export default function CardsView({
   const leftColumnItems = items.filter((_, index) => index % 2 === 0);
   const rightColumnItems = items.filter((_, index) => index % 2 === 1);
   const renderCard = (item: ItemSummary) => (
-    <ItemCard key={item.id} t={t} item={item} onOpen={onOpen} onFavorite={onFavorite} onEdit={onEdit} onCopyPrompt={onCopyPrompt} showActions={showActions} />
+    <ItemCard key={item.id} t={t} item={item} duplicateCount={duplicateGroupsByItemId?.[item.id]?.length || 1} onOpen={onOpen} onFavorite={onFavorite} onEdit={onEdit} onCopyPrompt={onCopyPrompt} showActions={showActions} />
   );
 
   return (

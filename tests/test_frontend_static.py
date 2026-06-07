@@ -12,12 +12,13 @@ def test_item_save_refreshes_visible_item_query():
     hook = (ROOT / "frontend" / "src" / "hooks" / "useItemsQuery.ts").read_text()
     assert "const [itemsReloadKey, setItemsReloadKey]" in app
     assert "const CARDS_QUERY_PAGE_SIZE = 120" in app
+    assert "const [useCase, setUseCase] = useState<string>()" in app
     assert "const [cardsQueryLimit, setCardsQueryLimit]" in app
     assert "const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000" in app
     assert "setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE)" in app
     assert "const loadMoreCards = () =>" in app
     assert "setCardsQueryLimit(limit => Math.min(data.total || limit + CARDS_QUERY_PAGE_SIZE, limit + CARDS_QUERY_PAGE_SIZE))" in app
-    assert "useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
+    assert "useItemsQuery(debouncedQ, clusterId, useCase, itemQueryLimit, itemsReloadKey, 'created_desc')" in app
     assert "onLoadMore={loadMoreCards}" in app
     assert "setItemsReloadKey(k => k + 1)" in app
     assert "reloadKey" in hook
@@ -34,6 +35,9 @@ def test_item_save_refreshes_visible_item_query():
 def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    cards = (ROOT / "frontend" / "src" / "components" / "CardsView.tsx").read_text()
+    card = (ROOT / "frontend" / "src" / "components" / "ItemCard.tsx").read_text()
+    detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
     types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
@@ -43,12 +47,25 @@ def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
     assert "CARDS_SORT_STORAGE_KEY = 'image-prompt-library.cards_sort_mode.v1'" in app
     assert "function loadCardsSortMode(): CardsSortMode" in app
     assert "const [cardsSortMode, setCardsSortMode] = useState<CardsSortMode>(loadCardsSortMode)" in app
+    assert "function normalizedCardDuplicateKey(item: ItemSummary)" in app
+    assert "export function buildCardDuplicateGroups(items: ItemSummary[])" in app
+    assert "const { dedupedItems: dedupedCardItems, groupsByItemId: cardDuplicateGroupsByItemId } = useMemo(() => buildCardDuplicateGroups(sortedCardItems)" in app
+    assert "const activeCardDuplicateGroup = useMemo(() => (detailId ? cardDuplicateGroupsByItemId[detailId] : undefined)" in app
     assert "export function sortCardsItems" in app
     assert ".sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hant'))" in app
     assert "const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode)" in app
-    assert "items={sortedCardItems}" in app
+    assert "items={dedupedCardItems}" in app
+    assert "duplicateGroupsByItemId={cardDuplicateGroupsByItemId}" in app
+    assert "duplicateGroup={activeCardDuplicateGroup}" in app
+    assert "onSelectDuplicateItem={setDetailId}" in app
     assert "cardsSortMode={cardsSortMode}" in app
     assert "onCardsSortMode={updateCardsSortMode}" in app
+    assert "duplicateGroupsByItemId?: Record<string, ItemSummary[]>" in cards
+    assert "duplicateCount={duplicateGroupsByItemId?.[item.id]?.length || 1}" in cards
+    assert "duplicateCount?: number;" in card
+    assert "card-duplicate-badge" in card
+    assert "detail-duplicate-tabs tabs" in detail
+    assert "{`Prompt ${index + 1}`}" in detail
     assert "cards-sort-toggle" in topbar
     assert "aria-label={t('cardsSort')}" in topbar
     assert "onClick={() => onCardsSortMode('added')}" in topbar
@@ -59,6 +76,8 @@ def test_cards_view_can_sort_by_added_order_or_explore_cluster_order():
     assert ".view-dock{flex:00auto;display:flex;align-items:center;gap:8px}" in compact_css
     assert ".cards-sort-toggle{display:flex;gap:3px;" in compact_css
     assert ".cards-sort-togglebutton.active{background:#211922;color:white}" in compact_css
+    assert ".card-duplicate-badge{display:inline-flex;" in compact_css
+    assert ".detail-duplicate-tabs.tabs,.detail-panel-tabs.tabs{width:100%;justify-content:flex-start;background:#e8e2d5}" in compact_css
 
 
 def test_topbar_is_toolbar_search_not_hero_or_keyboard_shortcut():
@@ -66,6 +85,7 @@ def test_topbar_is_toolbar_search_not_hero_or_keyboard_shortcut():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     assert "toolbar-search" in topbar
     assert "active-filter-strip" in topbar
+    assert "useCaseChip" in topbar
     assert "view-dock" in topbar
     assert "hero-shell" not in topbar
     assert "Start your visual prompt collection" not in topbar
@@ -210,9 +230,13 @@ def test_mobile_header_keeps_brand_centered_and_status_inline():
 def test_mobile_selected_collection_uses_bottom_floating_dock_and_active_filter_state():
     app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
     topbar = (ROOT / "frontend" / "src" / "components" / "TopBar.tsx").read_text()
+    filters = (ROOT / "frontend" / "src" / "components" / "FiltersPanel.tsx").read_text()
+    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
     compact_css = css.replace(" ", "")
     assert "selectedCollectionNameSizeClass" in app
+    assert "const [useCases, setUseCases] = useState<UseCaseRecord[]>([]);" in app
+    assert "api.useCases().then(setUseCases)" in app
     assert "selected-collection-dock" in app
     assert "selected-collection-name" in app
     assert "selected-collection-count" in app
@@ -222,9 +246,15 @@ def test_mobile_selected_collection_uses_bottom_floating_dock_and_active_filter_
     assert "filter-button" in topbar and "' active'" in topbar
     assert "filter-active-dot" not in topbar
     assert "filter-active-count" not in topbar
+    assert "useCaseChip" in topbar
     assert ".filter-button.active" in css
     assert ".filter-active-dot" not in css
     assert ".filter-active-count" not in css
+    assert "useCases: UseCaseRecord[]" in filters
+    assert "selectedUseCase?: string;" in filters
+    assert "useCaseFilters" in filters
+    assert "allUseCases" in filters
+    assert "export interface UseCaseRecord { name: string; count: number }" in types
     assert "@media(max-width:760px)" in css
     assert ".active-filter-strip.active-filter{display:none}" in compact_css
     assert ".selected-collection-dock{position:fixed;left:16px;right:16px;bottom:calc(16px+env(safe-area-inset-bottom));" in compact_css
@@ -233,6 +263,23 @@ def test_mobile_selected_collection_uses_bottom_floating_dock_and_active_filter_
     assert ".selected-collection-name.is-very-long{font-size:clamp(12px,3vw,13.5px)}" in compact_css
     assert "@media(max-width:380px){.selected-collection-count{display:none}}" in compact_css
     assert "main{padding:22px14px150px}" in compact_css
+
+
+def test_filters_panel_includes_use_case_and_collection_sections():
+    app = (ROOT / "frontend" / "src" / "App.tsx").read_text()
+    filters = (ROOT / "frontend" / "src" / "components" / "FiltersPanel.tsx").read_text()
+    i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
+    css = compact((ROOT / "frontend" / "src" / "styles.css").read_text())
+    assert "useCases={useCases}" in app
+    assert "selectedUseCase={useCase}" in app
+    assert "onSelectUseCase={value => setUseCase(value || undefined)}" in app
+    assert "const filteredUseCases = useMemo(" in filters
+    assert "aria-label={t('useCaseFilters')}" in filters
+    assert "t('allUseCases')" in filters
+    assert "t('useCases')" in filters
+    assert "| 'useCases' | 'useCaseChip' | 'useCaseFilters' | 'allUseCases'" in i18n
+    assert ".filter-section{" in css
+    assert ".filter-section-head{" in css
 
 
 def test_mobile_detail_modal_has_image_first_floating_controls():

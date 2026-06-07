@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from .config import APP_VERSION, resolve_library_path
 from .db import get_db_path, init_db
-from .routers import admin_auth, clusters, images, intake, items, nanobanana, prompt_templates, tags
+from .routers import admin_auth, clusters, images, intake, items, nanobanana, prompt_templates, tags, use_cases
 
 DEFAULT_FRONTEND_DIST_PATH = Path(__file__).resolve().parents[1] / "frontend" / "dist"
 IMAGE_MEDIA_TYPES = {
@@ -28,6 +28,7 @@ def create_app(library_path: Path | str | None = None, frontend_dist_path: Path 
     app.include_router(images.router, prefix="/api")
     app.include_router(clusters.router, prefix="/api")
     app.include_router(tags.router, prefix="/api")
+    app.include_router(use_cases.router, prefix="/api")
     app.include_router(intake.router, prefix="/api")
     app.include_router(admin_auth.router, prefix="/api")
     app.include_router(prompt_templates.router, prefix="/api")

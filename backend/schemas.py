@@ -218,6 +218,10 @@ class TagRecord(BaseModel):
     kind: str = "general"
     count: int = 0
 
+class UseCaseRecord(BaseModel):
+    name: str
+    count: int = 0
+
 class ItemCreate(BaseModel):
     title: str
     slug: Optional[str] = None
@@ -258,6 +262,7 @@ class ItemSummary(BaseModel):
     source_name: Optional[str] = None
     source_url: Optional[str] = None
     cluster: Optional[ClusterRecord] = None
+    use_case: Optional[str] = None
     tags: List[TagRecord] = Field(default_factory=list)
     prompts: List[PromptRecord] = Field(default_factory=list)
     prompt_snippet: Optional[str] = None

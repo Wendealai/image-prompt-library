@@ -6,10 +6,11 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from .db import connect, init_db
-from .schemas import ClusterRecord, GeneratedImageHistoryEntry, GeneratedImageHistoryList, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord
+from .schemas import ClusterRecord, GeneratedImageHistoryEntry, GeneratedImageHistoryList, ImageRecord, ItemCreate, ItemDetail, ItemList, ItemSummary, ItemUpdate, PromptGenerationSessionRecord, PromptGenerationVariantRecord, PromptImageGenerationRunRecord, PromptIn, PromptRecord, PromptRenderSegment, PromptTemplateBundle, PromptTemplateOpsItem, PromptTemplateOpsItemList, PromptTemplateRecord, PromptTemplateSlot, PromptVariantValue, TagRecord, UseCaseRecord
 from .services.prompt_template_quality import normalize_prompt_template_slots, score_prompt_template
 from .services.prompt_source_prepare import prepare_prompt_template_source
 from .services.text_normalize import to_traditional
+from .services.use_case_classifier import classify_use_case, normalize_use_case_name, use_case_sort_key
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -95,15 +96,79 @@ class ItemRepository:
                 zh_hans.is_primary = False
         return normalized
 
+    def _classify_use_case_from_payload(self, payload: ItemCreate | ItemUpdate, cluster_name: str | None) -> str | None:
+        prompts = payload.prompts or []
+        prompt_texts = [prompt.text for prompt in prompts if getattr(prompt, "text", "").strip()]
+        classification = classify_use_case(
+            title=payload.title or "",
+            cluster_name=cluster_name,
+            tags=list(payload.tags or []),
+            prompt_texts=prompt_texts,
+        )
+        return normalize_use_case_name(classification.name)
+
+    def _classify_use_case_for_item(self, conn, item_id: str) -> str | None:
+        row = conn.execute(
+            """
+            SELECT i.title, i.use_case, c.name AS cluster_name
+            FROM items i
+            LEFT JOIN clusters c ON c.id=i.cluster_id
+            WHERE i.id=?
+            """,
+            (item_id,),
+        ).fetchone()
+        if not row:
+            raise KeyError(item_id)
+        prompts = [prompt_row["text"] for prompt_row in conn.execute("SELECT text FROM prompts WHERE item_id=? ORDER BY is_primary DESC, created_at", (item_id,)).fetchall()]
+        tags = [tag_row["name"] for tag_row in conn.execute("SELECT t.name FROM tags t JOIN item_tags it ON it.tag_id=t.id WHERE it.item_id=? ORDER BY it.sort_order, t.name", (item_id,)).fetchall()]
+        classification = classify_use_case(
+            title=row["title"] or "",
+            cluster_name=row["cluster_name"],
+            tags=tags,
+            prompt_texts=prompts,
+        )
+        return normalize_use_case_name(classification.name)
+
+    def sync_item_use_case(self, conn, item_id: str):
+        use_case = self._classify_use_case_for_item(conn, item_id)
+        conn.execute("UPDATE items SET use_case=? WHERE id=?", (use_case, item_id))
+
+    def backfill_use_cases(self, *, limit: int | None = None, archived: bool | None = False) -> dict[str, int]:
+        updated = 0
+        with connect(self.library_path) as conn:
+            where = []
+            params: list[int] = []
+            if archived is not None:
+                where.append("archived=?")
+                params.append(int(archived))
+            where_sql = f"WHERE {' AND '.join(where)}" if where else ""
+            limit_sql = f" LIMIT {int(limit)}" if limit is not None else ""
+            rows = conn.execute(f"SELECT id FROM items {where_sql} ORDER BY created_at DESC{limit_sql}", params).fetchall()
+            for row in rows:
+                self.sync_item_use_case(conn, row["id"])
+                updated += 1
+            conn.commit()
+            counts_rows = conn.execute(
+                """
+                SELECT COALESCE(use_case, '其他') AS use_case_name, COUNT(*) AS count
+                FROM items
+                WHERE archived=0
+                GROUP BY COALESCE(use_case, '其他')
+                """
+            ).fetchall()
+        return {row["use_case_name"]: row["count"] for row in counts_rows}
+
     def create_item(self, payload: ItemCreate, imported: bool = False, forced_id: str | None = None) -> ItemDetail:
         with connect(self.library_path) as conn:
             iid = forced_id or new_id("itm")
             ts = now()
             cluster_id = self.ensure_cluster(conn, payload.cluster_name, payload.cluster_id)
+            cluster_row = conn.execute("SELECT name FROM clusters WHERE id=?", (cluster_id,)).fetchone() if cluster_id else None
+            use_case = self._classify_use_case_from_payload(payload, cluster_row["name"] if cluster_row else payload.cluster_name)
             slug = self._unique_slug(conn, payload.slug or payload.title)
-            conn.execute("""INSERT INTO items(id,title,slug,model,media_type,source_name,source_url,author,cluster_id,rating,favorite,archived,notes,created_at,updated_at,imported_at)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                (iid, payload.title, slug, payload.model, payload.media_type, payload.source_name, payload.source_url, payload.author, cluster_id, payload.rating, int(payload.favorite), int(payload.archived), payload.notes, ts, ts, ts if imported else None))
+            conn.execute("""INSERT INTO items(id,title,slug,model,media_type,source_name,source_url,author,cluster_id,use_case,rating,favorite,archived,notes,created_at,updated_at,imported_at)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                (iid, payload.title, slug, payload.model, payload.media_type, payload.source_name, payload.source_url, payload.author, cluster_id, use_case, payload.rating, int(payload.favorite), int(payload.archived), payload.notes, ts, ts, ts if imported else None))
             for idx, prompt in enumerate(self._normalized_prompts(payload.prompts)):
                 conn.execute("INSERT INTO prompts(id,item_id,language,text,is_primary,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
                     (new_id("prm"), iid, prompt.language, prompt.text, int(prompt.is_primary or idx == 0), ts, ts))
@@ -119,7 +184,7 @@ class ItemRepository:
         data = payload.model_dump(exclude_unset=True)
         scalar = {k:v for k,v in data.items() if k in {"title","model","source_name","source_url","author","rating","notes"}}
         with connect(self.library_path) as conn:
-            existing_item = conn.execute("SELECT cluster_id FROM items WHERE id=?", (item_id,)).fetchone()
+            existing_item = conn.execute("SELECT title, cluster_id FROM items WHERE id=?", (item_id,)).fetchone()
             if existing_item is None:
                 raise KeyError(item_id)
             previous_cluster_id = existing_item["cluster_id"]
@@ -144,6 +209,8 @@ class ItemRepository:
                     conn.execute("INSERT INTO prompts(id,item_id,language,text,is_primary,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
                         (new_id("prm"), item_id, prompt.language, prompt.text, int(prompt.is_primary or idx == 0), ts, ts))
                 self._mark_prompt_template_stale(conn, item_id)
+            if any(key in data for key in {"title", "cluster_name", "cluster_id", "tags", "prompts"}):
+                self.sync_item_use_case(conn, item_id)
             self.rebuild_search(conn, item_id)
             if ("cluster_id" in scalar and scalar["cluster_id"] != previous_cluster_id) or scalar.get("archived") == 1:
                 self.delete_empty_clusters(conn)
@@ -296,6 +363,7 @@ class ItemRepository:
         *,
         q: str | None = None,
         cluster: str | None = None,
+        use_case: str | None = None,
         archived: bool | None = False,
         limit: int = 120,
         offset: int = 0,
@@ -308,6 +376,9 @@ class ItemRepository:
         if cluster:
             where.append("(i.cluster_id=? OR c.name=?)")
             params.extend([cluster, cluster])
+        if use_case:
+            where.append("i.use_case=?")
+            params.append(use_case)
         if q:
             tokens = re.findall(r"[\w\u4e00-\u9fff]+", q)
             like = f"%{q}%"
@@ -523,7 +594,7 @@ class ItemRepository:
     def _summary_from_row(self, conn, row) -> ItemSummary:
         prompts = self._prompts(conn, row["id"])
         images = self._images(conn, row["id"])
-        return ItemSummary(id=row["id"], title=row["title"], slug=row["slug"], model=row["model"], source_name=row["source_name"], source_url=row["source_url"], cluster=self._cluster_from_row(row), tags=self._tags(conn,row["id"]), prompts=prompts, prompt_snippet=(prompts[0].text[:220] if prompts else None), first_image=(images[0] if images else None), rating=row["rating"], favorite=bool(row["favorite"]), archived=bool(row["archived"]), updated_at=row["updated_at"], created_at=row["created_at"])
+        return ItemSummary(id=row["id"], title=row["title"], slug=row["slug"], model=row["model"], source_name=row["source_name"], source_url=row["source_url"], cluster=self._cluster_from_row(row), use_case=row["use_case"], tags=self._tags(conn,row["id"]), prompts=prompts, prompt_snippet=(prompts[0].text[:220] if prompts else None), first_image=(images[0] if images else None), rating=row["rating"], favorite=bool(row["favorite"]), archived=bool(row["archived"]), updated_at=row["updated_at"], created_at=row["created_at"])
 
     def get_item(self, item_id: str) -> ItemDetail:
         with connect(self.library_path) as conn:
@@ -811,11 +882,12 @@ class ItemRepository:
             conn.commit()
         return self.get_prompt_generation_session(session_id)
 
-    def list_items(self, q: str | None=None, cluster: str | None=None, tag: str | None=None, favorite: bool | None=None, archived: bool | None=False, sort: str="updated_desc", limit: int=100, offset: int=0) -> ItemList:
+    def list_items(self, q: str | None=None, cluster: str | None=None, tag: str | None=None, use_case: str | None=None, favorite: bool | None=None, archived: bool | None=False, sort: str="updated_desc", limit: int=100, offset: int=0) -> ItemList:
         where=[]; params=[]
         if archived is not None: where.append("i.archived=?"); params.append(int(archived))
         if cluster: where.append("(i.cluster_id=? OR c.name=?)"); params += [cluster, cluster]
         if tag: where.append("EXISTS (SELECT 1 FROM item_tags it JOIN tags t ON t.id=it.tag_id WHERE it.item_id=i.id AND (t.id=? OR t.name=?))"); params += [tag, tag]
+        if use_case: where.append("i.use_case=?"); params.append(use_case)
         if favorite is not None: where.append("i.favorite=?"); params.append(int(favorite))
         if q:
             tokens = re.findall(r"[\w\u4e00-\u9fff]+", q)
@@ -828,7 +900,11 @@ class ItemRepository:
                 where.append("i.id IN (SELECT i2.id FROM items i2 LEFT JOIN prompts p2 ON p2.item_id=i2.id LEFT JOIN item_tags it2 ON it2.item_id=i2.id LEFT JOIN tags t2 ON t2.id=it2.tag_id LEFT JOIN clusters c2 ON c2.id=i2.cluster_id WHERE (i2.title LIKE ? OR p2.text LIKE ? OR t2.name LIKE ? OR c2.name LIKE ? OR i2.notes LIKE ?))")
                 params += [like, like, like, like, like]
         where_sql = "WHERE " + " AND ".join(where) if where else ""
-        order = {"created_desc":"i.created_at DESC", "title_asc":"i.title COLLATE NOCASE ASC", "rating_desc":"i.rating DESC, i.updated_at DESC"}.get(sort, "i.updated_at DESC")
+        order = {
+            "created_desc": "i.created_at DESC, i.id DESC",
+            "title_asc": "i.title COLLATE NOCASE ASC, i.id ASC",
+            "rating_desc": "i.rating DESC, i.updated_at DESC, i.id DESC",
+        }.get(sort, "i.updated_at DESC, i.id DESC")
         with connect(self.library_path) as conn:
             total = conn.execute(f"SELECT COUNT(DISTINCT i.id) FROM items i LEFT JOIN clusters c ON c.id=i.cluster_id {where_sql}", params).fetchone()[0]
             rows = conn.execute(f"""SELECT i.*, c.id cluster_id, c.name cluster_name, c.description cluster_description, c.sort_order cluster_sort_order FROM items i LEFT JOIN clusters c ON c.id=i.cluster_id {where_sql} GROUP BY i.id ORDER BY {order} LIMIT ? OFFSET ?""", (*params, limit, offset)).fetchall()
@@ -860,6 +936,19 @@ class ItemRepository:
         with connect(self.library_path) as conn:
             rows = conn.execute("""SELECT t.id,t.name,t.kind,COUNT(i.id) count FROM tags t LEFT JOIN item_tags it ON it.tag_id=t.id LEFT JOIN items i ON i.id=it.item_id AND i.archived=0 GROUP BY t.id ORDER BY t.name""").fetchall()
             return [TagRecord(**dict(r)) for r in rows]
+
+    def list_use_cases(self) -> list[UseCaseRecord]:
+        with connect(self.library_path) as conn:
+            rows = conn.execute(
+                """
+                SELECT use_case AS name, COUNT(*) AS count
+                FROM items
+                WHERE archived=0 AND TRIM(COALESCE(use_case, '')) <> ''
+                GROUP BY use_case
+                """
+            ).fetchall()
+        records = [UseCaseRecord(name=row["name"], count=row["count"]) for row in rows if row["name"]]
+        return sorted(records, key=lambda record: (-record.count, use_case_sort_key(record.name)))
 
     def rebuild_search(self, conn, item_id: str):
         conn.execute("DELETE FROM item_search WHERE item_id=?", (item_id,))

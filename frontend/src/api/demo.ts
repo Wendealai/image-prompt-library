@@ -1,4 +1,4 @@
-import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, GeneratedImageHistoryList, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, PromptImageGenerationOptions, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBulkInitRequest, PromptTemplateReviewRequest, TagRecord, UploadImageRole } from '../types';
+import type { AdminSessionRecord, AppConfig, CaseIntakeFetchResult, ClusterRecord, GeneratedImageHistoryList, ItemCreate, ItemDetail, ItemList, ItemSummary, NanobananaItemImageGenerationRequest, PromptImageGenerationOptions, PromptImageGenerationRunRecord, PromptImageReferenceInput, PromptTemplateBulkInitRequest, PromptTemplateReviewRequest, TagRecord, UploadImageRole, UseCaseRecord } from '../types';
 
 export const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true';
 export const DEMO_ASSET_VERSION = (import.meta.env.VITE_DEMO_ASSET_VERSION || '').trim();
@@ -24,6 +24,7 @@ const demoItems = () => demoItemsCache ||= demoJson<ItemSummary[]>('demo-data/it
 function normalizeSearchText(item: ItemSummary) {
   return [
     item.title,
+    item.use_case,
     item.cluster?.name,
     item.source_name,
     item.model,
@@ -37,11 +38,13 @@ async function demoItemList(params: Record<string, string | number | boolean | u
   const q = String(params.q || '').trim().toLowerCase();
   const cluster = String(params.cluster || '').trim();
   const tag = String(params.tag || '').trim();
+  const useCase = String(params.use_case || '').trim();
   const limit = Math.max(0, Number(params.limit || 100));
   const offset = Math.max(0, Number(params.offset || 0));
   const filtered = allItems.filter(item => {
     if (cluster && item.cluster?.id !== cluster) return false;
     if (tag && !item.tags.some(itemTag => itemTag.name === tag || itemTag.id === tag)) return false;
+    if (useCase && item.use_case !== useCase) return false;
     if (q && !normalizeSearchText(item).includes(q)) return false;
     return true;
   });
@@ -92,7 +95,7 @@ export const demoApi = {
   acceptPromptVariant: (_variantId: string) => demoAiUnavailable(),
   generateImageFromPrompt: (_itemId: string, _prompt: string, _generation?: PromptImageGenerationOptions, _references?: PromptImageReferenceInput[]) => demoAiUnavailable(),
   promptImageGenerationRuns: (_itemId: string) => Promise.resolve<PromptImageGenerationRunRecord[]>([]),
-  generatedImageHistory: (_params?: { q?: string; cluster?: string; limit?: number; offset?: number }) => Promise.resolve<GeneratedImageHistoryList>({ items: [], total: 0, limit: 0, offset: 0 }),
+  generatedImageHistory: (_params?: { q?: string; cluster?: string; use_case?: string; limit?: number; offset?: number }) => Promise.resolve<GeneratedImageHistoryList>({ items: [], total: 0, limit: 0, offset: 0 }),
   generateItemImage: (_itemId: string, _payload: NanobananaItemImageGenerationRequest = {}) => demoImageGenerationUnavailable(),
   itemImageGenerationStatus: (_itemId: string, _batchId: string) => demoImageGenerationUnavailable(),
   adminPromptTemplateOpsItems: (_params?: { status?: string[]; limit?: number }) => demoAiUnavailable(),
@@ -103,4 +106,5 @@ export const demoApi = {
   adminRejectPromptTemplate: (_templateId: string, _payload: PromptTemplateReviewRequest = {}) => demoAiUnavailable(),
   clusters: () => demoJson<ClusterRecord[]>('demo-data/clusters.json'),
   tags: () => demoJson<TagRecord[]>('demo-data/tags.json'),
+  useCases: () => Promise.resolve<UseCaseRecord[]>([]),
 };

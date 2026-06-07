@@ -15,7 +15,9 @@ interface Props {
   onFilters: () => void;
   onConfig: () => void;
   count: number;
+  useCaseName?: string;
   clusterName?: string;
+  clearUseCase: () => void;
   clearCluster: () => void;
 }
 
@@ -30,11 +32,13 @@ export default function TopBar({
   onFilters,
   onConfig,
   count,
+  useCaseName,
   clusterName,
+  clearUseCase,
   clearCluster,
 }: Props) {
-  const hasActiveFilter = Boolean(clusterName);
-  const hasStatusFilters = Boolean(q || clusterName);
+  const hasActiveFilter = Boolean(useCaseName || clusterName);
+  const hasStatusFilters = Boolean(q || useCaseName || clusterName);
   const showSecondaryToolbar = hasStatusFilters || view === 'cards';
   return (
     <header className="chrome">
@@ -76,6 +80,11 @@ export default function TopBar({
       {showSecondaryToolbar && <div className="status-row mobile-status-view-row">
         <div className="active-filter-strip" aria-label={t('currentFilters')}>
           {q && <span className="chip soft-chip">{t('searchChip')}: “{q}”</span>}
+          {useCaseName && (
+            <button className="chip active-filter" onClick={clearUseCase}>
+              {t('useCaseChip')}: {useCaseName} ×
+            </button>
+          )}
           {clusterName && (
             <button className="chip active-filter" onClick={clearCluster}>
               {t('collectionChip')}: {clusterName} ×

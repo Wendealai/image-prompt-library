@@ -8,6 +8,7 @@ from backend.config import APP_VERSION
 from backend.main import create_app
 from backend.db import connect
 from backend.repositories import ItemRepository, StoredImageInput
+from backend.schemas import ItemCreate
 
 
 def client(tmp_path):
@@ -42,6 +43,7 @@ def test_create_get_search_and_filter_item(tmp_path):
     created = c.post("/api/items", json=create_payload()).json()
     assert created["title"] == "Dream Glass Teahouse"
     assert created["cluster"]["name"] == "Architecture"
+    assert created["use_case"] == "场景空间"
     assert {t["name"] for t in created["tags"]} == {"glass", "vista"}
 
     detail = c.get(f"/api/items/{created['id']}").json()
@@ -57,6 +59,40 @@ def test_create_get_search_and_filter_item(tmp_path):
     assert c.get("/api/items", params={"q": "morning mist"}).json()["total"] == 1
     assert c.get("/api/items", params={"tag": "vista"}).json()["total"] == 1
     assert c.get("/api/items", params={"cluster": created["cluster"]["id"]}).json()["total"] == 1
+    assert c.get("/api/items", params={"use_case": "场景空间"}).json()["total"] == 1
+
+
+def test_use_case_catalog_and_filter_cover_distinct_prompt_families(tmp_path):
+    c = client(tmp_path)
+    portrait = c.post("/api/items", json=create_payload(
+        title="Luxury Beauty Portrait",
+        cluster_name="Photography & Realism",
+        tags=["beauty", "portrait"],
+        prompts=[{"language": "en", "text": "A luxury beauty portrait close-up of a fashion model", "is_primary": True}],
+    )).json()
+    dashboard = c.post("/api/items", json=create_payload(
+        title="Minimal Finance Dashboard UI",
+        cluster_name="UI & Interfaces",
+        tags=["ui", "dashboard"],
+        prompts=[{"language": "en", "text": "A polished SaaS finance dashboard interface", "is_primary": True}],
+        source_url="https://example.test/dashboard",
+    )).json()
+    poster = c.post("/api/items", json=create_payload(
+        title="Bold Film Poster",
+        cluster_name="Posters & Typography",
+        tags=["poster", "typography"],
+        prompts=[{"language": "en", "text": "A bold cinematic poster with oversized typography", "is_primary": True}],
+        source_url="https://example.test/poster",
+    )).json()
+
+    assert portrait["use_case"] == "人物肖像"
+    assert dashboard["use_case"] == "界面设计"
+    assert poster["use_case"] == "海报视觉"
+
+    use_cases = c.get("/api/use-cases").json()
+    assert {record["name"] for record in use_cases} >= {"人物肖像", "界面设计", "海报视觉"}
+    assert c.get("/api/items", params={"use_case": "界面设计"}).json()["items"][0]["id"] == dashboard["id"]
+    assert c.get("/api/items", params={"use_case": "海报视觉"}).json()["items"][0]["id"] == poster["id"]
 
 
 def test_item_tags_keep_payload_order_on_create_and_update(tmp_path):
@@ -79,6 +115,20 @@ def test_items_list_limit_allows_gallery_overview_scale(tmp_path):
     assert listed["total"] == 230
     assert listed["limit"] == 300
     assert len(listed["items"]) == 230
+
+
+def test_items_created_desc_order_is_stable_with_id_tiebreaker(tmp_path):
+    repository = ItemRepository(tmp_path / "library")
+    shared_created_at = "2026-01-01T00:00:00+00:00"
+    first = repository.create_item(ItemCreate.model_validate(create_payload(title="Stable Order A")))
+    second = repository.create_item(ItemCreate.model_validate(create_payload(title="Stable Order B", source_url="https://example.test/b")))
+    with connect(tmp_path / "library") as conn:
+        conn.execute("UPDATE items SET created_at=?, updated_at=? WHERE id IN (?, ?)", (shared_created_at, shared_created_at, first.id, second.id))
+        conn.commit()
+
+    listed = repository.list_items(sort="created_desc", limit=10, offset=0)
+
+    assert [item.id for item in listed.items[:2]] == sorted([first.id, second.id], reverse=True)
 
 
 def test_patch_favorite_and_archive_item(tmp_path):

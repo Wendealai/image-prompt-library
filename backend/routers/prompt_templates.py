@@ -238,10 +238,11 @@ def list_generated_image_history(
     request: Request,
     q: str | None = None,
     cluster: str | None = None,
+    use_case: str | None = None,
     limit: int = Query(default=120, ge=1, le=500),
     offset: int = Query(default=0, ge=0),
 ):
-    return repo(request).list_generated_image_history(q=q, cluster=cluster, limit=limit, offset=offset)
+    return repo(request).list_generated_image_history(q=q, cluster=cluster, use_case=use_case, limit=limit, offset=offset)
 
 
 @router.post("/admin/items/{item_id}/prompt-template/init", response_model=PromptTemplateBundle)

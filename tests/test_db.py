@@ -14,6 +14,8 @@ def test_init_db_creates_required_tables(tmp_path: Path):
         assert "role" in image_columns
         images_sql = conn.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='images'").fetchone()[0]
         assert "CHECK(role IN ('result_image', 'reference_image'))" in images_sql
+        item_columns = {row[1] for row in conn.execute("PRAGMA table_info(items)")}
+        assert "use_case" in item_columns
         item_tag_columns = {row[1] for row in conn.execute("PRAGMA table_info(item_tags)")}
         assert "sort_order" in item_tag_columns
         assert {row[0] for row in conn.execute("SELECT version FROM schema_migrations")} == {
@@ -24,6 +26,7 @@ def test_init_db_creates_required_tables(tmp_path: Path):
             "005_prompt_template_review_states.sql",
             "006_item_tag_sort_order.sql",
             "007_prompt_template_quality_and_image_runs.sql",
+            "008_item_use_cases.sql",
         }
 
 

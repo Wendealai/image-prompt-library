@@ -11,7 +11,7 @@ import ItemEditorModal from './components/ItemEditorModal';
 import ConfigPanel from './components/ConfigPanel';
 import { useDebouncedValue } from './hooks/useDebouncedValue';
 import { useItemsQuery } from './hooks/useItemsQuery';
-import type { CardsSortMode, ClusterRecord, ItemDetail, ItemSummary, TagRecord, ViewMode } from './types';
+import type { CardsSortMode, ClusterRecord, ItemDetail, ItemSummary, TagRecord, UseCaseRecord, ViewMode } from './types';
 import { copyTextToClipboard } from './utils/clipboard';
 import { DEFAULT_UI_LANGUAGE, makeTranslator, normalizeUiLanguage, type UiLanguage } from './utils/i18n';
 import { DEFAULT_PROMPT_LANGUAGE, normalizePromptLanguage, resolvePromptText, type PromptLanguage } from './utils/prompts';
@@ -60,6 +60,34 @@ function timeValue(value: string) {
   return Number.isFinite(timestamp) ? timestamp : 0;
 }
 
+function normalizedCardDuplicateKey(item: ItemSummary) {
+  const sourceUrl = item.source_url?.trim().toLowerCase();
+  if (sourceUrl) return `source:${sourceUrl}`;
+  const firstImage = item.first_image;
+  const imageKey = firstImage?.file_sha256 || firstImage?.remote_url || firstImage?.original_path || firstImage?.preview_path || firstImage?.thumb_path;
+  if (imageKey) return `image:${String(imageKey).trim().toLowerCase()}`;
+  return `item:${item.id}`;
+}
+
+export function buildCardDuplicateGroups(items: ItemSummary[]) {
+  const groupsByKey = new Map<string, ItemSummary[]>();
+  items.forEach(item => {
+    const key = normalizedCardDuplicateKey(item);
+    const current = groupsByKey.get(key);
+    if (current) current.push(item);
+    else groupsByKey.set(key, [item]);
+  });
+  const dedupedItems: ItemSummary[] = [];
+  const groupsByItemId: Record<string, ItemSummary[]> = {};
+  groupsByKey.forEach(group => {
+    dedupedItems.push(group[0]);
+    group.forEach(item => {
+      groupsByItemId[item.id] = group;
+    });
+  });
+  return { dedupedItems, groupsByItemId };
+}
+
 export function sortCardsItems(items: ItemSummary[], clusters: ClusterRecord[], cardsSortMode: CardsSortMode) {
   const addedOrder = (a: ItemSummary, b: ItemSummary) => timeValue(b.created_at) - timeValue(a.created_at) || a.title.localeCompare(b.title, 'zh-Hant');
   if (cardsSortMode === 'added') return [...items].sort(addedOrder);
@@ -86,12 +114,14 @@ export default function App() {
   const [q, setQ] = useState('');
   const debouncedQ = useDebouncedValue(q);
   const [clusterId, setClusterId] = useState<string>();
+  const [useCase, setUseCase] = useState<string>();
   const [view, setView] = useState<ViewMode>(loadPreferredView);
   const [cardsSortMode, setCardsSortMode] = useState<CardsSortMode>(loadCardsSortMode);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [configOpen, setConfigOpen] = useState(false);
   const [clusters, setClusters] = useState<ClusterRecord[]>([]);
   const [tags, setTags] = useState<TagRecord[]>([]);
+  const [useCases, setUseCases] = useState<UseCaseRecord[]>([]);
   const [detailId, setDetailId] = useState<string>();
   const [editing, setEditing] = useState<ItemDetail | undefined>();
   const [editorOpen, setEditorOpen] = useState(false);
@@ -106,17 +136,21 @@ export default function App() {
   const [exploreUnfilterFadePhase, setExploreUnfilterFadePhase] = useState<'out' | 'pre-in' | 'in' | 'idle'>('idle');
   const [toast, setToast] = useState<{ title: string; tone: 'success' | 'error' }>();
   const itemQueryLimit = view === 'cards' ? cardsQueryLimit : 5000;
-  const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, undefined, itemQueryLimit, itemsReloadKey, 'created_desc');
+  const { data, loading, initialLoading, refreshing, error, dataScope } = useItemsQuery(debouncedQ, clusterId, useCase, itemQueryLimit, itemsReloadKey, 'created_desc');
   const exploreFocusedClusterId = view === 'explore'
     ? (clusterId || (dataScope.clusterId === pendingExploreUnfilterClusterId ? pendingExploreUnfilterClusterId : undefined))
     : clusterId;
   const selectedCluster = useMemo(() => clusters.find(c => c.id === clusterId), [clusters, clusterId]);
+  const selectedUseCase = useMemo(() => useCases.find(record => record.name === useCase), [useCases, useCase]);
   const sortedCardItems = useMemo(() => sortCardsItems(data.items, clusters, cardsSortMode), [data.items, clusters, cardsSortMode]);
+  const { dedupedItems: dedupedCardItems, groupsByItemId: cardDuplicateGroupsByItemId } = useMemo(() => buildCardDuplicateGroups(sortedCardItems), [sortedCardItems]);
+  const activeCardDuplicateGroup = useMemo(() => (detailId ? cardDuplicateGroupsByItemId[detailId] : undefined), [detailId, cardDuplicateGroupsByItemId]);
   const t = useMemo(() => makeTranslator(uiLanguage), [uiLanguage]);
   const refreshClusters = () => api.clusters().then(setClusters).catch(() => setClusters([]));
   const refreshTags = () => api.tags().then(setTags).catch(() => setTags([]));
-  useEffect(() => { refreshClusters(); refreshTags(); }, []);
-  useEffect(() => { setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE); }, [debouncedQ, clusterId, itemsReloadKey]);
+  const refreshUseCases = () => api.useCases().then(setUseCases).catch(() => setUseCases([]));
+  useEffect(() => { refreshClusters(); refreshTags(); refreshUseCases(); }, []);
+  useEffect(() => { setCardsQueryLimit(CARDS_QUERY_PAGE_SIZE); }, [debouncedQ, clusterId, useCase, itemsReloadKey]);
   useEffect(() => {
     if (pendingExploreUnfilterClusterId && dataScope.clusterId !== pendingExploreUnfilterClusterId) {
       setPendingExploreUnfilterClusterId(undefined);
@@ -137,8 +171,8 @@ export default function App() {
     }
     setClusterId(undefined);
   };
-  const saved = () => { refreshClusters(); refreshTags(); setItemsReloadKey(k => k + 1); };
-  const deleted = () => { setDetailId(undefined); setEditing(undefined); refreshClusters(); refreshTags(); setItemsReloadKey(k => k + 1); };
+  const saved = () => { refreshClusters(); refreshTags(); refreshUseCases(); setItemsReloadKey(k => k + 1); };
+  const deleted = () => { setDetailId(undefined); setEditing(undefined); refreshClusters(); refreshTags(); refreshUseCases(); setItemsReloadKey(k => k + 1); };
   const updatePreferredLanguage = (language: PromptLanguage) => {
     setPreferredLanguage(language);
     window.localStorage.setItem(PROMPT_LANGUAGE_STORAGE_KEY, language);
@@ -181,7 +215,7 @@ export default function App() {
   const editSummary = (item: { id: string }) => { api.item(item.id).then(full => { setEditing(full); setEditorOpen(true); }).catch(() => undefined); };
   const showSelectedCollectionDock = Boolean(selectedCluster && !filtersOpen && !configOpen && !detailId && !editorOpen);
   return <div className={`app ${view === 'explore' ? 'explore-mode' : 'cards-mode'}`}>
-    <TopBar t={t} q={q} onQ={setQ} view={view} onView={updateView} cardsSortMode={cardsSortMode} onCardsSortMode={updateCardsSortMode} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} clusterName={selectedCluster?.name} clearCluster={clearCluster} />
+    <TopBar t={t} q={q} onQ={setQ} view={view} onView={updateView} cardsSortMode={cardsSortMode} onCardsSortMode={updateCardsSortMode} onFilters={() => setFiltersOpen(true)} onConfig={() => setConfigOpen(true)} count={data.total} useCaseName={selectedUseCase?.name} clusterName={selectedCluster?.name} clearUseCase={() => setUseCase(undefined)} clearCluster={clearCluster} />
     {isDemoMode && (
       <div className="demo-banner" role="status">
         <strong>{t('onlineSandbox')}</strong>
@@ -191,7 +225,7 @@ export default function App() {
         <a href="https://github.com/EddieTYP/image-prompt-library" target="_blank" rel="noreferrer">{t('viewOnGitHub')}</a>
       </div>
     )}
-    <FiltersPanel t={t} open={filtersOpen} clusters={clusters} selected={clusterId} onSelect={handleFilterSelect} onClear={clearCluster} onClose={() => setFiltersOpen(false)} />
+    <FiltersPanel t={t} open={filtersOpen} useCases={useCases} clusters={clusters} selectedUseCase={useCase} selectedCluster={clusterId} onSelectUseCase={value => setUseCase(value || undefined)} onSelect={handleFilterSelect} onClear={() => { setUseCase(undefined); clearCluster(); }} onClose={() => setFiltersOpen(false)} />
     <ConfigPanel t={t} open={configOpen} onClose={() => setConfigOpen(false)} uiLanguage={uiLanguage} onUiLanguage={updateUiLanguage} preferredLanguage={preferredLanguage} onPreferredLanguage={updatePreferredLanguage} globalThumbnailBudget={globalThumbnailBudget} onGlobalThumbnailBudget={updateGlobalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusThumbnailBudget={updateFocusThumbnailBudget} />
     {/* Static-test compatibility marker: <main className="app-main"> */}
     <main className={`app-main ${refreshing ? 'is-refreshing' : ''}`} aria-busy={refreshing}>
@@ -201,8 +235,8 @@ export default function App() {
       {view === 'explore'
         ? <ExploreView t={t} clusters={clusters} items={data.items} focusedClusterId={exploreFocusedClusterId} fitRequestKey={exploreFitRequestKey} unfilterTransitionPhase={exploreUnfilterFadePhase} globalThumbnailBudget={globalThumbnailBudget} focusThumbnailBudget={focusThumbnailBudget} onFocusCluster={focusCluster} onOpen={setDetailId} onAdd={isDemoMode ? undefined : openNewItemEditor} />
         : view === 'cards'
-          ? <CardsView t={t} items={sortedCardItems} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />
-          : <GeneratedHistoryView t={t} q={debouncedQ} clusterId={clusterId} reloadKey={itemsReloadKey} onOpen={setDetailId} onChanged={saved} showMutations={!isDemoMode} />}
+          ? <CardsView t={t} items={dedupedCardItems} duplicateGroupsByItemId={cardDuplicateGroupsByItemId} total={data.total} loadingMore={loading || refreshing} onLoadMore={loadMoreCards} onOpen={setDetailId} onFavorite={isDemoMode ? undefined : favorite} onEdit={isDemoMode ? undefined : editSummary} onCopyPrompt={copyPrompt} onAdd={isDemoMode ? undefined : openNewItemEditor} />
+          : <GeneratedHistoryView t={t} q={debouncedQ} clusterId={clusterId} useCase={useCase} reloadKey={itemsReloadKey} onOpen={setDetailId} onChanged={saved} showMutations={!isDemoMode} />}
     </main>
     {showSelectedCollectionDock && selectedCluster && (
       <button className="selected-collection-dock" onClick={clearCluster} aria-label={`${t('collectionChip')}: ${selectedCluster.name}. ${t('close')}`}>
@@ -213,7 +247,7 @@ export default function App() {
       </button>
     )}
     {!isDemoMode && <button className="fab" onClick={openNewItemEditor}><Plus/> {t('add')}</button>}
-    <ItemDetailModal t={t} id={detailId} preferredLanguage={preferredLanguage} clusters={clusters} tags={tags} onClose={() => setDetailId(undefined)} onCopyPrompt={showCopyToast} onChanged={saved} onEdit={(item) => { setDetailId(undefined); setEditing(item); setEditorOpen(true); }} showMutations={!isDemoMode} />
+    <ItemDetailModal t={t} id={detailId} duplicateGroup={activeCardDuplicateGroup} onSelectDuplicateItem={setDetailId} preferredLanguage={preferredLanguage} clusters={clusters} tags={tags} onClose={() => setDetailId(undefined)} onCopyPrompt={showCopyToast} onChanged={saved} onEdit={(item) => { setDetailId(undefined); setEditing(item); setEditorOpen(true); }} showMutations={!isDemoMode} />
     {toast && <div className={`toast copy-toast elegant-toast ${toast.tone}`} role="status"><span className="toast-icon">{toast.tone === 'success' ? <Check size={16} /> : <XCircle size={16} />}</span><span className="toast-title">{toast.title}</span></div>}
     {editorOpen && <ItemEditorModal t={t} item={editing} clusters={clusters} tags={tags} onClose={() => setEditorOpen(false)} onSaved={saved} onDeleted={deleted} />}
   </div>

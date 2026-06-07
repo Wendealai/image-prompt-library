@@ -282,6 +282,8 @@ function InlineEditableTextArea({
 
 export default function ItemDetailModal({
   id,
+  duplicateGroup,
+  onSelectDuplicateItem,
   t,
   preferredLanguage,
   clusters,
@@ -293,6 +295,8 @@ export default function ItemDetailModal({
   showMutations = true,
 }: {
   id?: string;
+  duplicateGroup?: Array<Pick<ItemDetail, 'id' | 'title' | 'prompts'>>;
+  onSelectDuplicateItem?: (id: string) => void;
   t: Translator;
   preferredLanguage: PromptLanguage;
   clusters: ClusterRecord[];
@@ -335,6 +339,11 @@ export default function ItemDetailModal({
     setItem(undefined);
     api.item(id).then(setItem);
   }, [id]);
+
+  const duplicatePromptGroup = useMemo(
+    () => (duplicateGroup && duplicateGroup.length > 1 ? duplicateGroup : []),
+    [duplicateGroup],
+  );
 
   const refreshGenerationRuns = async (itemId: string) => {
     try {
@@ -765,6 +774,26 @@ export default function ItemDetailModal({
                     </a>
                   )}
                 </p>
+
+                {duplicatePromptGroup.length > 0 && (
+                  <div className="detail-duplicate-tabs tabs" role="tablist" aria-label="Prompt variants">
+                    {duplicatePromptGroup.map((variant, index) => (
+                      <button
+                        type="button"
+                        role="tab"
+                        key={variant.id}
+                        aria-selected={variant.id === item.id}
+                        className={variant.id === item.id ? 'active' : ''}
+                        onClick={() => {
+                          if (variant.id !== item.id) onSelectDuplicateItem?.(variant.id);
+                        }}
+                        title={variant.title}
+                      >
+                        {`Prompt ${index + 1}`}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div className="detail-panel-tabs tabs" role="tablist" aria-label={t('generatedImagePanel')}>
                   <button
