@@ -418,7 +418,7 @@ function buildConstellation(clusters: ClusterRecord[], items: ItemSummary[], foc
     const inactive = !!focusedClusterId && !focused;
     const allItems = itemsByCluster.get(cluster.id) || [];
     const pos = clusterPositions.get(cluster.id) || centerFocusedCluster();
-    const cap = focused ? focusThumbnailBudget : (allocations.get(cluster.id) || 0);
+    const cap = focused ? allItems.length : (allocations.get(cluster.id) || 0);
     const nodes = inactive ? [] : buildClusterNodes(allItems, cap, pos, focused, sharedCollisionBoxes);
     return {
       ...cluster,
@@ -477,6 +477,10 @@ export default function ExploreView({
   const displayedClusters = useMemo(
     () => (focusedClusterId ? constellation.filter(cluster => !cluster.inactive) : constellation),
     [constellation, focusedClusterId],
+  );
+  const focusedVisibleCount = useMemo(
+    () => displayedClusters.reduce((sum, cluster) => sum + cluster.nodes.length, 0),
+    [displayedClusters],
   );
 
   const fitConstellationToViewport = () => {
@@ -575,7 +579,7 @@ export default function ExploreView({
         <button onClick={() => setScale(s => Math.max(0.42, s - 0.08))} aria-label={t('zoomOut')}><Minus size={16} /></button>
         <button onClick={() => setScale(s => Math.min(1.35, s + 0.08))} aria-label={t('zoomIn')}><Plus size={16} /></button>
         <button onClick={reset}><RotateCcw size={16} /> {t('resetView')}</button>
-        <span>{focusedClusterId ? `${focusThumbnailBudget} ${t('focusThumbnailsVisible')}` : `${globalThumbnailBudget} ${t('thumbnailsVisible')}`}</span>
+        <span>{focusedClusterId ? `${focusedVisibleCount} ${t('focusThumbnailsVisible')}` : `${globalThumbnailBudget} ${t('thumbnailsVisible')}`}</span>
       </div>
       <div
         ref={viewportRef}

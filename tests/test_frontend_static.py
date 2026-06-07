@@ -637,6 +637,8 @@ def test_explore_focus_mode_stays_in_map_without_duplicate_focus_panel():
     assert "clusters={exploreClusters}" in app
     assert "items={exploreItems}" in app
     assert "focusedClusterId" in explore
+    assert "const cap = focused ? allItems.length : (allocations.get(cluster.id) || 0);" in explore
+    assert "const focusedVisibleCount = useMemo(" in explore
     assert "constellation-focus-panel" not in explore
     assert ".constellation-focus-panel" not in css
     assert "onOpenClusterCards" not in explore
@@ -868,6 +870,7 @@ def test_explore_has_static_repulsive_relaxation_and_tap_drag_threshold():
     assert "Math.hypot((x - pos.x) * 0.78, (y - pos.y) * 1.35)" in explore
     assert "rotation: 0" in explore
     assert "() => (focusedClusterId ? constellation.filter(cluster => !cluster.inactive) : constellation)" in explore
+    assert "displayedClusters.reduce((sum, cluster) => sum + cluster.nodes.length, 0)" in explore
     assert "resolveConstellationNodeOverlaps" in explore
     assert "placeWithoutGlobalOverlap" in explore
     assert "attempt <= 1800" in explore
