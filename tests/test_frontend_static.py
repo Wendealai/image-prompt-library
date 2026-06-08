@@ -551,6 +551,10 @@ def test_detail_modal_exposes_direct_nanobanana_image_generation():
     assert "storedImages.length === 0 && !batchId" in detail
     assert "api.itemImageGenerationStatus(item.id, batchId)" in detail
     assert "IMAGE_GENERATION_POLL_ATTEMPTS" in detail
+    assert "const pendingRuns = generationRuns.filter(run => run.source === 'direct' && run.batch_id && !isTerminalGenerationRunStatus(run.status));" in detail
+    assert "const timer = window.setInterval(() => { void pollPendingRuns(); }, IMAGE_GENERATION_POLL_INTERVAL_MS);" in detail
+    assert "resolveDirectGenerationState(status)" in detail
+    assert "await refreshGenerationRuns(item.id);" in detail
     assert "api.uploadImage(item.id, file, 'reference_image')" in detail
     assert "prompt-direct-reference-panel" in detail
     assert "prompt-direct-reference-thumb" in detail

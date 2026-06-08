@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Check, Copy, Download, ExternalLink, Eye, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { api, isDemoMode, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
@@ -148,6 +148,19 @@ function resolveDirectGenerationState(status: NanobananaItemImageGenerationStatu
       nestedBatch?.error,
     ),
   };
+}
+
+function isTerminalGenerationRunStatus(status: string | undefined) {
+  const normalized = (status || '').trim().toLowerCase();
+  if (!normalized) return false;
+  return normalized === 'completed'
+    || normalized === 'failed'
+    || normalized === 'cancelled'
+    || normalized === 'canceled'
+    || normalized === 'no_image'
+    || normalized === 'no_images'
+    || normalized.includes('error')
+    || normalized.includes('timeout');
 }
 
 function buildGeneratedImageHistory(images: ImageRecord[], runs: PromptImageGenerationRunRecord[]): GeneratedImageHistoryEntry[] {
@@ -390,13 +403,13 @@ export default function ItemDetailModal({
     [duplicateGroup],
   );
 
-  const refreshGenerationRuns = async (itemId: string) => {
+  const refreshGenerationRuns = useCallback(async (itemId: string) => {
     try {
       setGenerationRuns(await api.promptImageGenerationRuns(itemId));
     } catch {
       setGenerationRuns([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!id) {
@@ -411,6 +424,44 @@ export default function ItemDetailModal({
       .finally(() => { if (!cancelled) setGenerationRunsLoading(false); });
     return () => { cancelled = true; };
   }, [id]);
+
+  useEffect(() => {
+    if (!item?.id) return;
+    const pendingRuns = generationRuns.filter(run => run.source === 'direct' && run.batch_id && !isTerminalGenerationRunStatus(run.status));
+    if (!pendingRuns.length) return;
+    let cancelled = false;
+    const pollPendingRuns = async () => {
+      const results = await Promise.all(
+        pendingRuns.map(run => api.itemImageGenerationStatus(item.id, run.batch_id!).catch(() => null)),
+      );
+      if (cancelled) return;
+      const hasStoredImages = results.some(status => Boolean(status?.stored_images.length));
+      const hasTerminalUpdate = results.some(status => {
+        if (!status) return false;
+        if (status.stored_images.length > 0) return true;
+        const directGenerationState = resolveDirectGenerationState(status);
+        return isTerminalGenerationRunStatus(status.run?.status)
+          || isTerminalGenerationRunStatus(directGenerationState.resultStatus)
+          || isTerminalGenerationRunStatus(directGenerationState.batchStatus);
+      });
+      if (hasStoredImages) {
+        const updated = await api.item(item.id).catch(() => null);
+        if (!cancelled && updated) {
+          setItem(updated);
+          onChanged();
+        }
+      }
+      if (hasStoredImages || hasTerminalUpdate) {
+        await refreshGenerationRuns(item.id);
+      }
+    };
+    void pollPendingRuns();
+    const timer = window.setInterval(() => { void pollPendingRuns(); }, IMAGE_GENERATION_POLL_INTERVAL_MS);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [generationRuns, item?.id, onChanged, refreshGenerationRuns]);
 
   const availablePromptRecords = useMemo(() => {
     if (!item) return [];
