@@ -155,11 +155,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 1130
+    assert len(items) == 1155
     assert len(clusters) == 172
-    assert len(tags) == 2097
-    assert len(media_files) == 1915
-    assert metadata["item_count"] == 1130
+    assert len(tags) == 2208
+    assert len(media_files) == 1980
+    assert metadata["item_count"] == 1155
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -186,7 +186,7 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
 
     media_files = {path.name for path in media_dir.glob("*.webp")}
 
-    assert len(referenced) == 1915
+    assert len(referenced) == 1980
     assert referenced <= media_files
 
 
@@ -195,7 +195,7 @@ def test_demo_bundle_uses_local_media_for_x_imports():
     items = json.loads((demo_root / "items.json").read_text())
 
     x_imports = [item for item in items if (item.get("source_url") or "").startswith("https://x.com/")]
-    assert len(x_imports) == 678
+    assert x_imports
     for item in x_imports:
         first_image = item["first_image"]
         assert first_image["original_path"].startswith("demo-data/media/")

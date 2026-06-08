@@ -182,12 +182,12 @@
     "name": "Art & Illustration",
     "description": null,
     "sort_order": 0,
-    "count": 20,
+    "count": 22,
     "preview_images": [
+      "demo-data/media/img_c5a2bb501e8c4e37.webp",
+      "demo-data/media/img_d78c35759b2a4d97.webp",
       "demo-data/media/img_ab467f71427d47f2.webp",
-      "demo-data/media/img_916faaafca6c41eb.webp",
-      "demo-data/media/img_56ae3418803b49bb.webp",
-      "demo-data/media/img_15d641c74bfa4a27.webp"
+      "demo-data/media/img_916faaafca6c41eb.webp"
     ]
   },
   {
@@ -217,12 +217,12 @@
     "name": "Brand & Logos",
     "description": null,
     "sort_order": 0,
-    "count": 15,
+    "count": 16,
     "preview_images": [
+      "demo-data/media/img_940f57d4fd274a49.webp",
       "demo-data/media/img_3f0731fc6d9f4263.webp",
       "demo-data/media/img_c85d4cedcd284ed1.webp",
-      "demo-data/media/img_e381ed3554144472.webp",
-      "demo-data/media/img_882477b0e843452d.webp"
+      "demo-data/media/img_e381ed3554144472.webp"
     ]
   },
   {
@@ -344,12 +344,12 @@
     "name": "Characters & Anime",
     "description": null,
     "sort_order": 0,
-    "count": 31,
+    "count": 32,
     "preview_images": [
+      "demo-data/media/img_e6b17b16fb834452.webp",
       "demo-data/media/img_f0efd5ca07224567.webp",
       "demo-data/media/img_4c345c1bfe8a4eb5.webp",
-      "demo-data/media/img_ddc3a73ae01c49ae.webp",
-      "demo-data/media/img_61af15e7ebad435e.webp"
+      "demo-data/media/img_ddc3a73ae01c49ae.webp"
     ]
   },
   {
@@ -449,8 +449,9 @@
     "name": "Corporate Brochure Systems",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 2,
     "preview_images": [
+      "demo-data/media/img_889826c21fbb4791.webp",
       "demo-data/media/img_e2f194c80b5e4e59.webp"
     ]
   },
@@ -681,8 +682,9 @@
     "name": "Fashion Editorial & Luxury Campaign Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 3,
+    "count": 4,
     "preview_images": [
+      "demo-data/media/img_985fe9d4a5594cd7.webp",
       "demo-data/media/img_2cbe13fc5c714a76.webp",
       "demo-data/media/img_4faf0ea9ca274791.webp",
       "demo-data/media/img_4a05a21c93d54681.webp"
@@ -693,8 +695,9 @@
     "name": "Fashion Editorial & Poster Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 2,
     "preview_images": [
+      "demo-data/media/img_ffadd4815af044af.webp",
       "demo-data/media/img_cbdf1f3b4a464f2d.webp"
     ]
   },
@@ -1143,10 +1146,12 @@
     "name": "Portrait Transformation Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 5,
     "preview_images": [
-      "demo-data/media/img_a949df30da0e4fda.webp",
-      "demo-data/media/img_a5962c8ea6ba44df.webp"
+      "demo-data/media/img_5939a28d5cc84d11.webp",
+      "demo-data/media/img_343eb3b684f64f0f.webp",
+      "demo-data/media/img_ad46e4e78ee840d5.webp",
+      "demo-data/media/img_a949df30da0e4fda.webp"
     ]
   },
   {
@@ -1154,8 +1159,9 @@
     "name": "Portrait photography",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 2,
     "preview_images": [
+      "demo-data/media/img_b680e8ebb9154170.webp",
       "demo-data/media/img_d3a8b103c2b147c3.webp"
     ]
   },
@@ -1164,12 +1170,12 @@
     "name": "Posters & Typography",
     "description": null,
     "sort_order": 0,
-    "count": 43,
+    "count": 52,
     "preview_images": [
-      "demo-data/media/img_0e385437d1cd4719.webp",
-      "demo-data/media/img_f714bd3231944047.webp",
-      "demo-data/media/img_024ff8cbcd1a4aa4.webp",
-      "demo-data/media/img_9d741d90e1bf4df4.webp"
+      "demo-data/media/img_52564bca3ecb47e8.webp",
+      "demo-data/media/img_655543c393da44ee.webp",
+      "demo-data/media/img_0d9f24463c694c8b.webp",
+      "demo-data/media/img_2fb2e1a866c14cc6.webp"
     ]
   },
   {
@@ -1359,8 +1365,10 @@
     "name": "Stylized Portrait Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_1f34b77a5b054265.webp",
+      "demo-data/media/img_af8be0949e4e4c02.webp",
       "demo-data/media/img_e49728e9250349f7.webp"
     ]
   },
@@ -1457,8 +1465,9 @@
     "name": "Travel Poster Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 2,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_1a8d4e7c230a4c8c.webp",
       "demo-data/media/img_60f30f06255040be.webp",
       "demo-data/media/img_9f4345f055ea4785.webp"
     ]
@@ -1892,8 +1901,10 @@
     "name": "餐饮门店物料 Prompts",
     "description": null,
     "sort_order": 0,
-    "count": 1,
+    "count": 3,
     "preview_images": [
+      "demo-data/media/img_448cab721ec249ab.webp",
+      "demo-data/media/img_6d1e761072994129.webp",
       "demo-data/media/img_be303d9b827c4503.webp"
     ]
   }
