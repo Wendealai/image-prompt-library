@@ -155,6 +155,76 @@ def test_generate_images_from_prompt_polls_job_status(monkeypatch):
     assert status_calls["count"] == 1
 
 
+def test_generate_images_from_prompt_extracts_image_from_sse_body(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL", "https://n8n.example/webhook/img-generate-submit")
+
+    sse_body = (
+        "event: response.output_item.added\n"
+        f'data: {json.dumps({"item": {"type": "image_generation_call", "result": PNG_BASE64, "output_format": "jpeg"}})}\n\n'
+        "event: response.image_generation_call.generating\n"
+        f'data: {json.dumps({"type": "image_generation_call", "result": PNG_BASE64, "output_format": "jpeg"})}\n\n'
+    )
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "ok": True,
+                "status": "completed",
+                "body": sse_body,
+            },
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        result = generate_images_from_prompt("A polished chrome poster", client=client)
+
+    assert result.status == "completed"
+    assert len(result.images) == 1
+    assert result.images[0].data == PNG_BYTES
+    assert result.images[0].mime_type == "image/jpeg"
+
+
+def test_generate_images_from_prompt_polls_and_extracts_image_from_sse_body(monkeypatch):
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL", "https://n8n.example/webhook/img-generate-submit")
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL", "https://n8n.example/webhook/img-job-status")
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_POLL_INTERVAL_SECONDS", "0.01")
+    monkeypatch.setenv("IMAGE_PROMPT_LIBRARY_IMAGE_POLL_TIMEOUT_SECONDS", "2")
+
+    sse_body = (
+        "event: response.created\n"
+        f'data: {json.dumps({"type": "response.created"})}\n\n'
+        "event: response.output_item.added\n"
+        f'data: {json.dumps({"item": {"type": "image_generation_call", "result": PNG_BASE64, "output_format": "jpeg"}})}\n\n'
+        "event: response.image_generation_call.generating\n"
+        f'data: {json.dumps({"type": "response.image_generation_call.generating"})}\n\n'
+    )
+
+    status_calls = {"count": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/webhook/img-generate-submit":
+            return httpx.Response(202, json={"ok": True, "status": "accepted", "jobId": "job_sse"})
+        if request.url.path == "/webhook/img-job-status":
+            status_calls["count"] += 1
+            return httpx.Response(
+                200,
+                json={
+                    "status": "completed",
+                    "body": sse_body,
+                },
+            )
+        raise AssertionError(f"Unexpected request URL: {request.url}")
+
+    with httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True) as client:
+        result = generate_images_from_prompt("A neon storefront poster", client=client)
+
+    assert result.job_id == "job_sse"
+    assert len(result.images) == 1
+    assert result.images[0].data == PNG_BYTES
+    assert result.images[0].mime_type == "image/jpeg"
+    assert status_calls["count"] == 1
+
+
 def test_generate_image_endpoint_persists_generated_images(tmp_path: Path, monkeypatch):
     library = tmp_path / "library"
     app = create_app(library_path=library)

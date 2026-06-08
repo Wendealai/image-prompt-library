@@ -44,6 +44,8 @@ upsert_workflow() {
 
 INIT_ID="$(upsert_workflow 'Image Prompt Library - Template Init' "$N8N_DIR/prompt-template-init.workflow.json")"
 GENERATE_ID="$(upsert_workflow 'Image Prompt Library - Template Generate' "$N8N_DIR/prompt-template-generate.workflow.json")"
+IMAGE_GENERATE_ID="$(upsert_workflow 'img-generate-submit' "$N8N_DIR/image-generate-submit.workflow.json")"
+IMAGE_STATUS_ID="$(upsert_workflow 'img-job-status' "$N8N_DIR/image-job-status.workflow.json")"
 CANGHE_WORKFLOW_FILE="$N8N_DIR/canghe-gallery-daily-sync.workflow.json"
 CANGHE_UPLOAD_WORKFLOW="$CANGHE_WORKFLOW_FILE"
 CANGHE_TEMP_WORKFLOW=""
@@ -75,9 +77,13 @@ fi
 cat <<OUT
 INIT_WORKFLOW_ID=$INIT_ID
 GENERATE_WORKFLOW_ID=$GENERATE_ID
+IMAGE_GENERATE_WORKFLOW_ID=$IMAGE_GENERATE_ID
+IMAGE_STATUS_WORKFLOW_ID=$IMAGE_STATUS_ID
 CANGHE_GALLERY_SYNC_WORKFLOW_ID=$CANGHE_ID
 IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-init
 IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL=$N8N_URL_VALUE/webhook/image-prompt-library-template-generate
+IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL=$N8N_URL_VALUE/webhook/img-generate-submit
+IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL=$N8N_URL_VALUE/webhook/img-job-status
 OUT
 
 # Restore source-controlled workflow JSON without embedding live secrets.

@@ -1,0 +1,739 @@
+{
+  "updatedAt": "2026-06-06T16:03:09.597Z",
+  "createdAt": "2026-04-25T10:27:22.843Z",
+  "id": "iOT09NAqa6X4zifL",
+  "name": "img-generate-submit",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "webhook_generate_submit",
+      "name": "Webhook Generate Submit",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        100
+      ],
+      "parameters": {
+        "path": "img-generate-submit",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "img-generate-submit"
+    },
+    {
+      "id": "prepare_generate_payload",
+      "name": "Prepare Generate Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -470,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;\nconst prompt = String(body.prompt ?? body.promptRaw ?? '').trim();\nif (!prompt) {\n  throw new Error('Missing prompt');\n}\nconst generation = body.generation && typeof body.generation === 'object' ? body.generation : {};\nconst mode = String(body.mode ?? 'text-to-image');\nconst model = String(body.model ?? 'gpt-5.4-mini').trim() || 'gpt-5.4-mini';\nconst toolModel = String(body.toolModel ?? 'gpt-image-2').trim() || 'gpt-image-2';\nconst executionId = String($execution?.id ?? '').trim();\nconst content = [{ type: 'input_text', text: prompt }];\n\nconst parseResolutionSize = (resolution) => {\n  const match = String(resolution ?? '').trim().match(/^(\\d+)x(\\d+)$/i);\n  if (!match) {\n    return null;\n  }\n  const width = Number.parseInt(match[1], 10);\n  const height = Number.parseInt(match[2], 10);\n  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {\n    return null;\n  }\n  return { width, height };\n};\n\nconst inferOrientationFromResolution = (resolution) => {\n  const parsed = parseResolutionSize(resolution);\n  if (!parsed) {\n    return 'square';\n  }\n  if (parsed.width === parsed.height) {\n    return 'square';\n  }\n  return parsed.width > parsed.height ? 'landscape' : 'portrait';\n};\n\nconst inferOrientationFromAspectRatio = (aspectRatio) => {\n  const normalized = String(aspectRatio ?? '').trim();\n  if (!normalized || normalized === 'auto') {\n    return null;\n  }\n  if (normalized === '1:1') {\n    return 'square';\n  }\n  if (['4:3', '3:2', '16:9', '21:9'].includes(normalized)) {\n    return 'landscape';\n  }\n  if (['3:4', '2:3', '9:16'].includes(normalized)) {\n    return 'portrait';\n  }\n  return null;\n};\n\nconst isValidToolSize = (resolution) => {\n  const parsed = parseResolutionSize(resolution);\n  if (!parsed) {\n    return false;\n  }\n  const { width, height } = parsed;\n  if (width % 16 !== 0 || height % 16 !== 0) {\n    return false;\n  }\n  if (Math.max(width, height) > 3840) {\n    return false;\n  }\n  const pixelCount = width * height;\n  if (pixelCount < 655360 || pixelCount > 8294400) {\n    return false;\n  }\n  const ratio = Math.max(width, height) / Math.min(width, height);\n  return ratio <= 3;\n};\n\nconst normalizeToolSize = (widthValue, heightValue) => {\n  let width = Number(widthValue);\n  let height = Number(heightValue);\n  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {\n    return null;\n  }\n  const snap = (value) => Math.max(16, Math.round(value / 16) * 16);\n  for (let attempt = 0; attempt < 10; attempt += 1) {\n    const ratio = Math.max(width, height) / Math.min(width, height);\n    if (ratio > 3) {\n      if (width > height) {\n        height = width / 3;\n      } else {\n        width = height / 3;\n      }\n    }\n    const maxEdge = Math.max(width, height);\n    if (maxEdge > 3840) {\n      const scale = 3840 / maxEdge;\n      width *= scale;\n      height *= scale;\n    }\n    const pixelCount = width * height;\n    if (pixelCount > 8294400) {\n      const scale = Math.sqrt(8294400 / pixelCount);\n      width *= scale;\n      height *= scale;\n    } else if (pixelCount < 655360) {\n      const scale = Math.sqrt(655360 / pixelCount);\n      width *= scale;\n      height *= scale;\n    }\n    width = snap(width);\n    height = snap(height);\n    const normalized = width + 'x' + height;\n    if (isValidToolSize(normalized)) {\n      return normalized;\n    }\n  }\n  return null;\n};\n\nconst extractPromptResolutionCandidates = (promptText) => {\n  const source = String(promptText ?? '');\n  const candidates = [];\n  const collect = (pattern, widthIndex, heightIndex) => {\n    for (const match of source.matchAll(pattern)) {\n      candidates.push({\n        width: match[widthIndex],\n        height: match[heightIndex],\n        matchedText: match[0],\n        index: match.index ?? 0,\n      });\n    }\n  };\n  collect(/(^|[^\\d])(\\d{3,5})\\s*(?:x|\\*)\\s*(\\d{3,5})\\s*(?:px)?(?!\\d)/gi, 2, 3);\n  collect(/(?<!\\d)(\\d{3,5})\\s*by\\s*(\\d{3,5})\\s*(?:px)?(?!\\d)/gi, 1, 2);\n  collect(/(?:width|w)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?\\s*(?:[,;\\/-]?\\s*)?(?:height|h)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?/gi, 1, 2);\n  collect(/(?:height|h)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?\\s*(?:[,;\\/-]?\\s*)?(?:width|w)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?/gi, 2, 1);\n  return candidates.sort((left, right) => left.index - right.index);\n};\n\nconst resolvePromptToolSize = (promptText) => {\n  const candidates = extractPromptResolutionCandidates(promptText);\n  for (let index = candidates.length - 1; index >= 0; index -= 1) {\n    const candidate = candidates[index];\n    const normalized = normalizeToolSize(candidate.width, candidate.height);\n    if (normalized) {\n      return { size: normalized, matchedText: candidate.matchedText };\n    }\n  }\n  return null;\n};\n\nconst resolveToolSize = () => {\n  const explicitToolSize = String(generation.toolSize ?? '').trim();\n  const resolutionPriority = String(generation.resolutionPriority ?? '').trim();\n  if ((resolutionPriority === 'source' || generation.keepSourceAspectRatio === true) && isValidToolSize(explicitToolSize)) {\n    return explicitToolSize;\n  }\n  const promptOverride = resolvePromptToolSize(body.promptRaw) ?? resolvePromptToolSize(!body.promptRaw ? prompt : '');\n  if (promptOverride?.size) {\n    return promptOverride.size;\n  }\n  if (isValidToolSize(explicitToolSize)) {\n    return explicitToolSize;\n  }\n  const resolution = String(generation.resolution ?? '').trim();\n  if (isValidToolSize(resolution)) {\n    return resolution;\n  }\n  const orientation = inferOrientationFromAspectRatio(generation.aspectRatio) ?? inferOrientationFromResolution(resolution);\n  if (orientation === 'landscape') {\n    return '2048x1152';\n  }\n  if (orientation === 'portrait') {\n    return '1152x2048';\n  }\n  return '1024x1024';\n};\n\nconst normalizeReferenceItems = () => {\n  const sourceItems = Array.isArray(body.sourceItems)\n    ? body.sourceItems.filter((item) => item && typeof item === 'object')\n    : [];\n  if (sourceItems.length > 0) {\n    return sourceItems;\n  }\n  const legacySource = body.source && typeof body.source === 'object' ? body.source : null;\n  return legacySource ? [legacySource] : [];\n};\n\nconst referenceItems = normalizeReferenceItems();\nconst normalizedReferenceLabels = [];\nif (mode === 'image-to-image') {\n  if (referenceItems.length === 0) {\n    throw new Error('Image-to-image requires at least one sourceItems entry or legacy source');\n  }\n\n  let appendedReferenceCount = 0;\n  for (const item of referenceItems) {\n    const imageBase64 = String(item.imageBase64 ?? '').trim();\n    const imageUrl = String(item.imageUrl ?? '').trim();\n    const mimeType = String(item.mimeType ?? 'image/png').trim() || 'image/png';\n    const label = String(item.label ?? '').trim();\n\n    if (imageBase64) {\n      content.push({\n        type: 'input_image',\n        image_url: imageBase64.startsWith('data:image/') ? imageBase64 : ('data:' + mimeType + ';base64,' + imageBase64),\n      });\n      appendedReferenceCount += 1;\n      if (label) normalizedReferenceLabels.push(label);\n      continue;\n    }\n\n    if (imageUrl) {\n      content.push({\n        type: 'input_image',\n        image_url: imageUrl,\n      });\n      appendedReferenceCount += 1;\n      if (label) normalizedReferenceLabels.push(label);\n    }\n  }\n\n  if (appendedReferenceCount === 0) {\n    throw new Error('Image-to-image requires usable sourceItems.imageBase64 or sourceItems.imageUrl');\n  }\n}\nif (mode === 'image-to-image' && referenceItems.length > 0 && !/Image-to-image reference instructions:/i.test(content[0].text)) {\n  const referenceLines = referenceItems.map((item, index) => {\n    const label = String(item.label ?? ('reference ' + (index + 1))).trim() || ('reference ' + (index + 1));\n    const role = String(item.role ?? (index === 0 ? 'subject' : 'style')).trim() || (index === 0 ? 'subject' : 'style');\n    const note = String(item.note ?? '').trim();\n    return (index + 1) + '. ' + label + ' (' + role + ')' + (note ? ': ' + note : '');\n  }).join('\\n');\n  const rawStrength = Number(generation.strength ?? 0.65);\n  const strength = Number.isFinite(rawStrength) ? Math.max(0, Math.min(1, rawStrength)) : 0.65;\n  const strengthPercent = Math.round(strength * 100);\n  const influence = strength < 0.4\n    ? 'loose influence: borrow broad cues only'\n    : strength > 0.75\n      ? 'close influence: preserve the requested subject/style cues, but still create a new image'\n      : 'balanced influence: keep useful subject/style cues while following the new prompt';\n  content[0].text = prompt + '\\n\\nImage-to-image reference instructions:\\n'\n    + '- Use the attached reference image(s) as guidance only; do not return, copy, or lightly re-save the reference image unchanged.\\n'\n    + '- Generate a new image that follows the prompt above. The final result must be visibly transformed from the input reference.\\n'\n    + '- Reference strength: ' + strengthPercent + '% (' + influence + ').\\n'\n    + '- Reference roles:\\n' + referenceLines;\n}\nconst promptToolOverride = resolvePromptToolSize(body.promptRaw) ?? resolvePromptToolSize(!body.promptRaw ? prompt : '');\nconst resolvedToolSize = resolveToolSize();\nconst requestPayload = {\n  model,\n  stream: true,\n  input: [\n    {\n      role: 'user',\n      content,\n    },\n  ],\n  tool_choice: {\n    type: 'image_generation',\n  },\n  tools: [\n    {\n      type: 'image_generation',\n      model: toolModel,\n      size: resolvedToolSize,\n      quality: String(generation.quality ?? '').trim() === 'high' ? 'high' : 'medium',\n      output_format: String(generation.outputFormat ?? 'png').trim() || 'png',\n    },\n  ],\n};\nreturn [{\n  json: {\n    requestPayload,\n    requestMeta: {\n      requestId: String(body.requestId ?? ''),\n      executionId,\n      mode,\n      model,\n      toolModel,\n      prompt: prompt.slice(0, 400),\n      sourceCount: referenceItems.length,\n      sourceLabels: normalizedReferenceLabels.slice(0, 12),\n      usesLegacySource: !Array.isArray(body.sourceItems) || body.sourceItems.length === 0,\n      requestedResolution: String(generation.resolution ?? '').trim(),\n      requestedAspectRatio: String(generation.aspectRatio ?? '').trim() || 'auto',\n      promptResolvedToolSize: promptToolOverride?.size ?? '',\n      promptResolvedText: promptToolOverride?.matchedText ?? '',\n      resolvedToolSize,\n    },\n  },\n}];"
+      }
+    },
+    {
+      "id": "prepare_generate_ack",
+      "name": "Prepare Accepted Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -170,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const executionId = String($json.requestMeta?.executionId ?? '').trim();\nconst mode = String($json.requestMeta?.mode ?? 'text-to-image');\nreturn [{\n  json: {\n    ...$json,\n    responseBody: {\n      ok: true,\n      status: 'accepted',\n      queued: true,\n      jobId: executionId,\n      mode,\n      message: executionId\n        ? '\\u4efb\\u52a1\\u5df2\\u53d7\\u7406\\uff0c\\u6b63\\u5728\\u7531 n8n \\u540e\\u53f0\\u751f\\u6210\\u56fe\\u7247\\uff0c\\u8bf7\\u7b49\\u5f85\\u72b6\\u6001\\u8f6e\\u8be2\\u7ed3\\u679c\\u3002'\n        : '\\u4efb\\u52a1\\u5df2\\u53d7\\u7406\\uff0c\\u4f46\\u5f53\\u524d\\u672a\\u62ff\\u5230 executionId\\uff0c\\u8bf7\\u7a0d\\u540e\\u91cd\\u8bd5\\u3002',\n    },\n  },\n}];"
+      }
+    },
+    {
+      "id": "respond_generate_ack",
+      "name": "Respond Accepted Job",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        120,
+        100
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{$json.responseBody}}",
+        "options": {
+          "responseCode": 202
+        }
+      }
+    },
+    {
+      "id": "call_asxs_responses_generate",
+      "name": "Call ASXS Responses",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        430,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.asxs.top/v1/responses",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{$json.requestPayload}}",
+        "responseFormat": "string",
+        "options": {
+          "timeout": 180000
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi"
+      },
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "openAiApi": {
+          "id": "WwKQlbKl3pE8swBl",
+          "name": "ASXS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const envelope = ($json && typeof $json === 'object') ? $json : { response: $json };\nconst source = (envelope.response && typeof envelope.response === 'object') ? envelope.response : envelope;\nconst upstreamRoute = String(envelope.upstreamRoute ?? envelope.provider ?? 'asxs-primary');\nconst fallbackUsed = Boolean(envelope.fallbackUsed);\nconst primaryFailure = envelope.primaryFailure && typeof envelope.primaryFailure === 'object' ? envelope.primaryFailure : null;\nconst ERROR_TEXT_PATTERN = /service unavailable|\\u5f53\\u524d\\u670d\\u52a1\\u6682\\u4e0d\\u53ef\\u7528|\\u5168\\u90e8\\u6e20\\u9053\\u4e0d\\u53ef\\u63d0\\u4f9b\\u5f53\\u524d\\u6a21\\u578b|\\u5f53\\u524d\\u6a21\\u578b\\u4e0d\\u53ef\\u7528|model unavailable|unsupported model|NodeApiError|bad gateway|gateway timeout|cloudflare/i;\n\nconst buildFailureMessage = (message) => {\n  if (fallbackUsed && primaryFailure?.message) {\n    return `\\u4e3b\\u901a\\u9053 ASXS \\u5931\\u8d25\\uff1a${primaryFailure.message}\\uff1b\\u5907\\u7528\\u901a\\u9053 OpenAI \\u5b98\\u65b9\\u5931\\u8d25\\uff1a${message}`;\n  }\n  if (!fallbackUsed && upstreamRoute === 'asxs-primary' && !/^ASXS /.test(message)) {\n    return `ASXS \\u751f\\u56fe\\u5931\\u8d25\\uff1a${message}`;\n  }\n  return message;\n};\n\nconst buildFailure = (status, message, rawPreview, httpCode = null, eventTypes = [], hasOutputItemDone = false) => [{\n  json: {\n    ok: false,\n    status,\n    message: buildFailureMessage(message),\n    httpCode,\n    imageCount: 0,\n    images: [],\n    outputText: '',\n    eventTypes,\n    hasOutputItemDone,\n    rawPreview: String(rawPreview || '').slice(0, 12000),\n    upstreamRoute,\n    fallbackUsed,\n    primaryFailure,\n  },\n}];\n\nif (source && typeof source === 'object') {\n  const upstreamError = source.error || source.errors || null;\n  if (upstreamError) {\n    const rawMessage = typeof upstreamError === 'string'\n      ? upstreamError\n      : typeof source.message === 'string'\n        ? source.message\n        : typeof upstreamError.message === 'string'\n          ? upstreamError.message\n          : JSON.stringify(upstreamError).slice(0, 2000);\n    const httpCode = Number(source.httpCode ?? source.statusCode ?? upstreamError.httpCode ?? 0);\n    const isServiceUnavailable = httpCode === 503 || ERROR_TEXT_PATTERN.test(rawMessage);\n    const message = isServiceUnavailable\n      ? '\\u7f51\\u5173\\u7e41\\u5fd9\\u6216\\u4e0a\\u6e38\\u670d\\u52a1\\u6682\\u65f6\\u4e0d\\u53ef\\u7528\\uff0c\\u8bf7\\u7a0d\\u540e\\u91cd\\u8bd5\\u3002\\u539f\\u59cb\\u4fe1\\u606f\\uff1a' + rawMessage\n      : rawMessage;\n    return buildFailure(\n      isServiceUnavailable ? 'upstream_service_unavailable' : 'upstream_error',\n      message,\n      JSON.stringify(source),\n      httpCode || null,\n    );\n  }\n}\n\nconst httpCode = Number(source.httpCode ?? source.statusCode ?? source.code ?? 0) || null;\nconst raw = typeof source.body === 'string'\n  ? source.body\n  : typeof source.data === 'string'\n    ? source.data\n    : typeof source === 'string'\n      ? source\n      : JSON.stringify(source);\n\nif (typeof source.statusCode === 'number' && source.statusCode >= 400) {\n  return buildFailure('http_error', raw.slice(0, 2000), raw, source.statusCode || null);\n}\n\nconst eventTypes = new Set();\nconst outputTextChunks = [];\nconst failureMessages = [];\nconst images = [];\nconst imageSet = new Set();\nlet hasOutputItemDone = false;\nlet hasFailureEvent = false;\n\nconst toDataUrl = (base64, mimeType = 'image/png') => {\n  const normalized = String(base64 || '').replace(/\\s+/g, '');\n  if (!normalized) return '';\n  return normalized.startsWith('data:image/') ? normalized : ('data:' + mimeType + ';base64,' + normalized);\n};\n\nconst pushText = (value) => {\n  const text = String(value ?? '').trim();\n  if (!text || text.length < 2 || text.startsWith('data:image/')) return;\n  if (!outputTextChunks.includes(text)) outputTextChunks.push(text);\n};\n\nconst pushFailureMessage = (value) => {\n  const text = String(value ?? '').trim();\n  if (!text || text.length < 2) return;\n  if (!failureMessages.includes(text)) failureMessages.push(text);\n  pushText(text);\n};\n\nconst addImage = (base64, mimeType = 'image/png') => {\n  const src = toDataUrl(base64, mimeType);\n  if (!src || imageSet.has(src)) return;\n  imageSet.add(src);\n  images.push({ src, mimeType });\n};\n\nconst parseSsePayload = (rawText) => {\n  const normalized = String(rawText ?? '').replace(/\\r\\n/g, '\\n').replace(/\\r/g, '\\n');\n  const blocks = normalized.split('\\n\\n').map((item) => item.trim()).filter(Boolean);\n  const parsedItems = [];\n  let parsedAnyBlock = false;\n\n  for (const block of blocks) {\n    const lines = block.split('\\n');\n    let eventType = '';\n    const dataLines = [];\n    for (const line of lines) {\n      const trimmed = line.trim();\n      if (!trimmed || trimmed.startsWith(':')) continue;\n      if (trimmed.startsWith('event:')) {\n        eventType = trimmed.slice(6).trim();\n        continue;\n      }\n      if (trimmed.startsWith('data:')) {\n        dataLines.push(trimmed.slice(5).trim());\n      }\n    }\n    if (!dataLines.length) continue;\n    parsedAnyBlock = true;\n    const merged = dataLines.join('\\n').trim();\n    if (!merged || merged === '[DONE]') continue;\n    try {\n      const payload = JSON.parse(merged);\n      if (payload && typeof payload === 'object') {\n        if (eventType && typeof payload.event !== 'string') payload.event = eventType;\n        parsedItems.push(payload);\n      } else if (eventType) {\n        parsedItems.push({ event: eventType, data: payload });\n      } else {\n        parsedItems.push(payload);\n      }\n    } catch {\n      if (eventType) {\n        parsedItems.push({ event: eventType, data: merged });\n      } else {\n        parsedItems.push(merged);\n      }\n    }\n  }\n\n  if (!parsedAnyBlock) return rawText;\n  return parsedItems.length === 1 ? parsedItems[0] : parsedItems;\n};\n\nconst parseStructured = (value) => {\n  if (typeof value !== 'string') return value;\n  const trimmed = value.trim();\n  if (!trimmed || trimmed.startsWith('data:image/')) return value;\n  if (trimmed.startsWith('{') || trimmed.startsWith('[')) {\n    try {\n      return JSON.parse(trimmed);\n    } catch {\n      return value;\n    }\n  }\n  if (trimmed.includes('event:') || trimmed.includes('data:')) {\n    return parseSsePayload(trimmed);\n  }\n  return value;\n};\n\nconst walk = (node) => {\n  if (node === null || node === undefined) return;\n  if (typeof node === 'string') {\n    const parsed = parseStructured(node);\n    if (parsed !== node) {\n      walk(parsed);\n      return;\n    }\n    pushText(node);\n    return;\n  }\n  if (Array.isArray(node)) {\n    node.forEach(walk);\n    return;\n  }\n  if (typeof node !== 'object') return;\n\n  const nodeType = typeof node.type === 'string' ? node.type : '';\n  const nodeEvent = typeof node.event === 'string' ? node.event : '';\n  if (nodeType) eventTypes.add(nodeType);\n  if (nodeEvent) eventTypes.add(nodeEvent);\n  if (nodeType === 'response.output_item.done' || nodeEvent === 'response.output_item.done') {\n    hasOutputItemDone = true;\n  }\n\n  const normalizedEvent = `${nodeType} ${nodeEvent} ${String(node.code ?? '')}`.toLowerCase();\n  if (\n    normalizedEvent.includes('response.failed')\n    || normalizedEvent.includes('server_error')\n    || normalizedEvent.includes('invalid_request_error')\n    || normalizedEvent.includes('rate_limit_error')\n    || normalizedEvent.includes('image_generation_failed')\n    || normalizedEvent === 'error'\n    || normalizedEvent.endsWith('.error')\n  ) {\n    hasFailureEvent = true;\n  }\n\n  const nodeFailureMessage = typeof node.error === 'string'\n    ? node.error\n    : typeof node.message === 'string'\n      ? node.message\n      : node.error && typeof node.error === 'object' && typeof node.error.message === 'string'\n        ? node.error.message\n        : '';\n  if (nodeFailureMessage && hasFailureEvent) {\n    pushFailureMessage(nodeFailureMessage);\n  }\n\n  const mimeType = typeof node.mime_type === 'string'\n    ? node.mime_type\n    : typeof node.mimeType === 'string'\n      ? node.mimeType\n      : (typeof node.output_format === 'string' && node.output_format.toLowerCase() === 'jpeg' ? 'image/jpeg' : 'image/png');\n\n  const imageLike = node.src || node.url;\n  if (typeof imageLike === 'string' && /^(data:image\\/|https?:\\/\\/)/i.test(imageLike.trim())) {\n    if (imageLike.trim().startsWith('data:image/')) {\n      addImage(imageLike, mimeType);\n    } else {\n      images.push({ src: imageLike.trim(), mimeType: mimeType || 'image/png' });\n    }\n  }\n\n  if (nodeType === 'image_generation_call') {\n    const result = node.result;\n    const outputFormat = typeof node.output_format === 'string' ? node.output_format : '';\n    const resultMimeType = mimeType || (outputFormat.toLowerCase() === 'jpeg' ? 'image/jpeg' : 'image/png');\n    if (result !== null && result !== undefined) {\n      if (typeof result === 'string' && result.trim().length > 40) {\n        const parsed = parseStructured(result);\n        if (parsed !== result) {\n          walk(parsed);\n        } else if (result.startsWith('data:image/')) {\n          addImage(result, resultMimeType);\n        } else {\n          addImage(result, resultMimeType);\n        }\n      } else {\n        walk(result);\n      }\n    }\n  }\n\n  for (const inlineKey of ['inlineData', 'inline_data']) {\n    const inlineValue = node[inlineKey];\n    if (inlineValue && typeof inlineValue === 'object') {\n      const data = inlineValue.data;\n      const inlineMime = inlineValue.mimeType || inlineValue.mime_type || mimeType;\n      if (typeof data === 'string' && data.trim().length > 40) {\n        addImage(data, inlineMime || 'image/png');\n      }\n    }\n  }\n\n  for (const key of ['b64_json', 'b64', 'image_base64', 'imageBase64', 'base64', 'image']) {\n    const value = node[key];\n    if (typeof value === 'string' && value.trim().length > 40) {\n      addImage(value, mimeType || 'image/png');\n    }\n  }\n\n  for (const value of Object.values(node)) {\n    walk(value);\n  }\n};\n\nconst parsedRaw = parseStructured(raw);\nif (parsedRaw !== raw) {\n  walk(parsedRaw);\n} else {\n  try {\n    walk(JSON.parse(raw));\n  } catch {\n    walk(raw);\n  }\n}\n\nconst outputText = outputTextChunks.join('\\n').slice(0, 6000);\nconst eventTypeList = Array.from(eventTypes);\nconst rawPreview = raw.slice(0, 12000);\nconst streamedFailureMessage = failureMessages[0]\n  || outputTextChunks.find((line) => /failed|error|unable|process your request|\\u670d\\u52a1|\\u4e0d\\u53ef\\u7528/i.test(line))\n  || '';\n\nif (images.length === 0 && (hasFailureEvent || ERROR_TEXT_PATTERN.test(`${outputText}\\n${rawPreview}`))) {\n  return buildFailure(\n    'upstream_error',\n    streamedFailureMessage || outputText || rawPreview.slice(0, 500),\n    rawPreview,\n    httpCode,\n    eventTypeList,\n    hasOutputItemDone,\n  );\n}\n\nconst recentEventTypes = eventTypeList.length > 0 ? eventTypeList.slice(0, 12).join(', ') : '\\u672a\\u89e3\\u6790\\u5230\\u4e8b\\u4ef6\\u7c7b\\u578b';\nconst noImageMessage = hasOutputItemDone\n  ? `\\u68c0\\u6d4b\\u5230 response.output_item.done\\uff0c\\u4f46\\u4e8b\\u4ef6\\u4e2d\\u672a\\u63d0\\u53d6\\u5230\\u53ef\\u7528\\u56fe\\u7247\\u6570\\u636e\\uff08item.result \\u53ef\\u80fd\\u4e3a\\u7a7a\\uff09\\u3002\\u4e8b\\u4ef6\\u7c7b\\u578b\\uff1a${recentEventTypes}`\n  : `\\u672a\\u68c0\\u6d4b\\u5230 response.output_item.done\\u3002\\u4e8b\\u4ef6\\u7c7b\\u578b\\uff1a${recentEventTypes}`;\nconst message = images.length > 0\n  ? (fallbackUsed ? `\\u5b98\\u65b9 OpenAI fallback \\u751f\\u56fe\\u6210\\u529f\\uff08${images.length} \\u5f20\\uff09` : `ASXS \\u751f\\u56fe\\u6210\\u529f\\uff08${images.length} \\u5f20\\uff09`)\n  : (fallbackUsed && primaryFailure?.message\n      ? `\\u4e3b\\u901a\\u9053 ASXS \\u5931\\u8d25\\uff1a${primaryFailure.message}\\uff1b\\u5907\\u7528\\u901a\\u9053\\u5df2\\u8fd4\\u56de\\u54cd\\u5e94\\uff0c\\u4f46${noImageMessage}`\n      : noImageMessage);\n\nreturn [{\n  json: {\n    ok: images.length > 0,\n    status: images.length > 0 ? 'completed' : 'no_image',\n    message,\n    imageCount: images.length,\n    images,\n    outputText,\n    eventTypes: eventTypeList,\n    hasOutputItemDone,\n    rawPreview,\n    upstreamRoute,\n    fallbackUsed,\n    primaryFailure,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "id": "extract_images_from_sse",
+      "position": [
+        1840,
+        20
+      ],
+      "name": "Extract Images From SSE",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": "const source = ($json && typeof $json === 'object') ? $json : { body: $json };\nconst ERROR_TEXT_PATTERN = /service unavailable|\\u5f53\\u524d\\u670d\\u52a1\\u6682\\u4e0d\\u53ef\\u7528|\\u5168\\u90e8\\u6e20\\u9053\\u4e0d\\u53ef\\u63d0\\u4f9b\\u5f53\\u524d\\u6a21\\u578b|\\u5f53\\u524d\\u6a21\\u578b\\u4e0d\\u53ef\\u7528|model unavailable|unsupported model|NodeApiError|bad gateway|gateway timeout|cloudflare/i;\n\nconst upstreamError = source.error || source.errors || null;\nconst raw = typeof source.body === 'string'\n  ? source.body\n  : typeof source.data === 'string'\n    ? source.data\n    : typeof source === 'string'\n      ? source\n      : JSON.stringify(source);\nconst httpCode = Number(source.httpCode ?? source.statusCode ?? source.code ?? upstreamError?.httpCode ?? 0) || null;\nconst rawMessage = typeof upstreamError === 'string'\n  ? upstreamError\n  : typeof source.message === 'string'\n    ? source.message\n    : typeof upstreamError?.message === 'string'\n      ? upstreamError.message\n      : raw.slice(0, 2000);\nconst transportFailure = Boolean(upstreamError) || (typeof source.statusCode === 'number' && source.statusCode >= 400);\nconst gatewayFailure = ERROR_TEXT_PATTERN.test(`${rawMessage}\\n${raw}`);\nconst hasOutputItemDone = /response\\.output_item\\.done/.test(raw);\nconst hasImageGenerationCall = /image_generation_call/.test(raw);\nconst hasLikelyImageResult = /\"result\"\\s*:\\s*\"(?:data:image\\/[^;]+;base64,)?[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"b64_json\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"imageBase64\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"inlineData\"\\s*:\\s*\\{[^}]*\"data\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/s.test(raw);\nconst hasFailureEvent = /response\\.failed/.test(raw)\n  || /server_error/.test(raw)\n  || /invalid_request_error/.test(raw)\n  || /rate_limit_error/.test(raw)\n  || /\"type\"\\s*:\\s*\"error\"/.test(raw)\n  || /\"event\"\\s*:\\s*\"error\"/.test(raw);\nconst failureMessageMatch = raw.match(/(?:The service failed to process your request[^\"\\n]*|service unavailable[^\"\\n]*|server_error[^\"\\n]*|model unavailable[^\"\\n]*)/i);\nconst streamedFailureMessage = failureMessageMatch ? failureMessageMatch[0] : rawMessage;\nconst streamFailure = !transportFailure && hasFailureEvent && !hasLikelyImageResult;\nconst noImageCompletion = !transportFailure && (hasOutputItemDone || hasFailureEvent) && (!hasImageGenerationCall || !hasLikelyImageResult);\nconst shouldFallback = transportFailure || gatewayFailure || streamFailure || noImageCompletion;\nconst primaryFailureMessage = streamFailure\n  ? (streamedFailureMessage || 'ASXS returned a streamed failure response; using OpenAI official fallback.')\n  : (noImageCompletion\n      ? 'ASXS returned a completed response without usable image data; using OpenAI official fallback.'\n      : rawMessage);\n\nreturn [{\n  json: {\n    shouldFallback,\n    primaryResponse: source,\n    primaryFailure: shouldFallback\n      ? {\n          provider: 'asxs-primary',\n          httpCode,\n          message: String(primaryFailureMessage || rawMessage || 'ASXS generate failed').slice(0, 2000),\n          rawPreview: String(raw || '').slice(0, 4000),\n        }\n      : null,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "id": "evaluate_primary_generate_result",
+      "position": [
+        740,
+        -60
+      ],
+      "name": "Evaluate Primary Generate Result",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "rightValue": true,
+              "leftValue": "={{$json.shouldFallback}}",
+              "id": "if_use_openai_generate_fallback_condition",
+              "operator": {
+                "operation": "true",
+                "singleValue": true,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "id": "if_use_openai_generate_fallback",
+      "position": [
+        1010,
+        -60
+      ],
+      "name": "If Use OpenAI Generate Fallback",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    upstreamRoute: 'asxs-primary',\n    fallbackUsed: false,\n    response: $json.primaryResponse ?? $json,\n    primaryFailure: $json.primaryFailure ?? null,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "id": "prepare_primary_generate_response",
+      "position": [
+        1290,
+        100
+      ],
+      "name": "Prepare Primary Generate Response",
+      "typeVersion": 2
+    },
+    {
+      "continueOnFail": true,
+      "name": "Call OpenAI Responses",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "jsonBody": "={{ { ...$(\"Prepare Generate Payload\").first().json.requestPayload, stream: false } }}",
+        "options": {
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "responseFormat": "string",
+        "nodeCredentialType": "openAiApi",
+        "contentType": "json",
+        "specifyBody": "json",
+        "authentication": "predefinedCredentialType",
+        "url": "https://aifast.site/v1/responses",
+        "method": "POST"
+      },
+      "position": [
+        1290,
+        -220
+      ],
+      "maxTries": 2,
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "id": "call_openai_responses_generate",
+      "credentials": {
+        "openAiApi": {
+          "id": "aiivcEB2dQOcjdf8",
+          "name": "aifast"
+        }
+      },
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "const primary = $('Evaluate Primary Generate Result').first().json.primaryFailure ?? null;\nreturn [{\n  json: {\n    upstreamRoute: 'openai-fallback',\n    fallbackUsed: true,\n    response: $json,\n    primaryFailure: primary,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "id": "prepare_fallback_generate_response",
+      "position": [
+        1560,
+        -220
+      ],
+      "name": "Prepare Fallback Generate Response",
+      "typeVersion": 2
+    }
+  ],
+  "connections": {
+    "Webhook Generate Submit": {
+      "main": [
+        [
+          {
+            "node": "Prepare Generate Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Generate Payload": {
+      "main": [
+        [
+          {
+            "node": "Prepare Accepted Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Accepted Response": {
+      "main": [
+        [
+          {
+            "node": "Respond Accepted Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond Accepted Job": {
+      "main": [
+        [
+          {
+            "node": "Call ASXS Responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call ASXS Responses": {
+      "main": [
+        [
+          {
+            "node": "Evaluate Primary Generate Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate Primary Generate Result": {
+      "main": [
+        [
+          {
+            "node": "If Use OpenAI Generate Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Use OpenAI Generate Fallback": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI Responses",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Primary Generate Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI Responses": {
+      "main": [
+        [
+          {
+            "node": "Prepare Fallback Generate Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Fallback Generate Response": {
+      "main": [
+        [
+          {
+            "node": "Extract Images From SSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Primary Generate Response": {
+      "main": [
+        [
+          {
+            "node": "Extract Images From SSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "nodeGroups": [],
+  "pinData": null,
+  "versionId": "b39b127b-f0fd-4c73-9053-ce783140a239",
+  "activeVersionId": "b39b127b-f0fd-4c73-9053-ce783140a239",
+  "versionCounter": 96,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-04-25T10:27:22.843Z",
+      "createdAt": "2026-04-25T10:27:22.843Z",
+      "role": "workflow:owner",
+      "workflowId": "iOT09NAqa6X4zifL",
+      "projectId": "q1yzaGhg8FoNhlu5",
+      "project": {
+        "updatedAt": "2025-05-20T05:16:27.297Z",
+        "createdAt": "2025-05-20T04:28:02.552Z",
+        "id": "q1yzaGhg8FoNhlu5",
+        "name": "Wen Zhong <superjohn1986@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      }
+    }
+  ],
+  "tags": [],
+  "activeVersion": {
+    "updatedAt": "2026-06-06T16:03:09.598Z",
+    "createdAt": "2026-06-06T16:03:09.598Z",
+    "versionId": "b39b127b-f0fd-4c73-9053-ce783140a239",
+    "workflowId": "iOT09NAqa6X4zifL",
+    "nodes": [
+      {
+        "id": "webhook_generate_submit",
+        "name": "Webhook Generate Submit",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -760,
+          100
+        ],
+        "parameters": {
+          "path": "img-generate-submit",
+          "httpMethod": "POST",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "webhookId": "img-generate-submit"
+      },
+      {
+        "id": "prepare_generate_payload",
+        "name": "Prepare Generate Payload",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -470,
+          100
+        ],
+        "parameters": {
+          "jsCode": "const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;\nconst prompt = String(body.prompt ?? body.promptRaw ?? '').trim();\nif (!prompt) {\n  throw new Error('Missing prompt');\n}\nconst generation = body.generation && typeof body.generation === 'object' ? body.generation : {};\nconst mode = String(body.mode ?? 'text-to-image');\nconst model = String(body.model ?? 'gpt-5.4-mini').trim() || 'gpt-5.4-mini';\nconst toolModel = String(body.toolModel ?? 'gpt-image-2').trim() || 'gpt-image-2';\nconst executionId = String($execution?.id ?? '').trim();\nconst content = [{ type: 'input_text', text: prompt }];\n\nconst parseResolutionSize = (resolution) => {\n  const match = String(resolution ?? '').trim().match(/^(\\d+)x(\\d+)$/i);\n  if (!match) {\n    return null;\n  }\n  const width = Number.parseInt(match[1], 10);\n  const height = Number.parseInt(match[2], 10);\n  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {\n    return null;\n  }\n  return { width, height };\n};\n\nconst inferOrientationFromResolution = (resolution) => {\n  const parsed = parseResolutionSize(resolution);\n  if (!parsed) {\n    return 'square';\n  }\n  if (parsed.width === parsed.height) {\n    return 'square';\n  }\n  return parsed.width > parsed.height ? 'landscape' : 'portrait';\n};\n\nconst inferOrientationFromAspectRatio = (aspectRatio) => {\n  const normalized = String(aspectRatio ?? '').trim();\n  if (!normalized || normalized === 'auto') {\n    return null;\n  }\n  if (normalized === '1:1') {\n    return 'square';\n  }\n  if (['4:3', '3:2', '16:9', '21:9'].includes(normalized)) {\n    return 'landscape';\n  }\n  if (['3:4', '2:3', '9:16'].includes(normalized)) {\n    return 'portrait';\n  }\n  return null;\n};\n\nconst isValidToolSize = (resolution) => {\n  const parsed = parseResolutionSize(resolution);\n  if (!parsed) {\n    return false;\n  }\n  const { width, height } = parsed;\n  if (width % 16 !== 0 || height % 16 !== 0) {\n    return false;\n  }\n  if (Math.max(width, height) > 3840) {\n    return false;\n  }\n  const pixelCount = width * height;\n  if (pixelCount < 655360 || pixelCount > 8294400) {\n    return false;\n  }\n  const ratio = Math.max(width, height) / Math.min(width, height);\n  return ratio <= 3;\n};\n\nconst normalizeToolSize = (widthValue, heightValue) => {\n  let width = Number(widthValue);\n  let height = Number(heightValue);\n  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {\n    return null;\n  }\n  const snap = (value) => Math.max(16, Math.round(value / 16) * 16);\n  for (let attempt = 0; attempt < 10; attempt += 1) {\n    const ratio = Math.max(width, height) / Math.min(width, height);\n    if (ratio > 3) {\n      if (width > height) {\n        height = width / 3;\n      } else {\n        width = height / 3;\n      }\n    }\n    const maxEdge = Math.max(width, height);\n    if (maxEdge > 3840) {\n      const scale = 3840 / maxEdge;\n      width *= scale;\n      height *= scale;\n    }\n    const pixelCount = width * height;\n    if (pixelCount > 8294400) {\n      const scale = Math.sqrt(8294400 / pixelCount);\n      width *= scale;\n      height *= scale;\n    } else if (pixelCount < 655360) {\n      const scale = Math.sqrt(655360 / pixelCount);\n      width *= scale;\n      height *= scale;\n    }\n    width = snap(width);\n    height = snap(height);\n    const normalized = width + 'x' + height;\n    if (isValidToolSize(normalized)) {\n      return normalized;\n    }\n  }\n  return null;\n};\n\nconst extractPromptResolutionCandidates = (promptText) => {\n  const source = String(promptText ?? '');\n  const candidates = [];\n  const collect = (pattern, widthIndex, heightIndex) => {\n    for (const match of source.matchAll(pattern)) {\n      candidates.push({\n        width: match[widthIndex],\n        height: match[heightIndex],\n        matchedText: match[0],\n        index: match.index ?? 0,\n      });\n    }\n  };\n  collect(/(^|[^\\d])(\\d{3,5})\\s*(?:x|\\*)\\s*(\\d{3,5})\\s*(?:px)?(?!\\d)/gi, 2, 3);\n  collect(/(?<!\\d)(\\d{3,5})\\s*by\\s*(\\d{3,5})\\s*(?:px)?(?!\\d)/gi, 1, 2);\n  collect(/(?:width|w)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?\\s*(?:[,;\\/-]?\\s*)?(?:height|h)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?/gi, 1, 2);\n  collect(/(?:height|h)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?\\s*(?:[,;\\/-]?\\s*)?(?:width|w)\\s*[:=]?\\s*(\\d{3,5})\\s*(?:px)?/gi, 2, 1);\n  return candidates.sort((left, right) => left.index - right.index);\n};\n\nconst resolvePromptToolSize = (promptText) => {\n  const candidates = extractPromptResolutionCandidates(promptText);\n  for (let index = candidates.length - 1; index >= 0; index -= 1) {\n    const candidate = candidates[index];\n    const normalized = normalizeToolSize(candidate.width, candidate.height);\n    if (normalized) {\n      return { size: normalized, matchedText: candidate.matchedText };\n    }\n  }\n  return null;\n};\n\nconst resolveToolSize = () => {\n  const explicitToolSize = String(generation.toolSize ?? '').trim();\n  const resolutionPriority = String(generation.resolutionPriority ?? '').trim();\n  if ((resolutionPriority === 'source' || generation.keepSourceAspectRatio === true) && isValidToolSize(explicitToolSize)) {\n    return explicitToolSize;\n  }\n  const promptOverride = resolvePromptToolSize(body.promptRaw) ?? resolvePromptToolSize(!body.promptRaw ? prompt : '');\n  if (promptOverride?.size) {\n    return promptOverride.size;\n  }\n  if (isValidToolSize(explicitToolSize)) {\n    return explicitToolSize;\n  }\n  const resolution = String(generation.resolution ?? '').trim();\n  if (isValidToolSize(resolution)) {\n    return resolution;\n  }\n  const orientation = inferOrientationFromAspectRatio(generation.aspectRatio) ?? inferOrientationFromResolution(resolution);\n  if (orientation === 'landscape') {\n    return '2048x1152';\n  }\n  if (orientation === 'portrait') {\n    return '1152x2048';\n  }\n  return '1024x1024';\n};\n\nconst normalizeReferenceItems = () => {\n  const sourceItems = Array.isArray(body.sourceItems)\n    ? body.sourceItems.filter((item) => item && typeof item === 'object')\n    : [];\n  if (sourceItems.length > 0) {\n    return sourceItems;\n  }\n  const legacySource = body.source && typeof body.source === 'object' ? body.source : null;\n  return legacySource ? [legacySource] : [];\n};\n\nconst referenceItems = normalizeReferenceItems();\nconst normalizedReferenceLabels = [];\nif (mode === 'image-to-image') {\n  if (referenceItems.length === 0) {\n    throw new Error('Image-to-image requires at least one sourceItems entry or legacy source');\n  }\n\n  let appendedReferenceCount = 0;\n  for (const item of referenceItems) {\n    const imageBase64 = String(item.imageBase64 ?? '').trim();\n    const imageUrl = String(item.imageUrl ?? '').trim();\n    const mimeType = String(item.mimeType ?? 'image/png').trim() || 'image/png';\n    const label = String(item.label ?? '').trim();\n\n    if (imageBase64) {\n      content.push({\n        type: 'input_image',\n        image_url: imageBase64.startsWith('data:image/') ? imageBase64 : ('data:' + mimeType + ';base64,' + imageBase64),\n      });\n      appendedReferenceCount += 1;\n      if (label) normalizedReferenceLabels.push(label);\n      continue;\n    }\n\n    if (imageUrl) {\n      content.push({\n        type: 'input_image',\n        image_url: imageUrl,\n      });\n      appendedReferenceCount += 1;\n      if (label) normalizedReferenceLabels.push(label);\n    }\n  }\n\n  if (appendedReferenceCount === 0) {\n    throw new Error('Image-to-image requires usable sourceItems.imageBase64 or sourceItems.imageUrl');\n  }\n}\nif (mode === 'image-to-image' && referenceItems.length > 0 && !/Image-to-image reference instructions:/i.test(content[0].text)) {\n  const referenceLines = referenceItems.map((item, index) => {\n    const label = String(item.label ?? ('reference ' + (index + 1))).trim() || ('reference ' + (index + 1));\n    const role = String(item.role ?? (index === 0 ? 'subject' : 'style')).trim() || (index === 0 ? 'subject' : 'style');\n    const note = String(item.note ?? '').trim();\n    return (index + 1) + '. ' + label + ' (' + role + ')' + (note ? ': ' + note : '');\n  }).join('\\n');\n  const rawStrength = Number(generation.strength ?? 0.65);\n  const strength = Number.isFinite(rawStrength) ? Math.max(0, Math.min(1, rawStrength)) : 0.65;\n  const strengthPercent = Math.round(strength * 100);\n  const influence = strength < 0.4\n    ? 'loose influence: borrow broad cues only'\n    : strength > 0.75\n      ? 'close influence: preserve the requested subject/style cues, but still create a new image'\n      : 'balanced influence: keep useful subject/style cues while following the new prompt';\n  content[0].text = prompt + '\\n\\nImage-to-image reference instructions:\\n'\n    + '- Use the attached reference image(s) as guidance only; do not return, copy, or lightly re-save the reference image unchanged.\\n'\n    + '- Generate a new image that follows the prompt above. The final result must be visibly transformed from the input reference.\\n'\n    + '- Reference strength: ' + strengthPercent + '% (' + influence + ').\\n'\n    + '- Reference roles:\\n' + referenceLines;\n}\nconst promptToolOverride = resolvePromptToolSize(body.promptRaw) ?? resolvePromptToolSize(!body.promptRaw ? prompt : '');\nconst resolvedToolSize = resolveToolSize();\nconst requestPayload = {\n  model,\n  stream: true,\n  input: [\n    {\n      role: 'user',\n      content,\n    },\n  ],\n  tool_choice: {\n    type: 'image_generation',\n  },\n  tools: [\n    {\n      type: 'image_generation',\n      model: toolModel,\n      size: resolvedToolSize,\n      quality: String(generation.quality ?? '').trim() === 'high' ? 'high' : 'medium',\n      output_format: String(generation.outputFormat ?? 'png').trim() || 'png',\n    },\n  ],\n};\nreturn [{\n  json: {\n    requestPayload,\n    requestMeta: {\n      requestId: String(body.requestId ?? ''),\n      executionId,\n      mode,\n      model,\n      toolModel,\n      prompt: prompt.slice(0, 400),\n      sourceCount: referenceItems.length,\n      sourceLabels: normalizedReferenceLabels.slice(0, 12),\n      usesLegacySource: !Array.isArray(body.sourceItems) || body.sourceItems.length === 0,\n      requestedResolution: String(generation.resolution ?? '').trim(),\n      requestedAspectRatio: String(generation.aspectRatio ?? '').trim() || 'auto',\n      promptResolvedToolSize: promptToolOverride?.size ?? '',\n      promptResolvedText: promptToolOverride?.matchedText ?? '',\n      resolvedToolSize,\n    },\n  },\n}];"
+        }
+      },
+      {
+        "id": "prepare_generate_ack",
+        "name": "Prepare Accepted Response",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -170,
+          100
+        ],
+        "parameters": {
+          "jsCode": "const executionId = String($json.requestMeta?.executionId ?? '').trim();\nconst mode = String($json.requestMeta?.mode ?? 'text-to-image');\nreturn [{\n  json: {\n    ...$json,\n    responseBody: {\n      ok: true,\n      status: 'accepted',\n      queued: true,\n      jobId: executionId,\n      mode,\n      message: executionId\n        ? '\\u4efb\\u52a1\\u5df2\\u53d7\\u7406\\uff0c\\u6b63\\u5728\\u7531 n8n \\u540e\\u53f0\\u751f\\u6210\\u56fe\\u7247\\uff0c\\u8bf7\\u7b49\\u5f85\\u72b6\\u6001\\u8f6e\\u8be2\\u7ed3\\u679c\\u3002'\n        : '\\u4efb\\u52a1\\u5df2\\u53d7\\u7406\\uff0c\\u4f46\\u5f53\\u524d\\u672a\\u62ff\\u5230 executionId\\uff0c\\u8bf7\\u7a0d\\u540e\\u91cd\\u8bd5\\u3002',\n    },\n  },\n}];"
+        }
+      },
+      {
+        "id": "respond_generate_ack",
+        "name": "Respond Accepted Job",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5,
+        "position": [
+          120,
+          100
+        ],
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{$json.responseBody}}",
+          "options": {
+            "responseCode": 202
+          }
+        }
+      },
+      {
+        "id": "call_asxs_responses_generate",
+        "name": "Call ASXS Responses",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          430,
+          100
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.asxs.top/v1/responses",
+          "sendBody": true,
+          "contentType": "json",
+          "specifyBody": "json",
+          "jsonBody": "={{$json.requestPayload}}",
+          "responseFormat": "string",
+          "options": {
+            "timeout": 180000
+          },
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "openAiApi"
+        },
+        "continueOnFail": true,
+        "retryOnFail": true,
+        "maxTries": 4,
+        "waitBetweenTries": 3000,
+        "credentials": {
+          "openAiApi": {
+            "id": "WwKQlbKl3pE8swBl",
+            "name": "ASXS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const envelope = ($json && typeof $json === 'object') ? $json : { response: $json };\nconst source = (envelope.response && typeof envelope.response === 'object') ? envelope.response : envelope;\nconst upstreamRoute = String(envelope.upstreamRoute ?? envelope.provider ?? 'asxs-primary');\nconst fallbackUsed = Boolean(envelope.fallbackUsed);\nconst primaryFailure = envelope.primaryFailure && typeof envelope.primaryFailure === 'object' ? envelope.primaryFailure : null;\nconst ERROR_TEXT_PATTERN = /service unavailable|\\u5f53\\u524d\\u670d\\u52a1\\u6682\\u4e0d\\u53ef\\u7528|\\u5168\\u90e8\\u6e20\\u9053\\u4e0d\\u53ef\\u63d0\\u4f9b\\u5f53\\u524d\\u6a21\\u578b|\\u5f53\\u524d\\u6a21\\u578b\\u4e0d\\u53ef\\u7528|model unavailable|unsupported model|NodeApiError|bad gateway|gateway timeout|cloudflare/i;\n\nconst buildFailureMessage = (message) => {\n  if (fallbackUsed && primaryFailure?.message) {\n    return `\\u4e3b\\u901a\\u9053 ASXS \\u5931\\u8d25\\uff1a${primaryFailure.message}\\uff1b\\u5907\\u7528\\u901a\\u9053 OpenAI \\u5b98\\u65b9\\u5931\\u8d25\\uff1a${message}`;\n  }\n  if (!fallbackUsed && upstreamRoute === 'asxs-primary' && !/^ASXS /.test(message)) {\n    return `ASXS \\u751f\\u56fe\\u5931\\u8d25\\uff1a${message}`;\n  }\n  return message;\n};\n\nconst buildFailure = (status, message, rawPreview, httpCode = null, eventTypes = [], hasOutputItemDone = false) => [{\n  json: {\n    ok: false,\n    status,\n    message: buildFailureMessage(message),\n    httpCode,\n    imageCount: 0,\n    images: [],\n    outputText: '',\n    eventTypes,\n    hasOutputItemDone,\n    rawPreview: String(rawPreview || '').slice(0, 12000),\n    upstreamRoute,\n    fallbackUsed,\n    primaryFailure,\n  },\n}];\n\nif (source && typeof source === 'object') {\n  const upstreamError = source.error || source.errors || null;\n  if (upstreamError) {\n    const rawMessage = typeof upstreamError === 'string'\n      ? upstreamError\n      : typeof source.message === 'string'\n        ? source.message\n        : typeof upstreamError.message === 'string'\n          ? upstreamError.message\n          : JSON.stringify(upstreamError).slice(0, 2000);\n    const httpCode = Number(source.httpCode ?? source.statusCode ?? upstreamError.httpCode ?? 0);\n    const isServiceUnavailable = httpCode === 503 || ERROR_TEXT_PATTERN.test(rawMessage);\n    const message = isServiceUnavailable\n      ? '\\u7f51\\u5173\\u7e41\\u5fd9\\u6216\\u4e0a\\u6e38\\u670d\\u52a1\\u6682\\u65f6\\u4e0d\\u53ef\\u7528\\uff0c\\u8bf7\\u7a0d\\u540e\\u91cd\\u8bd5\\u3002\\u539f\\u59cb\\u4fe1\\u606f\\uff1a' + rawMessage\n      : rawMessage;\n    return buildFailure(\n      isServiceUnavailable ? 'upstream_service_unavailable' : 'upstream_error',\n      message,\n      JSON.stringify(source),\n      httpCode || null,\n    );\n  }\n}\n\nconst httpCode = Number(source.httpCode ?? source.statusCode ?? source.code ?? 0) || null;\nconst raw = typeof source.body === 'string'\n  ? source.body\n  : typeof source.data === 'string'\n    ? source.data\n    : typeof source === 'string'\n      ? source\n      : JSON.stringify(source);\n\nif (typeof source.statusCode === 'number' && source.statusCode >= 400) {\n  return buildFailure('http_error', raw.slice(0, 2000), raw, source.statusCode || null);\n}\n\nconst eventTypes = new Set();\nconst outputTextChunks = [];\nconst failureMessages = [];\nconst images = [];\nconst imageSet = new Set();\nlet hasOutputItemDone = false;\nlet hasFailureEvent = false;\n\nconst toDataUrl = (base64, mimeType = 'image/png') => {\n  const normalized = String(base64 || '').replace(/\\s+/g, '');\n  if (!normalized) return '';\n  return normalized.startsWith('data:image/') ? normalized : ('data:' + mimeType + ';base64,' + normalized);\n};\n\nconst pushText = (value) => {\n  const text = String(value ?? '').trim();\n  if (!text || text.length < 2 || text.startsWith('data:image/')) return;\n  if (!outputTextChunks.includes(text)) outputTextChunks.push(text);\n};\n\nconst pushFailureMessage = (value) => {\n  const text = String(value ?? '').trim();\n  if (!text || text.length < 2) return;\n  if (!failureMessages.includes(text)) failureMessages.push(text);\n  pushText(text);\n};\n\nconst addImage = (base64, mimeType = 'image/png') => {\n  const src = toDataUrl(base64, mimeType);\n  if (!src || imageSet.has(src)) return;\n  imageSet.add(src);\n  images.push({ src, mimeType });\n};\n\nconst parseSsePayload = (rawText) => {\n  const normalized = String(rawText ?? '').replace(/\\r\\n/g, '\\n').replace(/\\r/g, '\\n');\n  const blocks = normalized.split('\\n\\n').map((item) => item.trim()).filter(Boolean);\n  const parsedItems = [];\n  let parsedAnyBlock = false;\n\n  for (const block of blocks) {\n    const lines = block.split('\\n');\n    let eventType = '';\n    const dataLines = [];\n    for (const line of lines) {\n      const trimmed = line.trim();\n      if (!trimmed || trimmed.startsWith(':')) continue;\n      if (trimmed.startsWith('event:')) {\n        eventType = trimmed.slice(6).trim();\n        continue;\n      }\n      if (trimmed.startsWith('data:')) {\n        dataLines.push(trimmed.slice(5).trim());\n      }\n    }\n    if (!dataLines.length) continue;\n    parsedAnyBlock = true;\n    const merged = dataLines.join('\\n').trim();\n    if (!merged || merged === '[DONE]') continue;\n    try {\n      const payload = JSON.parse(merged);\n      if (payload && typeof payload === 'object') {\n        if (eventType && typeof payload.event !== 'string') payload.event = eventType;\n        parsedItems.push(payload);\n      } else if (eventType) {\n        parsedItems.push({ event: eventType, data: payload });\n      } else {\n        parsedItems.push(payload);\n      }\n    } catch {\n      if (eventType) {\n        parsedItems.push({ event: eventType, data: merged });\n      } else {\n        parsedItems.push(merged);\n      }\n    }\n  }\n\n  if (!parsedAnyBlock) return rawText;\n  return parsedItems.length === 1 ? parsedItems[0] : parsedItems;\n};\n\nconst parseStructured = (value) => {\n  if (typeof value !== 'string') return value;\n  const trimmed = value.trim();\n  if (!trimmed || trimmed.startsWith('data:image/')) return value;\n  if (trimmed.startsWith('{') || trimmed.startsWith('[')) {\n    try {\n      return JSON.parse(trimmed);\n    } catch {\n      return value;\n    }\n  }\n  if (trimmed.includes('event:') || trimmed.includes('data:')) {\n    return parseSsePayload(trimmed);\n  }\n  return value;\n};\n\nconst walk = (node) => {\n  if (node === null || node === undefined) return;\n  if (typeof node === 'string') {\n    const parsed = parseStructured(node);\n    if (parsed !== node) {\n      walk(parsed);\n      return;\n    }\n    pushText(node);\n    return;\n  }\n  if (Array.isArray(node)) {\n    node.forEach(walk);\n    return;\n  }\n  if (typeof node !== 'object') return;\n\n  const nodeType = typeof node.type === 'string' ? node.type : '';\n  const nodeEvent = typeof node.event === 'string' ? node.event : '';\n  if (nodeType) eventTypes.add(nodeType);\n  if (nodeEvent) eventTypes.add(nodeEvent);\n  if (nodeType === 'response.output_item.done' || nodeEvent === 'response.output_item.done') {\n    hasOutputItemDone = true;\n  }\n\n  const normalizedEvent = `${nodeType} ${nodeEvent} ${String(node.code ?? '')}`.toLowerCase();\n  if (\n    normalizedEvent.includes('response.failed')\n    || normalizedEvent.includes('server_error')\n    || normalizedEvent.includes('invalid_request_error')\n    || normalizedEvent.includes('rate_limit_error')\n    || normalizedEvent.includes('image_generation_failed')\n    || normalizedEvent === 'error'\n    || normalizedEvent.endsWith('.error')\n  ) {\n    hasFailureEvent = true;\n  }\n\n  const nodeFailureMessage = typeof node.error === 'string'\n    ? node.error\n    : typeof node.message === 'string'\n      ? node.message\n      : node.error && typeof node.error === 'object' && typeof node.error.message === 'string'\n        ? node.error.message\n        : '';\n  if (nodeFailureMessage && hasFailureEvent) {\n    pushFailureMessage(nodeFailureMessage);\n  }\n\n  const mimeType = typeof node.mime_type === 'string'\n    ? node.mime_type\n    : typeof node.mimeType === 'string'\n      ? node.mimeType\n      : (typeof node.output_format === 'string' && node.output_format.toLowerCase() === 'jpeg' ? 'image/jpeg' : 'image/png');\n\n  const imageLike = node.src || node.url;\n  if (typeof imageLike === 'string' && /^(data:image\\/|https?:\\/\\/)/i.test(imageLike.trim())) {\n    if (imageLike.trim().startsWith('data:image/')) {\n      addImage(imageLike, mimeType);\n    } else {\n      images.push({ src: imageLike.trim(), mimeType: mimeType || 'image/png' });\n    }\n  }\n\n  if (nodeType === 'image_generation_call') {\n    const result = node.result;\n    const outputFormat = typeof node.output_format === 'string' ? node.output_format : '';\n    const resultMimeType = mimeType || (outputFormat.toLowerCase() === 'jpeg' ? 'image/jpeg' : 'image/png');\n    if (result !== null && result !== undefined) {\n      if (typeof result === 'string' && result.trim().length > 40) {\n        const parsed = parseStructured(result);\n        if (parsed !== result) {\n          walk(parsed);\n        } else if (result.startsWith('data:image/')) {\n          addImage(result, resultMimeType);\n        } else {\n          addImage(result, resultMimeType);\n        }\n      } else {\n        walk(result);\n      }\n    }\n  }\n\n  for (const inlineKey of ['inlineData', 'inline_data']) {\n    const inlineValue = node[inlineKey];\n    if (inlineValue && typeof inlineValue === 'object') {\n      const data = inlineValue.data;\n      const inlineMime = inlineValue.mimeType || inlineValue.mime_type || mimeType;\n      if (typeof data === 'string' && data.trim().length > 40) {\n        addImage(data, inlineMime || 'image/png');\n      }\n    }\n  }\n\n  for (const key of ['b64_json', 'b64', 'image_base64', 'imageBase64', 'base64', 'image']) {\n    const value = node[key];\n    if (typeof value === 'string' && value.trim().length > 40) {\n      addImage(value, mimeType || 'image/png');\n    }\n  }\n\n  for (const value of Object.values(node)) {\n    walk(value);\n  }\n};\n\nconst parsedRaw = parseStructured(raw);\nif (parsedRaw !== raw) {\n  walk(parsedRaw);\n} else {\n  try {\n    walk(JSON.parse(raw));\n  } catch {\n    walk(raw);\n  }\n}\n\nconst outputText = outputTextChunks.join('\\n').slice(0, 6000);\nconst eventTypeList = Array.from(eventTypes);\nconst rawPreview = raw.slice(0, 12000);\nconst streamedFailureMessage = failureMessages[0]\n  || outputTextChunks.find((line) => /failed|error|unable|process your request|\\u670d\\u52a1|\\u4e0d\\u53ef\\u7528/i.test(line))\n  || '';\n\nif (images.length === 0 && (hasFailureEvent || ERROR_TEXT_PATTERN.test(`${outputText}\\n${rawPreview}`))) {\n  return buildFailure(\n    'upstream_error',\n    streamedFailureMessage || outputText || rawPreview.slice(0, 500),\n    rawPreview,\n    httpCode,\n    eventTypeList,\n    hasOutputItemDone,\n  );\n}\n\nconst recentEventTypes = eventTypeList.length > 0 ? eventTypeList.slice(0, 12).join(', ') : '\\u672a\\u89e3\\u6790\\u5230\\u4e8b\\u4ef6\\u7c7b\\u578b';\nconst noImageMessage = hasOutputItemDone\n  ? `\\u68c0\\u6d4b\\u5230 response.output_item.done\\uff0c\\u4f46\\u4e8b\\u4ef6\\u4e2d\\u672a\\u63d0\\u53d6\\u5230\\u53ef\\u7528\\u56fe\\u7247\\u6570\\u636e\\uff08item.result \\u53ef\\u80fd\\u4e3a\\u7a7a\\uff09\\u3002\\u4e8b\\u4ef6\\u7c7b\\u578b\\uff1a${recentEventTypes}`\n  : `\\u672a\\u68c0\\u6d4b\\u5230 response.output_item.done\\u3002\\u4e8b\\u4ef6\\u7c7b\\u578b\\uff1a${recentEventTypes}`;\nconst message = images.length > 0\n  ? (fallbackUsed ? `\\u5b98\\u65b9 OpenAI fallback \\u751f\\u56fe\\u6210\\u529f\\uff08${images.length} \\u5f20\\uff09` : `ASXS \\u751f\\u56fe\\u6210\\u529f\\uff08${images.length} \\u5f20\\uff09`)\n  : (fallbackUsed && primaryFailure?.message\n      ? `\\u4e3b\\u901a\\u9053 ASXS \\u5931\\u8d25\\uff1a${primaryFailure.message}\\uff1b\\u5907\\u7528\\u901a\\u9053\\u5df2\\u8fd4\\u56de\\u54cd\\u5e94\\uff0c\\u4f46${noImageMessage}`\n      : noImageMessage);\n\nreturn [{\n  json: {\n    ok: images.length > 0,\n    status: images.length > 0 ? 'completed' : 'no_image',\n    message,\n    imageCount: images.length,\n    images,\n    outputText,\n    eventTypes: eventTypeList,\n    hasOutputItemDone,\n    rawPreview,\n    upstreamRoute,\n    fallbackUsed,\n    primaryFailure,\n  },\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "id": "extract_images_from_sse",
+        "position": [
+          1840,
+          20
+        ],
+        "name": "Extract Images From SSE",
+        "typeVersion": 2
+      },
+      {
+        "parameters": {
+          "jsCode": "const source = ($json && typeof $json === 'object') ? $json : { body: $json };\nconst ERROR_TEXT_PATTERN = /service unavailable|\\u5f53\\u524d\\u670d\\u52a1\\u6682\\u4e0d\\u53ef\\u7528|\\u5168\\u90e8\\u6e20\\u9053\\u4e0d\\u53ef\\u63d0\\u4f9b\\u5f53\\u524d\\u6a21\\u578b|\\u5f53\\u524d\\u6a21\\u578b\\u4e0d\\u53ef\\u7528|model unavailable|unsupported model|NodeApiError|bad gateway|gateway timeout|cloudflare/i;\n\nconst upstreamError = source.error || source.errors || null;\nconst raw = typeof source.body === 'string'\n  ? source.body\n  : typeof source.data === 'string'\n    ? source.data\n    : typeof source === 'string'\n      ? source\n      : JSON.stringify(source);\nconst httpCode = Number(source.httpCode ?? source.statusCode ?? source.code ?? upstreamError?.httpCode ?? 0) || null;\nconst rawMessage = typeof upstreamError === 'string'\n  ? upstreamError\n  : typeof source.message === 'string'\n    ? source.message\n    : typeof upstreamError?.message === 'string'\n      ? upstreamError.message\n      : raw.slice(0, 2000);\nconst transportFailure = Boolean(upstreamError) || (typeof source.statusCode === 'number' && source.statusCode >= 400);\nconst gatewayFailure = ERROR_TEXT_PATTERN.test(`${rawMessage}\\n${raw}`);\nconst hasOutputItemDone = /response\\.output_item\\.done/.test(raw);\nconst hasImageGenerationCall = /image_generation_call/.test(raw);\nconst hasLikelyImageResult = /\"result\"\\s*:\\s*\"(?:data:image\\/[^;]+;base64,)?[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"b64_json\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"imageBase64\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/.test(raw)\n  || /\"inlineData\"\\s*:\\s*\\{[^}]*\"data\"\\s*:\\s*\"[A-Za-z0-9+/=]{120,}\"/s.test(raw);\nconst hasFailureEvent = /response\\.failed/.test(raw)\n  || /server_error/.test(raw)\n  || /invalid_request_error/.test(raw)\n  || /rate_limit_error/.test(raw)\n  || /\"type\"\\s*:\\s*\"error\"/.test(raw)\n  || /\"event\"\\s*:\\s*\"error\"/.test(raw);\nconst failureMessageMatch = raw.match(/(?:The service failed to process your request[^\"\\n]*|service unavailable[^\"\\n]*|server_error[^\"\\n]*|model unavailable[^\"\\n]*)/i);\nconst streamedFailureMessage = failureMessageMatch ? failureMessageMatch[0] : rawMessage;\nconst streamFailure = !transportFailure && hasFailureEvent && !hasLikelyImageResult;\nconst noImageCompletion = !transportFailure && (hasOutputItemDone || hasFailureEvent) && (!hasImageGenerationCall || !hasLikelyImageResult);\nconst shouldFallback = transportFailure || gatewayFailure || streamFailure || noImageCompletion;\nconst primaryFailureMessage = streamFailure\n  ? (streamedFailureMessage || 'ASXS returned a streamed failure response; using OpenAI official fallback.')\n  : (noImageCompletion\n      ? 'ASXS returned a completed response without usable image data; using OpenAI official fallback.'\n      : rawMessage);\n\nreturn [{\n  json: {\n    shouldFallback,\n    primaryResponse: source,\n    primaryFailure: shouldFallback\n      ? {\n          provider: 'asxs-primary',\n          httpCode,\n          message: String(primaryFailureMessage || rawMessage || 'ASXS generate failed').slice(0, 2000),\n          rawPreview: String(raw || '').slice(0, 4000),\n        }\n      : null,\n  },\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "id": "evaluate_primary_generate_result",
+        "position": [
+          740,
+          -60
+        ],
+        "name": "Evaluate Primary Generate Result",
+        "typeVersion": 2
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "combinator": "and",
+            "options": {
+              "version": 2,
+              "leftValue": "",
+              "caseSensitive": true,
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "rightValue": true,
+                "leftValue": "={{$json.shouldFallback}}",
+                "id": "if_use_openai_generate_fallback_condition",
+                "operator": {
+                  "operation": "true",
+                  "singleValue": true,
+                  "type": "boolean"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "id": "if_use_openai_generate_fallback",
+        "position": [
+          1010,
+          -60
+        ],
+        "name": "If Use OpenAI Generate Fallback",
+        "typeVersion": 2.2
+      },
+      {
+        "parameters": {
+          "jsCode": "return [{\n  json: {\n    upstreamRoute: 'asxs-primary',\n    fallbackUsed: false,\n    response: $json.primaryResponse ?? $json,\n    primaryFailure: $json.primaryFailure ?? null,\n  },\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "id": "prepare_primary_generate_response",
+        "position": [
+          1290,
+          100
+        ],
+        "name": "Prepare Primary Generate Response",
+        "typeVersion": 2
+      },
+      {
+        "continueOnFail": true,
+        "name": "Call OpenAI Responses",
+        "type": "n8n-nodes-base.httpRequest",
+        "parameters": {
+          "jsonBody": "={{ { ...$(\"Prepare Generate Payload\").first().json.requestPayload, stream: false } }}",
+          "options": {
+            "timeout": 600000
+          },
+          "sendBody": true,
+          "responseFormat": "string",
+          "nodeCredentialType": "openAiApi",
+          "contentType": "json",
+          "specifyBody": "json",
+          "authentication": "predefinedCredentialType",
+          "url": "https://aifast.site/v1/responses",
+          "method": "POST"
+        },
+        "position": [
+          1290,
+          -220
+        ],
+        "maxTries": 2,
+        "typeVersion": 4.2,
+        "retryOnFail": true,
+        "id": "call_openai_responses_generate",
+        "credentials": {
+          "openAiApi": {
+            "id": "aiivcEB2dQOcjdf8",
+            "name": "aifast"
+          }
+        },
+        "waitBetweenTries": 2000
+      },
+      {
+        "parameters": {
+          "jsCode": "const primary = $('Evaluate Primary Generate Result').first().json.primaryFailure ?? null;\nreturn [{\n  json: {\n    upstreamRoute: 'openai-fallback',\n    fallbackUsed: true,\n    response: $json,\n    primaryFailure: primary,\n  },\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "id": "prepare_fallback_generate_response",
+        "position": [
+          1560,
+          -220
+        ],
+        "name": "Prepare Fallback Generate Response",
+        "typeVersion": 2
+      }
+    ],
+    "connections": {
+      "Webhook Generate Submit": {
+        "main": [
+          [
+            {
+              "node": "Prepare Generate Payload",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Generate Payload": {
+        "main": [
+          [
+            {
+              "node": "Prepare Accepted Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Accepted Response": {
+        "main": [
+          [
+            {
+              "node": "Respond Accepted Job",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Respond Accepted Job": {
+        "main": [
+          [
+            {
+              "node": "Call ASXS Responses",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call ASXS Responses": {
+        "main": [
+          [
+            {
+              "node": "Evaluate Primary Generate Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Evaluate Primary Generate Result": {
+        "main": [
+          [
+            {
+              "node": "If Use OpenAI Generate Fallback",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If Use OpenAI Generate Fallback": {
+        "main": [
+          [
+            {
+              "node": "Call OpenAI Responses",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Prepare Primary Generate Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call OpenAI Responses": {
+        "main": [
+          [
+            {
+              "node": "Prepare Fallback Generate Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Fallback Generate Response": {
+        "main": [
+          [
+            {
+              "node": "Extract Images From SSE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Primary Generate Response": {
+        "main": [
+          [
+            {
+              "node": "Extract Images From SSE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Wen Zhong",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "workflowPublishHistory": [
+      {
+        "createdAt": "2026-06-06T16:03:09.655Z",
+        "id": 2555,
+        "workflowId": "iOT09NAqa6X4zifL",
+        "versionId": "b39b127b-f0fd-4c73-9053-ce783140a239",
+        "event": "deactivated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-06-06T16:03:09.679Z",
+        "id": 2556,
+        "workflowId": "iOT09NAqa6X4zifL",
+        "versionId": "b39b127b-f0fd-4c73-9053-ce783140a239",
+        "event": "activated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      }
+    ]
+  }
+}

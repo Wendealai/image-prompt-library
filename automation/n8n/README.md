@@ -4,9 +4,12 @@ This directory version-controls the automation workflows used by the app:
 
 - `Image Prompt Library - Template Init`
 - `Image Prompt Library - Template Generate`
+- `img-generate-submit`
+- `img-job-status`
 - `Image Prompt Library - Canghe Gallery Daily Sync`
 
 They are built from the `*.prepare.js` and `*.format.js` code files by `build-workflows.mjs`.
+The two image-generation workflows are currently version-controlled as exported JSON because they still run as standalone live workflows outside the prompt-template build chain.
 The Canghe gallery sync workflow is a static scheduled workflow that calls the app's admin sync endpoint once per day.
 New prompt imports should initialize prompt skeleton templates by default. The daily Canghe workflow sends `initialize_templates: true`; use the CLI/API opt-out only for deliberate maintenance runs.
 
@@ -26,7 +29,7 @@ Then run:
 The script will:
 
 1. build the workflow JSON files
-2. create or update the workflows in n8n, including the daily Canghe gallery sync workflow
+2. create or update the template, image-generation, and Canghe workflows in n8n
 3. activate them
 4. print the webhook URLs you should place in the app environment
 
@@ -36,6 +39,8 @@ The backend expects these variables:
 
 - `IMAGE_PROMPT_TEMPLATE_INIT_WEBHOOK_URL`
 - `IMAGE_PROMPT_TEMPLATE_GENERATE_WEBHOOK_URL`
+- `IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL`
+- `IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL`
 - `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN` (optional; set it on the app backend and export it before syncing workflows if you enable auth)
 - `IMAGE_PROMPT_TEMPLATE_WORKFLOW_TOKEN_HEADER` (optional; defaults to `X-Image-Prompt-Workflow-Token`)
 - `IMAGE_PROMPT_TEMPLATE_TIMEOUT_SECONDS` (optional; defaults to `45`)

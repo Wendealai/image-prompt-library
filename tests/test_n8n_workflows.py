@@ -83,3 +83,28 @@ def test_n8n_sync_script_injects_canghe_password_only_for_upload():
     assert 'CANGHE_UPLOAD_WORKFLOW="$CANGHE_TEMP_WORKFLOW"' in script
     assert 'initialize_templates: true' in script
     assert "json.dumps(password)" in script
+
+
+def test_image_generation_workflows_are_version_controlled_and_syncable():
+    submit_workflow = json.loads((N8N_DIR / 'image-generate-submit.workflow.json').read_text(encoding='utf-8'))
+    status_workflow = json.loads((N8N_DIR / 'image-job-status.workflow.json').read_text(encoding='utf-8'))
+    script = (ROOT / 'scripts' / 'sync-n8n-prompt-workflows.sh').read_text(encoding='utf-8')
+
+    submit_node_names = {node['name'] for node in submit_workflow['nodes']}
+    status_node_names = {node['name'] for node in status_workflow['nodes']}
+    extract_node = next(node for node in submit_workflow['nodes'] if node['name'] == 'Extract Images From SSE')
+    evaluate_node = next(node for node in submit_workflow['nodes'] if node['name'] == 'Evaluate Primary Generate Result')
+    status_format_node = next(node for node in status_workflow['nodes'] if node['name'] == 'Format Status Response')
+
+    assert submit_workflow['name'] == 'img-generate-submit'
+    assert status_workflow['name'] == 'img-job-status'
+    assert 'Webhook Generate Submit' in submit_node_names
+    assert 'Extract Images From SSE' in submit_node_names
+    assert 'Format Status Response' in status_node_names
+    assert "response.failed" in extract_node['parameters']['jsCode']
+    assert "The service failed to process your request" in evaluate_node['parameters']['jsCode']
+    assert "Extract Images From SSE" in status_format_node['parameters']['jsCode']
+    assert "img-generate-submit" in script
+    assert "img-job-status" in script
+    assert "IMAGE_PROMPT_LIBRARY_IMAGE_GENERATE_WEBHOOK_URL" in script
+    assert "IMAGE_PROMPT_LIBRARY_IMAGE_STATUS_WEBHOOK_URL" in script

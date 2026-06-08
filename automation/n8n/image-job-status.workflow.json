@@ -1,0 +1,315 @@
+{
+  "updatedAt": "2026-05-05T06:13:42.178Z",
+  "createdAt": "2026-04-25T10:27:22.843Z",
+  "id": "fKCg9w3XBVcEBPlK",
+  "name": "img-job-status",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "webhook_job_status",
+      "name": "Webhook Job Status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        140
+      ],
+      "parameters": {
+        "path": "img-job-status",
+        "httpMethod": "POST",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "webhookId": "img-job-status"
+    },
+    {
+      "id": "normalize_status_request",
+      "name": "Normalize Status Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        140
+      ],
+      "parameters": {
+        "jsCode": "const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;\nconst jobId = String(body.jobId ?? body.job_id ?? $json.jobId ?? $json.job_id ?? '').trim();\nreturn [{ json: { jobId } }];"
+      }
+    },
+    {
+      "id": "fetch_job_execution",
+      "name": "Fetch Job Execution",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        140
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'https://n8n.wendealai.com/api/v1/executions/' + encodeURIComponent($json.jobId || 'missing') + '?includeData=true' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "n8nApi",
+        "responseFormat": "json",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "continueOnFail": true,
+      "credentials": {
+        "n8nApi": {
+          "id": "FLmSJzVut1pb1UU4",
+          "name": "n8n account_Wendealai.com"
+        }
+      }
+    },
+    {
+      "id": "format_status_response",
+      "name": "Format Status Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        140
+      ],
+      "parameters": {
+        "jsCode": "const source = ($json && typeof $json === 'object') ? $json : {};\nconst responseBody = (source.body && typeof source.body === 'object') ? source.body : source;\nconst execution = (responseBody && typeof responseBody === 'object') ? responseBody : {};\nconst httpCode = Number(source.statusCode ?? source.code ?? 0) || null;\nconst sourceError = source.error && typeof source.error === 'object' ? source.error : null;\nconst errorMessage = typeof source.error === 'string'\n  ? source.error\n  : typeof source.message === 'string'\n    ? source.message\n    : typeof sourceError?.message === 'string'\n      ? sourceError.message\n      : typeof sourceError?.description === 'string'\n        ? sourceError.description\n        : '';\n\nconst output = (payload) => [{ json: payload }];\n\nif (errorMessage) {\n  const normalized = errorMessage.toLowerCase();\n  return output({\n    ok: false,\n    status: normalized.includes('404') ? 'not_found' : 'error',\n    jobId: '',\n    message: errorMessage,\n    httpCode,\n  });\n}\n\nconst jobId = String(execution.id ?? source.id ?? '').trim();\nconst executionStatus = String(execution.status ?? (execution.finished ? 'success' : 'pending')).trim().toLowerCase();\nconst finished = Boolean(execution.finished);\nconst startedAt = execution.startedAt ?? execution.started_at ?? null;\nconst stoppedAt = execution.stoppedAt ?? execution.stopped_at ?? null;\nconst runData = execution.data?.resultData?.runData && typeof execution.data.resultData.runData === 'object'\n  ? execution.data.resultData.runData\n  : {};\nconst lastNodeExecuted = String(execution.data?.resultData?.lastNodeExecuted ?? '').trim();\n\nconst getNodeJson = (entry) => {\n  const candidate = entry?.data?.main?.[0]?.[0]?.json;\n  return candidate && typeof candidate === 'object' ? candidate : null;\n};\n\nlet finalJson = null;\nfor (const nodeName of [...new Set([lastNodeExecuted, 'Extract Images From SSE', 'Call ASXS Responses'].filter(Boolean))]) {\n  const entries = Array.isArray(runData[nodeName]) ? runData[nodeName] : [];\n  for (let index = entries.length - 1; index >= 0; index -= 1) {\n    const candidate = getNodeJson(entries[index]);\n    if (candidate && typeof candidate === 'object') {\n      finalJson = candidate;\n      break;\n    }\n  }\n  if (finalJson) break;\n}\n\nconst basePayload = {\n  jobId,\n  executionStatus,\n  finished,\n  startedAt,\n  stoppedAt,\n};\n\nif (finalJson) {\n  const images = Array.isArray(finalJson.images) ? finalJson.images : [];\n  const finalStatus = String(finalJson.status ?? '').trim().toLowerCase();\n  const message = typeof finalJson.message === 'string' ? finalJson.message : '';\n  if (images.length > 0 || finalJson.ok === true) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: true,\n      status: images.length > 0 ? 'completed' : (finalStatus || 'completed'),\n    });\n  }\n  if (/fail|error|cancel|timeout/.test(executionStatus) || /fail|error|cancel|timeout/.test(finalStatus)) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: false,\n      status: finalStatus || executionStatus || 'failed',\n      message: message || ('Job execution failed (' + (executionStatus || 'unknown') + ')'),\n    });\n  }\n  if (finished) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: false,\n      status: finalStatus || 'no_image',\n      message: message || 'Job finished but no image data was returned.',\n    });\n  }\n  return output({\n    ...finalJson,\n    ...basePayload,\n    ok: false,\n    status: finalStatus || executionStatus || 'pending',\n    message: message || 'Job is still running. Please retry shortly.',\n  });\n}\n\nif (/fail|error|cancel|timeout/.test(executionStatus)) {\n  return output({\n    ...basePayload,\n    ok: false,\n    status: executionStatus || 'failed',\n    message: 'Job execution failed (' + (executionStatus || 'unknown') + ')',\n  });\n}\n\nif (finished) {\n  return output({\n    ...basePayload,\n    ok: false,\n    status: 'completed',\n    message: 'Job finished but the result node did not return image data.',\n  });\n}\n\nreturn output({\n  ...basePayload,\n  ok: false,\n  status: executionStatus || 'pending',\n  message: 'Job is still running. Please retry shortly.',\n});"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Job Status": {
+      "main": [
+        [
+          {
+            "node": "Normalize Status Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Status Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Job Execution",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Job Execution": {
+      "main": [
+        [
+          {
+            "node": "Format Status Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "nodeGroups": [],
+  "pinData": null,
+  "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+  "activeVersionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+  "versionCounter": 97,
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-04-25T10:27:22.843Z",
+      "createdAt": "2026-04-25T10:27:22.843Z",
+      "role": "workflow:owner",
+      "workflowId": "fKCg9w3XBVcEBPlK",
+      "projectId": "q1yzaGhg8FoNhlu5",
+      "project": {
+        "updatedAt": "2025-05-20T05:16:27.297Z",
+        "createdAt": "2025-05-20T04:28:02.552Z",
+        "id": "q1yzaGhg8FoNhlu5",
+        "name": "Wen Zhong <superjohn1986@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      }
+    }
+  ],
+  "tags": [],
+  "activeVersion": {
+    "updatedAt": "2026-05-05T02:54:07.32Z",
+    "createdAt": "2026-05-05T02:54:07.32Z",
+    "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+    "workflowId": "fKCg9w3XBVcEBPlK",
+    "nodes": [
+      {
+        "id": "webhook_job_status",
+        "name": "Webhook Job Status",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -460,
+          140
+        ],
+        "parameters": {
+          "path": "img-job-status",
+          "httpMethod": "POST",
+          "responseMode": "lastNode",
+          "options": {}
+        },
+        "webhookId": "img-job-status"
+      },
+      {
+        "id": "normalize_status_request",
+        "name": "Normalize Status Request",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          140
+        ],
+        "parameters": {
+          "jsCode": "const body = ($json.body && typeof $json.body === 'object') ? $json.body : $json;\nconst jobId = String(body.jobId ?? body.job_id ?? $json.jobId ?? $json.job_id ?? '').trim();\nreturn [{ json: { jobId } }];"
+        }
+      },
+      {
+        "id": "fetch_job_execution",
+        "name": "Fetch Job Execution",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -120,
+          140
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "={{ 'https://n8n.wendealai.com/api/v1/executions/' + encodeURIComponent($json.jobId || 'missing') + '?includeData=true' }}",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "n8nApi",
+          "responseFormat": "json",
+          "options": {
+            "timeout": 30000
+          }
+        },
+        "continueOnFail": true,
+        "credentials": {
+          "n8nApi": {
+            "id": "FLmSJzVut1pb1UU4",
+            "name": "n8n account_Wendealai.com"
+          }
+        }
+      },
+      {
+        "id": "format_status_response",
+        "name": "Format Status Response",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          220,
+          140
+        ],
+        "parameters": {
+          "jsCode": "const source = ($json && typeof $json === 'object') ? $json : {};\nconst responseBody = (source.body && typeof source.body === 'object') ? source.body : source;\nconst execution = (responseBody && typeof responseBody === 'object') ? responseBody : {};\nconst httpCode = Number(source.statusCode ?? source.code ?? 0) || null;\nconst sourceError = source.error && typeof source.error === 'object' ? source.error : null;\nconst errorMessage = typeof source.error === 'string'\n  ? source.error\n  : typeof source.message === 'string'\n    ? source.message\n    : typeof sourceError?.message === 'string'\n      ? sourceError.message\n      : typeof sourceError?.description === 'string'\n        ? sourceError.description\n        : '';\n\nconst output = (payload) => [{ json: payload }];\n\nif (errorMessage) {\n  const normalized = errorMessage.toLowerCase();\n  return output({\n    ok: false,\n    status: normalized.includes('404') ? 'not_found' : 'error',\n    jobId: '',\n    message: errorMessage,\n    httpCode,\n  });\n}\n\nconst jobId = String(execution.id ?? source.id ?? '').trim();\nconst executionStatus = String(execution.status ?? (execution.finished ? 'success' : 'pending')).trim().toLowerCase();\nconst finished = Boolean(execution.finished);\nconst startedAt = execution.startedAt ?? execution.started_at ?? null;\nconst stoppedAt = execution.stoppedAt ?? execution.stopped_at ?? null;\nconst runData = execution.data?.resultData?.runData && typeof execution.data.resultData.runData === 'object'\n  ? execution.data.resultData.runData\n  : {};\nconst lastNodeExecuted = String(execution.data?.resultData?.lastNodeExecuted ?? '').trim();\n\nconst getNodeJson = (entry) => {\n  const candidate = entry?.data?.main?.[0]?.[0]?.json;\n  return candidate && typeof candidate === 'object' ? candidate : null;\n};\n\nlet finalJson = null;\nfor (const nodeName of [...new Set([lastNodeExecuted, 'Extract Images From SSE', 'Call ASXS Responses'].filter(Boolean))]) {\n  const entries = Array.isArray(runData[nodeName]) ? runData[nodeName] : [];\n  for (let index = entries.length - 1; index >= 0; index -= 1) {\n    const candidate = getNodeJson(entries[index]);\n    if (candidate && typeof candidate === 'object') {\n      finalJson = candidate;\n      break;\n    }\n  }\n  if (finalJson) break;\n}\n\nconst basePayload = {\n  jobId,\n  executionStatus,\n  finished,\n  startedAt,\n  stoppedAt,\n};\n\nif (finalJson) {\n  const images = Array.isArray(finalJson.images) ? finalJson.images : [];\n  const finalStatus = String(finalJson.status ?? '').trim().toLowerCase();\n  const message = typeof finalJson.message === 'string' ? finalJson.message : '';\n  if (images.length > 0 || finalJson.ok === true) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: true,\n      status: images.length > 0 ? 'completed' : (finalStatus || 'completed'),\n    });\n  }\n  if (/fail|error|cancel|timeout/.test(executionStatus) || /fail|error|cancel|timeout/.test(finalStatus)) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: false,\n      status: finalStatus || executionStatus || 'failed',\n      message: message || ('Job execution failed (' + (executionStatus || 'unknown') + ')'),\n    });\n  }\n  if (finished) {\n    return output({\n      ...finalJson,\n      ...basePayload,\n      ok: false,\n      status: finalStatus || 'no_image',\n      message: message || 'Job finished but no image data was returned.',\n    });\n  }\n  return output({\n    ...finalJson,\n    ...basePayload,\n    ok: false,\n    status: finalStatus || executionStatus || 'pending',\n    message: message || 'Job is still running. Please retry shortly.',\n  });\n}\n\nif (/fail|error|cancel|timeout/.test(executionStatus)) {\n  return output({\n    ...basePayload,\n    ok: false,\n    status: executionStatus || 'failed',\n    message: 'Job execution failed (' + (executionStatus || 'unknown') + ')',\n  });\n}\n\nif (finished) {\n  return output({\n    ...basePayload,\n    ok: false,\n    status: 'completed',\n    message: 'Job finished but the result node did not return image data.',\n  });\n}\n\nreturn output({\n  ...basePayload,\n  ok: false,\n  status: executionStatus || 'pending',\n  message: 'Job is still running. Please retry shortly.',\n});"
+        }
+      }
+    ],
+    "connections": {
+      "Webhook Job Status": {
+        "main": [
+          [
+            {
+              "node": "Normalize Status Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Normalize Status Request": {
+        "main": [
+          [
+            {
+              "node": "Fetch Job Execution",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Fetch Job Execution": {
+        "main": [
+          [
+            {
+              "node": "Format Status Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Wen Zhong",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "workflowPublishHistory": [
+      {
+        "createdAt": "2026-05-05T06:08:30.617Z",
+        "id": 1794,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "deactivated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-05-05T06:08:30.627Z",
+        "id": 1795,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "activated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-05-05T06:13:42.202Z",
+        "id": 1800,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "deactivated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-05-05T06:13:42.214Z",
+        "id": 1801,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "activated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-05-05T02:54:07.348Z",
+        "id": 1788,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "deactivated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      },
+      {
+        "createdAt": "2026-05-05T02:54:07.373Z",
+        "id": 1789,
+        "workflowId": "fKCg9w3XBVcEBPlK",
+        "versionId": "e22266e6-759e-4be0-9083-58f193cd4273",
+        "event": "activated",
+        "userId": "aa05196c-cfee-4aac-9a1b-2ecf35cd78f0"
+      }
+    ]
+  }
+}

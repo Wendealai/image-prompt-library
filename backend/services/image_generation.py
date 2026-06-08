@@ -150,6 +150,48 @@ def _safe_json_parse(raw: str) -> Any:
         return raw
 
 
+def _parse_sse_payload(raw: str) -> Any:
+    normalized = raw.replace("\r\n", "\n").replace("\r", "\n")
+    blocks = [block.strip() for block in normalized.split("\n\n") if block.strip()]
+    parsed_items: list[Any] = []
+    parsed_any_block = False
+
+    for block in blocks:
+        event_type = ""
+        data_lines: list[str] = []
+        for line in block.split("\n"):
+            trimmed = line.strip()
+            if not trimmed or trimmed.startswith(":"):
+                continue
+            if trimmed.startswith("event:"):
+                event_type = trimmed[6:].strip()
+                continue
+            if trimmed.startswith("data:"):
+                data_lines.append(trimmed[5:].strip())
+        if not data_lines:
+            continue
+        parsed_any_block = True
+        merged = "\n".join(data_lines).strip()
+        if not merged or merged == "[DONE]":
+            continue
+        parsed = _safe_json_parse(merged)
+        if _is_record(parsed):
+            if event_type and not isinstance(parsed.get("event"), str):
+                parsed["event"] = event_type
+            parsed_items.append(parsed)
+            continue
+        if event_type:
+            parsed_items.append({"event": event_type, "data": parsed})
+        else:
+            parsed_items.append(parsed)
+
+    if not parsed_any_block:
+        return raw
+    if len(parsed_items) == 1:
+        return parsed_items[0]
+    return parsed_items
+
+
 def _read_string_by_path(payload: Any, path: list[str]) -> str:
     cursor: Any = payload
     for segment in path:
@@ -189,6 +231,10 @@ def _extract_text(payload: Any) -> str:
         if len(snippets) >= 12:
             return
         if isinstance(node, str):
+            parsed = _parse_json_like_string(node)
+            if parsed is not node:
+                walk(parsed)
+                return
             push(node)
             return
         node_id = id(node)
@@ -227,6 +273,8 @@ def _parse_json_like_string(value: Any) -> Any:
         return value
     if trimmed.startswith("{") or trimmed.startswith("["):
         return _safe_json_parse(trimmed)
+    if "event:" in trimmed or "data:" in trimmed:
+        return _parse_sse_payload(trimmed)
     return value
 
 
@@ -272,14 +320,17 @@ def _extract_image_sources(payload: Any) -> list[tuple[str, str]]:
             result = node.get("result")
             output_format = node.get("output_format") if isinstance(node.get("output_format"), str) else ""
             result_mime_type = mime_type if isinstance(mime_type, str) else ("image/jpeg" if output_format.lower() == "jpeg" else "image/png")
-            if isinstance(result, str) and len(result.strip()) > 40:
-                parsed = _parse_json_like_string(result)
-                if parsed is not result:
-                    walk(parsed)
-                elif result.startswith("data:image/"):
-                    add(result, result_mime_type)
+            if result is not None:
+                if isinstance(result, str) and len(result.strip()) > 40:
+                    parsed = _parse_json_like_string(result)
+                    if parsed is not result:
+                        walk(parsed)
+                    elif result.startswith("data:image/"):
+                        add(result, result_mime_type)
+                    else:
+                        add(_make_data_url(result, result_mime_type), result_mime_type)
                 else:
-                    add(_make_data_url(result, result_mime_type), result_mime_type)
+                    walk(result)
 
         for inline_key in ("inlineData", "inline_data"):
             inline_value = node.get(inline_key)
