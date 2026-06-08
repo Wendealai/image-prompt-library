@@ -778,6 +778,249 @@ export default function PromptTemplatePanel({
     targetedSlotTimerRef.current = window.setTimeout(() => setTargetedSlotId(current => current === slotId ? null : current), 1800);
   };
 
+  const renderImageGenerationControls = () => (
+    <section className="prompt-remix-image-config" aria-label={t('promptTemplateImageSettings')}>
+      <div className="prompt-remix-image-config-head">
+        <div>
+          <h4>{t('promptTemplateImageSettings')}</h4>
+          <p>{t('promptTemplateImageSettingsHelp')}</p>
+        </div>
+        {imageGenerationState.phase !== 'idle' && (
+          <span className={`prompt-remix-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
+            {imageGenerationState.phase === 'success' ? t('promptTemplateImageReady') : imageGenerationStatusText}
+          </span>
+        )}
+      </div>
+      <div className="prompt-remix-preset-section">
+        <div className="prompt-remix-preset-head">
+          <strong>{t('promptTemplateImagePresets')}</strong>
+          <span>{t('promptTemplateImagePresetsHelp')}</span>
+        </div>
+        <div className="prompt-remix-preset-list">
+          <button
+            type="button"
+            className={`prompt-remix-preset-chip ${activePresetId === 'default' ? 'active' : ''}`}
+            onClick={() => handleApplyImagePreset(DEFAULT_IMAGE_GENERATION_OPTIONS)}
+            disabled={imageGenerationBusy}
+          >
+            <span>{t('promptTemplateImagePresetDefault')}</span>
+          </button>
+          <button
+            type="button"
+            className={`prompt-remix-preset-chip ${activePresetId === 'recent' ? 'active' : ''}`}
+            onClick={() => recentImageGenerationOptions && handleApplyImagePreset(recentImageGenerationOptions)}
+            disabled={imageGenerationBusy || !hasRecentImagePreset}
+          >
+            <span>{t('promptTemplateImagePresetRecent')}</span>
+          </button>
+          {savedImagePresets.map(preset => (
+            <span key={preset.id} className={`prompt-remix-preset-chip ${activePresetId === preset.id ? 'active' : ''}`}>
+              <button type="button" onClick={() => handleApplyImagePreset(preset.options)} disabled={imageGenerationBusy}>
+                <span>{preset.name}</span>
+              </button>
+              <button
+                type="button"
+                className="prompt-remix-preset-delete"
+                onClick={() => handleDeleteImagePreset(preset.id)}
+                aria-label={`${t('promptTemplateImagePresetDelete')} ${preset.name}`}
+                disabled={imageGenerationBusy}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+        <div className="prompt-remix-preset-form">
+          <input
+            className="prompt-remix-input"
+            value={imagePresetName}
+            onChange={event => setImagePresetName(event.target.value)}
+            placeholder={t('promptTemplateImagePresetNamePlaceholder')}
+            maxLength={32}
+            disabled={imageGenerationBusy}
+          />
+          <button type="button" className="secondary" onClick={handleSaveImagePreset} disabled={imageGenerationBusy}>
+            <span>{t('promptTemplateImagePresetSave')}</span>
+          </button>
+        </div>
+      </div>
+      <div className="prompt-remix-image-config-grid">
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageAspectRatio')}</span>
+          <select
+            className="prompt-remix-select"
+            value={imageGenerationOptions.aspect_ratio}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, aspect_ratio: event.target.value as RequiredImageGenerationOptions['aspect_ratio'] })}
+            disabled={imageGenerationBusy}
+          >
+            {IMAGE_ASPECT_RATIO_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageResolution')}</span>
+          <select
+            className="prompt-remix-select"
+            value={imageGenerationOptions.resolution}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, resolution: event.target.value as RequiredImageGenerationOptions['resolution'] })}
+            disabled={imageGenerationBusy}
+          >
+            {IMAGE_RESOLUTION_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageStyle')}</span>
+          <select
+            className="prompt-remix-select"
+            value={imageGenerationOptions.style}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, style: event.target.value as RequiredImageGenerationOptions['style'] })}
+            disabled={imageGenerationBusy}
+          >
+            {IMAGE_STYLE_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageCount')}</span>
+          <select
+            className="prompt-remix-select"
+            value={String(imageGenerationOptions.image_count)}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, image_count: Number(event.target.value) })}
+            disabled={imageGenerationBusy}
+          >
+            {[1, 2, 3, 4].map(option => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageFormat')}</span>
+          <select
+            className="prompt-remix-select"
+            value={imageGenerationOptions.output_format}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, output_format: event.target.value as RequiredImageGenerationOptions['output_format'] })}
+            disabled={imageGenerationBusy}
+          >
+            {IMAGE_OUTPUT_FORMAT_OPTIONS.map(option => <option key={option} value={option}>{option.toUpperCase()}</option>)}
+          </select>
+        </label>
+        <label className="prompt-remix-select-field">
+          <span>{t('promptTemplateImageStrength')}</span>
+          <input
+            className="prompt-remix-range"
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={String(imageGenerationOptions.strength)}
+            onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, strength: Number(event.target.value) })}
+            disabled={imageGenerationBusy || !imageToImageEnabled}
+          />
+          <em>{Math.round(imageGenerationOptions.strength * 100)}%</em>
+        </label>
+      </div>
+      <section className="prompt-remix-reference-section" aria-label={t('promptTemplateImageReferences')}>
+        <div className="prompt-remix-reference-head">
+          <div>
+            <strong>{t('promptTemplateImageReferences')}</strong>
+            <span>{imageToImageEnabled ? `${imageReferences.length}/${IMAGE_REFERENCE_LIMIT} · ${t('promptTemplateImageToImageMode')}` : t('promptTemplateImageReferencesHelp')}</span>
+          </div>
+          <div className="prompt-remix-reference-actions">
+            <input
+              ref={imageReferenceInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              hidden
+              onChange={event => handleAddLocalReferenceImages(event.currentTarget.files)}
+            />
+            <button type="button" className="secondary" onClick={() => imageReferenceInputRef.current?.click()} disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}>
+              <ImagePlus size={15} />
+              <span>{t('promptTemplateImageAddReference')}</span>
+            </button>
+          </div>
+        </div>
+        {libraryReferenceCandidates.length > 0 && (
+          <div className="prompt-remix-reference-library">
+            {libraryReferenceCandidates.map(image => (
+              <button
+                type="button"
+                key={imageReferenceIdentity(image)}
+                className="prompt-remix-reference-source"
+                onClick={() => handleAddLibraryReferenceImage(image)}
+                disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}
+                title={image.role || undefined}
+              >
+                <img src={imagePathForReference(image)} alt={t('promptTemplateImageReference')} loading="lazy" decoding="async" />
+                <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
+              </button>
+            ))}
+          </div>
+        )}
+        {imageReferences.length > 0 ? (
+          <div className="prompt-remix-reference-list">
+            {imageReferences.map((reference, index) => (
+              <article key={reference.id} className="prompt-remix-reference-card">
+                <img src={reference.previewUrl} alt={reference.label || t('promptTemplateImageReference')} loading="lazy" decoding="async" />
+                <div className="prompt-remix-reference-fields">
+                  <div className="prompt-remix-reference-card-head">
+                    <strong>{index === 0 ? t('promptTemplateImagePrimaryReference') : t('promptTemplateImageReference')}</strong>
+                    <button type="button" className="prompt-remix-reference-remove" onClick={() => handleRemoveImageReference(reference.id)} disabled={imageGenerationBusy} aria-label={t('promptTemplateImageRemoveReference')}>
+                      <X size={14} />
+                    </button>
+                  </div>
+                  <input
+                    className="prompt-remix-input"
+                    value={reference.label}
+                    onChange={event => handleUpdateImageReference(reference.id, { label: event.target.value })}
+                    placeholder={t('promptTemplateImageReferenceLabelPlaceholder')}
+                    disabled={imageGenerationBusy}
+                  />
+                  <div className="prompt-remix-reference-row">
+                    <select
+                      className="prompt-remix-select"
+                      value={reference.role}
+                      onChange={event => handleUpdateImageReference(reference.id, { role: event.target.value })}
+                      disabled={imageGenerationBusy}
+                    >
+                      {IMAGE_REFERENCE_ROLE_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
+                    </select>
+                  </div>
+                  <textarea
+                    className="prompt-remix-textarea prompt-remix-reference-note"
+                    rows={2}
+                    value={reference.note}
+                    onChange={event => handleUpdateImageReference(reference.id, { note: event.target.value })}
+                    placeholder={t('promptTemplateImageReferenceNotePlaceholder')}
+                    disabled={imageGenerationBusy}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p className="prompt-remix-reference-empty">{t('promptTemplateImageReferencesEmpty')}</p>
+        )}
+      </section>
+      {imageGenerationState.phase === 'error' && (
+        <div className={`prompt-remix-image-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
+          <p>{imageGenerationStatusText}</p>
+          <button type="button" className="secondary" onClick={() => void runImageGeneration(template ? (assembledPreview || livePreview)?.renderedText.trim() || '' : fallbackPromptText)} disabled={template ? !(assembledPreview || livePreview)?.renderedText.trim() : !fallbackPromptText}>
+            <RefreshCcw size={15} />
+            <span>{t('promptTemplateImageRetry')}</span>
+          </button>
+        </div>
+      )}
+      {lastImageRun && (
+        <div className="prompt-remix-image-status is-accepted">
+          <p>
+            <strong>{t('promptTemplateImageRunSaved')}</strong>
+            {' · '}
+            {lastImageRun.status}
+            {' · '}
+            {t('promptTemplateImageRunReferences')}: {lastImageRun.references.length}
+          </p>
+        </div>
+      )}
+    </section>
+  );
+
   const renderPreviewSegment = (segment: PromptRenderSegment, key: string) => {
     const clickable = segment.type === 'slot' && Boolean(segment.slot_id);
     const className = segment.type === 'slot' && segment.changed ? 'prompt-remix-segment is-changed' : 'prompt-remix-segment';
@@ -827,6 +1070,7 @@ export default function PromptTemplatePanel({
             )}
           </div>
         )}
+        {renderImageGenerationControls()}
       </section>
     );
   }
@@ -1020,244 +1264,7 @@ export default function PromptTemplatePanel({
                 );
               })}
             </div>
-            <section className="prompt-remix-image-config" aria-label={t('promptTemplateImageSettings')}>
-              <div className="prompt-remix-image-config-head">
-                <div>
-                  <h4>{t('promptTemplateImageSettings')}</h4>
-                  <p>{t('promptTemplateImageSettingsHelp')}</p>
-                </div>
-                {imageGenerationState.phase !== 'idle' && (
-                  <span className={`prompt-remix-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
-                    {imageGenerationState.phase === 'success' ? t('promptTemplateImageReady') : imageGenerationStatusText}
-                  </span>
-                )}
-              </div>
-              <div className="prompt-remix-preset-section">
-                <div className="prompt-remix-preset-head">
-                  <strong>{t('promptTemplateImagePresets')}</strong>
-                  <span>{t('promptTemplateImagePresetsHelp')}</span>
-                </div>
-                <div className="prompt-remix-preset-list">
-                  <button
-                    type="button"
-                    className={`prompt-remix-preset-chip ${activePresetId === 'default' ? 'active' : ''}`}
-                    onClick={() => handleApplyImagePreset(DEFAULT_IMAGE_GENERATION_OPTIONS)}
-                    disabled={imageGenerationBusy}
-                  >
-                    <span>{t('promptTemplateImagePresetDefault')}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className={`prompt-remix-preset-chip ${activePresetId === 'recent' ? 'active' : ''}`}
-                    onClick={() => recentImageGenerationOptions && handleApplyImagePreset(recentImageGenerationOptions)}
-                    disabled={imageGenerationBusy || !hasRecentImagePreset}
-                  >
-                    <span>{t('promptTemplateImagePresetRecent')}</span>
-                  </button>
-                  {savedImagePresets.map(preset => (
-                    <span key={preset.id} className={`prompt-remix-preset-chip ${activePresetId === preset.id ? 'active' : ''}`}>
-                      <button type="button" onClick={() => handleApplyImagePreset(preset.options)} disabled={imageGenerationBusy}>
-                        <span>{preset.name}</span>
-                      </button>
-                      <button
-                        type="button"
-                        className="prompt-remix-preset-delete"
-                        onClick={() => handleDeleteImagePreset(preset.id)}
-                        aria-label={`${t('promptTemplateImagePresetDelete')} ${preset.name}`}
-                        disabled={imageGenerationBusy}
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <div className="prompt-remix-preset-form">
-                  <input
-                    className="prompt-remix-input"
-                    value={imagePresetName}
-                    onChange={event => setImagePresetName(event.target.value)}
-                    placeholder={t('promptTemplateImagePresetNamePlaceholder')}
-                    maxLength={32}
-                    disabled={imageGenerationBusy}
-                  />
-                  <button type="button" className="secondary" onClick={handleSaveImagePreset} disabled={imageGenerationBusy}>
-                    <span>{t('promptTemplateImagePresetSave')}</span>
-                  </button>
-                </div>
-              </div>
-              <div className="prompt-remix-image-config-grid">
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageAspectRatio')}</span>
-                  <select
-                    className="prompt-remix-select"
-                    value={imageGenerationOptions.aspect_ratio}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, aspect_ratio: event.target.value as RequiredImageGenerationOptions['aspect_ratio'] })}
-                    disabled={imageGenerationBusy}
-                  >
-                    {IMAGE_ASPECT_RATIO_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
-                  </select>
-                </label>
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageResolution')}</span>
-                  <select
-                    className="prompt-remix-select"
-                    value={imageGenerationOptions.resolution}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, resolution: event.target.value as RequiredImageGenerationOptions['resolution'] })}
-                    disabled={imageGenerationBusy}
-                  >
-                    {IMAGE_RESOLUTION_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
-                  </select>
-                </label>
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageStyle')}</span>
-                  <select
-                    className="prompt-remix-select"
-                    value={imageGenerationOptions.style}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, style: event.target.value as RequiredImageGenerationOptions['style'] })}
-                    disabled={imageGenerationBusy}
-                  >
-                    {IMAGE_STYLE_OPTIONS.map(option => <option key={option} value={option}>{option}</option>)}
-                  </select>
-                </label>
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageCount')}</span>
-                  <select
-                    className="prompt-remix-select"
-                    value={String(imageGenerationOptions.image_count)}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, image_count: Number(event.target.value) })}
-                    disabled={imageGenerationBusy}
-                  >
-                    {[1, 2, 3, 4].map(option => <option key={option} value={option}>{option}</option>)}
-                  </select>
-                </label>
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageFormat')}</span>
-                  <select
-                    className="prompt-remix-select"
-                    value={imageGenerationOptions.output_format}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, output_format: event.target.value as RequiredImageGenerationOptions['output_format'] })}
-                    disabled={imageGenerationBusy}
-                  >
-                    {IMAGE_OUTPUT_FORMAT_OPTIONS.map(option => <option key={option} value={option}>{option.toUpperCase()}</option>)}
-                  </select>
-                </label>
-                <label className="prompt-remix-select-field">
-                  <span>{t('promptTemplateImageStrength')}</span>
-                  <input
-                    className="prompt-remix-range"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.05"
-                    value={String(imageGenerationOptions.strength)}
-                    onChange={event => updateImageGenerationOptions({ ...imageGenerationOptions, strength: Number(event.target.value) })}
-                    disabled={imageGenerationBusy || !imageToImageEnabled}
-                  />
-                  <em>{Math.round(imageGenerationOptions.strength * 100)}%</em>
-                </label>
-              </div>
-              <section className="prompt-remix-reference-section" aria-label={t('promptTemplateImageReferences')}>
-                <div className="prompt-remix-reference-head">
-                  <div>
-                    <strong>{t('promptTemplateImageReferences')}</strong>
-                    <span>{imageToImageEnabled ? `${imageReferences.length}/${IMAGE_REFERENCE_LIMIT} · ${t('promptTemplateImageToImageMode')}` : t('promptTemplateImageReferencesHelp')}</span>
-                  </div>
-                  <div className="prompt-remix-reference-actions">
-                    <input
-                      ref={imageReferenceInputRef}
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      hidden
-                      onChange={event => handleAddLocalReferenceImages(event.currentTarget.files)}
-                    />
-                    <button type="button" className="secondary" onClick={() => imageReferenceInputRef.current?.click()} disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}>
-                      <ImagePlus size={15} />
-                      <span>{t('promptTemplateImageAddReference')}</span>
-                    </button>
-                  </div>
-                </div>
-                {libraryReferenceCandidates.length > 0 && (
-                  <div className="prompt-remix-reference-library">
-                    {libraryReferenceCandidates.map(image => (
-                      <button
-                        type="button"
-                        key={imageReferenceIdentity(image)}
-                        className="prompt-remix-reference-source"
-                        onClick={() => handleAddLibraryReferenceImage(image)}
-                        disabled={imageGenerationBusy || imageReferences.length >= IMAGE_REFERENCE_LIMIT}
-                        title={image.role || undefined}
-                      >
-                        <img src={imagePathForReference(image)} alt={t('promptTemplateImageReference')} loading="lazy" decoding="async" />
-                        <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {imageReferences.length > 0 ? (
-                  <div className="prompt-remix-reference-list">
-                    {imageReferences.map((reference, index) => (
-                      <article key={reference.id} className="prompt-remix-reference-card">
-                        <img src={reference.previewUrl} alt={reference.label || t('promptTemplateImageReference')} loading="lazy" decoding="async" />
-                        <div className="prompt-remix-reference-fields">
-                          <div className="prompt-remix-reference-card-head">
-                            <strong>{index === 0 ? t('promptTemplateImagePrimaryReference') : t('promptTemplateImageReference')}</strong>
-                            <button type="button" className="prompt-remix-reference-remove" onClick={() => handleRemoveImageReference(reference.id)} disabled={imageGenerationBusy} aria-label={t('promptTemplateImageRemoveReference')}>
-                              <X size={14} />
-                            </button>
-                          </div>
-                          <input
-                            className="prompt-remix-input"
-                            value={reference.label}
-                            onChange={event => handleUpdateImageReference(reference.id, { label: event.target.value })}
-                            placeholder={t('promptTemplateImageReferenceLabelPlaceholder')}
-                            disabled={imageGenerationBusy}
-                          />
-                          <div className="prompt-remix-reference-row">
-                            <select
-                              className="prompt-remix-select"
-                              value={reference.role}
-                              onChange={event => handleUpdateImageReference(reference.id, { role: event.target.value })}
-                              disabled={imageGenerationBusy}
-                            >
-                              {IMAGE_REFERENCE_ROLE_OPTIONS.map(role => <option key={role} value={role}>{role}</option>)}
-                            </select>
-                            <input
-                              className="prompt-remix-input"
-                              value={reference.note}
-                              onChange={event => handleUpdateImageReference(reference.id, { note: event.target.value })}
-                              placeholder={t('promptTemplateImageReferenceNotePlaceholder')}
-                              disabled={imageGenerationBusy}
-                            />
-                          </div>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="prompt-remix-reference-empty">{t('promptTemplateImageReferencesEmpty')}</p>
-                )}
-              </section>
-              {imageGenerationState.phase !== 'idle' && (
-                <div className={`prompt-remix-image-status is-${imageGenerationStatusTone(imageGenerationState.phase)}`}>
-                  <p>{imageGenerationStatusText}</p>
-                  {imageGenerationState.phase === 'error' && (
-                    <button type="button" className="secondary" onClick={handleGenerateImage}>
-                      <RefreshCcw size={15} />
-                      <span>{t('promptTemplateImageRetry')}</span>
-                    </button>
-                  )}
-                </div>
-              )}
-              {lastImageRun && (
-                <div className="prompt-remix-run-card">
-                  <strong>{t('promptTemplateImageRunSaved')}</strong>
-                  <span>{lastImageRun.id}</span>
-                  <span>{lastImageRun.image_ids.length} image(s)</span>
-                  <span>{t('promptTemplateImageRunReferences')}: {lastImageRun.references.length}</span>
-                </div>
-              )}
-            </section>
+            {renderImageGenerationControls()}
             <div className="prompt-remix-actions">
               <button type="button" className="primary" onClick={handleAssemble}>
                 <Sparkles size={15} />
