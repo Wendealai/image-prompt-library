@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Check, Copy, Download, ExternalLink, Eye, Heart, ImagePlus, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { Check, Copy, Download, ExternalLink, Eye, Heart, Minus, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { api, isDemoMode, mediaUrl } from '../api/client';
 import FallbackImage from './FallbackImage';
 import PromptTemplatePanel from './PromptTemplatePanel';
-import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaItemImageGenerationStatus, NanobananaSourceItem, PromptImageGenerationRunRecord, TagRecord } from '../types';
+import type { ClusterRecord, ImageRecord, ItemDetail, NanobananaItemImageGenerationStatus, PromptImageGenerationRunRecord, TagRecord } from '../types';
 import { copyTextToClipboard } from '../utils/clipboard';
 import { downloadBlobFromUrl } from '../utils/downloads';
 import { imageDisplayPaths, imageHeroPaths, selectPrimaryImage } from '../utils/images';
@@ -41,59 +41,6 @@ function getImageIdentity(image: ImageRecord) {
 function imageDownloadUrl(item: ItemDetail, image: ImageRecord) {
   if (isDemoMode) return mediaUrl(image.original_path || image.remote_url || image.preview_path || image.thumb_path);
   return `/api/items/${encodeURIComponent(item.id)}/images/${encodeURIComponent(image.id)}/download`;
-}
-
-function imagePathForReference(image: ImageRecord) {
-  return image.remote_url || image.original_path || image.preview_path || image.thumb_path || '';
-}
-
-function imageUrlForReference(image: ImageRecord) {
-  const path = imagePathForReference(image);
-  if (!path) return '';
-  if (/^https?:\/\//i.test(path)) return path;
-  const url = mediaUrl(path);
-  if (!url) return '';
-  try {
-    return new URL(url, window.location.origin).href;
-  } catch {
-    return url;
-  }
-}
-
-function imageMimeTypeForReference(image: ImageRecord) {
-  const path = imagePathForReference(image).split('?')[0].toLowerCase();
-  if (path.endsWith('.png')) return 'image/png';
-  if (path.endsWith('.webp')) return 'image/webp';
-  if (path.endsWith('.gif')) return 'image/gif';
-  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg';
-  return undefined;
-}
-
-function delay(ms: number) {
-  return new Promise(resolve => window.setTimeout(resolve, ms));
-}
-
-function createImageGenerationRequestId() {
-  const cryptoApi = globalThis.crypto;
-  if (cryptoApi && typeof cryptoApi.randomUUID === 'function') return cryptoApi.randomUUID();
-  return `req_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function readBatchId(payload: Record<string, unknown> | undefined) {
-  const batchId = payload?.batchId || payload?.batch_id;
-  return typeof batchId === 'string' && batchId.trim() ? batchId.trim() : '';
-}
-
-function imageSourceItem(image: ImageRecord, index: number, t: Translator): NanobananaSourceItem | null {
-  const imageUrl = imageUrlForReference(image);
-  if (!imageUrl) return null;
-  return {
-    imageUrl,
-    mimeType: imageMimeTypeForReference(image),
-    label: index === 0 ? 'primary' : `${t('promptTemplateImageReference')} ${index + 1}`,
-    role: index === 0 ? 'subject' : 'style',
-    note: image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved'),
-  };
 }
 
 function imageDownloadFilename(item: ItemDetail, image: ImageRecord) {
@@ -207,21 +154,6 @@ function clampImageViewerScale(scale: number) {
 
 function measureTouchDistance(firstTouch: { clientX: number; clientY: number }, secondTouch: { clientX: number; clientY: number }) {
   return Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
-}
-
-function extractErrorDetail(error: unknown): string {
-  if (!(error instanceof Error)) return '';
-  let message = error.message.trim();
-  if (!message) return '';
-  try {
-    const parsed = JSON.parse(message);
-    if (parsed && typeof parsed === 'object' && 'detail' in parsed && parsed.detail) {
-      message = String(parsed.detail).trim();
-    }
-  } catch {
-    // Keep raw error text when the payload is not JSON.
-  }
-  return message;
 }
 
 function resolvePromptRecord<T extends { language: string; text: string }>(
@@ -374,21 +306,15 @@ export default function ItemDetailModal({
   const [selectedImageIdentity, setSelectedImageIdentity] = useState<string>();
   const [imageViewerOpen, setImageViewerOpen] = useState(false);
   const [imageViewerScale, setImageViewerScale] = useState(1);
-  const [generatingImage, setGeneratingImage] = useState(false);
-  const [referenceUploading, setReferenceUploading] = useState(false);
-  const [selectedReferenceImageIdentities, setSelectedReferenceImageIdentities] = useState<string[]>([]);
-  const [imageGenerationFeedback, setImageGenerationFeedback] = useState<{ tone: 'error' | 'success'; message: string } | null>(null);
   const [detailPanel, setDetailPanel] = useState<DetailPanel>('prompt');
   const [generationRuns, setGenerationRuns] = useState<PromptImageGenerationRunRecord[]>([]);
   const [generationRunsLoading, setGenerationRunsLoading] = useState(false);
   const imageViewerScaleRef = useRef(1);
   const imageViewerScrollRef = useRef<HTMLDivElement>(null);
-  const referenceUploadInputRef = useRef<HTMLInputElement | null>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const pinchGestureRef = useRef<{ distance: number; scale: number } | null>(null);
   const lastViewerTapAtRef = useRef(0);
   const lastDefaultPromptKeyRef = useRef('');
-  const lastReferenceDefaultItemIdRef = useRef('');
 
   useEffect(() => { setLang(preferredLanguage); }, [preferredLanguage, id]);
 
@@ -490,21 +416,9 @@ export default function ItemDetailModal({
   const prompt = item?.prompts.find(promptRecord => promptRecord.language === lang);
   const resolvedPrompt = resolvePromptRecord(availablePromptRecords, lang, preferredLanguage);
   const copyText = prompt?.text || resolvedPrompt?.text || resolvePromptText(item?.prompts, preferredLanguage, item?.title || '');
-  const selectedPromptText = (prompt?.text || resolvedPrompt?.text || copyText).trim();
   const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
-  const directReferenceCandidates = useMemo(() => {
-    return [...uniqueImages].sort((left, right) => {
-      const leftRank = left.role === 'reference_image' ? 0 : 1;
-      const rightRank = right.role === 'reference_image' ? 0 : 1;
-      return leftRank - rightRank;
-    });
-  }, [uniqueImages]);
-  const selectedDirectReferenceImages = useMemo(() => {
-    const selected = new Set(selectedReferenceImageIdentities);
-    return directReferenceCandidates.filter(image => selected.has(getImageIdentity(image)));
-  }, [directReferenceCandidates, selectedReferenceImageIdentities]);
   const generatedImageHistoryEntries = useMemo(() => buildGeneratedImageHistory(uniqueImages, generationRuns), [uniqueImages, generationRuns]);
   useEffect(() => {
     setSelectedImageIdentity(current => {
@@ -518,16 +432,6 @@ export default function ItemDetailModal({
   useEffect(() => {
     imageViewerScaleRef.current = imageViewerScale;
   }, [imageViewerScale]);
-  useEffect(() => {
-    if (!item || lastReferenceDefaultItemIdRef.current === item.id) return;
-    setSelectedReferenceImageIdentities(uniqueImages.filter(image => image.role === 'reference_image').map(image => getImageIdentity(image)));
-    lastReferenceDefaultItemIdRef.current = item.id;
-  }, [item, uniqueImages]);
-  useEffect(() => {
-    const availableImageIdentities = new Set(uniqueImages.map(image => getImageIdentity(image)));
-    setSelectedReferenceImageIdentities(current => current.filter(identity => availableImageIdentities.has(identity)));
-  }, [uniqueImages]);
-
   if (!id) return null;
 
   const toggleFavorite = () => {
@@ -543,92 +447,6 @@ export default function ItemDetailModal({
   const handleCopyPrompt = async (text = copyText) => {
     const copied = await copyTextToClipboard(text);
     onCopyPrompt(copied);
-  };
-  const toggleDirectReferenceImage = (image: ImageRecord) => {
-    const identity = getImageIdentity(image);
-    setSelectedReferenceImageIdentities(current => (
-      current.includes(identity)
-        ? current.filter(existing => existing !== identity)
-        : [...current, identity]
-    ));
-    setImageGenerationFeedback(null);
-  };
-  const handleUploadDirectReferenceImage = async (files: FileList | null) => {
-    if (!item) return;
-    const file = Array.from(files || []).find(candidate => candidate.type.startsWith('image/'));
-    if (referenceUploadInputRef.current) referenceUploadInputRef.current.value = '';
-    if (!file) {
-      setImageGenerationFeedback({ tone: 'error', message: t('imageFileOnly') });
-      return;
-    }
-    setReferenceUploading(true);
-    setImageGenerationFeedback(null);
-    try {
-      const uploaded = await api.uploadImage(item.id, file, 'reference_image');
-      const uploadedIdentity = getImageIdentity(uploaded);
-      const updated = await api.item(item.id);
-      setItem(updated);
-      setSelectedReferenceImageIdentities(current => Array.from(new Set([...current, uploadedIdentity])));
-      setSelectedImageIdentity(uploadedIdentity);
-      onChanged();
-    } catch (error) {
-      setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('saveFailed') });
-    } finally {
-      setReferenceUploading(false);
-    }
-  };
-  const handleGenerateImage = async () => {
-    if (!item || generatingImage) return;
-    const promptText = selectedPromptText;
-    if (!promptText) {
-      setImageGenerationFeedback({ tone: 'error', message: t('imageGenerationNoPrompt') });
-      return;
-    }
-    setGeneratingImage(true);
-    setImageGenerationFeedback(null);
-    try {
-      const sourceItems = selectedDirectReferenceImages
-        .map((image, index) => imageSourceItem(image, index, t))
-        .filter((sourceItem): sourceItem is NanobananaSourceItem => Boolean(sourceItem));
-        const result = await api.generateItemImage(item.id, {
-          promptText,
-          promptLanguage: lang,
-          idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`,
-          wait: false,
-          ...(sourceItems.length > 0 ? { sourceItems } : {}),
-        });
-        let storedImages = result.stored_images;
-        const batchId = readBatchId(result.create);
-        void refreshGenerationRuns(item.id);
-        if (storedImages.length === 0 && !batchId) {
-          throw new Error(t('imageGenerationUnavailable'));
-        }
-        if (storedImages.length === 0 && batchId) {
-          setImageGenerationFeedback({ tone: 'success', message: t('imageGenerationQueued') });
-          for (let attempt = 0; attempt < IMAGE_GENERATION_POLL_ATTEMPTS; attempt += 1) {
-            await delay(IMAGE_GENERATION_POLL_INTERVAL_MS);
-            const status = await api.itemImageGenerationStatus(item.id, batchId);
-            storedImages = status.stored_images;
-            if (storedImages.length > 0) break;
-            const directGenerationState = resolveDirectGenerationState(status);
-            if (directGenerationState.resultStatus === 'failed' || directGenerationState.batchStatus === 'failed') {
-              throw new Error(directGenerationState.errorMessage || t('imageGenerationUnavailable'));
-            }
-          }
-        }
-        const updated = await api.item(item.id);
-        setItem(updated);
-      const newestImage = updated.images[updated.images.length - 1];
-      if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
-      void refreshGenerationRuns(item.id);
-        onChanged();
-        setImageGenerationFeedback({ tone: 'success', message: storedImages.length > 0 ? t('imageGenerationComplete') : t('imageGenerationQueued') });
-      } catch (error) {
-        void refreshGenerationRuns(item.id);
-        setImageGenerationFeedback({ tone: 'error', message: extractErrorDetail(error) || t('imageGenerationUnavailable') });
-      } finally {
-        setGeneratingImage(false);
-      }
   };
   const commitPrompt = (language: string, text: string) => {
     if (!item) return;
@@ -772,6 +590,7 @@ export default function ItemDetailModal({
     setSelectedImageIdentity(getImageIdentity(image));
     window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
   };
+  const openPromptWorkbench = () => setDetailPanel('prompt');
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -971,55 +790,6 @@ export default function ItemDetailModal({
                             </div>
                           )}
                         </div>
-                        <div className="prompt-direct-generate-row">
-                          <button type="button" className="primary prompt-direct-generate-button" onClick={handleGenerateImage} disabled={generatingImage || !selectedPromptText}>
-                            <ImagePlus size={16} />
-                            <span>{generatingImage ? t('generatingImage') : t('generateImage')}</span>
-                          </button>
-                        </div>
-                        <section className="prompt-direct-reference-panel" aria-label={t('promptTemplateImageReferences')}>
-                          <div className="prompt-direct-reference-head">
-                            <div>
-                              <strong>{t('promptTemplateImageReferences')}</strong>
-                              <span>{selectedDirectReferenceImages.length > 0 ? `${selectedDirectReferenceImages.length} · ${t('promptTemplateImageToImageMode')}` : t('promptTemplateImageReferencesEmpty')}</span>
-                            </div>
-                            <input
-                              ref={referenceUploadInputRef}
-                              type="file"
-                              accept="image/*"
-                              hidden
-                              onChange={event => handleUploadDirectReferenceImage(event.currentTarget.files)}
-                            />
-                            <button type="button" className="secondary prompt-direct-reference-upload" onClick={() => referenceUploadInputRef.current?.click()} disabled={referenceUploading || generatingImage}>
-                              <ImagePlus size={14} />
-                              <span>{referenceUploading ? t('saving') : t('promptTemplateImageAddReference')}</span>
-                            </button>
-                          </div>
-                          {directReferenceCandidates.length > 0 && (
-                            <div className="prompt-direct-reference-list">
-                              {directReferenceCandidates.map(image => {
-                                const identity = getImageIdentity(image);
-                                const selected = selectedReferenceImageIdentities.includes(identity);
-                                return (
-                                  <button
-                                    type="button"
-                                    key={identity}
-                                    className={`prompt-direct-reference-thumb ${selected ? 'active' : ''}`}
-                                    onClick={() => toggleDirectReferenceImage(image)}
-                                    disabled={generatingImage || referenceUploading}
-                                    title={image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}
-                                  >
-                                    <FallbackImage paths={imageDisplayPaths(image)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
-                                    <span>{image.role === 'reference_image' ? t('referencePhotoOptional') : t('resultImageAlreadySaved')}</span>
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </section>
-                        {(generatingImage || imageGenerationFeedback) && (
-                          <p className={`prompt-image-feedback ${imageGenerationFeedback?.tone || 'success'}`}>{generatingImage ? t('generatingImage') : imageGenerationFeedback?.message}</p>
-                        )}
                       </section>
                         );
                       })()}
@@ -1049,6 +819,15 @@ export default function ItemDetailModal({
                         <span>{generationRunsLoading ? t('loading') : `${generatedImageHistoryEntries.length} ${t('generatedRunsCount')}`}</span>
                       </div>
                     </header>
+                    <div className="generated-history-cta">
+                      <div className="generated-history-cta-copy">
+                        <strong>{t('generatedHistoryGoToWorkbench')}</strong>
+                        <p>{t('generatedHistoryGoToWorkbenchHelp')}</p>
+                      </div>
+                      <button type="button" className="secondary" onClick={openPromptWorkbench}>
+                        {t('generatedHistoryOpenPromptTab')}
+                      </button>
+                    </div>
                     {generatedImageHistoryEntries.length > 0 ? (
                       <div className="generated-history-grid">
                         {generatedImageHistoryEntries.map(entry => {

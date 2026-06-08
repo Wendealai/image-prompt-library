@@ -532,52 +532,30 @@ def test_admin_app_hosts_template_ops_and_review_surface():
     assert ".admin-review-notes{width:100%;min-height:104px;" in compact_css
 
 
-def test_detail_modal_exposes_direct_nanobanana_image_generation():
+def test_detail_modal_uses_unified_image_workbench_and_history_cta():
     detail = (ROOT / "frontend" / "src" / "components" / "ItemDetailModal.tsx").read_text()
-    demo_api = (ROOT / "frontend" / "src" / "api" / "demo.ts").read_text()
-    local_api = (ROOT / "frontend" / "src" / "api" / "local.ts").read_text()
-    types = (ROOT / "frontend" / "src" / "types.ts").read_text()
     i18n = (ROOT / "frontend" / "src" / "utils" / "i18n.ts").read_text()
     css = (ROOT / "frontend" / "src" / "styles.css").read_text()
 
-    assert "ImagePlus" in detail
-    assert "const handleGenerateImage = async () => {" in detail
-    assert "selectedDirectReferenceImages" in detail
-    assert "imageSourceItem(image, index, t)" in detail
-    assert "...(sourceItems.length > 0 ? { sourceItems } : {})" in detail
-    assert "api.generateItemImage(item.id, {" in detail
-    assert "idempotencyKey: `${item.id}:nanobanana-images:v1:user-${createImageGenerationRequestId()}`" in detail
-    assert "wait: false" in detail
-    assert "storedImages.length === 0 && !batchId" in detail
-    assert "api.itemImageGenerationStatus(item.id, batchId)" in detail
     assert "IMAGE_GENERATION_POLL_ATTEMPTS" in detail
     assert "const pendingRuns = generationRuns.filter(run => run.source === 'direct' && run.batch_id && !isTerminalGenerationRunStatus(run.status));" in detail
     assert "const timer = window.setInterval(() => { void pollPendingRuns(); }, IMAGE_GENERATION_POLL_INTERVAL_MS);" in detail
     assert "resolveDirectGenerationState(status)" in detail
-    assert "await refreshGenerationRuns(item.id);" in detail
-    assert "api.uploadImage(item.id, file, 'reference_image')" in detail
-    assert "prompt-direct-reference-panel" in detail
-    assert "prompt-direct-reference-thumb" in detail
-    assert "referenceUploadInputRef" in detail
-    assert "setImageGenerationFeedback" in detail
-    assert "prompt-direct-generate-row" in detail
-    assert "prompt-direct-generate-button" in detail
-    assert "{generatingImage ? t('generatingImage') : t('generateImage')}" in detail
-    assert "prompt-image-feedback" in detail
-    assert "generateItemImage: (_itemId: string" in demo_api
-    assert "itemImageGenerationStatus: (_itemId: string" in demo_api
-    assert "generateItemImage: (itemId: string" in local_api
-    assert "itemImageGenerationStatus: (itemId: string" in local_api
-    assert "NanobananaItemImageGenerationRequest" in types
-    assert "NanobananaItemImageGenerationResult" in types
-    assert "NanobananaItemImageGenerationStatus" in types
-    assert "NanobananaSourceItem" in types
+    assert "PromptTemplatePanel" in detail
+    assert "fallbackPrompt={copyText}" in detail
+    assert "generated-history-cta" in detail
+    assert "generatedHistoryGoToWorkbench" in detail
+    assert "generatedHistoryOpenPromptTab" in detail
+    assert "const openPromptWorkbench = () => setDetailPanel('prompt');" in detail
+    assert "const handleGenerateImage = async () => {" not in detail
+    assert "prompt-direct-generate-row" not in detail
+    assert "prompt-direct-reference-panel" not in detail
+    assert "referenceUploadInputRef" not in detail
     assert "| 'generateImage' | 'generatingImage' | 'imageGenerationQueued' | 'imageGenerationComplete' | 'imageGenerationUnavailable' | 'imageGenerationNoPrompt'" in i18n
-    assert ".prompt-direct-generate-row" in css
-    assert ".prompt-direct-generate-button" in css
-    assert ".prompt-direct-reference-panel" in css
-    assert ".prompt-direct-reference-thumb.active" in css
-    assert ".prompt-image-feedback" in css
+    assert "generatedHistoryGoToWorkbench" in i18n
+    assert "generatedHistoryOpenPromptTab" in i18n
+    assert ".generated-history-cta{" in css
+    assert ".generated-history-cta-copy p{" in css
 
 
 def test_detail_modal_calls_all_hooks_before_closed_state_return():
