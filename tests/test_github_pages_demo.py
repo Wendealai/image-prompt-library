@@ -155,11 +155,11 @@ def test_demo_bundle_matches_latest_production_export_counts():
     metadata = json.loads((demo_root / "metadata.json").read_text())
     media_files = list((demo_root / "media").glob("*.webp"))
 
-    assert len(items) == 1156
+    assert len(items) == 1168
     assert len(clusters) == 172
-    assert len(tags) == 2213
-    assert len(media_files) == 1983
-    assert metadata["item_count"] == 1156
+    assert len(tags) == 2225
+    assert len(media_files) == 2015
+    assert metadata["item_count"] == 1168
     assert metadata["image_max_width"] == 900
     assert metadata["image_quality"] == 62
 
@@ -186,7 +186,7 @@ def test_demo_bundle_media_references_resolve_to_tracked_webp_files():
 
     media_files = {path.name for path in media_dir.glob("*.webp")}
 
-    assert len(referenced) == 1983
+    assert len(referenced) == 2015
     assert referenced <= media_files
 
 

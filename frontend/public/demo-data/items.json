@@ -1,5 +1,1287 @@
 [
   {
+    "id": "itm_3bdeaf19d27d4914",
+    "title": "Bro treats billion-dollar companies like side qu Prompt",
+    "slug": "bro-treats-billion-dollar-companies-like-side-qu-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Noor_ul_ain43/status/2064572034559164800",
+    "cluster": null,
+    "use_case": "艺术插画",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_30ab9d37f41f417d",
+        "name": "x-status-2064572034559164800",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Bro treats billion-dollar companies like side quests.\n\nPrompt ⤵️ \nCreate a hilarious black-and-white caricature illustration of Elon Musk in a hand-drawn comic sketch style. Design it as a step-by-step exaggeration sheet: start with a realistic portrait, then progressively simplify and exaggerate his features in three stages. Emphasize a huge forehead, wild messy hair, oversized eyebrows, mischievous smirk, giant grin, sleepy genius eyes, and an exaggerated tech-billionaire expression. Add playful handwritten annotations and red arrows between stages with notes like \"simplify\", \"push\", \"more chaos\", \"sleep: 2 hours\", and \"CEO of everything\". Final stage should be extremely funny and absurd, with Elon riding a tiny futuristic car while wearing a rocket backpack, laughing maniacally. Loose ink lines, cartoon doodle energy, white background, professional caricature artist style, highly expressive, humorous, viral social-media comic aesthetic.",
+        "is_primary": true,
+        "id": "prm_4661e83f41ac4102",
+        "item_id": "itm_3bdeaf19d27d4914",
+        "created_at": "2026-06-10T10:51:12.769708+00:00",
+        "updated_at": "2026-06-10T10:51:12.769708+00:00"
+      }
+    ],
+    "prompt_snippet": "Bro treats billion-dollar companies like side quests.\n\nPrompt ⤵️ \nCreate a hilarious black-and-white caricature illustration of Elon Musk in a hand-drawn comic sketch style. Design it as a step-by-step exaggeration sheet",
+    "first_image": {
+      "id": "img_5fa9c290f0b9410c",
+      "item_id": "itm_3bdeaf19d27d4914",
+      "original_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+      "thumb_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+      "preview_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1176,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:51:13.050429+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:51:12.769708+00:00",
+    "created_at": "2026-06-10T10:51:12.769708+00:00",
+    "images": [
+      {
+        "id": "img_5fa9c290f0b9410c",
+        "item_id": "itm_3bdeaf19d27d4914",
+        "original_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+        "thumb_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+        "preview_path": "demo-data/media/img_5fa9c290f0b9410c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1176,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:51:13.050429+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Noor_ul_ain43/status/2064572034559164800\n\nAuthor: @Noor_ul_ain43\n\nOriginal tweet intro:\nBro treats billion-dollar companies like side quests.\n\nPrompt ⤵️ \nCreate a hilarious black-and-white caricature illustration of Elon Musk in a hand-drawn comic sketch style. Design it as a step-by-step exaggeration sheet: start with a realistic portrait, then progressively simplify and exaggerate his features in three stages. Emphasize a huge forehead, wild messy hair, oversized eyebrows, mischievous smirk, giant grin, sleepy genius eyes, and an exaggerated tech-billionaire expression. Add playful handwritten annotations and red arrows between stages with notes like \"simplify\", \"push\", \"more chaos\", \"sleep: 2 hours\", and \"CEO of everything\". Final stage should be extremely funny and absurd, with Elon riding a tiny futuristic car while wearing a rocket backpack, laughing maniacally. Loose ink lines, cartoon doodle energy, white background, professional caricature artist style, highly expressive, humorous, viral social-media comic aesthetic.",
+    "author": "@Noor_ul_ain43"
+  },
+  {
+    "id": "itm_4d88456e845f4b89",
+    "title": "GPT Image 2 on ChatGPT 🥵 Prompt",
+    "slug": "gpt-image-2-on-chatgpt-prompt-10",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/ZephyraLeigh/status/2064366007741739404",
+    "cluster": null,
+    "use_case": "角色IP",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c9439f284a9a4d90",
+        "name": "x-status-2064366007741739404",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "GPT Image 2 on ChatGPT 🥵\n\nPROMPT ⬇\n\nSurreal mid-century editorial illustration of an eccentric version of the person in the photo and a [ANIMAL] inside a stylish [SCENERY], elongated proportions, exaggerated narrow faces, deadpan expressions, oversized accessories, bizarre fashionable atmosphere, painterly brush textures, distorted anatomy, subtle lowbrow surrealism, sophisticated absurdity, vivid retro color palette dominated by [COLOR 1], [COLOR 2], and [COLOR 3], expressive oil-painted strokes, fashionable vintage clothing, dramatic jewelry and eyewear, whimsical background characters softly blurred in distance, elegant café culture energy, cinematic composition, textured painted background, contemporary art gallery meets 1960s Riviera illustration, highly stylized editorial aesthetic, vertical composition 4:5",
+        "is_primary": true,
+        "id": "prm_df12f7fcebc149b3",
+        "item_id": "itm_4d88456e845f4b89",
+        "created_at": "2026-06-10T10:50:29.185862+00:00",
+        "updated_at": "2026-06-10T10:50:29.185862+00:00"
+      }
+    ],
+    "prompt_snippet": "GPT Image 2 on ChatGPT 🥵\n\nPROMPT ⬇\n\nSurreal mid-century editorial illustration of an eccentric version of the person in the photo and a [ANIMAL] inside a stylish [SCENERY], elongated proportions, exaggerated narrow faces",
+    "first_image": {
+      "id": "img_080fe47efe98485c",
+      "item_id": "itm_4d88456e845f4b89",
+      "original_path": "demo-data/media/img_080fe47efe98485c.webp",
+      "thumb_path": "demo-data/media/img_080fe47efe98485c.webp",
+      "preview_path": "demo-data/media/img_080fe47efe98485c.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1081,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:50:29.430278+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:50:29.185862+00:00",
+    "created_at": "2026-06-10T10:50:29.185862+00:00",
+    "images": [
+      {
+        "id": "img_080fe47efe98485c",
+        "item_id": "itm_4d88456e845f4b89",
+        "original_path": "demo-data/media/img_080fe47efe98485c.webp",
+        "thumb_path": "demo-data/media/img_080fe47efe98485c.webp",
+        "preview_path": "demo-data/media/img_080fe47efe98485c.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1081,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:50:29.430278+00:00"
+      },
+      {
+        "id": "img_d5e51d3a7e334b47",
+        "item_id": "itm_4d88456e845f4b89",
+        "original_path": "demo-data/media/img_d5e51d3a7e334b47.webp",
+        "thumb_path": "demo-data/media/img_d5e51d3a7e334b47.webp",
+        "preview_path": "demo-data/media/img_d5e51d3a7e334b47.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1125,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:50:29.737692+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/ZephyraLeigh/status/2064366007741739404\n\nAuthor: @ZephyraLeigh\n\nOriginal tweet intro:\nGPT Image 2 on ChatGPT 🥵\n\nPROMPT ⬇\n\nSurreal mid-century editorial illustration of an eccentric version of the person in the photo and a [ANIMAL] inside a stylish [SCENERY], elongated proportions, exaggerated narrow faces, deadpan expressions, oversized accessories, bizarre fashionable atmosphere, painterly brush textures, distorted anatomy, subtle lowbrow surrealism, sophisticated absurdity, vivid retro color palette dominated by [COLOR 1], [COLOR 2], and [COLOR 3], expressive oil-painted strokes, fashionable vintage clothing, dramatic jewelry and eyewear, whimsical background characters softly blurred in distance, elegant café culture energy, cinematic composition, textured painted background, contemporary art gallery meets 1960s Riviera illustration, highly stylized editorial aesthetic, vertical composition 4:5",
+    "author": "@ZephyraLeigh"
+  },
+  {
+    "id": "itm_85e815d922894327",
+    "title": "AI 最拿手的生图就是这种文字创意之类的东西，而且很多人也喜欢看，这个小红账号有 4 万粉。 Prompt",
+    "slug": "ai-最拿手的生图就是这种文字创意之类的东西-而且很多人也喜欢看-这个小红账号有-4-万粉-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/siantgirl/status/2064341706628297044",
+    "cluster": null,
+    "use_case": "其他",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f62ad3cb42ed45ea",
+        "name": "x-status-2064341706628297044",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "AI 最拿手的生圖就是這種文字創意之類的東西，而且很多人也喜歡看，這個小紅賬號有 4 萬粉。",
+        "is_primary": true,
+        "id": "prm_ce5cce9842e2499d",
+        "item_id": "itm_85e815d922894327",
+        "created_at": "2026-06-10T10:49:47.146057+00:00",
+        "updated_at": "2026-06-10T10:49:47.146057+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "AI 最拿手的生图就是这种文字创意之类的东西，而且很多人也喜欢看，这个小红账号有 4 万粉。",
+        "is_primary": false,
+        "id": "prm_407bf81baf4043fc",
+        "item_id": "itm_85e815d922894327",
+        "created_at": "2026-06-10T10:49:47.146057+00:00",
+        "updated_at": "2026-06-10T10:49:47.146057+00:00"
+      }
+    ],
+    "prompt_snippet": "AI 最拿手的生圖就是這種文字創意之類的東西，而且很多人也喜歡看，這個小紅賬號有 4 萬粉。",
+    "first_image": {
+      "id": "img_e5f0174531794a6f",
+      "item_id": "itm_85e815d922894327",
+      "original_path": "demo-data/media/img_e5f0174531794a6f.webp",
+      "thumb_path": "demo-data/media/img_e5f0174531794a6f.webp",
+      "preview_path": "demo-data/media/img_e5f0174531794a6f.webp",
+      "remote_url": null,
+      "width": 472,
+      "height": 1024,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:49:47.244072+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:49:47.146057+00:00",
+    "created_at": "2026-06-10T10:49:47.146057+00:00",
+    "images": [
+      {
+        "id": "img_e5f0174531794a6f",
+        "item_id": "itm_85e815d922894327",
+        "original_path": "demo-data/media/img_e5f0174531794a6f.webp",
+        "thumb_path": "demo-data/media/img_e5f0174531794a6f.webp",
+        "preview_path": "demo-data/media/img_e5f0174531794a6f.webp",
+        "remote_url": null,
+        "width": 472,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:49:47.244072+00:00"
+      },
+      {
+        "id": "img_eb7113b89dee4746",
+        "item_id": "itm_85e815d922894327",
+        "original_path": "demo-data/media/img_eb7113b89dee4746.webp",
+        "thumb_path": "demo-data/media/img_eb7113b89dee4746.webp",
+        "preview_path": "demo-data/media/img_eb7113b89dee4746.webp",
+        "remote_url": null,
+        "width": 472,
+        "height": 1024,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:49:47.310235+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/siantgirl/status/2064341706628297044\n\nAuthor: @siantgirl\n\nOriginal tweet intro:\nAI 最拿手的生图就是这种文字创意之类的东西，而且很多人也喜欢看，这个小红账号有 4 万粉。",
+    "author": "@siantgirl"
+  },
+  {
+    "id": "itm_971b8a45bd534512",
+    "title": "Food Blueprint by GPT Image 2 on @SocialSight 🍽️ Prompt",
+    "slug": "food-blueprint-by-gpt-image-2-on-socialsight-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/TechieBySA/status/2064393338317361555",
+    "cluster": null,
+    "use_case": "信息图表",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_77c1238cbe6a4c9b",
+        "name": "x-status-2064393338317361555",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Food Blueprint by GPT Image 2 on @SocialSight 🍽️\n\nPrompt👇🏻",
+        "is_primary": true,
+        "id": "prm_fffacbf0cdd04c66",
+        "item_id": "itm_971b8a45bd534512",
+        "created_at": "2026-06-10T10:49:03.198280+00:00",
+        "updated_at": "2026-06-10T10:49:03.198280+00:00"
+      }
+    ],
+    "prompt_snippet": "Food Blueprint by GPT Image 2 on @SocialSight 🍽️\n\nPrompt👇🏻",
+    "first_image": {
+      "id": "img_a323fb7ade9c4236",
+      "item_id": "itm_971b8a45bd534512",
+      "original_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+      "thumb_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+      "preview_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:49:03.442510+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:49:03.198280+00:00",
+    "created_at": "2026-06-10T10:49:03.198280+00:00",
+    "images": [
+      {
+        "id": "img_a323fb7ade9c4236",
+        "item_id": "itm_971b8a45bd534512",
+        "original_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+        "thumb_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+        "preview_path": "demo-data/media/img_a323fb7ade9c4236.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:49:03.442510+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/TechieBySA/status/2064393338317361555\n\nAuthor: @TechieBySA\n\nOriginal tweet intro:\nFood Blueprint by GPT Image 2 on @SocialSight 🍽️\n\nPrompt👇🏻",
+    "author": "@TechieBySA"
+  },
+  {
+    "id": "itm_c9ef875517dd4ccf",
+    "title": "GPT image 2 on @SocialSight Prompt",
+    "slug": "gpt-image-2-on-socialsight-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/oggii_0/status/2064263153773392101",
+    "cluster": null,
+    "use_case": "艺术插画",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4819257efaaf485e",
+        "name": "x-status-2064263153773392101",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "A delicate watercolor fashion illustration on textured off-white handmade paper. A young woman in side profile walking beside a vintage red bicycle. She wears a long beige trench coat reaching her ankles, a soft gray newsboy cap, black ankle boots, and red socks peeking out. Her long blonde hair falls naturally beneath the cap. The bicycle has thin wheels and a wooden front basket filled with small white flowers and greenery. A dark tote bag hangs from her shoulder containing red roses, with subtle handwritten text on the bag. Minimalist composition with large negative space around the subject. Soft pastel palette, light ink outlines, gentle watercolor washes, loose brush strokes, subtle paint splatters floating behind her, dreamy and elegant atmosphere. Japanese sketchbook illustration style, fashion editorial artwork, highly detailed yet airy, clean background, centered subject, whimsical, poetic, refined watercolor rendering.\nStyle Keywords:\nwatercolor illustration, hand-painted, Japanese fashion sketch, minimalist aesthetic, textured paper, soft neutral colors, delicate line art, editorial fashion drawing, airy composition, muted tones, elegant feminine character, storybook artwork, watercolor splashes, cozy autumn mood.",
+        "is_primary": true,
+        "id": "prm_224b24048e214af6",
+        "item_id": "itm_c9ef875517dd4ccf",
+        "created_at": "2026-06-10T10:48:21.353728+00:00",
+        "updated_at": "2026-06-10T10:48:21.353728+00:00"
+      }
+    ],
+    "prompt_snippet": "A delicate watercolor fashion illustration on textured off-white handmade paper. A young woman in side profile walking beside a vintage red bicycle. She wears a long beige trench coat reaching her ankles, a soft gray new",
+    "first_image": {
+      "id": "img_7ba16c4b63684f08",
+      "item_id": "itm_c9ef875517dd4ccf",
+      "original_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+      "thumb_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+      "preview_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1012,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:48:21.580689+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:48:21.353728+00:00",
+    "created_at": "2026-06-10T10:48:21.353728+00:00",
+    "images": [
+      {
+        "id": "img_7ba16c4b63684f08",
+        "item_id": "itm_c9ef875517dd4ccf",
+        "original_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+        "thumb_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+        "preview_path": "demo-data/media/img_7ba16c4b63684f08.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1012,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:48:21.580689+00:00"
+      },
+      {
+        "id": "img_f35e07cb2fb94ae9",
+        "item_id": "itm_c9ef875517dd4ccf",
+        "original_path": "demo-data/media/img_f35e07cb2fb94ae9.webp",
+        "thumb_path": "demo-data/media/img_f35e07cb2fb94ae9.webp",
+        "preview_path": "demo-data/media/img_f35e07cb2fb94ae9.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1092,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:48:21.793234+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/oggii_0/status/2064263153773392101\n\nAuthor: @oggii_0\n\nOriginal tweet intro:\nGPT image 2 on @SocialSight\n\nPrompt: A delicate watercolor fashion illustration on textured off-white handmade paper. A young woman in side profile walking beside a vintage red bicycle. She wears a long beige trench coat reaching her ankles, a soft gray newsboy cap, black ankle boots, and red socks peeking out. Her long blonde hair falls naturally beneath the cap. The bicycle has thin wheels and a wooden front basket filled with small white flowers and greenery. A dark tote bag hangs from her shoulder containing red roses, with subtle handwritten text on the bag. Minimalist composition with large negative space around the subject. Soft pastel palette, light ink outlines, gentle watercolor washes, loose brush strokes, subtle paint splatters floating behind her, dreamy and elegant atmosphere. Japanese sketchbook illustration style, fashion editorial artwork, highly detailed yet airy, clean background, centered subject, whimsical, poetic, refined watercolor rendering.\nStyle Keywords:\nwatercolor illustration, hand-painted, Japanese fashion sketch, minimalist aesthetic, textured paper, soft neutral colors, delicate line art, editorial fashion drawing, airy composition, muted tones, elegant feminine character, storybook artwork, watercolor splashes, cozy autumn mood.",
+    "author": "@oggii_0"
+  },
+  {
+    "id": "itm_e912e1fe3519449a",
+    "title": "🔥用 ChatGPT-Image2 做新店开业海报，100%直接可用！ Prompt",
+    "slug": "用-chatgpt-image2-做新店开业海报-100-直接可用-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2064635259866493422",
+    "cluster": null,
+    "use_case": "海报视觉",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f7fcebae0113459c",
+        "name": "x-status-2064635259866493422",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "《品牌新店開業海報》通用提示詞\n\n請生成一張豎版高清商業海報，主題是【品牌新店開業預告海報】。  \n注意：這是單張獨立海報，不是四宮格，不要拼圖。如果要做系列，請每張圖片獨立生成。\n\n【基礎信息】\n品牌名：【品牌名】\n品牌類型：【咖啡店 / 輕食店 / 烘焙店 / 奶茶店 / 花店 / 香氛店 / 美甲店 / 寵物生活館 / 書店咖啡 / 其他】\n門店名稱：【門店名稱】\n主標題文案：【OPENING SOON / COMING SOON / GRAND OPENING / 即將啓幕 / 新店開業】\n副標題：【城市名 + 門店名】\n開業日期：【日期】\n地址信息：【完整地址】\n頂部左側小字：【品牌關鍵詞】\n頂部右側小字：【品牌理念 / 輔助短語】\n\n【視覺風格】\n整體畫面要呈現【奶油系 / 極簡 / 輕奢 / 溫柔 / 高級 / 乾淨 / 品牌感強】的商業視覺風格，像真實品牌即將發佈的新店開業海報，而不是普通裝修效果圖，也不是廉價促銷廣告圖。畫面要有強品牌感、社媒傳播感、生活方式品牌氣質。\n\n【色彩設定】\n主色調：【主色調】\n輔助色：【輔助色】\n點綴色：【點綴色】\n整體色彩低飽和、柔和統一、乾淨剋制，不要五顏六色，不要過度鮮豔。背景以奶油白、米白、淺卡其、暖灰、淺木色等體系爲主，也可以根據品牌類型替換爲抹茶綠、櫻花粉、霧灰藍、焦糖棕等低飽和配色。\n\n【背景要求】\n背景保持乾淨簡潔，有輕微紙張肌理、淡淡紋理、柔和漸變和高級留白。背景不要複雜，不要雜亂，不要大面積圖案堆砌，要有品牌海報感和輕雜誌感。\n\n【主視覺】\n畫面中心放置一個完整可見的高質量 3D 門店空間渲染主視覺，空間形式爲【街邊門店 / 商場櫃檯 / 快閃亭 / 島臺店 / 旗艦店外立面 / 社區小店】。  \n門頭要清晰顯示品牌名【品牌名】。  \n空間內部或外部可包含：收銀臺、展示櫃、產品陳列、燈箱、櫥窗、吧檯、包裝袋、招牌飲品 / 麪包 / 花束 / 香薰 / 產品道具等，內容要和【品牌類型】匹配。  \n材質要真實，包括【淺木紋 / 石材 / 微水泥 / 玻璃 / 金屬 / 亞克力 / 暖光燈帶】等。  \n整體需要有真實商業空間比例、真實透視、細膩材質、真實光影、建築可視化級別質感，不要像玩具模型，不要卡通，不要插畫。\n\n【排版結構】\n整體採用品牌海報式排版，結構清晰，留白充足。  \n頂部中間放品牌 logo / 品牌名【品牌名】。  \n頂部左上角放【頂部左側小字】，右上角放【頂部右側小字】。  \n中上方放大號標題【主標題文案】，標題需要清晰、大氣、有設計感，可以使用高級襯線體或現代粗體無襯線風格。  \n標題下方放【副標題】。  \n中部重點展示門店空間主視覺。  \n下方明顯展示【開業日期】。  \n底部放地址信息：ADD: 【地址信息】。  \n閱讀路徑清晰：品牌名 → 開業標題 → 門店名稱 → 門店主視覺 → 日期 → 地址。\n\n【畫面質感】\n整體要像真實品牌發佈的開業預熱海報，高清精緻，商業設計感強，真實 3D 渲染感，柔和光線，材質清晰，排版專業，適合小紅書、公衆號、朋友圈、品牌社媒、招商提案、門店開業宣傳使用。\n\n【適配建議】\n如果是咖啡店：可以加入咖啡機、外帶杯、甜品展示。  \n如果是輕食店：可以加入沙拉碗、果蔬展示、冷櫃。  \n如果是烘焙店：可以加入可頌、法棍、蛋糕櫃、麪包托盤。  \n如果是花店：可以加入花束、花桶、櫥窗陳列。  \n如果是香氛店：可以加入蠟燭、香水、擴香瓶、試香臺。  \n如果是美甲店：可以加入前臺、美甲桌、展示牆、柔光鏡面。\n\n【輸出要求】\n輸出一張完整的豎版海報，比例爲【4:5 / 3:4 / 9:16】。  \n推薦優先使用 4:5。  \n請確保門店完整可見，文字排版清晰，視覺統一，品牌感強。  \n如果做系列，請保持同一套版式邏輯，但每張圖獨立生成，不要合併。\n\n【避免項】\n避免文字拼寫錯誤，避免 logo 變形，避免門店結構混亂，避免空間透視錯誤，避免低清晰度，避免塑料感材質，避免顏色雜亂，避免卡通風，避免插畫風，避免廉價電商感，避免促銷海報感，避免過度裝飾，避免玩具模型感。",
+        "is_primary": true,
+        "id": "prm_051f06186a2b4ef0",
+        "item_id": "itm_e912e1fe3519449a",
+        "created_at": "2026-06-10T10:47:36.590249+00:00",
+        "updated_at": "2026-06-10T10:47:36.590249+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "《品牌新店开业海报》通用提示词\n\n请生成一张竖版高清商业海报，主题是【品牌新店开业预告海报】。  \n注意：这是单张独立海报，不是四宫格，不要拼图。如果要做系列，请每张图片独立生成。\n\n【基础信息】\n品牌名：【品牌名】\n品牌类型：【咖啡店 / 轻食店 / 烘焙店 / 奶茶店 / 花店 / 香氛店 / 美甲店 / 宠物生活馆 / 书店咖啡 / 其他】\n门店名称：【门店名称】\n主标题文案：【OPENING SOON / COMING SOON / GRAND OPENING / 即将启幕 / 新店开业】\n副标题：【城市名 + 门店名】\n开业日期：【日期】\n地址信息：【完整地址】\n顶部左侧小字：【品牌关键词】\n顶部右侧小字：【品牌理念 / 辅助短语】\n\n【视觉风格】\n整体画面要呈现【奶油系 / 极简 / 轻奢 / 温柔 / 高级 / 干净 / 品牌感强】的商业视觉风格，像真实品牌即将发布的新店开业海报，而不是普通装修效果图，也不是廉价促销广告图。画面要有强品牌感、社媒传播感、生活方式品牌气质。\n\n【色彩设定】\n主色调：【主色调】\n辅助色：【辅助色】\n点缀色：【点缀色】\n整体色彩低饱和、柔和统一、干净克制，不要五颜六色，不要过度鲜艳。背景以奶油白、米白、浅卡其、暖灰、浅木色等体系为主，也可以根据品牌类型替换为抹茶绿、樱花粉、雾灰蓝、焦糖棕等低饱和配色。\n\n【背景要求】\n背景保持干净简洁，有轻微纸张肌理、淡淡纹理、柔和渐变和高级留白。背景不要复杂，不要杂乱，不要大面积图案堆砌，要有品牌海报感和轻杂志感。\n\n【主视觉】\n画面中心放置一个完整可见的高质量 3D 门店空间渲染主视觉，空间形式为【街边门店 / 商场柜台 / 快闪亭 / 岛台店 / 旗舰店外立面 / 社区小店】。  \n门头要清晰显示品牌名【品牌名】。  \n空间内部或外部可包含：收银台、展示柜、产品陈列、灯箱、橱窗、吧台、包装袋、招牌饮品 / 面包 / 花束 / 香薰 / 产品道具等，内容要和【品牌类型】匹配。  \n材质要真实，包括【浅木纹 / 石材 / 微水泥 / 玻璃 / 金属 / 亚克力 / 暖光灯带】等。  \n整体需要有真实商业空间比例、真实透视、细腻材质、真实光影、建筑可视化级别质感，不要像玩具模型，不要卡通，不要插画。\n\n【排版结构】\n整体采用品牌海报式排版，结构清晰，留白充足。  \n顶部中间放品牌 logo / 品牌名【品牌名】。  \n顶部左上角放【顶部左侧小字】，右上角放【顶部右侧小字】。  \n中上方放大号标题【主标题文案】，标题需要清晰、大气、有设计感，可以使用高级衬线体或现代粗体无衬线风格。  \n标题下方放【副标题】。  \n中部重点展示门店空间主视觉。  \n下方明显展示【开业日期】。  \n底部放地址信息：ADD: 【地址信息】。  \n阅读路径清晰：品牌名 → 开业标题 → 门店名称 → 门店主视觉 → 日期 → 地址。\n\n【画面质感】\n整体要像真实品牌发布的开业预热海报，高清精致，商业设计感强，真实 3D 渲染感，柔和光线，材质清晰，排版专业，适合小红书、公众号、朋友圈、品牌社媒、招商提案、门店开业宣传使用。\n\n【适配建议】\n如果是咖啡店：可以加入咖啡机、外带杯、甜品展示。  \n如果是轻食店：可以加入沙拉碗、果蔬展示、冷柜。  \n如果是烘焙店：可以加入可颂、法棍、蛋糕柜、面包托盘。  \n如果是花店：可以加入花束、花桶、橱窗陈列。  \n如果是香氛店：可以加入蜡烛、香水、扩香瓶、试香台。  \n如果是美甲店：可以加入前台、美甲桌、展示墙、柔光镜面。\n\n【输出要求】\n输出一张完整的竖版海报，比例为【4:5 / 3:4 / 9:16】。  \n推荐优先使用 4:5。  \n请确保门店完整可见，文字排版清晰，视觉统一，品牌感强。  \n如果做系列，请保持同一套版式逻辑，但每张图独立生成，不要合并。\n\n【避免项】\n避免文字拼写错误，避免 logo 变形，避免门店结构混乱，避免空间透视错误，避免低清晰度，避免塑料感材质，避免颜色杂乱，避免卡通风，避免插画风，避免廉价电商感，避免促销海报感，避免过度装饰，避免玩具模型感。",
+        "is_primary": false,
+        "id": "prm_19ea47ae01ba456c",
+        "item_id": "itm_e912e1fe3519449a",
+        "created_at": "2026-06-10T10:47:36.590249+00:00",
+        "updated_at": "2026-06-10T10:47:36.590249+00:00"
+      }
+    ],
+    "prompt_snippet": "《品牌新店開業海報》通用提示詞\n\n請生成一張豎版高清商業海報，主題是【品牌新店開業預告海報】。  \n注意：這是單張獨立海報，不是四宮格，不要拼圖。如果要做系列，請每張圖片獨立生成。\n\n【基礎信息】\n品牌名：【品牌名】\n品牌類型：【咖啡店 / 輕食店 / 烘焙店 / 奶茶店 / 花店 / 香氛店 / 美甲店 / 寵物生活館 / 書店咖啡 / 其他】\n門店名稱：【門店名稱】\n主標題文案：【OPENING SOON / COMING SOON",
+    "first_image": {
+      "id": "img_39b3faabeac2416b",
+      "item_id": "itm_e912e1fe3519449a",
+      "original_path": "demo-data/media/img_39b3faabeac2416b.webp",
+      "thumb_path": "demo-data/media/img_39b3faabeac2416b.webp",
+      "preview_path": "demo-data/media/img_39b3faabeac2416b.webp",
+      "remote_url": null,
+      "width": 788,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:47:36.859502+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:47:36.590249+00:00",
+    "created_at": "2026-06-10T10:47:36.590249+00:00",
+    "images": [
+      {
+        "id": "img_39b3faabeac2416b",
+        "item_id": "itm_e912e1fe3519449a",
+        "original_path": "demo-data/media/img_39b3faabeac2416b.webp",
+        "thumb_path": "demo-data/media/img_39b3faabeac2416b.webp",
+        "preview_path": "demo-data/media/img_39b3faabeac2416b.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:47:36.859502+00:00"
+      },
+      {
+        "id": "img_4b137482a8cf48ff",
+        "item_id": "itm_e912e1fe3519449a",
+        "original_path": "demo-data/media/img_4b137482a8cf48ff.webp",
+        "thumb_path": "demo-data/media/img_4b137482a8cf48ff.webp",
+        "preview_path": "demo-data/media/img_4b137482a8cf48ff.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:47:37.062803+00:00"
+      },
+      {
+        "id": "img_647a84cef78041f2",
+        "item_id": "itm_e912e1fe3519449a",
+        "original_path": "demo-data/media/img_647a84cef78041f2.webp",
+        "thumb_path": "demo-data/media/img_647a84cef78041f2.webp",
+        "preview_path": "demo-data/media/img_647a84cef78041f2.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:47:37.249385+00:00"
+      },
+      {
+        "id": "img_88979bc8bd424ff7",
+        "item_id": "itm_e912e1fe3519449a",
+        "original_path": "demo-data/media/img_88979bc8bd424ff7.webp",
+        "thumb_path": "demo-data/media/img_88979bc8bd424ff7.webp",
+        "preview_path": "demo-data/media/img_88979bc8bd424ff7.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-10T10:47:37.458271+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2064635259866493422\n\nAuthor: @MrLarus\n\nOriginal tweet intro:\n🔥用 ChatGPT-Image2 做新店开业海报，100%直接可用！\n\n这次做了一套品牌开业视觉 Demo：\n1、精品咖啡店\n2、轻食沙拉店\n3、法式烘焙店\n4、香氛生活方式店\n\n把门店空间、开业日期、地址…整体调性都做进海报里~\n适合咖啡、轻食、烘焙、香氛、美甲、花店等商业品牌参考！\n\n通用提示词放评论区👇",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_5d755f34c4c94a30",
+    "title": "🔥用ChatGPT-Image2生成618直播间贴片，透明PNG，直接可用！ Prompt",
+    "slug": "用chatgpt-image2生成618直播间贴片-透明png-直接可用-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/MrLarus/status/2064345336533901822",
+    "cluster": null,
+    "use_case": "界面设计",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4db8fa5a975d40e5",
+        "name": "x-status-2064345336533901822",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "2、下載PNG、PSD方法：",
+        "is_primary": true,
+        "id": "prm_272a8e349a734ebf",
+        "item_id": "itm_5d755f34c4c94a30",
+        "created_at": "2026-06-10T10:46:47.183087+00:00",
+        "updated_at": "2026-06-10T10:46:47.183087+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "2、下载PNG、PSD方法：",
+        "is_primary": false,
+        "id": "prm_b53a3483f52a45d4",
+        "item_id": "itm_5d755f34c4c94a30",
+        "created_at": "2026-06-10T10:46:47.183087+00:00",
+        "updated_at": "2026-06-10T10:46:47.183087+00:00"
+      }
+    ],
+    "prompt_snippet": "2、下載PNG、PSD方法：",
+    "first_image": {
+      "id": "img_46a48a5c9fe347fe",
+      "item_id": "itm_5d755f34c4c94a30",
+      "original_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+      "thumb_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+      "preview_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+      "remote_url": null,
+      "width": 788,
+      "height": 1400,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:46:47.431009+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:46:47.183087+00:00",
+    "created_at": "2026-06-10T10:46:47.183087+00:00",
+    "images": [
+      {
+        "id": "img_46a48a5c9fe347fe",
+        "item_id": "itm_5d755f34c4c94a30",
+        "original_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+        "thumb_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+        "preview_path": "demo-data/media/img_46a48a5c9fe347fe.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:46:47.431009+00:00"
+      },
+      {
+        "id": "img_9a654188aad64166",
+        "item_id": "itm_5d755f34c4c94a30",
+        "original_path": "demo-data/media/img_9a654188aad64166.webp",
+        "thumb_path": "demo-data/media/img_9a654188aad64166.webp",
+        "preview_path": "demo-data/media/img_9a654188aad64166.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:46:47.628777+00:00"
+      },
+      {
+        "id": "img_4f432e4135584c5c",
+        "item_id": "itm_5d755f34c4c94a30",
+        "original_path": "demo-data/media/img_4f432e4135584c5c.webp",
+        "thumb_path": "demo-data/media/img_4f432e4135584c5c.webp",
+        "preview_path": "demo-data/media/img_4f432e4135584c5c.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:46:47.840333+00:00"
+      },
+      {
+        "id": "img_f09454af9d9b4986",
+        "item_id": "itm_5d755f34c4c94a30",
+        "original_path": "demo-data/media/img_f09454af9d9b4986.webp",
+        "thumb_path": "demo-data/media/img_f09454af9d9b4986.webp",
+        "preview_path": "demo-data/media/img_f09454af9d9b4986.webp",
+        "remote_url": null,
+        "width": 788,
+        "height": 1400,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-10T10:46:48.074184+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/MrLarus/status/2064345336533901822\n\nAuthor: @MrLarus\n\nOriginal tweet intro:\n🔥用ChatGPT-Image2生成618直播间贴片，透明PNG，直接可用！\n\n核心结构是顶部贴片+侧边漂浮标签+底部承托区，中间大面积直播画面区，促销信息清晰！✨\n4个案例：\n1、零食饮料 爆款开抢\n2、美妆个护 囤货清单\n3、家电数码 换新补贴\n4、服饰穿搭 新品折扣\n适合618大促、电商直播、团购直播、品牌直播带货视觉参考！\n\n生成后发送提示词，就能导出真正可用的PNG、PSD格式\n提示词 + 素材下载方法 在评论区👇",
+    "author": "@MrLarus"
+  },
+  {
+    "id": "itm_d7759c7070f14127",
+    "title": "卧槽，这个也太治愈了！ Prompt",
+    "slug": "卧槽-这个也太治愈了-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Adam38363368936/status/2064142607098478781",
+    "cluster": null,
+    "use_case": "其他",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_392ed03014144475",
+        "name": "x-status-2064142607098478781",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "還是用下面的萬能模板，更換任意主體都可以，來試試！👇",
+        "is_primary": true,
+        "id": "prm_e69feddeeb9a4f8c",
+        "item_id": "itm_d7759c7070f14127",
+        "created_at": "2026-06-10T10:45:58.853205+00:00",
+        "updated_at": "2026-06-10T10:45:58.853205+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "还是用下面的万能模板，更换任意主体都可以，来试试！👇",
+        "is_primary": false,
+        "id": "prm_7530244f2dcc456a",
+        "item_id": "itm_d7759c7070f14127",
+        "created_at": "2026-06-10T10:45:58.853205+00:00",
+        "updated_at": "2026-06-10T10:45:58.853205+00:00"
+      }
+    ],
+    "prompt_snippet": "還是用下面的萬能模板，更換任意主體都可以，來試試！👇",
+    "first_image": {
+      "id": "img_5736b4e7414744cb",
+      "item_id": "itm_d7759c7070f14127",
+      "original_path": "demo-data/media/img_5736b4e7414744cb.webp",
+      "thumb_path": "demo-data/media/img_5736b4e7414744cb.webp",
+      "preview_path": "demo-data/media/img_5736b4e7414744cb.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:45:59.168103+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:45:58.853205+00:00",
+    "created_at": "2026-06-10T10:45:58.853205+00:00",
+    "images": [
+      {
+        "id": "img_5736b4e7414744cb",
+        "item_id": "itm_d7759c7070f14127",
+        "original_path": "demo-data/media/img_5736b4e7414744cb.webp",
+        "thumb_path": "demo-data/media/img_5736b4e7414744cb.webp",
+        "preview_path": "demo-data/media/img_5736b4e7414744cb.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:45:59.168103+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Adam38363368936/status/2064142607098478781\n\nAuthor: @Adam38363368936\n\nOriginal tweet intro:\n卧槽，这个也太治愈了！\n\n发现了最舒服的配色：\n森林绿 × 奶油白 × 极简杂志风\n\n这光影、设计、动态，真的让人叹为观止！\n\n提示词还是用下面的万能模板，更换任意主体都可以，来试试！👇",
+    "author": "@Adam38363368936"
+  },
+  {
+    "id": "itm_bcb6419234044255",
+    "title": "COLLAGE AESTHETICS Prompt",
+    "slug": "collage-aesthetics-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/HustleXR/status/2064595994013303063",
+    "cluster": null,
+    "use_case": "艺术插画",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_4511640ef14f4464",
+        "name": "x-status-2064595994013303063",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "COLLAGE AESTHETICS\nCreated with Google Gemini nano banana pro \n\nPrompt ⤵️ \nUltra-detailed futuristic editorial mixed-media portrait blending hyper-realistic digital collage aesthetics with precision geometric concept painting and avant-garde magazine design. Anatomically accurate semi-realistic human portrait rendered with ultra-sharp facial detail, visible skin texture, pores, subtle imperfections, and smooth luminous tonal gradation. Face illuminated with clean studio-style lighting and soft cinematic shadows, contrasted against fragmented architectural collage structures and layered graphic editorial elements.\nComposition built from overlapping geometric segmentation, sliced polygonal planes, magazine cut-outs, newspaper textures, multilingual typography, technical annotations, blueprint-inspired drafting marks, and abstract deconstructed fragments. Facial structure remains coherent while surrounding forms shift, overlap, and dissolve into controlled cubist fragmentation and cyberpunk editorial collage language.\nSurface treatment combines polished painterly rendering with ultra-fine monoline engineering sketches, schematic contours, technical hatching, delicate architectural construction lines, halftone textures, print grain, ink overlays, and subtle compression artifacts. Fine linear drafting details are embedded organically into facial anatomy, especially around eyes, cheekbones, jawline, neck, and upper body, gradually transitioning into expressive translucent painterly sweeps and layered abstract collage textures.\nTypography integrated directly into the composition using bold editorial sans-serif layouts, dense newspaper-style microtext, vertical typographic arrangements, fragmented data blocks, blueprint notes, faint handwritten formulas, and diagrammatic symbols. Text elements function as structural design components rather than readable focal points.\nColor palette is sophisticated and cinematic: grayscale and neutral skin foundations enhanced with disciplined vibrant accents including cobalt blue, mustard yellow, golden orange, deep red, muted teal, charcoal black, ivory, warm beige, and layered brown tonal modulation. Accent colors appear strategically within geometric planes, reflective surfaces, collage fragments, and typographic structures, creating strong visual rhythm without overwhelming the portrait.\nEdges alternate between razor-sharp vector precision, clean polygonal segmentation, glossy reflective transitions, and rough torn-paper collage textures. Lighting remains refined and editorial, balancing realistic skin reflections with flatter print-inspired illumination across graphic components.\nBackground designed as a complex yet elegant abstract mosaic of blueprint aesthetics, cyberpunk editorial collage, technical diagrams, translucent geometric overlays, layered paper textures, atmospheric gradients, and controlled mixed-media abstraction. No chaotic clutter — every fragment is intentional, clean, and compositionally balanced.\nOverall aesthetic merges high-fashion editorial photography, futuristic concept art, precision engineering illustration, contemporary digital collage, cubist abstraction, and luxury avant-garde magazine poster design. Extremely intricate, cinematic, polished, experimental, and visually intelligent with a refined deconstructed identity.",
+        "is_primary": true,
+        "id": "prm_771d60a33cfc423c",
+        "item_id": "itm_bcb6419234044255",
+        "created_at": "2026-06-10T10:45:12.832585+00:00",
+        "updated_at": "2026-06-10T10:45:12.832585+00:00"
+      }
+    ],
+    "prompt_snippet": "COLLAGE AESTHETICS\nCreated with Google Gemini nano banana pro \n\nPrompt ⤵️ \nUltra-detailed futuristic editorial mixed-media portrait blending hyper-realistic digital collage aesthetics with precision geometric concept pai",
+    "first_image": {
+      "id": "img_38895f6f0e8841c8",
+      "item_id": "itm_bcb6419234044255",
+      "original_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+      "thumb_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+      "preview_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+      "remote_url": null,
+      "width": 896,
+      "height": 1194,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:45:13.061850+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:45:12.832585+00:00",
+    "created_at": "2026-06-10T10:45:12.832585+00:00",
+    "images": [
+      {
+        "id": "img_38895f6f0e8841c8",
+        "item_id": "itm_bcb6419234044255",
+        "original_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+        "thumb_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+        "preview_path": "demo-data/media/img_38895f6f0e8841c8.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1194,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:45:13.061850+00:00"
+      },
+      {
+        "id": "img_8e89f46ef13f4ef6",
+        "item_id": "itm_bcb6419234044255",
+        "original_path": "demo-data/media/img_8e89f46ef13f4ef6.webp",
+        "thumb_path": "demo-data/media/img_8e89f46ef13f4ef6.webp",
+        "preview_path": "demo-data/media/img_8e89f46ef13f4ef6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:45:13.276573+00:00"
+      },
+      {
+        "id": "img_8f44e89bc2774d19",
+        "item_id": "itm_bcb6419234044255",
+        "original_path": "demo-data/media/img_8f44e89bc2774d19.webp",
+        "thumb_path": "demo-data/media/img_8f44e89bc2774d19.webp",
+        "preview_path": "demo-data/media/img_8f44e89bc2774d19.webp",
+        "remote_url": null,
+        "width": 896,
+        "height": 1190,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:45:13.476373+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/HustleXR/status/2064595994013303063\n\nAuthor: @HustleXR\n\nOriginal tweet intro:\nCOLLAGE AESTHETICS\nCreated with Google Gemini nano banana pro \n\nPrompt ⤵️ \nUltra-detailed futuristic editorial mixed-media portrait blending hyper-realistic digital collage aesthetics with precision geometric concept painting and avant-garde magazine design. Anatomically accurate semi-realistic human portrait rendered with ultra-sharp facial detail, visible skin texture, pores, subtle imperfections, and smooth luminous tonal gradation. Face illuminated with clean studio-style lighting and soft cinematic shadows, contrasted against fragmented architectural collage structures and layered graphic editorial elements.\nComposition built from overlapping geometric segmentation, sliced polygonal planes, magazine cut-outs, newspaper textures, multilingual typography, technical annotations, blueprint-inspired drafting marks, and abstract deconstructed fragments. Facial structure remains coherent while surrounding forms shift, overlap, and dissolve into controlled cubist fragmentation and cyberpunk editorial collage language.\nSurface treatment combines polished painterly rendering with ultra-fine monoline engineering sketches, schematic contours, technical hatching, delicate architectural construction lines, halftone textures, print grain, ink overlays, and subtle compression artifacts. Fine linear drafting details are embedded organically into facial anatomy, especially around eyes, cheekbones, jawline, neck, and upper body, gradually transitioning into expressive translucent painterly sweeps and layered abstract collage textures.\nTypography integrated directly into the composition using bold editorial sans-serif layouts, dense newspaper-style microtext, vertical typographic arrangements, fragmented data blocks, blueprint notes, faint handwritten formulas, and diagrammatic symbols. Text elements function as structural design components rather than readable focal points.\nColor palette is sophisticated and cinematic: grayscale and neutral skin foundations enhanced with disciplined vibrant accents including cobalt blue, mustard yellow, golden orange, deep red, muted teal, charcoal black, ivory, warm beige, and layered brown tonal modulation. Accent colors appear strategically within geometric planes, reflective surfaces, collage fragments, and typographic structures, creating strong visual rhythm without overwhelming the portrait.\nEdges alternate between razor-sharp vector precision, clean polygonal segmentation, glossy reflective transitions, and rough torn-paper collage textures. Lighting remains refined and editorial, balancing realistic skin reflections with flatter print-inspired illumination across graphic components.\nBackground designed as a complex yet elegant abstract mosaic of blueprint aesthetics, cyberpunk editorial collage, technical diagrams, translucent geometric overlays, layered paper textures, atmospheric gradients, and controlled mixed-media abstraction. No chaotic clutter — every fragment is intentional, clean, and compositionally balanced.\nOverall aesthetic merges high-fashion editorial photography, futuristic concept art, precision engineering illustration, contemporary digital collage, cubist abstraction, and luxury avant-garde magazine poster design. Extremely intricate, cinematic, polished, experimental, and visually intelligent with a refined deconstructed identity.",
+    "author": "@HustleXR"
+  },
+  {
+    "id": "itm_fdb4fb77db714588",
+    "title": "满屏都是干净、锐利的 AI 图时,最能让人停下来的,反而是看起来能用手摸到的那种。 Prompt",
+    "slug": "满屏都是干净-锐利的-ai-图时-最能让人停下来的-反而是看起来能用手摸到的那种-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/VigoCreativeAI/status/2064594643430305906",
+    "cluster": null,
+    "use_case": "品牌包装",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_89fb713e7fe64be0",
+        "name": "x-status-2064594643430305906",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "完整 prompt(含 style rules + negative + 這 4 張怎麼填)👇\n\ngithub.com/VigoZhao/AI-Visua… \n\n這套是 cookbook 裏的一個系列,每週加新的。想要後續就關注 @VigoCreativeAI",
+        "is_primary": true,
+        "id": "prm_6d98f95bf3a140cc",
+        "item_id": "itm_fdb4fb77db714588",
+        "created_at": "2026-06-10T10:44:30.944821+00:00",
+        "updated_at": "2026-06-10T10:44:30.944821+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "完整 prompt(含 style rules + negative + 这 4 张怎么填)👇\n\ngithub.com/VigoZhao/AI-Visua… \n\n这套是 cookbook 里的一个系列,每周加新的。想要后续就关注 @VigoCreativeAI",
+        "is_primary": false,
+        "id": "prm_6a93bc42316d4396",
+        "item_id": "itm_fdb4fb77db714588",
+        "created_at": "2026-06-10T10:44:30.944821+00:00",
+        "updated_at": "2026-06-10T10:44:30.944821+00:00"
+      }
+    ],
+    "prompt_snippet": "完整 prompt(含 style rules + negative + 這 4 張怎麼填)👇\n\ngithub.com/VigoZhao/AI-Visua… \n\n這套是 cookbook 裏的一個系列,每週加新的。想要後續就關注 @VigoCreativeAI",
+    "first_image": {
+      "id": "img_de7bc2db322441a4",
+      "item_id": "itm_fdb4fb77db714588",
+      "original_path": "demo-data/media/img_de7bc2db322441a4.webp",
+      "thumb_path": "demo-data/media/img_de7bc2db322441a4.webp",
+      "preview_path": "demo-data/media/img_de7bc2db322441a4.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:44:31.216415+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:44:30.944821+00:00",
+    "created_at": "2026-06-10T10:44:30.944821+00:00",
+    "images": [
+      {
+        "id": "img_de7bc2db322441a4",
+        "item_id": "itm_fdb4fb77db714588",
+        "original_path": "demo-data/media/img_de7bc2db322441a4.webp",
+        "thumb_path": "demo-data/media/img_de7bc2db322441a4.webp",
+        "preview_path": "demo-data/media/img_de7bc2db322441a4.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:44:31.216415+00:00"
+      },
+      {
+        "id": "img_0f613d96d86d4679",
+        "item_id": "itm_fdb4fb77db714588",
+        "original_path": "demo-data/media/img_0f613d96d86d4679.webp",
+        "thumb_path": "demo-data/media/img_0f613d96d86d4679.webp",
+        "preview_path": "demo-data/media/img_0f613d96d86d4679.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:44:31.421836+00:00"
+      },
+      {
+        "id": "img_4ad432036d5647c6",
+        "item_id": "itm_fdb4fb77db714588",
+        "original_path": "demo-data/media/img_4ad432036d5647c6.webp",
+        "thumb_path": "demo-data/media/img_4ad432036d5647c6.webp",
+        "preview_path": "demo-data/media/img_4ad432036d5647c6.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:44:31.699492+00:00"
+      },
+      {
+        "id": "img_ead3a8e93853444a",
+        "item_id": "itm_fdb4fb77db714588",
+        "original_path": "demo-data/media/img_ead3a8e93853444a.webp",
+        "thumb_path": "demo-data/media/img_ead3a8e93853444a.webp",
+        "preview_path": "demo-data/media/img_ead3a8e93853444a.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-10T10:44:32.015149+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/VigoCreativeAI/status/2064594643430305906\n\nAuthor: @VigoCreativeAI\n\nOriginal tweet intro:\n满屏都是干净、锐利的 AI 图时,最能让人停下来的,反而是看起来「能用手摸到」的那种。\n\n撕纸的毛边、纸的颗粒、泛黄的方格本底——你的眼睛会自动觉得「这是谁亲手拼的」,温度一下就上来了。\n\n最妙的反转:这种最「手作、最不数字」的质感,恰恰也是 AI 出的。质感,就是让数字图重新有体温的那个开关。\n而这 4 张还是同一套模板:风格锁死(泛黄方格纸 + 撕纸拼贴物件 + 毛边纸纹 + 打字机小标 + 一枚小印章),换的只是「拼什么物件」。模板抄走直接用——\n\n\"Create a {ASPECT_RATIO} image in the \\\"school-grid-paper-cutout-poster\\\" visual style.\\n\\nSubject: {SUBJECT}\\nAction: {SUBJECT_ACTION}\\nProp/Product: {PRODUCT_OR_PROP}\\nLocation: {LOCATION}\\nBackground: {BACKGROUND_ELEMENTS}\\nMain text: {MAIN_TEXT}\\nSecondary text: {SECONDARY_TEXT}\\nAccent symbol: {ACCENT_SYMBOL}\\nWardrobe/styling: {WARDROBE_STYLE}\\nStyle fidelity anchors: {STYLE_FIDELITY_ANCHORS}\\nSource content to avoid: {SOURCE_CONTENT_TO_AVOID}\\n\\nApply these style rules:\\n- Composition: warm cream classroom grid paper background, straight-on copy-stand view, one oversized torn-paper collage object centered slightly right of the hand-written text block, generous empty grid space, and a narrow pale bottom margin.\\n- Typography: one compact vertical column or two slim vertical columns of loose hand-drawn notebook characters on the upper-left side, dark graphite or faded ink, uneven and human, never clean digital type.\\n- Color: mostly yellowed beige paper with muted blue-green grid lines, cream torn-paper layers, one saturated cut-paper accent color, and tiny dark handwritten marks.\\n- Texture and lighting: real paper grain, deckled torn fibers, slight scan softness, low contrast vintage print finish, soft diffuse overhead light, and shallow physical shadows under lifted paper edges.\\n- Graphic elements: ruled grid structure, torn paper silhouette, optional tiny generic seal-like mark, and a small bottom caption strip; keep all marks generic.\\n\\nAvoid: no ice cream, no soft-serve shape, no cone silhouette, no fast-food branding, no recognizable logo, no original Chinese headline, no source watermark or signature, no dense scene, no glossy product render, no 3D object, no vector poster, no QR code.\\n\\nImportant content rule: match the reference style first, then change the source content. Use new subjects, new scene details, new props or products, and new text while preserving the style fidelity anchors\n\n这种泛黄方格本 + 手撕纸的感觉,让你想起什么?评论区聊聊。",
+    "author": "@VigoCreativeAI"
+  },
+  {
+    "id": "itm_4619eff4cd2c43e5",
+    "title": "GPT image 2 on Chatgpt Prompt",
+    "slug": "gpt-image-2-on-chatgpt-prompt-9",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/Taaruk_/status/2064548138422263945",
+    "cluster": null,
+    "use_case": "海报视觉",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_8ea28824279b4f02",
+        "name": "x-status-2064548138422263945",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "en",
+        "text": "Professional luxury birthday poster, 3:4 ratio. Entire frame filled with a premium off white luxury paper textured wall. Large number “2” precisely carved in the wall with visible depth and realistic inner shadows. Inside the number: soft pink and pink balloons, subtle white flowers, elegant bouquet arrangement, premium celebration styling. A happy 2 year old child with preserved reference facial features, wearing a milky white T shirt and pink denim overalls, laughing naturally. Face, shoulder, one hand and one foot extend outside the number creating a realistic 3D effect. Warm cinematic sunlight from one side, soft rim light, photorealistic skin, premium studio photography, ultra realistic, sharp focus. Typography on wall: MUNONYE, CHAPTER 2, 365 MORE DAYS OF WONDER. Clean minimalist layout, luxury magazine cover aesthetic, high end art direction, realistic shadows, natural colors, no tree shadows, no fake lighting, no AI artifacts.",
+        "is_primary": true,
+        "id": "prm_21715dc416f040b1",
+        "item_id": "itm_4619eff4cd2c43e5",
+        "created_at": "2026-06-10T10:43:36.479686+00:00",
+        "updated_at": "2026-06-10T10:43:36.479686+00:00"
+      }
+    ],
+    "prompt_snippet": "Professional luxury birthday poster, 3:4 ratio. Entire frame filled with a premium off white luxury paper textured wall. Large number “2” precisely carved in the wall with visible depth and realistic inner shadows. Insid",
+    "first_image": {
+      "id": "img_e18dfd43afba4dbd",
+      "item_id": "itm_4619eff4cd2c43e5",
+      "original_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+      "thumb_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+      "preview_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 1200,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:43:36.729160+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:43:36.479686+00:00",
+    "created_at": "2026-06-10T10:43:36.479686+00:00",
+    "images": [
+      {
+        "id": "img_e18dfd43afba4dbd",
+        "item_id": "itm_4619eff4cd2c43e5",
+        "original_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+        "thumb_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+        "preview_path": "demo-data/media/img_e18dfd43afba4dbd.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:43:36.729160+00:00"
+      },
+      {
+        "id": "img_da57d07541034764",
+        "item_id": "itm_4619eff4cd2c43e5",
+        "original_path": "demo-data/media/img_da57d07541034764.webp",
+        "thumb_path": "demo-data/media/img_da57d07541034764.webp",
+        "preview_path": "demo-data/media/img_da57d07541034764.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:43:36.946814+00:00"
+      },
+      {
+        "id": "img_498dd1d27d7f4839",
+        "item_id": "itm_4619eff4cd2c43e5",
+        "original_path": "demo-data/media/img_498dd1d27d7f4839.webp",
+        "thumb_path": "demo-data/media/img_498dd1d27d7f4839.webp",
+        "preview_path": "demo-data/media/img_498dd1d27d7f4839.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:43:37.173505+00:00"
+      },
+      {
+        "id": "img_fa3fecf432da4455",
+        "item_id": "itm_4619eff4cd2c43e5",
+        "original_path": "demo-data/media/img_fa3fecf432da4455.webp",
+        "thumb_path": "demo-data/media/img_fa3fecf432da4455.webp",
+        "preview_path": "demo-data/media/img_fa3fecf432da4455.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 1200,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-10T10:43:37.440921+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/Taaruk_/status/2064548138422263945\n\nAuthor: @Taaruk_\n\nOriginal tweet intro:\nGPT image 2 on Chatgpt \n\nPrompt:\nProfessional luxury birthday poster, 3:4 ratio. Entire frame filled with a premium off white luxury paper textured wall. Large number “2” precisely carved in the wall with visible depth and realistic inner shadows. Inside the number: soft pink and pink balloons, subtle white flowers, elegant bouquet arrangement, premium celebration styling. A happy 2 year old child with preserved reference facial features, wearing a milky white T shirt and pink denim overalls, laughing naturally. Face, shoulder, one hand and one foot extend outside the number creating a realistic 3D effect. Warm cinematic sunlight from one side, soft rim light, photorealistic skin, premium studio photography, ultra realistic, sharp focus. Typography on wall: MUNONYE, CHAPTER 2, 365 MORE DAYS OF WONDER. Clean minimalist layout, luxury magazine cover aesthetic, high end art direction, realistic shadows, natural colors, no tree shadows, no fake lighting, no AI artifacts.",
+    "author": "@Taaruk_"
+  },
+  {
+    "id": "itm_d0cba17d920f4b09",
+    "title": "GPT2 x 饮料 x 几何背景 x 美学提示词 Prompt",
+    "slug": "gpt2-x-饮料-x-几何背景-x-美学提示词-prompt",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/xiaoxiaodong01/status/2064359628125974873",
+    "cluster": null,
+    "use_case": "商业广告",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_da83b899a7f24c76",
+        "name": "x-status-2064359628125974873",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "圍繞具體飲料主題生成一張新品廣告視覺：畫面第一眼由超大近距主飲品佔據核心位置，容器與液體必須有真實商業攝影質感，頂部可見冰塊、配料與主題風味材料的清透疊放，主體像從平面圖形中頂出來。背後放置一塊由主題派生的高飽和清新結構色面，以巨大不規則幾何塊斜向壓入，形成速度感、上新感和強烈圖底關係；周圍保留大量高明度乾淨空白，讓商品輪廓、冷凝水、透明液體層次和配料邊緣清楚可見。信息層使用廣告字報式排版：頂部主標題極粗黑體，重心高、字面大、節奏緊；側邊小徽章、爆炸形新品章和短賣點列表作爲節奏點，所有文字只承載用戶給定信息，不沿用任何現成品牌或文案。色彩從飲料主題的口味、材質與情緒中提取，背景保持明亮潔淨，主產品保留清透透光的液體色階，幾何色面使用最能代表主題的新鮮高飽和結構色，文字採用清晰深色建立強讀性，強調章使用少量高亮暖色或互補亮色，整體明亮清透、醒目輕快，邊界利落，避免灰髒、陳舊和霧面渾濁。成片像真實飲品攝影疊加大膽平面廣告，產品、幾何色塊、重磅文字三者互相擠壓但不混亂，第一讀是上新衝擊，第二讀是口味與賣點。\n\n——————\n便利店冰櫃橫幅: 做橫版 16:9，主角是一大杯西瓜薄荷冰茶，杯口堆冰塊和薄荷葉，旁邊只放一小塊切開的西瓜作識別\n可見文字: 冰鎮西瓜薄荷茶 / 低糖大杯 / 今天只想喝點涼的\n使用場景: 貼在夏季門店冰櫃上，要像真實促銷圖，價格角標寫 9.9 元",
+        "is_primary": true,
+        "id": "prm_f0112d32e5df4d22",
+        "item_id": "itm_d0cba17d920f4b09",
+        "created_at": "2026-06-10T10:42:30.111995+00:00",
+        "updated_at": "2026-06-10T10:42:30.111995+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "围绕具体饮料主题生成一张新品广告视觉：画面第一眼由超大近距主饮品占据核心位置，容器与液体必须有真实商业摄影质感，顶部可见冰块、配料与主题风味材料的清透叠放，主体像从平面图形中顶出来。背后放置一块由主题派生的高饱和清新结构色面，以巨大不规则几何块斜向压入，形成速度感、上新感和强烈图底关系；周围保留大量高明度干净空白，让商品轮廓、冷凝水、透明液体层次和配料边缘清楚可见。信息层使用广告字报式排版：顶部主标题极粗黑体，重心高、字面大、节奏紧；侧边小徽章、爆炸形新品章和短卖点列表作为节奏点，所有文字只承载用户给定信息，不沿用任何现成品牌或文案。色彩从饮料主题的口味、材质与情绪中提取，背景保持明亮洁净，主产品保留清透透光的液体色阶，几何色面使用最能代表主题的新鲜高饱和结构色，文字采用清晰深色建立强读性，强调章使用少量高亮暖色或互补亮色，整体明亮清透、醒目轻快，边界利落，避免灰脏、陈旧和雾面浑浊。成片像真实饮品摄影叠加大胆平面广告，产品、几何色块、重磅文字三者互相挤压但不混乱，第一读是上新冲击，第二读是口味与卖点。\n\n——————\n便利店冰柜横幅: 做横版 16:9，主角是一大杯西瓜薄荷冰茶，杯口堆冰块和薄荷叶，旁边只放一小块切开的西瓜作识别\n可见文字: 冰镇西瓜薄荷茶 / 低糖大杯 / 今天只想喝点凉的\n使用场景: 贴在夏季门店冰柜上，要像真实促销图，价格角标写 9.9 元",
+        "is_primary": false,
+        "id": "prm_1e2cc296f2854d8c",
+        "item_id": "itm_d0cba17d920f4b09",
+        "created_at": "2026-06-10T10:42:30.111995+00:00",
+        "updated_at": "2026-06-10T10:42:30.111995+00:00"
+      }
+    ],
+    "prompt_snippet": "圍繞具體飲料主題生成一張新品廣告視覺：畫面第一眼由超大近距主飲品佔據核心位置，容器與液體必須有真實商業攝影質感，頂部可見冰塊、配料與主題風味材料的清透疊放，主體像從平面圖形中頂出來。背後放置一塊由主題派生的高飽和清新結構色面，以巨大不規則幾何塊斜向壓入，形成速度感、上新感和強烈圖底關係；周圍保留大量高明度乾淨空白，讓商品輪廓、冷凝水、透明液體層次和配料邊緣清楚可見。信息層使用廣告字報式排版：頂部主標題極粗黑體，重心高、字面大、節奏緊；側",
+    "first_image": {
+      "id": "img_bcdfe3311cef4ab2",
+      "item_id": "itm_d0cba17d920f4b09",
+      "original_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+      "thumb_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+      "preview_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+      "remote_url": null,
+      "width": 900,
+      "height": 507,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-10T10:42:30.477523+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-10T10:42:30.111995+00:00",
+    "created_at": "2026-06-10T10:42:30.111995+00:00",
+    "images": [
+      {
+        "id": "img_bcdfe3311cef4ab2",
+        "item_id": "itm_d0cba17d920f4b09",
+        "original_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+        "thumb_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+        "preview_path": "demo-data/media/img_bcdfe3311cef4ab2.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-10T10:42:30.477523+00:00"
+      },
+      {
+        "id": "img_7f9589eb92b644b8",
+        "item_id": "itm_d0cba17d920f4b09",
+        "original_path": "demo-data/media/img_7f9589eb92b644b8.webp",
+        "thumb_path": "demo-data/media/img_7f9589eb92b644b8.webp",
+        "preview_path": "demo-data/media/img_7f9589eb92b644b8.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-10T10:42:30.690640+00:00"
+      },
+      {
+        "id": "img_9d5ae1b1ed79419e",
+        "item_id": "itm_d0cba17d920f4b09",
+        "original_path": "demo-data/media/img_9d5ae1b1ed79419e.webp",
+        "thumb_path": "demo-data/media/img_9d5ae1b1ed79419e.webp",
+        "preview_path": "demo-data/media/img_9d5ae1b1ed79419e.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-10T10:42:30.904185+00:00"
+      },
+      {
+        "id": "img_7a86b8bd7a1144c1",
+        "item_id": "itm_d0cba17d920f4b09",
+        "original_path": "demo-data/media/img_7a86b8bd7a1144c1.webp",
+        "thumb_path": "demo-data/media/img_7a86b8bd7a1144c1.webp",
+        "preview_path": "demo-data/media/img_7a86b8bd7a1144c1.webp",
+        "remote_url": null,
+        "width": 900,
+        "height": 507,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 3,
+        "created_at": "2026-06-10T10:42:31.127434+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/xiaoxiaodong01/status/2064359628125974873\n\nAuthor: @xiaoxiaodong01\n\nOriginal tweet intro:\nGPT2 x 饮料 x 几何背景 x 美学提示词\n\n50组饮料提示词，这几天熬完成了\n\n熬到眼皮总是跳了，大概率是疲劳了\n\n明天开源所有 这些饮料提示词 \n\n感觉奶茶店老板 之类的朋友， 可以疯狂用起来\n\n本次提示词，放在评论区，欢迎返图\n\n个人感觉垂直版本，会更醒目\n\n⤵️",
+    "author": "@xiaoxiaodong01"
+  },
+  {
     "id": "itm_53a136b1c67a4c5a",
     "title": "Python 精准改图 vs 图像生成",
     "slug": "python-精准改图-vs-图像生成",
