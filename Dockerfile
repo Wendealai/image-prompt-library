@@ -25,7 +25,9 @@ COPY backend ./backend
 COPY scripts ./scripts
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 
-RUN chmod +x ./scripts/entrypoint.sh && pip install --no-cache-dir .
+RUN sed -i 's/\r$//' ./scripts/entrypoint.sh \
+    && chmod +x ./scripts/entrypoint.sh \
+    && pip install --no-cache-dir .
 
 EXPOSE 8000
 
