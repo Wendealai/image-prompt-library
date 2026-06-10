@@ -1047,7 +1047,7 @@
     "id": "tag_f82397a0d2904cd2",
     "name": "GPT Image 2",
     "kind": "general",
-    "count": 560
+    "count": 561
   },
   {
     "id": "tag_9de1cbc51b294dd6",
@@ -1650,6 +1650,12 @@
     "count": 20
   },
   {
+    "id": "tag_65eadb2c8b4c41c6",
+    "name": "Python",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_ac61d3ffd77947cc",
     "name": "Realistic",
     "kind": "general",
@@ -2067,7 +2073,7 @@
     "id": "tag_9a6e41c4e3734883",
     "name": "X source",
     "kind": "general",
-    "count": 133
+    "count": 134
   },
   {
     "id": "tag_3a4b1c1b9197454a",
@@ -11862,6 +11868,12 @@
     "count": 1
   },
   {
+    "id": "tag_c090162627094372",
+    "name": "x-status-2063988951250309484",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_a20ad3fec8dd464a",
     "name": "x-status-2063991050805350508",
     "kind": "general",
@@ -12348,6 +12360,12 @@
     "count": 1
   },
   {
+    "id": "tag_aecfcfbc9b844937",
+    "name": "图像编辑",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_495e92918b704647",
     "name": "图生图",
     "kind": "general",
@@ -12510,6 +12528,12 @@
     "count": 1
   },
   {
+    "id": "tag_cd01647d51bb47d4",
+    "name": "工作流",
+    "kind": "general",
+    "count": 1
+  },
+  {
     "id": "tag_9ec2e32500b24630",
     "name": "建筑信息图",
     "kind": "general",
@@ -12644,6 +12668,12 @@
   {
     "id": "tag_381a646af91246b6",
     "name": "教学海报",
+    "kind": "general",
+    "count": 1
+  },
+  {
+    "id": "tag_f34d2f762a5b41f8",
+    "name": "教程",
     "kind": "general",
     "count": 1
   },

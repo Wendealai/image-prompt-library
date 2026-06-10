@@ -1726,12 +1726,12 @@
     "name": "图像编辑与再创作",
     "description": null,
     "sort_order": 0,
-    "count": 15,
+    "count": 16,
     "preview_images": [
+      "demo-data/media/img_f52d268164114af7.webp",
       "demo-data/media/img_9949b288cd70427e.webp",
       "demo-data/media/img_14d0a1019f5f4f05.webp",
-      "demo-data/media/img_01b8fdefd95b434f.webp",
-      "demo-data/media/img_9f74015b28f34fdc.webp"
+      "demo-data/media/img_01b8fdefd95b434f.webp"
     ]
   },
   {

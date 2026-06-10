@@ -1,5 +1,152 @@
 [
   {
+    "id": "itm_53a136b1c67a4c5a",
+    "title": "Python 精准改图 vs 图像生成",
+    "slug": "python-精准改图-vs-图像生成",
+    "model": "ChatGPT Image2",
+    "source_name": "X / Twitter",
+    "source_url": "https://x.com/hx831126/status/2063988951250309484",
+    "cluster": {
+      "id": "clu_1315c03ab3724ed8",
+      "name": "图像编辑与再创作",
+      "description": null,
+      "sort_order": 0,
+      "count": 0,
+      "preview_images": []
+    },
+    "use_case": "海报视觉",
+    "tags": [
+      {
+        "id": "tag_9a6e41c4e3734883",
+        "name": "X source",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_c090162627094372",
+        "name": "x-status-2063988951250309484",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f82397a0d2904cd2",
+        "name": "GPT Image 2",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_65eadb2c8b4c41c6",
+        "name": "Python",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_aecfcfbc9b844937",
+        "name": "图像编辑",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_cd01647d51bb47d4",
+        "name": "工作流",
+        "kind": "general",
+        "count": 0
+      },
+      {
+        "id": "tag_f34d2f762a5b41f8",
+        "name": "教程",
+        "kind": "general",
+        "count": 0
+      }
+    ],
+    "prompts": [
+      {
+        "language": "zh_hant",
+        "text": "很多人以爲，在 ChatGPT 裏改圖，就一定要調用圖像生成模型。\n\n其實不一定。\n\n如果你只是想改一張圖裏的幾個字、幾個數字、一個日期、一個標題，很多時候更適合用 Python，而不是重新讓 AI 生成一張圖。\n\n因爲這兩種方式，本質完全不一樣。\n\nAI 圖像模型更像一個“設計師”。\n\n你給它一張圖，讓它重新理解畫面，再幫你生成一張新的結果。它適合做創意類修改，比如換背景、換風格、讓人物更精神、做海報、做氛圍、做場景重構。\n\n但問題是，它會“重新創作”。\n\n也就是說，它可能不只改你想改的地方，還會順手改掉字體、光影、圖標、邊緣、質感，甚至讓原圖裏一些細節變形。\n\n所以如果你的要求是：\n\n“只改這個地方，其他任何不變。”\n\n那圖像模型反而不一定是最穩的選擇。\n\nPython 更像一把“手術刀”。\n\n它不是重新生成整張圖，而是在原圖像素基礎上做局部編輯。比如先把原來的文字區域蓋掉，再按照原來的位置、顏色、字號，把新的文字寫上去。\n\n這樣做的好處很明顯：\n\n原圖大部分區域完全不動。\n\n字體位置可以精確控制。\n\n顏色、字號、間距都可以反覆調整。\n\n適合批量處理很多張圖。\n\n修改結果更穩定，也更可復現。\n\n所以簡單判斷就是：\n\n改字、改日期、改標題、加水印、裁切、統一模板、批量出圖，用 Python 更穩。\n\n換背景、換衣服、換風格、人物變好看、做電影感海報、做創意視覺，用圖像模型更合適。\n\n這也是我現在越來越強烈的一個感受：\n\n會用 AI，不只是會寫提示詞。\n\n更重要的是知道什麼時候該讓 AI “想象”，什麼時候該讓工具“精確執行”。\n\n創意問題，用生成模型。\n\n精修問題，用 Python。\n\n別把所有改圖需求都交給生圖模型。\n\n有些時候，最先進的辦法，反而是最樸素的辦法。\n\n####  上面的這些文字 是我讓GPT 總結的 ###",
+        "is_primary": true,
+        "id": "prm_0c4836797cf1493e",
+        "item_id": "itm_53a136b1c67a4c5a",
+        "created_at": "2026-06-08T22:29:13.407609+00:00",
+        "updated_at": "2026-06-08T22:29:13.407609+00:00"
+      },
+      {
+        "language": "zh_hans",
+        "text": "很多人以为，在 ChatGPT 里改图，就一定要调用图像生成模型。\n\n其实不一定。\n\n如果你只是想改一张图里的几个字、几个数字、一个日期、一个标题，很多时候更适合用 Python，而不是重新让 AI 生成一张图。\n\n因为这两种方式，本质完全不一样。\n\nAI 图像模型更像一个“设计师”。\n\n你给它一张图，让它重新理解画面，再帮你生成一张新的结果。它适合做创意类修改，比如换背景、换风格、让人物更精神、做海报、做氛围、做场景重构。\n\n但问题是，它会“重新创作”。\n\n也就是说，它可能不只改你想改的地方，还会顺手改掉字体、光影、图标、边缘、质感，甚至让原图里一些细节变形。\n\n所以如果你的要求是：\n\n“只改这个地方，其他任何不变。”\n\n那图像模型反而不一定是最稳的选择。\n\nPython 更像一把“手术刀”。\n\n它不是重新生成整张图，而是在原图像素基础上做局部编辑。比如先把原来的文字区域盖掉，再按照原来的位置、颜色、字号，把新的文字写上去。\n\n这样做的好处很明显：\n\n原图大部分区域完全不动。\n\n字体位置可以精确控制。\n\n颜色、字号、间距都可以反复调整。\n\n适合批量处理很多张图。\n\n修改结果更稳定，也更可复现。\n\n所以简单判断就是：\n\n改字、改日期、改标题、加水印、裁切、统一模板、批量出图，用 Python 更稳。\n\n换背景、换衣服、换风格、人物变好看、做电影感海报、做创意视觉，用图像模型更合适。\n\n这也是我现在越来越强烈的一个感受：\n\n会用 AI，不只是会写提示词。\n\n更重要的是知道什么时候该让 AI “想象”，什么时候该让工具“精确执行”。\n\n创意问题，用生成模型。\n\n精修问题，用 Python。\n\n别把所有改图需求都交给生图模型。\n\n有些时候，最先进的办法，反而是最朴素的办法。\n\n####  上面的这些文字 是我让GPT 总结的 ###",
+        "is_primary": false,
+        "id": "prm_b61e57f228d447e2",
+        "item_id": "itm_53a136b1c67a4c5a",
+        "created_at": "2026-06-08T22:29:13.407609+00:00",
+        "updated_at": "2026-06-08T22:29:13.407609+00:00"
+      }
+    ],
+    "prompt_snippet": "很多人以爲，在 ChatGPT 裏改圖，就一定要調用圖像生成模型。\n\n其實不一定。\n\n如果你只是想改一張圖裏的幾個字、幾個數字、一個日期、一個標題，很多時候更適合用 Python，而不是重新讓 AI 生成一張圖。\n\n因爲這兩種方式，本質完全不一樣。\n\nAI 圖像模型更像一個“設計師”。\n\n你給它一張圖，讓它重新理解畫面，再幫你生成一張新的結果。它適合做創意類修改，比如換背景、換風格、讓人物更精神、做海報、做氛圍、做場景重構。\n\n但問題是",
+    "first_image": {
+      "id": "img_f52d268164114af7",
+      "item_id": "itm_53a136b1c67a4c5a",
+      "original_path": "demo-data/media/img_f52d268164114af7.webp",
+      "thumb_path": "demo-data/media/img_f52d268164114af7.webp",
+      "preview_path": "demo-data/media/img_f52d268164114af7.webp",
+      "remote_url": null,
+      "width": 507,
+      "height": 900,
+      "file_sha256": null,
+      "role": "result_image",
+      "sort_order": 0,
+      "created_at": "2026-06-08T22:29:13.640417+00:00"
+    },
+    "rating": 0,
+    "favorite": false,
+    "archived": false,
+    "updated_at": "2026-06-08T22:29:13.407609+00:00",
+    "created_at": "2026-06-08T22:29:13.407609+00:00",
+    "images": [
+      {
+        "id": "img_f52d268164114af7",
+        "item_id": "itm_53a136b1c67a4c5a",
+        "original_path": "demo-data/media/img_f52d268164114af7.webp",
+        "thumb_path": "demo-data/media/img_f52d268164114af7.webp",
+        "preview_path": "demo-data/media/img_f52d268164114af7.webp",
+        "remote_url": null,
+        "width": 507,
+        "height": 900,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 0,
+        "created_at": "2026-06-08T22:29:13.640417+00:00"
+      },
+      {
+        "id": "img_617743673738463e",
+        "item_id": "itm_53a136b1c67a4c5a",
+        "original_path": "demo-data/media/img_617743673738463e.webp",
+        "thumb_path": "demo-data/media/img_617743673738463e.webp",
+        "preview_path": "demo-data/media/img_617743673738463e.webp",
+        "remote_url": null,
+        "width": 680,
+        "height": 512,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 1,
+        "created_at": "2026-06-08T22:29:13.690810+00:00"
+      },
+      {
+        "id": "img_22feb43f4def4255",
+        "item_id": "itm_53a136b1c67a4c5a",
+        "original_path": "demo-data/media/img_22feb43f4def4255.webp",
+        "thumb_path": "demo-data/media/img_22feb43f4def4255.webp",
+        "preview_path": "demo-data/media/img_22feb43f4def4255.webp",
+        "remote_url": null,
+        "width": 354,
+        "height": 305,
+        "file_sha256": null,
+        "role": "result_image",
+        "sort_order": 2,
+        "created_at": "2026-06-08T22:29:13.725738+00:00"
+      }
+    ],
+    "notes": "Original X status: https://x.com/hx831126/status/2063988951250309484\n\nAuthor: @hx831126\n\nOriginal tweet intro:\n很多人以为，在 ChatGPT 里改图，就一定要调用图像生成模型。\n\n其实不一定。\n\n如果你只是想改一张图里的几个字、几个数字、一个日期、一个标题，很多时候更适合用 Python，而不是重新让 AI 生成一张图。\n\n因为这两种方式，本质完全不一样。\n\nAI 图像模型更像一个“设计师”。\n\n你给它一张图，让它重新理解画面，再帮你生成一张新的结果。它适合做创意类修改，比如换背景、换风格、让人物更精神、做海报、做氛围、做场景重构。\n\n但问题是，它会“重新创作”。\n\n也就是说，它可能不只改你想改的地方，还会顺手改掉字体、光影、图标、边缘、质感，甚至让原图里一些细节变形。\n\n所以如果你的要求是：\n\n“只改这个地方，其他任何不变。”\n\n那图像模型反而不一定是最稳的选择。\n\nPython 更像一把“手术刀”。\n\n它不是重新生成整张图，而是在原图像素基础上做局部编辑。比如先把原来的文字区域盖掉，再按照原来的位置、颜色、字号，把新的文字写上去。\n\n这样做的好处很明显：\n\n原图大部分区域完全不动。\n\n字体位置可以精确控制。\n\n颜色、字号、间距都可以反复调整。\n\n适合批量处理很多张图。\n\n修改结果更稳定，也更可复现。\n\n所以简单判断就是：\n\n改字、改日期、改标题、加水印、裁切、统一模板、批量出图，用 Python 更稳。\n\n换背景、换衣服、换风格、人物变好看、做电影感海报、做创意视觉，用图像模型更合适。\n\n这也是我现在越来越强烈的一个感受：\n\n会用 AI，不只是会写提示词。\n\n更重要的是知道什么时候该让 AI “想象”，什么时候该让工具“精确执行”。\n\n创意问题，用生成模型。\n\n精修问题，用 Python。\n\n别把所有改图需求都交给生图模型。\n\n有些时候，最先进的办法，反而是最朴素的办法。\n\n####  上面的这些文字 是我让GPT 总结的 ###",
+    "author": "@hx831126"
+  },
+  {
     "id": "itm_513397a20aa844d1",
     "title": "【AI绘画每日一词】复古时尚插画手稿 Prompt",
     "slug": "ai绘画每日一词-复古时尚插画手稿-prompt",

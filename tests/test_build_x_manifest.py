@@ -107,3 +107,37 @@ def test_build_x_manifest_accepts_explicit_prompt_reply_url(tmp_path):
     assert manifest["prompt_text"] == "right prompt\n请生成一张图。"
     assert manifest["images"][0]["path"] == "one.jpg"
     assert manifest["images"][0]["filename"] == "one.jpg"
+
+
+def test_build_x_manifest_prefers_source_tweet_when_it_contains_full_prompt(tmp_path):
+    builder = load_builder()
+    thread = tmp_path / "thread.json"
+    images = tmp_path / "images.json"
+    output = tmp_path / "manifest.json"
+    write_json(
+        thread,
+        {
+            "title": 'NoorAI (@noorwithwifi): "Prompt: A minimalist and elegant conceptual art piece celebrating Paris." | XCancel',
+            "url": "https://xcancel.com/noorwithwifi/status/2063610088745841114",
+            "tweets": [
+                {
+                    "href": "https://x.com/noorwithwifi/status/2063610088745841114",
+                    "content": "Prompt: A minimalist and elegant conceptual art piece celebrating Paris. In the center, a flowing, wavy ribbon mimicking the French tricolor flag curls gracefully across a clean, textured off-white background. The left side of the ribbon is a smooth, satin blue fabric, and the right side is a rich, satin red fabric. The white middle section of the ribbon opens up like a carved architectural relief, revealing highly detailed, miniature 3D papercraft-style sculptures of Parisian landmarks.",
+                },
+                {
+                    "href": "https://x.com/noorwithwifi/status/2063975039591141756",
+                    "content": "truly you did well",
+                },
+            ],
+        },
+    )
+    write_json(images, {"images": [{"path": "one.jpg"}]})
+
+    manifest = builder.build_manifest(
+        thread_json=thread,
+        images_json=images,
+        output=output,
+    )
+
+    assert manifest["prompt_text"].startswith("Prompt: A minimalist and elegant conceptual art piece celebrating Paris.")
+    assert "prompt_reply_url" not in manifest

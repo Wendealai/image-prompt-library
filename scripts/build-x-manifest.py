@@ -62,6 +62,25 @@ def _tweet_content(tweet: dict[str, Any]) -> str:
     return _clean_text(tweet.get("content") or tweet.get("text"))
 
 
+def _looks_like_prompt_text(content: str) -> bool:
+    if not content:
+        return False
+    lower = content.lower()
+    explicit_markers = (
+        "prompt:",
+        "prompt：",
+        "提示词:",
+        "提示词：",
+        "设计要求",
+        "画面要求",
+        "请生成",
+        "生成一张",
+    )
+    if any(marker in lower for marker in explicit_markers):
+        return True
+    return ("prompt" in lower or "提示词" in content) and len(content) >= 120
+
+
 def _tweets(thread: dict[str, Any]) -> list[dict[str, Any]]:
     tweets = thread.get("tweets")
     if isinstance(tweets, list):
@@ -89,12 +108,11 @@ def _prompt_score(tweet: dict[str, Any], source_url: str, author: str | None) ->
     href = _tweet_href(tweet) or ""
     source_status = _status_id(source_url)
     score = len(content)
+    looks_like_prompt = _looks_like_prompt_text(content)
     if source_status and f"/status/{source_status}" in href:
-        score -= 5000
-    if "提示词" in content or "prompt" in content.lower():
+        score += 5000 if looks_like_prompt else -500
+    if looks_like_prompt:
         score += 1000
-    if any(marker in content for marker in ("画面要求", "设计要求", "请生成", "生成一张")):
-        score += 600
     if author and author.lstrip("@").lower() in href.lower():
         score += 300
     return score
@@ -107,6 +125,9 @@ def _prompt_tweet(tweets: list[dict[str, Any]], source_url: str, author: str | N
             href = _tweet_href(tweet) or ""
             if explicit_status and f"/status/{explicit_status}" in href:
                 return tweet
+    main = _main_tweet(tweets, source_url)
+    if main and _looks_like_prompt_text(_tweet_content(main)):
+        return main
     candidates = [tweet for tweet in tweets if _tweet_content(tweet)]
     if not candidates:
         return None

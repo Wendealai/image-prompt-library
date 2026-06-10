@@ -21,6 +21,9 @@ const IMAGE_VIEWER_DOUBLE_TAP_SCALE = 2.4;
 const IMAGE_VIEWER_DOUBLE_TAP_DELAY_MS = 260;
 const IMAGE_GENERATION_POLL_INTERVAL_MS = 3000;
 const IMAGE_GENERATION_POLL_ATTEMPTS = 40;
+const COMPACT_GALLERY_DETAIL_TITLES = new Set([
+  'Football Icons Caricature Illustration Set',
+]);
 
 type DetailPanel = 'prompt' | 'history';
 
@@ -59,6 +62,10 @@ function dedupeImages(images: ImageRecord[]) {
     seenImageKeys.add(key);
     return true;
   });
+}
+
+function usesCompactGalleryDetail(item?: ItemDetail) {
+  return Boolean(item && COMPACT_GALLERY_DETAIL_TITLES.has(item.title));
 }
 
 function formatHistoryDate(value?: string) {
@@ -419,6 +426,7 @@ export default function ItemDetailModal({
   const uniqueImages = useMemo(() => dedupeImages(item?.images || []), [item?.images]);
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
+  const compactGalleryDetail = usesCompactGalleryDetail(item);
   const generatedImageHistoryEntries = useMemo(() => buildGeneratedImageHistory(uniqueImages, generationRuns), [uniqueImages, generationRuns]);
   useEffect(() => {
     setSelectedImageIdentity(current => {
@@ -599,65 +607,67 @@ export default function ItemDetailModal({
           <p className="modal-loading">{t('loading')}</p>
         ) : (
           <div className="modal-content-enter" key={item.id}>
-            <div className="detail-layout">
-              <section className="modal-hero" ref={heroSectionRef}>
-                {activeImage ? (
-                  <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
-                    <FallbackImage
-                      className="hero-image"
-                      paths={imageHeroPaths(activeImage)}
-                      alt={item.title}
-                      fallback={<span className="placeholder hero-image image-load-fallback">{t('noImage')}</span>}
-                    />
-                  </button>
-                ) : (
-                  <div className="placeholder hero-image">{t('noImage')}</div>
-                )}
-                {activeImage && (
-                  <div className="detail-image-actions" onClick={event => event.stopPropagation()}>
-                    <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
-                      <Download size={17} />
+            <div className={`detail-layout ${compactGalleryDetail ? 'detail-layout-series' : ''}`}>
+              {!compactGalleryDetail && (
+                <section className="modal-hero" ref={heroSectionRef}>
+                  {activeImage ? (
+                    <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
+                      <FallbackImage
+                        className="hero-image"
+                        paths={imageHeroPaths(activeImage)}
+                        alt={item.title}
+                        fallback={<span className="placeholder hero-image image-load-fallback">{t('noImage')}</span>}
+                      />
+                    </button>
+                  ) : (
+                    <div className="placeholder hero-image">{t('noImage')}</div>
+                  )}
+                  {activeImage && (
+                    <div className="detail-image-actions" onClick={event => event.stopPropagation()}>
+                      <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                        <Download size={17} />
+                      </button>
+                      {showMutations && (
+                        <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                          <Trash2 size={17} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  <div className="mobile-hero-actions" aria-label={t('itemActions')}>
+                    <button className="modal-icon-button mobile-hero-close" onClick={onClose} aria-label={t('close')}>
+                      <X size={20} />
                     </button>
                     {showMutations && (
-                      <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
-                        <Trash2 size={17} />
-                      </button>
+                      <span className="mobile-hero-primary-actions">
+                        <button className="modal-icon-button favorite-button" onClick={toggleFavorite} aria-label={item.favorite ? t('saved') : t('favorite')}>
+                          <Heart size={18} fill={item.favorite ? 'currentColor' : 'none'} />
+                        </button>
+                        <button className="modal-icon-button edit-button" onClick={() => onEdit(item)} aria-label={t('edit')}>
+                          <Pencil size={18} />
+                        </button>
+                      </span>
                     )}
                   </div>
-                )}
-                <div className="mobile-hero-actions" aria-label={t('itemActions')}>
-                  <button className="modal-icon-button mobile-hero-close" onClick={onClose} aria-label={t('close')}>
-                    <X size={20} />
-                  </button>
-                  {showMutations && (
-                    <span className="mobile-hero-primary-actions">
-                      <button className="modal-icon-button favorite-button" onClick={toggleFavorite} aria-label={item.favorite ? t('saved') : t('favorite')}>
-                        <Heart size={18} fill={item.favorite ? 'currentColor' : 'none'} />
-                      </button>
-                      <button className="modal-icon-button edit-button" onClick={() => onEdit(item)} aria-label={t('edit')}>
-                        <Pencil size={18} />
-                      </button>
-                    </span>
+                  {uniqueImages.length > 1 && (
+                    <div className="rail glass-rail">
+                      {uniqueImages.map(img => (
+                        <button
+                          type="button"
+                          key={getImageIdentity(img)}
+                          className={`glass-rail-thumb ${getImageIdentity(img) === getImageIdentity(activeImage || img) ? 'active' : ''}`}
+                          onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
+                          aria-label={t('openImageDetailViewer')}
+                        >
+                          <FallbackImage paths={imageDisplayPaths(img)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
+                        </button>
+                      ))}
+                    </div>
                   )}
-                </div>
-                {uniqueImages.length > 1 && (
-                  <div className="rail glass-rail">
-                    {uniqueImages.map(img => (
-                      <button
-                        type="button"
-                        key={getImageIdentity(img)}
-                        className={`glass-rail-thumb ${getImageIdentity(img) === getImageIdentity(activeImage || img) ? 'active' : ''}`}
-                        onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
-                        aria-label={t('openImageDetailViewer')}
-                      >
-                        <FallbackImage paths={imageDisplayPaths(img)} alt="" fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </section>
+                </section>
+              )}
 
-              <aside className="detail-side">
+              <aside className={`detail-side ${compactGalleryDetail ? 'detail-side-series' : ''}`}>
                 <div className="detail-side-actions">
                   <span className="detail-side-primary-actions">
                     {showMutations && <button className="modal-icon-button favorite-button" onClick={toggleFavorite} aria-label={item.favorite ? t('saved') : t('favorite')}>
@@ -689,6 +699,46 @@ export default function ItemDetailModal({
                     </a>
                   )}
                 </p>
+
+                {compactGalleryDetail && uniqueImages.length > 0 && (
+                  <section className="detail-series-gallery" ref={heroSectionRef}>
+                    <div className="detail-series-gallery-grid">
+                      {uniqueImages.map(img => {
+                        const isActive = getImageIdentity(img) === getImageIdentity(activeImage || img);
+                        return (
+                          <button
+                            type="button"
+                            key={getImageIdentity(img)}
+                            className={`detail-series-thumb ${isActive ? 'active' : ''}`}
+                            onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
+                            aria-label={t('openImageDetailViewer')}
+                          >
+                            <FallbackImage
+                              paths={imageDisplayPaths(img)}
+                              alt={`${item.title}`}
+                              fallback={<span className="thumb-fallback">{t('noImage')}</span>}
+                            />
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {activeImage && (
+                      <div className="detail-series-gallery-actions">
+                        <button type="button" className="modal-icon-button detail-image-action" onClick={openImageViewer} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
+                          <Eye size={16} />
+                        </button>
+                        <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                          <Download size={16} />
+                        </button>
+                        {showMutations && (
+                          <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
+                            <Trash2 size={16} />
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </section>
+                )}
 
                 {duplicatePromptGroup.length > 0 && (
                   <div className="detail-duplicate-tabs tabs" role="tablist" aria-label="Prompt variants">
