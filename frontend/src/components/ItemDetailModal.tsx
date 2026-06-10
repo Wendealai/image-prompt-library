@@ -37,6 +37,13 @@ interface GeneratedImageHistoryEntry {
   errorMessage?: string;
 }
 
+interface SeriesPromptSection {
+  key: string;
+  index: number;
+  title: string;
+  body: string;
+}
+
 function getImageIdentity(image: ImageRecord) {
   return image.thumb_path || image.preview_path || image.original_path || image.id;
 }
@@ -66,6 +73,17 @@ function dedupeImages(images: ImageRecord[]) {
 
 function usesCompactGalleryDetail(item?: ItemDetail) {
   return Boolean(item && COMPACT_GALLERY_DETAIL_TITLES.has(item.title));
+}
+
+function parseSeriesPromptSections(text: string): SeriesPromptSection[] {
+  const normalized = text.replace(/\r\n?/g, '\n').trim();
+  const matches = [...normalized.matchAll(/(?:^|\n)Image\s+(\d+)\s*:\s*([^\n]+)\n([\s\S]*?)(?=(?:\nImage\s+\d+\s*:)|$)/g)];
+  return matches.map(match => ({
+    key: `series-${match[1]}`,
+    index: Number(match[1]) - 1,
+    title: match[2].trim(),
+    body: match[3].trim(),
+  })).filter(section => section.title && section.body);
 }
 
 function formatHistoryDate(value?: string) {
@@ -427,6 +445,10 @@ export default function ItemDetailModal({
   const primaryImage = selectPrimaryImage(uniqueImages);
   const activeImage = uniqueImages.find(image => getImageIdentity(image) === selectedImageIdentity) || primaryImage;
   const compactGalleryDetail = usesCompactGalleryDetail(item);
+  const seriesPromptSections = useMemo(
+    () => (compactGalleryDetail ? parseSeriesPromptSections(copyText) : []),
+    [compactGalleryDetail, copyText],
+  );
   const generatedImageHistoryEntries = useMemo(() => buildGeneratedImageHistory(uniqueImages, generationRuns), [uniqueImages, generationRuns]);
   useEffect(() => {
     setSelectedImageIdentity(current => {
@@ -599,6 +621,66 @@ export default function ItemDetailModal({
     window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
   };
   const openPromptWorkbench = () => setDetailPanel('prompt');
+  const bindHeroSectionRef = useCallback((node: HTMLElement | null) => {
+    heroSectionRef.current = node;
+  }, []);
+  const rawPromptPanel = (
+    <section className="prompt-block prompt-panel active">
+      <header className="prompt-block-header">
+        <div className="prompt-language-tabs tabs" role="tablist" aria-label={t('promptLanguage')}>
+          {promptDisplayOrder.map(promptLanguage => {
+            const tabPrompt = item?.prompts.find(existingPrompt => existingPrompt.language === promptLanguage);
+            return (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={lang === promptLanguage}
+                className={`prompt-language-tab ${lang === promptLanguage ? 'active' : ''}`}
+                onClick={() => { setLang(promptLanguage); cancelPromptEdit(); }}
+                title={tabPrompt?.text.trim() ? undefined : t('promptText')}
+                key={promptLanguage}
+              >
+                {LANG_LABELS[promptLanguage] || promptLanguage}
+              </button>
+            );
+          })}
+        </div>
+        <span className="prompt-block-actions">
+          <button type="button" className="prompt-copy-icon" onClick={() => handleCopyPrompt(prompt?.text || '')} aria-label={t('copyPrompt')} disabled={!prompt?.text}>
+            <Copy size={15} />
+          </button>
+          {showMutations && <button type="button" className="prompt-edit-icon" onClick={() => startPromptEdit(lang, prompt?.text || '')} aria-label={t('edit')}>
+            <Pencil size={15} />
+          </button>}
+        </span>
+      </header>
+      <div className="prompt-panel-body">
+        {editingPromptLanguage === lang ? (
+          <>
+            <textarea
+              className="prompt-edit-textarea"
+              value={promptDraft}
+              placeholder={t('promptText')}
+              autoFocus
+              onChange={event => setPromptDraft(event.target.value)}
+              onKeyDown={event => {
+                if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') confirmPromptEdit();
+                if (event.key === 'Escape') cancelPromptEdit();
+              }}
+            />
+            <span className="prompt-edit-controls">
+              <button type="button" className="inline-edit-confirm" onClick={confirmPromptEdit} aria-label="Confirm edit"><Check size={14} /></button>
+              <button type="button" className="inline-edit-cancel" onClick={cancelPromptEdit} aria-label="Cancel edit"><X size={14} /></button>
+            </span>
+          </>
+        ) : (
+          <div className={`prompt-inline-edit ${prompt?.text ? '' : 'notes-empty'} ${showMutations ? '' : 'is-read-only'}`} onDoubleClick={() => { if (showMutations) startPromptEdit(lang, prompt?.text || ''); }} tabIndex={showMutations ? 0 : undefined} onKeyDown={event => { if (showMutations && event.key === 'Enter') startPromptEdit(lang, prompt?.text || ''); }}>
+            {prompt?.text ? <p>{prompt.text}</p> : <span className="add-note-affordance">{t('promptText')}</span>}
+          </div>
+        )}
+      </div>
+    </section>
+  );
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -609,7 +691,7 @@ export default function ItemDetailModal({
           <div className="modal-content-enter" key={item.id}>
             <div className={`detail-layout ${compactGalleryDetail ? 'detail-layout-series' : ''}`}>
               {!compactGalleryDetail && (
-                <section className="modal-hero" ref={heroSectionRef}>
+                <section className="modal-hero" ref={bindHeroSectionRef}>
                   {activeImage ? (
                     <button type="button" className="hero-image-button" onClick={openImageViewer} aria-label={t('openImageDetailViewer')}>
                       <FallbackImage
@@ -700,46 +782,6 @@ export default function ItemDetailModal({
                   )}
                 </p>
 
-                {compactGalleryDetail && uniqueImages.length > 0 && (
-                  <section className="detail-series-gallery" ref={heroSectionRef}>
-                    <div className="detail-series-gallery-grid">
-                      {uniqueImages.map(img => {
-                        const isActive = getImageIdentity(img) === getImageIdentity(activeImage || img);
-                        return (
-                          <button
-                            type="button"
-                            key={getImageIdentity(img)}
-                            className={`detail-series-thumb ${isActive ? 'active' : ''}`}
-                            onClick={() => setSelectedImageIdentity(getImageIdentity(img))}
-                            aria-label={t('openImageDetailViewer')}
-                          >
-                            <FallbackImage
-                              paths={imageDisplayPaths(img)}
-                              alt={`${item.title}`}
-                              fallback={<span className="thumb-fallback">{t('noImage')}</span>}
-                            />
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {activeImage && (
-                      <div className="detail-series-gallery-actions">
-                        <button type="button" className="modal-icon-button detail-image-action" onClick={openImageViewer} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
-                          <Eye size={16} />
-                        </button>
-                        <button type="button" className="modal-icon-button detail-image-action" onClick={event => handleDownloadImage(activeImage, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
-                          <Download size={16} />
-                        </button>
-                        {showMutations && (
-                          <button type="button" className="modal-icon-button detail-image-action is-danger" onClick={event => handleDeleteImage(activeImage, event)} aria-label={t('deleteImage')} title={t('deleteImage')}>
-                            <Trash2 size={16} />
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </section>
-                )}
-
                 {duplicatePromptGroup.length > 0 && (
                   <div className="detail-duplicate-tabs tabs" role="tablist" aria-label="Prompt variants">
                     {duplicatePromptGroup.map((variant, index) => (
@@ -783,83 +825,109 @@ export default function ItemDetailModal({
 
                 {detailPanel === 'prompt' ? (
                   <>
-                    <div className="prompt-blocks" aria-label={t('promptLanguage')}>
-                      {(() => {
-                        return (
-                          <section className="prompt-block prompt-panel active">
-                        <header className="prompt-block-header">
-                          <div className="prompt-language-tabs tabs" role="tablist" aria-label={t('promptLanguage')}>
-                            {promptDisplayOrder.map(promptLanguage => {
-                              const tabPrompt = item.prompts.find(prompt => prompt.language === promptLanguage);
-                              return (
-                                <button
-                                  type="button"
-                                  role="tab"
-                                  aria-selected={lang === promptLanguage}
-                                  className={`prompt-language-tab ${lang === promptLanguage ? 'active' : ''}`}
-                                  onClick={() => { setLang(promptLanguage); cancelPromptEdit(); }}
-                                  title={tabPrompt?.text.trim() ? undefined : t('promptText')}
-                                  key={promptLanguage}
-                                >
-                                  {LANG_LABELS[promptLanguage] || promptLanguage}
-                                </button>
-                              );
-                            })}
-                          </div>
-                          <span className="prompt-block-actions">
-                            <button type="button" className="prompt-copy-icon" onClick={() => handleCopyPrompt(prompt?.text || '')} aria-label={t('copyPrompt')} disabled={!prompt?.text}>
-                              <Copy size={15} />
-                            </button>
-                            {showMutations && <button type="button" className="prompt-edit-icon" onClick={() => startPromptEdit(lang, prompt?.text || '')} aria-label={t('edit')}>
-                              <Pencil size={15} />
-                            </button>}
-                          </span>
-                        </header>
-                        <div className="prompt-panel-body">
-                          {editingPromptLanguage === lang ? (
-                            <>
-                              <textarea
-                                className="prompt-edit-textarea"
-                                value={promptDraft}
-                                placeholder={t('promptText')}
-                                autoFocus
-                                onChange={event => setPromptDraft(event.target.value)}
-                                onKeyDown={event => {
-                                  if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') confirmPromptEdit();
-                                  if (event.key === 'Escape') cancelPromptEdit();
-                                }}
-                              />
-                              <span className="prompt-edit-controls">
-                                <button type="button" className="inline-edit-confirm" onClick={confirmPromptEdit} aria-label="Confirm edit"><Check size={14} /></button>
-                                <button type="button" className="inline-edit-cancel" onClick={cancelPromptEdit} aria-label="Cancel edit"><X size={14} /></button>
-                              </span>
-                            </>
-                          ) : (
-                            <div className={`prompt-inline-edit ${prompt?.text ? '' : 'notes-empty'} ${showMutations ? '' : 'is-read-only'}`} onDoubleClick={() => { if (showMutations) startPromptEdit(lang, prompt?.text || ''); }} tabIndex={showMutations ? 0 : undefined} onKeyDown={event => { if (showMutations && event.key === 'Enter') startPromptEdit(lang, prompt?.text || ''); }}>
-                              {prompt?.text ? <p>{prompt.text}</p> : <span className="add-note-affordance">{t('promptText')}</span>}
-                            </div>
-                          )}
+                    {compactGalleryDetail ? (
+                      <div className="series-detail-workbench" ref={bindHeroSectionRef}>
+                        <div className="series-detail-grid">
+                          {seriesPromptSections.map(section => {
+                            const image = uniqueImages[section.index];
+                            const isActive = image ? getImageIdentity(image) === getImageIdentity(activeImage || image) : false;
+                            const cardPromptText = `Image ${section.index + 1}: ${section.title}\n${section.body}`;
+                            return (
+                              <article className="series-prompt-card" key={section.key}>
+                                {image ? (
+                                  <button
+                                    type="button"
+                                    className={`series-prompt-media ${isActive ? 'active' : ''}`}
+                                    onClick={() => setSelectedImageIdentity(getImageIdentity(image))}
+                                    aria-label={t('openImageDetailViewer')}
+                                  >
+                                    <FallbackImage paths={imageDisplayPaths(image)} alt={section.title} fallback={<span className="thumb-fallback">{t('noImage')}</span>} />
+                                  </button>
+                                ) : (
+                                  <div className="series-prompt-media is-empty" aria-hidden="true">
+                                    <span className="thumb-fallback">{t('noImage')}</span>
+                                  </div>
+                                )}
+                                <div className="series-prompt-content">
+                                  <div className="series-prompt-head">
+                                    <div className="series-prompt-title-block">
+                                      <span>{`Prompt ${section.index + 1}`}</span>
+                                      <strong>{section.title}</strong>
+                                    </div>
+                                    <div className="series-prompt-actions">
+                                      <button type="button" className="modal-icon-button" onClick={() => handleCopyPrompt(cardPromptText)} aria-label={t('copyPrompt')} title={t('copyPrompt')}>
+                                        <Copy size={15} />
+                                      </button>
+                                      {image && (
+                                        <>
+                                          <button type="button" className="modal-icon-button" onClick={() => { setSelectedImageIdentity(getImageIdentity(image)); openImageViewer(); }} aria-label={t('openImageDetailViewer')} title={t('openImageDetailViewer')}>
+                                            <Eye size={15} />
+                                          </button>
+                                          <button type="button" className="modal-icon-button" onClick={event => handleDownloadImage(image, event)} aria-label={t('downloadImage')} title={t('downloadImage')}>
+                                            <Download size={15} />
+                                          </button>
+                                        </>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <p className="series-prompt-body">{section.body}</p>
+                                </div>
+                              </article>
+                            );
+                          })}
                         </div>
-                      </section>
-                        );
-                      })()}
-                    </div>
 
-                    <PromptTemplatePanel
-                      itemId={item.id}
-                      fallbackPrompt={copyText}
-                      t={t}
-                      referenceImages={uniqueImages}
-                      onCopyResult={onCopyPrompt}
-                      onImageGenerated={result => {
-                        setItem(result.item);
-                        const newestImage = result.images[result.images.length - 1];
-                        if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
-                        void refreshGenerationRuns(result.item.id);
-                        window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
-                        onChanged();
-                      }}
-                    />
+                        <details className="series-detail-disclosure">
+                          <summary>{t('promptText')}</summary>
+                          <div className="series-detail-disclosure-body">
+                            {rawPromptPanel}
+                          </div>
+                        </details>
+
+                        <details className="series-detail-disclosure">
+                          <summary>{t('generatedImagePanel')}</summary>
+                          <div className="series-detail-disclosure-body">
+                            <PromptTemplatePanel
+                              itemId={item.id}
+                              fallbackPrompt={copyText}
+                              t={t}
+                              referenceImages={uniqueImages}
+                              onCopyResult={onCopyPrompt}
+                              onImageGenerated={result => {
+                                setItem(result.item);
+                                const newestImage = result.images[result.images.length - 1];
+                                if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                                void refreshGenerationRuns(result.item.id);
+                                window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+                                onChanged();
+                              }}
+                            />
+                          </div>
+                        </details>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="prompt-blocks" aria-label={t('promptLanguage')}>
+                          {rawPromptPanel}
+                        </div>
+
+                        <PromptTemplatePanel
+                          itemId={item.id}
+                          fallbackPrompt={copyText}
+                          t={t}
+                          referenceImages={uniqueImages}
+                          onCopyResult={onCopyPrompt}
+                          onImageGenerated={result => {
+                            setItem(result.item);
+                            const newestImage = result.images[result.images.length - 1];
+                            if (newestImage) setSelectedImageIdentity(getImageIdentity(newestImage));
+                            void refreshGenerationRuns(result.item.id);
+                            window.requestAnimationFrame(() => heroSectionRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+                            onChanged();
+                          }}
+                        />
+                      </>
+                    )}
                   </>
                 ) : (
                   <section className="generated-history-panel prompt-block prompt-panel active" aria-label={t('generatedImagesHistory')}>
