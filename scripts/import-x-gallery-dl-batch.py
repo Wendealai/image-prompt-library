@@ -47,7 +47,34 @@ def _clean_text(value: Any) -> str:
 
 def _points_to_replies(text: str) -> bool:
     lowered = text.lower()
-    return any(marker in text for marker in ("评论区", "见评论", "在评论", "评论见", "下方评论")) or "in comments" in lowered
+    return any(
+        marker in text
+        for marker in (
+            "评论区",
+            "见评论",
+            "在评论",
+            "评论见",
+            "下方评论",
+            "评论区见",
+            "见评论区",
+            "提示词见评论区",
+            "提示词放评论区",
+            "评论区补充",
+        )
+    ) or any(
+        marker in lowered
+        for marker in (
+            "in comments",
+            "in comment",
+            "comment section",
+            "comments below",
+            "prompt below",
+            "prompt in comments",
+            "prompt in comment",
+            "see comments",
+            "check comments",
+        )
+    )
 
 
 def _nitter_cookie(html_text: str) -> str | None:
@@ -73,6 +100,10 @@ def _fetch_text(url: str, cookie: str | None = None) -> str:
 
 
 def _nitter_thread_texts(status: str) -> list[str]:
+    return [tweet["content"] for tweet in _nitter_thread_tweets(status)]
+
+
+def _nitter_thread_tweets(status: str) -> list[dict[str, str]]:
     url = f"https://nitter.poast.org/i/status/{status}"
     try:
         html_text = _fetch_text(url)
@@ -81,14 +112,85 @@ def _nitter_thread_texts(status: str) -> list[str]:
     cookie = _nitter_cookie(html_text)
     if cookie:
         html_text = _fetch_text(url, cookie)
-    texts: list[str] = []
-    for raw in re.findall(r'<div class="tweet-content media-body"[^>]*>(.*?)</div>', html_text, re.S):
+    tweets: list[dict[str, str]] = []
+    pattern = re.compile(
+        r'<div class="timeline-item[\s\S]*?<a class="tweet-link" href="([^"]+)"[\s\S]*?<div class="tweet-content media-body"[^>]*>(.*?)</div>',
+        re.S,
+    )
+    for href, raw in pattern.findall(html_text):
         text = re.sub(r"<br\s*/?>", "\n", raw)
         text = re.sub(r"<[^>]+>", "", text)
         text = html.unescape(text).strip()
         if text:
-            texts.append(_clean_text(text))
-    return texts
+            tweets.append(
+                {
+                    "href": href if href.startswith("http") else f"https://x.com{href.split('#', 1)[0]}",
+                    "content": _clean_text(text),
+                }
+            )
+    return tweets
+
+
+def _tweet_content(tweet: dict[str, str]) -> str:
+    return _clean_text(tweet.get("content"))
+
+
+def _tweet_href(tweet: dict[str, str]) -> str:
+    return str(tweet.get("href") or "")
+
+
+def _looks_like_prompt_text(content: str) -> bool:
+    if not content:
+        return False
+    lower = content.lower()
+    explicit_markers = (
+        "prompt:",
+        "prompt：",
+        "提示词:",
+        "提示词：",
+        "设计要求",
+        "画面要求",
+        "请生成",
+        "生成一张",
+    )
+    if any(marker in lower for marker in explicit_markers):
+        return True
+    return ("prompt" in lower or "提示词" in content) and len(content) >= 120
+
+
+def _prompt_score(tweet: dict[str, str], source_url: str, author: str | None) -> int:
+    content = _tweet_content(tweet)
+    if not content:
+        return -1000
+    href = _tweet_href(tweet)
+    source_status = _status_id(source_url)
+    score = len(content)
+    looks_like_prompt = _looks_like_prompt_text(content)
+    if source_status and f"/status/{source_status}" in href:
+        score += 5000 if looks_like_prompt else -500
+    if looks_like_prompt:
+        score += 1000
+    if author and author.lstrip("@").lower() in href.lower():
+        score += 300
+    return score
+
+
+def _thread_prompt_candidate(status: str, source_url: str, author: str | None) -> tuple[str, str | None]:
+    tweets = _nitter_thread_tweets(status)
+    if not tweets:
+        return "", None
+    main_href = source_url.split("?", 1)[0]
+    main_tweet = next((tweet for tweet in tweets if _tweet_href(tweet) == main_href), tweets[0])
+    if _looks_like_prompt_text(_tweet_content(main_tweet)):
+        return _tweet_content(main_tweet), None
+    candidate = max(tweets, key=lambda tweet: _prompt_score(tweet, source_url, author))
+    prompt_text = _tweet_content(candidate)
+    if not prompt_text:
+        return "", None
+    reply_url = _tweet_href(candidate)
+    if reply_url == main_href:
+        reply_url = None
+    return prompt_text, reply_url
 
 
 def _reply_prompt(status: str, main_content: str) -> str:
@@ -101,11 +203,18 @@ def _reply_prompt(status: str, main_content: str) -> str:
     return max(candidates, key=len)
 
 
-def _prompt_text(meta: dict[str, Any], media: list[dict[str, Any]], status: str) -> str:
+def _prompt_payload(meta: dict[str, Any], media: list[dict[str, Any]], source_url: str) -> tuple[str, str | None]:
     content = _clean_text(meta.get("content"))
+    status = str(meta.get("tweet_id") or _status_id(source_url) or "").strip()
+    author_data = meta.get("author") if isinstance(meta.get("author"), dict) else meta.get("user")
+    handle = author_data.get("name") if isinstance(author_data, dict) else None
+    author = f"@{handle.lstrip('@')}" if isinstance(handle, str) and handle else None
     reply_prompt = _reply_prompt(status, content)
     if reply_prompt:
-        return reply_prompt
+        thread_prompt, reply_url = _thread_prompt_candidate(status, source_url, author)
+        if thread_prompt:
+            return thread_prompt, reply_url
+        return reply_prompt, None
     match = re.search(r"(?:^|\n)\s*(?:💬\s*)?(?:prompt\s*[:：]|提示词(?:示例)?\s*[:：]?)(.+)$", content, re.I | re.S)
     if match:
         prompt = match.group(1).strip()
@@ -118,11 +227,15 @@ def _prompt_text(meta: dict[str, Any], media: list[dict[str, Any]], status: str)
         prompt = re.sub(r"^```[a-zA-Z0-9_-]*\s*", "", prompt).strip()
         prompt = re.sub(r"\s*```$", "", prompt).strip()
         if prompt:
-            return prompt
+            return prompt, None
+    if status and (not content or _points_to_replies(content) or not _looks_like_prompt_text(content)):
+        thread_prompt, reply_url = _thread_prompt_candidate(status, source_url, author)
+        if thread_prompt and thread_prompt != content:
+            return thread_prompt, reply_url
     if content:
-        return content
+        return content, None
     descriptions = [_clean_text(item.get("description")) for item in media]
-    return max(descriptions, key=len, default="")
+    return max(descriptions, key=len, default=""), None
 
 
 def _title(meta: dict[str, Any], prompt_text: str, status: str) -> str:
@@ -242,7 +355,7 @@ def _manifest_for(
     handle = author_data.get("name") if isinstance(author_data, dict) else None
     author = f"@{handle.lstrip('@')}" if isinstance(handle, str) and handle else None
     media_meta = [item for _, item in photos]
-    prompt = prompt_override.get("prompt_text") if prompt_override else _prompt_text(tweet_meta, media_meta, status)
+    prompt, prompt_reply_url = (prompt_override.get("prompt_text"), None) if prompt_override else _prompt_payload(tweet_meta, media_meta, source_url)
     if not prompt:
         raise RuntimeError("No prompt text found.")
 
@@ -265,6 +378,7 @@ def _manifest_for(
         "prompt_language": (prompt_override or {}).get("prompt_language") or _language(tweet_meta),
         "prompt_text": prompt,
         "tweet_intro": _clean_text(tweet_meta.get("content")),
+        "prompt_reply_url": prompt_reply_url,
         "cluster_name": (prompt_override or {}).get("cluster_name") or None,
         "tags": tags,
         "image_filename_prefix": f"{(handle or 'x').lstrip('@').lower()}-{status}",
